@@ -70,27 +70,27 @@
 .nova-popover__arrow {
   width: 11px;
   height: 11px;
-  z-index: 1;
+  z-index: 2;
   background: #0a1422;
   transform: rotate(45deg);
 }
 .nova-popover__arrow[data-side="top"] {
-  bottom: -4px;
+  bottom: -3px;
   border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-popover__arrow[data-side="bottom"] {
-  top: -4px;
+  top: -3px;
   border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-popover__arrow[data-side="left"] {
-  right: -4px;
+  right: -3px;
   border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-popover__arrow[data-side="right"] {
-  left: -4px;
+  left: -3px;
   border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }

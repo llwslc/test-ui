@@ -40,9 +40,10 @@ export function AlertDialog({
             .filter(Boolean)
             .join(" ")}
         >
-          <span className="nova-alert__bar" />
+          <span className="nova-alert__scan" />
           {title != null ? (
             <BaseAlertDialog.Title className="nova-alert__title">
+              <span className="nova-alert__title-tick" />
               {title}
             </BaseAlertDialog.Title>
           ) : null}

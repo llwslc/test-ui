@@ -1,23 +1,25 @@
 /* NOVA · ToggleGroup — segmented HUD selector */
 
-/* The chamfers live on the SEGMENTS (the visual interest). The group is a
-   plain rectangular frame, so it isn't a second chamfer clipping the corner
-   segments and fighting them. */
+/* Outer frame is chamfered, and so are the segments. The corner segments are
+   trimmed by the group's clip-path to follow the outer chamfer. */
 .nova-togglegroup {
+  --nova-cut: 8px;
   position: relative;
   display: inline-flex;
   /* Size to the segments. Without this it gets blockified + stretched to full
      width when used as a flex/grid item, leaving blank space on the right. */
   width: fit-content;
   max-width: 100%;
-  padding: 3px;
+  padding: 4px;
   gap: 3px;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
 }
 .nova-togglegroup::before {
   content: "";
   position: absolute;
   inset: 1px;
+  clip-path: var(--nova-clip);
   background: rgba(8, 16, 26, 0.9);
 }
 
