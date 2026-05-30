@@ -99,7 +99,7 @@
   flex: 0 0 auto;
   background: var(--nova-alert-accent);
   box-shadow: 0 0 8px var(--nova-alert-accent);
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  clip-path: var(--nova-clip-tick);
 }
 .nova-alert__desc {
   margin: 0 0 16px;

@@ -46,10 +46,10 @@
 /* Chamfer only the bar's outer corners so it nests in the group frame:
    first cuts top-left, last cuts bottom-right, middles stay rectangular. */
 .nova-toggle:first-child {
-  clip-path: polygon(7px 0, 100% 0, 100% 100%, 0 100%, 0 7px);
+  clip-path: var(--nova-clip-tl-7);
 }
 .nova-toggle:last-child {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+  clip-path: var(--nova-clip-br-7);
 }
 .nova-toggle:only-child {
   clip-path: var(--nova-clip-7);

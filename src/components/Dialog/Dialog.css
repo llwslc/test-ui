@@ -89,7 +89,7 @@
   height: 16px;
   background: var(--nova-primary, #2de2ff);
   box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  clip-path: var(--nova-clip-tick);
 }
 .nova-dialog__desc {
   margin: 0 0 16px;
