@@ -95,6 +95,7 @@
 }
 
 .nova-select__item {
+  --nova-cut: 4px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -106,28 +107,30 @@
   font-size: 14px;
   user-select: none;
   outline: none;
+  clip-path: var(--nova-clip);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);
 }
+/* Full-height glowing left edge (fades in on highlight) — not a centered stub. */
 .nova-select__item::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
   width: 2px;
-  height: 0;
   background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 6px var(--nova-primary, #2de2ff);
-  transition: height var(--nova-dur, 0.22s) var(--nova-ease);
+  box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
+  opacity: 0;
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
 }
 .nova-select__item[data-highlighted] {
   background: rgba(45, 226, 255, 0.14);
   color: #eafdff;
 }
 .nova-select__item[data-highlighted]::after {
-  height: 62%;
+  opacity: 1;
 }
 .nova-select__item[data-selected] {
   color: var(--nova-primary, #2de2ff);

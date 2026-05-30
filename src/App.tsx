@@ -624,8 +624,8 @@ function Demo() {
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
                 <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
-                  The HUD frame wrapping every section: a sharp neon border,
-                  four corner brackets, and an optional scan sweep.
+                  The HUD frame wrapping every section: a chamfered border with
+                  corner brackets and an optional scan sweep.
                 </p>
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="demo-tag">Composable to any depth</span>

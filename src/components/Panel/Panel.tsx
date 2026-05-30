@@ -18,10 +18,8 @@ export function Panel({ title, meta, children, scan, className }: PanelProps) {
         .filter(Boolean)
         .join(" ")}
     >
-      <i className="nova-panel__corner nova-panel__corner--tl" aria-hidden />
       <i className="nova-panel__corner nova-panel__corner--tr" aria-hidden />
       <i className="nova-panel__corner nova-panel__corner--bl" aria-hidden />
-      <i className="nova-panel__corner nova-panel__corner--br" aria-hidden />
       {(title != null || meta != null) && (
         <header className="nova-panel__head">
           {title != null ? (

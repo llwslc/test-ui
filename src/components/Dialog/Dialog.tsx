@@ -1,5 +1,7 @@
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
+import { Button } from "../Button";
+import type { ButtonVariant, ButtonSize } from "../Button";
 import { XIcon } from "../icons";
 import "./Dialog.css";
 
@@ -60,30 +62,36 @@ export function Dialog({
   );
 }
 
-/** Styled close button for use inside a Dialog footer.
-   Self-contained (does not wrap <Button>) so its chamfer/fill never
-   collide with another component's classes. */
-export type DialogCloseVariant = "ghost" | "primary" | "secondary" | "danger";
+/** Close button for a Dialog/Drawer footer — reuses the NOVA `Button` so the
+   footer actions match the rest of the kit. We deliberately route `className`
+   onto the Button (not onto Base UI's Close), because `render` merges
+   classNames and stacking a second full button style would collide. */
+export type DialogCloseVariant = ButtonVariant;
 
 export interface DialogCloseProps
-  extends ComponentPropsWithoutRef<typeof BaseDialog.Close> {
-  variant?: DialogCloseVariant;
+  extends Omit<
+    ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+    "className" | "render"
+  > {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
 }
 
 export function DialogClose({
   variant = "ghost",
+  size = "md",
   className,
+  children,
   ...props
 }: DialogCloseProps) {
   return (
     <BaseDialog.Close
-      className={[
-        "nova-dialog__btn",
-        `nova-dialog__btn--${variant}`,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
       {...props}
     />
   );
