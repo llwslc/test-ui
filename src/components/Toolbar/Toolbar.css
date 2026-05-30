@@ -1,5 +1,4 @@
 .nova-toolbar {
-  --nova-cut: 8px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -30,7 +29,15 @@
 }
 
 .nova-toolbar__btn {
-  --nova-cut: 4px;
+  --nova-cut: 7px;
+  --nova-clip: polygon(
+    var(--nova-cut) 0,
+    100% 0,
+    100% calc(100% - var(--nova-cut)),
+    calc(100% - var(--nova-cut)) 100%,
+    0 100%,
+    0 var(--nova-cut)
+  );
   display: inline-flex;
   align-items: center;
   justify-content: center;

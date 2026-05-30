@@ -210,6 +210,37 @@ const SHIP_LOG = [
   { t: "08:29:31", m: "Crew manifest synced, 47 aboard" },
 ];
 
+const SYNC_SYSTEMS = ["Encrypt channel", "Relay telemetry", "Nav beacon"];
+
+function CheckboxDemo() {
+  const [on, setOn] = useState([true, false, false]);
+  const all = on.every(Boolean);
+  const some = on.some(Boolean);
+  return (
+    <div className="demo-stack">
+      <Checkbox
+        checked={all}
+        indeterminate={some && !all}
+        onCheckedChange={(v) => setOn(SYNC_SYSTEMS.map(() => v))}
+        label={all ? "All systems synced" : some ? "Some systems synced" : "Sync all systems"}
+      />
+      <div className="demo-checktree">
+        {SYNC_SYSTEMS.map((sys, i) => (
+          <Checkbox
+            key={sys}
+            checked={on[i]}
+            onCheckedChange={(v) =>
+              setOn((prev) => prev.map((x, j) => (j === i ? v : x)))
+            }
+            label={sys}
+          />
+        ))}
+      </div>
+      <Checkbox disabled label="Quarantine (locked)" />
+    </div>
+  );
+}
+
 function ToolbarDemo() {
   const [view, setView] = useState<"map" | "grid" | "scan">("map");
   const [live, setLive] = useState(true);
@@ -468,12 +499,7 @@ function Demo() {
             {/* Checkbox */}
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
-                <div className="demo-stack">
-                  <Checkbox defaultChecked label="Encrypt channel" />
-                  <Checkbox label="Relay telemetry" />
-                  <Checkbox indeterminate label="Partial sync" />
-                  <Checkbox disabled label="Quarantine (locked)" />
-                </div>
+                <CheckboxDemo />
               </Panel>
             </div>
 

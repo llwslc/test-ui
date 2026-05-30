@@ -245,6 +245,14 @@
   flex-direction: column;
   gap: 12px;
 }
+.demo-checktree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 9px;
+  padding-left: 16px;
+  border-left: 1px solid var(--nova-line);
+}
 .demo-tag {
   font-family: var(--nova-font-mono);
   font-size: 10.5px;
