@@ -1,23 +1,17 @@
-/* NOVA · Tooltip — readout chip */
+/* NOVA · Tooltip — readout chip (chamfered) with a connecting arrow */
 
 .nova-tooltip__positioner {
   z-index: 1300;
 }
 
+/* Outer popup: a transparent, UN-clipped container. The arrow can overhang
+   it because it isn't a child of the chamfered (clip-path) surface. Glow +
+   enter/exit animation live here so they follow the whole chamfer + arrow. */
 .nova-tooltip__popup {
   position: relative;
   max-width: 240px;
-  padding: 7px 12px;
-  background: rgba(7, 16, 26, 0.96);
-  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  color: var(--nova-text, #d7ecff);
-  font-family: var(--nova-font-mono, monospace);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.55),
-    0 0 14px rgba(45, 226, 255, 0.2);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 10px rgba(45, 226, 255, 0.22));
   transform-origin: var(--transform-origin);
   transition:
     opacity var(--nova-dur, 0.22s) var(--nova-ease),
@@ -29,34 +23,48 @@
   transform: scale(0.94);
 }
 
-/* Arrow: a rotated square whose two OUTER edges carry the border and whose
-   opaque fill covers the popup border it overlaps — so the border opens
-   seamlessly into the point. (Base UI centres it along the edge; we add the
-   perpendicular offset + rotation per side.) */
+/* The chamfered panel. */
+.nova-tooltip__surface {
+  --nova-cut: 6px;
+  display: block;
+  padding: 7px 12px;
+  background: #08121c;
+  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  color: var(--nova-text, #d7ecff);
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+/* Arrow: a 45deg-rotated square. Only the two OUTER edges carry the border;
+   the fill matches the surface EXACTLY, so the half that overlaps the panel
+   is invisible and the border seam it covers opens cleanly into the point. */
 .nova-tooltip__arrow {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   z-index: 1;
   background: #08121c;
   transform: rotate(45deg);
 }
 .nova-tooltip__arrow[data-side="top"] {
-  bottom: -5px;
+  bottom: -4px;
   border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-tooltip__arrow[data-side="bottom"] {
-  top: -5px;
+  top: -4px;
   border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-tooltip__arrow[data-side="left"] {
-  right: -5px;
+  right: -4px;
   border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-tooltip__arrow[data-side="right"] {
-  left: -5px;
+  left: -4px;
   border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }

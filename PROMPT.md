@@ -40,7 +40,7 @@ src/
 ## 控件清单(21 个,每个独立文件夹)
 - **输入**:Button、Switch、Checkbox、Radio(Group)、ToggleGroup、Slider、NumberField、Input/Field、Select
 - **反馈**:Progress、Meter(分段 LED)、Tabs、Accordion
-- **浮层**:Tooltip(**锐利矩形浮层 + 箭头**:箭头是旋转 45° 的方块,只给朝外两边描边、填充盖住浮层边框接缝;浮层**不能切角**否则箭头会被 clip 掉)、Dialog(`DialogClose` **复用 Button**,经 `render`)、Drawer(**边缘锚定的 Dialog**,从屏幕边缘滑入的侧栏)、Toast(Provider + `useToast`)
+- **浮层**:Tooltip(**切角浮层 + 箭头**:结构 = 不裁的外层 popup > 切角内层面板 + 箭头(面板的**兄弟**节点,不被 clip);箭头是旋转 45° 方块,只描朝外两边、填充色与面板**完全一致**盖住边框接缝)、Dialog(`DialogClose` **复用 Button**,经 `render`)、Drawer(**边缘锚定的 Dialog**,从屏幕边缘滑入的侧栏)、Toast(Provider + `useToast`)
 - **展示**:Avatar、Badge、Separator、Panel(HUD 容器:**切角边框 + 非切角两角(TR/BL)的括号** + 可选扫描光)
 
 ## 关键实现要点(踩坑,务必照做 —— 以下每条都是真摔过的坑)
@@ -49,7 +49,7 @@ src/
 1. **带描边的切角用「双层 frame 法」,别用 `border + clip-path`** —— 后者会把斜切边留成没描边的缺口。做法:外层背景=边框色 + `clip-path`,`::before` 内缩 `1px`(切角再小 ~1px)填背景色,内容设 `position:relative; z-index:1` 压在填充之上。聚焦/悬停整体 `filter: drop-shadow()` 发光(跟随切角;`box-shadow` 是矩形不跟随)。
 2. **`clip-path` 会裁掉所有子元素/伪元素** —— 凡是要触达边缘或角的东西,要么挪到不被切的位置,要么别让它探出:
    - Panel 角括号 → 容器**保留切角**,但括号只放在**不切角的两个角(TR/BL)**;
-   - Tooltip 要箭头就**别给浮层切角**(`clip-path` 会把探出的箭头裁掉)→ 浮层用**锐利矩形**,箭头用旋转 45° 方块、只描朝外两边、填充盖住边框接缝(`bottom:-5px` 让它压在边框上);
+   - Tooltip 要「**切角 + 箭头**」:别把箭头放进切角元素(clip 会裁掉)→ 结构 `popup(不裁) > [切角面板, 箭头(兄弟)]`;箭头旋转 45° 方块、只描朝外两边、填充与面板**同色**;偏移让**肩部压在边框上**(太靠外边框会和箭头断成两道线 —— 调 `bottom` 到肩部刚好盖住边框);
    - Select 菜单项**保留切角**;高亮的**发光竖线走完整左边**(`top:0; bottom:0`,别做居中半截)。
 
 **B. 对比度铁律**
