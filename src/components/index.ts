@@ -32,6 +32,9 @@ export type { NumberFieldProps } from "./NumberField";
 export { Select } from "./Select";
 export type { SelectProps, SelectOption } from "./Select";
 
+export { Combobox } from "./Combobox";
+export type { ComboboxProps } from "./Combobox";
+
 export { Progress } from "./Progress";
 export type { ProgressProps } from "./Progress";
 
@@ -69,6 +72,12 @@ export type { PopoverProps } from "./Popover";
 export { Menu } from "./Menu";
 export type { MenuProps, MenuItem } from "./Menu";
 
+export { ContextMenu } from "./ContextMenu";
+export type { ContextMenuProps } from "./ContextMenu";
+
+export { PreviewCard } from "./PreviewCard";
+export type { PreviewCardProps } from "./PreviewCard";
+
 export { ToastProvider, useToast } from "./Toast";
 export type { ToastProviderProps, ToastTone } from "./Toast";
 
@@ -83,3 +92,14 @@ export type { BadgeProps, BadgeTone } from "./Badge";
 
 export { Panel } from "./Panel";
 export type { PanelProps } from "./Panel";
+
+export { ScrollArea } from "./ScrollArea";
+export type { ScrollAreaProps } from "./ScrollArea";
+
+export {
+  Toolbar,
+  ToolbarButton,
+  ToolbarSeparator,
+  ToolbarGroup,
+} from "./Toolbar";
+export type { ToolbarProps, ToolbarButtonProps } from "./Toolbar";

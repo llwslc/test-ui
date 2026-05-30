@@ -71,3 +71,22 @@ export const BoltIcon = (p: IconProps) => (
     <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
   </svg>
 );
+
+export const TrashIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7" />
+  </svg>
+);
+
+export const CopyIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="9" y="9" width="11" height="11" rx="1.5" />
+    <path d="M5 15V5a1 1 0 0 1 1-1h9" />
+  </svg>
+);
+
+export const SignalIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4.5 15a8 8 0 0 1 0-6M8 13a4 4 0 0 1 0-2m8 2a4 4 0 0 0 0-2m3.5 6a8 8 0 0 0 0-6M12 12h.01" />
+  </svg>
+);

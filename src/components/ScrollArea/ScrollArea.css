@@ -1,0 +1,72 @@
+.nova-scrollarea {
+  --nova-cut: 9px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+}
+.nova-scrollarea::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: rgba(7, 14, 24, 0.6);
+}
+
+.nova-scrollarea__viewport {
+  position: relative;
+  z-index: 1;
+  padding: 14px 16px;
+  overscroll-behavior: contain;
+  outline: none;
+}
+.nova-scrollarea__viewport:focus-visible {
+  outline: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  outline-offset: -2px;
+}
+
+.nova-scrollarea__scrollbar {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 11px;
+  margin: 6px 3px;
+  background: rgba(45, 226, 255, 0.05);
+  opacity: 0;
+  transition: opacity var(--nova-dur-slow, 0.45s) var(--nova-ease);
+}
+.nova-scrollarea__scrollbar[data-orientation="horizontal"] {
+  flex-direction: column;
+  height: 11px;
+  margin: 3px 6px;
+}
+.nova-scrollarea:hover .nova-scrollarea__scrollbar,
+.nova-scrollarea__scrollbar[data-scrolling],
+.nova-scrollarea__scrollbar[data-hovering] {
+  opacity: 1;
+}
+
+.nova-scrollarea__thumb {
+  flex: 1;
+  position: relative;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  box-shadow: 0 0 7px rgba(45, 226, 255, 0.4);
+  clip-path: polygon(
+    3px 0,
+    100% 0,
+    100% calc(100% - 3px),
+    calc(100% - 3px) 100%,
+    0 100%,
+    0 3px
+  );
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-scrollarea__thumb:hover,
+.nova-scrollarea__thumb[data-scrolling] {
+  background: var(--nova-primary, #2de2ff);
+}
+.nova-scrollarea__corner {
+  background: transparent;
+}

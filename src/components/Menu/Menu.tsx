@@ -1,17 +1,13 @@
 import { Menu as BaseMenu } from "@base-ui-components/react/menu";
-import type { ReactElement, ReactNode } from "react";
+import type { ReactElement } from "react";
+import { renderMenuEntries, type MenuEntry } from "./items";
 import "./Menu.css";
 
-export interface MenuItem {
-  label: ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  tone?: "default" | "danger";
-}
+export type { MenuItem, MenuEntry } from "./items";
 
 export interface MenuProps {
   trigger: ReactElement;
-  items: (MenuItem | "separator")[];
+  items: MenuEntry[];
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
 }
@@ -28,25 +24,10 @@ export function Menu({ trigger, items, side = "bottom", align = "start" }: MenuP
           sideOffset={6}
         >
           <BaseMenu.Popup className="nova-menu__popup">
-            {items.map((it, i) =>
-              it === "separator" ? (
-                <BaseMenu.Separator key={i} className="nova-menu__separator" />
-              ) : (
-                <BaseMenu.Item
-                  key={i}
-                  className={[
-                    "nova-menu__item",
-                    it.tone === "danger" ? "nova-menu__item--danger" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                  disabled={it.disabled}
-                  onClick={it.onClick}
-                >
-                  {it.label}
-                </BaseMenu.Item>
-              ),
-            )}
+            {renderMenuEntries(items, {
+              Item: BaseMenu.Item,
+              Separator: BaseMenu.Separator,
+            })}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

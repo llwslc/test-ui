@@ -1,0 +1,41 @@
+.nova-ctxmenu__zone {
+  --nova-cut: 9px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  min-height: 132px;
+  padding: 26px;
+  text-align: center;
+  color: var(--nova-text-dim, #7793b0);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: context-menu;
+  user-select: none;
+  background: repeating-linear-gradient(
+      -45deg,
+      transparent 0 9px,
+      rgba(45, 226, 255, 0.04) 9px 10px
+    ),
+    rgba(7, 14, 24, 0.5);
+  clip-path: var(--nova-clip);
+  outline: 1px dashed var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  outline-offset: -1px;
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-ctxmenu__zone:hover {
+  background: repeating-linear-gradient(
+      -45deg,
+      transparent 0 9px,
+      rgba(45, 226, 255, 0.06) 9px 10px
+    ),
+    rgba(11, 24, 40, 0.6);
+}
+.nova-ctxmenu__zone[data-popup-open] {
+  outline-color: var(--nova-primary, #2de2ff);
+}
+.nova-ctxmenu__zone kbd {
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 12px;
+  color: var(--nova-primary, #2de2ff);
+}

@@ -1,0 +1,79 @@
+.nova-toolbar {
+  --nova-cut: 8px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
+}
+.nova-toolbar::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: rgba(8, 18, 30, 0.94);
+}
+.nova-toolbar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.nova-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nova-toolbar__btn {
+  --nova-cut: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  color: var(--nova-text-dim, #7793b0);
+  font-family: var(--nova-font, sans-serif);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  clip-path: var(--nova-clip);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-toolbar__btn:hover {
+  background: rgba(45, 226, 255, 0.1);
+  color: var(--nova-text, #d7ecff);
+}
+.nova-toolbar__btn:focus-visible {
+  outline: none;
+  background: rgba(45, 226, 255, 0.16);
+  color: var(--nova-text, #d7ecff);
+}
+.nova-toolbar__btn.is-active {
+  background: var(--nova-primary, #2de2ff);
+  color: var(--nova-on-primary, #02131a);
+  box-shadow: 0 0 10px rgba(45, 226, 255, 0.35);
+}
+.nova-toolbar__btn[data-disabled],
+.nova-toolbar__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nova-toolbar__sep {
+  align-self: stretch;
+  width: 1px;
+  margin: 3px 4px;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}

@@ -7,7 +7,7 @@
   --nova-cut: 9px;
   position: relative;
   box-sizing: border-box;
-  min-width: 190px;
+  min-width: 210px;
   padding: 5px;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip);
@@ -33,18 +33,19 @@
 }
 
 .nova-menu__item {
+  --nova-cut: 4px;
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px 8px 12px;
+  gap: 11px;
+  padding: 8px 12px 8px 11px;
   cursor: pointer;
   color: var(--nova-text-dim, #7793b0);
   font-size: 14px;
   user-select: none;
   outline: none;
-  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  clip-path: var(--nova-clip);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);
@@ -61,12 +62,38 @@
   opacity: 0;
   transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
 }
+.nova-menu__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  font-size: 16px;
+  color: var(--nova-text-mute, #46617e);
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menu__label {
+  flex: 1;
+  white-space: nowrap;
+}
+.nova-menu__shortcut {
+  flex: 0 0 auto;
+  margin-left: 18px;
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--nova-text-mute, #46617e);
+}
 .nova-menu__item[data-highlighted] {
   background: rgba(45, 226, 255, 0.14);
   color: #eafdff;
 }
 .nova-menu__item[data-highlighted]::after {
   opacity: 1;
+}
+.nova-menu__item[data-highlighted] .nova-menu__icon {
+  color: var(--nova-primary, #2de2ff);
+}
+.nova-menu__item[data-highlighted] .nova-menu__shortcut {
+  color: var(--nova-text-dim, #7793b0);
 }
 .nova-menu__item[data-disabled] {
   opacity: 0.4;
@@ -75,9 +102,15 @@
 .nova-menu__item--danger {
   color: var(--nova-danger, #ff4d5e);
 }
+.nova-menu__item--danger .nova-menu__icon {
+  color: var(--nova-danger, #ff4d5e);
+}
 .nova-menu__item--danger[data-highlighted] {
   background: rgba(255, 77, 94, 0.16);
   color: #ffd9dc;
+}
+.nova-menu__item--danger[data-highlighted] .nova-menu__icon {
+  color: var(--nova-danger, #ff4d5e);
 }
 .nova-menu__item--danger::after {
   background: var(--nova-danger, #ff4d5e);

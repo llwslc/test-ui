@@ -1,0 +1,136 @@
+.nova-previewcard__positioner {
+  z-index: 1250;
+}
+
+.nova-previewcard__popup {
+  position: relative;
+  width: 286px;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 14px rgba(45, 226, 255, 0.18));
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease),
+    transform var(--nova-dur-slow, 0.45s) var(--nova-ease);
+}
+.nova-previewcard__popup[data-starting-style],
+.nova-previewcard__popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.94) translateY(4px);
+}
+
+.nova-previewcard__surface {
+  --nova-cut: 12px;
+  position: relative;
+  display: block;
+  padding: 16px 16px 15px;
+  background: #0a1422;
+  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  overflow: hidden;
+}
+.nova-previewcard__scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--nova-primary, #2de2ff) 45%,
+    transparent
+  );
+  opacity: 0.85;
+}
+.nova-previewcard__body {
+  position: relative;
+}
+
+.nova-previewcard__arrow {
+  --arrow-fill: #0a1422;
+  --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  z-index: 2;
+}
+.nova-previewcard__arrow::before,
+.nova-previewcard__arrow::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.nova-previewcard__arrow[data-side="top"] {
+  bottom: -8px;
+  width: 16px;
+  height: 8px;
+}
+.nova-previewcard__arrow[data-side="top"]::before {
+  top: 0;
+  left: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--arrow-border);
+}
+.nova-previewcard__arrow[data-side="top"]::after {
+  top: -1.5px;
+  left: 1.5px;
+  border-left: 6.5px solid transparent;
+  border-right: 6.5px solid transparent;
+  border-top: 6.5px solid var(--arrow-fill);
+}
+.nova-previewcard__arrow[data-side="bottom"] {
+  top: -8px;
+  width: 16px;
+  height: 8px;
+}
+.nova-previewcard__arrow[data-side="bottom"]::before {
+  bottom: 0;
+  left: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--arrow-border);
+}
+.nova-previewcard__arrow[data-side="bottom"]::after {
+  bottom: -1.5px;
+  left: 1.5px;
+  border-left: 6.5px solid transparent;
+  border-right: 6.5px solid transparent;
+  border-bottom: 6.5px solid var(--arrow-fill);
+}
+.nova-previewcard__arrow[data-side="left"] {
+  right: -8px;
+  width: 8px;
+  height: 16px;
+}
+.nova-previewcard__arrow[data-side="left"]::before {
+  top: 0;
+  left: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--arrow-border);
+}
+.nova-previewcard__arrow[data-side="left"]::after {
+  top: 1.5px;
+  left: -1.5px;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+  border-left: 6.5px solid var(--arrow-fill);
+}
+.nova-previewcard__arrow[data-side="right"] {
+  left: -8px;
+  width: 8px;
+  height: 16px;
+}
+.nova-previewcard__arrow[data-side="right"]::before {
+  top: 0;
+  right: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--arrow-border);
+}
+.nova-previewcard__arrow[data-side="right"]::after {
+  top: 1.5px;
+  right: -1.5px;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+  border-right: 6.5px solid var(--arrow-fill);
+}

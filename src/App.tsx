@@ -8,6 +8,8 @@ import {
   Button,
   Checkbox,
   Collapsible,
+  Combobox,
+  ContextMenu,
   Dialog,
   DialogClose,
   Drawer,
@@ -18,9 +20,11 @@ import {
   NumberField,
   Panel,
   Popover,
+  PreviewCard,
   Progress,
   Radio,
   RadioGroup,
+  ScrollArea,
   Select,
   Separator,
   Slider,
@@ -29,10 +33,20 @@ import {
   ToastProvider,
   Toggle,
   ToggleGroup,
+  Toolbar,
+  ToolbarButton,
+  ToolbarGroup,
+  ToolbarSeparator,
   Tooltip,
   useToast,
 } from "./components";
-import { BoltIcon, SearchIcon } from "./components/icons";
+import {
+  BoltIcon,
+  CopyIcon,
+  SearchIcon,
+  SignalIcon,
+  TrashIcon,
+} from "./components/icons";
 import "./App.css";
 
 /* ---- Sidebar index config (lists every control) ---- */
@@ -49,6 +63,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["number", "Number Field", "NUM"],
       ["input", "Text Field", "TXT"],
       ["select", "Select", "SEL"],
+      ["combobox", "Combobox", "CBX"],
     ],
   },
   {
@@ -66,7 +81,9 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["tooltip", "Tooltip", "TIP"],
       ["popover", "Popover", "POP"],
+      ["preview", "Preview Card", "PVW"],
       ["menu", "Menu", "MNU"],
+      ["context", "Context Menu", "CTX"],
       ["dialog", "Dialog", "DLG"],
       ["alert", "Alert Dialog", "ALT"],
       ["drawer", "Drawer", "DRW"],
@@ -78,6 +95,8 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["avatar", "Avatar", "AVT"],
       ["badge", "Badge", "BDG"],
+      ["toolbar", "Toolbar", "TBR"],
+      ["scroll", "Scroll Area", "SCR"],
       ["separator", "Separator", "SEP"],
       ["panel", "Panel", "PNL"],
     ],
@@ -90,6 +109,21 @@ const SELECT_ITEMS = [
   { label: "Trappist-1e", value: "trappist" },
   { label: "Kepler-442b", value: "kepler" },
   { label: "Gliese 581g [locked]", value: "gliese", disabled: true },
+];
+
+const COMBOBOX_ITEMS = [
+  "Proxima Centauri",
+  "Alpha Centauri A",
+  "Barnard's Star",
+  "Wolf 359",
+  "Sirius",
+  "Trappist-1e",
+  "Kepler-442b",
+  "Gliese 581g",
+  "Tau Ceti f",
+  "Vega",
+  "Altair",
+  "Betelgeuse",
 ];
 
 const TAB_ITEMS = [
@@ -160,6 +194,56 @@ function Clock() {
   }, []);
   const t = now.toTimeString().slice(0, 8);
   return <span className="nova-clock">{t} UTC</span>;
+}
+
+const SHIP_LOG = [
+  { t: "08:42:01", m: "Reactor core temperature nominal — 412 K" },
+  { t: "08:41:55", m: "Shield matrix recalibrated to 1.4 GHz" },
+  { t: "08:40:12", m: "Proximity alert cleared, sector 7-G" },
+  { t: "08:39:03", m: "Hyperspace charge cycle initiated" },
+  { t: "08:37:48", m: "Hull micro-fracture sealed, deck 4" },
+  { t: "08:36:20", m: "Comms relay handshake with Deep Space 9" },
+  { t: "08:35:01", m: "Oxygen scrubbers holding at 98% efficiency" },
+  { t: "08:33:44", m: "Navigation lock acquired — Proxima Centauri" },
+  { t: "08:32:10", m: "Gravimetric sensor array online" },
+  { t: "08:30:55", m: "Auxiliary power rerouted to forward thrusters" },
+  { t: "08:29:31", m: "Crew manifest synced, 47 aboard" },
+];
+
+function ToolbarDemo() {
+  const [view, setView] = useState<"map" | "grid" | "scan">("map");
+  const [live, setLive] = useState(true);
+  return (
+    <Toolbar aria-label="Console toolbar">
+      <ToolbarGroup>
+        <ToolbarButton aria-label="Scan">
+          <SearchIcon />
+        </ToolbarButton>
+        <ToolbarButton aria-label="Charge">
+          <BoltIcon />
+        </ToolbarButton>
+        <ToolbarButton aria-label="Duplicate">
+          <CopyIcon />
+        </ToolbarButton>
+        <ToolbarButton aria-label="Purge">
+          <TrashIcon />
+        </ToolbarButton>
+      </ToolbarGroup>
+      <ToolbarSeparator />
+      <ToolbarGroup>
+        {(["map", "grid", "scan"] as const).map((v) => (
+          <ToolbarButton key={v} active={view === v} onClick={() => setView(v)}>
+            <span className="demo-toolbar__label">{v.toUpperCase()}</span>
+          </ToolbarButton>
+        ))}
+      </ToolbarGroup>
+      <ToolbarSeparator />
+      <ToolbarButton active={live} onClick={() => setLive((b) => !b)}>
+        <SignalIcon />
+        <span className="demo-toolbar__label">LIVE</span>
+      </ToolbarButton>
+    </Toolbar>
+  );
 }
 
 function ProgressDemo() {
@@ -300,7 +384,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 25 Controls
+              <BoltIcon /> Component System · 30 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -315,7 +399,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>25</b>
+                <b>30</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -483,6 +567,16 @@ function Demo() {
               </Panel>
             </div>
 
+            {/* Combobox */}
+            <div className="nova-section" id="combobox">
+              <Panel title="Combobox" meta="CBX">
+                <div className="demo-stack">
+                  <span className="demo-tag">Filter star systems</span>
+                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                </div>
+              </Panel>
+            </div>
+
             {/* Progress */}
             <div className="nova-section" id="progress">
               <Panel title="Progress" meta="PRG">
@@ -560,19 +654,94 @@ function Demo() {
               </Panel>
             </div>
 
+            {/* Preview Card */}
+            <div className="nova-section" id="preview">
+              <Panel title="Preview Card" meta="PVW">
+                <div className="demo-stack">
+                  <span className="demo-tag">Hover the callsign</span>
+                  <div>
+                    Patrol lead{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          className="demo-link"
+                          href="#preview"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @nova_cmdr
+                        </a>
+                      }
+                    >
+                      <div className="demo-pcard__head">
+                        <Avatar
+                          src="https://i.pravatar.cc/96?img=15"
+                          alt="Cmdr. Nova"
+                          status="online"
+                        />
+                        <div>
+                          <div className="demo-pcard__name">Cmdr. Nova</div>
+                          <div className="demo-pcard__handle">
+                            Fleet Command · Sector 7
+                          </div>
+                        </div>
+                      </div>
+                      <p className="demo-pcard__bio">
+                        Deep-range patrol lead. 1,204 hyperspace jumps logged,
+                        zero hull losses.
+                      </p>
+                      <div className="demo-pcard__stats">
+                        <Badge tone="primary" dot>
+                          On Duty
+                        </Badge>
+                        <Badge tone="neutral">Clearance A</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    is on station.
+                  </div>
+                </div>
+              </Panel>
+            </div>
+
             {/* Menu */}
             <div className="nova-section" id="menu">
               <Panel title="Menu" meta="MNU">
                 <Menu
                   trigger={<Button variant="ghost">Actions ▾</Button>}
                   items={[
-                    { label: "Scan Sector" },
-                    { label: "Plot Course" },
-                    { label: "Hail Vessel", disabled: true },
+                    { label: "Scan Sector", icon: <SearchIcon />, shortcut: "⌘S" },
+                    { label: "Plot Course", icon: <BoltIcon />, shortcut: "⌘P" },
+                    { label: "Duplicate", icon: <CopyIcon />, shortcut: "⌘D" },
+                    { label: "Hail Vessel", icon: <SignalIcon />, disabled: true },
                     "separator",
-                    { label: "Jettison Cargo", tone: "danger" },
+                    {
+                      label: "Jettison Cargo",
+                      icon: <TrashIcon />,
+                      shortcut: "⌫",
+                      tone: "danger",
+                    },
                   ]}
                 />
+              </Panel>
+            </div>
+
+            {/* Context Menu */}
+            <div className="nova-section" id="context">
+              <Panel title="Context Menu" meta="CTX">
+                <ContextMenu
+                  items={[
+                    { label: "Copy Coordinates", icon: <CopyIcon />, shortcut: "⌘C" },
+                    { label: "Ping Beacon", icon: <SignalIcon />, shortcut: "⌘B" },
+                    "separator",
+                    {
+                      label: "Purge Node",
+                      icon: <TrashIcon />,
+                      shortcut: "⌫",
+                      tone: "danger",
+                    },
+                  ]}
+                >
+                  Right-click anywhere in this zone <kbd>⌃ click</kbd>
+                </ContextMenu>
               </Panel>
             </div>
 
@@ -678,6 +847,29 @@ function Demo() {
                   <Badge tone="secondary">Encrypted</Badge>
                   <Badge tone="neutral">Standby</Badge>
                 </div>
+              </Panel>
+            </div>
+
+            {/* Toolbar */}
+            <div className="nova-section" id="toolbar">
+              <Panel title="Toolbar" meta="TBR">
+                <ToolbarDemo />
+              </Panel>
+            </div>
+
+            {/* Scroll Area */}
+            <div className="nova-section" id="scroll">
+              <Panel title="Scroll Area" meta="SCR">
+                <ScrollArea maxHeight={200}>
+                  <ol className="demo-log">
+                    {SHIP_LOG.map((entry, i) => (
+                      <li key={i}>
+                        <span className="demo-log__t">{entry.t}</span>
+                        <span className="demo-log__m">{entry.m}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </ScrollArea>
               </Panel>
             </div>
 
