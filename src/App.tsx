@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import {
   Accordion,
+  AlertDialog,
+  AlertDialogClose,
   Avatar,
   Badge,
   Button,
   Checkbox,
+  Collapsible,
   Dialog,
   DialogClose,
   Drawer,
@@ -13,6 +16,7 @@ import {
   Meter,
   NumberField,
   Panel,
+  Popover,
   Progress,
   Radio,
   RadioGroup,
@@ -53,13 +57,16 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["meter", "Meter", "MTR"],
       ["tabs", "Tabs", "TAB"],
       ["accordion", "Accordion", "ACC"],
+      ["collapsible", "Collapsible", "CLP"],
     ],
   },
   {
     group: "Overlay",
     items: [
       ["tooltip", "Tooltip", "TIP"],
+      ["popover", "Popover", "POP"],
       ["dialog", "Dialog", "DLG"],
+      ["alert", "Alert Dialog", "ALT"],
       ["drawer", "Drawer", "DRW"],
       ["toast", "Toast", "TST"],
     ],
@@ -291,7 +298,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 21 Controls
+              <BoltIcon /> Component System · 24 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -306,7 +313,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>21</b>
+                <b>24</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -506,6 +513,22 @@ function Demo() {
               </Panel>
             </div>
 
+            {/* Collapsible */}
+            <div className="nova-section span-2" id="collapsible">
+              <Panel title="Collapsible" meta="CLP">
+                <div className="demo-stack">
+                  <Collapsible title="Diagnostics Log" defaultOpen>
+                    All subsystems reporting nominal. Last anomaly cleared 14
+                    jump cycles ago.
+                  </Collapsible>
+                  <Collapsible title="Cargo Manifest">
+                    6 containers · 2 sealed · 1 flagged for inspection at the
+                    next port.
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
+
             {/* Tooltip */}
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
@@ -519,6 +542,19 @@ function Demo() {
                     </Button>
                   </Tooltip>
                 </div>
+              </Panel>
+            </div>
+
+            {/* Popover */}
+            <div className="nova-section" id="popover">
+              <Panel title="Popover" meta="POP">
+                <Popover
+                  trigger={<Button variant="ghost">Comms Panel</Button>}
+                  title="Channel 7"
+                >
+                  Encrypted uplink to Deep Space Relay. Signal strength 94%,
+                  latency 2.3s — click outside or ✕ to dismiss.
+                </Popover>
               </Panel>
             </div>
 
@@ -541,6 +577,25 @@ function Demo() {
                     cryo-stations.
                   </p>
                 </Dialog>
+              </Panel>
+            </div>
+
+            {/* Alert Dialog */}
+            <div className="nova-section" id="alert">
+              <Panel title="Alert Dialog" meta="ALT">
+                <AlertDialog
+                  trigger={<Button variant="danger">Purge Core</Button>}
+                  title="Purge Reactor Core?"
+                  description="This vents the antimatter containment and cannot be undone. All hands brace for power loss."
+                  actions={
+                    <>
+                      <AlertDialogClose>Cancel</AlertDialogClose>
+                      <AlertDialogClose variant="danger">
+                        Purge
+                      </AlertDialogClose>
+                    </>
+                  }
+                />
               </Panel>
             </div>
 

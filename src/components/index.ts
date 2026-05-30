@@ -44,6 +44,9 @@ export type { TabsProps, TabItem } from "./Tabs";
 export { Accordion } from "./Accordion";
 export type { AccordionProps, AccordionItem } from "./Accordion";
 
+export { Collapsible } from "./Collapsible";
+export type { CollapsibleProps } from "./Collapsible";
+
 export { Tooltip } from "./Tooltip";
 export type { TooltipProps } from "./Tooltip";
 
@@ -56,6 +59,12 @@ export type {
 
 export { Drawer } from "./Drawer";
 export type { DrawerProps, DrawerSide } from "./Drawer";
+
+export { AlertDialog, AlertDialogClose } from "./AlertDialog";
+export type { AlertDialogProps, AlertDialogCloseProps } from "./AlertDialog";
+
+export { Popover } from "./Popover";
+export type { PopoverProps } from "./Popover";
 
 export { ToastProvider, useToast } from "./Toast";
 export type { ToastProviderProps, ToastTone } from "./Toast";

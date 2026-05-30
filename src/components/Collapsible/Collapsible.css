@@ -1,0 +1,93 @@
+/* NOVA · Collapsible — single expand/collapse section */
+
+.nova-collapsible {
+  --nova-cut: 8px;
+  position: relative;
+  display: block;
+  width: 100%;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
+}
+.nova-collapsible::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: var(--nova-surface, rgba(13, 27, 45, 0.72));
+}
+
+.nova-collapsible__trigger {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 16px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--nova-text, #d7ecff);
+  font-family: var(--nova-font-display, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-collapsible__marker {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  background: var(--nova-text-mute, #46617e);
+  transform: rotate(45deg);
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-collapsible__title {
+  flex: 1;
+}
+.nova-collapsible__chevron {
+  flex: 0 0 auto;
+  font-size: 18px;
+  color: var(--nova-text-dim, #7793b0);
+  transition: transform var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-collapsible__trigger[data-panel-open] {
+  color: var(--nova-primary, #2de2ff);
+}
+.nova-collapsible__trigger[data-panel-open] .nova-collapsible__marker {
+  background: var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
+}
+.nova-collapsible__trigger[data-panel-open] .nova-collapsible__chevron {
+  transform: rotate(180deg);
+  color: var(--nova-primary, #2de2ff);
+}
+.nova-collapsible__trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+
+/* Height animation via Base UI's --collapsible-panel-height var. */
+.nova-collapsible__panel {
+  position: relative;
+  z-index: 1;
+  height: var(--collapsible-panel-height);
+  overflow: hidden;
+  transition: height var(--nova-dur-slow, 0.45s) var(--nova-ease);
+}
+.nova-collapsible__panel[data-starting-style],
+.nova-collapsible__panel[data-ending-style] {
+  height: 0;
+}
+.nova-collapsible__content {
+  padding: 0 16px 16px 35px;
+  color: var(--nova-text-dim, #7793b0);
+  font-size: 14px;
+  line-height: 1.6;
+}

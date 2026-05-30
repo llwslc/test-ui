@@ -1,0 +1,98 @@
+/* NOVA · AlertDialog — confirm / destructive-action modal */
+
+.nova-alert__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  background: rgba(2, 6, 12, 0.7);
+  backdrop-filter: blur(3px) saturate(1.1);
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-alert__backdrop[data-starting-style],
+.nova-alert__backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.nova-alert__popup {
+  --nova-cut: 12px;
+  --nova-alert-accent: var(--nova-danger, #ff4d5e);
+  position: fixed;
+  z-index: 1401;
+  top: 50%;
+  left: 50%;
+  width: min(420px, calc(100vw - 32px));
+  transform: translate(-50%, -50%);
+  padding: 24px 26px 22px;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 22px rgba(255, 77, 94, 0.22));
+  transition:
+    opacity var(--nova-dur, 0.22s) var(--nova-ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-alert__popup::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: linear-gradient(160deg, rgba(20, 12, 16, 0.98), rgba(10, 8, 12, 0.98));
+}
+.nova-alert__popup > * {
+  position: relative;
+  z-index: 1;
+}
+.nova-alert__popup[data-starting-style],
+.nova-alert__popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+}
+.nova-alert__popup--warning {
+  --nova-alert-accent: var(--nova-warning, #ffce54);
+}
+.nova-alert__popup--primary {
+  --nova-alert-accent: var(--nova-primary, #2de2ff);
+}
+
+.nova-alert__bar {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  height: 2px;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--nova-alert-accent), transparent 70%);
+  box-shadow: 0 0 10px var(--nova-alert-accent);
+}
+
+.nova-alert__title {
+  margin: 4px 0 6px;
+  font-family: var(--nova-font-display, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nova-alert-accent);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--nova-alert-accent) 55%, transparent);
+}
+.nova-alert__title::before {
+  content: "⚠ ";
+}
+.nova-alert__desc {
+  margin: 0 0 14px;
+  color: var(--nova-text-dim, #7793b0);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.nova-alert__body {
+  color: var(--nova-text, #d7ecff);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.nova-alert__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
