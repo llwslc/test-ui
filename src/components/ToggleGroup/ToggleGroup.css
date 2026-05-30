@@ -24,7 +24,9 @@
 }
 
 .nova-toggle {
-  --nova-cut: 5px;
+  /* Match the group's cut so a corner segment's chamfer stays parallel to the
+     outer chamfer — keeps the diagonal gap uniform with the straight edges. */
+  --nova-cut: 8px;
   position: relative;
   z-index: 1;
   display: inline-flex;
