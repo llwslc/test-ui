@@ -19,13 +19,12 @@
 }
 
 .nova-previewcard__surface {
-  --nova-cut: 12px;
   position: relative;
   display: block;
   padding: 16px 16px 15px;
   background: #0a1422;
   border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-12);
   overflow: hidden;
 }
 .nova-previewcard__scan {

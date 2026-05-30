@@ -7,14 +7,14 @@
   max-width: 100%;
   padding: 5px;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
 }
 .nova-toolbar::before {
   content: "";
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(8, 18, 30, 0.94);
 }
 .nova-toolbar > * {
@@ -29,7 +29,6 @@
 }
 
 .nova-toolbar__btn {
-  --nova-cut: 7px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +43,7 @@
   font-size: 16px;
   letter-spacing: 0.04em;
   cursor: pointer;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-7);
   -webkit-tap-highlight-color: transparent;
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),

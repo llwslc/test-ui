@@ -1,7 +1,6 @@
 /* NOVA · Checkbox — chamfered box with animated check/indeterminate */
 
 .nova-checkbox {
-  --nova-cut: 9px;
   position: relative;
   display: inline-grid;
   place-items: center;
@@ -12,7 +11,7 @@
   cursor: pointer;
   color: var(--nova-on-primary, #02131a);
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   -webkit-tap-highlight-color: transparent;
   transition: filter var(--nova-dur, 0.22s) var(--nova-ease);
 }
@@ -20,7 +19,7 @@
   content: "";
   position: absolute;
   inset: 1px;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(8, 16, 26, 0.92);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }

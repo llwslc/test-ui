@@ -1,13 +1,12 @@
 /* NOVA · Input + Field — terminal entry line */
 
 .nova-input-wrap {
-  --nova-cut: 7px;
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-7);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     filter var(--nova-dur, 0.22s) var(--nova-ease);
@@ -39,7 +38,7 @@
   font-family: var(--nova-font, sans-serif);
   font-size: 15px;
   letter-spacing: 0.02em;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-7);
 }
 .nova-input::placeholder {
   color: var(--nova-text-mute, #46617e);

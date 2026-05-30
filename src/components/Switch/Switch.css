@@ -1,7 +1,6 @@
 /* NOVA · Switch — sliding HUD toggle */
 
 .nova-switch {
-  --nova-cut: 9px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -21,7 +20,7 @@
   /* Muted blue-grey OFF outline — visible against the dark page, yet clearly
      distinct from the cyan ON state. */
   background: rgba(126, 162, 198, 0.5);
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     filter var(--nova-dur, 0.22s) var(--nova-ease);
@@ -30,14 +29,13 @@
   content: "";
   position: absolute;
   inset: 1px;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(9, 17, 27, 0.95);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
 /* Thumb */
 .nova-switch__thumb {
-  --nova-cut: 7px;
   position: relative;
   z-index: 1;
   width: 18px;
@@ -45,7 +43,7 @@
   margin-left: 4px;
   background: linear-gradient(180deg, #c9d9eb, #8197af);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-7);
   transition:
     transform var(--nova-dur, 0.22s) var(--nova-ease),
     background var(--nova-dur, 0.22s) var(--nova-ease),

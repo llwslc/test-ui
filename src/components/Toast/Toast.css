@@ -24,7 +24,7 @@
   border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
   border-top: 0;
   border-left: 2px solid var(--nova-toast-accent);
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  clip-path: var(--nova-clip-8);
   box-shadow:
     0 10px 26px rgba(0, 0, 0, 0.5),
     0 0 16px rgba(45, 226, 255, 0.12);

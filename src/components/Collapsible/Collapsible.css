@@ -1,19 +1,18 @@
 /* NOVA · Collapsible — single expand/collapse section */
 
 .nova-collapsible {
-  --nova-cut: 8px;
   position: relative;
   display: block;
   width: 100%;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-8);
 }
 .nova-collapsible::before {
   content: "";
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-8);
   background: var(--nova-surface, rgba(13, 27, 45, 0.72));
 }
 

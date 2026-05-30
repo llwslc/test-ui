@@ -4,13 +4,12 @@
 }
 
 .nova-menu__popup {
-  --nova-cut: 9px;
   position: relative;
   box-sizing: border-box;
   min-width: 210px;
   padding: 5px;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
     drop-shadow(0 0 12px rgba(45, 226, 255, 0.2));
   transform-origin: var(--transform-origin);
@@ -23,7 +22,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(7, 14, 24, 0.97);
 }
 .nova-menu__popup[data-starting-style],
@@ -33,7 +32,6 @@
 }
 
 .nova-menu__item {
-  --nova-cut: 7px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -45,7 +43,7 @@
   font-size: 14px;
   user-select: none;
   outline: none;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-7);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);

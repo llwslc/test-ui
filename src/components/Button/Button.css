@@ -3,7 +3,6 @@
    (which respects clip-path), not a rectangular box-shadow. */
 
 .nova-btn {
-  --nova-cut: 8px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -15,7 +14,7 @@
   cursor: pointer;
   color: var(--nova-on-primary, #02131a);
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-8);
   font-family: var(--nova-font-display, "Orbitron", sans-serif);
   font-weight: 700;
   font-size: 13px;
@@ -35,7 +34,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-8);
   background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
@@ -46,7 +45,7 @@
   position: absolute;
   inset: 1px;
   z-index: 1;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-8);
   background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
   transform: translateX(-130%);
   transition: transform var(--nova-dur-slow, 0.45s) var(--nova-ease);
@@ -138,16 +137,24 @@
   background: rgba(16, 44, 60, 0.95);
 }
 
-/* ---- Sizes ---- */
+/* ---- Sizes (chamfer scales with the button) ---- */
 .nova-btn--sm {
-  --nova-cut: 6px;
   height: 30px;
   padding: 0 13px;
   font-size: 11px;
+  clip-path: var(--nova-clip-6);
+}
+.nova-btn--sm::before,
+.nova-btn--sm::after {
+  clip-path: var(--nova-clip-6);
 }
 .nova-btn--lg {
-  --nova-cut: 11px;
   height: 47px;
   padding: 0 28px;
   font-size: 15px;
+  clip-path: var(--nova-clip-11);
+}
+.nova-btn--lg::before,
+.nova-btn--lg::after {
+  clip-path: var(--nova-clip-11);
 }

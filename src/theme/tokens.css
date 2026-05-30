@@ -50,7 +50,7 @@
 
   /* ---- Geometry (sci-fi = sharp + chamfered) ---- */
   --nova-radius: 2px;
-  --nova-cut: 9px; /* chamfer size used by clip-path corners */
+  --nova-cut: 9px; /* default chamfer size; see --nova-clip-* for pre-built clips */
   --nova-border: 1px;
 
   /* ---- Motion ---- */
@@ -64,19 +64,21 @@
   --nova-gap: 10px;
 }
 
-/* Chamfered-corner clip. Declared on every element (not only :root) so its
-   var(--nova-cut) re-resolves against each element's OWN --nova-cut — a local
-   `--nova-cut` override then actually changes that element's clip. On :root
-   alone it bakes once at 9px and inherits already-resolved (override no-ops). */
-*,
-*::before,
-*::after {
-  --nova-clip: polygon(
-    var(--nova-cut) 0,
-    100% 0,
-    100% calc(100% - var(--nova-cut)),
-    calc(100% - var(--nova-cut)) 100%,
-    0 100%,
-    0 var(--nova-cut)
-  );
+/* Chamfered-corner clips, pre-built per size — a component picks one directly,
+   e.g. `clip-path: var(--nova-clip-7)`. Each is a fixed polygon (no --nova-cut
+   indirection), so an element's chamfer is always exactly the size it names —
+   no inheritance or resolution traps. --nova-clip is the default alias (9px). */
+:root {
+  --nova-clip-3: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
+  --nova-clip-4: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  --nova-clip-5: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+  --nova-clip-6: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  --nova-clip-7: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  --nova-clip-8: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  --nova-clip-9: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+  --nova-clip-10: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  --nova-clip-11: polygon(11px 0, 100% 0, 100% calc(100% - 11px), calc(100% - 11px) 100%, 0 100%, 0 11px);
+  --nova-clip-12: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  --nova-clip-14: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  --nova-clip: var(--nova-clip-9);
 }

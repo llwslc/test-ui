@@ -176,7 +176,7 @@
   color: var(--nova-text-dim, #7793b0);
   cursor: pointer;
   font-size: 15px;
-  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+  clip-path: var(--nova-clip-5);
   transition:
     color var(--nova-dur, 0.22s) var(--nova-ease),
     background var(--nova-dur, 0.22s) var(--nova-ease),

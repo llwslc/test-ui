@@ -5,13 +5,12 @@
 }
 
 .nova-numberfield__group {
-  --nova-cut: 6px;
   position: relative;
   display: inline-flex;
   align-items: stretch;
   height: var(--nova-control-h, 38px);
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-6);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     filter var(--nova-dur, 0.22s) var(--nova-ease);

@@ -46,7 +46,7 @@
   height: 6px;
   background: var(--nova-track, rgba(120, 170, 210, 0.16));
   box-shadow: inset 0 0 0 1px var(--nova-line-soft, rgba(45, 226, 255, 0.1));
-  clip-path: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
+  clip-path: var(--nova-clip-3);
 }
 
 .nova-slider__indicator {
@@ -57,11 +57,10 @@
 }
 
 .nova-slider__thumb {
-  --nova-cut: 4px;
   width: 16px;
   height: 16px;
   background: linear-gradient(160deg, #eafdff, var(--nova-primary, #2de2ff));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-4);
   box-shadow: 0 0 10px var(--nova-primary, #2de2ff);
   transition:
     box-shadow var(--nova-dur, 0.22s) var(--nova-ease),

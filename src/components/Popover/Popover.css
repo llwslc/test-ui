@@ -22,13 +22,12 @@
 }
 
 .nova-popover__surface {
-  --nova-cut: 9px;
   position: relative;
   display: block;
   padding: 14px 16px;
   background: #0a1422;
   border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
 }
 
 .nova-popover__title {

@@ -13,7 +13,7 @@
 .nova-accordion__item {
   position: relative;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  clip-path: var(--nova-clip-8);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
 .nova-accordion__item::before {
@@ -21,7 +21,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  clip-path: var(--nova-clip-7);
   background: var(--nova-surface, rgba(13, 27, 45, 0.72));
 }
 .nova-accordion__item:hover {

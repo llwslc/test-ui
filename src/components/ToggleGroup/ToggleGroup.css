@@ -8,13 +8,13 @@
   padding: 4px;
   gap: 3px;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
 }
 .nova-togglegroup::before {
   content: "";
   position: absolute;
   inset: 1px;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(8, 16, 26, 0.9);
 }
 
@@ -52,7 +52,7 @@
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
 }
 .nova-toggle:only-child {
-  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  clip-path: var(--nova-clip-7);
 }
 
 .nova-toggle:hover {

@@ -15,7 +15,6 @@
 }
 
 .nova-alert__popup {
-  --nova-cut: 14px;
   --nova-alert-accent: var(--nova-danger, #ff4d5e);
   position: fixed;
   z-index: 1401;
@@ -26,7 +25,7 @@
   padding: 26px 28px;
   /* Frame border in the alert tone (red), to match the scan beam + title. */
   background: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-14);
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent));
   transition:
@@ -38,7 +37,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-14);
   background: linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98));
 }
 .nova-alert__popup > * {

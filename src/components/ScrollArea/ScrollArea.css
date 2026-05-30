@@ -1,17 +1,16 @@
 .nova-scrollarea {
-  --nova-cut: 9px;
   position: relative;
   box-sizing: border-box;
   width: 100%;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
 }
 .nova-scrollarea::before {
   content: "";
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip);
+  clip-path: var(--nova-clip-9);
   background: rgba(7, 14, 24, 0.6);
 }
 
@@ -53,14 +52,7 @@
   position: relative;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   box-shadow: 0 0 7px rgba(45, 226, 255, 0.4);
-  clip-path: polygon(
-    3px 0,
-    100% 0,
-    100% calc(100% - 3px),
-    calc(100% - 3px) 100%,
-    0 100%,
-    0 3px
-  );
+  clip-path: var(--nova-clip-3);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
 .nova-scrollarea__thumb:hover,

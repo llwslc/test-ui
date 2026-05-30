@@ -54,6 +54,7 @@ src/
 ## 核心技术
 
 ### 切角(clip-path)
+- **尺寸用预制调色板 `--nova-clip-N`**(N = 3/4/…/14,定义在 `tokens.css`):直接 `clip-path: var(--nova-clip-7)` 选大小,外框大内件小(ToggleGroup 外 9 内 7、Button 随尺寸 6/8/11)。**不要**用 `--nova-cut` + 单个 `--nova-clip` 的间接法 —— `--nova-clip` 定义在 `:root` 时,里面的 `var(--nova-cut)` 会在 :root 就烤死成 9px、继承下来不再跟本地 `--nova-cut` 变(组件本地覆盖**静默失效**)。只切单角的分段 / 箭头 / Avatar 六边形等非标准形状仍写字面 `polygon()`。
 - **带描边的切角用双层 frame 法,不要 `border + clip-path`**(后者斜边不描边):外层背景 = 边框色 + `clip-path`,`::before` 内缩 1px 填背景色,内容 `position:relative; z-index:1` 压在填充上。
 - **`clip-path` 会裁掉子元素 / 伪元素**,凡是要触达边缘或角的东西都要避开:
   - **Panel 角括号** 放在**不切角的两角(TR/BL)**;
