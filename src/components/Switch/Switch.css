@@ -52,22 +52,22 @@
     box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
-/* Checked — energised cyan on the left, but DARK under the thumb on the right,
-   so the bright thumb stays high-contrast (a cyan thumb on a cyan well
-   disappears — the same wash-out trap as the OFF/ghost/input states). */
+/* Checked — the kit's standard "cyan fill + dark foreground" active language
+   (same as the checkbox check / toggle text / button label): a cyan→deep-cyan
+   fill with a DARK thumb that pops on it. No one-off cyan→dark gradient. */
 .nova-switch[data-checked] .nova-switch__track {
   background: var(--nova-primary, #2de2ff);
   filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.6));
 }
 .nova-switch[data-checked] .nova-switch__track::before {
-  background: linear-gradient(90deg, rgba(45, 226, 255, 0.6) 0%, rgba(9, 19, 29, 0.97) 62%);
+  background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
 }
 .nova-switch[data-checked] .nova-switch__thumb {
   transform: translateX(28px);
-  background: linear-gradient(180deg, #eafdff, var(--nova-primary, #2de2ff));
+  background: linear-gradient(180deg, #0e2a3a, #03141d);
   box-shadow:
-    0 0 12px var(--nova-primary, #2de2ff),
-    0 1px 2px rgba(0, 0, 0, 0.4);
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .nova-switch:focus-visible {
