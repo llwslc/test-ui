@@ -63,8 +63,10 @@ body::after {
   }
 }
 
-/* Faint moving scanline veil over the whole page. */
-.nova-scanlines::before {
+/* Faint scanline veil over the whole page.
+   Lives on <html> (not body) so it never collides with the body::before
+   space backdrop — they are different elements' pseudo-elements. */
+html::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -74,11 +76,24 @@ body::after {
     to bottom,
     rgba(0, 0, 0, 0) 0,
     rgba(0, 0, 0, 0) 2px,
-    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0.16) 3px,
     rgba(0, 0, 0, 0) 4px
   );
   mix-blend-mode: multiply;
   opacity: 0.5;
+}
+
+/* Film-grain texture for depth — inline fractal-noise SVG, blended subtly. */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 ::selection {

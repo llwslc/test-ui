@@ -4,8 +4,6 @@ import "./theme/tokens.css";
 import "./theme/global.css";
 import App from "./App";
 
-document.body.classList.add("nova-scanlines");
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />

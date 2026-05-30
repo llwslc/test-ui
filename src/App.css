@@ -270,6 +270,134 @@
   text-align: center;
 }
 
+/* ---------- Entrance orchestration ---------- */
+.nova-header {
+  animation: nova-drop 0.6s var(--nova-ease) both;
+}
+@keyframes nova-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+.nova-hero__eyebrow {
+  animation: nova-rise 0.7s var(--nova-ease) both 0.08s;
+}
+.nova-hero h1 {
+  animation: nova-rise 0.7s var(--nova-ease) both 0.18s;
+}
+.nova-hero p {
+  animation: nova-rise 0.7s var(--nova-ease) both 0.3s;
+}
+.nova-hero__stats {
+  animation: nova-rise 0.7s var(--nova-ease) both 0.42s;
+}
+@keyframes nova-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Scroll-reveal for showcase panels. Gated by .nova-reveal (added via JS)
+   so a no-JS render still shows every panel. */
+.nova-grid.nova-reveal .nova-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--nova-ease),
+    transform 0.6s var(--nova-ease);
+}
+.nova-grid.nova-reveal .nova-section.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.nova-grid.nova-reveal .nova-section:nth-child(1) {
+  transition-delay: 0.02s;
+}
+.nova-grid.nova-reveal .nova-section:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.nova-grid.nova-reveal .nova-section:nth-child(3) {
+  transition-delay: 0.18s;
+}
+.nova-grid.nova-reveal .nova-section:nth-child(4) {
+  transition-delay: 0.26s;
+}
+
+/* ---------- Hero targeting reticle (uses the right-hand negative space) ---------- */
+@media (min-width: 760px) {
+  .nova-hero {
+    padding-right: 215px;
+  }
+}
+.nova-hero__reticle {
+  position: absolute;
+  top: calc(50% - 84px);
+  right: 42px;
+  width: 168px;
+  height: 168px;
+  pointer-events: none;
+  opacity: 0.9;
+  animation: nova-rise 0.9s var(--nova-ease) both 0.5s;
+}
+.nova-hero__reticle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  background: var(--nova-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--nova-primary);
+}
+.nova-hero__reticle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(0deg, transparent calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+}
+.nova-hero__ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 50%;
+}
+.nova-hero__ring--1 {
+  width: 168px;
+  height: 168px;
+  border: 1px dashed rgba(45, 226, 255, 0.32);
+  animation: nova-spin 26s linear infinite;
+}
+.nova-hero__ring--2 {
+  width: 118px;
+  height: 118px;
+  border: 1px solid rgba(45, 226, 255, 0.16);
+  border-top-color: var(--nova-primary);
+  box-shadow: 0 0 16px rgba(45, 226, 255, 0.22);
+  animation: nova-spin 7s linear infinite reverse;
+}
+.nova-hero__ring--3 {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255, 45, 117, 0.35);
+  border-bottom-color: var(--nova-secondary);
+  animation: nova-spin 11s linear infinite;
+}
+@keyframes nova-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 760px) {
+  .nova-hero__reticle {
+    display: none;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nova-shell {

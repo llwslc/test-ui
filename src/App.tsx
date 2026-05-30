@@ -227,6 +227,27 @@ function ToastDemo() {
 }
 
 function Demo() {
+  // Staggered scroll-reveal for showcase panels. Gated by adding .nova-reveal
+  // so the page still renders fully if JS/IntersectionObserver is unavailable.
+  useEffect(() => {
+    const grid = document.querySelector(".nova-grid");
+    if (!grid || typeof IntersectionObserver === "undefined") return;
+    grid.classList.add("nova-reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    grid.querySelectorAll(".nova-section").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="nova-app">
       <header className="nova-header">
@@ -298,6 +319,11 @@ function Demo() {
                 <b>A11y</b>
                 <span>Base UI Core</span>
               </div>
+            </div>
+            <div className="nova-hero__reticle" aria-hidden="true">
+              <span className="nova-hero__ring nova-hero__ring--1" />
+              <span className="nova-hero__ring nova-hero__ring--2" />
+              <span className="nova-hero__ring nova-hero__ring--3" />
             </div>
           </section>
 
