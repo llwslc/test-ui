@@ -1,0 +1,91 @@
+.nova-menu__positioner {
+  z-index: 1250;
+  outline: none;
+}
+
+.nova-menu__popup {
+  --nova-cut: 9px;
+  position: relative;
+  box-sizing: border-box;
+  min-width: 190px;
+  padding: 5px;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 12px rgba(45, 226, 255, 0.2));
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity var(--nova-dur, 0.22s) var(--nova-ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menu__popup::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: rgba(7, 14, 24, 0.97);
+}
+.nova-menu__popup[data-starting-style],
+.nova-menu__popup[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-6px) scaleY(0.95);
+}
+
+.nova-menu__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 12px;
+  cursor: pointer;
+  color: var(--nova-text-dim, #7793b0);
+  font-size: 14px;
+  user-select: none;
+  outline: none;
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menu__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
+  opacity: 0;
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menu__item[data-highlighted] {
+  background: rgba(45, 226, 255, 0.14);
+  color: #eafdff;
+}
+.nova-menu__item[data-highlighted]::after {
+  opacity: 1;
+}
+.nova-menu__item[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.nova-menu__item--danger {
+  color: var(--nova-danger, #ff4d5e);
+}
+.nova-menu__item--danger[data-highlighted] {
+  background: rgba(255, 77, 94, 0.16);
+  color: #ffd9dc;
+}
+.nova-menu__item--danger::after {
+  background: var(--nova-danger, #ff4d5e);
+  box-shadow: 0 0 7px var(--nova-danger, #ff4d5e);
+}
+
+.nova-menu__separator {
+  height: 1px;
+  margin: 5px 8px;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+}

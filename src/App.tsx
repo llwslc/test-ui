@@ -13,6 +13,7 @@ import {
   Drawer,
   Field,
   Input,
+  Menu,
   Meter,
   NumberField,
   Panel,
@@ -65,6 +66,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["tooltip", "Tooltip", "TIP"],
       ["popover", "Popover", "POP"],
+      ["menu", "Menu", "MNU"],
       ["dialog", "Dialog", "DLG"],
       ["alert", "Alert Dialog", "ALT"],
       ["drawer", "Drawer", "DRW"],
@@ -298,7 +300,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 24 Controls
+              <BoltIcon /> Component System · 25 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -313,7 +315,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>24</b>
+                <b>25</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -555,6 +557,22 @@ function Demo() {
                   Encrypted uplink to Deep Space Relay. Signal strength 94%,
                   latency 2.3s — click outside or ✕ to dismiss.
                 </Popover>
+              </Panel>
+            </div>
+
+            {/* Menu */}
+            <div className="nova-section" id="menu">
+              <Panel title="Menu" meta="MNU">
+                <Menu
+                  trigger={<Button variant="ghost">Actions ▾</Button>}
+                  items={[
+                    { label: "Scan Sector" },
+                    { label: "Plot Course" },
+                    { label: "Hail Vessel", disabled: true },
+                    "separator",
+                    { label: "Jettison Cargo", tone: "danger" },
+                  ]}
+                />
               </Panel>
             </div>
 
