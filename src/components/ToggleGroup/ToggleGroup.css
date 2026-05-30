@@ -32,6 +32,7 @@
   cursor: pointer;
   color: var(--nova-text-dim, #7793b0);
   background: transparent;
+  clip-path: var(--nova-clip-7);
   font-family: var(--nova-font-display, "Orbitron", sans-serif);
   font-weight: 600;
   font-size: 12px;
@@ -43,18 +44,6 @@
     background var(--nova-dur, 0.22s) var(--nova-ease),
     box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
 }
-/* Chamfer only the bar's outer corners so it nests in the group frame:
-   first cuts top-left, last cuts bottom-right, middles stay rectangular. */
-.nova-toggle:first-child {
-  clip-path: var(--nova-clip-tl-7);
-}
-.nova-toggle:last-child {
-  clip-path: var(--nova-clip-br-7);
-}
-.nova-toggle:only-child {
-  clip-path: var(--nova-clip-7);
-}
-
 .nova-toggle:hover {
   color: var(--nova-text, #d7ecff);
   background: rgba(45, 226, 255, 0.08);

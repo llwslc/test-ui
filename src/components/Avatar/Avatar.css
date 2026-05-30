@@ -14,7 +14,7 @@
   width: 100%;
   height: 100%;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip-hex);
+  clip-path: var(--nova-clip-9);
   overflow: hidden;
   filter: drop-shadow(0 0 7px rgba(45, 226, 255, 0.3));
 }
@@ -24,7 +24,7 @@
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   object-fit: cover;
-  clip-path: var(--nova-clip-hex);
+  clip-path: var(--nova-clip-9);
 }
 .nova-avatar__fallback {
   position: absolute;
@@ -37,7 +37,7 @@
   font-weight: 700;
   font-size: calc(var(--nova-avatar-size) * 0.36);
   letter-spacing: 0.04em;
-  clip-path: var(--nova-clip-hex);
+  clip-path: var(--nova-clip-9);
 }
 
 .nova-avatar__status {

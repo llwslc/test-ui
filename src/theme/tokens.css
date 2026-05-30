@@ -82,10 +82,6 @@
   --nova-clip-14: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
   --nova-clip: var(--nova-clip-9);
 
-  /* Non-size shapes: single-corner cuts (segmented controls nesting into a
-     frame), the title-tick pennant, the avatar hexagon. */
-  --nova-clip-tl-7: polygon(7px 0, 100% 0, 100% 100%, 0 100%, 0 7px);
-  --nova-clip-br-7: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+  /* Title-tick pennant (Dialog / AlertDialog / Drawer headers). */
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
-  --nova-clip-hex: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
 }

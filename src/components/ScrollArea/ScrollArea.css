@@ -2,7 +2,7 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
   clip-path: var(--nova-clip-9);
 }
 .nova-scrollarea::before {
@@ -11,7 +11,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: rgba(7, 14, 24, 0.6);
+  background: rgba(7, 14, 24, 0.66);
 }
 
 .nova-scrollarea__viewport {
@@ -20,6 +20,13 @@
   padding: 14px 16px;
   overscroll-behavior: contain;
   outline: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 16px,
+    #000 calc(100% - 16px),
+    transparent
+  );
 }
 .nova-scrollarea__viewport:focus-visible {
   outline: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
