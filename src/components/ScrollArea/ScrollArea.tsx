@@ -29,7 +29,6 @@ export function ScrollArea({
       >
         <BaseScrollArea.Thumb className="nova-scrollarea__thumb" />
       </BaseScrollArea.Scrollbar>
-      <BaseScrollArea.Corner className="nova-scrollarea__corner" />
     </BaseScrollArea.Root>
   );
 }
