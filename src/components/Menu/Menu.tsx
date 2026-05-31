@@ -27,6 +27,11 @@ export function Menu({ trigger, items, side = "bottom", align = "start" }: MenuP
             {renderMenuEntries(items, {
               Item: BaseMenu.Item,
               Separator: BaseMenu.Separator,
+              SubmenuRoot: BaseMenu.SubmenuRoot,
+              SubmenuTrigger: BaseMenu.SubmenuTrigger,
+              Portal: BaseMenu.Portal,
+              Positioner: BaseMenu.Positioner,
+              Popup: BaseMenu.Popup,
             })}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

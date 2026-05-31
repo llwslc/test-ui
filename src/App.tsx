@@ -186,7 +186,17 @@ const MENUBAR_MENUS: MenubarMenu[] = [
     items: [
       { label: "Map", icon: <SearchIcon /> },
       { label: "Grid View" },
-      { label: "Scan", icon: <SignalIcon /> },
+      {
+        label: "Sensors",
+        icon: <SignalIcon />,
+        submenu: [
+          { label: "Short Range" },
+          { label: "Long Range" },
+          { label: "Gravimetric" },
+          "separator",
+          { label: "Calibrate", icon: <BoltIcon /> },
+        ],
+      },
     ],
   },
 ];
@@ -297,34 +307,32 @@ const SHIP_LOG = [
   { t: "08:29:31", m: "Crew manifest synced, 47 aboard" },
 ];
 
-const SYNC_SYSTEMS = ["Encrypt channel", "Relay telemetry", "Nav beacon"];
-
 function CheckboxDemo() {
-  const [on, setOn] = useState([true, false, false]);
-  const all = on.every(Boolean);
-  const some = on.some(Boolean);
+  // Plain single-checkbox states — the parent/child tree lives in CheckboxGroup.
   return (
     <div className="demo-stack">
-      <Checkbox
-        checked={all}
-        indeterminate={some && !all}
-        onCheckedChange={(v) => setOn(SYNC_SYSTEMS.map(() => v))}
-        label={all ? "All systems synced" : some ? "Some systems synced" : "Sync all systems"}
-      />
-      <div className="demo-checktree">
-        {SYNC_SYSTEMS.map((sys, i) => (
-          <Checkbox
-            key={sys}
-            checked={on[i]}
-            onCheckedChange={(v) =>
-              setOn((prev) => prev.map((x, j) => (j === i ? v : x)))
-            }
-            label={sys}
-          />
-        ))}
-      </div>
+      <Checkbox defaultChecked label="Encrypt channel" />
+      <Checkbox label="Relay telemetry" />
+      <Checkbox indeterminate label="Partial sync" />
       <Checkbox disabled label="Quarantine (locked)" />
+      <Checkbox disabled defaultChecked label="Beacon (locked on)" />
     </div>
+  );
+}
+
+function AccessCodeField() {
+  // Error clears once the code is valid (≥ 6 chars) — not a static red label.
+  const [code, setCode] = useState("");
+  const touched = code.length > 0;
+  const valid = code.length >= 6;
+  return (
+    <Field
+      label="Access Code"
+      placeholder="Min 6 characters"
+      value={code}
+      onChange={(e) => setCode(e.currentTarget.value)}
+      error={touched && !valid ? "Clearance code too short" : undefined}
+    />
   );
 }
 
@@ -693,11 +701,7 @@ function Demo() {
                     placeholder="Enter callsign"
                   />
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
-                  <Field
-                    label="Access Code"
-                    placeholder="••••••"
-                    error="Invalid clearance level"
-                  />
+                  <AccessCodeField />
                 </div>
               </Panel>
             </div>

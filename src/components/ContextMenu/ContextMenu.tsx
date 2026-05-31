@@ -26,6 +26,11 @@ export function ContextMenu({ children, items, className }: ContextMenuProps) {
             {renderMenuEntries(items, {
               Item: BaseContextMenu.Item,
               Separator: BaseContextMenu.Separator,
+              SubmenuRoot: BaseContextMenu.SubmenuRoot,
+              SubmenuTrigger: BaseContextMenu.SubmenuTrigger,
+              Portal: BaseContextMenu.Portal,
+              Positioner: BaseContextMenu.Positioner,
+              Popup: BaseContextMenu.Popup,
             })}
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>

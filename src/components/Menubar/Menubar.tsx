@@ -35,6 +35,11 @@ export function Menubar({ menus }: MenubarProps) {
                 {renderMenuEntries(m.items, {
                   Item: BaseMenu.Item,
                   Separator: BaseMenu.Separator,
+                  SubmenuRoot: BaseMenu.SubmenuRoot,
+                  SubmenuTrigger: BaseMenu.SubmenuTrigger,
+                  Portal: BaseMenu.Portal,
+                  Positioner: BaseMenu.Positioner,
+                  Popup: BaseMenu.Popup,
                 })}
               </BaseMenu.Popup>
             </BaseMenu.Positioner>

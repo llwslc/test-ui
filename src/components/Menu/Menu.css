@@ -120,3 +120,26 @@
   margin: 5px 8px;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
 }
+
+/* Submenu trigger: a right-pointing chevron pinned to the trailing edge.
+   Reuses .nova-menu__item, so highlight/danger states come along for free. */
+.nova-menu__arrow {
+  flex: 0 0 auto;
+  display: inline-flex;
+  margin-left: 14px;
+  font-size: 15px;
+  color: var(--nova-text-mute, #46617e);
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menu__item[data-highlighted] .nova-menu__arrow,
+.nova-menu__item[data-popup-open] .nova-menu__arrow {
+  color: var(--nova-primary, #2de2ff);
+}
+/* Keep the trigger highlighted while its submenu is open. */
+.nova-menu__item[data-popup-open] {
+  background: rgba(45, 226, 255, 0.14);
+  color: #eafdff;
+}
+.nova-menu__item[data-popup-open]::after {
+  opacity: 1;
+}

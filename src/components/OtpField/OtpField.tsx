@@ -36,7 +36,9 @@ export function OtpField({
     >
       {Array.from({ length }, (_, i) => (
         <span className="nova-otp__slot-wrap" key={i}>
-          <BaseOtp.Input className="nova-otp__slot" />
+          <span className="nova-otp__cell">
+            <BaseOtp.Input className="nova-otp__slot" />
+          </span>
           {splitAt != null && i + 1 === splitAt && i + 1 < length ? (
             <span className="nova-otp__divider" aria-hidden="true" />
           ) : null}
