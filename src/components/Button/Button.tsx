@@ -1,4 +1,4 @@
-import { Button as BaseButton } from "@base-ui-components/react/button";
+import { Button as BaseButton } from "@base-ui/react/button";
 import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Button.css";

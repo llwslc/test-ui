@@ -3,10 +3,12 @@ import {
   Accordion,
   AlertDialog,
   AlertDialogClose,
+  Autocomplete,
   Avatar,
   Badge,
   Button,
   Checkbox,
+  CheckboxGroup,
   Collapsible,
   Combobox,
   ContextMenu,
@@ -14,10 +16,15 @@ import {
   DialogClose,
   Drawer,
   Field,
+  Fieldset,
+  Form,
   Input,
   Menu,
+  Menubar,
   Meter,
+  NavigationMenu,
   NumberField,
+  OtpField,
   Panel,
   Popover,
   PreviewCard,
@@ -39,6 +46,8 @@ import {
   ToolbarSeparator,
   Tooltip,
   useToast,
+  type MenubarMenu,
+  type NavMenuItem,
 } from "./components";
 import {
   BoltIcon,
@@ -57,13 +66,23 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["buttons", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
       ["checkbox", "Checkbox", "CHK"],
+      ["checkgroup", "Checkbox Group", "CHG"],
       ["radio", "Radio Group", "RDO"],
       ["toggle", "Toggle Group", "TGL"],
       ["slider", "Slider", "SLD"],
       ["number", "Number Field", "NUM"],
       ["input", "Text Field", "TXT"],
+      ["otp", "OTP Field", "OTP"],
       ["select", "Select", "SEL"],
       ["combobox", "Combobox", "CBX"],
+      ["autocomplete", "Autocomplete", "ACP"],
+    ],
+  },
+  {
+    group: "Forms",
+    items: [
+      ["fieldset", "Fieldset", "FLD"],
+      ["form", "Form", "FRM"],
     ],
   },
   {
@@ -83,6 +102,8 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["popover", "Popover", "POP"],
       ["preview", "Preview Card", "PVW"],
       ["menu", "Menu", "MNU"],
+      ["menubar", "Menubar", "MBR"],
+      ["navmenu", "Navigation Menu", "NAV"],
       ["context", "Context Menu", "CTX"],
       ["dialog", "Dialog", "DLG"],
       ["alert", "Alert Dialog", "ALT"],
@@ -124,6 +145,72 @@ const COMBOBOX_ITEMS = [
   "Vega",
   "Altair",
   "Betelgeuse",
+];
+
+const AUTOCOMPLETE_ITEMS = [
+  "Scan Sector",
+  "Plot Course",
+  "Charge Drive",
+  "Hail Vessel",
+  "Raise Shields",
+  "Vent Plasma",
+  "Lock Target",
+  "Engage Cloak",
+];
+
+const CHECKGROUP_ITEMS = [
+  { value: "relay", label: "Relay telemetry" },
+  { value: "encrypt", label: "Encrypt channel" },
+  { value: "beacon", label: "Nav beacon" },
+];
+
+const MENUBAR_MENUS: MenubarMenu[] = [
+  {
+    label: "File",
+    items: [
+      { label: "New Mission", icon: <BoltIcon />, shortcut: "⌘N" },
+      { label: "Open Log", icon: <CopyIcon />, shortcut: "⌘O" },
+      "separator",
+      { label: "Jettison", icon: <TrashIcon />, tone: "danger" },
+    ],
+  },
+  {
+    label: "Edit",
+    items: [
+      { label: "Undo", shortcut: "⌘Z" },
+      { label: "Redo", shortcut: "⇧⌘Z" },
+    ],
+  },
+  {
+    label: "View",
+    items: [
+      { label: "Map", icon: <SearchIcon /> },
+      { label: "Grid View" },
+      { label: "Scan", icon: <SignalIcon /> },
+    ],
+  },
+];
+
+const NAVMENU_ITEMS: NavMenuItem[] = [
+  {
+    label: "Fleet",
+    links: [
+      { label: "Carriers", description: "Capital ships & escorts" },
+      { label: "Fighters", description: "Short-range interceptors" },
+      { label: "Drones", description: "Autonomous recon wings" },
+      { label: "Logistics", description: "Supply & repair tenders" },
+    ],
+  },
+  {
+    label: "Systems",
+    links: [
+      { label: "Reactor", description: "Antimatter containment" },
+      { label: "Shields", description: "Deflector matrix" },
+      { label: "Sensors", description: "Long-range arrays" },
+      { label: "Comms", description: "Subspace relay grid" },
+    ],
+  },
+  { label: "Registry", href: "#navmenu" },
 ];
 
 const TAB_ITEMS = [
@@ -293,6 +380,27 @@ function ProgressDemo() {
   );
 }
 
+function FormDemo() {
+  const { add } = useToast();
+  return (
+    <Form
+      onFormSubmit={() =>
+        add({
+          title: "Transmitted",
+          description: "Credentials relayed to fleet command.",
+          type: "success",
+        })
+      }
+    >
+      <Field label="Operator ID" name="op" defaultValue="NX-7" />
+      <Field label="Access Code" name="code" placeholder="••••••" />
+      <div className="nova-form__row">
+        <Button type="submit">Transmit</Button>
+      </div>
+    </Form>
+  );
+}
+
 function ToastDemo() {
   const { add } = useToast();
   return (
@@ -415,7 +523,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 30 Controls
+              <BoltIcon /> Component System · 37 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -430,7 +538,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>30</b>
+                <b>37</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -500,6 +608,17 @@ function Demo() {
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
                 <CheckboxDemo />
+              </Panel>
+            </div>
+
+            {/* Checkbox Group */}
+            <div className="nova-section" id="checkgroup">
+              <Panel title="Checkbox Group" meta="CHG">
+                <CheckboxGroup
+                  parentLabel="All channels"
+                  defaultValue={["relay"]}
+                  items={CHECKGROUP_ITEMS}
+                />
               </Panel>
             </div>
 
@@ -583,6 +702,16 @@ function Demo() {
               </Panel>
             </div>
 
+            {/* OTP Field */}
+            <div className="nova-section" id="otp">
+              <Panel title="OTP Field" meta="OTP">
+                <div className="demo-stack">
+                  <span className="demo-tag">Authorization code</span>
+                  <OtpField length={6} splitAt={3} defaultValue="427" />
+                </div>
+              </Panel>
+            </div>
+
             {/* Select */}
             <div className="nova-section" id="select">
               <Panel title="Select" meta="SEL">
@@ -600,6 +729,36 @@ function Demo() {
                   <span className="demo-tag">Filter star systems</span>
                   <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
                 </div>
+              </Panel>
+            </div>
+
+            {/* Autocomplete */}
+            <div className="nova-section" id="autocomplete">
+              <Panel title="Autocomplete" meta="ACP">
+                <div className="demo-stack">
+                  <span className="demo-tag">Command palette</span>
+                  <Autocomplete
+                    items={AUTOCOMPLETE_ITEMS}
+                    placeholder="Type a command…"
+                  />
+                </div>
+              </Panel>
+            </div>
+
+            {/* Fieldset */}
+            <div className="nova-section" id="fieldset">
+              <Panel title="Fieldset" meta="FLD">
+                <Fieldset legend="Pilot Credentials">
+                  <Field label="Callsign" defaultValue="Nightingale" />
+                  <Field label="Squadron" defaultValue="Vanguard-7" />
+                </Fieldset>
+              </Panel>
+            </div>
+
+            {/* Form */}
+            <div className="nova-section" id="form">
+              <Panel title="Form" meta="FRM">
+                <FormDemo />
               </Panel>
             </div>
 
@@ -747,6 +906,20 @@ function Demo() {
                     },
                   ]}
                 />
+              </Panel>
+            </div>
+
+            {/* Menubar */}
+            <div className="nova-section span-2" id="menubar">
+              <Panel title="Menubar" meta="MBR">
+                <Menubar menus={MENUBAR_MENUS} />
+              </Panel>
+            </div>
+
+            {/* Navigation Menu */}
+            <div className="nova-section span-2" id="navmenu">
+              <Panel title="Navigation Menu" meta="NAV">
+                <NavigationMenu items={NAVMENU_ITEMS} />
               </Panel>
             </div>
 
@@ -926,8 +1099,8 @@ function Demo() {
           </div>
 
           <footer className="nova-footer">
-            NOVA · built on @base-ui-components/react · theme via --nova-*
-            tokens · {new Date().getFullYear()}
+            NOVA · built on @base-ui/react · theme via --nova-* tokens ·{" "}
+            {new Date().getFullYear()}
           </footer>
         </main>
       </div>

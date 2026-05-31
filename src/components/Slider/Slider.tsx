@@ -1,4 +1,4 @@
-import { Slider as BaseSlider } from "@base-ui-components/react/slider";
+import { Slider as BaseSlider } from "@base-ui/react/slider";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Slider.css";
 

@@ -1,5 +1,5 @@
-import { Input as BaseInput } from "@base-ui-components/react/input";
-import { Field as BaseField } from "@base-ui-components/react/field";
+import { Input as BaseInput } from "@base-ui/react/input";
+import { Field as BaseField } from "@base-ui/react/field";
 import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Input.css";

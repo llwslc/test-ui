@@ -1,4 +1,4 @@
-import { Checkbox as BaseCheckbox } from "@base-ui-components/react/checkbox";
+import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox";
 import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { CheckIcon, MinusIcon } from "../icons";

@@ -1,4 +1,4 @@
-import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
+import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import type { ReactElement, ReactNode } from "react";
 import { XIcon } from "../icons";
 import "./Drawer.css";

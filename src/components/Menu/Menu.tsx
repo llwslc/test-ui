@@ -1,4 +1,4 @@
-import { Menu as BaseMenu } from "@base-ui-components/react/menu";
+import { Menu as BaseMenu } from "@base-ui/react/menu";
 import type { ReactElement } from "react";
 import { renderMenuEntries, type MenuEntry } from "./items";
 import "./Menu.css";

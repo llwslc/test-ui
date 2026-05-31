@@ -1,0 +1,52 @@
+.nova-menubar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip-9);
+}
+.nova-menubar::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip-9);
+  background: rgba(8, 18, 30, 0.94);
+}
+.nova-menubar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.nova-menubar__trigger {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  color: var(--nova-text-dim, #7793b0);
+  font-family: var(--nova-font, sans-serif);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  outline: none;
+  clip-path: var(--nova-clip-6);
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-menubar__trigger:hover,
+.nova-menubar__trigger:focus-visible {
+  background: rgba(45, 226, 255, 0.1);
+  color: var(--nova-text, #d7ecff);
+}
+.nova-menubar__trigger[data-popup-open] {
+  background: var(--nova-primary, #2de2ff);
+  color: var(--nova-on-primary, #02131a);
+  box-shadow: 0 0 10px rgba(45, 226, 255, 0.35);
+}

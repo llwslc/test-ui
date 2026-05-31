@@ -1,4 +1,4 @@
-import { Meter as BaseMeter } from "@base-ui-components/react/meter";
+import { Meter as BaseMeter } from "@base-ui/react/meter";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Meter.css";
 

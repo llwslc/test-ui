@@ -1,4 +1,4 @@
-import { AlertDialog as BaseAlertDialog } from "@base-ui-components/react/alert-dialog";
+import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
