@@ -11,7 +11,6 @@ export type BadgeTone =
 
 export interface BadgeProps {
   tone?: BadgeTone;
-  /** Show a leading status dot. */
   dot?: boolean;
   children: ReactNode;
   className?: string;

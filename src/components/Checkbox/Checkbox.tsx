@@ -6,7 +6,6 @@ import "./Checkbox.css";
 
 export interface CheckboxProps
   extends ComponentPropsWithoutRef<typeof BaseCheckbox.Root> {
-  /** Optional inline label rendered to the right of the box. */
   label?: ReactNode;
 }
 

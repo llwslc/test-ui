@@ -4,7 +4,6 @@ import "./Separator.css";
 
 export interface SeparatorProps {
   orientation?: "horizontal" | "vertical";
-  /** Optional centered label (horizontal only). */
   label?: ReactNode;
   className?: string;
 }

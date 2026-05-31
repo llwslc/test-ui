@@ -13,7 +13,6 @@ export interface SelectOption {
 export interface SelectProps {
   items: SelectOption[];
   placeholder?: string;
-  /** className applied to the trigger. */
   className?: string;
   value?: string | null;
   defaultValue?: string | null;

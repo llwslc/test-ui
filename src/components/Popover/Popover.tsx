@@ -4,7 +4,6 @@ import { XIcon } from "../icons";
 import "./Popover.css";
 
 export interface PopoverProps {
-  /** Element that toggles the popover on click. */
   trigger: ReactElement;
   title?: ReactNode;
   children: ReactNode;

@@ -6,7 +6,6 @@ export interface MeterProps
   extends ComponentPropsWithoutRef<typeof BaseMeter.Root> {
   label?: ReactNode;
   showValue?: boolean;
-  /** Accent tone of the fill. */
   tone?: "primary" | "success" | "warning" | "danger";
 }
 

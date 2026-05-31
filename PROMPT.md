@@ -66,9 +66,11 @@ src/
 - 用暴露的 **CSS 变量**:`--active-tab-*`(Tabs 指示器)、`--accordion-panel-height` / `--collapsible-panel-height`(折叠动画)、`--anchor-width`(浮层对齐触发器)。
 - **能当触发器的包装组件(Button)必须 `forwardRef`**——Tooltip / Popover / Select 靠 ref 定位与挂交互。
 - **`<X render={<Y/>}>` 会把 X 的 className 合并到 Y**:复用组件时(如 DialogClose 复用 Button)只把 className 传给 Y。
+- **表单可访问性**:Base UI 不给输入自动加 `id`,用 `useId()` 兜底,否则浏览器报「a form field should have an id or name」;`Select` / `NumberField` 的隐藏表单输入用 `name` 兜底。
+- **NumberField 边界**:Base UI 只夹值、不禁用步进按钮——自己跟踪当前值,到 `min` / `max` 时给 Decrement / Increment 加 `disabled` 并置灰。
 
 ### 布局
 - **inline-flex 分段控件(ToggleGroup)加 `width: fit-content`**,否则作为 flex/grid 子项会被 `align-items: stretch` 拉成满宽。
 
 ## 演示页
-顶部 HUD 栏(logo + 实时时钟 + 状态徽章)→ 左侧 sticky 索引(列全部控件、锚点平滑跳转)→ Hero(标题 + 数据条 + 旋转准星占右侧负空间)→ 响应式两栏 Panel 网格逐个展示 → 根部包 `ToastProvider`;整页挂网格 / 扫描线 / 噪点氛围层。
+顶部 HUD 栏(logo + 实时时钟 + 状态徽章)→ 左侧 sticky 索引(列全部控件、锚点平滑跳转)→ Hero(标题 + 数据条 + 旋转准星占右侧负空间)→ 响应式两栏 Panel 网格逐个展示 → 根部包 `ToastProvider`;整页挂网格 / 扫描线 / 噪点氛围层。窄屏(≤900px)**隐藏索引、单列、收紧间距、禁横向溢出**。

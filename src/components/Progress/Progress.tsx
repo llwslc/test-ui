@@ -5,7 +5,6 @@ import "./Progress.css";
 export interface ProgressProps
   extends ComponentPropsWithoutRef<typeof BaseProgress.Root> {
   label?: ReactNode;
-  /** Show numeric percentage readout (default true). */
   showValue?: boolean;
 }
 

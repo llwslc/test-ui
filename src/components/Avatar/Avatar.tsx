@@ -8,7 +8,6 @@ export interface AvatarProps {
   src?: string;
   alt?: string;
   fallback?: ReactNode;
-  /** Edge size in pixels (default 46). */
   size?: number;
   status?: AvatarStatus;
   className?: string;

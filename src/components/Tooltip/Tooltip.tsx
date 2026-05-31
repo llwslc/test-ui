@@ -3,9 +3,7 @@ import type { ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
 export interface TooltipProps {
-  /** Tooltip body content. */
   content: ReactNode;
-  /** The trigger element (cloned with tooltip behaviour). */
   children: ReactElement;
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;

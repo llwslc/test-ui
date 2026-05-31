@@ -3,10 +3,8 @@ import "./Panel.css";
 
 export interface PanelProps {
   title?: ReactNode;
-  /** Right-aligned header content (status, code, etc.). */
   meta?: ReactNode;
   children: ReactNode;
-  /** Add an animated scanline sweep across the panel. */
   scan?: boolean;
   className?: string;
 }

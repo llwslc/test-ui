@@ -6,7 +6,6 @@ import "./Input.css";
 
 export interface InputProps
   extends ComponentPropsWithoutRef<typeof BaseInput> {
-  /** Optional leading icon rendered inside the field. */
   icon?: ReactNode;
 }
 
@@ -38,10 +37,8 @@ export interface FieldProps
   extends ComponentPropsWithoutRef<typeof BaseField.Control> {
   label?: ReactNode;
   description?: ReactNode;
-  /** Static error text (always shown when provided). */
   error?: ReactNode;
   icon?: ReactNode;
-  /** className for the field root wrapper. */
   rootClassName?: string;
 }
 

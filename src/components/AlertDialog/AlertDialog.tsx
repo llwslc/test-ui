@@ -5,14 +5,11 @@ import type { ButtonVariant, ButtonSize } from "../Button";
 import "./AlertDialog.css";
 
 export interface AlertDialogProps {
-  /** Element that opens the alert. */
   trigger: ReactElement;
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  /** Footer action buttons (use <AlertDialogClose> for dismissing ones). */
   actions?: ReactNode;
-  /** Accent tone of the top bar + title (default "danger"). */
   tone?: "danger" | "warning" | "primary";
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -64,7 +61,6 @@ export function AlertDialog({
   );
 }
 
-/** Dismissing action button — reuses the NOVA Button. */
 export interface AlertDialogCloseProps
   extends Omit<
     ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>,

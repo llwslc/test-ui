@@ -11,7 +11,6 @@ export interface ToastProviderProps {
   limit?: number;
 }
 
-/** Wrap the app once. Exposes toasts via the `useToast` hook. */
 export function ToastProvider({
   children,
   timeout = 5000,
@@ -52,7 +51,6 @@ function ToastList() {
   );
 }
 
-/** Returns the toast manager: `const { add } = useToast()`. */
 export function useToast() {
   return BaseToast.useToastManager();
 }

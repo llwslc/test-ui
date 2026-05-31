@@ -12,7 +12,6 @@ export interface AccordionItem {
 
 export interface AccordionProps {
   items: AccordionItem[];
-  /** Allow multiple panels open at once (default false). */
   openMultiple?: boolean;
   defaultValue?: (string | number)[];
   className?: string;

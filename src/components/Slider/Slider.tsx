@@ -4,9 +4,7 @@ import "./Slider.css";
 
 export interface SliderProps
   extends ComponentPropsWithoutRef<typeof BaseSlider.Root> {
-  /** Optional label shown above the track. */
   label?: ReactNode;
-  /** Show the live numeric readout (default true). */
   showValue?: boolean;
 }
 

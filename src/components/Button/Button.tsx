@@ -9,7 +9,6 @@ export type ButtonSize = "sm" | "md" | "lg";
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Optional leading glyph (icon) rendered before the label. */
   icon?: ReactNode;
 }
 

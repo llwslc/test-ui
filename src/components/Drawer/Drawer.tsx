@@ -6,13 +6,11 @@ import "./Drawer.css";
 export type DrawerSide = "left" | "right" | "top" | "bottom";
 
 export interface DrawerProps {
-  /** Element that opens the drawer. */
   trigger: ReactElement;
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
-  /** Edge the drawer slides in from (default "right"). */
   side?: DrawerSide;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

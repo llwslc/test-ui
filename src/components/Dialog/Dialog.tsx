@@ -6,7 +6,6 @@ import { XIcon } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
-  /** Element that opens the dialog. */
   trigger: ReactElement;
   title?: ReactNode;
   description?: ReactNode;
@@ -62,9 +61,6 @@ export function Dialog({
   );
 }
 
-/** Close button for a Dialog/Drawer footer — reuses the NOVA `Button` so the
-   footer actions match the kit. Base UI's `render` merges classNames, so
-   `className` is applied to the Button, not to Close. */
 export type DialogCloseVariant = ButtonVariant;
 
 export interface DialogCloseProps
