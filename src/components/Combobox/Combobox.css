@@ -185,8 +185,8 @@
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
-  font-size: 13px;
+  width: 18px;
+  height: 18px;
+  font-size: 14px;
   color: var(--nova-primary, #2de2ff);
 }
