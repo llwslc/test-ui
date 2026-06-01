@@ -7,6 +7,7 @@ import {
   Avatar,
   Badge,
   Button,
+  Checkbox,
   CheckboxGroup,
   Collapsible,
   Combobox,
@@ -64,7 +65,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["buttons", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
-      ["checkgroup", "Checkbox Group", "CHG"],
+      ["checkbox", "Checkbox", "CHK"],
       ["radio", "Radio Group", "RDO"],
       ["toggle", "Toggle Group", "TGL"],
       ["slider", "Slider", "SLD"],
@@ -598,14 +599,19 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Checkbox Group */}
-            <div className="nova-section" id="checkgroup">
-              <Panel title="Checkbox Group" meta="CHG">
-                <CheckboxGroup
-                  parentLabel="All channels"
-                  defaultValue={["relay", "beacon"]}
-                  items={CHECKGROUP_ITEMS}
-                />
+            {/* Checkbox — a group plus standalone singles */}
+            <div className="nova-section" id="checkbox">
+              <Panel title="Checkbox" meta="CHK">
+                <div className="demo-stack">
+                  <CheckboxGroup
+                    parentLabel="All channels"
+                    defaultValue={["relay", "beacon"]}
+                    items={CHECKGROUP_ITEMS}
+                  />
+                  <Separator />
+                  <Checkbox defaultChecked label="Standalone toggle" />
+                  <Checkbox label="Unchecked option" />
+                </div>
               </Panel>
             </div>
 
