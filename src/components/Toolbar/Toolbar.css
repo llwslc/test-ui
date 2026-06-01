@@ -76,17 +76,17 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 
-/* On narrow screens the control strip stays a single row and scrolls
-   horizontally instead of wrapping into a ragged block — a HUD console scrolls,
-   it doesn't reflow. The chamfer clip still frames it; the scrollbar is hidden. */
+/* Narrow screens: wrap to multiple rows so every control (incl. LIVE) stays
+   visible — no horizontal scroll (unreachable with a mouse on desktop, clipped
+   on mobile). Groups stay intact; the inter-group separators hide when wrapped
+   since a vertical rule between stacked rows reads as noise. */
 @media (max-width: 600px) {
   .nova-toolbar {
-    flex-wrap: nowrap;
-    max-width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 6px;
   }
-  .nova-toolbar::-webkit-scrollbar {
+  .nova-toolbar__sep {
     display: none;
   }
 }

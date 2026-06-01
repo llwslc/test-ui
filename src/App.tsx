@@ -7,6 +7,7 @@ import {
   Avatar,
   Badge,
   Button,
+  Checkbox,
   CheckboxGroup,
   Collapsible,
   Combobox,
@@ -159,8 +160,7 @@ const AUTOCOMPLETE_ITEMS = [
 const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
-  { value: "beacon", label: "Beacon (locked on)", disabled: true },
-  { value: "quarantine", label: "Quarantine (locked off)", disabled: true },
+  { value: "beacon", label: "Nav beacon" },
 ];
 
 const MENUBAR_MENUS: MenubarMenu[] = [
@@ -598,14 +598,21 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Checkbox — a single group covering on / off / disabled states */}
+            {/* Checkbox — a group, then standalone on/off/disabled singles */}
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
-                <CheckboxGroup
-                  parentLabel="All channels"
-                  defaultValue={["relay", "beacon"]}
-                  items={CHECKGROUP_ITEMS}
-                />
+                <div className="demo-stack">
+                  <CheckboxGroup
+                    parentLabel="All channels"
+                    defaultValue={["relay"]}
+                    items={CHECKGROUP_ITEMS}
+                  />
+                  <Separator />
+                  <Checkbox defaultChecked label="Encryption" />
+                  <Checkbox label="Stealth mode" />
+                  <Checkbox disabled defaultChecked label="Beacon (locked on)" />
+                  <Checkbox disabled label="Quarantine (locked off)" />
+                </div>
               </Panel>
             </div>
 
