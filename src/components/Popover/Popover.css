@@ -23,9 +23,20 @@
   position: relative;
   display: block;
   padding: 14px 16px;
-  background: #0a1422;
-  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
+}
+.nova-popover__surface::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip-9);
+  background: var(--nova-surface-popup, rgba(7, 14, 24, 0.97));
+}
+.nova-popover__surface > * {
+  position: relative;
+  z-index: 1;
 }
 
 .nova-popover__title {
