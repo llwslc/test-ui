@@ -133,18 +133,38 @@
   padding: 0;
   list-style: none;
 }
+/* Links share the popup family's item language: highlight fill + a cyan
+   left accent bar + brightened title on hover (same recipe as Menu/Select
+   items), so the rich nav panel still reads as one of the kit's popups. */
 .nova-navmenu__link {
+  position: relative;
   display: block;
-  padding: 10px 12px;
+  padding: 10px 12px 10px 14px;
   text-decoration: none;
   cursor: pointer;
   outline: none;
   clip-path: var(--nova-clip-6);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
+.nova-navmenu__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
+  opacity: 0;
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
+}
 .nova-navmenu__link:hover,
 .nova-navmenu__link:focus-visible {
-  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
+  background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
+}
+.nova-navmenu__link:hover::after,
+.nova-navmenu__link:focus-visible::after {
+  opacity: 1;
 }
 .nova-navmenu__link-title {
   display: block;
@@ -152,11 +172,16 @@
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.04em;
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+}
+.nova-navmenu__link:hover .nova-navmenu__link-title,
+.nova-navmenu__link:focus-visible .nova-navmenu__link-title {
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-navmenu__link-desc {
   display: block;
   margin-top: 3px;
-  color: var(--nova-text-mute, #46617e);
+  color: var(--nova-text-dim, #7793b0);
   font-size: 12px;
   line-height: 1.5;
 }

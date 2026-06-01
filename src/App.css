@@ -260,7 +260,7 @@
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--nova-text-mute);
+  color: var(--nova-text-dim);
 }
 .demo-spread {
   display: flex;
