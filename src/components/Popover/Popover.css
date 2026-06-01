@@ -76,8 +76,7 @@
   margin: auto;
   width: 1px;
   height: 100%;
-  background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 5px var(--nova-primary, #2de2ff);
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-popover__arrow[data-side="top"] {
   bottom: -8px;

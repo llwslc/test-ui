@@ -74,7 +74,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
       <BaseNav.Portal>
         <BaseNav.Positioner
           className="nova-navmenu__positioner"
-          sideOffset={6}
+          sideOffset={10}
           collisionPadding={16}
         >
           <BaseNav.Popup className="nova-navmenu__popup">
