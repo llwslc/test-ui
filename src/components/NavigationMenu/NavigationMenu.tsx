@@ -1,6 +1,6 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import type { ReactNode } from "react";
-import { ChevronDownIcon } from "../icons";
+import { ArrowShape, ChevronDownIcon } from "../icons";
 import "./NavigationMenu.css";
 
 export interface NavMenuLink {
@@ -79,9 +79,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
         >
           <BaseNav.Popup className="nova-navmenu__popup">
             <BaseNav.Arrow className="nova-navmenu__arrow">
-              <svg viewBox="0 0 16 8" aria-hidden="true">
-                <path d="M0 0 L8 8 L16 0" />
-              </svg>
+              <ArrowShape />
             </BaseNav.Arrow>
             <BaseNav.Viewport className="nova-navmenu__viewport" />
           </BaseNav.Popup>

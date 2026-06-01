@@ -3,6 +3,17 @@ import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
+/* Shared popup-arrow shape for Tooltip / Popover / PreviewCard / NavigationMenu.
+   One open path (two legs, no base): filled → solid surface triangle, stroked →
+   the two border edges; the open base blends into the popup edge. fill + stroke
+   come from the component's CSS (--arrow-fill / --arrow-border tokens), and the
+   wrapper rotates it per data-side — so this markup is identical everywhere. */
+export const ArrowShape = (p: IconProps) => (
+  <svg viewBox="0 0 16 8" aria-hidden="true" {...p}>
+    <path d="M0 0 L8 8 L16 0" />
+  </svg>
+);
+
 const base = (props: IconProps) => ({
   width: "1em",
   height: "1em",
