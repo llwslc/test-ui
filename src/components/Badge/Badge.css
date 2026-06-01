@@ -10,8 +10,7 @@
   color: var(--nova-badge-color);
   font-family: var(--nova-font-mono, monospace);
   font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
   clip-path: var(--nova-clip-5);
