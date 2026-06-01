@@ -28,7 +28,12 @@ export function renderMenuEntries(items: MenuEntry[], parts: Parts) {
     parts;
   return items.map((it, i) => {
     if (it === "separator") {
-      return <Separator key={i} className="nova-menu__separator" />;
+      return (
+        <Separator
+          key={i}
+          className="nova-separator nova-separator--horizontal nova-menu__separator"
+        />
+      );
     }
     if (
       it.submenu &&

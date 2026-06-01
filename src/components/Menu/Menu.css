@@ -115,11 +115,16 @@
   box-shadow: 0 0 7px var(--nova-danger, #ff4d5e);
 }
 
-.nova-menu__separator {
+/* Reuse the shared nova-separator visual; only add what the popup context
+   needs: relative+z-index:1 so the line clears the popup's ::before fill
+   (a positioned z-index:0 layer that buries plain in-flow siblings), plus
+   inset margins. Without the z-index lift the line is painted UNDER the fill
+   and is invisible regardless of colour. */
+.nova-menu__separator.nova-separator {
+  position: relative;
+  z-index: 1;
   height: 1px;
   margin: 6px 6px;
-  background: rgba(45, 226, 255, 0.7);
-  box-shadow: 0 0 4px rgba(45, 226, 255, 0.35);
 }
 
 /* Submenu trigger: a right-pointing chevron pinned to the trailing edge.
