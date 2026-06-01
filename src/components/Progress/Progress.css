@@ -37,7 +37,7 @@
     repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 8px, transparent 8px 18px),
     linear-gradient(90deg, var(--nova-primary-deep, #119cb8), var(--nova-primary, #2de2ff));
   background-size: 56px 100%, 100% 100%;
-  box-shadow: 0 0 12px rgba(45, 226, 255, 0.6);
+  box-shadow: 0 0 12px var(--nova-tint-bright, rgba(45, 226, 255, 0.6));
   transition: width var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
   animation: nova-progress-stripes 0.9s linear infinite;
 }

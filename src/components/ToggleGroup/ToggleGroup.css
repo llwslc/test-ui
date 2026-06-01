@@ -13,7 +13,7 @@
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: rgba(8, 16, 26, 0.9);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
 }
 
 .nova-toggle {

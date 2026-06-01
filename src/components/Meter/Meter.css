@@ -13,7 +13,7 @@
 }
 .nova-meter--danger {
   --nova-meter-fill: var(--nova-danger, #ff4d5e);
-  --nova-meter-fill-deep: #b3242f;
+  --nova-meter-fill-deep: var(--nova-danger-deep, #b3242f);
 }
 
 .nova-meter__head {
@@ -41,7 +41,7 @@
   position: relative;
   width: 100%;
   height: 16px;
-  background: rgba(8, 16, 26, 0.85);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   box-shadow: inset 0 0 0 1px var(--nova-line-soft, rgba(45, 226, 255, 0.1));
   clip-path: var(--nova-clip-4);
   overflow: hidden;

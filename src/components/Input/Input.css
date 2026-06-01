@@ -14,7 +14,7 @@
 }
 .nova-input-wrap:focus-within {
   background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
+  filter: var(--nova-glow-focus, drop-shadow(0 0 8px rgba(45, 226, 255, 0.4)));
 }
 .nova-input-wrap--error,
 .nova-input-wrap--error:hover {
@@ -51,7 +51,7 @@
 .nova-input-wrap:focus-within .nova-input {
   /* On focus the frame turns bright cyan, so the fill stays dark + opaque
      to keep the typed text legible. */
-  background: #0a1a29;
+  background: var(--nova-surface-inset, #0a1a29);
 }
 .nova-input--has-icon {
   padding-left: 40px;

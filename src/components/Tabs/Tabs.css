@@ -53,7 +53,7 @@
 }
 .nova-tabs__tab:hover {
   color: var(--nova-text, #d7ecff);
-  background: linear-gradient(180deg, transparent, rgba(45, 226, 255, 0.07));
+  background: linear-gradient(180deg, transparent, var(--nova-tint-soft, rgba(45, 226, 255, 0.08)));
 }
 .nova-tabs__tab[data-selected] {
   color: var(--nova-primary, #2de2ff);

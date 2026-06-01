@@ -24,7 +24,7 @@
   padding: 0;
   border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   border-radius: 50%;
-  background: rgba(8, 16, 26, 0.85);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition:
@@ -52,7 +52,7 @@
 .nova-radio__control[data-checked] {
   border-color: var(--nova-primary, #2de2ff);
   box-shadow:
-    0 0 0 1px rgba(45, 226, 255, 0.3),
+    0 0 0 1px var(--nova-tint-active, rgba(45, 226, 255, 0.3)),
     0 0 8px rgba(45, 226, 255, 0.4);
 }
 .nova-radio__control[data-checked] .nova-radio__indicator::before {
@@ -62,7 +62,7 @@
 .nova-radio__control:focus-visible {
   outline: none;
   border-color: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 0 3px rgba(45, 226, 255, 0.25);
+  box-shadow: 0 0 0 3px var(--nova-line, rgba(45, 226, 255, 0.22));
 }
 .nova-radio__control[data-disabled] {
   cursor: not-allowed;

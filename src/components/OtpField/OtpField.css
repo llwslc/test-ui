@@ -54,7 +54,7 @@
   filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.5));
 }
 .nova-otp__cell:has(.nova-otp__slot:focus)::before {
-  background: #0a1a29;
+  background: var(--nova-surface-inset, #0a1a29);
 }
 .nova-otp__cell:has(.nova-otp__slot[data-filled]) .nova-otp__slot {
   color: var(--nova-primary, #2de2ff);

@@ -25,7 +25,7 @@
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: rgba(9, 17, 27, 0.95);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
@@ -46,7 +46,7 @@
 
 .nova-switch[data-checked] .nova-switch__track {
   background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.6));
+  filter: drop-shadow(0 0 8px var(--nova-tint-bright, rgba(45, 226, 255, 0.6)));
 }
 .nova-switch[data-checked] .nova-switch__track::before {
   background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));

@@ -41,7 +41,7 @@
 .nova-select__trigger:focus-visible {
   outline: none;
   background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
+  filter: var(--nova-glow-focus, drop-shadow(0 0 8px rgba(45, 226, 255, 0.4)));
 }
 .nova-select__placeholder {
   color: var(--nova-text-mute, #46617e);
@@ -69,7 +69,7 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
   filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.6))
-    drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
+    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   overflow-y: auto;
   transform-origin: top center;
   transition:
@@ -121,7 +121,7 @@
 }
 .nova-select__item[data-highlighted] {
   background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: #eafdff;
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-select__item[data-highlighted]::after {
   opacity: 1;

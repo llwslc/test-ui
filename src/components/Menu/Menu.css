@@ -15,7 +15,7 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 12px rgba(45, 226, 255, 0.2));
+    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   transform-origin: var(--transform-origin);
   transition:
     opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
@@ -85,7 +85,7 @@
 }
 .nova-menu__item[data-highlighted] {
   background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: #eafdff;
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-menu__item[data-highlighted]::after {
   opacity: 1;
@@ -147,7 +147,7 @@
 /* Keep the trigger highlighted while its submenu is open. */
 .nova-menu__item[data-popup-open] {
   background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: #eafdff;
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-menu__item[data-popup-open]::after {
   opacity: 1;

@@ -18,7 +18,7 @@
 }
 .nova-numberfield__group:focus-within {
   background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
+  filter: var(--nova-glow-focus, drop-shadow(0 0 8px rgba(45, 226, 255, 0.4)));
 }
 
 .nova-numberfield__btn {
@@ -39,11 +39,11 @@
     color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-numberfield__btn:hover {
-  background: rgba(45, 226, 255, 0.16);
-  color: #eafdff;
+  background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-numberfield__btn:active {
-  background: rgba(45, 226, 255, 0.3);
+  background: var(--nova-tint-active, rgba(45, 226, 255, 0.3));
 }
 .nova-numberfield__btn:disabled {
   cursor: not-allowed;
@@ -61,7 +61,7 @@
   border: 0;
   outline: none;
   text-align: center;
-  background: rgba(8, 16, 26, 0.96);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   color: var(--nova-text, #d7ecff);
   box-shadow:
     inset 1px 0 0 var(--nova-line-soft, rgba(45, 226, 255, 0.1)),

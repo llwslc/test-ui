@@ -17,6 +17,9 @@
      the modal popup ::before (double-frame technique). */
   --nova-scrim: rgba(2, 6, 12, 0.66);
   --nova-surface-modal: linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98));
+  /* Opaque inset revealed behind field content when the frame brightens to
+     solid cyan on focus (input/combobox/autocomplete/otp share this fill). */
+  --nova-surface-inset: #0a1a29;
 
   --nova-primary: #2de2ff;
   --nova-primary-deep: #119cb8;
@@ -30,11 +33,17 @@
   --nova-secondary-fill: rgba(255, 45, 117, 0.55);
   --nova-danger-fill: rgba(255, 77, 94, 0.55);
   --nova-danger-wash: rgba(255, 77, 94, 0.12);
+  --nova-danger-highlight: rgba(255, 77, 94, 0.16);
+  --nova-danger-deep: #b3242f;
+  --nova-danger-text: #ffd9dc;
 
   --nova-text: #d7ecff;
+  --nova-text-bright: #eafdff;
   --nova-text-dim: #7793b0;
   --nova-text-mute: #46617e;
   --nova-on-primary: #02131a;
+  --nova-on-secondary: #1c0410;
+  --nova-on-danger: #1c0406;
 
   --nova-line: rgba(45, 226, 255, 0.22);
   --nova-line-strong: rgba(45, 226, 255, 0.55);
@@ -43,10 +52,16 @@
   --nova-tint-faint: rgba(45, 226, 255, 0.05);
   --nova-tint-soft: rgba(45, 226, 255, 0.08);
   --nova-highlight: rgba(45, 226, 255, 0.14);
+  --nova-tint-active: rgba(45, 226, 255, 0.3);
+  --nova-tint-bright: rgba(45, 226, 255, 0.6);
   --nova-track: rgba(120, 170, 210, 0.16);
   --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
   --nova-glow-bar: 0 0 10px rgba(45, 226, 255, 0.35);
+  /* drop-shadow glows (follow the chamfer outline, unlike box-shadow):
+     focus = control field focus halo; popup = floating-overlay cyan aura. */
+  --nova-glow-focus: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
+  --nova-glow-popup: drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
 
   --nova-font: "Rajdhani", "Segoe UI", system-ui, sans-serif;
   --nova-font-display: "Orbitron", "Rajdhani", sans-serif;
@@ -59,6 +74,10 @@
 
   --nova-control-h: 38px;
   --nova-disabled-opacity: 0.4;
+
+  /* Modal frame metrics — shared by Dialog / AlertDialog / Drawer. */
+  --nova-shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --nova-pad-modal: 26px 28px;
 
   /* Overlay stacking ladder — one source of truth for portal layers, low→high:
      dropdown < menu/popover < tooltip < modal backdrop < modal surface < toast. */
@@ -84,6 +103,5 @@
   --nova-clip-11: polygon(11px 0, 100% 0, 100% calc(100% - 11px), calc(100% - 11px) 100%, 0 100%, 0 11px);
   --nova-clip-12: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
   --nova-clip-14: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
-  --nova-clip: var(--nova-clip-9);
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }

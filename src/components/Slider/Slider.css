@@ -51,13 +51,13 @@
   position: absolute;
   height: 100%;
   background: linear-gradient(90deg, var(--nova-primary-deep, #119cb8), var(--nova-primary, #2de2ff));
-  box-shadow: 0 0 10px rgba(45, 226, 255, 0.6);
+  box-shadow: 0 0 10px var(--nova-tint-bright, rgba(45, 226, 255, 0.6));
 }
 
 .nova-slider__thumb {
   width: 16px;
   height: 16px;
-  background: linear-gradient(160deg, #eafdff, var(--nova-primary, #2de2ff));
+  background: linear-gradient(160deg, var(--nova-text-bright, #eafdff), var(--nova-primary, #2de2ff));
   clip-path: var(--nova-clip-4);
   box-shadow: 0 0 10px var(--nova-primary, #2de2ff);
   transition:
@@ -74,7 +74,7 @@
 .nova-slider__thumb:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 4px rgba(45, 226, 255, 0.22),
+    0 0 0 4px var(--nova-line, rgba(45, 226, 255, 0.22)),
     0 0 14px var(--nova-primary, #2de2ff);
 }
 .nova-slider[data-disabled] {

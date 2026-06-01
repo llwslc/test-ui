@@ -27,10 +27,10 @@
 }
 .nova-autocomplete__control:focus-within {
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.3));
+  filter: var(--nova-glow-focus, drop-shadow(0 0 8px rgba(45, 226, 255, 0.4)));
 }
 .nova-autocomplete__control:focus-within::before {
-  background: #0a1a29;
+  background: var(--nova-surface-inset, #0a1a29);
 }
 
 .nova-autocomplete__lead {
@@ -68,7 +68,7 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
   filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.6))
-    drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
+    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   overflow-y: auto;
   transform-origin: top center;
   transition:
@@ -135,7 +135,7 @@
 }
 .nova-autocomplete__item[data-highlighted] {
   background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: #eafdff;
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-autocomplete__item[data-highlighted]::after {
   opacity: 1;

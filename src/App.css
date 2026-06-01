@@ -42,7 +42,7 @@
   width: 34px;
   height: 34px;
   color: var(--nova-on-primary);
-  background: linear-gradient(160deg, #eafdff, var(--nova-primary));
+  background: linear-gradient(160deg, var(--nova-text-bright, #eafdff), var(--nova-primary));
   clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
   box-shadow: 0 0 14px rgba(45, 226, 255, 0.5);
   font-size: 18px;
@@ -472,7 +472,7 @@
 .nova-hero__ring--2 {
   width: 118px;
   height: 118px;
-  border: 1px solid rgba(45, 226, 255, 0.16);
+  border: 1px solid var(--nova-highlight, rgba(45, 226, 255, 0.14));
   border-top-color: var(--nova-primary);
   box-shadow: 0 0 16px var(--nova-line, rgba(45, 226, 255, 0.22));
   animation: nova-spin 7s linear infinite reverse;

@@ -7,7 +7,7 @@
   position: relative;
   max-width: 300px;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
+    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   transform-origin: var(--transform-origin);
   transition:
     opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),

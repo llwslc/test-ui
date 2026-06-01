@@ -102,7 +102,7 @@
   color: #1c0406;
 }
 .nova-btn--danger::before {
-  background: linear-gradient(180deg, var(--nova-danger, #ff4d5e), #b3242f);
+  background: linear-gradient(180deg, var(--nova-danger, #ff4d5e), var(--nova-danger-deep, #b3242f));
 }
 .nova-btn--danger:hover,
 .nova-btn--danger:focus-visible {
@@ -121,7 +121,7 @@
   opacity: 0.25;
 }
 .nova-btn--ghost:hover {
-  color: #eafdff;
+  color: var(--nova-text-bright, #eafdff);
 }
 .nova-btn--ghost:hover::before {
   background: rgba(16, 44, 60, 0.95);
