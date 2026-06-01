@@ -159,8 +159,8 @@ const AUTOCOMPLETE_ITEMS = [
 const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
-  { value: "beacon", label: "Nav beacon" },
-  { value: "quarantine", label: "Quarantine (locked)", disabled: true },
+  { value: "beacon", label: "Beacon (locked on)", disabled: true },
+  { value: "quarantine", label: "Quarantine (locked off)", disabled: true },
 ];
 
 const MENUBAR_MENUS: MenubarMenu[] = [
@@ -603,7 +603,7 @@ function Demo() {
               <Panel title="Checkbox Group" meta="CHG">
                 <CheckboxGroup
                   parentLabel="All channels"
-                  defaultValue={["relay"]}
+                  defaultValue={["relay", "beacon"]}
                   items={CHECKGROUP_ITEMS}
                 />
               </Panel>
