@@ -9,7 +9,7 @@
 }
 /* Narrow screens: scroll the tab row sideways rather than letting it overflow
    the page (same HUD treatment as the toolbar). */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nova-tabs__list {
     overflow-x: auto;
     scrollbar-width: none;

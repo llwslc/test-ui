@@ -213,7 +213,7 @@
   border-top: 6.5px solid var(--arrow-fill);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nova-navmenu__grid {
     grid-template-columns: 1fr;
   }

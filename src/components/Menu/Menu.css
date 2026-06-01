@@ -117,14 +117,9 @@
 
 .nova-menu__separator {
   height: 1px;
-  margin: 6px 8px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--nova-line-strong, rgba(45, 226, 255, 0.55)) 15%,
-    var(--nova-line-strong, rgba(45, 226, 255, 0.55)) 85%,
-    transparent
-  );
+  margin: 6px 6px;
+  background: rgba(45, 226, 255, 0.7);
+  box-shadow: 0 0 4px rgba(45, 226, 255, 0.35);
 }
 
 /* Submenu trigger: a right-pointing chevron pinned to the trailing edge.

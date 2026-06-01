@@ -71,19 +71,20 @@
 
 .nova-toolbar__sep {
   align-self: stretch;
+  flex: 0 0 1px; /* never let flex shrink the 1px rule to nothing as the panel narrows */
   width: 1px;
   margin: 3px 4px;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 
-/* Narrow screens: wrap to multiple rows so every control (incl. LIVE) stays
-   visible — no horizontal scroll (unreachable with a mouse on desktop, clipped
-   on mobile). Groups stay intact; the inter-group separators hide when wrapped
-   since a vertical rule between stacked rows reads as noise. */
-@media (max-width: 600px) {
+/* Phone (≤768px): wrap to multiple rows, left-aligned, so every control
+   (incl. LIVE) stays visible — no horizontal scroll (unreachable with a mouse,
+   clipped on mobile) and no centering (reads as ragged). Groups stay intact;
+   the inter-group vertical rules hide when stacked since they'd be noise. */
+@media (max-width: 768px) {
   .nova-toolbar {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     row-gap: 6px;
   }
   .nova-toolbar__sep {
