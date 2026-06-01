@@ -74,10 +74,10 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 2px;
+  width: 1px;
   height: 100%;
   background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 6px var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 5px var(--nova-primary, #2de2ff);
 }
 .nova-popover__arrow[data-side="top"] {
   bottom: -8px;
@@ -98,5 +98,5 @@
 .nova-popover__arrow[data-side="left"]::before,
 .nova-popover__arrow[data-side="right"]::before {
   width: 100%;
-  height: 2px;
+  height: 1px;
 }
