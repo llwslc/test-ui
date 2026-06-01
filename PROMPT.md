@@ -51,7 +51,7 @@ src/
 ## 核心技术
 
 ### 切角(clip-path)
-- **尺寸走预制调色板 `--nova-clip-N`**(N = 3…14,`tokens.css` 里每个都是写死的 polygon)。组件直接 `clip-path: var(--nova-clip-7)` 按名选尺寸。**不要**用「`--nova-cut` 变量 + 单个 `--nova-clip`」的间接法:`--nova-clip` 定义在 `:root` 时,内部的 `var(--nova-cut)` 会在 `:root` 处就解析成定值、继承下来不再随组件本地 `--nova-cut` 改变(本地覆盖**静默失效**)。非矩形形状也命名(如标题尖角 `--nova-clip-tick`),**组件里零字面 `polygon()`**。
+- **尺寸走预制调色板 `--nova-clip-N`**(N 取按需定义的尺寸,当前 3–9 / 11 / 12 / 14;非连续,缺的档位没人用就不建,`tokens.css` 里每个都是写死的 polygon)。组件直接 `clip-path: var(--nova-clip-7)` 按名选尺寸。**不要**用「`--nova-cut` 变量 + 单个 `--nova-clip`」的间接法:`--nova-clip` 定义在 `:root` 时,内部的 `var(--nova-cut)` 会在 `:root` 处就解析成定值、继承下来不再随组件本地 `--nova-cut` 改变(本地覆盖**静默失效**)。非矩形形状也命名(如标题尖角 `--nova-clip-tick`),**组件里零字面 `polygon()`**。
 - **带描边的切角用双层 frame**,别用 `border + clip-path`(斜边不描):外层背景 = 边框色 + `clip-path`,`::before` 内缩 1px 填背景色,内容 `position:relative; z-index:1` 压在填充上。
 - **`clip-path` 会裁掉子元素/伪元素**:Panel 角括号只放在不切角的两角(TR/BL);浮层箭头不能塞进切角元素,结构为 `popup(不裁) > [切角面板, 箭头(面板的兄弟)]`;列表/分段的激活高亮别被切角裁断。
 - **双层 frame 里的分隔线/高亮必须 `position:relative; z-index:1`**——否则停留在普通流(z=0),被 `::before` 那层不透明填充**盖住而不可见**;这是层级问题不是颜色问题(染什么色都没用)。分隔线统一复用全局 `.nova-separator`,别每个浮层手搓;竖排分隔(Toolbar)要用 `line-strong` 平涂**覆盖** `.nova-separator` 的 `90deg` 渐变——横向渐变在 1px 宽的竖列上会淡成全透明。

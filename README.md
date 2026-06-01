@@ -14,32 +14,36 @@ npm run build    # type-check + production build
 
 ## What's inside
 
-30 controls, **each in its own folder** under `src/components/<Name>/`
+37 controls, **each in its own folder** under `src/components/<Name>/`
 (`<Name>.tsx` + `<Name>.css` + `index.ts`):
 
-| Input | Feedback | Overlay | Display |
-| --- | --- | --- | --- |
-| Button | Progress | Tooltip | Avatar |
-| Switch | Meter | Popover | Badge |
-| Checkbox | Tabs | Preview Card | Toolbar |
-| Radio Group | Accordion | Menu | Scroll Area |
-| Toggle Group | Collapsible | Context Menu | Separator |
-| Slider | | Dialog | Panel (HUD frame) |
-| Number Field | | Alert Dialog | |
-| Text Field / Field | | Drawer | |
-| Select | | Toast | |
-| Combobox | | | |
+- **Input (13)** — Button · Switch · Checkbox · Checkbox Group · Radio Group ·
+  Toggle Group · Slider · Number Field · Text Field / Field · OTP Field ·
+  Select · Combobox · Autocomplete
+- **Forms (2)** — Fieldset · Form
+- **Feedback (5)** — Progress · Meter · Tabs · Accordion · Collapsible
+- **Overlay (11)** — Tooltip · Popover · Preview Card · Menu · Menubar ·
+  Navigation Menu · Context Menu · Dialog · Alert Dialog · Drawer · Toast
+- **Display (6)** — Avatar · Badge · Toolbar · Scroll Area · Separator ·
+  Panel (HUD frame)
 
-The `App.tsx` demo lists every control in a sidebar index and showcases it in a
-`Panel` HUD frame.
+The `App.tsx` demo wraps everything in a HUD shell — sticky header with a live
+clock and status badges, a hero banner, a sticky sidebar index, and a
+responsive two-column `Panel` grid — and showcases every control.
 
 Each control earns its place by **purpose**, not just appearance — no
-similar-but-worse clones. Menu is an _action_ list (icons + shortcuts) and
-ContextMenu reuses its skin on right-click, both distinct from Select's
-value-picker; Combobox filters as you type; Preview Card is a hover-only rich
-card next to text-only Tooltip and click-driven Popover. Redundant Base UI
-parts (`autocomplete`, `menubar`, single `toggle`, `checkbox-group`, `fieldset`,
-`form`) are intentionally omitted.
+similar-but-worse clones. Menu is an _action_ list (icons + shortcuts);
+ContextMenu and Menubar reuse its skin (shared `Menu/items.tsx` + `Menu.css`)
+but trigger on right-click / sit in a menu bar. Navigation Menu is a site-nav
+rich panel, distinct from Menu's action list. Combobox and Autocomplete are
+Base UI's two ARIA flavours of one combobox engine: **Combobox** is a
+value-picker (the value is a chosen item, with clear / dropdown / check),
+**Autocomplete** is a text field with suggestions (the value is the typed
+string). Preview Card is a hover-only rich card, next to text-only Tooltip and
+click-driven Popover. The only Base UI parts deliberately skipped are the
+standalone single `toggle` (use Toggle Group) and the bare `radio-group` /
+`checkbox-group` primitives (folded into the Radio Group / Checkbox Group
+wrappers).
 
 ## Theming
 
@@ -50,16 +54,17 @@ on `:root` to re-skin the whole kit:
 ```css
 :root {
   --nova-primary: #ff8a00;   /* swap cyan → amber */
-  --nova-secondary: #00ffa3;
-  --nova-radius: 0px;        /* sharper */
-  --nova-cut: 14px;          /* bigger corner chamfers */
+  --nova-secondary: #00d3ff;
+  --nova-bg: #0a0700;
+  --nova-control-h: 34px;    /* tighter controls */
 }
 ```
 
-Key tokens: `--nova-bg`, `--nova-surface`, `--nova-primary` / `-secondary` /
-`-accent`, `--nova-success` / `-warning` / `-danger`, `--nova-text*`,
-`--nova-line*` (borders/glow), `--nova-font*`, `--nova-cut` (chamfer size),
-`--nova-dur` / `--nova-ease` (motion).
+Key tokens: `--nova-bg` / `-bg-2`, `--nova-surface*` (popup / input / bar /
+modal fills), `--nova-primary` / `-secondary`, `--nova-success` / `-warning` /
+`-danger`, `--nova-text*`, `--nova-line*` (borders/glow), `--nova-clip-3…14`
+(named chamfer sizes), `--nova-glow*`, `--nova-font*`, `--nova-dur` /
+`--nova-ease` (motion), `--nova-control-h` (control height).
 
 ## Portability
 
@@ -67,6 +72,8 @@ Components are intentionally easy to lift into another project:
 
 1. **Copy the component folder** (e.g. `src/components/Slider/`).
 2. **Copy `src/theme/tokens.css`** once (or paste the `--nova-*` vars you use).
+   Modals and components that use a shared recipe also need
+   `src/theme/effects.css`; `cx()` users need `src/components/cx.ts`.
 3. `npm i @base-ui/react` and import.
 
 Every CSS rule reads tokens with inline fallbacks
@@ -82,9 +89,14 @@ import { Slider } from "./components/Slider";
 
 ## Design notes
 
-- **Chamfered corners** come from a shared `--nova-clip` `clip-path` polygon.
-  Because corners are clipped, neon outlines use `filter: drop-shadow()` (which
-  follows the clipped shape) instead of a rectangular `box-shadow`.
+- **Chamfered corners** come from a named `--nova-clip-N` `clip-path` palette
+  (`clip-path: var(--nova-clip-7)`, sizes `3…14`) defined in `tokens.css` —
+  pick a size by name rather than recomputing a polygon. Because corners are
+  clipped, neon outlines use `filter: drop-shadow()` (which follows the clipped
+  shape) instead of a rectangular `box-shadow`.
+- **Bordered chamfers** use a double-frame: a border-coloured layer + clip, an
+  inset `::before` for the fill, content lifted above it — `border` can't trace
+  a clipped edge.
 - **State styling** targets Base UI's data attributes (`[data-checked]`,
   `[data-highlighted]`, `[data-open]`, `[data-starting-style]`, …) and exposed
   CSS vars (`--active-tab-*`, `--accordion-panel-height`, `--anchor-width`).
