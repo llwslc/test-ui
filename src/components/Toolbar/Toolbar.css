@@ -69,10 +69,15 @@
   cursor: not-allowed;
 }
 
-.nova-toolbar__sep {
+/* Reuse the shared .nova-separator token colour, but force a SOLID vertical
+   fill: nova-separator's base gradient runs left→right (90deg), which on a 1px
+   column collapses to nothing — so override with a flat line-strong fill.
+   Local rules set the toolbar layout: a short stretched rule that never shrinks. */
+.nova-toolbar__sep.nova-separator {
   align-self: stretch;
   flex: 0 0 1px; /* never let flex shrink the 1px rule to nothing as the panel narrows */
   width: 1px;
+  height: auto;
   margin: 3px 4px;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }

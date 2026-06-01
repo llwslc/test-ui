@@ -45,7 +45,9 @@ export function ToolbarButton({
 }
 
 export function ToolbarSeparator() {
-  return <BaseToolbar.Separator className="nova-toolbar__sep" />;
+  return (
+    <BaseToolbar.Separator className="nova-separator nova-toolbar__sep" />
+  );
 }
 
 export function ToolbarGroup({ children }: { children: ReactNode }) {
