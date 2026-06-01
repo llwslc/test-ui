@@ -10,14 +10,17 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 html {
   scroll-behavior: smooth;
+}
+
+/* The document itself scrolls. Don't pin body/#root to height:100% — combined
+   with body{overflow-x:hidden} that turns body into a viewport-height scroll
+   container, leaving window scroll dead on mobile (footer unreachable). The
+   fixed-position backdrops fill the viewport regardless, so #root only needs a
+   min-height to look full on short pages. */
+#root {
+  min-height: 100vh;
 }
 
 body {

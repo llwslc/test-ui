@@ -3,7 +3,7 @@
    ============================================================ */
 
 .nova-app {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 /* ---------- Top HUD header ---------- */
@@ -88,7 +88,7 @@
   gap: 26px;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 26px 22px 80px;
+  padding: 26px 22px 28px;
 }
 
 /* ---------- Sidebar index ---------- */
@@ -219,6 +219,7 @@
 }
 .nova-section {
   display: flex;
+  min-width: 0; /* let the grid column shrink below the panel's content width */
   scroll-margin-top: 80px;
 }
 .nova-section.span-2 {
@@ -226,6 +227,7 @@
 }
 .nova-section > .nova-panel {
   width: 100%;
+  min-width: 0;
 }
 
 /* ---------- Demo helpers ---------- */
@@ -357,7 +359,7 @@
 .nova-footer {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 24px 22px 50px;
+  padding: 52px 22px 16px;
   color: var(--nova-text-mute);
   font-family: var(--nova-font-mono);
   font-size: 12px;
@@ -496,15 +498,15 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nova-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
-    padding: 16px 13px 56px;
+    padding: 16px 13px 20px;
   }
   .nova-sidebar {
     display: none;
   }
   .nova-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 600px) {

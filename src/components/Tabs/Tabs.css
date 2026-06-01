@@ -7,6 +7,20 @@
   display: flex;
   gap: 4px;
 }
+/* Narrow screens: scroll the tab row sideways rather than letting it overflow
+   the page (same HUD treatment as the toolbar). */
+@media (max-width: 600px) {
+  .nova-tabs__list {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nova-tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+  .nova-tabs__tab {
+    flex: 0 0 auto;
+  }
+}
 /* Full-width baseline; the active indicator sits on this exact line. */
 .nova-tabs__list::after {
   content: "";

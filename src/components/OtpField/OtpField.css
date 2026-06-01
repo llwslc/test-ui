@@ -72,3 +72,22 @@
   height: 2px;
   background: var(--nova-text-mute, #46617e);
 }
+
+/* Very narrow phones (≤360px): six 44px cells + gaps overflow a ~294px column.
+   Shrink the cells + gaps so the row fits without the page scrolling sideways. */
+@media (max-width: 360px) {
+  .nova-otp,
+  .nova-otp__slot-wrap {
+    gap: 5px;
+  }
+  .nova-otp__cell {
+    width: 38px;
+    height: 48px;
+  }
+  .nova-otp__slot {
+    font-size: 19px;
+  }
+  .nova-otp__divider {
+    width: 7px;
+  }
+}

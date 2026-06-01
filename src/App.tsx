@@ -7,7 +7,6 @@ import {
   Avatar,
   Badge,
   Button,
-  Checkbox,
   CheckboxGroup,
   Collapsible,
   Combobox,
@@ -599,19 +598,14 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Checkbox — a group plus standalone singles */}
+            {/* Checkbox — a single group covering on / off / disabled states */}
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
-                <div className="demo-stack">
-                  <CheckboxGroup
-                    parentLabel="All channels"
-                    defaultValue={["relay", "beacon"]}
-                    items={CHECKGROUP_ITEMS}
-                  />
-                  <Separator />
-                  <Checkbox defaultChecked label="Standalone toggle" />
-                  <Checkbox label="Unchecked option" />
-                </div>
+                <CheckboxGroup
+                  parentLabel="All channels"
+                  defaultValue={["relay", "beacon"]}
+                  items={CHECKGROUP_ITEMS}
+                />
               </Panel>
             </div>
 

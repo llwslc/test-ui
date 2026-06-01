@@ -76,8 +76,17 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 
+/* On narrow screens the control strip stays a single row and scrolls
+   horizontally instead of wrapping into a ragged block — a HUD console scrolls,
+   it doesn't reflow. The chamfer clip still frames it; the scrollbar is hidden. */
 @media (max-width: 600px) {
   .nova-toolbar {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nova-toolbar::-webkit-scrollbar {
+    display: none;
   }
 }
