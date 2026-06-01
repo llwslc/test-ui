@@ -581,15 +581,15 @@ function Demo() {
               <Panel title="Switch" meta="SWT">
                 <div className="demo-stack">
                   <div className="demo-spread">
-                    <span className="demo-tag">Auto-Pilot</span>
+                    <span className="demo-rowlabel">Auto-Pilot</span>
                     <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-tag">Cloaking</span>
+                    <span className="demo-rowlabel">Cloaking</span>
                     <Switch aria-label="Cloaking" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-tag">Locked</span>
+                    <span className="demo-rowlabel">Locked</span>
                     <Switch disabled defaultChecked aria-label="Locked" />
                   </div>
                 </div>
@@ -961,11 +961,11 @@ function Demo() {
                   footer={<DialogClose variant="secondary">Apply</DialogClose>}
                 >
                   <div className="demo-spread">
-                    <span className="demo-tag">Auto-Pilot</span>
+                    <span className="demo-rowlabel">Auto-Pilot</span>
                     <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-tag">Stealth Mode</span>
+                    <span className="demo-rowlabel">Stealth Mode</span>
                     <Switch aria-label="Stealth Mode" />
                   </div>
                   <Slider label="Sensor Gain" defaultValue={72} />

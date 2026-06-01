@@ -268,6 +268,14 @@
   justify-content: space-between;
   gap: 14px;
 }
+/* Setting-row label paired with a Switch. A Switch has no built-in label, so
+   it reads as a real control label (Rajdhani / bright), matching the Checkbox
+   and Radio labels — not the mono .demo-tag caption used above input fields. */
+.demo-rowlabel {
+  font-family: var(--nova-font);
+  font-size: 16px;
+  color: var(--nova-text);
+}
 
 /* Preview Card trigger + content */
 .demo-link {
