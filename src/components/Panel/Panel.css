@@ -52,7 +52,7 @@
   z-index: 1;
   border: 0 solid var(--nova-primary);
   pointer-events: none;
-  filter: drop-shadow(0 0 6px var(--nova-primary));
+  filter: drop-shadow(0 0 7px var(--nova-primary));
 }
 .nova-panel__corner--tr {
   top: 3px;
