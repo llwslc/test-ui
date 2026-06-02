@@ -221,8 +221,8 @@
 .nova-section.span-2 {
   grid-column: 1 / -1;
 }
-.nova-section > .nova-panel {
-  width: 100%;
+.nova-section > .nova-panel-frame {
+  flex: 1;
   min-width: 0;
 }
 
