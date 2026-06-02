@@ -1,3 +1,18 @@
+.nova-checkbox-box {
+  position: relative;
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-checkbox-box:has([data-checked]),
+.nova-checkbox-box:has([data-indeterminate]) {
+  filter: drop-shadow(0 0 6px var(--nova-primary-a50));
+}
+.nova-checkbox-box:has(:focus-visible) {
+  filter: drop-shadow(0 0 8px var(--nova-primary-a70));
+}
+
 .nova-checkbox {
   position: relative;
   display: inline-grid;
@@ -11,7 +26,6 @@
   background: var(--nova-line-strong);
   clip-path: var(--nova-clip-9);
   -webkit-tap-highlight-color: transparent;
-  transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-checkbox::before {
   content: "";
@@ -45,10 +59,6 @@
 .nova-checkbox[data-indeterminate]::before {
   background: linear-gradient(160deg, var(--nova-primary), var(--nova-primary-deep));
 }
-.nova-checkbox[data-checked],
-.nova-checkbox[data-indeterminate] {
-  filter: drop-shadow(0 0 6px var(--nova-primary-a50));
-}
 .nova-checkbox[data-checked] .nova-checkbox__check {
   opacity: 1;
   transform: scale(1);
@@ -60,7 +70,6 @@
 
 .nova-checkbox:focus-visible {
   outline: none;
-  filter: drop-shadow(0 0 8px var(--nova-primary-a70));
 }
 .nova-checkbox[data-disabled] {
   cursor: not-allowed;
