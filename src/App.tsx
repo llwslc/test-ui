@@ -66,6 +66,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["buttons", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
       ["checkbox", "Checkbox", "CHK"],
+      ["checkbox-group", "Checkbox Group", "CHG"],
       ["radio", "Radio Group", "RDO"],
       ["toggle", "Toggle Group", "TGL"],
       ["slider", "Slider", "SLD"],
@@ -599,16 +600,22 @@ function Demo() {
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
                 <div className="demo-stack">
+                  <Checkbox defaultChecked label="Encryption" />
+                  <Checkbox label="Stealth mode" />
+                  <Checkbox disabled defaultChecked label="Beacon (locked on)" />
+                  <Checkbox disabled label="Quarantine (locked off)" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="checkbox-group">
+              <Panel title="Checkbox Group" meta="CHG">
+                <div className="demo-stack">
                   <CheckboxGroup
                     parentLabel="All channels"
                     defaultValue={["relay"]}
                     items={CHECKGROUP_ITEMS}
                   />
-                  <Separator />
-                  <Checkbox defaultChecked label="Encryption" />
-                  <Checkbox label="Stealth mode" />
-                  <Checkbox disabled defaultChecked label="Beacon (locked on)" />
-                  <Checkbox disabled label="Quarantine (locked off)" />
                 </div>
               </Panel>
             </div>
