@@ -25,7 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
 ) {
-  return (
+  const button = (
     <BaseButton
       ref={ref}
       className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, className)}
@@ -37,4 +37,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       </span>
     </BaseButton>
   );
+  if (variant === "primary" || variant === "secondary" || variant === "danger") {
+    return (
+      <span className={cx("nova-btn-glow", `nova-btn-glow--${variant}`)}>
+        {button}
+      </span>
+    );
+  }
+  return button;
 });

@@ -58,10 +58,6 @@
   font-size: 1.15em;
 }
 
-.nova-btn:hover {
-  filter: drop-shadow(0 0 4px var(--nova-primary))
-    drop-shadow(0 0 12px rgba(45, 226, 255, 0.45));
-}
 .nova-btn:hover::after {
   transform: translateX(130%);
 }
@@ -70,8 +66,6 @@
 }
 .nova-btn:focus-visible {
   outline: none;
-  filter: drop-shadow(0 0 4px var(--nova-primary))
-    drop-shadow(0 0 16px rgba(45, 226, 255, 0.65));
 }
 .nova-btn[data-disabled],
 .nova-btn:disabled {
@@ -84,17 +78,41 @@
   display: none;
 }
 
+.nova-btn-glow {
+  display: inline-flex;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-btn-glow--primary {
+  --nova-btn-glow: var(--nova-primary);
+  --nova-btn-glow-soft: var(--nova-primary-a40);
+}
+.nova-btn-glow--secondary {
+  --nova-btn-glow: var(--nova-secondary);
+  --nova-btn-glow-soft: var(--nova-secondary-fill);
+}
+.nova-btn-glow--danger {
+  --nova-btn-glow: var(--nova-danger);
+  --nova-btn-glow-soft: var(--nova-danger-fill);
+}
+.nova-btn-glow:has(.nova-btn:hover) {
+  filter: drop-shadow(0 0 4px var(--nova-btn-glow))
+    drop-shadow(0 0 12px var(--nova-btn-glow-soft));
+}
+.nova-btn-glow:has(.nova-btn:focus-visible) {
+  filter: drop-shadow(0 0 4px var(--nova-btn-glow))
+    drop-shadow(0 0 16px var(--nova-btn-glow-soft));
+}
+.nova-btn-glow:has(.nova-btn:disabled),
+.nova-btn-glow:has(.nova-btn[data-disabled]) {
+  filter: none;
+}
+
 .nova-btn--secondary {
   background: var(--nova-secondary-fill);
   color: var(--nova-on-secondary);
 }
 .nova-btn--secondary::before {
   background: linear-gradient(180deg, var(--nova-secondary), #c4185a);
-}
-.nova-btn--secondary:hover,
-.nova-btn--secondary:focus-visible {
-  filter: drop-shadow(0 0 4px var(--nova-secondary))
-    drop-shadow(0 0 14px var(--nova-secondary-fill));
 }
 
 .nova-btn--danger {
@@ -103,11 +121,6 @@
 }
 .nova-btn--danger::before {
   background: linear-gradient(180deg, var(--nova-danger), var(--nova-danger-deep));
-}
-.nova-btn--danger:hover,
-.nova-btn--danger:focus-visible {
-  filter: drop-shadow(0 0 4px var(--nova-danger))
-    drop-shadow(0 0 14px var(--nova-danger-fill));
 }
 
 .nova-btn--ghost {
