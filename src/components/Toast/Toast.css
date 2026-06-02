@@ -28,6 +28,10 @@
 }
 .nova-toast__surface {
   --nova-surface-clip: var(--nova-clip-8);
+  /* tone-tint the chamfer frame to the toast accent so the frame, beam, title
+     and glow read as one colour (cyan/green/amber/red) instead of a cyan frame
+     fighting a coloured accent. */
+  --nova-line-strong: color-mix(in srgb, var(--nova-toast-accent) 50%, transparent);
   display: flex;
   align-items: flex-start;
   gap: 12px;
