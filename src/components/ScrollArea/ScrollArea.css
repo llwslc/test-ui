@@ -52,13 +52,13 @@
 .nova-scrollarea__thumb {
   flex: 1;
   position: relative;
-  box-shadow: 0 0 7px var(--nova-primary-a40);
+  filter: drop-shadow(0 0 6px var(--nova-primary-a40));
 }
 .nova-scrollarea__thumb::before {
   content: "";
   position: absolute;
   inset: 0;
-  clip-path: var(--nova-clip-3);
+  clip-path: var(--nova-clip-4);
   background: var(--nova-line-strong);
   transition: background var(--nova-dur) var(--nova-ease);
 }
