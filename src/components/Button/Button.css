@@ -111,11 +111,11 @@
 }
 
 .nova-btn--ghost {
-  background: var(--nova-line);
-  color: var(--nova-text);
+  background: var(--nova-line-strong);
+  color: var(--nova-primary);
 }
 .nova-btn--ghost::before {
-  background: var(--nova-tint-soft);
+  background: rgba(7, 15, 25, 0.92);
 }
 .nova-btn--ghost::after {
   opacity: 0.25;
@@ -124,7 +124,7 @@
   color: var(--nova-text-bright);
 }
 .nova-btn--ghost:hover::before {
-  background: var(--nova-highlight);
+  background: rgba(16, 44, 60, 0.95);
 }
 
 .nova-btn--sm {
@@ -154,9 +154,11 @@
   background: var(--nova-line);
   color: var(--nova-text-dim);
   font-size: 15px;
+  clip-path: var(--nova-clip-5);
 }
 .nova-btn--icon::before {
   background: var(--nova-tint-faint);
+  clip-path: var(--nova-clip-5);
 }
 .nova-btn--icon::after {
   display: none;

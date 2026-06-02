@@ -4,8 +4,7 @@
   display: inline-block;
   width: var(--nova-avatar-size);
   height: var(--nova-avatar-size);
-  filter: drop-shadow(0 0 3px var(--nova-primary))
-    drop-shadow(0 0 9px var(--nova-primary-a50));
+  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
 }
 
 .nova-avatar__root {

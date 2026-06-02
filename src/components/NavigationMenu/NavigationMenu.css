@@ -113,28 +113,36 @@
 }
 .nova-navmenu__link {
   position: relative;
+  isolation: isolate;
   display: block;
   padding: 10px 12px 10px 14px;
   text-decoration: none;
   cursor: pointer;
   outline: none;
+}
+.nova-navmenu__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   clip-path: var(--nova-clip-6);
+  background: transparent;
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__link::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 6px;
+  bottom: 6px;
   width: 2px;
   background: var(--nova-primary);
   box-shadow: 0 0 7px var(--nova-primary);
   opacity: 0;
   transition: opacity var(--nova-dur) var(--nova-ease);
 }
-.nova-navmenu__link:hover,
-.nova-navmenu__link:focus-visible {
+.nova-navmenu__link:hover::before,
+.nova-navmenu__link:focus-visible::before {
   background: var(--nova-highlight);
 }
 .nova-navmenu__link:hover::after,
