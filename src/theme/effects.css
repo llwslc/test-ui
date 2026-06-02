@@ -71,6 +71,7 @@
   width: 1px;
   height: 100%;
   background: var(--nova-line-strong);
+  box-shadow: 0 0 6px var(--nova-primary);
 }
 .nova-connector[data-side="top"] {
   bottom: -8px;
