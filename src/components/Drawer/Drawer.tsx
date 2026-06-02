@@ -51,7 +51,6 @@ export function Drawer({
               render={
                 <Button
                   variant="icon"
-                  size="sm"
                   aria-label="Close"
                   className="nova-modal-x nova-modal-x--danger nova-drawer__x"
                 >

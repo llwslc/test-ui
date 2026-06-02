@@ -149,17 +149,20 @@
 }
 
 .nova-btn--icon {
-  aspect-ratio: 1;
+  width: 28px;
+  height: 28px;
   padding: 0;
-  background: var(--nova-line);
+  border: 1px solid var(--nova-line);
+  background: var(--nova-tint-faint);
   color: var(--nova-text-dim);
   font-size: 15px;
   clip-path: var(--nova-clip-5);
+  transition:
+    color var(--nova-dur) var(--nova-ease),
+    background var(--nova-dur) var(--nova-ease),
+    border-color var(--nova-dur) var(--nova-ease);
 }
-.nova-btn--icon::before {
-  background: var(--nova-tint-faint);
-  clip-path: var(--nova-clip-5);
-}
+.nova-btn--icon::before,
 .nova-btn--icon::after {
   display: none;
 }
@@ -170,11 +173,13 @@
 }
 
 .nova-btn--icon-ghost {
-  aspect-ratio: 1;
+  width: 22px;
+  height: 22px;
   padding: 0;
   background: transparent;
   color: var(--nova-text-mute);
   font-size: 14px;
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-btn--icon-ghost::before,
 .nova-btn--icon-ghost::after {

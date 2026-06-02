@@ -161,11 +161,8 @@
 }
 .nova-btn.nova-modal-x--danger:hover,
 .nova-btn.nova-modal-x--danger:focus-visible {
-  background: var(--nova-danger);
+  background: var(--nova-danger-wash);
+  border-color: var(--nova-danger);
   color: var(--nova-danger);
   filter: none;
-}
-.nova-btn.nova-modal-x--danger:hover::before,
-.nova-btn.nova-modal-x--danger:focus-visible::before {
-  background: var(--nova-danger-wash);
 }

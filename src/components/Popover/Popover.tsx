@@ -48,7 +48,6 @@ export function Popover({
                 render={
                   <Button
                     variant="icon-ghost"
-                    size="sm"
                     aria-label="Close"
                     className="nova-modal-x nova-popover__x"
                   >
