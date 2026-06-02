@@ -119,7 +119,6 @@
   cursor: pointer;
   outline: none;
   clip-path: var(--nova-clip-6);
-  overflow: hidden;
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__link::after {
