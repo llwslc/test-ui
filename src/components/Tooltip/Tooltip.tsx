@@ -1,5 +1,6 @@
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import type { ReactElement, ReactNode } from "react";
+import { useState } from "react";
+import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
 export interface TooltipProps {
@@ -17,10 +18,22 @@ export function Tooltip({
   sideOffset = 11,
   delay = 200,
 }: TooltipProps) {
+  const [open, setOpen] = useState(false);
+  const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "touch") {
+      return;
+    }
+    event.preventDefault();
+    setOpen((prev) => !prev);
+  };
   return (
     <BaseTooltip.Provider delay={delay}>
-      <BaseTooltip.Root>
-        <BaseTooltip.Trigger render={children} />
+      <BaseTooltip.Root open={open} onOpenChange={setOpen}>
+        <BaseTooltip.Trigger
+          render={children}
+          closeOnClick={false}
+          onPointerDown={onTouchToggle}
+        />
         <BaseTooltip.Portal>
           <BaseTooltip.Positioner
             className="nova-elevation nova-tooltip__positioner"

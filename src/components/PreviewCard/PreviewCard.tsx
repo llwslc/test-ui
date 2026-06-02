@@ -1,5 +1,6 @@
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card";
-import type { ReactElement, ReactNode } from "react";
+import { useState } from "react";
+import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./PreviewCard.css";
 
 export interface PreviewCardProps {
@@ -17,9 +18,17 @@ export function PreviewCard({
   align = "center",
   sideOffset = 10,
 }: PreviewCardProps) {
+  const [open, setOpen] = useState(false);
+  const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "touch") {
+      return;
+    }
+    event.preventDefault();
+    setOpen((prev) => !prev);
+  };
   return (
-    <BasePreviewCard.Root>
-      <BasePreviewCard.Trigger render={trigger} />
+    <BasePreviewCard.Root open={open} onOpenChange={setOpen}>
+      <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner
           className="nova-elevation nova-previewcard__positioner"
