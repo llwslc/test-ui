@@ -574,6 +574,27 @@ function Demo() {
                     <Button size="md">Medium</Button>
                     <Button size="lg">Large</Button>
                   </div>
+                  <Separator />
+                  <div className="demo-row">
+                    <Button variant="icon" aria-label="Charge">
+                      <BoltIcon />
+                    </Button>
+                    <Button variant="icon" aria-label="Copy">
+                      <CopyIcon />
+                    </Button>
+                    <Button variant="icon" aria-label="Delete">
+                      <TrashIcon />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Locked">
+                      <SignalIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Search">
+                      <SearchIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Copy">
+                      <CopyIcon />
+                    </Button>
+                  </div>
                 </div>
               </Panel>
             </div>

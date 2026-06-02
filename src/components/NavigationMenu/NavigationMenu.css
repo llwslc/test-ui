@@ -134,7 +134,7 @@
   position: absolute;
   left: 0;
   top: 6px;
-  bottom: 6px;
+  bottom: 0;
   width: 2px;
   background: var(--nova-primary);
   box-shadow: 0 0 7px var(--nova-primary);
