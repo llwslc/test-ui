@@ -73,6 +73,16 @@
 - `.nova-modal-close` —— 切角关闭按钮。
 - 分隔线统一复用 `.nova-separator`。
 
+### 排版标准
+
+标题 / 正文走一组**纯样式类**（`theme/typography.css`，风格与语义标签解耦，套在任意标签上）。规律同 HUD：字号越大、字距越紧。
+
+- `.nova-h1`：display · `fs-22` · `fw-700` · `ls-4` · 大写 —— 区块 / 功能标题。
+- `.nova-h2`：display · `fs-16` · `fw-700` · `ls-10` · 大写 —— 卡片 / 弹窗标题（即 `.nova-modal-title` 的字型规格）。
+- `.nova-h3`：display · `fs-13` · `fw-700` · `ls-16` · 大写 —— 段 / 小节标题（`.nova-panel__title` 已复用此类）。
+- `.nova-text`：body · `fs-14` · `lh-160` · `text-dim` —— 正文段落。
+- 修饰：`-h*--accent`（转 primary + 辉光）、`.nova-text--bright`（正文转亮）。
+
 ### 对比度
 
 - 「边框色打底 + `::before` 填充」时，激活态填充用深色不透明 —— 半透明会让底下的亮边框透上来铺满整块，前景看不清。

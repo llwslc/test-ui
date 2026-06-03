@@ -1,0 +1,41 @@
+/* Type-role standard — style-only classes, decoupled from semantic tag.
+   Display headings: uppercase, tracking tightens as size grows (HUD rule). */
+.nova-h1,
+.nova-h2,
+.nova-h3 {
+  margin: 0;
+  font-family: var(--nova-font-display);
+  font-weight: var(--nova-fw-700);
+  line-height: var(--nova-lh-100);
+  text-transform: uppercase;
+  color: var(--nova-text);
+}
+.nova-h1 {
+  font-size: var(--nova-fs-22);
+  letter-spacing: var(--nova-ls-4);
+}
+.nova-h2 {
+  font-size: var(--nova-fs-16);
+  letter-spacing: var(--nova-ls-10);
+}
+.nova-h3 {
+  font-size: var(--nova-fs-13);
+  letter-spacing: var(--nova-ls-16);
+}
+.nova-h1--accent,
+.nova-h2--accent,
+.nova-h3--accent {
+  color: var(--nova-primary);
+  text-shadow: var(--nova-glow-text);
+}
+
+.nova-text {
+  margin: 0;
+  font-family: var(--nova-font);
+  font-size: var(--nova-fs-14);
+  line-height: var(--nova-lh-160);
+  color: var(--nova-text-dim);
+}
+.nova-text--bright {
+  color: var(--nova-text);
+}

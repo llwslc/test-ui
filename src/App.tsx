@@ -124,6 +124,10 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["panel", "Panel", "PNL"],
     ],
   },
+  {
+    group: "Foundations",
+    items: [["typography", "Typography", "TYP"]],
+  },
 ];
 
 const SELECT_ITEMS = [
@@ -1078,6 +1082,23 @@ function Demo() {
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="demo-tag">Composable to any depth</span>
                 </Panel>
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="typography">
+              <Panel title="Typography" meta="TYP">
+                <div className="demo-col">
+                  <p className="nova-h1">Nova Command</p>
+                  <p className="nova-h2">Telemetry Feed</p>
+                  <p className="nova-h3">Sensor Array</p>
+                  <p className="nova-text">
+                    All systems nominal — reactor output holding at 98.4% across
+                    the primary manifold, tracking 1,204 contacts in range.
+                  </p>
+                  <span className="demo-tag">
+                    .nova-h1 / h2 / h3 · .nova-text — style-only, any tag
+                  </span>
+                </div>
               </Panel>
             </div>
           </div>

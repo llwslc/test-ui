@@ -21,7 +21,7 @@ export function Panel({ title, meta, children, scan, className }: PanelProps) {
         {(title != null || meta != null) && (
           <header className="nova-panel__head">
             {title != null ? (
-              <h3 className="nova-panel__title">{title}</h3>
+              <h3 className="nova-h3 nova-panel__title">{title}</h3>
             ) : (
               <span />
             )}

@@ -77,15 +77,6 @@
   padding: 13px 18px;
   border-bottom: 1px solid var(--nova-line);
 }
-.nova-panel__title {
-  margin: 0;
-  font-family: var(--nova-font-display);
-  font-size: var(--nova-fs-13);
-  font-weight: var(--nova-fw-700);
-  letter-spacing: var(--nova-ls-16);
-  text-transform: uppercase;
-  color: var(--nova-text);
-}
 .nova-panel__title::before {
   content: "▸ ";
   color: var(--nova-primary);
