@@ -110,7 +110,7 @@
   color: var(--nova-primary);
 }
 .nova-btn--ghost::before {
-  background: var(--nova-ghost);
+  background: var(--nova-surface-input);
 }
 .nova-btn--ghost::after {
   opacity: 0.25;

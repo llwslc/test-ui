@@ -8,7 +8,7 @@
   filter: var(--nova-glow-focus);
 }
 .nova-input-glow:has(.nova-input-wrap--error:focus-within) {
-  filter: drop-shadow(0 0 8px var(--nova-danger-glow));
+  filter: drop-shadow(0 0 8px var(--nova-danger-fill));
 }
 
 .nova-input-wrap {

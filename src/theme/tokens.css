@@ -24,11 +24,9 @@
   --nova-danger-deep: #b3242f;
   --nova-danger-text: #ffd9dc;
   --nova-danger-inset: #2a0e14;
-  --nova-danger-glow: rgba(255, 77, 94, 0.5);
   --nova-success-deep: #1f9c68;
   --nova-warning-deep: #b8861f;
 
-  --nova-ghost: rgba(7, 15, 25, 0.92);
   --nova-ghost-hover: rgba(16, 44, 60, 0.95);
   --nova-sheen: rgba(255, 255, 255, 0.6);
   --nova-sheen-soft: rgba(255, 255, 255, 0.14);
