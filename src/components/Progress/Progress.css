@@ -39,8 +39,6 @@
   background-size: 56px 100%, 100% 100%;
   box-shadow: 0 0 12px var(--nova-line-strong);
   transition: width var(--nova-dur-slow) var(--nova-ease);
-}
-.nova-progress__indicator[data-progressing] {
   animation: nova-progress-stripes 0.9s linear infinite;
 }
 .nova-progress__indicator[data-indeterminate] {
@@ -49,10 +47,6 @@
   animation:
     nova-progress-stripes 0.9s linear infinite,
     nova-progress-sweep 1.4s var(--nova-ease) infinite;
-}
-.nova-progress__indicator[data-complete] {
-  background-image: linear-gradient(90deg, var(--nova-primary-deep), var(--nova-primary));
-  background-size: 100% 100%;
 }
 @keyframes nova-progress-stripes {
   to {

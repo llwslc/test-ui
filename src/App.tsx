@@ -1076,6 +1076,14 @@ function Demo() {
                   <Separator />
                   <span className="demo-tag">Labelled</span>
                   <Separator label="Section 7G" />
+                  <span className="demo-tag">Vertical</span>
+                  <div className="demo-row">
+                    <span className="demo-rowlabel">Sector A</span>
+                    <Separator orientation="vertical" />
+                    <span className="demo-rowlabel">Sector B</span>
+                    <Separator orientation="vertical" />
+                    <span className="demo-rowlabel">Sector C</span>
+                  </div>
                 </div>
               </Panel>
             </div>
