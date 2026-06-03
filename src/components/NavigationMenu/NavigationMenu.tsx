@@ -28,12 +28,14 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
         {items.map((item) =>
           item.links ? (
             <BaseNav.Item key={item.label}>
-              <BaseNav.Trigger className="nova-navmenu__trigger">
-                {item.label}
-                <BaseNav.Icon className="nova-navmenu__chevron">
-                  <ChevronDownIcon />
-                </BaseNav.Icon>
-              </BaseNav.Trigger>
+              <span className="nova-navmenu__triggerwrap">
+                <BaseNav.Trigger className="nova-navmenu__trigger">
+                  {item.label}
+                  <BaseNav.Icon className="nova-navmenu__chevron">
+                    <ChevronDownIcon />
+                  </BaseNav.Icon>
+                </BaseNav.Trigger>
+              </span>
               <BaseNav.Content className="nova-navmenu__content">
                 <ul className="nova-navmenu__grid">
                   {item.links.map((link, i) => (

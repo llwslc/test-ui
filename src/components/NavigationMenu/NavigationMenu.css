@@ -56,10 +56,16 @@
   background: var(--nova-line-soft);
   color: var(--nova-text);
 }
+.nova-navmenu__triggerwrap {
+  display: inline-flex;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-navmenu__triggerwrap:has([data-popup-open]) {
+  filter: drop-shadow(0 0 10px var(--nova-primary-a40));
+}
 .nova-navmenu__trigger[data-popup-open] {
   background: var(--nova-primary);
   color: var(--nova-on-primary);
-  box-shadow: var(--nova-glow-bar);
 }
 .nova-navmenu__chevron {
   display: inline-flex;
