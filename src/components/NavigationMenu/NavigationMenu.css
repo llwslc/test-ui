@@ -50,11 +50,14 @@
     color var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__trigger:hover,
-.nova-navmenu__trigger:focus-visible,
-.nova-navmenu__toplink:hover,
-.nova-navmenu__toplink:focus-visible {
+.nova-navmenu__trigger:focus-visible {
   background: var(--nova-tint-soft);
   color: var(--nova-text);
+}
+.nova-navmenu__toplink:hover,
+.nova-navmenu__toplink:focus-visible {
+  background: var(--nova-primary);
+  color: var(--nova-on-primary);
 }
 .nova-navmenu__triggerwrap {
   display: inline-flex;
@@ -83,7 +86,6 @@
   box-sizing: border-box;
   width: var(--positioner-width);
   height: var(--positioner-height);
-  transition: transform var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__popup {
   position: relative;
@@ -92,9 +94,7 @@
   height: var(--popup-height);
   transition:
     opacity var(--nova-dur) var(--nova-ease),
-    transform var(--nova-dur) var(--nova-ease),
-    width var(--nova-dur) var(--nova-ease),
-    height var(--nova-dur) var(--nova-ease);
+    transform var(--nova-dur) var(--nova-ease);
 }
 
 .nova-navmenu__viewport {

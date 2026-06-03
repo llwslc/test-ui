@@ -20,7 +20,7 @@ export interface NavigationMenuProps {
 }
 
 /* Site-level navigation: top-level items open rich panels of links into a
-   shared, animated viewport (distinct from Menu's action lists). */
+   shared viewport (distinct from Menu's action lists). */
 export function NavigationMenu({ items }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="nova-navmenu">

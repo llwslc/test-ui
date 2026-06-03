@@ -100,7 +100,7 @@
 
 语义相近、各有定位的几组：
 
-- **Menu** 是动作菜单（左图标 + 右快捷键）。**ContextMenu**、**Menubar** 复用它的皮肤（共享 `Menu/items.tsx` 与 `nova-menu__*` 样式），分别为右键触发 / 常驻菜单栏；**NavigationMenu** 是站点导航富面板，带会变形的共享 viewport。
+- **Menu** 是动作菜单（左图标 + 右快捷键）。**ContextMenu**、**Menubar** 复用它的皮肤（共享 `Menu/items.tsx` 与 `nova-menu__*` 样式），分别为右键触发 / 常驻菜单栏；**NavigationMenu** 是站点导航富面板，用共享 viewport 承载各触发器的面板（开合走统一浮层动效，无尺寸变形）。
 - **Combobox** 是选择器（值来自列表选中项，有清除 / 下拉 / 选中勾）；**Autocomplete** 是文本框 + 建议（值是输入的字符串，可保留表里没有的内容）—— Base UI 按 ARIA 语义把同一个引擎拆成这两个组件。
 - **PreviewCard** 是悬停富卡片，**Tooltip** 是纯文字提示，**Popover** 是点击弹层。
 - **Badge**、**Panel** 是纯样式件（非 Base UI）；**Drawer** 是边缘锚定的 Dialog；**Toast** 用 `ToastProvider` + `useToast`。
