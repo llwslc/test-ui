@@ -5,7 +5,7 @@
   z-index: var(--nova-z-toast);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--nova-space-3);
   width: 360px;
   max-width: calc(100vw - 44px);
   outline: none;
@@ -28,8 +28,8 @@
   --nova-line-strong: color-mix(in srgb, var(--nova-toast-accent) 50%, transparent);
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: var(--nova-space-3);
+  padding: var(--nova-space-4) var(--nova-space-4);
   overflow: hidden;
 }
 .nova-toast[data-starting-style],
@@ -62,7 +62,7 @@
   color: var(--nova-toast-accent);
 }
 .nova-toast__desc {
-  margin: 4px 0 0;
+  margin: var(--nova-space-1) 0 0;
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
   color: var(--nova-text-dim);

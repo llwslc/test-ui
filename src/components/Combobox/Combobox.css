@@ -2,11 +2,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: var(--nova-space-2);
   width: 100%;
   min-width: 240px;
   height: var(--nova-control-h);
-  padding: 0 6px 0 12px;
+  padding: 0 var(--nova-space-2) 0 var(--nova-space-3);
   background: var(--nova-line);
   clip-path: var(--nova-clip-7);
   transition:
@@ -93,13 +93,13 @@
 .nova-combobox__popup {
   box-sizing: border-box;
   min-width: var(--anchor-width);
-  padding: 5px;
+  padding: var(--nova-space-1);
 }
 
 .nova-combobox__empty {
   position: relative;
   z-index: 1;
-  padding: 16px 12px;
+  padding: var(--nova-space-4) var(--nova-space-3);
   text-align: center;
   color: var(--nova-text-mute);
   font-size: var(--nova-fs-13);
@@ -119,8 +119,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 10px 8px 12px;
+  gap: var(--nova-space-2);
+  padding: var(--nova-space-2) var(--nova-space-3) var(--nova-space-2) var(--nova-space-3);
   cursor: pointer;
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);

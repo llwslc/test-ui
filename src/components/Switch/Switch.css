@@ -33,7 +33,7 @@
   z-index: 1;
   width: 18px;
   height: 18px;
-  margin-left: 4px;
+  margin-left: var(--nova-space-1);
   background: linear-gradient(180deg, #c9d9eb, #8197af);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   clip-path: var(--nova-clip-7);

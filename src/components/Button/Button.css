@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: var(--nova-control-h);
-  padding: 0 20px;
+  padding: 0 var(--nova-space-5);
   margin: 0;
   border: 0;
   cursor: pointer;
@@ -53,7 +53,7 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nova-space-2);
 }
 .nova-btn__icon {
   display: inline-flex;
@@ -124,7 +124,7 @@
 
 .nova-btn--sm {
   height: 30px;
-  padding: 0 13px;
+  padding: 0 var(--nova-space-3);
   font-size: var(--nova-fs-11);
   clip-path: var(--nova-clip-6);
 }
@@ -134,7 +134,7 @@
 }
 .nova-btn--lg {
   height: 47px;
-  padding: 0 28px;
+  padding: 0 var(--nova-space-7);
   font-size: var(--nova-fs-15);
   clip-path: var(--nova-clip-11);
 }

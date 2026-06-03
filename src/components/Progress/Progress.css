@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: var(--nova-space-3);
+  margin-bottom: var(--nova-space-2);
 }
 .nova-progress__label {
   font-family: var(--nova-font-display);

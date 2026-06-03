@@ -2,9 +2,9 @@
   position: relative;
   display: grid;
   place-items: center;
-  gap: 6px;
+  gap: var(--nova-space-2);
   min-height: 132px;
-  padding: 26px;
+  padding: var(--nova-space-7);
   text-align: center;
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);

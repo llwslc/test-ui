@@ -17,7 +17,7 @@
 .nova-scrollarea__viewport {
   position: relative;
   z-index: 1;
-  padding: 14px 16px;
+  padding: var(--nova-space-4) var(--nova-space-4);
   overscroll-behavior: contain;
   outline: none;
   mask-image: linear-gradient(

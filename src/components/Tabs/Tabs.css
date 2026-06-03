@@ -5,7 +5,7 @@
 .nova-tabs__list {
   position: relative;
   display: flex;
-  gap: 4px;
+  gap: var(--nova-space-1);
 }
 @media (max-width: 768px) {
   .nova-tabs__list {
@@ -35,7 +35,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
-  padding: 11px 18px;
+  padding: var(--nova-space-3) var(--nova-space-5);
   color: var(--nova-text-dim);
   font-family: var(--nova-font-display);
   font-weight: var(--nova-fw-600);
@@ -82,7 +82,7 @@
 }
 
 .nova-tabs__panel {
-  padding: 20px 2px;
+  padding: var(--nova-space-5) 2px;
   color: var(--nova-text);
   outline: none;
   animation: nova-tab-fade var(--nova-dur-slow) var(--nova-ease);

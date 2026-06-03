@@ -3,7 +3,7 @@
   display: inline-flex;
   width: fit-content;
   max-width: 100%;
-  padding: 4px;
+  padding: var(--nova-space-1);
   gap: 3px;
   background: var(--nova-line);
   clip-path: var(--nova-clip-9);
@@ -31,10 +31,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: var(--nova-space-2);
   height: 32px;
   min-width: 44px;
-  padding: 0 16px;
+  padding: 0 var(--nova-space-4);
   border: 0;
   cursor: pointer;
   color: var(--nova-text-dim);

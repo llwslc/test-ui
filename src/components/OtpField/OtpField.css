@@ -1,12 +1,12 @@
 .nova-otp {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nova-space-2);
 }
 .nova-otp__slot-wrap {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nova-space-2);
 }
 
 .nova-otp__cell-glow {
@@ -80,7 +80,7 @@
 @media (max-width: 360px) {
   .nova-otp,
   .nova-otp__slot-wrap {
-    gap: 5px;
+    gap: var(--nova-space-1);
   }
   .nova-otp__cell {
     width: 38px;

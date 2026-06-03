@@ -10,7 +10,7 @@
   width: fit-content;
   max-width: 100%;
   margin: 0;
-  padding: 4px;
+  padding: var(--nova-space-1);
   list-style: none;
   background: var(--nova-line);
   clip-path: var(--nova-clip-9);
@@ -32,9 +32,9 @@
 .nova-navmenu__toplink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--nova-space-2);
   height: 30px;
-  padding: 0 14px;
+  padding: 0 var(--nova-space-4);
   border: 0;
   background: transparent;
   color: var(--nova-text-dim);
@@ -107,12 +107,12 @@
 
 .nova-navmenu__content {
   width: max-content;
-  padding: 10px;
+  padding: var(--nova-space-3);
 }
 .nova-navmenu__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap: 4px;
+  gap: var(--nova-space-1);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -120,7 +120,7 @@
 .nova-navmenu__link {
   position: relative;
   display: block;
-  padding: 10px 12px 10px 14px;
+  padding: var(--nova-space-3) var(--nova-space-3) var(--nova-space-3) var(--nova-space-4);
   text-decoration: none;
   cursor: pointer;
   outline: none;

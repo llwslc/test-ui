@@ -26,7 +26,7 @@
 .nova-separator-labeled {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--nova-space-4);
   width: 100%;
 }
 .nova-separator-labeled__line {

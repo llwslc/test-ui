@@ -9,7 +9,7 @@
 
 .nova-tooltip__surface {
   display: block;
-  padding: 7px 12px;
+  padding: var(--nova-space-2) var(--nova-space-3);
   color: var(--nova-text);
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);

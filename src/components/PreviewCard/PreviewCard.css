@@ -9,7 +9,7 @@
 
 .nova-previewcard__surface {
   display: block;
-  padding: 16px;
+  padding: var(--nova-space-4);
   overflow: hidden;
 }
 .nova-previewcard__scan {

@@ -2,9 +2,9 @@
   --nova-badge-color: var(--nova-primary);
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: var(--nova-space-2);
   height: 22px;
-  padding: 0 10px;
+  padding: 0 var(--nova-space-3);
   background: color-mix(in srgb, var(--nova-badge-color) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);
   color: var(--nova-badge-color);

@@ -10,11 +10,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--nova-space-3);
   width: 100%;
   min-width: 190px;
   height: var(--nova-control-h);
-  padding: 0 12px 0 14px;
+  padding: 0 var(--nova-space-3) 0 var(--nova-space-4);
   border: 0;
   cursor: pointer;
   color: var(--nova-text);
@@ -71,7 +71,7 @@
 .nova-select__popup {
   box-sizing: border-box;
   min-width: var(--anchor-width);
-  padding: 5px;
+  padding: var(--nova-space-1);
 }
 .nova-select__list {
   max-height: var(--available-height);
@@ -83,8 +83,8 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: var(--nova-space-2);
+  padding: var(--nova-space-2) var(--nova-space-3);
   cursor: pointer;
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);

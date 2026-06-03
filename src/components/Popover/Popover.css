@@ -9,11 +9,11 @@
 
 .nova-popover__surface {
   display: block;
-  padding: 14px 16px;
+  padding: var(--nova-space-4) var(--nova-space-4);
 }
 
 .nova-popover__title {
-  margin: 0 24px 6px 0;
+  margin: 0 var(--nova-space-6) var(--nova-space-2) 0;
   font-family: var(--nova-font-display);
   font-size: var(--nova-fs-13);
   font-weight: var(--nova-fw-700);

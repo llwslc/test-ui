@@ -2,10 +2,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--nova-space-1);
   width: fit-content;
   max-width: 100%;
-  padding: 5px;
+  padding: var(--nova-space-1);
   background: var(--nova-line);
   clip-path: var(--nova-clip-9);
 }
@@ -25,7 +25,7 @@
 .nova-toolbar__group {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--nova-space-1);
 }
 
 .nova-toolbar__btnwrap {
@@ -40,10 +40,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: var(--nova-space-2);
   height: 32px;
   min-width: 32px;
-  padding: 0 10px;
+  padding: 0 var(--nova-space-3);
   border: 0;
   background: transparent;
   color: var(--nova-text-dim);
@@ -81,7 +81,7 @@
   flex: 0 0 1px;
   width: 1px;
   height: auto;
-  margin: 3px 4px;
+  margin: 3px var(--nova-space-1);
   background: var(--nova-line-strong);
 }
 
@@ -89,7 +89,7 @@
   .nova-toolbar {
     flex-wrap: wrap;
     justify-content: flex-start;
-    row-gap: 6px;
+    row-gap: var(--nova-space-2);
   }
   .nova-toolbar__sep {
     display: none;

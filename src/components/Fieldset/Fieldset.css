@@ -8,10 +8,10 @@
 .nova-fieldset__legend {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: var(--nova-space-2);
   width: 100%;
-  padding: 0 0 8px;
-  margin-bottom: 16px;
+  padding: 0 0 var(--nova-space-2);
+  margin-bottom: var(--nova-space-4);
   border-bottom: 1px solid var(--nova-line);
   font-family: var(--nova-font-display);
   font-size: var(--nova-fs-12);
@@ -24,8 +24,8 @@
 .nova-fieldset__body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-left: 5px;
-  padding-left: 16px;
+  gap: var(--nova-space-4);
+  margin-left: var(--nova-space-1);
+  padding-left: var(--nova-space-4);
   border-left: 1px solid var(--nova-tint-soft);
 }

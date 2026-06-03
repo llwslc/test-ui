@@ -1,13 +1,13 @@
 .nova-radiogroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--nova-space-3);
 }
 
 .nova-radio {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--nova-space-3);
   cursor: pointer;
   user-select: none;
   font-family: var(--nova-font);

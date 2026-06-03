@@ -73,8 +73,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 13px 18px;
+  gap: var(--nova-space-3);
+  padding: var(--nova-space-3) var(--nova-space-5);
   border-bottom: 1px solid var(--nova-line);
 }
 .nova-panel__title::before {
@@ -90,5 +90,5 @@
 .nova-panel__body {
   position: relative;
   z-index: 1;
-  padding: 20px 18px;
+  padding: var(--nova-space-5) var(--nova-space-5);
 }

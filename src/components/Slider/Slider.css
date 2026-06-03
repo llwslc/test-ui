@@ -7,8 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: var(--nova-space-3);
+  margin-bottom: var(--nova-space-2);
 }
 .nova-slider__label {
   font-family: var(--nova-font-display);
@@ -24,7 +24,7 @@
   color: var(--nova-primary);
   background: var(--nova-tint-soft);
   border: 1px solid var(--nova-line);
-  padding: 1px 9px;
+  padding: 1px var(--nova-space-2);
   min-width: 42px;
   text-align: center;
 }

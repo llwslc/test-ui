@@ -43,7 +43,7 @@
   width: 100%;
   height: calc(var(--nova-control-h) - 2px);
   margin: 1px;
-  padding: 0 13px;
+  padding: 0 var(--nova-space-3);
   border: 0;
   outline: none;
   background: var(--nova-surface-popup);
@@ -82,7 +82,7 @@
 .nova-field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: var(--nova-space-2);
   width: 100%;
 }
 .nova-field__label {

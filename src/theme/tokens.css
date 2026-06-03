@@ -84,6 +84,14 @@
   --nova-control-h: 38px;
   --nova-disabled-opacity: 0.4;
 
+  --nova-space-1: 4px;
+  --nova-space-2: 8px;
+  --nova-space-3: 12px;
+  --nova-space-4: 16px;
+  --nova-space-5: 20px;
+  --nova-space-6: 24px;
+  --nova-space-7: 28px;
+
   --nova-shadow-popup: 0 10px 24px rgba(0, 0, 0, 0.55);
   --nova-shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.6);
   --nova-glow-modal: drop-shadow(0 0 22px rgba(45, 226, 255, 0.28));

@@ -6,7 +6,7 @@
 .nova-menu__popup {
   box-sizing: border-box;
   min-width: 210px;
-  padding: 5px;
+  padding: var(--nova-space-1);
   outline: none;
 }
 
@@ -15,8 +15,8 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: var(--nova-space-3);
+  padding: var(--nova-space-2) var(--nova-space-3);
   cursor: pointer;
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);
@@ -52,7 +52,7 @@
 }
 .nova-menu__shortcut {
   flex: 0 0 auto;
-  margin-left: 18px;
+  margin-left: var(--nova-space-5);
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-11);
   letter-spacing: var(--nova-ls-10);
@@ -97,13 +97,13 @@
   position: relative;
   z-index: 1;
   height: 1px;
-  margin: 6px 6px;
+  margin: var(--nova-space-2) var(--nova-space-2);
 }
 
 .nova-menu__arrow {
   flex: 0 0 auto;
   display: inline-flex;
-  margin-left: 14px;
+  margin-left: var(--nova-space-4);
   font-size: var(--nova-fs-15);
   color: var(--nova-text-mute);
   transition: color var(--nova-dur) var(--nova-ease);

@@ -19,9 +19,9 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--nova-space-3);
   width: 100%;
-  padding: 14px 16px;
+  padding: var(--nova-space-4) var(--nova-space-4);
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -82,7 +82,7 @@
   height: 0;
 }
 .nova-collapsible__content {
-  padding: 0 16px 16px 35px;
+  padding: 0 var(--nova-space-4) var(--nova-space-4) 35px;
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
