@@ -377,6 +377,8 @@ function ProgressDemo() {
     <div className="demo-stack">
       <Progress label="Hyperspace Charge" value={val} />
       <Progress label="Data Uplink" value={67} />
+      <Progress label="Shield Sync" value={100} />
+      <Progress label="Scanning…" showValue={false} value={null} />
     </div>
   );
 }
@@ -710,6 +712,11 @@ function Demo() {
                   />
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
                   <AccessCodeField />
+                  <Field
+                    label="Locked Channel"
+                    defaultValue="NX-CLASSIFIED"
+                    disabled
+                  />
                 </div>
               </Panel>
             </div>

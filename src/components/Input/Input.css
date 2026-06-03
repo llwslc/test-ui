@@ -64,8 +64,11 @@
 }
 .nova-input:disabled,
 .nova-input[data-disabled] {
-  opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
+}
+.nova-input-wrap:has(.nova-input:disabled),
+.nova-input-wrap:has(.nova-input[data-disabled]) {
+  opacity: var(--nova-disabled-opacity);
 }
 
 .nova-input__icon {
