@@ -47,8 +47,8 @@
 }
 .nova-separator-labeled__text {
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-16);
   text-transform: uppercase;
   color: var(--nova-text-dim);
   white-space: nowrap;

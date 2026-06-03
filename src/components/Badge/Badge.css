@@ -9,8 +9,8 @@
   border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);
   color: var(--nova-badge-color);
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   white-space: nowrap;
   clip-path: var(--nova-clip-5);

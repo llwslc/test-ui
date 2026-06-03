@@ -32,9 +32,9 @@
   background: linear-gradient(160deg, #0e2236, #081523);
   color: var(--nova-primary);
   font-family: var(--nova-font-display);
-  font-weight: 700;
+  font-weight: var(--nova-fw-700);
   font-size: calc(var(--nova-avatar-size) * 0.36);
-  letter-spacing: 0.04em;
+  letter-spacing: var(--nova-ls-4);
   clip-path: var(--nova-clip-9);
 }
 

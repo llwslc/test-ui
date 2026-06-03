@@ -15,17 +15,17 @@
 .nova-popover__title {
   margin: 0 24px 6px 0;
   font-family: var(--nova-font-display);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-primary);
   text-shadow: var(--nova-glow-text);
 }
 .nova-popover__body {
   color: var(--nova-text-dim);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-14);
+  line-height: var(--nova-lh-160);
 }
 .nova-popover__x {
   top: 10px;

@@ -39,8 +39,8 @@
   background: transparent;
   color: var(--nova-text-dim);
   font-family: var(--nova-font);
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-14);
+  letter-spacing: var(--nova-ls-4);
   text-decoration: none;
   cursor: pointer;
   outline: none;
@@ -69,7 +69,7 @@
 }
 .nova-navmenu__chevron {
   display: inline-flex;
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   transition: transform var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__trigger[data-popup-open] .nova-navmenu__chevron {
@@ -150,9 +150,9 @@
 .nova-navmenu__link-title {
   display: block;
   color: var(--nova-text);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-14);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-4);
   transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__link:hover .nova-navmenu__link-title,
@@ -163,8 +163,8 @@
   display: block;
   margin-top: 3px;
   color: var(--nova-text-dim);
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: var(--nova-fs-12);
+  line-height: var(--nova-lh-150);
 }
 
 @media (max-width: 768px) {

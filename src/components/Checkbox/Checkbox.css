@@ -43,7 +43,7 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  font-size: 15px;
+  font-size: var(--nova-fs-15);
 }
 .nova-checkbox__check,
 .nova-checkbox__dash {
@@ -83,11 +83,11 @@
   cursor: pointer;
   user-select: none;
   font-family: var(--nova-font);
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-text);
 }
 .nova-checkbox-field__label {
-  line-height: 1;
+  line-height: var(--nova-lh-100);
 }
 
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {

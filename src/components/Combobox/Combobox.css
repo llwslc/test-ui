@@ -36,7 +36,7 @@
 .nova-combobox__lead {
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-primary);
 }
 .nova-combobox__input {
@@ -47,8 +47,8 @@
   background: transparent;
   color: var(--nova-text);
   font-family: var(--nova-font);
-  font-size: 15px;
-  letter-spacing: 0.01em;
+  font-size: var(--nova-fs-15);
+  letter-spacing: var(--nova-ls-4);
   outline: none;
 }
 .nova-combobox__input::placeholder {
@@ -72,14 +72,14 @@
     transform var(--nova-dur) var(--nova-ease);
 }
 .nova-combobox__clear {
-  font-size: 13px;
+  font-size: var(--nova-fs-13);
   color: var(--nova-text-dim);
 }
 .nova-combobox__clear:hover {
   color: var(--nova-danger);
 }
 .nova-combobox__trigger {
-  font-size: 18px;
+  font-size: var(--nova-fs-18);
   color: var(--nova-primary);
 }
 .nova-combobox__trigger[data-popup-open] {
@@ -102,8 +102,8 @@
   padding: 16px 12px;
   text-align: center;
   color: var(--nova-text-mute);
-  font-size: 13px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-13);
+  letter-spacing: var(--nova-ls-4);
 }
 .nova-combobox__empty:empty {
   display: none;
@@ -123,7 +123,7 @@
   padding: 8px 10px 8px 12px;
   cursor: pointer;
   color: var(--nova-text-dim);
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   user-select: none;
   outline: none;
   clip-path: var(--nova-clip-7);
@@ -165,6 +165,6 @@
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   color: var(--nova-primary);
 }

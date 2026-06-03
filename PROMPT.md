@@ -32,14 +32,15 @@
 
 所有视觉值集中在此，组件只引用。换肤改这里即可。分组：
 
-- **色板**：`--nova-bg / -2`、`--nova-primary / -deep`、`--nova-secondary`、`--nova-success / warning / danger`、`--nova-text / -bright / -dim / -mute`、`--nova-on-primary / -secondary / -danger`。
-- **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · grid .06 · tint-soft .08 · line-soft .10 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · primary-a50 .50 · line-strong .55 · tint-bright .60 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
+- **色板**：`--nova-bg / -2`、`--nova-primary / -deep`、`--nova-secondary`、`--nova-success / warning / danger`、`--nova-text / -bright / -dim / -mute`、`--nova-on-primary / -danger`。
+- **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
 - **品牌色填充**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`。
-- **表面**：`--nova-surface`、`--nova-surface-popup / -input / -bar / -modal / -inset`、`--nova-scrim`。
+- **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
 - **辉光与阴影**：`--nova-glow / -text / -bar / -focus / -popup / -modal`、`--nova-shadow-popup / -modal`。
 - **切角调色板**：`--nova-clip-3…9 / 11 / 12 / 14`（各是写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
+- **排版**（镜像切角的「按名选尺寸」）：`--nova-fs-N`（字号，N=px，如 `fs-14`）、`--nova-ls-N`（字距，N=em×100，如 `ls-10`=.1em）、`--nova-lh-N`（行高，N=×100，如 `lh-150`=1.5）、`--nova-fw-N`（字重，如 `fw-700`）；字体族走 `--nova-font / -display / -mono`。组件里字号 / 字距 / 行高 / 字重一律走 token，不裸写 px / em / 数字（仅 `clamp()` / `calc()` / `em` 相对值等上下文式除外）。
 
 ## 核心技术
 

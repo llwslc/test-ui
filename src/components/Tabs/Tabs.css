@@ -38,9 +38,9 @@
   padding: 11px 18px;
   color: var(--nova-text-dim);
   font-family: var(--nova-font-display);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-weight: var(--nova-fw-600);
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;

@@ -48,9 +48,9 @@
   cursor: pointer;
   color: var(--nova-text);
   font-family: var(--nova-font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   text-align: left;
   -webkit-tap-highlight-color: transparent;
@@ -71,7 +71,7 @@
 }
 .nova-accordion__chevron {
   flex: 0 0 auto;
-  font-size: 18px;
+  font-size: var(--nova-fs-18);
   color: var(--nova-text-dim);
   transition: transform var(--nova-dur) var(--nova-ease);
 }
@@ -105,6 +105,6 @@
 .nova-accordion__content {
   padding: 0 16px 16px 35px;
   color: var(--nova-text-dim);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-14);
+  line-height: var(--nova-lh-160);
 }

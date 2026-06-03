@@ -35,7 +35,7 @@
   cursor: pointer;
   background: var(--nova-numberfield-btn-bg);
   color: var(--nova-primary);
-  font-size: 15px;
+  font-size: var(--nova-fs-15);
   transition:
     background var(--nova-dur) var(--nova-ease),
     color var(--nova-dur) var(--nova-ease);
@@ -69,6 +69,6 @@
     inset 1px 0 0 var(--nova-tint-soft),
     inset -1px 0 0 var(--nova-tint-soft);
   font-family: var(--nova-font-mono);
-  font-size: 16px;
-  letter-spacing: 0.08em;
+  font-size: var(--nova-fs-16);
+  letter-spacing: var(--nova-ls-10);
 }

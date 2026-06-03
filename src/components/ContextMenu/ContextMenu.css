@@ -7,8 +7,8 @@
   padding: 26px;
   text-align: center;
   color: var(--nova-text-dim);
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-14);
+  letter-spacing: var(--nova-ls-4);
   cursor: context-menu;
   user-select: none;
   background: repeating-linear-gradient(
@@ -35,6 +35,6 @@
 }
 .nova-ctxmenu__zone kbd {
   font-family: var(--nova-font-mono);
-  font-size: 12px;
+  font-size: var(--nova-fs-12);
   color: var(--nova-primary);
 }

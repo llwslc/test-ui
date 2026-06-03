@@ -46,7 +46,7 @@
   background: transparent;
   color: var(--nova-text);
   font-family: var(--nova-font-mono);
-  font-size: 22px;
+  font-size: var(--nova-fs-22);
   caret-color: var(--nova-primary);
   outline: none;
 }
@@ -87,7 +87,7 @@
     height: 48px;
   }
   .nova-otp__slot {
-    font-size: 19px;
+    font-size: var(--nova-fs-18);
   }
   .nova-otp__divider {
     width: 7px;

@@ -41,13 +41,13 @@
   background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary));
   clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
   box-shadow: 0 0 14px var(--nova-line-strong);
-  font-size: 18px;
+  font-size: var(--nova-fs-18);
 }
 .nova-logo__text {
   font-family: var(--nova-font-display);
-  font-weight: 900;
-  font-size: 20px;
-  letter-spacing: 0.28em;
+  font-weight: var(--nova-fw-900);
+  font-size: var(--nova-fs-20);
+  letter-spacing: var(--nova-ls-24);
   color: var(--nova-text);
 }
 .nova-logo__text b {
@@ -56,8 +56,8 @@
 }
 .nova-logo__sub {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: var(--nova-fs-10);
+  letter-spacing: var(--nova-ls-16);
   color: var(--nova-text-dim);
 }
 
@@ -68,8 +68,8 @@
 }
 .nova-clock {
   font-family: var(--nova-font-mono);
-  font-size: 14px;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-14);
+  letter-spacing: var(--nova-ls-10);
   color: var(--nova-primary);
   text-shadow: var(--nova-glow-text);
 }
@@ -101,8 +101,8 @@
 }
 .nova-sidebar__group-title {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: var(--nova-fs-10);
+  letter-spacing: var(--nova-ls-24);
   text-transform: uppercase;
   color: var(--nova-text-mute);
   margin: 0 0 8px;
@@ -115,8 +115,8 @@
   justify-content: space-between;
   padding: 6px 12px;
   color: var(--nova-text-dim);
-  font-size: 13.5px;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-13);
+  letter-spacing: var(--nova-ls-4);
   text-decoration: none;
   cursor: pointer;
   border-left: 2px solid transparent;
@@ -132,7 +132,7 @@
 }
 .nova-sidebar__link span {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
+  font-size: var(--nova-fs-10);
   color: var(--nova-text-mute);
 }
 
@@ -157,8 +157,8 @@
   align-items: center;
   gap: 8px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-16);
   text-transform: uppercase;
   color: var(--nova-primary);
   margin-bottom: 14px;
@@ -166,10 +166,10 @@
 .nova-hero h1 {
   margin: 0 0 12px;
   font-family: var(--nova-font-display);
-  font-weight: 900;
+  font-weight: var(--nova-fw-900);
   font-size: clamp(28px, 4.4vw, 46px);
-  line-height: 1.02;
-  letter-spacing: 0.04em;
+  line-height: var(--nova-lh-100);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-text);
 }
 .nova-hero h1 b {
@@ -180,8 +180,8 @@
   max-width: 60ch;
   margin: 0 0 20px;
   color: var(--nova-text-dim);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-16);
+  line-height: var(--nova-lh-160);
 }
 .nova-hero__stats {
   display: flex;
@@ -192,14 +192,14 @@
 .nova-hero__stat b {
   display: block;
   font-family: var(--nova-font-display);
-  font-size: 26px;
+  font-size: var(--nova-fs-26);
   color: var(--nova-primary);
-  line-height: 1;
+  line-height: var(--nova-lh-100);
 }
 .nova-hero__stat span {
   font-family: var(--nova-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: var(--nova-fs-10);
+  letter-spacing: var(--nova-ls-16);
   text-transform: uppercase;
   color: var(--nova-text-mute);
 }
@@ -253,8 +253,8 @@
 }
 .demo-tag {
   font-family: var(--nova-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: var(--nova-fs-10);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
@@ -266,14 +266,14 @@
 }
 .demo-rowlabel {
   font-family: var(--nova-font);
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-text);
 }
 
 /* Preview Card trigger + content */
 .demo-link {
   color: var(--nova-primary);
-  font-weight: 600;
+  font-weight: var(--nova-fw-600);
   text-decoration: none;
   border-bottom: 1px dashed var(--nova-line-strong);
   cursor: pointer;
@@ -293,22 +293,22 @@
 }
 .demo-pcard__name {
   font-family: var(--nova-font-display);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-15);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-text);
 }
 .demo-pcard__handle {
   margin-top: 3px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-text-mute);
 }
 .demo-pcard__bio {
   margin: 0 0 13px;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-13);
+  line-height: var(--nova-lh-160);
   color: var(--nova-text-dim);
 }
 .demo-pcard__stats {
@@ -339,22 +339,22 @@
   flex: 0 0 auto;
   padding-top: 1px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-primary);
 }
 .demo-log__m {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--nova-fs-13);
+  line-height: var(--nova-lh-150);
   color: var(--nova-text-dim);
 }
 
 /* Toolbar text label */
 .demo-toolbar__label {
   font-family: var(--nova-font);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
 }
 
 .nova-footer {
@@ -363,8 +363,8 @@
   padding: 52px 22px 16px;
   color: var(--nova-text-mute);
   font-family: var(--nova-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-10);
   text-align: center;
 }
 
@@ -521,7 +521,7 @@
     margin-bottom: 18px;
   }
   .nova-hero p {
-    font-size: 14.5px;
+    font-size: var(--nova-fs-14);
   }
   .nova-hero__stats {
     gap: 14px 22px;

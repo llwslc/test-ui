@@ -12,15 +12,15 @@
 }
 .nova-slider__label {
   font-family: var(--nova-font-display);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
 .nova-slider__value {
   font-family: var(--nova-font-mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-13);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-primary);
   background: var(--nova-tint-soft);
   border: 1px solid var(--nova-line);

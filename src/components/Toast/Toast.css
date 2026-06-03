@@ -55,16 +55,16 @@
 .nova-toast__title {
   margin: 0;
   font-family: var(--nova-font-display);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-toast-accent);
 }
 .nova-toast__desc {
   margin: 4px 0 0;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-14);
+  line-height: var(--nova-lh-160);
   color: var(--nova-text-dim);
 }
 .nova-toast__close {
@@ -77,7 +77,7 @@
   background: transparent;
   color: var(--nova-text-mute);
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-toast__close:hover {

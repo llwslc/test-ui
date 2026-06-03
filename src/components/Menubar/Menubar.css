@@ -39,8 +39,8 @@
   background: transparent;
   color: var(--nova-text-dim);
   font-family: var(--nova-font);
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-14);
+  letter-spacing: var(--nova-ls-4);
   cursor: pointer;
   outline: none;
   clip-path: var(--nova-clip-6);

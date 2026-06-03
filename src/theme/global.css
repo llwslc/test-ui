@@ -17,8 +17,8 @@ body {
   background-color: var(--nova-bg);
   color: var(--nova-text);
   font-family: var(--nova-font);
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--nova-fs-16);
+  line-height: var(--nova-lh-150);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;

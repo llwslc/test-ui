@@ -19,7 +19,7 @@
   padding: 8px 12px;
   cursor: pointer;
   color: var(--nova-text-dim);
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   user-select: none;
   outline: none;
   clip-path: var(--nova-clip-7);
@@ -42,7 +42,7 @@
 .nova-menu__icon {
   flex: 0 0 auto;
   display: inline-flex;
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-text-mute);
   transition: color var(--nova-dur) var(--nova-ease);
 }
@@ -54,8 +54,8 @@
   flex: 0 0 auto;
   margin-left: 18px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-10);
   color: var(--nova-text-mute);
 }
 .nova-menu__item[data-highlighted] {
@@ -104,7 +104,7 @@
   flex: 0 0 auto;
   display: inline-flex;
   margin-left: 14px;
-  font-size: 15px;
+  font-size: var(--nova-fs-15);
   color: var(--nova-text-mute);
   transition: color var(--nova-dur) var(--nova-ease);
 }

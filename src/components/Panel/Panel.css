@@ -80,9 +80,9 @@
 .nova-panel__title {
   margin: 0;
   font-family: var(--nova-font-display);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-16);
   text-transform: uppercase;
   color: var(--nova-text);
 }
@@ -92,8 +92,8 @@
 }
 .nova-panel__meta {
   font-family: var(--nova-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-11);
+  letter-spacing: var(--nova-ls-10);
   color: var(--nova-text-dim);
 }
 .nova-panel__body {

@@ -48,8 +48,8 @@
   background: transparent;
   color: var(--nova-text-dim);
   font-family: var(--nova-font);
-  font-size: 16px;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-16);
+  letter-spacing: var(--nova-ls-4);
   cursor: pointer;
   clip-path: var(--nova-clip-7);
   -webkit-tap-highlight-color: transparent;

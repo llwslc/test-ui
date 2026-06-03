@@ -49,8 +49,8 @@
   background: var(--nova-surface-popup);
   color: var(--nova-text);
   font-family: var(--nova-font);
-  font-size: 15px;
-  letter-spacing: 0.01em;
+  font-size: var(--nova-fs-15);
+  letter-spacing: var(--nova-ls-4);
   clip-path: var(--nova-clip-7);
 }
 .nova-input::placeholder {
@@ -70,7 +70,7 @@
   transform: translateY(-50%);
   z-index: 2;
   display: inline-flex;
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-text-dim);
   pointer-events: none;
   transition: color var(--nova-dur) var(--nova-ease);
@@ -87,20 +87,20 @@
 }
 .nova-field__label {
   font-family: var(--nova-font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: var(--nova-fs-12);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
 .nova-field__desc {
-  font-size: 13px;
+  font-size: var(--nova-fs-13);
   color: var(--nova-text-mute);
 }
 .nova-field__error {
   font-family: var(--nova-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-4);
   color: var(--nova-danger);
 }
 .nova-field__error::before {

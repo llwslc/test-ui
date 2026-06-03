@@ -42,7 +42,7 @@
 .nova-autocomplete__lead {
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
   color: var(--nova-primary);
 }
 .nova-autocomplete__input {
@@ -53,8 +53,8 @@
   background: transparent;
   color: var(--nova-text);
   font-family: var(--nova-font);
-  font-size: 15px;
-  letter-spacing: 0.01em;
+  font-size: var(--nova-fs-15);
+  letter-spacing: var(--nova-ls-4);
   outline: none;
 }
 .nova-autocomplete__input::placeholder {
@@ -77,8 +77,8 @@
   padding: 16px 12px;
   text-align: center;
   color: var(--nova-text-mute);
-  font-size: 13px;
-  letter-spacing: 0.06em;
+  font-size: var(--nova-fs-13);
+  letter-spacing: var(--nova-ls-4);
 }
 .nova-autocomplete__empty:empty {
   display: none;
@@ -97,7 +97,7 @@
   padding: 8px 12px;
   cursor: pointer;
   color: var(--nova-text-dim);
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   user-select: none;
   outline: none;
   clip-path: var(--nova-clip-7);

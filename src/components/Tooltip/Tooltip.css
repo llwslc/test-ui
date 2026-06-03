@@ -12,7 +12,7 @@
   padding: 7px 12px;
   color: var(--nova-text);
   font-family: var(--nova-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  line-height: 1.5;
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-4);
+  line-height: var(--nova-lh-150);
 }

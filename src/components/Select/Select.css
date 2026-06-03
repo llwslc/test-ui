@@ -21,8 +21,8 @@
   background: var(--nova-line);
   clip-path: var(--nova-clip-7);
   font-family: var(--nova-font);
-  font-size: 15px;
-  letter-spacing: 0.01em;
+  font-size: var(--nova-fs-15);
+  letter-spacing: var(--nova-ls-4);
   text-align: left;
   -webkit-tap-highlight-color: transparent;
   transition: background var(--nova-dur) var(--nova-ease);
@@ -57,7 +57,7 @@
 .nova-select__chevron {
   display: inline-flex;
   color: var(--nova-primary);
-  font-size: 18px;
+  font-size: var(--nova-fs-18);
   transition: transform var(--nova-dur) var(--nova-ease);
 }
 .nova-select__trigger[data-popup-open] .nova-select__chevron {
@@ -87,7 +87,7 @@
   padding: 8px 12px;
   cursor: pointer;
   color: var(--nova-text-dim);
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   user-select: none;
   outline: none;
   clip-path: var(--nova-clip-7);
@@ -127,7 +127,7 @@
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   color: var(--nova-primary);
 }
 .nova-select__item-text {

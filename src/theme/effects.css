@@ -129,9 +129,9 @@
   gap: 10px;
   margin: 0 36px 6px 0;
   font-family: var(--nova-font-display);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--nova-fs-16);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-title-color, var(--nova-primary));
   text-shadow: 0 0 8px
@@ -140,13 +140,13 @@
 .nova-modal-desc {
   margin: 0 0 16px;
   color: var(--nova-text-dim);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-14);
+  line-height: var(--nova-lh-160);
 }
 .nova-modal-body {
   color: var(--nova-text);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: var(--nova-fs-15);
+  line-height: var(--nova-lh-160);
 }
 .nova-modal-actions {
   display: flex;
