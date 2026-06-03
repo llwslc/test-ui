@@ -56,7 +56,6 @@
   --nova-font-display: "Orbitron", "Rajdhani", sans-serif;
   --nova-font-mono: "Share Tech Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  --nova-fs-10: 10px;
   --nova-fs-11: 11px;
   --nova-fs-12: 12px;
   --nova-fs-13: 13px;
@@ -64,14 +63,11 @@
   --nova-fs-15: 15px;
   --nova-fs-16: 16px;
   --nova-fs-18: 18px;
-  --nova-fs-20: 20px;
   --nova-fs-22: 22px;
-  --nova-fs-26: 26px;
 
   --nova-ls-4: 0.04em;
   --nova-ls-10: 0.1em;
   --nova-ls-16: 0.16em;
-  --nova-ls-24: 0.24em;
 
   --nova-lh-100: 1;
   --nova-lh-150: 1.5;
@@ -79,7 +75,6 @@
 
   --nova-fw-600: 600;
   --nova-fw-700: 700;
-  --nova-fw-900: 900;
 
   --nova-dur: 0.22s;
   --nova-dur-slow: 0.45s;
