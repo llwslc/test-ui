@@ -12,7 +12,7 @@ export interface ToolbarProps {
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
     <BaseToolbar.Root
-      className={cx("nova-toolbar", className)}
+      className={cx("nova-surface nova-toolbar", className)}
       {...props}
     >
       {children}

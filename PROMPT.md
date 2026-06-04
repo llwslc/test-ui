@@ -55,7 +55,7 @@
 全部浮层（Tooltip、Popover、PreviewCard、Menu、Menubar、ContextMenu、NavigationMenu、Select、Combobox、Autocomplete、Dialog、AlertDialog、Drawer、Toast）用 `effects.css` 里同一套原语拼出，切角与阴影分两层：
 
 - `.nova-elevation` —— 不切角的抬升层，挂 drop-shadow 阴影 + 辉光，经 `--nova-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态 / Toast 挂 Popup / Root。
-- `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill`。
+- `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充 / 边框色走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill` / `--nova-surface-border`（默认 `--nova-line-strong`；Menubar / Toolbar / NavMenu 的 list 用它把边框降到 `--nova-line`，复用同一配方）。
 - `.nova-anim-pop` —— 锚定浮层的统一开合动效（`transform-origin` + 过渡 + `[data-starting/ending-style]` 的淡入缩放）。
 - 同一元素不同时带 `.nova-elevation` 与 `.nova-surface`。
 
@@ -73,6 +73,7 @@
 - `.nova-modal-title / -desc / -body / -actions` —— 模态文本，标题色走 `--nova-title-color`。
 - `.nova-modal-close` —— 切角关闭按钮。
 - 分隔线统一复用 `.nova-separator`。
+- 折叠类（Accordion / Collapsible）的 trigger / marker / chevron / panel / content 统一复用 `.nova-disclosure__*`。
 
 ### 排版标准
 

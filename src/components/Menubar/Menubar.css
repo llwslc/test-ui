@@ -1,21 +1,11 @@
 .nova-menubar {
-  position: relative;
+  --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
   gap: 2px;
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
-}
-.nova-menubar::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup);
 }
 .nova-menubar > * {
   position: relative;

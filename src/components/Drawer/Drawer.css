@@ -1,6 +1,6 @@
 .nova-drawer {
   --nova-overlay-glow: var(--nova-glow-modal);
-  --nova-drawer-shadow: rgba(0, 0, 0, 0.55);
+  --nova-drawer-shadow: rgba(0, 0, 0, 0.6);
   position: fixed;
   z-index: var(--nova-z-overlay);
   outline: none;

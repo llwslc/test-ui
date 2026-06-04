@@ -38,7 +38,7 @@ export function PreviewCard({
         >
           <BasePreviewCard.Popup className="nova-anim-pop nova-previewcard__popup">
             <span className="nova-surface nova-previewcard__surface">
-              <span className="nova-previewcard__scan" />
+              <span className="nova-scan" />
               <div className="nova-previewcard__body">{children}</div>
             </span>
             <BasePreviewCard.Arrow className="nova-connector" />

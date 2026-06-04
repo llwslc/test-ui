@@ -38,14 +38,14 @@ export function Accordion({
           className="nova-accordion__item"
         >
           <BaseAccordion.Header className="nova-accordion__header">
-            <BaseAccordion.Trigger className="nova-accordion__trigger">
-              <span className="nova-accordion__marker" />
-              <span className="nova-accordion__title">{it.title}</span>
-              <ChevronDownIcon className="nova-accordion__chevron" />
+            <BaseAccordion.Trigger className="nova-disclosure__trigger">
+              <span className="nova-disclosure__marker" />
+              <span className="nova-disclosure__title">{it.title}</span>
+              <ChevronDownIcon className="nova-disclosure__chevron" />
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>
-          <BaseAccordion.Panel className="nova-accordion__panel">
-            <div className="nova-accordion__content">{it.content}</div>
+          <BaseAccordion.Panel className="nova-disclosure__panel">
+            <div className="nova-disclosure__content">{it.content}</div>
           </BaseAccordion.Panel>
         </BaseAccordion.Item>
       ))}

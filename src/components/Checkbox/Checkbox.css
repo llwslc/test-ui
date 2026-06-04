@@ -10,7 +10,7 @@
   filter: drop-shadow(0 0 6px var(--nova-line-strong));
 }
 .nova-checkbox-box:has(:focus-visible) {
-  filter: drop-shadow(0 0 8px var(--nova-primary-a70));
+  filter: var(--nova-glow-focus);
 }
 
 .nova-checkbox {

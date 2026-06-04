@@ -3,7 +3,7 @@
   max-width: 100%;
 }
 .nova-navmenu__list {
-  position: relative;
+  --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
   gap: 2px;
@@ -12,16 +12,6 @@
   margin: 0;
   padding: var(--nova-space-1);
   list-style: none;
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
-}
-.nova-navmenu__list::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup);
 }
 .nova-navmenu__list > * {
   position: relative;

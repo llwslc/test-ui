@@ -28,13 +28,13 @@ export function Collapsible({
       onOpenChange={onOpenChange}
       className={cx("nova-collapsible", className)}
     >
-      <BaseCollapsible.Trigger className="nova-collapsible__trigger">
-        <span className="nova-collapsible__marker" />
-        <span className="nova-collapsible__title">{title}</span>
-        <ChevronDownIcon className="nova-collapsible__chevron" />
+      <BaseCollapsible.Trigger className="nova-disclosure__trigger">
+        <span className="nova-disclosure__marker" />
+        <span className="nova-disclosure__title">{title}</span>
+        <ChevronDownIcon className="nova-disclosure__chevron" />
       </BaseCollapsible.Trigger>
-      <BaseCollapsible.Panel className="nova-collapsible__panel">
-        <div className="nova-collapsible__content">{children}</div>
+      <BaseCollapsible.Panel className="nova-disclosure__panel">
+        <div className="nova-disclosure__content">{children}</div>
       </BaseCollapsible.Panel>
     </BaseCollapsible.Root>
   );

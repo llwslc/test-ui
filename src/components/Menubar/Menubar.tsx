@@ -14,7 +14,7 @@ export interface MenubarProps {
    coordinates roving focus across the menus; each MenubarMenu is a Menu.Root
    that reuses the Menu popup + item skin. */
 export function Menubar({ children }: MenubarProps) {
-  return <BaseMenubar className="nova-menubar">{children}</BaseMenubar>;
+  return <BaseMenubar className="nova-surface nova-menubar">{children}</BaseMenubar>;
 }
 
 export interface MenubarMenuProps {

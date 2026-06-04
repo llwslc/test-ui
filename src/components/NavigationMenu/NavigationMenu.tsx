@@ -24,7 +24,7 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ items }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="nova-navmenu">
-      <BaseNav.List className="nova-navmenu__list">
+      <BaseNav.List className="nova-surface nova-navmenu__list">
         {items.map((item) =>
           item.links ? (
             <BaseNav.Item key={item.label}>

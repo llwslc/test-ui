@@ -16,7 +16,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-8);
   background: var(--nova-surface);
 }
 .nova-accordion__item:hover {
@@ -28,83 +28,10 @@
 .nova-accordion__item:has([data-disabled]):hover {
   background: var(--nova-line);
 }
-.nova-accordion__trigger[data-disabled] {
-  cursor: not-allowed;
-}
-
 .nova-accordion__header {
   position: relative;
   z-index: 1;
   margin: 0;
 }
-.nova-accordion__trigger {
-  display: flex;
-  align-items: center;
-  gap: var(--nova-space-3);
-  width: 100%;
-  padding: var(--nova-space-4) var(--nova-space-4);
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  color: var(--nova-text);
-  font-family: var(--nova-font-display);
-  font-size: var(--nova-fs-13);
-  font-weight: var(--nova-fw-600);
-  letter-spacing: var(--nova-ls-10);
-  text-transform: uppercase;
-  text-align: left;
-  -webkit-tap-highlight-color: transparent;
-  transition: color var(--nova-dur) var(--nova-ease);
-}
-.nova-accordion__marker {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  background: var(--nova-text-mute);
-  transform: rotate(45deg);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    box-shadow var(--nova-dur) var(--nova-ease);
-}
-.nova-accordion__title {
-  flex: 1;
-}
-.nova-accordion__chevron {
-  flex: 0 0 auto;
-  font-size: var(--nova-fs-18);
-  color: var(--nova-text-dim);
-  transition: transform var(--nova-dur) var(--nova-ease);
-}
-.nova-accordion__trigger[data-panel-open] {
-  color: var(--nova-primary);
-}
-.nova-accordion__trigger[data-panel-open] .nova-accordion__marker {
-  background: var(--nova-primary);
-  box-shadow: 0 0 8px var(--nova-primary);
-}
-.nova-accordion__trigger[data-panel-open] .nova-accordion__chevron {
-  transform: rotate(180deg);
-  color: var(--nova-primary);
-}
-.nova-accordion__trigger:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
-}
 
-.nova-accordion__panel {
-  position: relative;
-  z-index: 1;
-  height: var(--accordion-panel-height);
-  overflow: hidden;
-  transition: height var(--nova-dur-slow) var(--nova-ease);
-}
-.nova-accordion__panel[data-starting-style],
-.nova-accordion__panel[data-ending-style] {
-  height: 0;
-}
-.nova-accordion__content {
-  padding: 0 var(--nova-space-4) var(--nova-space-4) 35px;
-  color: var(--nova-text-dim);
-  font-size: var(--nova-fs-14);
-  line-height: var(--nova-lh-160);
-}
+/* trigger / marker / chevron / panel / content: shared .nova-disclosure__* in effects.css */

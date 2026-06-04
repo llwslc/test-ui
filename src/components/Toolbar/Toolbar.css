@@ -1,21 +1,11 @@
 .nova-toolbar {
-  position: relative;
+  --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
   gap: var(--nova-space-1);
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
-}
-.nova-toolbar::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup);
 }
 .nova-toolbar > * {
   position: relative;

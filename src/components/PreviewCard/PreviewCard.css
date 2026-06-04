@@ -12,20 +12,6 @@
   padding: var(--nova-space-4);
   overflow: hidden;
 }
-.nova-previewcard__scan {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--nova-primary) 45%,
-    transparent
-  );
-  opacity: 0.85;
-}
 .nova-previewcard__body {
   position: relative;
 }

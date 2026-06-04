@@ -46,7 +46,6 @@
   --nova-primary-a40: rgba(45, 226, 255, 0.4);
   --nova-primary-a70: rgba(45, 226, 255, 0.7);
   --nova-track: rgba(120, 170, 210, 0.16);
-  --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
   --nova-glow-bar: 0 0 10px rgba(45, 226, 255, 0.35);
   --nova-glow-focus: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
@@ -115,6 +114,5 @@
   --nova-clip-9: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
   --nova-clip-11: polygon(11px 0, 100% 0, 100% calc(100% - 11px), calc(100% - 11px) 100%, 0 100%, 0 11px);
   --nova-clip-12: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
-  --nova-clip-14: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }

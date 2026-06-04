@@ -52,7 +52,7 @@
 }
 
 .nova-otp__cell-glow:has(.nova-otp__slot:focus) {
-  filter: drop-shadow(0 0 8px var(--nova-line-strong));
+  filter: var(--nova-glow-focus);
 }
 .nova-otp__cell:has(.nova-otp__slot:focus) {
   background: var(--nova-primary);
