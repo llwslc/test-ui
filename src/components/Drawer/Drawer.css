@@ -4,8 +4,8 @@
   top: 0;
   left: 0;
   z-index: var(--nova-z-overlay);
-  width: var(--nova-overlay-vw, 100vw);
-  height: var(--nova-overlay-vh, 100vh);
+  width: 100vw;
+  height: 100dvh;
   overflow: hidden;
 }
 
