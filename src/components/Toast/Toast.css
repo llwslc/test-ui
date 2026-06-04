@@ -25,7 +25,7 @@
 }
 .nova-toast__surface {
   --nova-surface-clip: var(--nova-clip-9);
-  --nova-line-strong: color-mix(in srgb, var(--nova-toast-accent) 50%, transparent);
+  --nova-surface-border: color-mix(in srgb, var(--nova-toast-accent) 50%, transparent);
   display: flex;
   align-items: flex-start;
   gap: var(--nova-space-3);
