@@ -38,7 +38,7 @@
 - **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`。
 - **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
 - **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
-- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel，演示页 Hero 同档）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
+- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
 - **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap 走此阶梯（含 `row-gap` 等长写）；`1 / 2 / 3px` 发线内缩与 `>28px` 结构性留白（图标内缩、关闭按钮让位等）属一次性，写立即数。
@@ -123,7 +123,7 @@
 - inline-flex 分段控件（ToggleGroup）加 `width: fit-content`，否则被 `align-items: stretch` 拉满宽。
 - 细分隔条（1px）在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`，否则被按比例压成 0。
 - grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`，否则子项撑破轨道。
-- 让文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏、单列；≤768px 作手机端处理（收紧间距、分段控件换行或横滚）；≤540px 再收一档（最窄屏）。
+- 让文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏、单列；≤768px 作手机端处理（收紧间距、分段控件换行或横滚）。
 
 ## 演示页
 
