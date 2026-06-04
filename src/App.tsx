@@ -202,10 +202,19 @@ const TAB_ITEMS = [
     value: "telemetry",
     label: "Telemetry",
     content: (
-      <div className="demo-stack">
-        <Meter label="Reactor Core" value={82} tone="success" />
-        <Meter label="Hull Integrity" value={61} tone="warning" />
-        <Meter label="Shield Matrix" value={34} tone="danger" />
+      <div className="demo-row">
+        <Badge tone="success" dot>
+          Reactor Online
+        </Badge>
+        <Badge tone="primary" dot>
+          Nav Locked
+        </Badge>
+        <Badge tone="warning" dot>
+          Coolant 52%
+        </Badge>
+        <Badge tone="danger" dot>
+          Hull 34%
+        </Badge>
       </div>
     ),
   },
