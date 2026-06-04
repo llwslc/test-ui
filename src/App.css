@@ -488,8 +488,20 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), var(--nova-line) calc(50% - 0.5px), var(--nova-line) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    linear-gradient(0deg, transparent calc(50% - 0.5px), var(--nova-line) calc(50% - 0.5px), var(--nova-line) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      var(--nova-line) calc(50% - 0.5px),
+      var(--nova-line) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(50% - 0.5px),
+      var(--nova-line) calc(50% - 0.5px),
+      var(--nova-line) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
 }
 .nova-hero__ring {
   position: absolute;

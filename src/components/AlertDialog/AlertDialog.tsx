@@ -53,12 +53,8 @@ export function AlertDialog({
                 {description}
               </BaseAlertDialog.Description>
             ) : null}
-            {children != null ? (
-              <div className="nova-modal-body">{children}</div>
-            ) : null}
-            {actions != null ? (
-              <div className="nova-modal-actions">{actions}</div>
-            ) : null}
+            {children != null ? <div className="nova-modal-body">{children}</div> : null}
+            {actions != null ? <div className="nova-modal-actions">{actions}</div> : null}
           </div>
         </BaseAlertDialog.Popup>
       </BaseAlertDialog.Portal>
@@ -66,11 +62,10 @@ export function AlertDialog({
   );
 }
 
-export interface AlertDialogCloseProps
-  extends Omit<
-    ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>,
-    "className" | "render"
-  > {
+export interface AlertDialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

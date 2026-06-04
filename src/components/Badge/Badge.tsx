@@ -24,9 +24,7 @@ export function Badge({
   className,
 }: BadgeProps) {
   return (
-    <span
-      className={cx("nova-badge", `nova-badge--${tone}`, className)}
-    >
+    <span className={cx("nova-badge", `nova-badge--${tone}`, className)}>
       {dot ? <span className="nova-badge__dot" /> : null}
       {children}
     </span>

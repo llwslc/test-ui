@@ -8,18 +8,10 @@
 .nova-separator-labeled__line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--nova-line)
-  );
+  background: linear-gradient(90deg, transparent, var(--nova-line));
 }
 .nova-separator-labeled__line:last-child {
-  background: linear-gradient(
-    90deg,
-    var(--nova-line),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--nova-line), transparent);
 }
 .nova-separator-labeled__text {
   font-family: var(--nova-font-mono);

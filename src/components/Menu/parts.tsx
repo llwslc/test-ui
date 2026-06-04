@@ -46,7 +46,10 @@ export function MenuItem({
   const { Item } = useParts();
   return (
     <Item
-      className={cx("nova-menu__item", tone === "danger" ? "nova-menu__item--danger" : "")}
+      className={cx(
+        "nova-menu__item",
+        tone === "danger" ? "nova-menu__item--danger" : "",
+      )}
       disabled={disabled}
       onClick={onClick}
     >

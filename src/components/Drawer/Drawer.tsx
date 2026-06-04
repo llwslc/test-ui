@@ -39,11 +39,7 @@ export function Drawer({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
-          className={cx(
-            "nova-elevation nova-drawer",
-            `nova-drawer--${side}`,
-            className,
-          )}
+          className={cx("nova-elevation nova-drawer", `nova-drawer--${side}`, className)}
         >
           <div className="nova-surface nova-drawer__surface">
             <span className="nova-drawer__edge" />
@@ -72,9 +68,7 @@ export function Drawer({
             {children != null ? (
               <div className="nova-drawer__body">{children}</div>
             ) : null}
-            {footer != null ? (
-              <div className="nova-drawer__footer">{footer}</div>
-            ) : null}
+            {footer != null ? <div className="nova-drawer__footer">{footer}</div> : null}
           </div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>

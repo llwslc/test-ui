@@ -10,8 +10,10 @@ export interface CheckboxGroupOption {
   disabled?: boolean;
 }
 
-export interface CheckboxGroupProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseCheckboxGroup>, "children"> {
+export interface CheckboxGroupProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseCheckboxGroup>,
+  "children"
+> {
   items: CheckboxGroupOption[];
   parentLabel?: ReactNode;
 }
@@ -30,9 +32,7 @@ export function CheckboxGroup({
       allValues={everyValue}
       {...props}
     >
-      {parentLabel != null ? (
-        <Checkbox parent label={parentLabel} />
-      ) : null}
+      {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
       <div className="nova-checkboxgroup__items">
         {items.map((it) => (
           <Checkbox

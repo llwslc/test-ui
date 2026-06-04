@@ -5,8 +5,7 @@ import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Input.css";
 
-export interface InputProps
-  extends ComponentPropsWithoutRef<typeof BaseInput> {
+export interface InputProps extends ComponentPropsWithoutRef<typeof BaseInput> {
   icon?: ReactNode;
 }
 
@@ -28,8 +27,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   );
 }
 
-export interface FieldProps
-  extends ComponentPropsWithoutRef<typeof BaseField.Control> {
+export interface FieldProps extends ComponentPropsWithoutRef<typeof BaseField.Control> {
   label?: ReactNode;
   description?: ReactNode;
   error?: ReactNode;
@@ -47,15 +45,17 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root
-      className={cx("nova-field", rootClassName)}
-    >
+    <BaseField.Root className={cx("nova-field", rootClassName)}>
       {label != null ? (
         <BaseField.Label className="nova-field__label">{label}</BaseField.Label>
       ) : null}
       <span className="nova-input-glow">
         <span
-          className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", error != null ? "nova-input-wrap--error" : "")}
+          className={cx(
+            "nova-input-wrap",
+            icon ? "nova-input-wrap--icon" : "",
+            error != null ? "nova-input-wrap--error" : "",
+          )}
         >
           {icon ? <span className="nova-input__icon">{icon}</span> : null}
           <BaseField.Control

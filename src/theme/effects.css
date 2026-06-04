@@ -1,7 +1,5 @@
 .nova-elevation {
-  filter: drop-shadow(
-      var(--nova-overlay-shadow, var(--nova-shadow-popup))
-    )
+  filter: drop-shadow(var(--nova-overlay-shadow, var(--nova-shadow-popup)))
     var(--nova-overlay-glow, var(--nova-glow-popup));
 }
 .nova-surface {

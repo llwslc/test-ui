@@ -5,8 +5,9 @@ import type { ComponentPropsWithoutRef } from "react";
 import { MinusIcon, PlusIcon } from "../icons";
 import "./NumberField.css";
 
-export interface NumberFieldProps
-  extends ComponentPropsWithoutRef<typeof BaseNumberField.Root> {}
+export interface NumberFieldProps extends ComponentPropsWithoutRef<
+  typeof BaseNumberField.Root
+> {}
 
 export function NumberField({
   className,
@@ -39,20 +40,11 @@ export function NumberField({
       {...props}
     >
       <BaseNumberField.Group className="nova-numberfield__group">
-        <BaseNumberField.Decrement
-          className="nova-numberfield__btn"
-          disabled={atMin}
-        >
+        <BaseNumberField.Decrement className="nova-numberfield__btn" disabled={atMin}>
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input
-          id={id ?? autoId}
-          className="nova-numberfield__input"
-        />
-        <BaseNumberField.Increment
-          className="nova-numberfield__btn"
-          disabled={atMax}
-        >
+        <BaseNumberField.Input id={id ?? autoId} className="nova-numberfield__input" />
+        <BaseNumberField.Increment className="nova-numberfield__btn" disabled={atMax}>
           <PlusIcon />
         </BaseNumberField.Increment>
       </BaseNumberField.Group>

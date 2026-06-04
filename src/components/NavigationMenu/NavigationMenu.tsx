@@ -22,10 +22,7 @@ export interface NavigationMenuProps {
 
 /* Site-level navigation: top-level items open rich panels of links into a
    shared viewport (distinct from Menu's action lists). */
-export function NavigationMenu({
-  items,
-  onLinkClick,
-}: NavigationMenuProps) {
+export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="nova-navmenu">
       <BaseNav.List className="nova-surface nova-navmenu__list">
@@ -49,9 +46,7 @@ export function NavigationMenu({
                         className="nova-navmenu__link"
                         onClick={onLinkClick}
                       >
-                        <span className="nova-navmenu__link-title">
-                          {link.label}
-                        </span>
+                        <span className="nova-navmenu__link-title">{link.label}</span>
                         {link.description != null ? (
                           <span className="nova-navmenu__link-desc">
                             {link.description}

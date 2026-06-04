@@ -36,10 +36,7 @@ export function Combobox({
         <BaseCombobox.Clear className="nova-combobox__clear" aria-label="Clear">
           <XIcon />
         </BaseCombobox.Clear>
-        <BaseCombobox.Trigger
-          className="nova-combobox__trigger"
-          aria-label="Open list"
-        >
+        <BaseCombobox.Trigger className="nova-combobox__trigger" aria-label="Open list">
           <ChevronDownIcon />
         </BaseCombobox.Trigger>
       </div>

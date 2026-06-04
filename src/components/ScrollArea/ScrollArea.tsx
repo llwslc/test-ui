@@ -9,15 +9,9 @@ export interface ScrollAreaProps {
   className?: string;
 }
 
-export function ScrollArea({
-  children,
-  maxHeight = 220,
-  className,
-}: ScrollAreaProps) {
+export function ScrollArea({ children, maxHeight = 220, className }: ScrollAreaProps) {
   return (
-    <BaseScrollArea.Root
-      className={cx("nova-scrollarea", className)}
-    >
+    <BaseScrollArea.Root className={cx("nova-scrollarea", className)}>
       <BaseScrollArea.Viewport
         className="nova-scrollarea__viewport"
         style={{ maxHeight } as CSSProperties}

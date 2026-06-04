@@ -3,14 +3,8 @@ import { Form as BaseForm } from "@base-ui/react/form";
 import type { ComponentPropsWithoutRef } from "react";
 import "./Form.css";
 
-export interface FormProps
-  extends ComponentPropsWithoutRef<typeof BaseForm> {}
+export interface FormProps extends ComponentPropsWithoutRef<typeof BaseForm> {}
 
 export function Form({ className, ...props }: FormProps) {
-  return (
-    <BaseForm
-      className={cx("nova-form", className)}
-      {...props}
-    />
-  );
+  return <BaseForm className={cx("nova-form", className)} {...props} />;
 }

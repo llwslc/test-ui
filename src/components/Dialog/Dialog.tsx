@@ -32,9 +32,7 @@ export function Dialog({
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
-        <BaseDialog.Popup
-          className={cx("nova-elevation nova-dialog__popup", className)}
-        >
+        <BaseDialog.Popup className={cx("nova-elevation nova-dialog__popup", className)}>
           <div className="nova-surface nova-dialog__surface">
             <span className="nova-scan" />
             <BaseDialog.Close
@@ -59,12 +57,8 @@ export function Dialog({
                 {description}
               </BaseDialog.Description>
             ) : null}
-            {children != null ? (
-              <div className="nova-modal-body">{children}</div>
-            ) : null}
-            {footer != null ? (
-              <div className="nova-modal-actions">{footer}</div>
-            ) : null}
+            {children != null ? <div className="nova-modal-body">{children}</div> : null}
+            {footer != null ? <div className="nova-modal-actions">{footer}</div> : null}
           </div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
@@ -74,11 +68,10 @@ export function Dialog({
 
 export type DialogCloseVariant = ButtonVariant;
 
-export interface DialogCloseProps
-  extends Omit<
-    ComponentPropsWithoutRef<typeof BaseDialog.Close>,
-    "className" | "render"
-  > {
+export interface DialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

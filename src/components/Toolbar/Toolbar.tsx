@@ -11,10 +11,7 @@ export interface ToolbarProps {
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
-    <BaseToolbar.Root
-      className={cx("nova-surface nova-toolbar", className)}
-      {...props}
-    >
+    <BaseToolbar.Root className={cx("nova-surface nova-toolbar", className)} {...props}>
       {children}
     </BaseToolbar.Root>
   );
@@ -28,11 +25,7 @@ export interface ToolbarButtonProps {
   "aria-label"?: string;
 }
 
-export function ToolbarButton({
-  children,
-  active,
-  ...props
-}: ToolbarButtonProps) {
+export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
   return (
     <span className="nova-toolbar__btnwrap">
       <BaseToolbar.Button
@@ -52,5 +45,7 @@ export function ToolbarSeparator() {
 }
 
 export function ToolbarGroup({ children }: { children: ReactNode }) {
-  return <BaseToolbar.Group className="nova-toolbar__group">{children}</BaseToolbar.Group>;
+  return (
+    <BaseToolbar.Group className="nova-toolbar__group">{children}</BaseToolbar.Group>
+  );
 }

@@ -29,11 +29,7 @@ export function Avatar({
     >
       <BaseAvatar.Root className="nova-avatar__root">
         {src ? (
-          <BaseAvatar.Image
-            src={src}
-            alt={alt}
-            className="nova-avatar__img"
-          />
+          <BaseAvatar.Image src={src} alt={alt} className="nova-avatar__img" />
         ) : null}
         <BaseAvatar.Fallback className="nova-avatar__fallback">
           {fallback}

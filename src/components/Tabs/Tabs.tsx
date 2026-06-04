@@ -50,11 +50,7 @@ export function Tabs({
         <BaseTabs.Indicator className="nova-tabs__indicator" />
       </BaseTabs.List>
       {items.map((it) => (
-        <BaseTabs.Panel
-          key={it.value}
-          value={it.value}
-          className="nova-tabs__panel"
-        >
+        <BaseTabs.Panel key={it.value} value={it.value} className="nova-tabs__panel">
           {it.content}
         </BaseTabs.Panel>
       ))}

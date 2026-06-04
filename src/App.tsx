@@ -516,9 +516,9 @@ function Demo() {
               forged on Base UI
             </h1>
             <p>
-              Accessible, unstyled Base UI primitives wrapped in a neon HUD
-              aesthetic — chamfered frames, reactive glow, and scanline motion.
-              Every control lives in its own folder and rides on portable
+              Accessible, unstyled Base UI primitives wrapped in a neon HUD aesthetic —
+              chamfered frames, reactive glow, and scanline motion. Every control lives in
+              its own folder and rides on portable
               <code> --nova-* </code> CSS variables.
             </p>
             <div className="nova-hero__stats">
@@ -697,11 +697,7 @@ function Demo() {
                   />
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
                   <AccessCodeField />
-                  <Field
-                    label="Locked Channel"
-                    defaultValue="NX-CLASSIFIED"
-                    disabled
-                  />
+                  <Field label="Locked Channel" defaultValue="NX-CLASSIFIED" disabled />
                 </div>
               </Panel>
             </div>
@@ -798,12 +794,11 @@ function Demo() {
               <Panel title="Collapsible" meta="CLP">
                 <div className="demo-stack">
                   <Collapsible title="Diagnostics Log" defaultOpen>
-                    All subsystems reporting nominal. Last anomaly cleared 14
-                    jump cycles ago.
+                    All subsystems reporting nominal. Last anomaly cleared 14 jump cycles
+                    ago.
                   </Collapsible>
                   <Collapsible title="Cargo Manifest">
-                    6 containers · 2 sealed · 1 flagged for inspection at the
-                    next port.
+                    6 containers · 2 sealed · 1 flagged for inspection at the next port.
                   </Collapsible>
                 </div>
               </Panel>
@@ -837,8 +832,8 @@ function Demo() {
                   trigger={<Button variant="ghost">Comms Panel</Button>}
                   title="Channel 7"
                 >
-                  Encrypted uplink to Deep Space Relay. Signal strength 94%,
-                  latency 2.3s — click outside or ✕ to dismiss.
+                  Encrypted uplink to Deep Space Relay. Signal strength 94%, latency 2.3s
+                  — click outside or ✕ to dismiss.
                 </Popover>
               </Panel>
             </div>
@@ -874,8 +869,8 @@ function Demo() {
                         </div>
                       </div>
                       <p className="demo-pcard__bio">
-                        Deep-range patrol lead. 1,204 hyperspace jumps logged,
-                        zero hull losses.
+                        Deep-range patrol lead. 1,204 hyperspace jumps logged, zero hull
+                        losses.
                       </p>
                       <div className="demo-pcard__stats">
                         <Badge tone="primary" dot>
@@ -1009,9 +1004,7 @@ function Demo() {
                   actions={
                     <>
                       <AlertDialogClose>Cancel</AlertDialogClose>
-                      <AlertDialogClose variant="danger">
-                        Purge
-                      </AlertDialogClose>
+                      <AlertDialogClose variant="danger">Purge</AlertDialogClose>
                     </>
                   }
                 />
@@ -1112,8 +1105,8 @@ function Demo() {
                   <p className="nova-h2">Telemetry Feed</p>
                   <p className="nova-h3">Sensor Array</p>
                   <p className="nova-text">
-                    All systems nominal — reactor output holding at 98.4% across
-                    the primary manifold, tracking 1,204 contacts in range.
+                    All systems nominal — reactor output holding at 98.4% across the
+                    primary manifold, tracking 1,204 contacts in range.
                   </p>
                   <span className="demo-tag">
                     .nova-h1 / h2 / h3 · .nova-text — style-only, any tag
@@ -1125,8 +1118,8 @@ function Demo() {
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
                 <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
-                  The HUD frame wrapping every section: a chamfered border with
-                  corner brackets and an optional scan sweep.
+                  The HUD frame wrapping every section: a chamfered border with corner
+                  brackets and an optional scan sweep.
                 </p>
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="demo-tag">Composable to any depth</span>

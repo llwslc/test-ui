@@ -4,7 +4,9 @@
   --nova-title-color: var(--nova-alert-accent);
   --nova-tick-color: var(--nova-alert-accent);
   --nova-overlay-shadow: var(--nova-shadow-modal);
-  --nova-overlay-glow: drop-shadow(0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent));
+  --nova-overlay-glow: drop-shadow(
+    0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent)
+  );
   position: fixed;
   z-index: var(--nova-z-overlay);
   top: 50%;

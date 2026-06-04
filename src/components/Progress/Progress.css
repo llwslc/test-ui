@@ -36,7 +36,9 @@
   background-image:
     repeating-linear-gradient(115deg, var(--nova-sheen-soft) 0 8px, transparent 8px 18px),
     linear-gradient(90deg, var(--nova-primary-deep), var(--nova-primary));
-  background-size: 56px 100%, 100% 100%;
+  background-size:
+    56px 100%,
+    100% 100%;
   box-shadow: 0 0 12px var(--nova-line-strong);
   transition: width var(--nova-dur-slow) var(--nova-ease);
   animation: nova-progress-stripes 0.9s linear infinite;

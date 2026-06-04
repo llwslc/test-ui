@@ -3,33 +3,18 @@ import { Slider as BaseSlider } from "@base-ui/react/slider";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Slider.css";
 
-export interface SliderProps
-  extends ComponentPropsWithoutRef<typeof BaseSlider.Root> {
+export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.Root> {
   label?: ReactNode;
   showValue?: boolean;
 }
 
-export function Slider({
-  className,
-  label,
-  showValue = true,
-  ...props
-}: SliderProps) {
+export function Slider({ className, label, showValue = true, ...props }: SliderProps) {
   return (
-    <BaseSlider.Root
-      className={cx("nova-slider", className)}
-      {...props}
-    >
+    <BaseSlider.Root className={cx("nova-slider", className)} {...props}>
       {(label != null || showValue) && (
         <div className="nova-slider__head">
-          {label != null ? (
-            <span className="nova-slider__label">{label}</span>
-          ) : (
-            <span />
-          )}
-          {showValue ? (
-            <BaseSlider.Value className="nova-slider__value" />
-          ) : null}
+          {label != null ? <span className="nova-slider__label">{label}</span> : <span />}
+          {showValue ? <BaseSlider.Value className="nova-slider__value" /> : null}
         </div>
       )}
       <BaseSlider.Control className="nova-slider__control">

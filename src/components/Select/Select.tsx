@@ -45,10 +45,7 @@ export function Select<Value extends string = string>({
       name={name ?? autoId}
     >
       <span className={cx("nova-select__field", className)}>
-        <BaseSelect.Trigger
-          id={id ?? autoId}
-          className="nova-select__trigger"
-        >
+        <BaseSelect.Trigger id={id ?? autoId} className="nova-select__trigger">
           <BaseSelect.Value>
             {(val) => {
               const item = items.find((i) => i.value === val);

@@ -42,7 +42,12 @@
   inset: 1px;
   z-index: 1;
   clip-path: var(--nova-clip-9);
-  background: linear-gradient(105deg, transparent 38%, var(--nova-sheen) 50%, transparent 62%);
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    var(--nova-sheen) 50%,
+    transparent 62%
+  );
   transform: translateX(-130%);
   transition: transform var(--nova-dur-slow) var(--nova-ease);
   pointer-events: none;

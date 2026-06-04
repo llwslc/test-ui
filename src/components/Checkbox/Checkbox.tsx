@@ -5,8 +5,9 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { CheckIcon, MinusIcon } from "../icons";
 import "./Checkbox.css";
 
-export interface CheckboxProps
-  extends ComponentPropsWithoutRef<typeof BaseCheckbox.Root> {
+export interface CheckboxProps extends ComponentPropsWithoutRef<
+  typeof BaseCheckbox.Root
+> {
   label?: ReactNode;
 }
 

@@ -62,11 +62,7 @@ export { Tooltip } from "./Tooltip";
 export type { TooltipProps } from "./Tooltip";
 
 export { Dialog, DialogClose } from "./Dialog";
-export type {
-  DialogProps,
-  DialogCloseProps,
-  DialogCloseVariant,
-} from "./Dialog";
+export type { DialogProps, DialogCloseProps, DialogCloseVariant } from "./Dialog";
 
 export { Drawer } from "./Drawer";
 export type { DrawerProps, DrawerSide } from "./Drawer";
@@ -84,11 +80,7 @@ export { Menubar, MenubarMenu } from "./Menubar";
 export type { MenubarProps, MenubarMenuProps } from "./Menubar";
 
 export { NavigationMenu } from "./NavigationMenu";
-export type {
-  NavigationMenuProps,
-  NavMenuItem,
-  NavMenuLink,
-} from "./NavigationMenu";
+export type { NavigationMenuProps, NavMenuItem, NavMenuLink } from "./NavigationMenu";
 
 export { ContextMenu } from "./ContextMenu";
 export type { ContextMenuProps } from "./ContextMenu";
@@ -114,10 +106,5 @@ export type { PanelProps } from "./Panel";
 export { ScrollArea } from "./ScrollArea";
 export type { ScrollAreaProps } from "./ScrollArea";
 
-export {
-  Toolbar,
-  ToolbarButton,
-  ToolbarSeparator,
-  ToolbarGroup,
-} from "./Toolbar";
+export { Toolbar, ToolbarButton, ToolbarSeparator, ToolbarGroup } from "./Toolbar";
 export type { ToolbarProps, ToolbarButtonProps } from "./Toolbar";
