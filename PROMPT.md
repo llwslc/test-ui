@@ -37,7 +37,7 @@
 - **品牌色填充**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`。
 - **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
 - **辉光与阴影**：`--nova-glow / -text / -bar / -focus / -popup / -modal`、`--nova-shadow-popup / -modal`。
-- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项（菜单 / 列表项、toggle / toolbar 按钮、nav 链接）`clip-7`。细指示条 / 旋钮（Slider / Progress / Meter / 滚动条 thumb / Switch thumb）放不下 9px 切角，按厚度用 `clip-3 / 4 / 7`。
+- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项（菜单 / 列表项、toggle / toolbar 按钮、nav 链接）`clip-7`。小元素放不下大切角，用 `clip-3 / 4`（Switch thumb 例外 `7`）：icon 按钮（28px）、Badge（22px）、细指示条 / 旋钮（Slider / Progress / Meter / 滚动条 thumb / Switch thumb）。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
 - **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap 走此阶梯（含 `row-gap` 等长写）；`1 / 2 / 3px` 发线内缩与 `>28px` 结构性留白（图标内缩、关闭按钮让位等）属一次性，写立即数。

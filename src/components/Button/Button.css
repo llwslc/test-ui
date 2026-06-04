@@ -151,7 +151,7 @@
   background: var(--nova-tint-faint);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-15);
-  clip-path: var(--nova-clip-9);
+  clip-path: var(--nova-clip-4);
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease),

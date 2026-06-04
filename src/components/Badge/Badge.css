@@ -13,7 +13,7 @@
   letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   white-space: nowrap;
-  clip-path: var(--nova-clip-9);
+  clip-path: var(--nova-clip-4);
 }
 .nova-badge__dot {
   width: 6px;
