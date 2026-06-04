@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 import {
   Accordion,
   AlertDialog,
@@ -196,6 +197,10 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
   },
   { label: "Registry", href: "#navmenu" },
 ];
+
+const preventDemoNavigation = (event: MouseEvent<HTMLAnchorElement>) => {
+  event.preventDefault();
+};
 
 const TAB_ITEMS = [
   {
@@ -944,7 +949,10 @@ function Demo() {
 
             <div className="nova-section span-2" id="navmenu">
               <Panel title="Navigation Menu" meta="NAV">
-                <NavigationMenu items={NAVMENU_ITEMS} />
+                <NavigationMenu
+                  items={NAVMENU_ITEMS}
+                  onLinkClick={preventDemoNavigation}
+                />
               </Panel>
             </div>
 

@@ -34,7 +34,11 @@
   width: 18px;
   height: 18px;
   margin-left: var(--nova-space-1);
-  background: linear-gradient(180deg, #c9d9eb, #8197af);
+  background: linear-gradient(
+    180deg,
+    var(--nova-thumb-idle-top),
+    var(--nova-thumb-idle-bottom)
+  );
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   clip-path: var(--nova-clip-7);
   transition:
@@ -54,7 +58,11 @@
 }
 .nova-switch[data-checked] .nova-switch__thumb {
   transform: translateX(28px);
-  background: linear-gradient(180deg, #0e2a3a, #03141d);
+  background: linear-gradient(
+    180deg,
+    var(--nova-surface-deep-top),
+    var(--nova-surface-deep-bottom)
+  );
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 var(--nova-sheen-soft);

@@ -4,7 +4,11 @@
   --nova-surface: rgba(13, 27, 45, 0.72);
   --nova-surface-popup: rgba(7, 14, 24, 0.97);
   --nova-scrim: rgba(2, 6, 12, 0.66);
-  --nova-surface-modal: linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98));
+  --nova-surface-modal: linear-gradient(
+    160deg,
+    rgba(11, 22, 36, 0.98),
+    rgba(7, 14, 24, 0.98)
+  );
   --nova-surface-inset: #0a1a29;
 
   --nova-primary: #2de2ff;
@@ -95,6 +99,11 @@
   --nova-glow-modal: drop-shadow(0 0 22px rgba(45, 226, 255, 0.28));
   --nova-pad-modal: 26px 28px;
 
+  --nova-thumb-idle-top: #c9d9eb;
+  --nova-thumb-idle-bottom: #8197af;
+  --nova-surface-deep-top: #0e2236;
+  --nova-surface-deep-bottom: #081523;
+
   --nova-z-dropdown: 1200;
   --nova-z-menu: 1250;
   --nova-z-tooltip: 1300;
@@ -104,10 +113,45 @@
 }
 
 :root {
-  --nova-clip-3: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
-  --nova-clip-4: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
-  --nova-clip-7: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
-  --nova-clip-9: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
-  --nova-clip-12: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  --nova-clip-3: polygon(
+    3px 0,
+    100% 0,
+    100% calc(100% - 3px),
+    calc(100% - 3px) 100%,
+    0 100%,
+    0 3px
+  );
+  --nova-clip-4: polygon(
+    4px 0,
+    100% 0,
+    100% calc(100% - 4px),
+    calc(100% - 4px) 100%,
+    0 100%,
+    0 4px
+  );
+  --nova-clip-7: polygon(
+    7px 0,
+    100% 0,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    0 100%,
+    0 7px
+  );
+  --nova-clip-9: polygon(
+    9px 0,
+    100% 0,
+    100% calc(100% - 9px),
+    calc(100% - 9px) 100%,
+    0 100%,
+    0 9px
+  );
+  --nova-clip-12: polygon(
+    12px 0,
+    100% 0,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    0 100%,
+    0 12px
+  );
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }

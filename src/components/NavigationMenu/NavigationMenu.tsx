@@ -1,5 +1,5 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { ChevronDownIcon } from "../icons";
 import "./NavigationMenu.css";
 
@@ -17,11 +17,15 @@ export interface NavMenuItem {
 
 export interface NavigationMenuProps {
   items: NavMenuItem[];
+  onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /* Site-level navigation: top-level items open rich panels of links into a
    shared viewport (distinct from Menu's action lists). */
-export function NavigationMenu({ items }: NavigationMenuProps) {
+export function NavigationMenu({
+  items,
+  onLinkClick,
+}: NavigationMenuProps) {
   return (
     <BaseNav.Root className="nova-navmenu">
       <BaseNav.List className="nova-surface nova-navmenu__list">
@@ -43,7 +47,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
                       <BaseNav.Link
                         href={link.href ?? "#"}
                         className="nova-navmenu__link"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={onLinkClick}
                       >
                         <span className="nova-navmenu__link-title">
                           {link.label}
@@ -64,7 +68,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
               <BaseNav.Link
                 href={item.href ?? "#"}
                 className="nova-navmenu__toplink"
-                onClick={(e) => e.preventDefault()}
+                onClick={onLinkClick}
               >
                 {item.label}
               </BaseNav.Link>

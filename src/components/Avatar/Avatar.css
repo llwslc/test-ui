@@ -29,7 +29,11 @@
   inset: 1px;
   display: grid;
   place-items: center;
-  background: linear-gradient(160deg, #0e2236, #081523);
+  background: linear-gradient(
+    160deg,
+    var(--nova-surface-deep-top),
+    var(--nova-surface-deep-bottom)
+  );
   color: var(--nova-primary);
   font-family: var(--nova-font-display);
   font-weight: var(--nova-fw-700);

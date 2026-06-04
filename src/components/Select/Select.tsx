@@ -11,19 +11,19 @@ export interface SelectOption {
   disabled?: boolean;
 }
 
-export interface SelectProps {
-  items: SelectOption[];
+export interface SelectProps<Value extends string = string> {
+  items: Array<SelectOption & { value: Value }>;
   placeholder?: string;
   className?: string;
-  value?: string | null;
-  defaultValue?: string | null;
-  onValueChange?: (value: string | null) => void;
+  value?: Value | null;
+  defaultValue?: Value | null;
+  onValueChange?: (value: Value | null) => void;
   disabled?: boolean;
   name?: string;
   id?: string;
 }
 
-export function Select({
+export function Select<Value extends string = string>({
   items,
   placeholder = "Select…",
   className,
@@ -33,16 +33,14 @@ export function Select({
   disabled,
   name,
   id,
-}: SelectProps) {
+}: SelectProps<Value>) {
   const autoId = useId();
   return (
-    <BaseSelect.Root
+    <BaseSelect.Root<Value>
       items={items}
-      value={value as never}
-      defaultValue={defaultValue as never}
-      onValueChange={
-        onValueChange ? (v: unknown) => onValueChange(v as string | null) : undefined
-      }
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
       disabled={disabled}
       name={name ?? autoId}
     >
@@ -52,7 +50,7 @@ export function Select({
           className="nova-select__trigger"
         >
           <BaseSelect.Value>
-            {(val: unknown) => {
+            {(val) => {
               const item = items.find((i) => i.value === val);
               return item ? (
                 item.label
