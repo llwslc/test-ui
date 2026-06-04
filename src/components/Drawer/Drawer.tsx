@@ -47,23 +47,9 @@ export function Drawer({
     if (!effectiveOpen) {
       return;
     }
-    const htmlEl = document.documentElement;
-    const bodyEl = document.body;
-    const prevHtmlOverflow = htmlEl.style.overflow;
-    const prevBodyOverflow = bodyEl.style.overflow;
-    const prevBodyOverflowX = bodyEl.style.overflowX;
-
-    htmlEl.style.overflow = "hidden";
-    bodyEl.style.overflow = "hidden";
-    bodyEl.style.overflowX = "hidden";
-
     const viewportEl = viewportRef.current;
     if (!viewportEl) {
-      return () => {
-        htmlEl.style.overflow = prevHtmlOverflow;
-        bodyEl.style.overflow = prevBodyOverflow;
-        bodyEl.style.overflowX = prevBodyOverflowX;
-      };
+      return;
     }
 
     const sync = () => {
@@ -85,9 +71,6 @@ export function Drawer({
       window.removeEventListener("resize", sync);
       window.visualViewport?.removeEventListener("resize", sync);
       window.visualViewport?.removeEventListener("scroll", sync);
-      htmlEl.style.overflow = prevHtmlOverflow;
-      bodyEl.style.overflow = prevBodyOverflow;
-      bodyEl.style.overflowX = prevBodyOverflowX;
     };
   }, [effectiveOpen]);
 
