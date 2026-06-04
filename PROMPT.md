@@ -25,19 +25,20 @@
 - **字体**：Orbitron（标题）、Rajdhani（正文）、Share Tech Mono（数值 / 等宽）。
 - **几何**：锐利、统一的切角（`clip-path`），尺寸从预制调色板 `--nova-clip-N` 按名选取。
 - **辉光**：用 `filter: drop-shadow()`，辉光跟随切角轮廓（`box-shadow` 是矩形，不跟随）。同一元素上 `clip-path` 在 `filter` 之后应用，会把该层的 drop-shadow 裁掉，因此阴影 / 辉光始终挂在不切角的外层。
-- **氛围层**：动态网格 + 径向辉光 + 扫描线（`html::before`）+ 胶片噪点（内联 `feTurbulence` SVG，`html::after`）+ 暗角。
+- **氛围层**：角落径向辉光（品红右上 + 青左下）叠 `bg → bg-2` 竖直渐变 + 漂移网格（径向遮罩向下淡出）+ 扫描线（`multiply`）+ 胶片噪点（内联 `feTurbulence` SVG，`overlay`）；四层分别挂在 `body::before` / `body::after` / `html::before` / `html::after`。
 - **动效**：按钮高光斜扫、进度条流动条纹、面板扫描光、徽章呼吸、Hero 旋转准星；入场为顶栏下滑 + Hero 文案 stagger + 面板滚动渐入；尊重 `prefers-reduced-motion`。
 
 ## 设计令牌（`theme/tokens.css`）
 
 设计语言的视觉值集中在此，组件只引用（一次性 / 展示层值就近写立即数，见上节）。换肤改这里即可。分组：
 
-- **色板**：`--nova-bg / -2`、`--nova-primary / -deep`、`--nova-secondary`、`--nova-success / warning / danger`、`--nova-text / -bright / -dim / -mute`、`--nova-on-primary / -danger`。
+- **色板**：背景 `--nova-bg / -2`；五个强调色每个配一个 `-deep` 暗档（用于渐变止点 / 按下态 / 进度填充底色）—— `--nova-primary / -deep`、`--nova-secondary / -deep`、`--nova-success / -deep`、`--nova-warning / -deep`、`--nova-danger / -deep`；文本 `--nova-text / -bright / -dim / -mute`、反色前景 `--nova-on-primary / -danger`。
 - **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
-- **品牌色填充**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`。
+- **品牌色填充与 danger 家族**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`、危险态文字 `--nova-danger-text`、危险输入底色 `--nova-danger-inset`。
+- **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`。
 - **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
-- **辉光与阴影**：`--nova-glow / -text / -bar / -focus / -popup / -modal`、`--nova-shadow-popup / -modal`。
-- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
+- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
+- **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel，演示页 Hero 同档）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
 - **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap 走此阶梯（含 `row-gap` 等长写）；`1 / 2 / 3px` 发线内缩与 `>28px` 结构性留白（图标内缩、关闭按钮让位等）属一次性，写立即数。
@@ -71,7 +72,7 @@
 - `.nova-tick` —— 标题 / 图例的切角尖角，色走 `--nova-tick-color`。
 - `.nova-scrim-backdrop` —— 模态背板。
 - `.nova-modal-title / -desc / -body / -actions` —— 模态文本，标题色走 `--nova-title-color`。
-- `.nova-modal-close` —— 切角关闭按钮。
+- `.nova-modal-x` —— 切角关闭按钮（`.nova-modal-x--danger` 为危险悬停态）。
 - 分隔线统一复用 `.nova-separator`。
 - 折叠类（Accordion / Collapsible）的 trigger / marker / chevron / panel / content 统一复用 `.nova-disclosure__*`。
 
@@ -122,7 +123,7 @@
 - inline-flex 分段控件（ToggleGroup）加 `width: fit-content`，否则被 `align-items: stretch` 拉满宽。
 - 细分隔条（1px）在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`，否则被按比例压成 0。
 - grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`，否则子项撑破轨道。
-- 让文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏、单列；≤768px 作手机端处理（收紧间距、分段控件换行或横滚）。
+- 让文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏、单列；≤768px 作手机端处理（收紧间距、分段控件换行或横滚）；≤540px 再收一档（最窄屏）。
 
 ## 演示页
 
