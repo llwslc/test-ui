@@ -556,9 +556,6 @@
   }
 }
 @media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
   .nova-header {
     padding: 0 14px;
     gap: 12px;
