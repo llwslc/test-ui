@@ -1,8 +1,18 @@
+.nova-drawer__viewport {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--nova-z-overlay);
+  width: var(--nova-overlay-vw, 100vw);
+  height: var(--nova-overlay-vh, 100vh);
+  overflow: hidden;
+}
+
 .nova-drawer {
   --nova-overlay-glow: var(--nova-glow-modal);
   --nova-drawer-shadow: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  z-index: var(--nova-z-overlay);
+  position: absolute;
   outline: none;
   transition: transform var(--nova-dur-slow) var(--nova-ease-out);
 }
@@ -38,7 +48,7 @@
 .nova-drawer--left {
   top: 0;
   height: 100%;
-  width: min(420px, 92vw);
+  width: min(420px, calc(100% - 32px));
 }
 .nova-drawer--right {
   right: 0;
@@ -58,7 +68,7 @@
 .nova-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(60vh, 460px);
+  height: min(60%, 460px);
 }
 .nova-drawer--top {
   top: 0;
