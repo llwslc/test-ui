@@ -20,7 +20,11 @@ import {
   Form,
   Input,
   Menu,
+  MenuItem,
+  MenuSeparator,
+  MenuSub,
   Menubar,
+  MenubarMenu,
   Meter,
   NavigationMenu,
   NumberField,
@@ -46,7 +50,6 @@ import {
   ToolbarSeparator,
   Tooltip,
   useToast,
-  type MenubarMenu,
   type NavMenuItem,
 } from "./components";
 import {
@@ -168,43 +171,6 @@ const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
   { value: "beacon", label: "Nav beacon" },
-];
-
-const MENUBAR_MENUS: MenubarMenu[] = [
-  {
-    label: "File",
-    items: [
-      { label: "New Mission", icon: <BoltIcon />, shortcut: "⌘N" },
-      { label: "Open Log", icon: <CopyIcon />, shortcut: "⌘O" },
-      "separator",
-      { label: "Jettison", icon: <TrashIcon />, tone: "danger" },
-    ],
-  },
-  {
-    label: "Edit",
-    items: [
-      { label: "Undo", shortcut: "⌘Z" },
-      { label: "Redo", shortcut: "⇧⌘Z" },
-    ],
-  },
-  {
-    label: "View",
-    items: [
-      { label: "Map", icon: <SearchIcon /> },
-      { label: "Grid View", icon: <CopyIcon /> },
-      {
-        label: "Sensors",
-        icon: <SignalIcon />,
-        submenu: [
-          { label: "Short Range" },
-          { label: "Long Range" },
-          { label: "Gravimetric" },
-          "separator",
-          { label: "Calibrate", icon: <BoltIcon /> },
-        ],
-      },
-    ],
-  },
 ];
 
 const NAVMENU_ITEMS: NavMenuItem[] = [
@@ -898,28 +864,58 @@ function Demo() {
 
             <div className="nova-section" id="menu">
               <Panel title="Menu" meta="MNU">
-                <Menu
-                  trigger={<Button variant="ghost">Actions ▾</Button>}
-                  items={[
-                    { label: "Scan Sector", icon: <SearchIcon />, shortcut: "⌘S" },
-                    { label: "Plot Course", icon: <BoltIcon />, shortcut: "⌘P" },
-                    { label: "Duplicate", icon: <CopyIcon />, shortcut: "⌘D" },
-                    { label: "Hail Vessel", icon: <SignalIcon />, disabled: true },
-                    "separator",
-                    {
-                      label: "Jettison Cargo",
-                      icon: <TrashIcon />,
-                      shortcut: "⌫",
-                      tone: "danger",
-                    },
-                  ]}
-                />
+                <Menu trigger={<Button variant="ghost">Actions ▾</Button>}>
+                  <MenuItem icon={<SearchIcon />} shortcut="⌘S">
+                    Scan Sector
+                  </MenuItem>
+                  <MenuItem icon={<BoltIcon />} shortcut="⌘P">
+                    Plot Course
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                    Duplicate
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />} disabled>
+                    Hail Vessel
+                  </MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                    Jettison Cargo
+                  </MenuItem>
+                </Menu>
               </Panel>
             </div>
 
             <div className="nova-section span-2" id="menubar">
               <Panel title="Menubar" meta="MBR">
-                <Menubar menus={MENUBAR_MENUS} />
+                <Menubar>
+                  <MenubarMenu label="File">
+                    <MenuItem icon={<BoltIcon />} shortcut="⌘N">
+                      New Mission
+                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘O">
+                      Open Log
+                    </MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<TrashIcon />} tone="danger">
+                      Jettison
+                    </MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Edit">
+                    <MenuItem shortcut="⌘Z">Undo</MenuItem>
+                    <MenuItem shortcut="⇧⌘Z">Redo</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="View">
+                    <MenuItem icon={<SearchIcon />}>Map</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Grid View</MenuItem>
+                    <MenuSub icon={<SignalIcon />} label="Sensors">
+                      <MenuItem>Short Range</MenuItem>
+                      <MenuItem>Long Range</MenuItem>
+                      <MenuItem>Gravimetric</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<BoltIcon />}>Calibrate</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
               </Panel>
             </div>
 
@@ -932,19 +928,22 @@ function Demo() {
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
-                  items={[
-                    { label: "Copy Coordinates", icon: <CopyIcon />, shortcut: "⌘C" },
-                    { label: "Ping Beacon", icon: <SignalIcon />, shortcut: "⌘B" },
-                    "separator",
-                    {
-                      label: "Purge Node",
-                      icon: <TrashIcon />,
-                      shortcut: "⌫",
-                      tone: "danger",
-                    },
-                  ]}
+                  trigger={
+                    <>
+                      Right-click anywhere in this zone <kbd>⌃ click</kbd>
+                    </>
+                  }
                 >
-                  Right-click anywhere in this zone <kbd>⌃ click</kbd>
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘C">
+                    Copy Coordinates
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />} shortcut="⌘B">
+                    Ping Beacon
+                  </MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                    Purge Node
+                  </MenuItem>
                 </ContextMenu>
               </Panel>
             </div>

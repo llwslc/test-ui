@@ -77,11 +77,11 @@ export type { AlertDialogProps, AlertDialogCloseProps } from "./AlertDialog";
 export { Popover } from "./Popover";
 export type { PopoverProps } from "./Popover";
 
-export { Menu } from "./Menu";
-export type { MenuProps, MenuItem } from "./Menu";
+export { Menu, MenuItem, MenuSeparator, MenuSub } from "./Menu";
+export type { MenuProps, MenuItemProps, MenuSubProps } from "./Menu";
 
-export { Menubar } from "./Menubar";
-export type { MenubarProps, MenubarMenu } from "./Menubar";
+export { Menubar, MenubarMenu } from "./Menubar";
+export type { MenubarProps, MenubarMenuProps } from "./Menubar";
 
 export { NavigationMenu } from "./NavigationMenu";
 export type {
