@@ -57,7 +57,7 @@
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-navmenu__triggerwrap:has([data-popup-open]) {
-  filter: drop-shadow(0 0 10px var(--nova-primary-a40));
+  filter: var(--nova-glow-trigger);
 }
 .nova-navmenu__trigger[data-popup-open] {
   background: var(--nova-primary);

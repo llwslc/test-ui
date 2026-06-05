@@ -74,7 +74,7 @@
   width: var(--active-tab-width);
   transform: translateX(var(--active-tab-left));
   background: var(--nova-primary);
-  box-shadow: 0 0 10px var(--nova-primary);
+  box-shadow: 0 0 7px var(--nova-primary);
   transition:
     transform var(--nova-dur) var(--nova-ease),
     width var(--nova-dur) var(--nova-ease);

@@ -85,7 +85,7 @@ html::after {
 
 ::selection {
   background: var(--nova-tint-active);
-  color: #fff;
+  color: var(--nova-text-bright);
 }
 
 /* Themed scrollbars */

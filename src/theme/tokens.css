@@ -64,6 +64,8 @@
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
   --nova-glow-focus: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
   --nova-glow-popup: drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
+  --nova-glow-active: drop-shadow(0 0 8px var(--nova-line-strong));
+  --nova-glow-trigger: drop-shadow(0 0 10px var(--nova-primary-a40));
 
   --nova-font: "Rajdhani", "Segoe UI", system-ui, sans-serif;
   --nova-font-display: "Orbitron", "Rajdhani", sans-serif;

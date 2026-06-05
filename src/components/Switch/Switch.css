@@ -50,7 +50,7 @@
   background: var(--nova-primary);
 }
 .nova-switch[data-checked] {
-  filter: drop-shadow(0 0 8px var(--nova-line-strong));
+  filter: var(--nova-glow-active);
 }
 .nova-switch[data-checked] .nova-switch__track::before {
   background: var(--nova-accent-surface);

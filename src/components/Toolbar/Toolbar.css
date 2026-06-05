@@ -23,7 +23,7 @@
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-toolbar__btnwrap:has(.is-active) {
-  filter: drop-shadow(0 0 10px var(--nova-primary-a40));
+  filter: var(--nova-glow-trigger);
 }
 
 .nova-toolbar__btn {
