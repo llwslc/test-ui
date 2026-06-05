@@ -10,9 +10,12 @@
   gap: var(--nova-space-3);
   cursor: pointer;
   user-select: none;
-  font-family: var(--nova-font);
-  font-size: var(--nova-fs-16);
-  color: var(--nova-text);
+  font-family: var(--nova-font-display);
+  font-size: var(--nova-fs-12);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
+  text-transform: uppercase;
+  color: var(--nova-text-dim);
 }
 
 .nova-radio__control {

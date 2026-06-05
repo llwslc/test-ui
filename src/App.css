@@ -287,9 +287,10 @@
   border-left: 1px solid var(--nova-line);
 }
 .demo-tag {
-  font-family: var(--nova-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-family: var(--nova-font-display);
+  font-size: var(--nova-fs-12);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
@@ -300,8 +301,11 @@
   gap: 14px;
 }
 .demo-rowlabel {
-  font-family: var(--nova-font);
-  font-size: 16px;
+  font-family: var(--nova-font-display);
+  font-size: var(--nova-fs-12);
+  font-weight: var(--nova-fw-600);
+  letter-spacing: var(--nova-ls-10);
+  text-transform: uppercase;
   color: var(--nova-text-dim);
 }
 
