@@ -49,7 +49,7 @@
 }
 .nova-tabs__tab:hover {
   color: var(--nova-text);
-  background: var(--nova-tint-soft);
+  background: linear-gradient(180deg, transparent, var(--nova-tint-soft));
 }
 .nova-tabs__tab[data-active] {
   color: var(--nova-primary);

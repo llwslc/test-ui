@@ -124,3 +124,13 @@
 .nova-autocomplete__item[data-highlighted]::after {
   opacity: 1;
 }
+.nova-autocomplete__item[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
+  cursor: not-allowed;
+}
+.nova-autocomplete__input:disabled {
+  cursor: not-allowed;
+}
+.nova-autocomplete__field:has(.nova-autocomplete__input:disabled) {
+  opacity: var(--nova-disabled-opacity);
+}

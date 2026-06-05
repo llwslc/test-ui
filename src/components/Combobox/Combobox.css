@@ -153,6 +153,16 @@
 .nova-combobox__item[data-selected] {
   color: var(--nova-primary);
 }
+.nova-combobox__item[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
+  cursor: not-allowed;
+}
+.nova-combobox__input:disabled {
+  cursor: not-allowed;
+}
+.nova-combobox__control:has(.nova-combobox__input:disabled) {
+  opacity: var(--nova-disabled-opacity);
+}
 .nova-combobox__item-text {
   flex: 1;
   white-space: nowrap;
