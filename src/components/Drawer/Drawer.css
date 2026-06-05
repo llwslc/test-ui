@@ -139,12 +139,21 @@
   gap: var(--nova-space-5);
 }
 .nova-drawer__footer {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   gap: var(--nova-space-3);
   margin-top: var(--nova-space-5);
   padding-top: var(--nova-space-5);
-  border-top: 1px solid var(--nova-line);
+}
+.nova-drawer__footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nova-line-strong), transparent);
 }
 
 .nova-drawer__x {
