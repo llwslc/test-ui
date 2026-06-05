@@ -35,7 +35,7 @@
 .nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {
   opacity: 0;
-  transform: translateY(-28px);
+  transform: translateX(-28px);
 }
 
 .nova-toast__beam {
