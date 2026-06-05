@@ -32,16 +32,17 @@
 
 设计语言的视觉值集中在此，组件只引用（一次性 / 展示层值就近写立即数，见上节）。换肤改这里即可。分组：
 
-- **色板**：背景 `--nova-bg / -2`；五个强调色每个配一个 `-deep` 暗档（用于渐变止点 / 按下态 / 进度填充底色）—— `--nova-primary / -deep`、`--nova-secondary / -deep`、`--nova-success / -deep`、`--nova-warning / -deep`、`--nova-danger / -deep`；文本 `--nova-text / -bright / -dim / -mute`、反色前景 `--nova-on-primary / -danger`。
+- **色板**：背景 `--nova-bg / -2`；五个强调色每个配一个 `-deep` 暗档（渐变止点 / 危险·品牌按钮渐变底 / Meter 分级填充底）—— `--nova-primary / -deep`、`--nova-secondary / -deep`、`--nova-success / -deep`、`--nova-warning / -deep`、`--nova-danger / -deep`；文本 `--nova-text / -bright / -dim / -mute`、反色前景 `--nova-on-primary / -danger`。
+- **强调填充配方**：两条由 `primary` / `-deep` 拼出的复用渐变 —— `--nova-accent-surface`（`180deg, primary→deep`，「点亮表面」激活填充：Button / Switch / Checkbox）、`--nova-accent-fill`（`90deg, deep→primary 55%`，「方向填充」指示条：Slider / Progress / Meter，偏亮使填充读作 primary 青）。
 - **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
 - **品牌色填充与 danger 家族**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`、危险态文字 `--nova-danger-text`、危险输入底色 `--nova-danger-inset`。
 - **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`。
 - **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
-- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
+- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-active`（选中辉光 `0 0 8px line-strong`：Switch / Toggle / Avatar）、`--nova-glow-trigger`（激活触发器辉光 `0 0 10px primary-a40`：Toolbar / Menubar / NavMenu）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
 - **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
-- **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap 走此阶梯（含 `row-gap` 等长写）；`1 / 2 / 3px` 发线内缩与 `>28px` 结构性留白（图标内缩、关闭按钮让位等）属一次性，写立即数。
+- **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap / 分段 gap 一律走此阶梯（含 `row-gap` 等长写）；只有 `::before` 的 1px 发线内缩、细轨道高度等亚网格小值，与 `>28px` 的演示页结构性留白，属一次性写立即数。
 - **排版**（镜像切角的「按名选尺寸」）：`--nova-fs-N`（字号，N=px，如 `fs-14`）、`--nova-ls-N`（字距，N=em×100，如 `ls-10`=.1em）、`--nova-lh-N`（行高，N=×100，如 `lh-150`=1.5）、`--nova-fw-N`（字重，如 `fw-700`）；字体族走 `--nova-font / -display / -mono`。组件里字号 / 字距 / 行高 / 字重一律走 token，不裸写 px / em / 数字（仅 `clamp()` / `calc()` / `em` 相对值等上下文式除外）。
 
 ## 核心技术
@@ -58,6 +59,7 @@
 - `.nova-elevation` —— 不切角的抬升层，挂 drop-shadow 阴影 + 辉光，经 `--nova-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态 / Toast 挂 Popup / Root。
 - `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充 / 边框色走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill` / `--nova-surface-border`（默认 `--nova-line-strong`；Menubar / Toolbar / NavMenu 的 list 用它把边框降到 `--nova-line`，复用同一配方）。
 - `.nova-anim-pop` —— 锚定浮层的统一开合动效（`transform-origin` + 过渡 + `[data-starting/ending-style]` 的淡入缩放）。
+- `.nova-overlay-viewport` —— Dialog / AlertDialog 共用的居中模态层（挂在 Base UI `Dialog/AlertDialog.Viewport`）：`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0` 贴内容框、不用 `100vw`——否则比内容宽出一条滚动条）+ `display:grid` 配子项 `margin:auto`（短弹窗居中、超高弹窗从顶部滚动，`place-items:center` 会把头部顶出滚动起点）+ `overflow:auto`。Drawer 用自带的边缘锚定 viewport（`overflow:hidden`，承载滑入）。
 - 同一元素不同时带 `.nova-elevation` 与 `.nova-surface`。
 
 ### 连接线
@@ -85,12 +87,15 @@
 - `.nova-h3`：display · `fs-13` · `fw-700` · `ls-16` · 大写 —— 段 / 小节标题（`.nova-panel__title` 已复用此类）。
 - `.nova-text`：body · `fs-14` · `lh-160` · `text-dim` —— 正文段落。
 - 修饰：`-h*--accent`（转 primary + 辉光）、`.nova-text--bright`（正文转亮）。
+- **字段标签**（控件名）：display · `fs-12` · `fw-600` · `ls-10` · 大写 · `text-dim` 的 HUD caption —— Slider / Progress / Meter / Input 字段标签、Checkbox / Radio / Switch 行 / Toggle 选项文字、演示页 tag 统一此规格（非独立 class，各组件就地写同一组属性）。
 
-### 对比度
+### 交互态（统一约定）
 
-- 「边框色打底 + `::before` 填充」时，激活态填充用深色不透明 —— 半透明会让底下的亮边框透上来铺满整块，前景看不清。
-- 激活态统一「青填充 + 深色前景」（checkbox 深勾、toggle 深字、switch 深滑块一致）。
-- 禁用态 dim 整行（`.field:has([data-disabled])` → 整行 `opacity` + `cursor: not-allowed`），且不叠两层 opacity。
+- **选中 / 激活**按角色分两种青填充：「点亮表面」(Button / Switch / Checkbox) 用 `--nova-accent-surface` 渐变；「分段选中」(ToggleGroup / Toolbar / Menubar / NavMenu) 用实心 `--nova-primary`。二者前景一律翻深色 `--nova-on-primary`（深勾 / 深字 / 深滑块），且**任何切到 primary 填充的元素，其箭头 / 占位符 / 数值也要翻深**，否则青字叠青底看不见（Select 开启态即此坑）。列表 / Tab 类「文字强调选中」则只把文字转 `--nova-primary`、不填充。
+- 「边框色打底 + `::before` 填充」时激活填充必须深色不透明 —— 半透明会让底下的亮边框透上来铺满整块，前景看不清。
+- **悬停**：分段 / 触发条背景统一 `--nova-tint-soft` 纯色（Tabs 保留竖向渐变是有意例外）；图标 / 动作按钮（icon button、Toolbar 按钮、Toast 关闭）文字转 `--nova-primary`，菜单触发器 / 列表项转亮文 `--nova-text` / `-bright`。
+- **键盘焦点**：布尔开关（Checkbox / Switch / Radio）用 `--nova-glow-focus` 辉光；分段 / 触发条用 `box-shadow: inset 0 0 0 1px line-strong` 内描边；输入框边框点亮成 `--nova-primary` + 字段级 `--nova-glow-focus`。可聚焦浮层 popup 加 `outline: none`。
+- **禁用**：`opacity: var(--nova-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity（Button 另叠灰度滤镜、NumberField 到界仅置灰步进按钮——属各自语义）。
 
 ## 组件（37 个）
 
