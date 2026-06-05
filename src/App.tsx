@@ -1136,11 +1136,11 @@ function Demo() {
                   <Separator label="Section 7G" />
                   <span className="demo-tag">Vertical</span>
                   <div className="demo-row">
-                    <span className="demo-rowlabel">Sector A</span>
+                    <span className="demo-seg">Sector A</span>
                     <Separator orientation="vertical" />
-                    <span className="demo-rowlabel">Sector B</span>
+                    <span className="demo-seg">Sector B</span>
                     <Separator orientation="vertical" />
-                    <span className="demo-rowlabel">Sector C</span>
+                    <span className="demo-seg">Sector C</span>
                   </div>
                 </div>
               </Panel>

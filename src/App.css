@@ -308,6 +308,11 @@
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
+.demo-seg {
+  font-family: var(--nova-font);
+  font-size: var(--nova-fs-14);
+  color: var(--nova-text);
+}
 
 /* Preview Card trigger + content */
 .demo-link {
