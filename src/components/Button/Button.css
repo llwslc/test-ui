@@ -31,7 +31,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
+  background: var(--nova-accent-surface);
   transition:
     background var(--nova-dur) var(--nova-ease),
     filter var(--nova-dur) var(--nova-ease);

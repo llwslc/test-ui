@@ -48,7 +48,11 @@
 }
 .nova-meter__indicator {
   height: 100%;
-  background: linear-gradient(90deg, var(--nova-meter-fill-deep), var(--nova-meter-fill));
+  background: linear-gradient(
+    90deg,
+    var(--nova-meter-fill-deep),
+    var(--nova-meter-fill) 55%
+  );
   box-shadow: 0 0 14px var(--nova-meter-fill);
   transition: width var(--nova-dur-slow) var(--nova-ease);
 }

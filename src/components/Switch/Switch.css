@@ -54,7 +54,7 @@
   filter: drop-shadow(0 0 8px var(--nova-line-strong));
 }
 .nova-switch[data-checked] .nova-switch__track::before {
-  background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
+  background: var(--nova-accent-surface);
 }
 .nova-switch[data-checked] .nova-switch__thumb {
   transform: translateX(28px);

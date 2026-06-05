@@ -57,7 +57,7 @@
 }
 .nova-toggle[data-pressed] {
   color: var(--nova-on-primary);
-  background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
+  background: var(--nova-accent-surface);
 }
 .nova-toggle:focus-visible {
   outline: none;

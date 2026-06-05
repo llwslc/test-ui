@@ -51,7 +51,7 @@
 .nova-slider__indicator {
   position: absolute;
   height: 100%;
-  background: linear-gradient(90deg, var(--nova-primary-deep), var(--nova-primary));
+  background: var(--nova-accent-fill);
   box-shadow: 0 0 10px var(--nova-line-strong);
 }
 

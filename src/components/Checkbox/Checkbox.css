@@ -57,7 +57,7 @@
 
 .nova-checkbox[data-checked]::before,
 .nova-checkbox[data-indeterminate]::before {
-  background: linear-gradient(160deg, var(--nova-primary), var(--nova-primary-deep));
+  background: var(--nova-accent-surface);
 }
 .nova-checkbox[data-checked] .nova-checkbox__check {
   opacity: 1;

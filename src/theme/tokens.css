@@ -18,6 +18,17 @@
   --nova-warning: #ffce54;
   --nova-danger: #ff4d5e;
 
+  --nova-accent-surface: linear-gradient(
+    180deg,
+    var(--nova-primary),
+    var(--nova-primary-deep)
+  );
+  --nova-accent-fill: linear-gradient(
+    90deg,
+    var(--nova-primary-deep),
+    var(--nova-primary) 55%
+  );
+
   --nova-secondary-fill: rgba(255, 45, 117, 0.55);
   --nova-secondary-deep: #c4185a;
   --nova-danger-fill: rgba(255, 77, 94, 0.55);
