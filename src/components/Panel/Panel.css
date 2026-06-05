@@ -28,21 +28,21 @@
 .nova-panel--scan::after {
   content: "";
   position: absolute;
-  left: 1px;
-  right: 1px;
-  top: -50%;
-  height: 44%;
+  inset: 1px;
   z-index: 0;
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft), transparent);
+  background-size: 100% 44%;
+  background-repeat: no-repeat;
+  background-position: 0 -100%;
   pointer-events: none;
   animation: nova-panel-scan 6s linear infinite;
 }
 @keyframes nova-panel-scan {
   from {
-    top: -50%;
+    background-position: 0 -100%;
   }
   to {
-    top: 110%;
+    background-position: 0 200%;
   }
 }
 
