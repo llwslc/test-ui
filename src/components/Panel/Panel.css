@@ -9,6 +9,7 @@
 
 .nova-panel {
   position: relative;
+  overflow: clip;
   background: var(--nova-line);
   clip-path: var(--nova-clip-12);
   isolation: isolate;
