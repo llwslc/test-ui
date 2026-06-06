@@ -41,15 +41,20 @@
   transition: max-height var(--nova-dur-slow) var(--nova-ease);
 }
 
-/* antd-style: slide in from the right + fade. The surface max-height and the
-   margin collapse on enter/exit, so the rest of the stack reflows by NORMAL
-   FLOW (neighbours follow the animated height — smooth, no per-card transform,
-   so no snap). Glow lives on .nova-toast (no overflow there) and is never cropped. */
-.nova-toast[data-starting-style],
+/* Enter slides DOWN from above; exit slides DOWN + out — everything flows
+   downward. The surface max-height and the margin collapse on enter/exit, so the
+   rest of the stack reflows by NORMAL FLOW (neighbours follow the animated height
+   — no per-card transform, so no snap). Glow lives on .nova-toast (no overflow
+   there) and is never cropped. */
+.nova-toast[data-starting-style] {
+  opacity: 0;
+  margin-bottom: 0;
+  transform: translateY(-16px);
+}
 .nova-toast[data-ending-style] {
   opacity: 0;
   margin-bottom: 0;
-  transform: translateX(40px);
+  transform: translateY(16px);
 }
 .nova-toast[data-starting-style] .nova-toast__surface,
 .nova-toast[data-ending-style] .nova-toast__surface {
