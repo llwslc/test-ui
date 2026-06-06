@@ -1,13 +1,13 @@
 .nova-toast__viewport {
+  --nova-toast-gap: var(--nova-space-3);
+  --nova-toast-peek: 14px;
   position: fixed;
   top: 22px;
   right: 22px;
   z-index: var(--nova-z-toast);
-  display: flex;
-  flex-direction: column;
-  gap: var(--nova-space-3);
   width: 360px;
   max-width: calc(100vw - 44px);
+  height: var(--toast-frontmost-height, 0);
   outline: none;
 }
 
@@ -17,11 +17,34 @@
   --nova-overlay-glow: drop-shadow(
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
   );
-  position: relative;
+  --nova-toast-x: var(--toast-swipe-movement-x, 0px);
+  --nova-toast-stack-y: calc(var(--toast-index) * var(--nova-toast-peek) * -1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   outline: none;
+  transform-origin: top right;
+  z-index: calc(1000 - var(--toast-index));
+  transform: translateX(var(--nova-toast-x))
+    translateY(calc(var(--nova-toast-stack-y) + var(--toast-swipe-movement-y, 0px)))
+    scale(calc(1 - var(--toast-index) * 0.05));
+  opacity: calc(1 - var(--toast-index) * 0.18);
   transition:
     opacity var(--nova-dur-slow) var(--nova-ease),
     transform var(--nova-dur-slow) var(--nova-ease);
+}
+.nova-toast[data-expanded] {
+  --nova-toast-stack-y: calc(
+    var(--toast-offset-y) + var(--toast-index) * var(--nova-toast-gap)
+  );
+  transform: translateX(var(--nova-toast-x))
+    translateY(calc(var(--nova-toast-stack-y) + var(--toast-swipe-movement-y, 0px)))
+    scale(1);
+  opacity: 1;
+}
+.nova-toast[data-swiping] {
+  transition: none;
 }
 .nova-toast__surface {
   --nova-surface-clip: var(--nova-clip-9);
@@ -35,7 +58,15 @@
 .nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {
   opacity: 0;
-  transform: translateX(-28px);
+  transform: translateX(-28px)
+    translateY(calc(var(--nova-toast-stack-y) + var(--toast-swipe-movement-y, 0px)))
+    scale(calc(1 - var(--toast-index) * 0.05));
+}
+.nova-toast[data-ending-style][data-swipe-direction="right"] {
+  opacity: 0;
+  transform: translateX(calc(var(--toast-swipe-movement-x, 0px) + 150%))
+    translateY(calc(var(--nova-toast-stack-y) + var(--toast-swipe-movement-y, 0px)))
+    scale(calc(1 - var(--toast-index) * 0.05));
 }
 
 .nova-toast__beam {
