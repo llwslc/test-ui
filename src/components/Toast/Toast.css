@@ -43,12 +43,6 @@
   overflow: hidden;
 }
 
-/* Enter slides DOWN from above; exit slides DOWN + out — everything flows
-   downward. The card's own height (grid-template-rows 1fr<->0fr, the true
-   content height, linear the whole duration) and margin collapse on enter/exit,
-   so the rest of the stack reflows by NORMAL FLOW (no per-card transform → no
-   snap). Collapse is the grid row holding the inner surface; the outer
-   .nova-toast keeps the drop-shadow glow (no overflow there), never cropped. */
 .nova-toast[data-starting-style] {
   opacity: 0;
   margin-bottom: 0;
@@ -61,7 +55,6 @@
   grid-template-rows: 0fr;
   transform: translateY(16px);
 }
-/* swipe-to-dismiss (swipeDirection="right"): fly off rightward honoring the drag */
 .nova-toast[data-ending-style][data-swipe-direction="right"] {
   transform: translateX(calc(var(--toast-swipe-movement-x, 0px) + 110%));
 }
