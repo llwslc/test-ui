@@ -1,12 +1,18 @@
 import { cx } from "../cx";
-import { Dialog as BaseDialog } from "@base-ui/react/dialog";
-import { useRef } from "react";
+import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import { XIcon } from "../icons";
 import "./Drawer.css";
 
 export type DrawerSide = "left" | "right" | "top" | "bottom";
+
+const SWIPE_DIRECTION: Record<DrawerSide, "left" | "right" | "up" | "down"> = {
+  left: "left",
+  right: "right",
+  top: "up",
+  bottom: "down",
+};
 
 export interface DrawerProps {
   trigger: ReactElement;
@@ -20,9 +26,6 @@ export interface DrawerProps {
   className?: string;
 }
 
-/* A drawer is a Dialog anchored to a screen edge. Base UI's Dialog supplies
-   the focus-trap, escape handling and enter/exit data-attributes; the slide
-   comes from translating the popup on [data-starting-style]/[data-ending-style]. */
 export function Drawer({
   trigger,
   title,
@@ -34,25 +37,26 @@ export function Drawer({
   onOpenChange,
   className,
 }: DrawerProps) {
-  const popupRef = useRef<HTMLDivElement>(null);
   return (
-    <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
-      <BaseDialog.Trigger render={trigger} />
-      <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="nova-scrim-backdrop nova-drawer__backdrop" />
-        <BaseDialog.Viewport className="nova-drawer__viewport">
-          <BaseDialog.Popup
-            ref={popupRef}
-            initialFocus={popupRef}
+    <BaseDrawer.Root
+      open={open}
+      onOpenChange={onOpenChange}
+      swipeDirection={SWIPE_DIRECTION[side]}
+    >
+      <BaseDrawer.Trigger render={trigger} />
+      <BaseDrawer.Portal>
+        <BaseDrawer.Backdrop className="nova-scrim-backdrop nova-drawer__backdrop" />
+        <BaseDrawer.Viewport className="nova-drawer__viewport">
+          <BaseDrawer.Popup
             className={cx(
               "nova-elevation nova-drawer",
               `nova-drawer--${side}`,
               className,
             )}
           >
-            <div className="nova-surface nova-drawer__surface">
+            <BaseDrawer.Content className="nova-surface nova-drawer__surface">
               <span className="nova-drawer__edge" />
-              <BaseDialog.Close
+              <BaseDrawer.Close
                 render={
                   <Button
                     variant="icon"
@@ -64,15 +68,15 @@ export function Drawer({
                 }
               />
               {title != null ? (
-                <BaseDialog.Title className="nova-modal-title">
+                <BaseDrawer.Title className="nova-modal-title">
                   <span className="nova-tick" />
                   {title}
-                </BaseDialog.Title>
+                </BaseDrawer.Title>
               ) : null}
               {description != null ? (
-                <BaseDialog.Description className="nova-modal-desc">
+                <BaseDrawer.Description className="nova-modal-desc">
                   {description}
-                </BaseDialog.Description>
+                </BaseDrawer.Description>
               ) : null}
               {children != null ? (
                 <div className="nova-drawer__body">{children}</div>
@@ -80,10 +84,10 @@ export function Drawer({
               {footer != null ? (
                 <div className="nova-drawer__footer">{footer}</div>
               ) : null}
-            </div>
-          </BaseDialog.Popup>
-        </BaseDialog.Viewport>
-      </BaseDialog.Portal>
-    </BaseDialog.Root>
+            </BaseDrawer.Content>
+          </BaseDrawer.Popup>
+        </BaseDrawer.Viewport>
+      </BaseDrawer.Portal>
+    </BaseDrawer.Root>
   );
 }

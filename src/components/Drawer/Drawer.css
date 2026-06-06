@@ -15,6 +15,9 @@
   outline: none;
   transition: transform var(--nova-dur-slow) var(--nova-ease-out);
 }
+.nova-drawer[data-swiping] {
+  transition: none;
+}
 
 .nova-scrim-backdrop.nova-drawer__backdrop {
   transition-duration: var(--nova-dur-slow);
@@ -48,6 +51,7 @@
   top: 0;
   height: 100%;
   width: min(420px, 80%);
+  transform: translateX(var(--drawer-swipe-movement-x, 0px));
 }
 .nova-drawer--right {
   right: 0;
@@ -68,6 +72,7 @@
   left: 0;
   width: 100%;
   height: min(60%, 460px);
+  transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .nova-drawer--top {
   top: 0;
