@@ -38,7 +38,7 @@
 - **品牌色填充与 danger 家族**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`、危险态文字 `--nova-danger-text`、危险输入底色 `--nova-danger-inset`。
 - **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`、关态 thumb 金属渐变止点 `--nova-thumb-idle-top / -bottom`（Switch 旋钮 idle 填充）。
 - **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`、深表面渐变止点 `--nova-surface-deep-top / -bottom`（Avatar 头像底 / Switch 选中 thumb）。
-- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-active`（选中辉光 `0 0 8px line-strong`：Switch / ToggleGroup / Avatar）、`--nova-glow-trigger`（激活触发器辉光 `0 0 10px primary-a40`：Toolbar / Menubar / NavMenu）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
+- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-active`（选中辉光 `0 0 8px line-strong`：Switch / ToggleGroup / Avatar）、`--nova-glow-trigger`（激活触发器辉光 `0 0 10px primary-a40`：Toolbar / Menubar）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
 - **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
 - **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -in / -out`（`-in` 加速退场，`-out` 减速入场）、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
@@ -57,7 +57,7 @@
 全部带浮层的组件（Tooltip、Popover、PreviewCard、Menu、Menubar、ContextMenu、NavigationMenu、Select、Combobox、Autocomplete、Dialog、AlertDialog、Drawer、Toast —— 按是否使用浮层原语归组，与下文「组件」分类里的「浮层」类不同）用 `effects.css` 里同一套原语拼出，切角与阴影分两层：
 
 - `.nova-elevation` —— 不切角的抬升层，挂 drop-shadow 阴影 + 辉光，经 `--nova-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态 / Toast 挂 Popup / Root。
-- `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充 / 边框色走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill` / `--nova-surface-border`（默认 `--nova-line-strong`；Menubar / Toolbar / NavMenu 的 list 用它把边框降到 `--nova-line`，复用同一配方）。
+- `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充 / 边框色走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill` / `--nova-surface-border`（默认 `--nova-line-strong`；Menubar / Toolbar 的 list 用它把边框降到 `--nova-line`，复用同一配方）。
 - `.nova-anim-pop` —— 锚定浮层的统一开合动效（`transform-origin` + 过渡 + `[data-starting/ending-style]` 的淡入缩放）。
 - `.nova-overlay-viewport` —— Dialog / AlertDialog 共用的居中模态层（挂在 Base UI `Dialog/AlertDialog.Viewport`）：`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0` 贴内容框、不用 `100vw`——否则比内容宽出一条滚动条）+ `display:grid` 配子项 `margin:auto`（短弹窗居中、超高弹窗从顶部滚动，`place-items:center` 会把头部顶出滚动起点）+ `overflow:auto`。Drawer 用自带的边缘锚定 viewport（`overflow:hidden`，承载滑入）。
 - 同一元素不同时带 `.nova-elevation` 与 `.nova-surface`。
@@ -91,9 +91,9 @@
 
 ### 交互态（统一约定）
 
-- **选中 / 激活**按角色分两种青填充：「点亮表面」(Button / Switch / Checkbox) 用 `--nova-accent-surface` 渐变；「分段选中」(ToggleGroup / Toolbar / Menubar / NavMenu) 用实心 `--nova-primary`。二者前景一律翻深色 `--nova-on-primary`（深勾 / 深字 / 深滑块），且**任何切到 primary 填充的元素，其箭头 / 占位符 / 数值也要翻深**，否则青字叠青底看不见（Select 开启态即此坑）。列表 / Tab 类「文字强调选中」则只把文字转 `--nova-primary`、不填充。
+- **选中 / 激活**按角色分两种青填充：「点亮表面」(Button / Switch / Checkbox) 用 `--nova-accent-surface` 渐变；「分段选中」(ToggleGroup / Toolbar / Menubar) 用实心 `--nova-primary`。二者前景一律翻深色 `--nova-on-primary`（深勾 / 深字 / 深滑块），且**任何切到 primary 填充的元素，其箭头 / 占位符 / 数值也要翻深**，否则青字叠青底看不见（Select 开启态即此坑）。列表 / Tab / NavMenu 类「文字强调选中」只把文字转 `--nova-primary`（Tab / NavMenu 另配青色辉光下划线指示条）、不填充。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明 —— 半透明会让底下的亮边框透上来铺满整块，前景看不清。
-- **悬停**：分段 / 触发条背景统一 `--nova-tint-soft` 纯色（两处有意例外：Tabs 保留竖向渐变；NavMenu 直链 `__toplink` 用实心 `--nova-primary` + `--nova-on-primary` 填充，读作"可点击导航"、与触发器开启态呼应——否则夹在触发器的亮开启填充旁会显得灰/禁用）；图标 / 动作按钮（icon button、Toolbar 按钮、Toast 关闭）文字转 `--nova-primary`，菜单触发器 / 列表项转亮文 `--nova-text` / `-bright`。
+- **悬停**：分段 / 触发条背景统一 `--nova-tint-soft` 纯色（有意例外：Tabs 与 NavMenu 复用同一套 tab 皮肤——竖向渐变 hover `linear-gradient(180deg, transparent, tint-soft)` + 底部青色辉光下划线指示条）；图标 / 动作按钮（icon button、Toolbar 按钮、Toast 关闭）文字转 `--nova-primary`，菜单触发器 / 列表项转亮文 `--nova-text` / `-bright`。
 - **键盘焦点**：布尔开关（Checkbox / Switch / Radio）用 `--nova-glow-focus` 辉光；分段 / 触发条用 `box-shadow: inset 0 0 0 1px line-strong` 内描边；输入框边框点亮成 `--nova-primary` + 字段级 `--nova-glow-focus`。可聚焦浮层 popup 加 `outline: none`。
 - **禁用**：`opacity: var(--nova-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity（Button 另叠灰度滤镜、NumberField 到界仅置灰步进按钮——属各自语义）。
 
@@ -107,7 +107,7 @@
 
 语义相近、各有定位的几组：
 
-- **Menu** 是动作菜单（左图标 + 右快捷键），用组合式 API：`<Menu trigger>` 内放 `<MenuItem>` / `<MenuSeparator>` / `<MenuSub>`（不是数据数组）。这三个复合组件经 context 注入对应底层原语，被 **ContextMenu**（右键触发，`<ContextMenu trigger>`）和 **Menubar**（常驻菜单栏，`<Menubar>` 内放 `<MenubarMenu label>`）共享复用（定义在 `Menu/parts.tsx`，皮肤走 `nova-menu__*`）；**NavigationMenu** 是站点导航富面板，用共享 viewport 承载各触发器的面板（开合走统一浮层动效，无尺寸变形）。
+- **Menu** 是动作菜单（左图标 + 右快捷键），用组合式 API：`<Menu trigger>` 内放 `<MenuItem>` / `<MenuSeparator>` / `<MenuSub>`（不是数据数组）。这三个复合组件经 context 注入对应底层原语，被 **ContextMenu**（右键触发，`<ContextMenu trigger>`）和 **Menubar**（常驻菜单栏，`<Menubar>` 内放 `<MenubarMenu label>`）共享复用（定义在 `Menu/parts.tsx`，皮肤走 `nova-menu__*`）；**NavigationMenu** 是站点头导航：一条无边框、复用 Tabs 皮肤的触发器栏（大写 Orbitron、竖向渐变 hover、底部青色辉光下划线；开启态文字转 `--nova-primary` + 辉光，chevron 翻转），各触发器悬停展开的富链接面板共享一个 viewport 承载（开合走统一浮层动效，无尺寸变形）。
 - **Combobox** 是选择器（值来自列表选中项，有清除 / 下拉 / 选中勾）；**Autocomplete** 是文本框 + 建议（值是输入的字符串，可保留表里没有的内容）—— Base UI 按 ARIA 语义把同一个引擎拆成这两个组件。
 - **PreviewCard** 是悬停富卡片，**Tooltip** 是纯文字提示，**Popover** 是点击弹层。
 - **Badge**、**Panel** 是纯样式件（非 Base UI）；**Drawer** 是边缘锚定的 Dialog；**Toast** 用 `ToastProvider` + `useToast`。
@@ -133,4 +133,4 @@
 
 ## 演示页
 
-顶部 HUD 栏（logo + 实时时钟 + 状态徽章）→ 左侧 sticky 索引（按 输入 / 表单 / 反馈 / 浮层 / 展示 / 基础 分组，锚点平滑跳转）→ Hero（标题 + 数据条 + 旋转准星）→ 响应式两栏 Panel 网格逐个展示每个控件 → 根部包 `ToastProvider`；整页挂网格 / 扫描线 / 噪点氛围层。
+顶部 HUD 栏（logo + NavigationMenu 主导航 + 实时时钟 + 状态徽章）→ 左侧 sticky 索引（按 输入 / 表单 / 反馈 / 浮层 / 展示 / 基础 分组，锚点平滑跳转）→ Hero（标题 + 数据条 + 旋转准星）→ 响应式两栏 Panel 网格逐个展示每个控件 → 根部包 `ToastProvider`；整页挂网格 / 扫描线 / 噪点氛围层。
