@@ -39,9 +39,10 @@
   color: var(--abyss-text);
 }
 .abyss-toggle[data-pressed] {
-  color: var(--abyss-on-glow);
-  background: linear-gradient(180deg, var(--abyss-glow), var(--abyss-glow-deep));
-  box-shadow: 0 0 10px var(--abyss-glow-a55);
+  color: var(--abyss-glow);
+  background: var(--abyss-glow-soft);
+  box-shadow: inset 0 0 0 1px var(--abyss-glow-a55);
+  text-shadow: 0 0 8px var(--abyss-glow-a55);
 }
 .abyss-toggle[data-pressed]::before,
 .abyss-toggle[data-pressed] + .abyss-toggle::before {
@@ -53,8 +54,8 @@
 }
 .abyss-toggle[data-pressed]:focus-visible {
   box-shadow:
-    0 0 10px var(--abyss-glow-a55),
-    inset 0 0 0 1px var(--abyss-text-bright);
+    inset 0 0 0 1px var(--abyss-glow),
+    0 0 8px var(--abyss-glow-a55);
 }
 .abyss-toggle[data-disabled] {
   opacity: var(--abyss-disabled-opacity);

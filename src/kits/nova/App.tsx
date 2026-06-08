@@ -130,8 +130,8 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     group: "Foundations",
     items: [
       ["typography", "Typography", "TYP"],
-      ["panel", "Panel", "PNL"],
       ["separator", "Separator", "SEP"],
+      ["panel", "Panel", "PNL"],
     ],
   },
 ];
@@ -1114,18 +1114,6 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="panel">
-              <Panel title="Panel" meta="PNL" scan>
-                <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
-                  The HUD frame wrapping every section: a chamfered border with corner
-                  brackets and an optional scan sweep.
-                </p>
-                <Panel title="Nested Frame" meta="SUB">
-                  <span className="demo-tag">Composable to any depth</span>
-                </Panel>
-              </Panel>
-            </div>
-
             <div className="nova-section" id="separator">
               <Panel title="Separator" meta="SEP">
                 <div className="demo-stack">
@@ -1142,6 +1130,18 @@ function Demo() {
                     <span className="nova-text">Sector C</span>
                   </div>
                 </div>
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="panel">
+              <Panel title="Panel" meta="PNL" scan>
+                <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
+                  The HUD frame wrapping every section: a chamfered border with corner
+                  brackets and an optional scan sweep.
+                </p>
+                <Panel title="Nested Frame" meta="SUB">
+                  <span className="demo-tag">Composable to any depth</span>
+                </Panel>
               </Panel>
             </div>
           </div>

@@ -1142,20 +1142,8 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="panel">
-              <Panel title="Panel" meta="xxxvii" breathe>
-                <p className="abyss-text" style={{ margin: "0 0 18px" }}>
-                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
-                  corner tendrils, and a breathing sigil. Composable to any depth.
-                </p>
-                <Panel title="Nested Tablet" meta="·">
-                  <span className="abyss-cap">A tablet within a tablet</span>
-                </Panel>
-              </Panel>
-            </div>
-
             <div className="abyss-section" id="separator">
-              <Panel title="Separator" meta="xxxviii">
+              <Panel title="Separator" meta="xxxvii">
                 <div className="demo-stack">
                   <span className="abyss-cap">Plain</span>
                   <Separator />
@@ -1170,6 +1158,18 @@ function Demo() {
                     <span className="abyss-text">Reef C</span>
                   </div>
                 </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="panel">
+              <Panel title="Panel" meta="xxxviii" breathe>
+                <p className="abyss-text" style={{ margin: "0 0 18px" }}>
+                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
+                  corner tendrils, and a breathing sigil. Composable to any depth.
+                </p>
+                <Panel title="Nested Tablet" meta="·">
+                  <span className="abyss-cap">A tablet within a tablet</span>
+                </Panel>
               </Panel>
             </div>
           </div>
