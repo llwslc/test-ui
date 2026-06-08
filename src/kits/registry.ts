@@ -15,7 +15,7 @@ export interface KitDef {
 }
 
 export const KITS: KitDef[] = [
-  { id: "abyss", label: "ABYSS", tag: "克苏鲁 · 溺城", load: () => import("./abyss") },
+  { id: "abyss", label: "ABYSS", tag: "Eldritch · Grimoire", load: () => import("./abyss") },
   { id: "nova", label: "NOVA", tag: "Sci-Fi · HUD", load: () => import("./nova") },
 ];
 

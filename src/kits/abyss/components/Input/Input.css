@@ -1,119 +1,68 @@
-.abyss-input-glow {
-  position: relative;
-  display: block;
-  width: 100%;
-  transition: filter var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-input-glow:has(.abyss-input-wrap:focus-within) {
-  filter: var(--abyss-glow-focus);
-}
-.abyss-input-glow:has(.abyss-input-wrap--error:focus-within) {
-  filter: drop-shadow(0 0 8px var(--abyss-danger-fill));
-}
-
-.abyss-input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background: var(--abyss-line);
-  clip-path: var(--abyss-clip-9);
-  transition: background var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-input-wrap:hover {
-  background: var(--abyss-line-strong);
-}
-.abyss-input-wrap:focus-within {
-  background: var(--abyss-primary);
-}
-.abyss-input-wrap--error,
-.abyss-input-wrap--error:hover {
-  background: var(--abyss-danger);
-}
-.abyss-input-wrap--error:focus-within {
-  background: var(--abyss-danger);
-}
-.abyss-input-wrap--error .abyss-input,
-.abyss-input-wrap--error:focus-within .abyss-input {
-  background: var(--abyss-danger-inset);
-}
-
-.abyss-input {
-  flex: 1;
-  width: 100%;
-  height: calc(var(--abyss-control-h) - 2px);
-  margin: 1px;
-  padding: 0 var(--abyss-space-3);
-  border: 0;
-  outline: none;
-  background: var(--abyss-surface-popup);
-  color: var(--abyss-text);
-  font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-15);
-  letter-spacing: var(--abyss-ls-4);
-  clip-path: var(--abyss-clip-9);
-}
-.abyss-input::placeholder {
-  color: var(--abyss-text-mute);
-}
-.abyss-input-wrap:focus-within .abyss-input {
-  background: var(--abyss-surface-inset);
-}
-.abyss-input--has-icon {
-  padding-left: 40px;
-}
-.abyss-input:disabled,
-.abyss-input[data-disabled] {
-  cursor: not-allowed;
-}
-.abyss-input-wrap:has(.abyss-input:disabled),
-.abyss-input-wrap:has(.abyss-input[data-disabled]) {
-  opacity: var(--abyss-disabled-opacity);
-}
-
-.abyss-input__icon {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  display: inline-flex;
-  font-size: var(--abyss-fs-16);
-  color: var(--abyss-text-dim);
-  pointer-events: none;
-  transition: color var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-input-wrap:focus-within .abyss-input__icon {
-  color: var(--abyss-primary);
-}
-
 .abyss-field {
   display: flex;
   flex-direction: column;
   gap: var(--abyss-space-2);
-  width: 100%;
 }
-
 .abyss-field__label {
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-12);
-  font-weight: var(--abyss-fw-600);
-  letter-spacing: var(--abyss-ls-10);
-  text-transform: uppercase;
-  color: var(--abyss-text-dim);
+  display: block;
 }
-
-.abyss-field__desc {
-  font-size: var(--abyss-fs-13);
+.abyss-input-wrap {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--abyss-control-h);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-input-wrap:focus-within {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+}
+.abyss-input-wrap--error {
+  --abyss-frame-ink: rgba(210, 64, 89, 0.6);
+}
+.abyss-input {
+  flex: 1;
+  min-width: 0;
+  height: var(--abyss-control-h);
+  padding: 0 var(--abyss-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-bright);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  caret-color: var(--abyss-glow);
+}
+.abyss-input::placeholder {
   color: var(--abyss-text-mute);
 }
-
-.abyss-field__error {
-  font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-12);
-  letter-spacing: var(--abyss-ls-4);
-  color: var(--abyss-danger);
+.abyss-input:focus {
+  outline: none;
 }
-.abyss-field__error::before {
-  content: "⚠ ";
+.abyss-input--has-icon {
+  padding-left: var(--abyss-space-2);
+}
+.abyss-input__icon {
+  display: inline-flex;
+  align-items: center;
+  padding-left: var(--abyss-space-3);
+  color: var(--abyss-text-dim);
+  font-size: 1.05em;
+}
+.abyss-input-wrap:focus-within .abyss-input__icon {
+  color: var(--abyss-glow);
+}
+.abyss-input:disabled {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
+.abyss-field__desc {
+  font-size: var(--abyss-fs-12);
+  color: var(--abyss-text-mute);
+}
+.abyss-field__error {
+  font-size: var(--abyss-fs-12);
+  color: var(--abyss-blood);
 }

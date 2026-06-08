@@ -1,79 +1,72 @@
-/* ABYSS · 溺城 — drowned R'lyeh design tokens.
-   Mirrors NOVA's token *roles* 1:1 (so the component layer is shared geometry,
-   re-skinned) but every value is recast for deep-sea cosmic horror:
-   bioluminescent green on abyssal black, eroded octagonal seals, languid motion.
-   Re-skin the kit by overriding any --abyss-* here. */
+/* ABYSS — an eldritch component grimoire. Wet-stone tablets, hand-inked frames,
+   bone text, phosphor light, ritual gold, ichor violet, blood. Nothing here is
+   a HUD: geometry is organic (roughened ink via SVG filter, not chamfers),
+   motion breathes. Re-skin by overriding any --abyss-* below. */
 :root {
-  --abyss-bg: #05090b;
-  --abyss-bg-2: #07141a;
-  --abyss-surface: rgba(9, 26, 23, 0.72);
-  --abyss-surface-popup: rgba(5, 15, 14, 0.97);
-  --abyss-scrim: rgba(2, 8, 8, 0.66);
-  --abyss-surface-modal: linear-gradient(
-    160deg,
-    rgba(8, 22, 20, 0.98),
-    rgba(4, 12, 12, 0.98)
-  );
-  --abyss-surface-inset: #06150f;
+  /* ground — the lightless deep */
+  --abyss-void: #030706;
+  --abyss-bg: #070c0b;
+  --abyss-bg-2: #0a1512;
 
-  --abyss-primary: #3affc8;
-  --abyss-primary-deep: #0f9176;
-  --abyss-secondary: #c8407a;
-  --abyss-success: #57f2a4;
-  --abyss-warning: #f0bd55;
-  --abyss-danger: #ff4d6a;
+  /* wet-stone surfaces (panels, popups) + sunken wells (inputs) */
+  --abyss-stone: #0c1411;
+  --abyss-stone-raised: #101b16;
+  --abyss-surface: rgba(13, 24, 20, 0.84);
+  --abyss-surface-popup: rgba(9, 17, 15, 0.97);
+  --abyss-inset: #06100d;
+  --abyss-scrim: rgba(2, 6, 5, 0.72);
 
-  --abyss-accent-surface: linear-gradient(
-    180deg,
-    var(--abyss-primary),
-    var(--abyss-primary-deep)
-  );
-  --abyss-accent-fill: linear-gradient(
-    90deg,
-    var(--abyss-primary-deep),
-    var(--abyss-primary) 55%
-  );
+  /* ink — the hand-drawn hairlines & frames (ashen, never phosphor) */
+  --abyss-ink: rgba(151, 168, 150, 0.3);
+  --abyss-ink-strong: rgba(176, 196, 176, 0.52);
+  --abyss-ink-faint: rgba(151, 168, 150, 0.1);
 
-  --abyss-secondary-fill: rgba(200, 64, 122, 0.55);
-  --abyss-secondary-deep: #9c2d5c;
-  --abyss-danger-fill: rgba(255, 77, 106, 0.55);
-  --abyss-danger-wash: rgba(255, 77, 106, 0.12);
-  --abyss-danger-highlight: rgba(255, 77, 106, 0.16);
-  --abyss-danger-deep: #b3243f;
-  --abyss-danger-text: #ffd2da;
-  --abyss-danger-inset: #2a0a12;
-  --abyss-success-deep: #1f9c68;
-  --abyss-warning-deep: #b8861f;
+  /* bone — aged-paper text on black */
+  --abyss-text: #d8ceb4;
+  --abyss-text-bright: #f3edda;
+  --abyss-text-dim: #8d9079;
+  --abyss-text-mute: #565a4b;
 
-  --abyss-ghost-hover: rgba(14, 40, 34, 0.95);
-  --abyss-sheen: rgba(214, 255, 240, 0.55);
-  --abyss-sheen-soft: rgba(180, 255, 230, 0.12);
-  --abyss-off: rgba(110, 158, 142, 0.5);
+  /* phosphor — the living light in the deep (primary) */
+  --abyss-glow: #46e8b8;
+  --abyss-glow-deep: #128a6e;
+  --abyss-glow-soft: rgba(70, 232, 184, 0.12);
+  --abyss-glow-a30: rgba(70, 232, 184, 0.3);
+  --abyss-glow-a55: rgba(70, 232, 184, 0.55);
+  --abyss-glow-a70: rgba(70, 232, 184, 0.7);
+  --abyss-on-glow: #03140e;
 
-  --abyss-text: #cfe8df;
-  --abyss-text-bright: #eafff8;
-  --abyss-text-dim: #74998e;
-  --abyss-text-mute: #41635a;
-  --abyss-on-primary: #02140f;
-  --abyss-on-danger: #1b0407;
+  /* ritual gold — wax seals, sigils, struck marks */
+  --abyss-gold: #cda94a;
+  --abyss-gold-deep: #8a6c22;
+  --abyss-gold-soft: rgba(205, 169, 74, 0.15);
+  --abyss-on-gold: #160f02;
 
-  --abyss-line: rgba(58, 255, 200, 0.22);
-  --abyss-line-strong: rgba(58, 255, 200, 0.5);
-  --abyss-tint-faint: rgba(58, 255, 200, 0.05);
-  --abyss-tint-soft: rgba(58, 255, 200, 0.08);
-  --abyss-highlight: rgba(58, 255, 200, 0.14);
-  --abyss-tint-active: rgba(58, 255, 200, 0.3);
-  --abyss-primary-a40: rgba(58, 255, 200, 0.4);
-  --abyss-primary-a70: rgba(58, 255, 200, 0.7);
-  --abyss-track: rgba(110, 170, 152, 0.16);
-  --abyss-glow-text: 0 0 9px rgba(58, 255, 200, 0.5);
-  --abyss-glow-focus: drop-shadow(0 0 9px rgba(58, 255, 200, 0.4));
-  --abyss-glow-popup: drop-shadow(0 0 13px rgba(58, 255, 200, 0.2));
-  --abyss-glow-active: drop-shadow(0 0 9px var(--abyss-line-strong));
-  --abyss-glow-trigger: drop-shadow(0 0 11px var(--abyss-primary-a40));
+  /* ichor — eldritch violet (secondary) */
+  --abyss-ichor: #9176ff;
+  --abyss-ichor-deep: #4d3aa6;
+  --abyss-ichor-soft: rgba(145, 118, 255, 0.16);
 
+  /* blood — danger */
+  --abyss-blood: #d24059;
+  --abyss-blood-deep: #7e2233;
+  --abyss-blood-soft: rgba(210, 64, 89, 0.13);
+  --abyss-blood-text: #f4c8cf;
+  --abyss-on-blood: #190305;
+
+  /* organic auras (soft, irregular bioluminescence) */
+  --abyss-aura: drop-shadow(0 0 10px var(--abyss-glow-a30));
+  --abyss-aura-strong: drop-shadow(0 0 16px var(--abyss-glow-a55));
+  --abyss-aura-gold: drop-shadow(0 0 12px rgba(205, 169, 74, 0.35));
+  --abyss-text-aura: 0 0 11px var(--abyss-glow-a55);
+  --abyss-shadow-pop: 0 14px 34px rgba(0, 0, 0, 0.66);
+  --abyss-shadow-modal: 0 26px 64px rgba(0, 0, 0, 0.72);
+
+  /* type — grimoire voice */
   --abyss-font: "Spectral", "Iowan Old Style", Georgia, serif;
-  --abyss-font-display: "Cinzel", "Spectral", Georgia, serif;
+  --abyss-font-script: "IM Fell English", "Spectral", serif;
+  --abyss-font-display: "IM Fell English SC", "Spectral", serif;
+  --abyss-font-rune: "UnifrakturCook", "IM Fell English SC", serif;
   --abyss-font-mono: "Cutive Mono", ui-monospace, "SFMono-Regular", monospace;
 
   --abyss-fs-11: 11px;
@@ -82,28 +75,32 @@
   --abyss-fs-14: 14px;
   --abyss-fs-15: 15px;
   --abyss-fs-16: 16px;
-  --abyss-fs-18: 18px;
-  --abyss-fs-22: 22px;
+  --abyss-fs-19: 19px;
+  --abyss-fs-24: 24px;
+  --abyss-fs-34: 34px;
 
-  --abyss-ls-4: 0.06em;
-  --abyss-ls-10: 0.14em;
-  --abyss-ls-16: 0.22em;
+  --abyss-ls-2: 0.02em;
+  --abyss-ls-6: 0.06em;
+  --abyss-ls-12: 0.12em;
+  --abyss-ls-20: 0.2em;
 
   --abyss-lh-100: 1;
   --abyss-lh-150: 1.5;
-  --abyss-lh-160: 1.6;
+  --abyss-lh-165: 1.65;
 
+  --abyss-fw-400: 400;
+  --abyss-fw-500: 500;
   --abyss-fw-600: 600;
-  --abyss-fw-700: 700;
 
-  --abyss-dur: 0.26s;
-  --abyss-dur-slow: 0.52s;
-  --abyss-ease: cubic-bezier(0.34, 0.85, 0.24, 1);
-  --abyss-ease-in: cubic-bezier(0.7, 0, 0.78, 0.2);
+  /* motion — slow, organic, alive */
+  --abyss-dur: 0.3s;
+  --abyss-dur-slow: 0.66s;
+  --abyss-ease: cubic-bezier(0.38, 0.1, 0.2, 1);
   --abyss-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --abyss-breath: 7s;
 
-  --abyss-control-h: 38px;
-  --abyss-disabled-opacity: 0.4;
+  --abyss-control-h: 40px;
+  --abyss-disabled-opacity: 0.38;
 
   --abyss-space-1: 4px;
   --abyss-space-2: 8px;
@@ -111,80 +108,9 @@
   --abyss-space-4: 16px;
   --abyss-space-5: 20px;
   --abyss-space-6: 24px;
-  --abyss-space-7: 28px;
+  --abyss-space-7: 32px;
 
-  --abyss-shadow-popup: 0 12px 28px rgba(0, 0, 0, 0.6);
-  --abyss-shadow-modal: 0 22px 54px rgba(0, 0, 0, 0.66);
-  --abyss-glow-modal: drop-shadow(0 0 24px rgba(58, 255, 200, 0.26));
-  --abyss-pad-modal: 26px 28px;
-
-  --abyss-thumb-idle-top: #d6e8e0;
-  --abyss-thumb-idle-bottom: #8aa79c;
-  --abyss-surface-deep-top: #0c2620;
-  --abyss-surface-deep-bottom: #061611;
-
-  --abyss-z-dropdown: 1200;
-  --abyss-z-menu: 1250;
-  --abyss-z-tooltip: 1300;
   --abyss-z-backdrop: 1400;
   --abyss-z-overlay: 1401;
-  --abyss-z-toast: 1500;
-}
-
-/* Eroded octagonal seals — all four corners cut, TL+BR heavier than TR+BL for a
-   listing, hand-carved drift. Distinct from NOVA's crisp two-corner chamfer.
-   Sized by name; the double-frame border technique applies these unchanged. */
-:root {
-  --abyss-clip-3: polygon(
-    3px 0,
-    calc(100% - 2px) 0,
-    100% 2px,
-    100% calc(100% - 3px),
-    calc(100% - 3px) 100%,
-    2px 100%,
-    0 calc(100% - 2px),
-    0 3px
-  );
-  --abyss-clip-4: polygon(
-    4px 0,
-    calc(100% - 2px) 0,
-    100% 2px,
-    100% calc(100% - 4px),
-    calc(100% - 4px) 100%,
-    2px 100%,
-    0 calc(100% - 2px),
-    0 4px
-  );
-  --abyss-clip-7: polygon(
-    7px 0,
-    calc(100% - 4px) 0,
-    100% 4px,
-    100% calc(100% - 7px),
-    calc(100% - 7px) 100%,
-    4px 100%,
-    0 calc(100% - 4px),
-    0 7px
-  );
-  --abyss-clip-9: polygon(
-    9px 0,
-    calc(100% - 5px) 0,
-    100% 5px,
-    100% calc(100% - 9px),
-    calc(100% - 9px) 100%,
-    5px 100%,
-    0 calc(100% - 5px),
-    0 9px
-  );
-  --abyss-clip-12: polygon(
-    12px 0,
-    calc(100% - 7px) 0,
-    100% 7px,
-    100% calc(100% - 12px),
-    calc(100% - 12px) 100%,
-    7px 100%,
-    0 calc(100% - 7px),
-    0 12px
-  );
-  /* Rune-mark tick — a tall lozenge/eye, set before titles and legends. */
-  --abyss-clip-tick: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  --abyss-z-tooltip: 1300;
 }

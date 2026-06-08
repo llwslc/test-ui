@@ -1,77 +1,43 @@
 .abyss-switch {
-  position: relative;
+  --eye: var(--abyss-glow);
   display: inline-flex;
   align-items: center;
-  width: 54px;
-  height: 26px;
-  padding: 0;
+  justify-content: center;
+  padding: 4px;
   border: 0;
-  cursor: pointer;
   background: transparent;
-  transition: filter var(--abyss-dur) var(--abyss-ease);
+  cursor: pointer;
+  border-radius: 4px;
 }
-
-.abyss-switch__track {
-  position: absolute;
-  inset: 0;
-  background: var(--abyss-off);
-  clip-path: var(--abyss-clip-9);
-  transition: background var(--abyss-dur) var(--abyss-ease);
+.abyss-switch .abyss-eye {
+  width: 48px;
 }
-.abyss-switch__track::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  clip-path: var(--abyss-clip-9);
-  background: var(--abyss-surface-popup);
-  transition: background var(--abyss-dur) var(--abyss-ease);
+.abyss-switch[data-checked] .abyss-eye {
+  filter: drop-shadow(0 0 9px var(--abyss-glow-a55));
 }
-
-.abyss-switch__thumb {
-  position: relative;
-  z-index: 1;
-  width: 18px;
-  height: 18px;
-  margin-left: var(--abyss-space-1);
-  background: linear-gradient(
-    180deg,
-    var(--abyss-thumb-idle-top),
-    var(--abyss-thumb-idle-bottom)
-  );
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-  clip-path: var(--abyss-clip-7);
-  transition:
-    transform var(--abyss-dur) var(--abyss-ease),
-    background var(--abyss-dur) var(--abyss-ease),
-    box-shadow var(--abyss-dur) var(--abyss-ease);
+.abyss-switch[data-checked] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
 }
-
-.abyss-switch[data-checked] .abyss-switch__track {
-  background: var(--abyss-primary);
+.abyss-switch[data-checked] .abyss-eye__pupil {
+  transform: scaleY(1);
 }
-.abyss-switch[data-checked] {
-  filter: var(--abyss-glow-active);
+.abyss-switch[data-checked] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
 }
-.abyss-switch[data-checked] .abyss-switch__track::before {
-  background: var(--abyss-accent-surface);
+.abyss-switch:hover .abyss-eye__iris {
+  opacity: 0.5;
 }
-.abyss-switch[data-checked] .abyss-switch__thumb {
-  transform: translateX(28px);
-  background: linear-gradient(
-    180deg,
-    var(--abyss-surface-deep-top),
-    var(--abyss-surface-deep-bottom)
-  );
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 var(--abyss-sheen-soft);
+.abyss-switch[data-checked]:hover .abyss-eye__iris {
+  opacity: 1;
 }
-
 .abyss-switch:focus-visible {
   outline: none;
-  filter: var(--abyss-glow-focus);
+}
+.abyss-switch:focus-visible .abyss-eye {
+  filter: drop-shadow(0 0 10px var(--abyss-glow-a70));
 }
 .abyss-switch[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
 }

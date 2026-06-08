@@ -1,50 +1,50 @@
 .abyss-badge {
-  --abyss-badge-color: var(--abyss-primary);
   display: inline-flex;
   align-items: center;
-  gap: var(--abyss-space-2);
-  height: 22px;
-  padding: 0 var(--abyss-space-3);
-  background: color-mix(in srgb, var(--abyss-badge-color) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--abyss-badge-color) 45%, transparent);
-  color: var(--abyss-badge-color);
-  font-family: var(--abyss-font-mono);
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-11);
-  letter-spacing: var(--abyss-ls-10);
+  letter-spacing: var(--abyss-ls-6);
   text-transform: uppercase;
   white-space: nowrap;
-  clip-path: var(--abyss-clip-7);
 }
-
 .abyss-badge__dot {
   width: 6px;
   height: 6px;
-  background: var(--abyss-badge-color);
   border-radius: 50%;
-  box-shadow: 0 0 6px var(--abyss-badge-color);
-  animation: abyss-badge-pulse 1.8s var(--abyss-ease) infinite;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
 }
-@keyframes abyss-badge-pulse {
-  50% {
-    opacity: 0.4;
-  }
-}
-
 .abyss-badge--primary {
-  --abyss-badge-color: var(--abyss-primary);
+  color: var(--abyss-glow);
+  border-color: var(--abyss-glow-a55);
+  background: var(--abyss-glow-soft);
 }
 .abyss-badge--secondary {
-  --abyss-badge-color: var(--abyss-secondary);
+  color: var(--abyss-ichor);
+  border-color: rgba(145, 118, 255, 0.5);
+  background: var(--abyss-ichor-soft);
 }
 .abyss-badge--success {
-  --abyss-badge-color: var(--abyss-success);
+  color: #7ad99a;
+  border-color: rgba(122, 217, 154, 0.5);
+  background: rgba(122, 217, 154, 0.12);
 }
 .abyss-badge--warning {
-  --abyss-badge-color: var(--abyss-warning);
+  color: var(--abyss-gold);
+  border-color: rgba(205, 169, 74, 0.5);
+  background: var(--abyss-gold-soft);
 }
 .abyss-badge--danger {
-  --abyss-badge-color: var(--abyss-danger);
+  color: var(--abyss-blood);
+  border-color: rgba(210, 64, 89, 0.55);
+  background: var(--abyss-blood-soft);
 }
 .abyss-badge--neutral {
-  --abyss-badge-color: var(--abyss-text-dim);
+  color: var(--abyss-text-dim);
+  border-color: var(--abyss-ink);
+  background: transparent;
 }

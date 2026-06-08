@@ -1,8 +1,6 @@
-/* ABYSS page chrome — scoped to [data-kit="abyss"] so it never collides with
-   another kit's ambient. Four drowned-deep layers: downwelling light + abyssal
-   bioluminescence (body::before), drifting caustics (body::after), pressure
-   vignette (html::before), suspended silt grain (html::after).
-   Motion is background-position only (no transform → no iOS overflow drift). */
+/* ABYSS ambient — scoped to [data-kit="abyss"]. Not a starfield: a lightless
+   deep where something below glows, motes of silt drift up, and the edges press
+   in. Motion is background-position only (no transform → no iOS overflow). */
 html[data-kit="abyss"] body {
   background-color: var(--abyss-bg);
   color: var(--abyss-text);
@@ -13,52 +11,46 @@ html[data-kit="abyss"] body {
   text-rendering: optimizeLegibility;
 }
 
+/* depth: cold downwelling, a phosphor presence rising from below, a violet wound */
 html[data-kit="abyss"] body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(120% 80% at 50% -15%, rgba(125, 140, 255, 0.16), transparent 60%),
-    radial-gradient(120% 90% at 18% 118%, rgba(58, 255, 200, 0.12), transparent 58%),
-    radial-gradient(90% 70% at 88% 108%, rgba(200, 64, 122, 0.08), transparent 60%),
-    linear-gradient(to bottom, var(--abyss-bg), var(--abyss-bg-2) 60%, #03070a);
+    radial-gradient(95% 60% at 50% 116%, rgba(70, 232, 184, 0.13), transparent 60%),
+    radial-gradient(80% 60% at 86% -12%, rgba(145, 118, 255, 0.1), transparent 60%),
+    radial-gradient(70% 50% at 8% 108%, rgba(210, 64, 89, 0.06), transparent 60%),
+    linear-gradient(to bottom, var(--abyss-void), var(--abyss-bg) 42%, var(--abyss-bg-2));
 }
 
+/* drifting silt / spores rising slowly */
 html[data-kit="abyss"] body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    repeating-linear-gradient(
-      114deg,
-      transparent 0,
-      transparent 64px,
-      rgba(58, 255, 200, 0.028) 80px,
-      transparent 98px
-    ),
-    repeating-linear-gradient(
-      66deg,
-      transparent 0,
-      transparent 88px,
-      rgba(125, 140, 255, 0.022) 104px,
-      transparent 122px
-    );
+  background-image:
+    radial-gradient(rgba(214, 206, 180, 0.16) 1px, transparent 1.6px),
+    radial-gradient(rgba(70, 232, 184, 0.1) 1px, transparent 1.6px);
   background-size:
-    420px 420px,
-    520px 520px;
-  mask-image: radial-gradient(140% 120% at 50% 0%, #000 25%, transparent 88%);
-  animation: abyss-caustics 32s linear infinite;
+    140px 140px,
+    220px 200px;
+  background-position:
+    0 0,
+    40px 80px;
+  mask-image: radial-gradient(130% 120% at 50% 60%, #000 30%, transparent 92%);
+  animation: abyss-drift 40s linear infinite;
 }
-@keyframes abyss-caustics {
+@keyframes abyss-drift {
   to {
     background-position:
-      420px 120px,
-      -520px 90px;
+      0 -140px,
+      40px -120px;
   }
 }
 
+/* pressure — the dark presses in at the edges (porthole vignette) */
 html[data-kit="abyss"]::before {
   content: "";
   position: fixed;
@@ -66,55 +58,50 @@ html[data-kit="abyss"]::before {
   z-index: 9999;
   pointer-events: none;
   background: radial-gradient(
-    125% 105% at 50% 38%,
-    transparent 42%,
-    rgba(1, 5, 6, 0.42) 82%,
-    rgba(0, 2, 3, 0.62) 100%
+    130% 110% at 50% 42%,
+    transparent 40%,
+    rgba(1, 4, 3, 0.5) 82%,
+    rgba(0, 2, 2, 0.72) 100%
   );
   mix-blend-mode: multiply;
 }
 
+/* aged-vellum grain */
 html[data-kit="abyss"]::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 9998;
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.05;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
-  animation: abyss-silt 26s linear infinite;
-}
-@keyframes abyss-silt {
-  to {
-    background-position: 0 -220px;
-  }
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
 }
 
 html[data-kit="abyss"] ::selection {
-  background: var(--abyss-tint-active);
+  background: var(--abyss-glow-a30);
   color: var(--abyss-text-bright);
 }
 
-/* Themed scrollbars */
 html[data-kit="abyss"] * {
   scrollbar-width: thin;
-  scrollbar-color: var(--abyss-line-strong) transparent;
+  scrollbar-color: var(--abyss-ink-strong) transparent;
 }
 html[data-kit="abyss"] *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
 }
 html[data-kit="abyss"] *::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.32);
 }
 html[data-kit="abyss"] *::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--abyss-primary-deep), var(--abyss-primary));
-  border: 2px solid transparent;
+  background: linear-gradient(var(--abyss-glow-deep), #0a3a30);
+  border: 3px solid transparent;
   background-clip: padding-box;
+  border-radius: 9px;
 }
 html[data-kit="abyss"] *::-webkit-scrollbar-thumb:hover {
-  background: var(--abyss-primary);
+  background: var(--abyss-glow-deep);
   background-clip: padding-box;
 }

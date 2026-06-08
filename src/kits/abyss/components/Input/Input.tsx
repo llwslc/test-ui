@@ -9,20 +9,19 @@ export interface InputProps extends ComponentPropsWithoutRef<typeof BaseInput> {
   icon?: ReactNode;
 }
 
+/* A sunken stone well with a hand-inked rim; the rim lights phosphor on focus. */
 export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
-    <span className="abyss-input-glow">
-      <span
-        className={cx("abyss-input-wrap", icon ? "abyss-input-wrap--icon" : "", className)}
-      >
-        {icon ? <span className="abyss-input__icon">{icon}</span> : null}
-        <BaseInput
-          id={id ?? autoId}
-          className={cx("abyss-input", icon ? "abyss-input--has-icon" : "")}
-          {...props}
-        />
-      </span>
+    <span
+      className={cx("abyss-input-wrap abyss-frame", icon && "abyss-input-wrap--icon", className)}
+    >
+      {icon ? <span className="abyss-input__icon">{icon}</span> : null}
+      <BaseInput
+        id={id ?? autoId}
+        className={cx("abyss-input", icon && "abyss-input--has-icon")}
+        {...props}
+      />
     </span>
   );
 }
@@ -47,22 +46,20 @@ export function Field({
   return (
     <BaseField.Root className={cx("abyss-field", rootClassName)}>
       {label != null ? (
-        <BaseField.Label className="abyss-field__label">{label}</BaseField.Label>
+        <BaseField.Label className="abyss-cap abyss-field__label">{label}</BaseField.Label>
       ) : null}
-      <span className="abyss-input-glow">
-        <span
-          className={cx(
-            "abyss-input-wrap",
-            icon ? "abyss-input-wrap--icon" : "",
-            error != null ? "abyss-input-wrap--error" : "",
-          )}
-        >
-          {icon ? <span className="abyss-input__icon">{icon}</span> : null}
-          <BaseField.Control
-            className={cx("abyss-input", icon ? "abyss-input--has-icon" : "", className)}
-            {...control}
-          />
-        </span>
+      <span
+        className={cx(
+          "abyss-input-wrap abyss-frame",
+          icon && "abyss-input-wrap--icon",
+          error != null && "abyss-input-wrap--error",
+        )}
+      >
+        {icon ? <span className="abyss-input__icon">{icon}</span> : null}
+        <BaseField.Control
+          className={cx("abyss-input", icon && "abyss-input--has-icon", className)}
+          {...control}
+        />
       </span>
       {description != null ? (
         <BaseField.Description className="abyss-field__desc">

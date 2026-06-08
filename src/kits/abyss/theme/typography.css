@@ -1,42 +1,56 @@
-/* Type-role standard — style-only classes, decoupled from semantic tag.
-   Display = Cinzel (engraved Roman caps, ritual inscription); tracking tightens
-   as size grows, same cadence as the rest of the kit. */
+/* Type roles — style-only, decoupled from tag. Display = IM Fell English SC
+   (antique small-caps press), brand = UnifrakturCook (blackletter), body =
+   Spectral. Headings track wider as they grow (engraved-inscription cadence). */
 .abyss-h1,
 .abyss-h2,
 .abyss-h3 {
   margin: 0;
   font-family: var(--abyss-font-display);
-  font-weight: var(--abyss-fw-700);
+  font-weight: var(--abyss-fw-400);
   line-height: var(--abyss-lh-100);
-  text-transform: uppercase;
-  color: var(--abyss-text);
+  color: var(--abyss-text-bright);
 }
 .abyss-h1 {
-  font-size: var(--abyss-fs-22);
-  letter-spacing: var(--abyss-ls-4);
+  font-size: var(--abyss-fs-34);
+  letter-spacing: var(--abyss-ls-2);
 }
 .abyss-h2 {
-  font-size: var(--abyss-fs-16);
-  letter-spacing: var(--abyss-ls-10);
+  font-size: var(--abyss-fs-19);
+  letter-spacing: var(--abyss-ls-6);
 }
 .abyss-h3 {
   font-size: var(--abyss-fs-13);
-  letter-spacing: var(--abyss-ls-16);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-text-dim);
 }
 .abyss-h1--accent,
 .abyss-h2--accent,
 .abyss-h3--accent {
-  color: var(--abyss-primary);
-  text-shadow: var(--abyss-glow-text);
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-brand {
+  font-family: var(--abyss-font-rune);
+  font-weight: var(--abyss-fw-400);
+  line-height: var(--abyss-lh-100);
 }
 
 .abyss-text {
   margin: 0;
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-14);
-  line-height: var(--abyss-lh-160);
+  font-size: var(--abyss-fs-15);
+  line-height: var(--abyss-lh-165);
   color: var(--abyss-text-dim);
 }
 .abyss-text--bright {
   color: var(--abyss-text);
+}
+/* HUD-style field caption shared by control labels */
+.abyss-cap {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-12);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-text-dim);
 }

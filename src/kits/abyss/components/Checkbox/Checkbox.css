@@ -1,101 +1,85 @@
-.abyss-checkbox-box {
-  position: relative;
-  display: inline-grid;
-  width: 22px;
-  height: 22px;
-  transition: filter var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-checkbox-box:has([data-checked]),
-.abyss-checkbox-box:has([data-indeterminate]) {
-  filter: drop-shadow(0 0 6px var(--abyss-line-strong));
-}
-.abyss-checkbox-box:has(:focus-visible) {
-  filter: var(--abyss-glow-focus);
-}
-
-.abyss-checkbox {
-  position: relative;
+.abyss-check {
   display: inline-grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
   padding: 0;
   border: 0;
+  background: transparent;
   cursor: pointer;
-  color: var(--abyss-on-primary);
-  background: var(--abyss-line-strong);
-  clip-path: var(--abyss-clip-9);
 }
-.abyss-checkbox::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  clip-path: var(--abyss-clip-9);
-  background: var(--abyss-surface-popup);
-  transition: background var(--abyss-dur) var(--abyss-ease);
+.abyss-check__sigil {
+  width: 26px;
+  height: 26px;
+  overflow: visible;
 }
-
-.abyss-checkbox__indicator {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: var(--abyss-fs-15);
+.abyss-check__ring {
+  fill: var(--abyss-inset);
+  stroke: var(--abyss-ink-strong);
+  stroke-width: 1.4;
+  filter: url(#abyss-edge);
+  transition: stroke var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-checkbox__check,
-.abyss-checkbox__dash {
-  grid-area: 1 / 1;
-  opacity: 0;
-  transform: scale(0.4);
+.abyss-check__mark {
+  fill: none;
+  stroke: var(--abyss-glow);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
   transition:
-    opacity var(--abyss-dur) var(--abyss-ease),
-    transform var(--abyss-dur) var(--abyss-ease);
+    stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-
-.abyss-checkbox[data-checked]::before,
-.abyss-checkbox[data-indeterminate]::before {
-  background: var(--abyss-accent-surface);
+.abyss-check__bar {
+  stroke: var(--abyss-glow);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-checkbox[data-checked] .abyss-checkbox__check {
+.abyss-check[data-checked] .abyss-check__ring,
+.abyss-check[data-indeterminate] .abyss-check__ring {
+  stroke: var(--abyss-glow-a55);
+}
+.abyss-check[data-checked] .abyss-check__mark {
+  stroke-dashoffset: 0;
+  filter: var(--abyss-aura);
+}
+.abyss-check[data-indeterminate] .abyss-check__bar {
   opacity: 1;
-  transform: scale(1);
+  filter: var(--abyss-aura);
 }
-.abyss-checkbox[data-indeterminate] .abyss-checkbox__dash {
-  opacity: 1;
-  transform: scale(1);
+.abyss-check:hover .abyss-check__ring {
+  stroke: var(--abyss-glow-a55);
 }
-
-.abyss-checkbox:focus-visible {
+.abyss-check:focus-visible {
   outline: none;
 }
-.abyss-checkbox[data-disabled] {
-  cursor: not-allowed;
+.abyss-check:focus-visible .abyss-check__ring {
+  stroke: var(--abyss-glow);
+  filter: url(#abyss-edge) drop-shadow(0 0 6px var(--abyss-glow-a55));
+}
+.abyss-check[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
 }
 
-.abyss-checkbox-field {
+.abyss-check-field {
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-3);
   cursor: pointer;
-  user-select: none;
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-12);
-  font-weight: var(--abyss-fw-600);
-  letter-spacing: var(--abyss-ls-10);
-  text-transform: uppercase;
-  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  color: var(--abyss-text);
 }
-.abyss-checkbox-field__label {
-  line-height: var(--abyss-lh-100);
-}
-
-.abyss-checkbox-field:has(.abyss-checkbox[data-disabled]) {
+.abyss-check-field:has(.abyss-check[data-disabled]) {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
 }
-.abyss-checkbox-field .abyss-checkbox[data-disabled] {
-  opacity: 1;
+.abyss-check-field__label {
+  user-select: none;
 }

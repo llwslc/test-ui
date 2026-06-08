@@ -1,65 +1,120 @@
-.abyss-elevation {
-  filter: drop-shadow(var(--abyss-overlay-shadow, var(--abyss-shadow-popup)))
-    var(--abyss-overlay-glow, var(--abyss-glow-popup));
-}
-.abyss-surface {
+/* ABYSS shared recipes. The signature is the hand-inked frame: a border layer
+   warped by the SVG #abyss-edge displacement filter (mounted once in App), so
+   every "straight" edge wavers like it was drawn by a shaking hand. Fills and
+   text stay crisp — only the border ::before is displaced. */
+
+.abyss-frame {
   position: relative;
   isolation: isolate;
-  background: var(--abyss-surface-border, var(--abyss-line-strong));
-  clip-path: var(--abyss-surface-clip, var(--abyss-clip-9));
 }
-.abyss-surface::before {
+/* The tablet itself: fill + inked border on one displaced pseudo, so the whole
+   silhouette wavers like a hand-drawn edge. Content sits above (normal flow). */
+.abyss-frame::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 0;
   z-index: -1;
-  clip-path: var(--abyss-surface-clip, var(--abyss-clip-9));
-  background: var(--abyss-surface-fill, var(--abyss-surface-popup));
+  background: var(--abyss-frame-fill, var(--abyss-surface));
+  border: 1.5px solid var(--abyss-frame-ink, var(--abyss-ink-strong));
+  border-radius: var(--abyss-frame-round, 3px);
+  filter: url(#abyss-edge);
+  pointer-events: none;
 }
-.abyss-anim-pop {
+/* a second, fainter inner rule — like a scribe's double border */
+.abyss-frame--double::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  z-index: -1;
+  border: 1px solid var(--abyss-ink-faint);
+  border-radius: 2px;
+  filter: url(#abyss-edge);
+  pointer-events: none;
+}
+
+/* slow living pulse — replaces NOVA's mechanical scan sweep */
+@keyframes abyss-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+.abyss-breathe {
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+}
+
+/* a sigil inscribing itself (stroke-dashoffset run to 0) */
+@keyframes abyss-inscribe {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* THE EYE — opening lid + dilating phosphor iris. Used by Switch and as a motif.
+   Markup: .abyss-eye > svg with .lid (upper/lower) + .iris + .pupil groups.
+   State is driven by a data-attr on an ancestor: [data-checked]/[data-open]. */
+.abyss-eye {
+  --eye: var(--abyss-glow);
+  display: inline-block;
+  line-height: 0;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-eye svg {
+  display: block;
+  overflow: visible;
+}
+.abyss-eye .abyss-eye__sclera {
+  fill: var(--abyss-inset);
+  stroke: var(--abyss-ink-strong);
+  stroke-width: 1.4;
+}
+.abyss-eye .abyss-eye__iris {
+  fill: var(--eye);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scaleY(0.06);
+  opacity: 0.25;
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-eye .abyss-eye__pupil {
+  fill: var(--abyss-void);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scaleY(0.06);
+  transition: transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-eye .abyss-eye__lid {
+  fill: none;
+  stroke: var(--abyss-ink-strong);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* overlay open/close — organic fade + small rise, no mechanical pop */
+.abyss-aura-pop {
   transform-origin: var(--transform-origin, center);
   transition:
     opacity var(--abyss-dur) var(--abyss-ease),
     transform var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-anim-pop[data-starting-style],
-.abyss-anim-pop[data-ending-style] {
+.abyss-aura-pop[data-starting-style],
+.abyss-aura-pop[data-ending-style] {
   opacity: 0;
-  transform: translateY(-7px) scale(0.96);
+  transform: translateY(-6px) scale(0.97);
 }
 
-/* Bioluminescent tide-sweep — a slow phosphor pulse along a panel's top edge. */
-.abyss-scan {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  height: 2px;
-  z-index: 1;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--abyss-scan-color, var(--abyss-primary)),
-    transparent
-  );
-  opacity: 0.8;
-  animation: abyss-scan 4.5s var(--abyss-ease) infinite;
-}
-@keyframes abyss-scan {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scaleX(0.4);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scaleX(1);
-  }
-}
-
+/* ink tendril joining a popup to its trigger (Base UI Arrow) */
 .abyss-connector {
   z-index: 2;
-  width: 16px;
+  width: 14px;
   height: 8px;
 }
 .abyss-connector::before {
@@ -67,10 +122,15 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 1px;
+  width: 1.5px;
   height: 100%;
-  background: var(--abyss-line-strong);
-  box-shadow: 0 0 7px var(--abyss-primary);
+  background: var(--abyss-ink-strong);
+  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a55));
+}
+.abyss-connector[data-side="left"],
+.abyss-connector[data-side="right"] {
+  width: 8px;
+  height: 14px;
 }
 .abyss-connector[data-side="top"] {
   bottom: -8px;
@@ -80,52 +140,44 @@
 }
 .abyss-connector[data-side="left"] {
   right: -8px;
-  width: 8px;
-  height: 16px;
 }
 .abyss-connector[data-side="right"] {
   left: -8px;
-  width: 8px;
-  height: 16px;
 }
 .abyss-connector[data-side="left"]::before,
 .abyss-connector[data-side="right"]::before {
   width: 100%;
-  height: 1px;
+  height: 1.5px;
 }
 
-.abyss-tick {
-  position: relative;
-  flex: 0 0 auto;
-  width: 8px;
-  height: 16px;
-  filter: drop-shadow(0 0 8px var(--abyss-tick-color, var(--abyss-primary)));
-}
-.abyss-tick::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--abyss-tick-color, var(--abyss-primary));
-  clip-path: var(--abyss-clip-tick);
-}
-
-/* Shared separator recipe — every divider (Separator, Toolbar, Menu) reuses this */
 .abyss-separator {
   border: 0;
-  background: linear-gradient(90deg, transparent, var(--abyss-line-strong), transparent);
-}
-.abyss-separator--horizontal {
-  width: 100%;
   height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--abyss-ink-strong), transparent);
+  filter: url(#abyss-edge);
 }
 .abyss-separator--vertical {
-  flex: 0 0 1px;
   width: 1px;
   height: 100%;
   min-height: 1em;
-  background: linear-gradient(180deg, transparent, var(--abyss-line-strong), transparent);
+  flex: 0 0 1px;
+  background: linear-gradient(180deg, transparent, var(--abyss-ink-strong), transparent);
 }
 
+/* modal scaffolding */
+.abyss-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--abyss-z-backdrop);
+  background: var(--abyss-scrim);
+  backdrop-filter: blur(3px) saturate(0.9) brightness(0.8);
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-scrim[data-starting-style],
+.abyss-scrim[data-ending-style] {
+  opacity: 0;
+}
 .abyss-overlay-viewport {
   position: fixed;
   top: 0;
@@ -134,143 +186,36 @@
   height: 100dvh;
   z-index: var(--abyss-z-overlay);
   display: grid;
-  padding: 16px;
+  padding: 18px;
   overflow: auto;
   overscroll-behavior: contain;
 }
 .abyss-overlay-viewport > * {
   margin: auto;
 }
-
-.abyss-scrim-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: var(--abyss-z-backdrop);
-  background: var(--abyss-scrim);
-  backdrop-filter: blur(3px) saturate(1.1);
-  transition: opacity var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-scrim-backdrop[data-starting-style],
-.abyss-scrim-backdrop[data-ending-style] {
-  opacity: 0;
-}
-
 .abyss-modal-title {
-  display: flex;
-  align-items: center;
-  gap: var(--abyss-space-3);
   margin: 0 36px var(--abyss-space-2) 0;
   font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-16);
-  font-weight: var(--abyss-fw-700);
-  letter-spacing: var(--abyss-ls-10);
-  text-transform: uppercase;
-  color: var(--abyss-title-color, var(--abyss-primary));
-  text-shadow: 0 0 8px
-    color-mix(in srgb, var(--abyss-title-color, var(--abyss-primary)) 55%, transparent);
+  font-size: var(--abyss-fs-24);
+  letter-spacing: var(--abyss-ls-6);
+  color: var(--abyss-title-color, var(--abyss-glow));
+  text-shadow: 0 0 12px
+    color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
 }
 .abyss-modal-desc {
   margin: 0 0 var(--abyss-space-4);
   color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-14);
-  line-height: var(--abyss-lh-160);
+  line-height: var(--abyss-lh-165);
 }
 .abyss-modal-body {
   color: var(--abyss-text);
   font-size: var(--abyss-fs-15);
-  line-height: var(--abyss-lh-160);
+  line-height: var(--abyss-lh-165);
 }
 .abyss-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--abyss-space-3);
   margin-top: var(--abyss-space-6);
-}
-
-.abyss-btn.abyss-modal-x {
-  position: absolute;
-  z-index: 2;
-}
-.abyss-btn.abyss-modal-x--danger:hover,
-.abyss-btn.abyss-modal-x--danger:focus-visible {
-  background: var(--abyss-danger-wash);
-  border-color: var(--abyss-danger);
-  color: var(--abyss-danger);
-  filter: none;
-}
-
-/* Disclosure trigger internals — shared by Accordion + Collapsible */
-.abyss-disclosure__trigger {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: var(--abyss-space-3);
-  width: 100%;
-  padding: var(--abyss-space-4) var(--abyss-space-4);
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  color: var(--abyss-text);
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-13);
-  font-weight: var(--abyss-fw-600);
-  letter-spacing: var(--abyss-ls-10);
-  text-transform: uppercase;
-  text-align: left;
-  transition: color var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-disclosure__marker {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  background: var(--abyss-text-mute);
-  transform: rotate(45deg);
-  transition:
-    background var(--abyss-dur) var(--abyss-ease),
-    box-shadow var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-disclosure__title {
-  flex: 1;
-}
-.abyss-disclosure__chevron {
-  flex: 0 0 auto;
-  font-size: var(--abyss-fs-18);
-  color: var(--abyss-text-dim);
-  transition: transform var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-disclosure__trigger[data-panel-open] {
-  color: var(--abyss-primary);
-}
-.abyss-disclosure__trigger[data-panel-open] .abyss-disclosure__marker {
-  background: var(--abyss-primary);
-  box-shadow: 0 0 8px var(--abyss-primary);
-}
-.abyss-disclosure__trigger[data-panel-open] .abyss-disclosure__chevron {
-  transform: rotate(180deg);
-  color: var(--abyss-primary);
-}
-.abyss-disclosure__trigger:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 1px var(--abyss-line-strong);
-}
-.abyss-disclosure__trigger[data-disabled] {
-  cursor: not-allowed;
-}
-.abyss-disclosure__panel {
-  position: relative;
-  z-index: 1;
-  height: var(--accordion-panel-height, var(--collapsible-panel-height));
-  overflow: hidden;
-  transition: height var(--abyss-dur-slow) var(--abyss-ease);
-}
-.abyss-disclosure__panel[data-starting-style],
-.abyss-disclosure__panel[data-ending-style] {
-  height: 0;
-}
-.abyss-disclosure__content {
-  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 35px;
-  color: var(--abyss-text-dim);
-  font-size: var(--abyss-fs-14);
-  line-height: var(--abyss-lh-160);
 }

@@ -19,8 +19,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   icon?: ReactNode;
 }
 
-/* forwardRef so the button can act as a Base UI trigger (Tooltip,
-   Dialog, Popover): those attach positioning + interaction via the ref. */
+/* forwardRef so it can act as a Base UI trigger (Tooltip / Dialog / Popover). */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
@@ -28,7 +27,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <BaseButton
       ref={ref}
-      className={cx("abyss-btn", `abyss-btn--${variant}`, `abyss-btn--${size}`, className)}
+      className={cx(
+        "abyss-btn abyss-frame",
+        `abyss-btn--${variant}`,
+        `abyss-btn--${size}`,
+        className,
+      )}
       {...props}
     >
       <span className="abyss-btn__label">
