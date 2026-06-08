@@ -621,13 +621,11 @@ function Demo() {
 
             <div className="nova-section" id="checkbox-group">
               <Panel title="Checkbox Group" meta="CHG">
-                <div className="demo-stack">
-                  <CheckboxGroup
-                    parentLabel="All channels"
-                    defaultValue={["relay"]}
-                    items={CHECKGROUP_ITEMS}
-                  />
-                </div>
+                <CheckboxGroup
+                  parentLabel="All channels"
+                  defaultValue={["relay"]}
+                  items={CHECKGROUP_ITEMS}
+                />
               </Panel>
             </div>
 

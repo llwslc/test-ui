@@ -60,9 +60,9 @@ import {
   SearchIcon,
   SigilIcon,
   SignalIcon,
-  SkullIcon,
   TentacleIcon,
   TrashIcon,
+  XIcon,
 } from "./components/icons";
 import "./App.css";
 
@@ -98,7 +98,7 @@ const SECTIONS: { group: string; sub: string; items: [string, string][] }[] = [
       ["switch", "Switch"],
       ["checkbox", "Checkbox"],
       ["checkbox-group", "Checkbox Group"],
-      ["radio", "Radio"],
+      ["radio", "Radio Group"],
       ["toggle", "Toggle Group"],
       ["slider", "Slider"],
       ["number", "Number Field"],
@@ -284,6 +284,20 @@ const ACCORDION_ITEMS = [
   },
 ];
 
+const DIVE_LOG = [
+  { t: "08:42:01", m: "Pressure nominal at 412 fathoms" },
+  { t: "08:41:55", m: "Ward sigils retuned to the third key" },
+  { t: "08:40:12", m: "Movement in the trench — cleared, reef 7-G" },
+  { t: "08:39:03", m: "Descent cycle initiated" },
+  { t: "08:37:48", m: "Hull groan sealed, lower deck 4" },
+  { t: "08:36:20", m: "Conch answered from the Black Reef" },
+  { t: "08:35:01", m: "Air bells holding at 98% of the breath" },
+  { t: "08:33:44", m: "Sigil lock acquired — Y'ha-nthlei" },
+  { t: "08:32:10", m: "Pressure array woke and listened" },
+  { t: "08:30:55", m: "Lantern oil rerouted to the forward bells" },
+  { t: "08:29:31", m: "Roll called, forty-seven souls aboard" },
+];
+
 function Clock() {
   const [now, setNow] = useState("");
   useEffect(() => {
@@ -319,6 +333,7 @@ function ProgressDemo() {
   return (
     <div className="demo-stack">
       <Progress label="Descent" value={val} />
+      <Progress label="Tide Pull" value={67} />
       <Progress label="Ward Sync" value={100} />
       <Progress label="Sounding…" showValue={false} value={null} />
     </div>
@@ -333,6 +348,9 @@ function ToolbarDemo() {
       <ToolbarGroup>
         <ToolbarButton aria-label="Sound">
           <SearchIcon />
+        </ToolbarButton>
+        <ToolbarButton aria-label="Mark">
+          <KeyIcon />
         </ToolbarButton>
         <ToolbarButton aria-label="Echo">
           <CopyIcon />
@@ -610,15 +628,28 @@ function Demo() {
                     <Button variant="ghost">Dismiss</Button>
                     <Button disabled>Sealed</Button>
                   </div>
+                  <Separator />
                   <div className="demo-row">
                     <Button size="sm">Lesser</Button>
                     <Button size="md">Common</Button>
                     <Button size="lg">Greater</Button>
-                    <Button variant="icon" aria-label="Watch">
-                      <EyeIcon />
+                  </div>
+                  <Separator />
+                  <div className="demo-row">
+                    <Button variant="icon" aria-label="Echo">
+                      <CopyIcon />
                     </Button>
-                    <Button variant="icon-ghost" aria-label="Ossuary">
-                      <SkullIcon />
+                    <Button variant="icon" aria-label="Banish">
+                      <TrashIcon />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Sealed">
+                      <SigilIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Sound">
+                      <SearchIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Close">
+                      <XIcon />
                     </Button>
                   </div>
                 </div>
@@ -666,7 +697,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="radio">
-              <Panel title="Radio" meta="v">
+              <Panel title="Radio Group" meta="v">
                 <RadioGroup defaultValue="tide">
                   <Radio value="tide">Walk the tide</Radio>
                   <Radio value="deep">Descend the deep</Radio>
@@ -929,6 +960,10 @@ function Demo() {
                       Cast Out
                     </MenuItem>
                   </MenubarMenu>
+                  <MenubarMenu label="Rite">
+                    <MenuItem shortcut="⌘Z">Undo</MenuItem>
+                    <MenuItem shortcut="⇧⌘Z">Redo</MenuItem>
+                  </MenubarMenu>
                   <MenubarMenu label="Sight">
                     <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Reef View</MenuItem>
@@ -936,6 +971,8 @@ function Demo() {
                       <MenuItem>Shallows</MenuItem>
                       <MenuItem>The Deeps</MenuItem>
                       <MenuItem>Pressure</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<KeyIcon />}>Attune</MenuItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>
@@ -1073,21 +1110,15 @@ function Demo() {
 
             <div className="abyss-section" id="scroll">
               <Panel title="Scroll Area" meta="xxxv">
-                <ScrollArea maxHeight={180}>
-                  <div className="demo-stack">
-                    <p className="abyss-text" style={{ margin: 0 }}>
-                      Pressure nominal at 412 fathoms. The ward sigils were retuned to the
-                      third key at the turn of the tide.
-                    </p>
-                    <p className="abyss-text" style={{ margin: 0 }}>
-                      A conch answered from the Black Reef. The air bells hold at 98% of the
-                      breath. A sigil lock was acquired off Y'ha-nthlei.
-                    </p>
-                    <p className="abyss-text" style={{ margin: 0 }}>
-                      Lantern oil rerouted to the forward bells. The roll was called — forty
-                      seven souls aboard, and one that would not give its name.
-                    </p>
-                  </div>
+                <ScrollArea maxHeight={200}>
+                  <ol className="demo-log">
+                    {DIVE_LOG.map((entry, i) => (
+                      <li key={i}>
+                        <span className="demo-log__t">{entry.t}</span>
+                        <span className="demo-log__m">{entry.m}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </ScrollArea>
               </Panel>
             </div>
@@ -1104,6 +1135,9 @@ function Demo() {
                     The water holds — pressure steady at 98.4 fathoms across the lower reach,
                     and 1,204 lights drift in the dark below.
                   </p>
+                  <span className="abyss-cap">
+                    .abyss-h1 / h2 / h3 · .abyss-text — style-only, any tag
+                  </span>
                 </div>
               </Panel>
             </div>
@@ -1127,6 +1161,7 @@ function Demo() {
                   <Separator />
                   <span className="abyss-cap">Marked</span>
                   <Separator label="Rite VII" />
+                  <span className="abyss-cap">Vertical</span>
                   <div className="demo-row">
                     <span className="abyss-text">Reef A</span>
                     <Separator orientation="vertical" />

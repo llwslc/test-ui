@@ -409,6 +409,38 @@ kbd {
   color: var(--abyss-text-dim);
 }
 
+.demo-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.demo-log li {
+  display: flex;
+  gap: 14px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--abyss-ink-faint);
+}
+.demo-log li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.demo-log__t {
+  flex: 0 0 auto;
+  padding-top: 1px;
+  font-family: var(--abyss-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--abyss-glow);
+}
+.demo-log__m {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--abyss-text-dim);
+}
+
 .abyss-footer {
   max-width: 1340px;
   margin: 0 auto;
