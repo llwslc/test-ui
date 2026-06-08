@@ -12,8 +12,8 @@ export interface AutocompleteProps {
 }
 
 /* A stone-well text input that drops an inked-tablet of suggestions. The lead is
-   an aperture into the well; each suggestion bears a watching eye that opens
-   phosphor on [data-highlighted]. Value is free text — it may stray from the list. */
+   an aperture into the well; the highlighted suggestion washes phosphor and uncoils
+   a small tendril curl on its left. Value is free text — it may stray from the list. */
 export function Autocomplete({
   items,
   placeholder = "Speak a name…",
@@ -53,16 +53,9 @@ export function Autocomplete({
                   value={item}
                   className="abyss-autocomplete__item"
                 >
-                  <span className="abyss-eye abyss-autocomplete__eye" aria-hidden>
-                    <svg viewBox="0 0 28 18" width="28" height="18">
-                      <path
-                        className="abyss-eye__sclera"
-                        d="M2 9C2 9 6 3 14 3C22 3 26 9 26 9C26 9 22 15 14 15C6 15 2 9 2 9Z"
-                      />
-                      <circle className="abyss-eye__iris" cx="14" cy="9" r="4.4" />
-                      <circle className="abyss-eye__pupil" cx="14" cy="9" r="1.9" />
-                      <path className="abyss-eye__lid" d="M2 9C2 9 6 3 14 3C22 3 26 9 26 9" />
-                      <path className="abyss-eye__lid" d="M2 9C2 9 6 15 14 15C22 15 26 9 26 9" />
+                  <span className="abyss-autocomplete__tendril" aria-hidden>
+                    <svg viewBox="0 0 18 18" width="18" height="18">
+                      <path d="M16 4C13 4 11 6 11 9C11 11 12.5 12.5 14.5 12.5C16 12.5 17 11.4 17 10C17 8.8 16.1 8 15 8C14.1 8 13.5 8.6 13.5 9.4" />
                     </svg>
                   </span>
                   <span className="abyss-autocomplete__label">{item}</span>
