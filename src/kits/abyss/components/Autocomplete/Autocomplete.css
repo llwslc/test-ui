@@ -129,46 +129,6 @@
   cursor: not-allowed;
 }
 
-.abyss-autocomplete__tendril {
-  flex: 0 0 auto;
-  display: inline-flex;
-  width: 12px;
-  height: 12px;
-  line-height: 0;
-  color: var(--abyss-glow);
-}
-.abyss-autocomplete__tendril svg {
-  display: block;
-  width: 12px;
-  height: 12px;
-}
-.abyss-autocomplete__tendril path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 26;
-  stroke-dashoffset: 22;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: 92% 50%;
-  transform: rotate(-90deg) scale(0.7);
-  transition:
-    stroke-dashoffset var(--abyss-dur) var(--abyss-ease),
-    transform var(--abyss-dur) var(--abyss-ease),
-    opacity var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-autocomplete__item:hover .abyss-autocomplete__tendril path {
-  opacity: 0.4;
-}
-.abyss-autocomplete__item[data-highlighted] .abyss-autocomplete__tendril {
-  filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
-}
-.abyss-autocomplete__item[data-highlighted] .abyss-autocomplete__tendril path {
-  opacity: 1;
-  stroke-dashoffset: 0;
-  transform: rotate(0deg) scale(1);
-}
 .abyss-autocomplete__label {
   min-width: 0;
 }

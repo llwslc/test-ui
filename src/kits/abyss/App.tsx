@@ -445,6 +445,81 @@ function GroupRule({ group, sub }: { group: string; sub: string }) {
   );
 }
 
+function HeroSigil() {
+  return (
+    <div className="abyss-hero__sigil" aria-hidden>
+      <svg viewBox="0 0 240 240">
+        <defs>
+          <radialGradient id="hs-iris" cx="50%" cy="40%" r="62%">
+            <stop offset="0%" stopColor="#e7fff7" />
+            <stop offset="38%" stopColor="#3affc8" />
+            <stop offset="100%" stopColor="#0c6a55" />
+          </radialGradient>
+          <radialGradient id="hs-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(70,232,184,0.32)" />
+            <stop offset="64%" stopColor="rgba(70,232,184,0.05)" />
+            <stop offset="100%" stopColor="rgba(70,232,184,0)" />
+          </radialGradient>
+        </defs>
+        <circle cx="120" cy="120" r="120" fill="url(#hs-glow)" />
+        <g className="abyss-hero__ring abyss-hero__ring--out" filter="url(#abyss-edge)">
+          <circle
+            cx="120"
+            cy="120"
+            r="104"
+            fill="none"
+            stroke="rgba(70,232,184,0.4)"
+            strokeWidth="1"
+            strokeDasharray="2 11"
+          />
+          <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(145,118,255,0.22)" strokeWidth="1" />
+          <path
+            d="M120 24 L120 40 M216 120 L200 120 M120 216 L120 200 M24 120 L40 120
+               M52 52 L63 63 M188 52 L177 63 M188 188 L177 177 M52 188 L63 177"
+            stroke="rgba(70,232,184,0.5)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+        </g>
+        <g
+          className="abyss-hero__tentacles"
+          fill="none"
+          stroke="rgba(70,232,184,0.5)"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        >
+          <path d="M120 80 C150 70 162 52 156 30 C168 48 160 74 132 86" />
+          <path d="M160 120 C190 116 206 100 206 78 C210 104 192 128 168 130" />
+          <path d="M120 160 C150 170 164 190 158 212 C170 192 160 166 132 154" />
+          <path d="M80 120 C50 124 34 140 34 162 C30 136 48 112 72 110" />
+        </g>
+        <g className="abyss-hero__ring abyss-hero__ring--in">
+          <circle cx="120" cy="120" r="64" fill="none" stroke="rgba(70,232,184,0.28)" strokeWidth="1" />
+          <path
+            d="M120 64 L168 152 L60 96 L180 96 L72 152 Z"
+            fill="none"
+            stroke="rgba(70,232,184,0.34)"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+        </g>
+        <g className="abyss-hero__eye">
+          <path
+            d="M58 120 C58 120 86 86 120 86 C154 86 182 120 182 120 C182 120 154 154 120 154 C86 154 58 120 58 120 Z"
+            fill="#04130d"
+            stroke="rgba(70,232,184,0.55)"
+            strokeWidth="2"
+            filter="url(#abyss-edge)"
+          />
+          <circle className="abyss-hero__iris" cx="120" cy="120" r="27" fill="url(#hs-iris)" />
+          <circle cx="120" cy="120" r="11" fill="#02100a" />
+          <circle cx="111" cy="112" r="4" fill="#eafff8" opacity="0.85" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 function Demo() {
   return (
     <div className="abyss-app">
@@ -455,17 +530,20 @@ function Demo() {
           <span className="abyss-logo__mark">
             <EyeIcon />
           </span>
-          <div>
-            <div className="abyss-brand abyss-logo__text">Abyss</div>
-            <div className="abyss-logo__sub">Eldritch Grimoire · Base UI</div>
-          </div>
+          <span className="abyss-logo__words">
+            <span className="abyss-brand abyss-logo__text">Abyss</span>
+            <span className="abyss-logo__sub">Eldritch Grimoire</span>
+          </span>
         </div>
         <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
         <div className="abyss-header__status">
+          <span className="abyss-header__tide">
+            <MoonIcon />
+            <Clock />
+          </span>
           <Badge tone="primary" dot>
             Awake
           </Badge>
-          <Clock />
         </div>
       </header>
 
@@ -516,6 +594,7 @@ function Demo() {
                 <span>Base UI Core</span>
               </div>
             </div>
+            <HeroSigil />
           </section>
 
           <div className="abyss-grid">
@@ -865,10 +944,6 @@ function Demo() {
 
             <div className="abyss-section span-2" id="navmenu">
               <Panel title="Navigation Menu" meta="xxvi">
-                <p className="abyss-text" style={{ margin: "0 0 14px" }}>
-                  The same header nav, shown here in the open. Hover a trigger to unfurl
-                  its tablet of links.
-                </p>
                 <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
               </Panel>
             </div>
@@ -1033,8 +1108,20 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="abyss-section span-2" id="panel">
+              <Panel title="Panel" meta="xxxvii" breathe>
+                <p className="abyss-text" style={{ margin: "0 0 18px" }}>
+                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
+                  corner tendrils, and a breathing sigil. Composable to any depth.
+                </p>
+                <Panel title="Nested Tablet" meta="·">
+                  <span className="abyss-cap">A tablet within a tablet</span>
+                </Panel>
+              </Panel>
+            </div>
+
             <div className="abyss-section" id="separator">
-              <Panel title="Separator" meta="xxxvii">
+              <Panel title="Separator" meta="xxxviii">
                 <div className="demo-stack">
                   <span className="abyss-cap">Plain</span>
                   <Separator />
@@ -1048,18 +1135,6 @@ function Demo() {
                     <span className="abyss-text">Reef C</span>
                   </div>
                 </div>
-              </Panel>
-            </div>
-
-            <div className="abyss-section span-2" id="panel">
-              <Panel title="Panel" meta="∞" breathe>
-                <p className="abyss-text" style={{ margin: "0 0 18px" }}>
-                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
-                  corner tendrils, and a breathing sigil. <MoonIcon /> Composable to any depth.
-                </p>
-                <Panel title="Nested Tablet" meta="·">
-                  <span className="abyss-cap">A tablet within a tablet</span>
-                </Panel>
               </Panel>
             </div>
           </div>
