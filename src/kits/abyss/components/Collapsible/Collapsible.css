@@ -1,4 +1,3 @@
-/* the disclosure is one inked tablet — a sealed grimoire leaf */
 .abyss-collapsible {
   --abyss-frame-round: 3px;
   --abyss-frame-ink: var(--abyss-ink-strong);
@@ -50,8 +49,6 @@
   cursor: not-allowed;
 }
 
-/* the sigil rune — dormant ash by default, rotates and ignites phosphor as the
-   leaf unfurls. It is the sole expander marker (no chevron). */
 .abyss-collapsible__rune {
   flex: 0 0 auto;
   display: inline-flex;
@@ -76,7 +73,6 @@
   flex: 1;
 }
 
-/* the leaf unfurls on Base UI's measured panel height */
 .abyss-collapsible__panel {
   position: relative;
   z-index: 1;

@@ -9,8 +9,6 @@ export interface CheckboxProps
   label?: ReactNode;
 }
 
-/* A warded seal: checking inscribes a pentagram (stroke-dashoffset → 0) that
-   ignites phosphor; indeterminate strikes a single bar through the ward. */
 export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const autoId = useId();
   const box = (

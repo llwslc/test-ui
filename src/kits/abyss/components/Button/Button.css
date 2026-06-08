@@ -32,7 +32,6 @@
   font-size: 1.1em;
 }
 
-/* primary — phosphor seal, breathing aura */
 .abyss-btn--primary {
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-fill: linear-gradient(180deg, rgba(70, 232, 184, 0.11), rgba(70, 232, 184, 0.02));
@@ -45,7 +44,6 @@
   filter: var(--abyss-aura-strong);
 }
 
-/* secondary — ichor */
 .abyss-btn--secondary {
   --abyss-frame-ink: rgba(145, 118, 255, 0.55);
   --abyss-frame-fill: var(--abyss-ichor-soft);
@@ -56,7 +54,6 @@
   filter: drop-shadow(0 0 12px rgba(145, 118, 255, 0.42));
 }
 
-/* danger — blood */
 .abyss-btn--danger {
   --abyss-frame-ink: rgba(210, 64, 89, 0.6);
   --abyss-frame-fill: var(--abyss-blood-soft);
@@ -67,7 +64,6 @@
   filter: drop-shadow(0 0 12px rgba(210, 64, 89, 0.45));
 }
 
-/* ghost — inked outline only */
 .abyss-btn--ghost {
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: transparent;
@@ -78,7 +74,6 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
 
-/* icon variants */
 .abyss-btn--icon,
 .abyss-btn--icon-ghost {
   padding: 0;
@@ -105,7 +100,6 @@
   font-size: 1.2em;
 }
 
-/* sizes */
 .abyss-btn--sm {
   min-height: 32px;
   padding: 0 var(--abyss-space-4);

@@ -11,9 +11,6 @@ export interface AutocompleteProps {
   label?: string;
 }
 
-/* A stone-well text input that drops an inked-tablet of suggestions. The lead is
-   an aperture into the well; the highlighted suggestion washes phosphor and uncoils
-   a small tendril curl on its left. Value is free text — it may stray from the list. */
 export function Autocomplete({
   items,
   placeholder = "Speak a name…",

@@ -20,14 +20,10 @@ export interface NavigationMenuProps {
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
-/* A dim ritual sigil that kindles to phosphor and turns when its row is
-   watched (hover/focus). Inked currentColor glyph — no eye. */
 function MarkerSigil() {
   return <SigilIcon className="abyss-navmenu__mark" aria-hidden />;
 }
 
-/* Site-level navigation: top-level items open rich panels of links into a
-   shared viewport (distinct from Menu's action lists). */
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="abyss-navmenu">

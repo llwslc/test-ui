@@ -1,6 +1,3 @@
-/* Whispers surfacing from the deep — small inked tablets that rise and fade up
-   from below, stack with a gap, reflow as the column shifts. The frame border
-   wavers on its own ::before; text on the tablet stays crisp. */
 
 @property --toast-offset-y {
   syntax: "<length>";
@@ -70,7 +67,6 @@
   transform: translateY(-16px) scale(0.97);
 }
 
-/* a thin phosphor vein running up the inner edge — the light from below */
 .abyss-toast__beam {
   position: absolute;
   top: 6px;
@@ -141,7 +137,10 @@
   filter: drop-shadow(0 0 9px var(--abyss-glow-a70));
 }
 
-/* tones — info & success burn phosphor, warning gutters gold, danger bleeds */
+.abyss-toast--info {
+  --abyss-toast-accent: var(--abyss-ichor);
+  --abyss-toast-accent-soft: var(--abyss-ichor-soft);
+}
 .abyss-toast--success {
   --abyss-toast-accent: var(--abyss-glow);
   --abyss-toast-accent-soft: var(--abyss-glow-soft);

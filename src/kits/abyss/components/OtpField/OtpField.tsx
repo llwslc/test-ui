@@ -10,15 +10,9 @@ export interface OtpFieldProps {
   onValueChange?: (value: string) => void;
   mask?: boolean;
   disabled?: boolean;
-  /** Index after which to insert a divider, e.g. 3 splits 6 slots into 3·3. */
   splitAt?: number;
 }
 
-/* A row of ritual ink-wells — each a wet-stone inset with a hand-inked wavering
-   frame. The active well is a phosphor ink-well: its rim brightens, a soft inner
-   glow pools at the floor, and an inked phosphor caret blinks. Inscribed glyphs
-   wake bone-bright in mono; a tendril dash bridges groups at splitAt. State comes
-   from Base UI's [data-filled] / :focus on each slot. */
 export function OtpField({
   length = 6,
   name,

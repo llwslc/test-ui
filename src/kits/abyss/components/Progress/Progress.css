@@ -29,7 +29,6 @@
   box-shadow: 0 0 8px var(--abyss-glow-a55);
   transition: width var(--abyss-dur-slow) var(--abyss-ease);
 }
-/* indeterminate — a tendril roving the vein */
 .abyss-progress__track[data-indeterminate] .abyss-progress__indicator {
   width: 40%;
   margin-left: -40%;

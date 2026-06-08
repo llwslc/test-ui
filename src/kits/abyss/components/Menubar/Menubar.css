@@ -1,6 +1,3 @@
-/* The menu bar — a row of inked triggers struck onto a wet-stone ledger. The
-   ledger is an .abyss-frame; the open trigger lights phosphor and its wrap
-   breathes an aura. */
 .abyss-menubar {
   --abyss-frame-fill: var(--abyss-surface);
   --abyss-frame-ink: var(--abyss-ink-strong);

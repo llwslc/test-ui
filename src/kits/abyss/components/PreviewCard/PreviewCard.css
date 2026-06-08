@@ -18,8 +18,6 @@
   padding: var(--abyss-space-4);
 }
 
-/* the mark: a small wax sigil stamped in the upper corner of the tablet, ashen
-   while dormant, kindling to phosphor as the card scries open */
 .abyss-previewcard__mark {
   position: absolute;
   top: 9px;

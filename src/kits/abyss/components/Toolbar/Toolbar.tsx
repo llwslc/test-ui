@@ -25,10 +25,6 @@ export interface ToolbarButtonProps {
   "aria-label"?: string;
 }
 
-/* Each control is a small inked seal (.abyss-frame). It wakes from ashen ink to
-   phosphor on hover; when active the seal is struck — its inked rule floods to
-   phosphor, the whole tablet washes in light and breathes an aura, as if a
-   freshly pressed wax seal still glowing. */
 export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
   return (
     <span className="abyss-toolbar__btnwrap">

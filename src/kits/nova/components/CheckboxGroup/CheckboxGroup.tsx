@@ -16,16 +16,12 @@ export interface CheckboxGroupProps extends Omit<
 > {
   items: CheckboxGroupOption[];
   parentLabel?: ReactNode;
-  /* When true, parentLabel is a "select all / clear all" parent checkbox.
-     Default: parentLabel is a plain heading and each row toggles on its own. */
-  selectAll?: boolean;
 }
 
 export function CheckboxGroup({
   className,
   items,
   parentLabel,
-  selectAll = false,
   allValues,
   ...props
 }: CheckboxGroupProps) {
@@ -36,13 +32,7 @@ export function CheckboxGroup({
       allValues={everyValue}
       {...props}
     >
-      {parentLabel != null ? (
-        selectAll ? (
-          <Checkbox parent label={parentLabel} />
-        ) : (
-          <p className="nova-checkboxgroup__heading">{parentLabel}</p>
-        )
-      ) : null}
+      {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
       <div className="nova-checkboxgroup__items">
         {items.map((it) => (
           <Checkbox

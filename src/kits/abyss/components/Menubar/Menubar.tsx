@@ -10,9 +10,6 @@ export interface MenubarProps {
   children: ReactNode;
 }
 
-/* A persistent grimoire menu bar (File · Edit · View) inked onto a stone ledger.
-   Base UI's Menubar coordinates roving focus across the menus; each MenubarMenu
-   is a Menu.Root reusing the Menu popup + item skin. */
 export function Menubar({ children }: MenubarProps) {
   return <BaseMenubar className="abyss-frame abyss-menubar">{children}</BaseMenubar>;
 }

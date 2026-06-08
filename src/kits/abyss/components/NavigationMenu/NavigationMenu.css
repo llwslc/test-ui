@@ -14,7 +14,6 @@
   list-style: none;
 }
 
-/* ---- Triggers: eldritch tabs, dim ink that lights to phosphor ---- */
 .abyss-navmenu__triggerwrap {
   display: inline-flex;
   align-items: stretch;
@@ -40,7 +39,6 @@
   outline: none;
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-/* the wavering phosphor underline — a hand-inked rule warped by #abyss-edge */
 .abyss-navmenu__trigger::after,
 .abyss-navmenu__toplink::after {
   content: "";
@@ -92,7 +90,6 @@
   opacity: 1;
 }
 
-/* ---- Shared popup: an inked tablet risen from the deep ---- */
 .abyss-navmenu__positioner {
   z-index: var(--abyss-z-overlay);
   outline: none;
@@ -137,7 +134,6 @@
   list-style: none;
 }
 
-/* ---- Links: a row of grimoire text marked by a ritual sigil ---- */
 .abyss-navmenu__link {
   position: relative;
   display: flex;
@@ -155,7 +151,6 @@
   background: var(--abyss-glow-soft);
 }
 
-/* the marker sigil — dim ink for every row, kindling + turning on the watched one */
 .abyss-navmenu__mark {
   flex: 0 0 auto;
   margin-top: 1px;

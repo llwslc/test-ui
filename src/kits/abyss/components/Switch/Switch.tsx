@@ -5,9 +5,6 @@ import "./Switch.css";
 
 export interface SwitchProps extends ComponentPropsWithoutRef<typeof BaseSwitch.Root> {}
 
-/* The switch is an eye: closed (iris a flat lash-line, dim) when off, blinking
-   open (dilating phosphor iris, aura) when on. State comes from Base UI's
-   [data-checked] on the Root; the eye is pure SVG + CSS. */
 export function Switch({ className, ...props }: SwitchProps) {
   return (
     <BaseSwitch.Root className={cx("abyss-switch", className)} {...props}>

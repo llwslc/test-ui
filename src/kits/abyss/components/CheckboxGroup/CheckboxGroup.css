@@ -3,17 +3,7 @@
   flex-direction: column;
   gap: var(--abyss-space-3);
 }
-.abyss-checkboxgroup__heading {
-  margin: 0;
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-12);
-  letter-spacing: var(--abyss-ls-12);
-  text-transform: uppercase;
-  color: var(--abyss-text-dim);
-}
 
-/* the children indent beneath the parent eye, bound by an inked tendril that
-   wavers down the left margin like a dripped line of script */
 .abyss-checkboxgroup__items {
   position: relative;
   display: flex;

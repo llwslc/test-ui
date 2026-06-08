@@ -13,9 +13,6 @@ export interface CollapsibleProps {
   className?: string;
 }
 
-/* A single disclosure: an inked tablet whose trigger bears a sigil rune that
-   rotates and ignites phosphor as the leaf unfurls (data-panel-open). The panel
-   unrolls on Base UI's measured --collapsible-panel-height, a slow height run. */
 export function Collapsible({
   title,
   children,

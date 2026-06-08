@@ -26,8 +26,6 @@ export function ToastProvider({
   );
 }
 
-/* per-tone glyph: a conch whispering up from the deep for info, a struck sigil
-   for success, a guttering flame for warnings, a skull for what crawls up. */
 function ToneSigil({ tone }: { tone: ToastTone }) {
   if (tone === "success") return <SigilIcon />;
   if (tone === "warning") return <FlameIcon />;

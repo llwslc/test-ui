@@ -15,9 +15,6 @@ export interface PopoverProps {
   className?: string;
 }
 
-/* A click-opened inked tablet dredged up on a tendril (the Base UI Arrow). A
-   conch shell marks the title — the deep whispers through it as the tablet
-   settles. Base UI wiring is untouched — only the skin and the motif are ours. */
 export function Popover({
   trigger,
   title,

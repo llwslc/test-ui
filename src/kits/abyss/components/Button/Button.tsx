@@ -19,7 +19,6 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   icon?: ReactNode;
 }
 
-/* forwardRef so it can act as a Base UI trigger (Tooltip / Dialog / Popover). */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = "primary", size = "md", icon, className, children, ...props },
   ref,

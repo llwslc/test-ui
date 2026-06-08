@@ -1,8 +1,3 @@
-/* A wet-stone tablet holding a cluster of inked seal-buttons. The rail is a
-   faint frame; each button is its own seal that wakes to phosphor on hover and,
-   when struck active, floods from ashen ink to a glowing phosphor seal — its
-   inked rule lit, an inner struck-mark pressed, the whole tablet breathing an
-   aura. Inked separators part the groups. */
 .abyss-toolbar {
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-fill: var(--abyss-surface);
@@ -82,8 +77,6 @@
   --abyss-frame-fill: var(--abyss-glow-soft);
   text-shadow: var(--abyss-text-aura);
 }
-/* the struck-seal mark — a fainter inner phosphor rule pressed inside the lit
-   frame, displaced like the outer edge (decoration layer only, never on text) */
 .abyss-toolbar__btn.is-active::after {
   content: "";
   position: absolute;

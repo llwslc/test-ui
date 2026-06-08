@@ -1,8 +1,3 @@
-/* Action menu — an inked stone tablet dredged up beside its trigger. The popup
-   is an .abyss-frame (warped border on a ::before, text stays crisp); each row
-   is icon · inked label · mono shortcut. When a row is highlighted it floods
-   with a phosphor wash and a tiny tendril uncoils at its left margin. Danger
-   rows bleed. */
 .abyss-menu__positioner {
   z-index: var(--abyss-z-overlay);
   outline: none;
@@ -37,7 +32,6 @@
     background var(--abyss-dur) var(--abyss-ease),
     color var(--abyss-dur) var(--abyss-ease);
 }
-/* phosphor edge — a thread of living light at the row's left margin */
 .abyss-menu__item::after {
   content: "";
   position: absolute;
@@ -74,7 +68,6 @@
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
 
-/* the tendril curl — uncoils at the row's left margin on highlight */
 .abyss-menu__curl {
   --curl: var(--abyss-glow);
   position: absolute;
@@ -121,7 +114,6 @@
 .abyss-menu__item[data-popup-open] .abyss-menu__shortcut {
   color: var(--abyss-text-dim);
 }
-/* the tendril uncoils — stroke draws in, faint aura */
 .abyss-menu__item[data-highlighted] .abyss-menu__curl,
 .abyss-menu__item[data-popup-open] .abyss-menu__curl {
   opacity: 1;
@@ -137,7 +129,6 @@
   cursor: not-allowed;
 }
 
-/* danger — the row bleeds */
 .abyss-menu__item--danger {
   color: var(--abyss-blood);
 }
@@ -169,7 +160,6 @@
   margin: var(--abyss-space-2) var(--abyss-space-2);
 }
 
-/* submenu trigger — a tendril chevron pointing to the child tablet */
 .abyss-menu__arrow {
   flex: 0 0 auto;
   display: inline-flex;

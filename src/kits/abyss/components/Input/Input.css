@@ -20,8 +20,18 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
   filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
 }
-.abyss-input-wrap--error {
-  --abyss-frame-ink: rgba(210, 64, 89, 0.6);
+.abyss-input-wrap--error,
+.abyss-input-wrap--error:focus-within {
+  --abyss-frame-ink: var(--abyss-blood);
+}
+.abyss-input-wrap--error:focus-within {
+  filter: drop-shadow(0 2px 8px var(--abyss-blood-soft));
+}
+.abyss-input-wrap--error .abyss-input {
+  caret-color: var(--abyss-blood);
+}
+.abyss-input-wrap--error:focus-within .abyss-input__icon {
+  color: var(--abyss-blood);
 }
 .abyss-input {
   flex: 1;

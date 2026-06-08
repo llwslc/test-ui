@@ -23,10 +23,6 @@ export interface SelectProps<Value extends string = string> {
   id?: string;
 }
 
-/* A scrying well: the trigger is a sunken stone slab showing the chosen name and
-   a downward chevron that flips up as the tablet rises. The popup is an inked
-   tablet of options; the chosen one is struck with a phosphor seal (a glowing
-   check), the highlighted one washed in living light. */
 export function Select<Value extends string = string>({
   items,
   placeholder = "Select…",

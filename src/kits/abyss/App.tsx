@@ -53,7 +53,6 @@ import {
   type NavMenuItem,
 } from "./components";
 import {
-  CandleIcon,
   CopyIcon,
   EyeIcon,
   KeyIcon,
@@ -67,8 +66,6 @@ import {
 } from "./components/icons";
 import "./App.css";
 
-/* The hand-drawn edge: a fractal-noise displacement filter mounted once. Every
-   .abyss-frame border references it, so straight edges waver organically. */
 function EdgeFilter() {
   return (
     <svg className="abyss-defs" aria-hidden width="0" height="0">
@@ -91,6 +88,83 @@ function EdgeFilter() {
     </svg>
   );
 }
+
+const SECTIONS: { group: string; sub: string; items: [string, string][] }[] = [
+  {
+    group: "Inputs",
+    sub: "rites of intent",
+    items: [
+      ["button", "Button"],
+      ["switch", "Switch"],
+      ["checkbox", "Checkbox"],
+      ["checkbox-group", "Checkbox Group"],
+      ["radio", "Radio"],
+      ["toggle", "Toggle Group"],
+      ["slider", "Slider"],
+      ["number", "Number Field"],
+      ["input", "Text Field"],
+      ["otp", "OTP Field"],
+      ["select", "Select"],
+      ["combobox", "Combobox"],
+      ["autocomplete", "Autocomplete"],
+    ],
+  },
+  {
+    group: "Forms",
+    sub: "binding the acolyte",
+    items: [
+      ["fieldset", "Fieldset"],
+      ["form", "Form"],
+    ],
+  },
+  {
+    group: "Feedback",
+    sub: "what the deep returns",
+    items: [
+      ["progress", "Progress"],
+      ["meter", "Meter"],
+      ["tabs", "Tabs"],
+      ["accordion", "Accordion"],
+      ["collapsible", "Collapsible"],
+    ],
+  },
+  {
+    group: "Overlays",
+    sub: "things that surface",
+    items: [
+      ["tooltip", "Tooltip"],
+      ["popover", "Popover"],
+      ["preview", "Preview Card"],
+      ["menu", "Menu"],
+      ["menubar", "Menubar"],
+      ["navmenu", "Navigation Menu"],
+      ["context", "Context Menu"],
+      ["dialog", "Dialog"],
+      ["alert", "Alert Dialog"],
+      ["drawer", "Drawer"],
+      ["toast", "Toast"],
+    ],
+  },
+  {
+    group: "Display",
+    sub: "what watches back",
+    items: [
+      ["avatar", "Avatar"],
+      ["badge", "Badge"],
+      ["toolbar", "Toolbar"],
+      ["scroll", "Scroll Area"],
+    ],
+  },
+  {
+    group: "Foundations",
+    sub: "stone & ink",
+    items: [
+      ["typography", "Typography"],
+      ["separator", "Separator"],
+      ["panel", "Panel"],
+    ],
+  },
+];
 
 const SELECT_ITEMS = [
   { label: "R'lyeh — Fathom 001", value: "rlyeh" },
@@ -209,6 +283,17 @@ const ACCORDION_ITEMS = [
       "It does not sleep so much as wait. Pressure nominal, salt saturation rising, the dreamer's pulse measured once every long tide.",
   },
 ];
+
+function Clock() {
+  const [now, setNow] = useState("");
+  useEffect(() => {
+    const tick = () => setNow(new Date().toTimeString().slice(0, 8));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return <span className="abyss-clock">{now} TIDE</span>;
+}
 
 function AccessCodeField() {
   const [code, setCode] = useState("");
@@ -350,21 +435,12 @@ function ToastDemo() {
   );
 }
 
-const GROUPS: [string, string][] = [
-  ["Inputs", "The rites of intent"],
-  ["Forms", "Binding the acolyte"],
-  ["Feedback", "What the deep returns"],
-  ["Overlays", "Things that surface"],
-  ["Display", "What watches back"],
-  ["Foundations", "Stone & ink"],
-];
-
-function GroupRule({ i }: { i: number }) {
+function GroupRule({ group, sub }: { group: string; sub: string }) {
   return (
     <div className="abyss-grid__group span-2">
       <SigilIcon className="abyss-grid__group-mark" />
-      <span className="abyss-grid__group-title">{GROUPS[i][0]}</span>
-      <span className="abyss-grid__group-sub">{GROUPS[i][1]}</span>
+      <span className="abyss-grid__group-title">{group}</span>
+      <span className="abyss-grid__group-sub">{sub}</span>
     </div>
   );
 }
@@ -381,505 +457,618 @@ function Demo() {
           </span>
           <div>
             <div className="abyss-brand abyss-logo__text">Abyss</div>
-            <div className="abyss-logo__sub">An Eldritch Component Grimoire · Base UI</div>
+            <div className="abyss-logo__sub">Eldritch Grimoire · Base UI</div>
           </div>
         </div>
+        <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
         <div className="abyss-header__status">
           <Badge tone="primary" dot>
             Awake
           </Badge>
-          <Badge tone="neutral">37 Rites</Badge>
+          <Clock />
         </div>
       </header>
 
-      <main className="abyss-main">
-        <section className="abyss-hero">
-          <p className="abyss-hero__eyebrow">
-            <TentacleIcon /> Grimoire · Summoned Interfaces
-          </p>
-          <h1 className="abyss-h1">
-            Tools dredged
-            <br />
-            from the <span className="abyss-h1--accent">deep</span>
-          </h1>
-          <p className="abyss-text">
-            Thirty-seven accessible Base UI primitives rebound as wet-stone tablets,
-            watching eyes, and inscribed sigils — hand-inked frames that waver, light
-            that breathes. Themed end to end through <code>--abyss-*</code> tokens.
-          </p>
-        </section>
+      <div className="abyss-shell">
+        <aside className="abyss-sidebar">
+          {SECTIONS.map((sec) => (
+            <nav className="abyss-sidebar__group" key={sec.group}>
+              <p className="abyss-sidebar__group-title">{sec.group}</p>
+              {sec.items.map(([id, name]) => (
+                <a className="abyss-sidebar__link" href={`#${id}`} key={id}>
+                  {name}
+                </a>
+              ))}
+            </nav>
+          ))}
+        </aside>
 
-        <div className="abyss-grid">
-          <GroupRule i={0} />
-
-          <Panel title="Button" meta="i" breathe className="span-2">
-            <div className="demo-stack">
-              <div className="demo-row">
-                <Button icon={<KeyIcon />}>Invoke</Button>
-                <Button variant="secondary">Bind</Button>
-                <Button variant="danger">Banish</Button>
-                <Button variant="ghost">Dismiss</Button>
-                <Button disabled>Sealed</Button>
+        <main className="abyss-main">
+          <section className="abyss-hero">
+            <p className="abyss-hero__eyebrow">
+              <TentacleIcon /> Grimoire · Summoned Interfaces
+            </p>
+            <h1 className="abyss-h1">
+              Tools dredged
+              <br />
+              from the <span className="abyss-h1--accent">deep</span>
+            </h1>
+            <p className="abyss-text">
+              Thirty-seven accessible Base UI primitives rebound as wet-stone tablets,
+              watching eyes, and inscribed sigils — hand-inked frames that waver, light
+              that breathes. Themed end to end through <code>--abyss-*</code> tokens.
+            </p>
+            <div className="abyss-hero__stats">
+              <div className="abyss-hero__stat">
+                <b>37</b>
+                <span>Rites</span>
               </div>
-              <div className="demo-row">
-                <Button size="sm">Lesser</Button>
-                <Button size="md">Common</Button>
-                <Button size="lg">Greater</Button>
-                <Button variant="icon" aria-label="Watch">
-                  <EyeIcon />
-                </Button>
-                <Button variant="icon-ghost" aria-label="Ossuary">
-                  <SkullIcon />
-                </Button>
+              <div className="abyss-hero__stat">
+                <b>1</b>
+                <span>Sigil File</span>
               </div>
-            </div>
-          </Panel>
-
-          <Panel title="Switch" meta="ii">
-            <div className="demo-stack">
-              <div className="demo-spread">
-                <span className="abyss-cap">The Watcher</span>
-                <Switch defaultChecked aria-label="The Watcher" />
+              <div className="abyss-hero__stat">
+                <b>0</b>
+                <span>Runtime Deps</span>
               </div>
-              <div className="demo-spread">
-                <span className="abyss-cap">Slumber</span>
-                <Switch aria-label="Slumber" />
-              </div>
-              <div className="demo-spread">
-                <span className="abyss-cap">Bound Shut</span>
-                <Switch disabled defaultChecked aria-label="Bound Shut" />
+              <div className="abyss-hero__stat">
+                <b>A11y</b>
+                <span>Base UI Core</span>
               </div>
             </div>
-          </Panel>
+          </section>
 
-          <Panel title="Checkbox" meta="iii">
-            <div className="demo-stack">
-              <Checkbox defaultChecked label="Speak the name" />
-              <Checkbox label="Open the way" />
-              <Checkbox indeterminate label="Half-remembered" />
-              <Checkbox disabled defaultChecked label="Warded (sealed)" />
+          <div className="abyss-grid">
+            <GroupRule group="Inputs" sub="rites of intent" />
+
+            <div className="abyss-section span-2" id="button">
+              <Panel title="Button" meta="i" breathe>
+                <div className="demo-stack">
+                  <div className="demo-row">
+                    <Button icon={<KeyIcon />}>Invoke</Button>
+                    <Button variant="secondary">Bind</Button>
+                    <Button variant="danger">Banish</Button>
+                    <Button variant="ghost">Dismiss</Button>
+                    <Button disabled>Sealed</Button>
+                  </div>
+                  <div className="demo-row">
+                    <Button size="sm">Lesser</Button>
+                    <Button size="md">Common</Button>
+                    <Button size="lg">Greater</Button>
+                    <Button variant="icon" aria-label="Watch">
+                      <EyeIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Ossuary">
+                      <SkullIcon />
+                    </Button>
+                  </div>
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Checkbox Group" meta="iv">
-            <CheckboxGroup
-              parentLabel="All currents"
-              defaultValue={["echo"]}
-              items={CHECKGROUP_ITEMS}
-            />
-          </Panel>
-
-          <Panel title="Radio" meta="v">
-            <RadioGroup defaultValue="tide">
-              <Radio value="tide">Walk the tide</Radio>
-              <Radio value="deep">Descend the deep</Radio>
-              <Radio value="gate">Pass the gate</Radio>
-              <Radio value="sealed" disabled>
-                The sealed road
-              </Radio>
-            </RadioGroup>
-          </Panel>
-
-          <Panel title="Toggle Group" meta="vi">
-            <div className="demo-stack">
-              <ToggleGroup defaultValue={["chart"]}>
-                <Toggle value="chart">Chart</Toggle>
-                <Toggle value="reef">Reef</Toggle>
-                <Toggle value="deep">Deep</Toggle>
-              </ToggleGroup>
-              <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
-                <Toggle value="wards">Wards</Toggle>
-                <Toggle value="sigils">Sigils</Toggle>
-                <Toggle value="omens">Omens</Toggle>
-              </ToggleGroup>
+            <div className="abyss-section" id="switch">
+              <Panel title="Switch" meta="ii">
+                <div className="demo-stack">
+                  <div className="demo-spread">
+                    <span className="abyss-cap">The Watcher</span>
+                    <Switch defaultChecked aria-label="The Watcher" />
+                  </div>
+                  <div className="demo-spread">
+                    <span className="abyss-cap">Slumber</span>
+                    <Switch aria-label="Slumber" />
+                  </div>
+                  <div className="demo-spread">
+                    <span className="abyss-cap">Bound Shut</span>
+                    <Switch disabled defaultChecked aria-label="Bound Shut" />
+                  </div>
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Slider" meta="vii">
-            <div className="demo-stack">
-              <Slider label="Descent" defaultValue={62} />
-              <Slider label="Resonance" defaultValue={34} min={0} max={100} step={2} />
+            <div className="abyss-section" id="checkbox">
+              <Panel title="Checkbox" meta="iii">
+                <div className="demo-stack">
+                  <Checkbox defaultChecked label="Speak the name" />
+                  <Checkbox label="Open the way" />
+                  <Checkbox label="Loose the tide" />
+                  <Checkbox disabled defaultChecked label="Warded (sealed)" />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Number Field" meta="viii">
-            <div className="demo-stack">
-              <span className="abyss-cap">Fathom Mark</span>
-              <div className="demo-row">
-                <NumberField defaultValue={42} min={0} max={999} />
-                <NumberField defaultValue={7} min={0} max={12} step={1} />
-              </div>
+            <div className="abyss-section" id="checkbox-group">
+              <Panel title="Checkbox Group" meta="iv">
+                <CheckboxGroup
+                  parentLabel="All currents"
+                  defaultValue={["echo"]}
+                  items={CHECKGROUP_ITEMS}
+                />
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Text Field" meta="ix">
-            <div className="demo-stack">
-              <Field label="Sea-name" defaultValue="Drowned Lark" placeholder="Speak your name" />
-              <Input icon={<SearchIcon />} placeholder="Search the codex…" />
-              <AccessCodeField />
-              <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
+            <div className="abyss-section" id="radio">
+              <Panel title="Radio" meta="v">
+                <RadioGroup defaultValue="tide">
+                  <Radio value="tide">Walk the tide</Radio>
+                  <Radio value="deep">Descend the deep</Radio>
+                  <Radio value="gate">Pass the gate</Radio>
+                  <Radio value="sealed" disabled>
+                    The sealed road
+                  </Radio>
+                </RadioGroup>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="OTP Field" meta="x">
-            <div className="demo-stack">
-              <span className="abyss-cap">Litany code</span>
-              <OtpField length={6} splitAt={3} defaultValue="427" />
+            <div className="abyss-section" id="toggle">
+              <Panel title="Toggle Group" meta="vi">
+                <div className="demo-stack">
+                  <ToggleGroup defaultValue={["chart"]}>
+                    <Toggle value="chart">Chart</Toggle>
+                    <Toggle value="reef">Reef</Toggle>
+                    <Toggle value="deep">Deep</Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
+                    <Toggle value="wards">Wards</Toggle>
+                    <Toggle value="sigils">Sigils</Toggle>
+                    <Toggle value="omens">Omens</Toggle>
+                  </ToggleGroup>
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Select" meta="xi">
-            <div className="demo-stack">
-              <span className="abyss-cap">Bearing</span>
-              <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
+            <div className="abyss-section" id="slider">
+              <Panel title="Slider" meta="vii">
+                <div className="demo-stack">
+                  <Slider label="Descent" defaultValue={62} />
+                  <Slider label="Resonance" defaultValue={34} min={0} max={100} step={2} />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Combobox" meta="xii">
-            <div className="demo-stack">
-              <span className="abyss-cap">Sound the depths</span>
-              <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+            <div className="abyss-section" id="number">
+              <Panel title="Number Field" meta="viii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Fathom Mark</span>
+                  <div className="demo-row">
+                    <NumberField defaultValue={42} min={0} max={999} />
+                    <NumberField defaultValue={7} min={0} max={12} step={1} />
+                  </div>
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Autocomplete" meta="xiii">
-            <div className="demo-stack">
-              <span className="abyss-cap">Speak a rite</span>
-              <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
+            <div className="abyss-section" id="input">
+              <Panel title="Text Field" meta="ix">
+                <div className="demo-stack">
+                  <Field label="Sea-name" defaultValue="Drowned Lark" placeholder="Speak your name" />
+                  <Input icon={<SearchIcon />} placeholder="Search the codex…" />
+                  <AccessCodeField />
+                  <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <GroupRule i={1} />
-
-          <Panel title="Fieldset" meta="xiv">
-            <Fieldset legend="Acolyte Rites">
-              <Field label="Sea-name" defaultValue="Drowned Lark" />
-              <Field label="Order" defaultValue="Esoteric-7" />
-            </Fieldset>
-          </Panel>
-
-          <Panel title="Form" meta="xv">
-            <FormDemo />
-          </Panel>
-
-          <GroupRule i={2} />
-
-          <Panel title="Progress" meta="xvi">
-            <ProgressDemo />
-          </Panel>
-
-          <Panel title="Meter" meta="xvii">
-            <div className="demo-stack">
-              <Meter label="Communion" value={88} />
-              <Meter label="Corruption" value={52} tone="warning" />
-              <Meter label="Breach" value={23} tone="danger" />
+            <div className="abyss-section" id="otp">
+              <Panel title="OTP Field" meta="x">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Litany code</span>
+                  <OtpField length={6} splitAt={3} defaultValue="427" />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Tabs" meta="xviii" className="span-2">
-            <Tabs items={TAB_ITEMS} />
-          </Panel>
-
-          <Panel title="Accordion" meta="xix" className="span-2">
-            <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
-          </Panel>
-
-          <Panel title="Collapsible" meta="xx" className="span-2">
-            <div className="demo-stack">
-              <Collapsible title="The Tide Log" defaultOpen>
-                All currents reading true. The last omen passed fourteen tides ago and
-                the water has been quiet since.
-              </Collapsible>
-              <Collapsible title="The Hold">
-                Six reliquaries · two sealed · one marked for rites at the next low tide.
-              </Collapsible>
+            <div className="abyss-section" id="select">
+              <Panel title="Select" meta="xi">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Bearing</span>
+                  <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <GroupRule i={3} />
-
-          <Panel title="Tooltip" meta="xxi">
-            <div className="demo-row">
-              <Tooltip content="It watches from above" side="top">
-                <Button variant="ghost">Above</Button>
-              </Tooltip>
-              <Tooltip content="It waits below" side="bottom">
-                <Button variant="ghost">Below</Button>
-              </Tooltip>
-              <Tooltip content="The candle gutters" side="right">
-                <Button variant="icon-ghost" aria-label="Candle">
-                  <CandleIcon />
-                </Button>
-              </Tooltip>
+            <div className="abyss-section" id="combobox">
+              <Panel title="Combobox" meta="xii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Sound the depths</span>
+                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Popover" meta="xxii">
-            <Popover trigger={<Button variant="ghost">The Conch</Button>} title="Third Key">
-              Press it to your ear and the deep answers — a voice 94 fathoms down, two
-              long tides late. Click outside or ✕ to silence it.
-            </Popover>
-          </Panel>
+            <div className="abyss-section" id="autocomplete">
+              <Panel title="Autocomplete" meta="xiii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Speak a rite</span>
+                  <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
+                </div>
+              </Panel>
+            </div>
 
-          <Panel title="Preview Card" meta="xxiii">
-            <div className="demo-stack">
-              <span className="abyss-cap">Hover the sea-name</span>
-              <div className="abyss-text">
-                Reef warden{" "}
-                <PreviewCard
+            <GroupRule group="Forms" sub="binding the acolyte" />
+
+            <div className="abyss-section" id="fieldset">
+              <Panel title="Fieldset" meta="xiv">
+                <Fieldset legend="Acolyte Rites">
+                  <Field label="Sea-name" defaultValue="Drowned Lark" />
+                  <Field label="Order" defaultValue="Esoteric-7" />
+                </Fieldset>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="form">
+              <Panel title="Form" meta="xv">
+                <FormDemo />
+              </Panel>
+            </div>
+
+            <GroupRule group="Feedback" sub="what the deep returns" />
+
+            <div className="abyss-section" id="progress">
+              <Panel title="Progress" meta="xvi">
+                <ProgressDemo />
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="meter">
+              <Panel title="Meter" meta="xvii">
+                <div className="demo-stack">
+                  <Meter label="Communion" value={88} />
+                  <Meter label="Corruption" value={52} tone="warning" />
+                  <Meter label="Breach" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="tabs">
+              <Panel title="Tabs" meta="xviii">
+                <Tabs items={TAB_ITEMS} />
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="accordion">
+              <Panel title="Accordion" meta="xix">
+                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="collapsible">
+              <Panel title="Collapsible" meta="xx">
+                <div className="demo-stack">
+                  <Collapsible title="The Tide Log" defaultOpen>
+                    All currents reading true. The last omen passed fourteen tides ago and
+                    the water has been quiet since.
+                  </Collapsible>
+                  <Collapsible title="The Hold">
+                    Six reliquaries · two sealed · one marked for rites at the next low tide.
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
+
+            <GroupRule group="Overlays" sub="things that surface" />
+
+            <div className="abyss-section" id="tooltip">
+              <Panel title="Tooltip" meta="xxi">
+                <div className="demo-row">
+                  <Tooltip content="It watches from above" side="top">
+                    <Button variant="ghost">Above</Button>
+                  </Tooltip>
+                  <Tooltip content="It waits below" side="bottom">
+                    <Button variant="ghost">Below</Button>
+                  </Tooltip>
+                  <Tooltip content="It coils to the left" side="left">
+                    <Button variant="ghost">Left</Button>
+                  </Tooltip>
+                  <Tooltip content="The candle gutters" side="right">
+                    <Button variant="ghost">Right</Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="popover">
+              <Panel title="Popover" meta="xxii">
+                <Popover trigger={<Button variant="ghost">The Conch</Button>} title="Third Key">
+                  Press it to your ear and the deep answers — a voice 94 fathoms down, two
+                  long tides late. Click outside or ✕ to silence it.
+                </Popover>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="preview">
+              <Panel title="Preview Card" meta="xxiii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Hover the sea-name</span>
+                  <div className="abyss-text">
+                    Reef warden{" "}
+                    <PreviewCard
+                      trigger={
+                        <a className="demo-link" href="#preview" onClick={(e) => e.preventDefault()}>
+                          @drowned_keeper
+                        </a>
+                      }
+                    >
+                      <div className="demo-pcard__head">
+                        <Avatar src="https://i.pravatar.cc/96?img=15" alt="The Keeper" status="online" />
+                        <div>
+                          <div className="demo-pcard__name">The Keeper</div>
+                          <div className="demo-pcard__handle">Warden of the Reef · Fathom 7</div>
+                        </div>
+                      </div>
+                      <p className="demo-pcard__bio">
+                        Tends the wards at the trench mouth. 1,204 descents logged, and every
+                        one came back up.
+                      </p>
+                      <div className="demo-row">
+                        <Badge tone="primary" dot>
+                          Keeping Watch
+                        </Badge>
+                        <Badge tone="neutral">Rite A</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    keeps the watch.
+                  </div>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="menu">
+              <Panel title="Menu" meta="xxiv">
+                <Menu trigger={<Button variant="ghost">Rites ▾</Button>}>
+                  <MenuItem icon={<SearchIcon />} shortcut="⌘S">
+                    Sound the Deep
+                  </MenuItem>
+                  <MenuItem icon={<KeyIcon />} shortcut="⌘P">
+                    Mark a Bearing
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                    Echo
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />} disabled>
+                    Hail the Dark
+                  </MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                    Cast Overboard
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="menubar">
+              <Panel title="Menubar" meta="xxv">
+                <Menubar>
+                  <MenubarMenu label="Tome">
+                    <MenuItem icon={<KeyIcon />} shortcut="⌘N">
+                      New Rite
+                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘O">
+                      Open Codex
+                    </MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<TrashIcon />} tone="danger">
+                      Cast Out
+                    </MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Sight">
+                    <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Reef View</MenuItem>
+                    <MenuSub icon={<SignalIcon />} label="Soundings">
+                      <MenuItem>Shallows</MenuItem>
+                      <MenuItem>The Deeps</MenuItem>
+                      <MenuItem>Pressure</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="navmenu">
+              <Panel title="Navigation Menu" meta="xxvi">
+                <p className="abyss-text" style={{ margin: "0 0 14px" }}>
+                  The same header nav, shown here in the open. Hover a trigger to unfurl
+                  its tablet of links.
+                </p>
+                <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="context">
+              <Panel title="Context Menu" meta="xxvii">
+                <ContextMenu
                   trigger={
-                    <a className="demo-link" href="#preview" onClick={(e) => e.preventDefault()}>
-                      @drowned_keeper
-                    </a>
+                    <>
+                      Right-click anywhere in these depths <kbd>⌃ click</kbd>
+                    </>
                   }
                 >
-                  <div className="demo-pcard__head">
-                    <Avatar src="https://i.pravatar.cc/96?img=15" alt="The Keeper" status="online" />
-                    <div>
-                      <div className="demo-pcard__name">The Keeper</div>
-                      <div className="demo-pcard__handle">Warden of the Reef · Fathom 7</div>
-                    </div>
-                  </div>
-                  <p className="demo-pcard__bio">
-                    Tends the wards at the trench mouth. 1,204 descents logged, and every
-                    one came back up.
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘C">
+                    Mark Bearing
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />} shortcut="⌘B">
+                    Sound Beacon
+                  </MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                    Banish Node
+                  </MenuItem>
+                </ContextMenu>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="dialog">
+              <Panel title="Dialog" meta="xxviii">
+                <Dialog
+                  trigger={<Button variant="secondary">Begin the Rite</Button>}
+                  title="Descend?"
+                  description="Once the tide takes you there is no surfacing. Speak the word and the way opens."
+                  footer={
+                    <>
+                      <DialogClose>Recoil</DialogClose>
+                      <DialogClose variant="secondary">Descend</DialogClose>
+                    </>
+                  }
+                >
+                  <p style={{ margin: 0 }}>
+                    The depth below is <b>14.2 fathoms</b>. The eye is already open.
                   </p>
-                  <div className="demo-row">
-                    <Badge tone="primary" dot>
-                      Keeping Watch
-                    </Badge>
-                    <Badge tone="neutral">Rite A</Badge>
+                </Dialog>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="alert">
+              <Panel title="Alert Dialog" meta="xxix">
+                <AlertDialog
+                  trigger={<Button variant="danger">Break the Seal</Button>}
+                  title="Break the Seal?"
+                  description="This looses what the seal has held since the first tide, and cannot be undone. Brace for the dark."
+                  actions={
+                    <>
+                      <AlertDialogClose>Cancel</AlertDialogClose>
+                      <AlertDialogClose variant="danger">Break</AlertDialogClose>
+                    </>
+                  }
+                />
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="drawer">
+              <Panel title="Drawer" meta="xxx">
+                <Drawer
+                  side="right"
+                  trigger={<Button variant="ghost">Open the Rites</Button>}
+                  title="Ward Settings"
+                  description="An edge-anchored tablet sliding in from the deep."
+                  footer={<DialogClose variant="secondary">Bind</DialogClose>}
+                >
+                  <div className="demo-spread">
+                    <span className="abyss-cap">Ward Sigil</span>
+                    <Switch defaultChecked aria-label="Ward Sigil" />
                   </div>
-                </PreviewCard>{" "}
-                keeps the watch.
-              </div>
+                  <div className="demo-spread">
+                    <span className="abyss-cap">Walk Unseen</span>
+                    <Switch aria-label="Walk Unseen" />
+                  </div>
+                  <Slider label="Lantern Gain" defaultValue={72} />
+                </Drawer>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Menu" meta="xxiv">
-            <Menu trigger={<Button variant="ghost">Rites ▾</Button>}>
-              <MenuItem icon={<SearchIcon />} shortcut="⌘S">
-                Sound the Deep
-              </MenuItem>
-              <MenuItem icon={<KeyIcon />} shortcut="⌘P">
-                Mark a Bearing
-              </MenuItem>
-              <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                Echo
-              </MenuItem>
-              <MenuItem icon={<SignalIcon />} disabled>
-                Hail the Dark
-              </MenuItem>
-              <MenuSeparator />
-              <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
-                Cast Overboard
-              </MenuItem>
-            </Menu>
-          </Panel>
-
-          <Panel title="Menubar" meta="xxv" className="span-2">
-            <Menubar>
-              <MenubarMenu label="Tome">
-                <MenuItem icon={<KeyIcon />} shortcut="⌘N">
-                  New Rite
-                </MenuItem>
-                <MenuItem icon={<CopyIcon />} shortcut="⌘O">
-                  Open Codex
-                </MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<TrashIcon />} tone="danger">
-                  Cast Out
-                </MenuItem>
-              </MenubarMenu>
-              <MenubarMenu label="Sight">
-                <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
-                <MenuItem icon={<CopyIcon />}>Reef View</MenuItem>
-                <MenuSub icon={<SignalIcon />} label="Soundings">
-                  <MenuItem>Shallows</MenuItem>
-                  <MenuItem>The Deeps</MenuItem>
-                  <MenuItem>Pressure</MenuItem>
-                </MenuSub>
-              </MenubarMenu>
-            </Menubar>
-          </Panel>
-
-          <Panel title="Navigation Menu" meta="xxvi" className="span-2">
-            <div id="navmenu">
-              <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
+            <div className="abyss-section" id="toast">
+              <Panel title="Toast" meta="xxxi">
+                <ToastDemo />
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Context Menu" meta="xxvii">
-            <ContextMenu
-              trigger={
-                <>
-                  Right-click anywhere in these depths <kbd>⌃ click</kbd>
-                </>
-              }
-            >
-              <MenuItem icon={<CopyIcon />} shortcut="⌘C">
-                Mark Bearing
-              </MenuItem>
-              <MenuItem icon={<SignalIcon />} shortcut="⌘B">
-                Sound Beacon
-              </MenuItem>
-              <MenuSeparator />
-              <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
-                Banish Node
-              </MenuItem>
-            </ContextMenu>
-          </Panel>
+            <GroupRule group="Display" sub="what watches back" />
 
-          <Panel title="Dialog" meta="xxviii">
-            <Dialog
-              trigger={<Button variant="secondary">Begin the Rite</Button>}
-              title="Descend?"
-              description="Once the tide takes you there is no surfacing. Speak the word and the way opens."
-              footer={
-                <>
-                  <DialogClose>Recoil</DialogClose>
-                  <DialogClose variant="secondary">Descend</DialogClose>
-                </>
-              }
-            >
-              <p style={{ margin: 0 }}>
-                The depth below is <b>14.2 fathoms</b>. The eye is already open.
-              </p>
-            </Dialog>
-          </Panel>
-
-          <Panel title="Alert Dialog" meta="xxix">
-            <AlertDialog
-              trigger={<Button variant="danger">Break the Seal</Button>}
-              title="Break the Seal?"
-              description="This looses what the seal has held since the first tide, and cannot be undone. Brace for the dark."
-              actions={
-                <>
-                  <AlertDialogClose>Cancel</AlertDialogClose>
-                  <AlertDialogClose variant="danger">Break</AlertDialogClose>
-                </>
-              }
-            />
-          </Panel>
-
-          <Panel title="Drawer" meta="xxx">
-            <Drawer
-              side="right"
-              trigger={<Button variant="ghost">Open the Rites</Button>}
-              title="Ward Settings"
-              description="An edge-anchored tablet sliding in from the deep."
-              footer={<DialogClose variant="secondary">Bind</DialogClose>}
-            >
-              <div className="demo-spread">
-                <span className="abyss-cap">Ward Sigil</span>
-                <Switch defaultChecked aria-label="Ward Sigil" />
-              </div>
-              <div className="demo-spread">
-                <span className="abyss-cap">Walk Unseen</span>
-                <Switch aria-label="Walk Unseen" />
-              </div>
-              <Slider label="Lantern Gain" defaultValue={72} />
-            </Drawer>
-          </Panel>
-
-          <Panel title="Toast" meta="xxxi">
-            <ToastDemo />
-          </Panel>
-
-          <GroupRule i={4} />
-
-          <Panel title="Avatar" meta="xxxii">
-            <div className="demo-row">
-              <Avatar src="https://i.pravatar.cc/96?img=12" alt="Acolyte" status="online" />
-              <Avatar fallback="DG" status="busy" />
-              <Avatar fallback="HY" status="away" />
-              <Avatar fallback="NL" size={56} status="offline" />
+            <div className="abyss-section" id="avatar">
+              <Panel title="Avatar" meta="xxxii">
+                <div className="demo-row">
+                  <Avatar src="https://i.pravatar.cc/96?img=12" alt="Acolyte" status="online" />
+                  <Avatar fallback="DG" status="busy" />
+                  <Avatar fallback="HY" status="away" />
+                  <Avatar fallback="NL" size={60} status="online" />
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Badge" meta="xxxiii">
-            <div className="demo-row">
-              <Badge tone="primary" dot>
-                Awake
-              </Badge>
-              <Badge tone="success">Holding</Badge>
-              <Badge tone="warning">Stirring</Badge>
-              <Badge tone="danger" dot>
-                Breach
-              </Badge>
-              <Badge tone="secondary">Ciphered</Badge>
-              <Badge tone="neutral">Dormant</Badge>
+            <div className="abyss-section" id="badge">
+              <Panel title="Badge" meta="xxxiii">
+                <div className="demo-row">
+                  <Badge tone="primary" dot>
+                    Awake
+                  </Badge>
+                  <Badge tone="success">Holding</Badge>
+                  <Badge tone="warning">Stirring</Badge>
+                  <Badge tone="danger" dot>
+                    Breach
+                  </Badge>
+                  <Badge tone="secondary">Ciphered</Badge>
+                  <Badge tone="neutral">Dormant</Badge>
+                </div>
+              </Panel>
             </div>
-          </Panel>
 
-          <Panel title="Toolbar" meta="xxxiv">
-            <ToolbarDemo />
-          </Panel>
+            <div className="abyss-section" id="toolbar">
+              <Panel title="Toolbar" meta="xxxiv">
+                <ToolbarDemo />
+              </Panel>
+            </div>
 
-          <Panel title="Scroll Area" meta="xxxv">
-            <ScrollArea maxHeight={180}>
-              <div className="demo-stack">
-                <p className="abyss-text" style={{ margin: 0 }}>
-                  Pressure nominal at 412 fathoms. The ward sigils were retuned to the
-                  third key at the turn of the tide.
+            <div className="abyss-section" id="scroll">
+              <Panel title="Scroll Area" meta="xxxv">
+                <ScrollArea maxHeight={180}>
+                  <div className="demo-stack">
+                    <p className="abyss-text" style={{ margin: 0 }}>
+                      Pressure nominal at 412 fathoms. The ward sigils were retuned to the
+                      third key at the turn of the tide.
+                    </p>
+                    <p className="abyss-text" style={{ margin: 0 }}>
+                      A conch answered from the Black Reef. The air bells hold at 98% of the
+                      breath. A sigil lock was acquired off Y'ha-nthlei.
+                    </p>
+                    <p className="abyss-text" style={{ margin: 0 }}>
+                      Lantern oil rerouted to the forward bells. The roll was called — forty
+                      seven souls aboard, and one that would not give its name.
+                    </p>
+                  </div>
+                </ScrollArea>
+              </Panel>
+            </div>
+
+            <GroupRule group="Foundations" sub="stone & ink" />
+
+            <div className="abyss-section" id="typography">
+              <Panel title="Typography" meta="xxxvi">
+                <div className="demo-stack">
+                  <p className="abyss-h1">R'lyeh Rises</p>
+                  <p className="abyss-h2">The Drowned Choir</p>
+                  <p className="abyss-h3">Soundings</p>
+                  <p className="abyss-text">
+                    The water holds — pressure steady at 98.4 fathoms across the lower reach,
+                    and 1,204 lights drift in the dark below.
+                  </p>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="separator">
+              <Panel title="Separator" meta="xxxvii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Plain</span>
+                  <Separator />
+                  <span className="abyss-cap">Marked</span>
+                  <Separator label="Rite VII" />
+                  <div className="demo-row">
+                    <span className="abyss-text">Reef A</span>
+                    <Separator orientation="vertical" />
+                    <span className="abyss-text">Reef B</span>
+                    <Separator orientation="vertical" />
+                    <span className="abyss-text">Reef C</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="panel">
+              <Panel title="Panel" meta="∞" breathe>
+                <p className="abyss-text" style={{ margin: "0 0 18px" }}>
+                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
+                  corner tendrils, and a breathing sigil. <MoonIcon /> Composable to any depth.
                 </p>
-                <p className="abyss-text" style={{ margin: 0 }}>
-                  A conch answered from the Black Reef. The air bells hold at 98% of the
-                  breath. A sigil lock was acquired off Y'ha-nthlei.
-                </p>
-                <p className="abyss-text" style={{ margin: 0 }}>
-                  Lantern oil rerouted to the forward bells. The roll was called — forty
-                  seven souls aboard, and one that would not give its name.
-                </p>
-              </div>
-            </ScrollArea>
-          </Panel>
-
-          <GroupRule i={5} />
-
-          <Panel title="Typography" meta="xxxvi">
-            <div className="demo-stack">
-              <p className="abyss-h1">R'lyeh Rises</p>
-              <p className="abyss-h2">The Drowned Choir</p>
-              <p className="abyss-h3">Soundings</p>
-              <p className="abyss-text">
-                The water holds — pressure steady at 98.4 fathoms across the lower reach,
-                and 1,204 lights drift in the dark below.
-              </p>
+                <Panel title="Nested Tablet" meta="·">
+                  <span className="abyss-cap">A tablet within a tablet</span>
+                </Panel>
+              </Panel>
             </div>
-          </Panel>
+          </div>
 
-          <Panel title="Separator" meta="xxxvii">
-            <div className="demo-stack">
-              <span className="abyss-cap">Plain</span>
-              <Separator />
-              <span className="abyss-cap">Marked</span>
-              <Separator label="Rite VII" />
-              <div className="demo-row">
-                <span className="abyss-text">Reef A</span>
-                <Separator orientation="vertical" />
-                <span className="abyss-text">Reef B</span>
-                <Separator orientation="vertical" />
-                <span className="abyss-text">Reef C</span>
-              </div>
-            </div>
-          </Panel>
-
-          <Panel title="Panel" meta="∞" breathe className="span-2">
-            <p className="abyss-text" style={{ marginTop: 0 }}>
-              The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
-              corner tendrils, and a breathing sigil. <MoonIcon /> Composable to any depth.
-            </p>
-            <Panel title="Nested Tablet" meta="·">
-              <span className="abyss-cap">A tablet within a tablet</span>
-            </Panel>
-          </Panel>
-        </div>
-
-        <footer className="abyss-footer">
-          ABYSS · built on @base-ui/react · themed via --abyss-* tokens
-        </footer>
-      </main>
+          <footer className="abyss-footer">
+            ABYSS · built on @base-ui/react · themed via --abyss-* tokens
+          </footer>
+        </main>
+      </div>
     </div>
   );
 }

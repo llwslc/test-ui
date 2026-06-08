@@ -9,11 +9,6 @@ export interface ScrollAreaProps {
   className?: string;
 }
 
-/* A scrying well: a stone-walled viewport with phosphor light pooling in the
-   deep, its contents fading into the dark at the lip and the floor. The scrollbar
-   is a slim phosphor tendril coiled around a living spiral bead that descends the
-   inked channel and brightens as you scroll. Base UI wiring
-   (Root/Viewport/Scrollbar/Thumb) is preserved exactly. */
 export function ScrollArea({ children, maxHeight = 220, className }: ScrollAreaProps) {
   return (
     <BaseScrollArea.Root className={cx("abyss-frame abyss-scrollarea", className)}>

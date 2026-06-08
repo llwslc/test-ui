@@ -124,7 +124,7 @@
   margin: auto;
   width: 1.5px;
   height: 100%;
-  background: var(--abyss-ink-strong);
+  background: var(--abyss-glow-a55);
   filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a55));
 }
 .abyss-connector[data-side="left"],

@@ -9,10 +9,6 @@ export interface NumberFieldProps extends ComponentPropsWithoutRef<
   typeof BaseNumberField.Root
 > {}
 
-/* A count carved into a sunken stone well. The numerals sit in mono behind a
-   phosphor caret; focus-within lights the well rim phosphor. Decrement and
-   increment are two small inked wax seals — at min/max the seal greys shut.
-   State is driven entirely by Base UI's wiring + disabled flags. */
 export function NumberField({
   className,
   id,

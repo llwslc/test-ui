@@ -23,7 +23,6 @@
   transition: none;
 }
 
-/* the tablet dredged from the deep — wet stone, hand-inked wavering border */
 .abyss-drawer__tablet {
   --abyss-frame-fill: radial-gradient(140% 60% at 100% 0%, var(--abyss-glow-soft), transparent 55%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
@@ -37,7 +36,6 @@
   color: var(--abyss-text);
 }
 
-/* phosphor seam — the living light bleeding from the screen edge */
 .abyss-drawer__seam {
   position: absolute;
   z-index: 2;
@@ -160,7 +158,6 @@
   z-index: 3;
 }
 
-/* the key that unlocks the rites — turns in its lock as the drawer opens */
 .abyss-drawer__key {
   flex: 0 0 auto;
   display: inline-flex;

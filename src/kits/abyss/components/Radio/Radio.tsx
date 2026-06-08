@@ -15,7 +15,6 @@ export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Ro
   children?: ReactNode;
 }
 
-/* A round ward in which a phosphor spark wells up when chosen. */
 export function Radio({ className, children, ...props }: RadioProps) {
   return (
     <label className="abyss-radio">

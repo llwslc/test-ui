@@ -1,5 +1,3 @@
-/* The control is a sunken stone well wearing the inked frame; the scrying-glass
-   leads, a clear mark and a chevron trigger flank the typed value. */
 .abyss-combobox__control {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
@@ -93,9 +91,6 @@
   filter: var(--abyss-aura);
 }
 
-/* The popup is an inked tablet floating below the well, joined by a tendril of
-   light. The frame lives on a backing pseudo-layer so the list text stays crisp
-   (never put the #abyss-edge warp on a text-bearing element). */
 .abyss-combobox__positioner {
   z-index: var(--abyss-z-tooltip);
   outline: none;
@@ -138,8 +133,6 @@
   overscroll-behavior: contain;
 }
 
-/* Each row is a candidate omen. Highlight washes it in phosphor and a left rule
-   of light; selection inks it in living light and marks it with a phosphor check. */
 .abyss-combobox__item {
   position: relative;
   display: flex;
@@ -194,7 +187,6 @@
   text-overflow: ellipsis;
 }
 
-/* the chosen omen is sealed with a phosphor check */
 .abyss-combobox__indicator {
   display: inline-grid;
   place-items: center;

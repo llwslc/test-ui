@@ -1,5 +1,3 @@
-/* 1em currentColor glyphs — eldritch motifs drawn as open strokes so they
-   inherit text size + colour. */
 import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -94,7 +92,6 @@ export const ClawIcon = (p: IconProps) => (
   </svg>
 );
 
-/* utility glyphs the controls need */
 export const XIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M6 6l12 12M18 6 6 18" />

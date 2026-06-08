@@ -10,9 +10,6 @@ export interface SeparatorProps {
   className?: string;
 }
 
-/* A wavering inked rule. Plain = the shared .abyss-separator hairline warped by
-   #abyss-edge. Labelled = a centered sigil + display-caps text flanked by two
-   inked rules; the sigil is the eldritch mark that holds the seam shut. */
 export function Separator({
   orientation = "horizontal",
   label,

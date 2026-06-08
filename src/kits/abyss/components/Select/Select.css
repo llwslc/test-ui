@@ -4,7 +4,6 @@
   min-width: 190px;
 }
 
-/* trigger — a sunken stone well, the chosen name inked across it */
 .abyss-select__trigger {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
@@ -50,7 +49,6 @@
   color: var(--abyss-text-mute);
 }
 
-/* the trigger marker — a downward chevron that flips up as the tablet rises */
 .abyss-select__chevron {
   display: inline-flex;
   flex: 0 0 auto;
@@ -63,7 +61,6 @@
   transform: rotate(180deg);
 }
 
-/* popup — an inked tablet rising from the well */
 .abyss-select__positioner {
   z-index: var(--abyss-z-overlay);
   outline: none;
@@ -83,7 +80,6 @@
   overflow-y: auto;
 }
 
-/* each option — a line of grimoire text, lit when watched */
 .abyss-select__item {
   position: relative;
   display: flex;
@@ -114,7 +110,6 @@
   cursor: not-allowed;
 }
 
-/* the seal — empty for every option, struck with a phosphor check on the chosen one */
 .abyss-select__item-indicator {
   display: inline-grid;
   place-items: center;

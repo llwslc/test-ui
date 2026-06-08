@@ -35,8 +35,6 @@
   margin-right: 0;
 }
 
-/* The death's-head: a skull hung at the title, tinted to tone and burning its
-   own halo. No motion — it simply presides over the rite. */
 .abyss-alert__skull {
   flex: 0 0 auto;
   display: grid;

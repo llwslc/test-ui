@@ -10,8 +10,8 @@
   align-items: center;
   gap: var(--abyss-space-2);
   width: auto;
-  margin: 0 0 0 var(--abyss-space-4);
-  padding: 0 var(--abyss-space-3) 0 var(--abyss-space-2);
+  margin: 0 0 var(--abyss-space-2) var(--abyss-space-1);
+  padding: 0;
   font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-13);
   letter-spacing: var(--abyss-ls-12);
@@ -25,8 +25,6 @@
   line-height: var(--abyss-lh-100);
 }
 
-/* the legend's struck sigil — dim phosphor at rest, brightening and turning a
-   touch when the group is hovered, as the tablet's mark catches the scribe */
 .abyss-fieldset__sigil {
   flex: 0 0 auto;
   font-size: var(--abyss-fs-19);
@@ -43,8 +41,6 @@
   filter: drop-shadow(0 0 9px var(--abyss-glow-a55));
 }
 
-/* the body is the inked tablet; the legend overlaps its top rule so it reads
-   as carved into the stone's edge */
 .abyss-fieldset__body {
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: 4px;
@@ -57,6 +53,5 @@
   display: flex;
   flex-direction: column;
   gap: var(--abyss-space-4);
-  margin-top: -10px;
-  padding: var(--abyss-space-5) var(--abyss-space-5) var(--abyss-space-5);
+  padding: var(--abyss-space-5);
 }

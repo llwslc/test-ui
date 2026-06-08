@@ -6,7 +6,6 @@
   filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
 }
 
-/* the sunken stone well — inset fill, ashen ink rim that lights phosphor on focus */
 .abyss-numberfield__group {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
@@ -26,7 +25,6 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
 
-/* the carved numerals — mono, bone-bright, phosphor caret */
 .abyss-numberfield__input {
   width: 64px;
   height: 100%;
@@ -46,7 +44,6 @@
   text-shadow: var(--abyss-text-aura);
 }
 
-/* two small inked wax seals flanking the count */
 .abyss-numberfield__btn {
   --abyss-frame-round: 3px;
   --abyss-frame-ink: var(--abyss-ink-strong);

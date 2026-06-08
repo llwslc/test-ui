@@ -1,17 +1,18 @@
 .abyss-togglegroup {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 4px;
   display: inline-flex;
-  flex-wrap: wrap;
-  gap: var(--abyss-space-2);
   width: fit-content;
+  padding: 3px;
+  gap: 0;
 }
 .abyss-toggle {
-  --abyss-frame-fill: transparent;
-  --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
   position: relative;
-  min-height: 34px;
-  padding: 0 14px;
+  min-height: 32px;
+  padding: 0 16px;
   border: 0;
+  border-radius: 2px;
   background: transparent;
   cursor: pointer;
   font-family: var(--abyss-font-display);
@@ -21,21 +22,39 @@
   color: var(--abyss-text-dim);
   transition:
     color var(--abyss-dur) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
+    background var(--abyss-dur) var(--abyss-ease),
+    box-shadow var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toggle + .abyss-toggle::before {
+  content: "";
+  position: absolute;
+  left: -0.5px;
+  top: 7px;
+  bottom: 7px;
+  width: 1px;
+  background: var(--abyss-ink);
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-toggle:hover {
   color: var(--abyss-text);
-  --abyss-frame-ink: var(--abyss-ink-strong);
 }
 .abyss-toggle[data-pressed] {
-  color: var(--abyss-glow);
-  --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-fill: var(--abyss-glow-soft);
-  filter: var(--abyss-aura);
+  color: var(--abyss-on-glow);
+  background: linear-gradient(180deg, var(--abyss-glow), var(--abyss-glow-deep));
+  box-shadow: 0 0 10px var(--abyss-glow-a55);
+}
+.abyss-toggle[data-pressed]::before,
+.abyss-toggle[data-pressed] + .abyss-toggle::before {
+  opacity: 0;
 }
 .abyss-toggle:focus-visible {
   outline: none;
-  --abyss-frame-ink: var(--abyss-glow);
+  box-shadow: inset 0 0 0 1px var(--abyss-glow);
+}
+.abyss-toggle[data-pressed]:focus-visible {
+  box-shadow:
+    0 0 10px var(--abyss-glow-a55),
+    inset 0 0 0 1px var(--abyss-text-bright);
 }
 .abyss-toggle[data-disabled] {
   opacity: var(--abyss-disabled-opacity);

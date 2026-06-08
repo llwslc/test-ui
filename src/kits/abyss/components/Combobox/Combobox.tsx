@@ -12,10 +12,6 @@ export interface ComboboxProps {
   name?: string;
 }
 
-/* A typable stone well: a SearchIcon scrying-glass leads, a clear XIcon erases,
-   and a ChevronDownIcon opens the list. The inked-tablet popup lists filtered
-   options; highlighted gets a phosphor wash, the chosen one is marked with a
-   phosphor CheckIcon and inked in living light. */
 export function Combobox({
   items,
   placeholder = "Search…",

@@ -12,9 +12,6 @@ export interface PreviewCardProps {
   sideOffset?: number;
 }
 
-/* A scrying tablet dredged up on a tendril when you hover a name. The card is an
-   inked frame stamped with a small wax SIGIL in the corner, kindling as it scries.
-   Base UI wiring + public API are kept identical to NOVA. */
 export function PreviewCard({
   trigger,
   children,

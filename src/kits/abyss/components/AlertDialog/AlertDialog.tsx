@@ -19,10 +19,6 @@ export interface AlertDialogProps {
   className?: string;
 }
 
-/* The forced rite. Like Dialog, but no escape glyph (no close X) and a death's-
-   head marking the title — a skull that hangs over the rite. The tablet's ink,
-   the title, and the skull bleed to the tone (danger = blood) through
-   --abyss-alert-accent. */
 export function AlertDialog({
   trigger,
   title,

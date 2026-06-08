@@ -5,7 +5,6 @@
   width: 100%;
 }
 
-/* each item is an inked tablet — a single grimoire page */
 .abyss-accordion__item {
   --abyss-frame-round: 3px;
   --abyss-frame-ink: var(--abyss-ink-strong);
@@ -59,8 +58,6 @@
   cursor: not-allowed;
 }
 
-/* the sigil rune — dormant ash by default, rotates a quarter-turn and ignites
-   phosphor as the page unfurls, set beside the chevron */
 .abyss-accordion__sigil {
   flex: 0 0 auto;
   font-size: var(--abyss-fs-19);
@@ -97,7 +94,6 @@
   color: var(--abyss-glow);
 }
 
-/* the page unfurls on Base UI's measured panel height */
 .abyss-accordion__panel {
   position: relative;
   z-index: 1;

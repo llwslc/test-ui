@@ -14,10 +14,6 @@ export interface AvatarProps {
   className?: string;
 }
 
-/* A portrait sealed inside an inked tablet (.abyss-frame). The status indicator
-   is a tiny MOON in the corner, its phase set by status — online a full phosphor
-   moon, busy a blood gibbous, away a gold half/crescent, offline a dark new moon
-   (a dim ringed disc). The phase is carved by an offset overlay disc. */
 export function Avatar({
   src,
   alt,

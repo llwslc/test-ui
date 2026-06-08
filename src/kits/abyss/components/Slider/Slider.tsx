@@ -8,7 +8,6 @@ export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.
   showValue?: boolean;
 }
 
-/* A tendril: an inked vein that wavers, lit phosphor up to a glowing node. */
 export function Slider({ className, label, showValue = true, ...props }: SliderProps) {
   return (
     <BaseSlider.Root className={cx("abyss-slider", className)} {...props}>

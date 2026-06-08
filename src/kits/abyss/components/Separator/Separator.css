@@ -1,7 +1,3 @@
-/* Plain .abyss-separator + orientation variants live in effects.css (the
-   shared hairline, warped by #abyss-edge). Here lives only the labelled rule:
-   a centered sigil + display-caps text flanked by two inked rules; the sigil is
-   the eldritch mark sealing the seam. */
 .abyss-separator-labeled {
   display: flex;
   align-items: center;

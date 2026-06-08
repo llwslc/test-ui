@@ -16,18 +16,12 @@ export interface CheckboxGroupProps extends Omit<
 > {
   items: CheckboxGroupOption[];
   parentLabel?: ReactNode;
-  /* When true, parentLabel is a "select all / clear all" parent checkbox.
-     Default: parentLabel is a plain heading and each row toggles on its own. */
-  selectAll?: boolean;
 }
 
-/* A column of independent wards beneath a heading, joined by a hand-inked
-   tendril down the left margin. Opt into a select-all parent with `selectAll`. */
 export function CheckboxGroup({
   className,
   items,
   parentLabel,
-  selectAll = false,
   allValues,
   ...props
 }: CheckboxGroupProps) {
@@ -38,13 +32,7 @@ export function CheckboxGroup({
       allValues={everyValue}
       {...props}
     >
-      {parentLabel != null ? (
-        selectAll ? (
-          <Checkbox parent label={parentLabel} />
-        ) : (
-          <p className="abyss-checkboxgroup__heading">{parentLabel}</p>
-        )
-      ) : null}
+      {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
       <div className="abyss-checkboxgroup__items">
         {items.map((it) => (
           <Checkbox

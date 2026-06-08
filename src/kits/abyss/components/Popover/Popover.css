@@ -31,9 +31,6 @@
   text-shadow: var(--abyss-text-aura);
 }
 
-/* the conch shell marking the title — the deep whispers through it. It rolls
-   in (spiral mouth turning toward the reader) once the popup has settled, and
-   stays coiled-shut while the tablet is entering or leaving. */
 .abyss-popover__conch {
   flex: 0 0 auto;
   font-size: 18px;

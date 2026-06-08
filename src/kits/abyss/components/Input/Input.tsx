@@ -9,7 +9,6 @@ export interface InputProps extends ComponentPropsWithoutRef<typeof BaseInput> {
   icon?: ReactNode;
 }
 
-/* A sunken stone well with a hand-inked rim; the rim lights phosphor on focus. */
 export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (

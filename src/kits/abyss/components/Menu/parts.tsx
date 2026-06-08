@@ -26,10 +26,6 @@ function useParts() {
   return parts;
 }
 
-/* A tiny tendril curl that uncoils at the row's left margin when the row is
-   highlighted — the grimoire reaching a feeler toward your hand. Hidden at rest;
-   the stroke draws in via [data-highlighted] / [data-popup-open] on the item
-   (see Menu.css). Pure SVG + CSS, no JS. */
 function ItemCurl() {
   return (
     <span className="abyss-menu__curl" aria-hidden>

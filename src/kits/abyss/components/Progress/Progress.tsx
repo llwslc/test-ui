@@ -9,7 +9,6 @@ export interface ProgressProps
   showValue?: boolean;
 }
 
-/* A creeping tendril of phosphor seeping along an inked vein. */
 export function Progress({ className, label, showValue = true, ...props }: ProgressProps) {
   return (
     <BaseProgress.Root className={cx("abyss-progress", className)} {...props}>

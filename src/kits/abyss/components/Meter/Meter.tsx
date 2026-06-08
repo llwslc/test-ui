@@ -10,10 +10,6 @@ export interface MeterProps extends ComponentPropsWithoutRef<typeof BaseMeter.Ro
   tone?: "primary" | "success" | "warning" | "danger";
 }
 
-/* A reading of corruption: a creeping phosphor tendril seeping along an inked
-   vein, tone-graded by `tone`. At the vein's end a votive flame answers the
-   reading — guttering low when the vein is dark, flaring tall and bright as the
-   value climbs. */
 export function Meter({
   className,
   label,
@@ -52,7 +48,7 @@ export function Meter({
       <div className="abyss-meter__vein">
         <BaseMeter.Track className="abyss-meter__track">
           <BaseMeter.Indicator className="abyss-meter__indicator" />
-          <span className="abyss-meter__segments" aria-hidden />
+          <span className="abyss-meter__ticks" aria-hidden />
         </BaseMeter.Track>
         <span className="abyss-meter__flame" aria-hidden>
           <FlameIcon />

@@ -18,9 +18,6 @@ export interface AccordionProps {
   className?: string;
 }
 
-/* Grimoire pages. Each trigger bears a sigil rune that rotates and ignites
-   phosphor when its page unfurls (data-panel-open), set beside the chevron; the
-   panel unfurls on Base UI's --accordion-panel-height with a height transition. */
 export function Accordion({
   items,
   openMultiple = false,

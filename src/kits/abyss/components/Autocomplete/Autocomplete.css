@@ -132,13 +132,15 @@
 .abyss-autocomplete__tendril {
   flex: 0 0 auto;
   display: inline-flex;
-  width: 18px;
+  width: 12px;
+  height: 12px;
   line-height: 0;
   color: var(--abyss-glow);
 }
 .abyss-autocomplete__tendril svg {
   display: block;
-  overflow: visible;
+  width: 12px;
+  height: 12px;
 }
 .abyss-autocomplete__tendril path {
   fill: none;
