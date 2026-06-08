@@ -15,13 +15,23 @@ export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Ro
   children?: ReactNode;
 }
 
-/* A ritual circle; selecting opens a phosphor eye-dot at its centre. */
+/* A lesser eye in a round ward — opens to watch when chosen. */
 export function Radio({ className, children, ...props }: RadioProps) {
   return (
     <label className="abyss-radio">
-      <BaseRadio.Root className={cx("abyss-radio__control", className)} {...props}>
-        <span className="abyss-radio__ring" />
-        <BaseRadio.Indicator className="abyss-radio__dot" keepMounted />
+      <BaseRadio.Root className={cx("abyss-radio__control abyss-frame", className)} {...props}>
+        <span className="abyss-eye abyss-radio__eye" aria-hidden>
+          <svg viewBox="0 0 28 28" width="28" height="28">
+            <path
+              className="abyss-eye__sclera"
+              d="M3 14C3 14 7.5 7.5 14 7.5C20.5 7.5 25 14 25 14C25 14 20.5 20.5 14 20.5C7.5 20.5 3 14 3 14Z"
+            />
+            <circle className="abyss-eye__iris" cx="14" cy="14" r="5" />
+            <circle className="abyss-eye__pupil" cx="14" cy="14" r="2.1" />
+            <path className="abyss-eye__lid" d="M3 14C3 14 7.5 7.5 14 7.5C20.5 7.5 25 14 25 14" />
+            <path className="abyss-eye__lid" d="M3 14C3 14 7.5 20.5 14 20.5C20.5 20.5 25 14 25 14" />
+          </svg>
+        </span>
       </BaseRadio.Root>
       {children != null ? <span className="abyss-radio__label">{children}</span> : null}
     </label>

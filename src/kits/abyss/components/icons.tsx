@@ -95,3 +95,41 @@ export const MinusIcon = (p: IconProps) => (
     <path d="M5 12h14" />
   </svg>
 );
+export const PlusIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+export const CheckIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+export const ChevronRightIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="m9 5 7 7-7 7" />
+  </svg>
+);
+export const SearchIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.6-3.6" />
+  </svg>
+);
+export const CopyIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="9" y="9" width="11" height="11" rx="1.5" />
+    <path d="M5 15V5a1 1 0 0 1 1-1h9" />
+  </svg>
+);
+export const TrashIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13" />
+  </svg>
+);
+export const SignalIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 18a14 14 0 0 1 14-14M7 18a9 9 0 0 1 9-9" />
+    <circle cx="6" cy="18" r="1.4" fill="currentColor" stroke="none" />
+  </svg>
+);

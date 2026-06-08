@@ -194,6 +194,9 @@
   margin: auto;
 }
 .abyss-modal-title {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
   margin: 0 36px var(--abyss-space-2) 0;
   font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-24);
@@ -201,6 +204,11 @@
   color: var(--abyss-title-color, var(--abyss-glow));
   text-shadow: 0 0 12px
     color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
+}
+.abyss-modal-title__eye {
+  flex: 0 0 auto;
+  font-size: 20px;
+  filter: var(--abyss-aura);
 }
 .abyss-modal-desc {
   margin: 0 0 var(--abyss-space-4);

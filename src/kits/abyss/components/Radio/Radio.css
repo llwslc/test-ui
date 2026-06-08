@@ -13,55 +13,49 @@
   color: var(--abyss-text);
 }
 .abyss-radio__control {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 50%;
   position: relative;
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   flex: 0 0 auto;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
-.abyss-radio__ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--abyss-inset);
-  border: 1.5px solid var(--abyss-ink-strong);
-  filter: url(#abyss-edge);
-  transition: border-color var(--abyss-dur) var(--abyss-ease);
+.abyss-radio__eye {
+  width: 26px;
 }
-.abyss-radio__dot {
-  position: relative;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--abyss-glow);
-  transform: scale(0);
-  opacity: 0;
-  transition:
-    transform var(--abyss-dur) var(--abyss-ease),
-    opacity var(--abyss-dur) var(--abyss-ease);
+.abyss-radio__eye .abyss-eye__sclera {
+  fill: var(--abyss-void);
 }
-.abyss-radio__control[data-checked] .abyss-radio__ring {
-  border-color: var(--abyss-glow-a55);
+.abyss-radio:hover .abyss-eye__iris {
+  opacity: 0.42;
 }
-.abyss-radio__control[data-checked] .abyss-radio__dot {
-  transform: scale(1);
+.abyss-radio__control[data-checked] {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+.abyss-radio__control[data-checked] .abyss-eye {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-radio__control[data-checked] .abyss-eye__iris {
+  transform: scaleY(1);
   opacity: 1;
-  filter: var(--abyss-aura);
 }
-.abyss-radio:hover .abyss-radio__ring {
-  border-color: var(--abyss-glow-a55);
+.abyss-radio__control[data-checked] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-radio__control[data-checked] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
 }
 .abyss-radio__control:focus-visible {
   outline: none;
-}
-.abyss-radio__control:focus-visible .abyss-radio__ring {
-  border-color: var(--abyss-glow);
-  box-shadow: 0 0 7px var(--abyss-glow-a55);
+  --abyss-frame-ink: var(--abyss-glow);
+  filter: var(--abyss-aura);
 }
 .abyss-radio:has([data-disabled]) {
   opacity: var(--abyss-disabled-opacity);

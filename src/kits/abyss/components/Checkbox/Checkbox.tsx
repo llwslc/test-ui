@@ -9,25 +9,29 @@ export interface CheckboxProps
   label?: ReactNode;
 }
 
-/* A ritual circle; checking inscribes a sigil (stroke-dashoffset → 0) that then
-   glows phosphor. Indeterminate strikes a single bar. */
+/* A warded eye: a hand-inked square that opens a phosphor eye when checked,
+   and is struck through by a bar when indeterminate. */
 export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const autoId = useId();
   const box = (
     <BaseCheckbox.Root
       id={id ?? autoId}
-      className={cx("abyss-check", className)}
+      className={cx("abyss-check abyss-frame", className)}
       {...props}
     >
-      <svg className="abyss-check__sigil" viewBox="0 0 26 26" aria-hidden>
-        <circle className="abyss-check__ring" cx="13" cy="13" r="11" />
-        <path
-          className="abyss-check__mark"
-          pathLength="1"
-          d="M7 13.4 L11.4 18 L19.2 8"
-        />
-        <line className="abyss-check__bar" x1="8" y1="13" x2="18" y2="13" />
-      </svg>
+      <span className="abyss-eye abyss-check__eye" aria-hidden>
+        <svg viewBox="0 0 28 28" width="28" height="28">
+          <path
+            className="abyss-eye__sclera"
+            d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14C25 14 20.5 21 14 21C7.5 21 3 14 3 14Z"
+          />
+          <circle className="abyss-eye__iris" cx="14" cy="14" r="5.4" />
+          <circle className="abyss-eye__pupil" cx="14" cy="14" r="2.3" />
+          <path className="abyss-eye__lid" d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14" />
+          <path className="abyss-eye__lid" d="M3 14C3 14 7.5 21 14 21C20.5 21 25 14 25 14" />
+        </svg>
+      </span>
+      <span className="abyss-check__bar" aria-hidden />
     </BaseCheckbox.Root>
   );
 

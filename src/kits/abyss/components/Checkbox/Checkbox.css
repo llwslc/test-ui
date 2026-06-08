@@ -1,66 +1,69 @@
 .abyss-check {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 4px;
+  position: relative;
   display: inline-grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   flex: 0 0 auto;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
-.abyss-check__sigil {
+.abyss-check__eye {
   width: 26px;
-  height: 26px;
-  overflow: visible;
 }
-.abyss-check__ring {
-  fill: var(--abyss-inset);
-  stroke: var(--abyss-ink-strong);
-  stroke-width: 1.4;
-  filter: url(#abyss-edge);
-  transition: stroke var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-check__mark {
-  fill: none;
-  stroke: var(--abyss-glow);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition:
-    stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
+.abyss-check__eye .abyss-eye__sclera {
+  fill: var(--abyss-void);
 }
 .abyss-check__bar {
-  stroke: var(--abyss-glow);
-  stroke-width: 2.4;
-  stroke-linecap: round;
+  position: absolute;
+  width: 12px;
+  height: 2.4px;
+  border-radius: 2px;
+  background: var(--abyss-glow);
+  box-shadow: 0 0 6px var(--abyss-glow-a55);
   opacity: 0;
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-check[data-checked] .abyss-check__ring,
-.abyss-check[data-indeterminate] .abyss-check__ring {
+.abyss-check:hover {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+.abyss-check:hover .abyss-eye__iris {
+  opacity: 0.42;
+}
+.abyss-check[data-checked] {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+.abyss-check[data-checked] .abyss-eye {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-check[data-checked] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-check[data-checked] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-check[data-checked] .abyss-eye__lid {
   stroke: var(--abyss-glow-a55);
 }
-.abyss-check[data-checked] .abyss-check__mark {
-  stroke-dashoffset: 0;
-  filter: var(--abyss-aura);
+.abyss-check[data-indeterminate] {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+.abyss-check[data-indeterminate] .abyss-check__eye {
+  opacity: 0;
 }
 .abyss-check[data-indeterminate] .abyss-check__bar {
   opacity: 1;
-  filter: var(--abyss-aura);
-}
-.abyss-check:hover .abyss-check__ring {
-  stroke: var(--abyss-glow-a55);
 }
 .abyss-check:focus-visible {
   outline: none;
-}
-.abyss-check:focus-visible .abyss-check__ring {
-  stroke: var(--abyss-glow);
-  filter: url(#abyss-edge) drop-shadow(0 0 6px var(--abyss-glow-a55));
+  --abyss-frame-ink: var(--abyss-glow);
+  filter: var(--abyss-aura);
 }
 .abyss-check[data-disabled] {
   opacity: var(--abyss-disabled-opacity);

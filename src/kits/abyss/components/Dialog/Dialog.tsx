@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { XIcon } from "../icons";
+import { EyeIcon, XIcon } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -41,7 +41,6 @@ export function Dialog({
             className={cx("abyss-aura-pop abyss-dialog", className)}
           >
             <div className="abyss-frame abyss-dialog__tablet">
-              <span className="abyss-dialog__circle" aria-hidden />
               <BaseDialog.Close
                 render={
                   <Button
@@ -54,7 +53,10 @@ export function Dialog({
                 }
               />
               {title != null ? (
-                <BaseDialog.Title className="abyss-modal-title">{title}</BaseDialog.Title>
+                <BaseDialog.Title className="abyss-modal-title">
+                  <EyeIcon className="abyss-modal-title__eye" />
+                  {title}
+                </BaseDialog.Title>
               ) : null}
               {description != null ? (
                 <BaseDialog.Description className="abyss-modal-desc">
