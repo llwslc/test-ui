@@ -1,20 +1,6 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-tap-highlight-color: transparent;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-body {
-  margin: 0;
+/* Page chrome is scoped to [data-kit="nova"] on <html> so it never collides
+   with another kit's ambient layers. Universal resets live in shell/reset.css. */
+html[data-kit="nova"] body {
   background-color: var(--nova-bg);
   color: var(--nova-text);
   font-family: var(--nova-font);
@@ -24,7 +10,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body::before {
+html[data-kit="nova"] body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -35,7 +21,7 @@ body::before {
     linear-gradient(to bottom, var(--nova-bg), var(--nova-bg-2));
 }
 
-body::after {
+html[data-kit="nova"] body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -53,7 +39,7 @@ body::after {
   }
 }
 
-html::before {
+html[data-kit="nova"]::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -70,7 +56,7 @@ html::before {
   opacity: 0.5;
 }
 
-html::after {
+html[data-kit="nova"]::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -82,39 +68,29 @@ html::after {
   background-size: 200px 200px;
 }
 
-::selection {
+html[data-kit="nova"] ::selection {
   background: var(--nova-tint-active);
   color: var(--nova-text-bright);
 }
 
 /* Themed scrollbars */
-* {
+html[data-kit="nova"] * {
   scrollbar-width: thin;
   scrollbar-color: var(--nova-line-strong) transparent;
 }
-*::-webkit-scrollbar {
+html[data-kit="nova"] *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
-*::-webkit-scrollbar-track {
+html[data-kit="nova"] *::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.25);
 }
-*::-webkit-scrollbar-thumb {
+html[data-kit="nova"] *::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--nova-primary-deep), var(--nova-primary));
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-*::-webkit-scrollbar-thumb:hover {
+html[data-kit="nova"] *::-webkit-scrollbar-thumb:hover {
   background: var(--nova-primary);
   background-clip: padding-box;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
 }
