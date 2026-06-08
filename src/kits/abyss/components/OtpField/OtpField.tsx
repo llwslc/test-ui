@@ -14,10 +14,11 @@ export interface OtpFieldProps {
   splitAt?: number;
 }
 
-/* A row of ritual wells — each a wet-stone inset with a hand-inked wavering
-   frame and a watching eye that opens when its glyph is inscribed. The active
-   well glows phosphor and blinks an inked caret; a tendril dash bridges groups
-   at splitAt. State comes from Base UI's [data-filled] / :focus on each slot. */
+/* A row of ritual ink-wells — each a wet-stone inset with a hand-inked wavering
+   frame. The active well is a phosphor ink-well: its rim brightens, a soft inner
+   glow pools at the floor, and an inked phosphor caret blinks. Inscribed glyphs
+   wake bone-bright in mono; a tendril dash bridges groups at splitAt. State comes
+   from Base UI's [data-filled] / :focus on each slot. */
 export function OtpField({
   length = 6,
   name,
@@ -45,26 +46,9 @@ export function OtpField({
         <span className="abyss-otp__slot-wrap" key={i}>
           <span className="abyss-otp__cell-glow">
             <span className="abyss-otp__cell abyss-frame">
+              <span className="abyss-otp__well" aria-hidden="true" />
               <BaseOtp.Input className="abyss-otp__slot" />
               <span className="abyss-otp__caret" aria-hidden="true" />
-              <span className="abyss-eye abyss-otp__eye" aria-hidden="true">
-                <svg viewBox="0 0 28 28" width="28" height="28">
-                  <path
-                    className="abyss-eye__sclera"
-                    d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14C25 14 20.5 21 14 21C7.5 21 3 14 3 14Z"
-                  />
-                  <circle className="abyss-eye__iris" cx="14" cy="14" r="5.4" />
-                  <circle className="abyss-eye__pupil" cx="14" cy="14" r="2.3" />
-                  <path
-                    className="abyss-eye__lid"
-                    d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14"
-                  />
-                  <path
-                    className="abyss-eye__lid"
-                    d="M3 14C3 14 7.5 21 14 21C20.5 21 25 14 25 14"
-                  />
-                </svg>
-              </span>
             </span>
           </span>
           {splitAt != null && i + 1 === splitAt && i + 1 < length ? (
