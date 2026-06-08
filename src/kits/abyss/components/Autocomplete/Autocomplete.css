@@ -1,0 +1,164 @@
+.abyss-autocomplete__field {
+  display: block;
+  width: 100%;
+  min-width: 240px;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-autocomplete__field:has(:focus-within) {
+  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+}
+
+.abyss-autocomplete__control {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  width: 100%;
+  min-width: 240px;
+  min-height: var(--abyss-control-h);
+  padding: 0 var(--abyss-space-3);
+}
+.abyss-autocomplete__field:has(:focus-within) .abyss-autocomplete__control {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+
+.abyss-autocomplete__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--abyss-fs-16);
+  color: var(--abyss-text-dim);
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-autocomplete__field:has(:focus-within) .abyss-autocomplete__lead {
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+
+.abyss-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: var(--abyss-control-h);
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-bright);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  letter-spacing: var(--abyss-ls-2);
+  caret-color: var(--abyss-glow);
+  outline: none;
+}
+.abyss-autocomplete__input::placeholder {
+  color: var(--abyss-text-mute);
+}
+
+.abyss-autocomplete__positioner {
+  z-index: var(--abyss-z-tooltip);
+  outline: none;
+  filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.66))
+    drop-shadow(0 0 10px var(--abyss-glow-soft));
+}
+.abyss-autocomplete__popup {
+  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-round: 3px;
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  padding: var(--abyss-space-1);
+}
+
+.abyss-autocomplete__empty {
+  padding: var(--abyss-space-4) var(--abyss-space-3);
+  text-align: center;
+  color: var(--abyss-text-mute);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-2);
+  font-style: italic;
+}
+.abyss-autocomplete__empty:empty {
+  display: none;
+}
+.abyss-autocomplete__list {
+  max-height: min(var(--available-height), 264px);
+  overflow-y: auto;
+}
+
+.abyss-autocomplete__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  padding: var(--abyss-space-2) var(--abyss-space-3);
+  border-radius: 3px;
+  cursor: pointer;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-autocomplete__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--abyss-glow);
+  box-shadow: 0 0 7px var(--abyss-glow-a70);
+  filter: url(#abyss-edge);
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-autocomplete__item[data-highlighted] {
+  background: var(--abyss-glow-soft);
+  color: var(--abyss-text-bright);
+}
+.abyss-autocomplete__item[data-highlighted]::after {
+  opacity: 1;
+}
+.abyss-autocomplete__item[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.abyss-autocomplete__eye {
+  flex: 0 0 auto;
+  width: 22px;
+}
+.abyss-autocomplete__eye .abyss-eye__sclera {
+  fill: var(--abyss-void);
+}
+.abyss-autocomplete__item:hover .abyss-eye__iris {
+  opacity: 0.45;
+}
+.abyss-autocomplete__item[data-highlighted] .abyss-eye {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-autocomplete__item[data-highlighted] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-autocomplete__item[data-highlighted] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-autocomplete__item[data-highlighted] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+.abyss-autocomplete__label {
+  min-width: 0;
+}
+
+.abyss-autocomplete__input:disabled {
+  cursor: not-allowed;
+}
+.abyss-autocomplete__field:has(.abyss-autocomplete__input:disabled) {
+  opacity: var(--abyss-disabled-opacity);
+}

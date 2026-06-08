@@ -1,0 +1,43 @@
+/* The conjuring ground — a right-click ritual zone. A dashed inked ward drawn
+   over a wet-stone field; press the secondary button to summon the tablet. On
+   open, the ward catches phosphor. */
+.abyss-ctxmenu__zone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--abyss-space-2);
+  min-height: 132px;
+  padding: var(--abyss-space-7);
+  text-align: center;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  letter-spacing: var(--abyss-ls-2);
+  cursor: context-menu;
+  user-select: none;
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 9px, var(--abyss-ink-faint) 9px 10px),
+    var(--abyss-inset);
+  outline: 1px dashed var(--abyss-ink-strong);
+  outline-offset: -3px;
+  transition:
+    background var(--abyss-dur) var(--abyss-ease),
+    outline-color var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-ctxmenu__zone:hover {
+  color: var(--abyss-text);
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 9px, var(--abyss-glow-soft) 9px 10px),
+    var(--abyss-inset);
+}
+.abyss-ctxmenu__zone[data-popup-open] {
+  color: var(--abyss-glow);
+  outline-color: var(--abyss-glow-a55);
+}
+.abyss-ctxmenu__zone kbd {
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-12);
+  color: var(--abyss-glow);
+}

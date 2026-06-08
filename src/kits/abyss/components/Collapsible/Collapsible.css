@@ -1,0 +1,109 @@
+/* the disclosure is one inked tablet — a sealed grimoire leaf */
+.abyss-collapsible {
+  --abyss-frame-round: 3px;
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-fill: var(--abyss-surface);
+  position: relative;
+  display: block;
+  width: 100%;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-collapsible:has(.abyss-collapsible__trigger[data-panel-open]) {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: var(--abyss-aura);
+}
+.abyss-collapsible:has([data-disabled]) {
+  opacity: var(--abyss-disabled-opacity);
+}
+
+.abyss-collapsible__trigger {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  width: 100%;
+  padding: var(--abyss-space-4);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--abyss-text);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-14);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  text-align: left;
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-collapsible__trigger:hover {
+  color: var(--abyss-text-bright);
+}
+.abyss-collapsible__trigger[data-panel-open] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-collapsible__trigger:focus-visible {
+  outline: none;
+  color: var(--abyss-glow);
+}
+.abyss-collapsible__trigger[data-disabled] {
+  cursor: not-allowed;
+}
+
+/* the watching eye — closed by default, blinks open as the leaf unfurls */
+.abyss-collapsible__eye {
+  flex: 0 0 auto;
+  width: 26px;
+}
+.abyss-collapsible__trigger:hover .abyss-eye__iris {
+  opacity: 0.5;
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-eye {
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-collapsible__title {
+  flex: 1;
+}
+
+.abyss-collapsible__chevron {
+  flex: 0 0 auto;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__chevron {
+  transform: rotate(180deg);
+  color: var(--abyss-glow);
+}
+
+/* the leaf unfurls on Base UI's measured panel height */
+.abyss-collapsible__panel {
+  position: relative;
+  z-index: 1;
+  height: var(--collapsible-panel-height);
+  overflow: hidden;
+  transition: height var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-collapsible__panel[data-starting-style],
+.abyss-collapsible__panel[data-ending-style] {
+  height: 0;
+}
+.abyss-collapsible__content {
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 43px;
+  color: var(--abyss-text-dim);
+  font-size: var(--abyss-fs-14);
+  line-height: var(--abyss-lh-165);
+}

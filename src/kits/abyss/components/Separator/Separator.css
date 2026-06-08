@@ -1,0 +1,78 @@
+/* Plain .abyss-separator + orientation variants live in effects.css (the
+   shared hairline, warped by #abyss-edge). Here lives only the labelled rule:
+   a centered sigil + display-caps text flanked by two inked rules, each with a
+   watching eye that breaks open toward the mark. */
+.abyss-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  width: 100%;
+}
+
+.abyss-separator-labeled__line {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--abyss-ink-strong));
+  filter: url(#abyss-edge);
+}
+.abyss-separator-labeled__line--end {
+  background: linear-gradient(90deg, var(--abyss-ink-strong), transparent);
+}
+
+/* the eye perches on the rule, opening toward the centered mark */
+.abyss-separator-labeled__eye {
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: auto;
+}
+.abyss-separator-labeled__line .abyss-separator-labeled__eye {
+  right: var(--abyss-space-3);
+  transform: translateY(-50%);
+}
+.abyss-separator-labeled__line--end .abyss-separator-labeled__eye {
+  right: auto;
+  left: var(--abyss-space-3);
+  transform: translateY(-50%) scaleX(-1);
+}
+/* the rule's eyes stay half-lidded and watchful */
+.abyss-separator-labeled__eye .abyss-eye__iris {
+  transform: scaleY(0.4);
+  opacity: 0.45;
+}
+.abyss-separator-labeled__eye .abyss-eye__pupil {
+  transform: scaleY(0.4);
+}
+.abyss-separator-labeled:hover .abyss-separator-labeled__eye {
+  filter: var(--abyss-aura);
+}
+.abyss-separator-labeled:hover .abyss-separator-labeled__eye .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-separator-labeled:hover .abyss-separator-labeled__eye .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+
+.abyss-separator-labeled__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  flex: 0 0 auto;
+}
+.abyss-separator-labeled__sigil {
+  display: inline-flex;
+  font-size: 15px;
+  color: var(--abyss-gold);
+  filter: var(--abyss-aura-gold);
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+}
+.abyss-separator-labeled__text {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-12);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-text-dim);
+  white-space: nowrap;
+}

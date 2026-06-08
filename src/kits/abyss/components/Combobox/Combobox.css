@@ -1,0 +1,231 @@
+/* The control is a sunken stone well wearing the inked frame; the scrying-glass
+   leads, a clear mark and a waking-eye trigger flank the typed value. */
+.abyss-combobox__control {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  width: 100%;
+  min-width: 240px;
+  height: var(--abyss-control-h);
+  padding: 0 var(--abyss-space-2) 0 var(--abyss-space-3);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__control:focus-within {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+}
+.abyss-combobox__control:has(.abyss-combobox__input:disabled) {
+  opacity: var(--abyss-disabled-opacity);
+}
+
+.abyss-combobox__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--abyss-fs-16);
+  color: var(--abyss-text-dim);
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__control:focus-within .abyss-combobox__lead {
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+
+.abyss-combobox__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-bright);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  letter-spacing: var(--abyss-ls-2);
+  caret-color: var(--abyss-glow);
+  outline: none;
+}
+.abyss-combobox__input::placeholder {
+  color: var(--abyss-text-mute);
+}
+.abyss-combobox__input:disabled {
+  cursor: not-allowed;
+}
+
+.abyss-combobox__clear,
+.abyss-combobox__trigger {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    transform var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__clear {
+  font-size: var(--abyss-fs-13);
+  color: var(--abyss-text-mute);
+}
+.abyss-combobox__clear:hover {
+  color: var(--abyss-blood);
+  filter: drop-shadow(0 0 7px var(--abyss-blood-soft));
+}
+.abyss-combobox__trigger {
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+}
+.abyss-combobox__trigger:hover {
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+.abyss-combobox__trigger[data-popup-open] {
+  transform: rotate(180deg);
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+
+/* The popup is an inked tablet floating below the well, joined by a tendril of
+   light. The frame lives on a backing pseudo-layer so the list text stays crisp
+   (never put the #abyss-edge warp on a text-bearing element). */
+.abyss-combobox__positioner {
+  z-index: var(--abyss-z-tooltip);
+  outline: none;
+  filter: drop-shadow(var(--abyss-shadow-pop))
+    drop-shadow(0 0 12px var(--abyss-glow-soft));
+}
+.abyss-combobox__popup {
+  position: relative;
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  padding: var(--abyss-space-1);
+}
+.abyss-combobox__tablet {
+  --abyss-frame-fill: radial-gradient(120% 80% at 50% -10%, rgba(70, 232, 184, 0.07), transparent 62%),
+    var(--abyss-surface-popup);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-round: 4px;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.abyss-combobox__empty {
+  padding: var(--abyss-space-4) var(--abyss-space-3);
+  text-align: center;
+  color: var(--abyss-text-mute);
+  font-family: var(--abyss-font);
+  font-style: italic;
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-2);
+}
+.abyss-combobox__empty:empty {
+  display: none;
+}
+
+.abyss-combobox__list {
+  max-height: min(var(--available-height), 264px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Each row is a candidate omen. A closed watching eye marks it; highlight washes
+   it in phosphor and a left rule of light; selection opens the eye + inks a sigil. */
+.abyss-combobox__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  padding: var(--abyss-space-2) var(--abyss-space-3);
+  border-radius: 3px;
+  cursor: pointer;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__item::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--abyss-glow);
+  box-shadow: 0 0 7px var(--abyss-glow-a70);
+  filter: url(#abyss-edge);
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__item[data-highlighted] {
+  background: var(--abyss-glow-soft);
+  color: var(--abyss-text-bright);
+}
+.abyss-combobox__item[data-highlighted]::before {
+  opacity: 1;
+}
+.abyss-combobox__item[data-selected] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-combobox__item[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* the per-row eye — closed by default, blinks open on hover/selection */
+.abyss-combobox__eye {
+  --eye: var(--abyss-glow);
+  flex: 0 0 auto;
+  width: 20px;
+}
+.abyss-combobox__item[data-highlighted] .abyss-eye__iris {
+  opacity: 0.6;
+}
+.abyss-combobox__item[data-selected] .abyss-combobox__eye {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-combobox__item[data-selected] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-combobox__item[data-selected] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-combobox__item[data-selected] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-combobox__item-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.abyss-combobox__indicator {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  font-size: var(--abyss-fs-14);
+  color: var(--abyss-glow);
+}
+.abyss-combobox__sigil {
+  filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
+}

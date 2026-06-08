@@ -1,0 +1,131 @@
+.abyss-select__field {
+  display: block;
+  width: 100%;
+  min-width: 190px;
+}
+
+/* trigger — a sunken stone well, the chosen name inked across it */
+.abyss-select__trigger {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--abyss-space-3);
+  width: 100%;
+  min-width: 190px;
+  height: var(--abyss-control-h);
+  padding: 0 var(--abyss-space-3) 0 var(--abyss-space-4);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--abyss-text-bright);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  text-align: left;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-select__trigger:hover {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
+.abyss-select__trigger[data-popup-open],
+.abyss-select__trigger:focus-visible {
+  outline: none;
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+}
+.abyss-select__trigger[data-disabled],
+.abyss-select__trigger:disabled {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
+.abyss-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.abyss-select__placeholder {
+  color: var(--abyss-text-mute);
+}
+
+/* the trigger's watching eye — a downward-gazing chevron that flips open */
+.abyss-select__chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--abyss-glow);
+  font-size: var(--abyss-fs-19);
+  filter: var(--abyss-aura);
+  transition: transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-select__trigger[data-popup-open] .abyss-select__chevron {
+  transform: rotate(180deg);
+}
+
+/* popup — an inked tablet rising from the well */
+.abyss-select__positioner {
+  z-index: var(--abyss-z-overlay);
+  outline: none;
+  filter: drop-shadow(var(--abyss-shadow-pop))
+    drop-shadow(0 0 12px var(--abyss-glow-soft));
+}
+.abyss-select__popup {
+  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-round: 4px;
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  padding: var(--abyss-space-1);
+}
+.abyss-select__list {
+  max-height: var(--available-height);
+  overflow-y: auto;
+}
+
+/* each option — a line of grimoire text, lit when watched */
+.abyss-select__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  padding: var(--abyss-space-2) var(--abyss-space-3);
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-select__item[data-highlighted] {
+  background: var(--abyss-glow-soft);
+  color: var(--abyss-text-bright);
+}
+.abyss-select__item[data-selected] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-select__item[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* the marker eye — closed for every option, opening on the chosen one */
+.abyss-select__item-indicator {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  font-size: var(--abyss-fs-16);
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+.abyss-select__item-text {
+  flex: 1;
+  min-width: 0;
+}

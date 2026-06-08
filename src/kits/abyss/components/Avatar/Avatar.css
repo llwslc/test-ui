@@ -1,0 +1,153 @@
+.abyss-avatar {
+  --abyss-avatar-size: 46px;
+  position: relative;
+  display: inline-block;
+  width: var(--abyss-avatar-size);
+  height: var(--abyss-avatar-size);
+}
+
+.abyss-avatar__root {
+  --abyss-frame-fill: var(--abyss-stone-raised);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 36%;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.abyss-avatar__img {
+  position: absolute;
+  inset: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  object-fit: cover;
+  border-radius: calc(var(--abyss-frame-round) - 2%);
+  filter: saturate(0.82) contrast(1.04) brightness(0.94);
+}
+
+.abyss-avatar__fallback {
+  position: absolute;
+  inset: 2px;
+  display: grid;
+  place-items: center;
+  border-radius: calc(var(--abyss-frame-round) - 2%);
+  background: radial-gradient(
+    120% 120% at 50% 18%,
+    var(--abyss-stone-raised),
+    var(--abyss-inset)
+  );
+  color: var(--abyss-glow);
+  font-family: var(--abyss-font-display);
+  font-weight: var(--abyss-fw-400);
+  font-size: calc(var(--abyss-avatar-size) * 0.38);
+  letter-spacing: var(--abyss-ls-2);
+  text-shadow: var(--abyss-text-aura);
+}
+
+/* the watching eye in the corner — a status sigil, not a dot */
+.abyss-avatar__status {
+  --eye: var(--abyss-text-mute);
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  display: grid;
+  place-items: center;
+  width: calc(var(--abyss-avatar-size) * 0.42);
+  min-width: 16px;
+  height: calc(var(--abyss-avatar-size) * 0.26);
+  min-height: 11px;
+  padding: 2px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--abyss-bg) 64%, transparent);
+}
+.abyss-avatar__status .abyss-eye {
+  width: 100%;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-avatar__status .abyss-eye svg {
+  width: 100%;
+  height: auto;
+}
+.abyss-avatar__status .abyss-eye__sclera {
+  fill: var(--abyss-inset);
+  stroke: var(--abyss-ink-strong);
+  stroke-width: 1.6;
+}
+.abyss-avatar__status .abyss-eye__iris {
+  fill: var(--eye);
+}
+.abyss-avatar__status .abyss-eye__lid {
+  stroke-width: 1.8;
+}
+
+/* online — wide-open phosphor eye, slow living breath */
+.abyss-avatar__status--online {
+  --eye: var(--abyss-glow);
+}
+.abyss-avatar__status--online .abyss-eye {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-avatar__status--online .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+}
+.abyss-avatar__status--online .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-avatar__status--online .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+/* busy — open, but the iris runs blood */
+.abyss-avatar__status--busy {
+  --eye: var(--abyss-blood);
+}
+.abyss-avatar__status--busy .abyss-eye {
+  filter: drop-shadow(0 0 6px rgba(210, 64, 89, 0.6));
+}
+.abyss-avatar__status--busy .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-avatar__status--busy .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-avatar__status--busy .abyss-eye__lid {
+  stroke: rgba(210, 64, 89, 0.55);
+}
+
+/* away — half-lidded gold gaze, drowsing */
+.abyss-avatar__status--away {
+  --eye: var(--abyss-gold);
+}
+.abyss-avatar__status--away .abyss-eye {
+  filter: drop-shadow(0 0 5px rgba(205, 169, 74, 0.45));
+}
+.abyss-avatar__status--away .abyss-eye__iris {
+  transform: scaleY(0.5);
+  opacity: 0.85;
+}
+.abyss-avatar__status--away .abyss-eye__pupil {
+  transform: scaleY(0.45);
+}
+.abyss-avatar__status--away .abyss-eye__lid {
+  stroke: rgba(205, 169, 74, 0.5);
+}
+
+/* offline — shut and dim, the watcher sleeps */
+.abyss-avatar__status--offline {
+  --eye: var(--abyss-text-mute);
+}
+.abyss-avatar__status--offline .abyss-eye__iris {
+  transform: scaleY(0.06);
+  opacity: 0.2;
+}
+.abyss-avatar__status--offline .abyss-eye__pupil {
+  transform: scaleY(0.06);
+}
+.abyss-avatar__status--offline .abyss-eye__lid {
+  stroke: var(--abyss-ink);
+}

@@ -1,0 +1,213 @@
+.abyss-navmenu {
+  position: relative;
+  max-width: 100%;
+}
+.abyss-navmenu__list {
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--abyss-space-2);
+  width: fit-content;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- Triggers: eldritch tabs, dim ink that lights to phosphor ---- */
+.abyss-navmenu__triggerwrap {
+  display: inline-flex;
+  align-items: stretch;
+}
+.abyss-navmenu__trigger,
+.abyss-navmenu__toplink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  height: 38px;
+  padding: 0 var(--abyss-space-4);
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+/* the wavering phosphor underline — a hand-inked rule warped by #abyss-edge */
+.abyss-navmenu__trigger::after,
+.abyss-navmenu__toplink::after {
+  content: "";
+  position: absolute;
+  left: var(--abyss-space-3);
+  right: var(--abyss-space-3);
+  bottom: 4px;
+  height: 1.5px;
+  background: var(--abyss-glow);
+  box-shadow: 0 0 7px var(--abyss-glow-a70);
+  filter: url(#abyss-edge);
+  opacity: 0;
+  transform: scaleX(0.5);
+  transform-origin: center;
+  transition:
+    opacity var(--abyss-dur) var(--abyss-ease),
+    transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-navmenu__trigger:hover,
+.abyss-navmenu__trigger:focus-visible,
+.abyss-navmenu__toplink:hover,
+.abyss-navmenu__toplink:focus-visible {
+  color: var(--abyss-text);
+}
+.abyss-navmenu__trigger:hover::after,
+.abyss-navmenu__trigger:focus-visible::after,
+.abyss-navmenu__toplink:hover::after,
+.abyss-navmenu__toplink:focus-visible::after {
+  opacity: 0.7;
+  transform: scaleX(1);
+}
+.abyss-navmenu__trigger[data-popup-open] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-navmenu__trigger[data-popup-open]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.abyss-navmenu__chevron {
+  display: inline-flex;
+  font-size: var(--abyss-fs-12);
+  opacity: 0.7;
+  transition: transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-navmenu__trigger[data-popup-open] .abyss-navmenu__chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ---- Shared popup: an inked tablet risen from the deep ---- */
+.abyss-navmenu__positioner {
+  z-index: var(--abyss-z-overlay);
+  outline: none;
+  box-sizing: border-box;
+  width: var(--positioner-width);
+  height: var(--positioner-height);
+  filter: drop-shadow(var(--abyss-shadow-pop))
+    drop-shadow(0 0 12px var(--abyss-glow-soft));
+}
+.abyss-navmenu__popup {
+  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-round: 4px;
+  position: relative;
+  box-sizing: border-box;
+  width: var(--popup-width);
+  height: var(--popup-height);
+  transition:
+    opacity var(--abyss-dur) var(--abyss-ease),
+    transform var(--abyss-dur) var(--abyss-ease);
+}
+
+.abyss-navmenu__viewport {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.abyss-navmenu__content {
+  position: relative;
+  z-index: 1;
+  width: max-content;
+  padding: var(--abyss-space-3);
+}
+.abyss-navmenu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+  gap: var(--abyss-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- Links: a row of grimoire text marked by a watching eye ---- */
+.abyss-navmenu__link {
+  --eye: var(--abyss-glow);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--abyss-space-3);
+  padding: var(--abyss-space-3);
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: background var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-navmenu__link:hover,
+.abyss-navmenu__link:focus-visible {
+  background: var(--abyss-glow-soft);
+}
+
+/* the marker eye — closed for every row, opening on the watched one */
+.abyss-navmenu__eye {
+  flex: 0 0 auto;
+  width: 22px;
+  margin-top: 2px;
+}
+.abyss-navmenu__link:hover .abyss-eye__iris,
+.abyss-navmenu__link:focus-visible .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-navmenu__link:hover .abyss-eye__pupil,
+.abyss-navmenu__link:focus-visible .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-navmenu__link:hover .abyss-eye,
+.abyss-navmenu__link:focus-visible .abyss-eye {
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+}
+.abyss-navmenu__link:hover .abyss-eye__lid,
+.abyss-navmenu__link:focus-visible .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-navmenu__link-text {
+  display: block;
+  min-width: 0;
+}
+.abyss-navmenu__link-title {
+  display: block;
+  color: var(--abyss-text);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  font-weight: var(--abyss-fw-600);
+  letter-spacing: var(--abyss-ls-2);
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-navmenu__link:hover .abyss-navmenu__link-title,
+.abyss-navmenu__link:focus-visible .abyss-navmenu__link-title {
+  color: var(--abyss-text-bright);
+}
+.abyss-navmenu__link-desc {
+  display: block;
+  margin-top: var(--abyss-space-1);
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-12);
+  line-height: var(--abyss-lh-150);
+}
+
+@media (max-width: 768px) {
+  .abyss-navmenu__grid {
+    grid-template-columns: 1fr;
+  }
+}

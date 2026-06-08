@@ -1,0 +1,144 @@
+/* A wet-stone tablet holding a cluster of inked seal-buttons. The rail is a
+   faint frame; each button is its own seal that wakes to phosphor and opens a
+   watching eye when active. Inked separators part the groups. */
+.abyss-toolbar {
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-fill: var(--abyss-surface);
+  --abyss-frame-round: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-1);
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--abyss-space-1);
+}
+.abyss-toolbar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.abyss-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-1);
+}
+
+.abyss-toolbar__btnwrap {
+  display: inline-flex;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toolbar__btnwrap:has(.is-active) {
+  filter: var(--abyss-aura);
+}
+
+.abyss-toolbar__btn {
+  --abyss-frame-ink: transparent;
+  --abyss-frame-fill: transparent;
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--abyss-space-2);
+  height: 34px;
+  min-width: 34px;
+  padding: 0 var(--abyss-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toolbar__label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  font-size: 1.05em;
+}
+.abyss-toolbar__btn:hover {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a30);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+}
+.abyss-toolbar__btn:focus-visible {
+  outline: none;
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+.abyss-toolbar__btn.is-active {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-toolbar__btn[data-disabled],
+.abyss-toolbar__btn:disabled {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+/* the watching eye — sealed shut until the seal is struck active, then it lifts
+   its lid and the phosphor iris dilates */
+.abyss-toolbar__eye {
+  position: relative;
+  z-index: 1;
+  width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    width var(--abyss-dur) var(--abyss-ease),
+    margin-left var(--abyss-dur) var(--abyss-ease),
+    opacity var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toolbar__btn.is-active .abyss-toolbar__eye {
+  width: 18px;
+  margin-left: var(--abyss-space-1);
+  opacity: 1;
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-toolbar__btn.is-active .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-toolbar__btn.is-active .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-toolbar__btn.is-active .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+.abyss-toolbar__btn:hover .abyss-eye__iris {
+  opacity: 0.5;
+}
+.abyss-toolbar__btn.is-active:hover .abyss-eye__iris {
+  opacity: 1;
+}
+
+.abyss-toolbar__sep.abyss-separator {
+  align-self: stretch;
+  height: auto;
+  min-height: 18px;
+  margin: 4px var(--abyss-space-1);
+}
+
+@media (max-width: 768px) {
+  .abyss-toolbar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: var(--abyss-space-2);
+  }
+  .abyss-toolbar__sep {
+    display: none;
+  }
+}

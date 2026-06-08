@@ -1,0 +1,98 @@
+.abyss-meter {
+  --abyss-meter-fill: var(--abyss-glow);
+  --abyss-meter-fill-deep: var(--abyss-glow-deep);
+  --abyss-meter-aura: var(--abyss-glow-a55);
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-2);
+  width: 100%;
+}
+.abyss-meter--success {
+  --abyss-meter-fill: var(--abyss-glow);
+  --abyss-meter-fill-deep: var(--abyss-glow-deep);
+  --abyss-meter-aura: var(--abyss-glow-a55);
+}
+.abyss-meter--warning {
+  --abyss-meter-fill: var(--abyss-gold);
+  --abyss-meter-fill-deep: var(--abyss-gold-deep);
+  --abyss-meter-aura: rgba(205, 169, 74, 0.5);
+}
+.abyss-meter--danger {
+  --abyss-meter-fill: var(--abyss-blood);
+  --abyss-meter-fill-deep: var(--abyss-blood-deep);
+  --abyss-meter-aura: rgba(210, 64, 89, 0.5);
+}
+
+.abyss-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--abyss-space-3);
+}
+.abyss-meter__value {
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-2);
+  color: var(--abyss-meter-fill);
+  text-shadow: 0 0 9px var(--abyss-meter-aura);
+}
+
+.abyss-meter__vein {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+}
+.abyss-meter__track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 8px;
+  background: var(--abyss-inset);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--abyss-ink-faint);
+  filter: url(#abyss-edge);
+}
+.abyss-meter__indicator {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--abyss-meter-fill-deep),
+    var(--abyss-meter-fill) 60%
+  );
+  box-shadow: 0 0 10px var(--abyss-meter-aura);
+  transition: width var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-meter__segments {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 15px,
+    var(--abyss-inset) 15px 17px
+  );
+  opacity: 0.7;
+}
+
+/* the watching eye at the vein's end: iris dilated, aura tone-graded, breathing */
+.abyss-meter__eye {
+  --eye: var(--abyss-meter-fill);
+  flex: 0 0 auto;
+  width: 28px;
+  filter: drop-shadow(0 0 7px var(--abyss-meter-aura));
+}
+.abyss-meter__eye .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+}
+.abyss-meter__eye .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-meter__eye .abyss-eye__lid {
+  stroke: color-mix(in srgb, var(--abyss-meter-fill) 55%, var(--abyss-ink-strong));
+}
+.abyss-meter:hover .abyss-meter__eye {
+  filter: drop-shadow(0 0 11px var(--abyss-meter-aura));
+}

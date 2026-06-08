@@ -1,0 +1,156 @@
+/* Whispers surfacing from the deep — small inked tablets that rise and fade up
+   from below, stack with a gap, reflow as the column shifts. The frame border
+   wavers on its own ::before; text on the tablet stays crisp. */
+
+@property --toast-offset-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.abyss-toast__viewport {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: var(--abyss-z-overlay);
+  width: 360px;
+  max-width: calc(100vw - 44px);
+  height: var(--toast-frontmost-height, 0px);
+  outline: none;
+}
+
+.abyss-toast {
+  --abyss-toast-accent: var(--abyss-glow);
+  --abyss-toast-accent-soft: var(--abyss-glow-soft);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: var(--abyss-space-3);
+  outline: none;
+  filter: drop-shadow(var(--abyss-shadow-pop))
+    drop-shadow(0 0 16px var(--abyss-toast-accent-soft));
+  transform: translateX(var(--toast-swipe-movement-x, 0px))
+    translateY(calc(-1 * var(--toast-offset-y)));
+  opacity: 1;
+  transition:
+    --toast-offset-y var(--abyss-dur-slow) var(--abyss-ease),
+    opacity var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-toast[data-swiping] {
+  transition: none;
+}
+
+.abyss-toast__tablet {
+  --abyss-frame-fill: radial-gradient(120% 80% at 0% 0%, var(--abyss-toast-accent-soft), transparent 62%),
+    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  --abyss-frame-ink: color-mix(in srgb, var(--abyss-toast-accent) 50%, var(--abyss-ink-strong));
+  --abyss-frame-round: 4px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--abyss-space-3);
+  padding: var(--abyss-space-4);
+  padding-left: var(--abyss-space-5);
+  transition: transform var(--abyss-dur-slow) var(--abyss-ease);
+}
+
+.abyss-toast[data-starting-style],
+.abyss-toast[data-ending-style] {
+  opacity: 0;
+}
+.abyss-toast[data-ending-style],
+.abyss-toast[data-ending-style] .abyss-toast__tablet {
+  transition-timing-function: var(--abyss-ease);
+}
+.abyss-toast[data-starting-style] .abyss-toast__tablet {
+  transform: translateY(20px) scale(0.97);
+}
+.abyss-toast[data-ending-style] .abyss-toast__tablet {
+  transform: translateY(-16px) scale(0.97);
+}
+
+/* a thin phosphor vein running up the inner edge — the light from below */
+.abyss-toast__beam {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--abyss-toast-accent), transparent);
+  box-shadow: 0 0 8px var(--abyss-toast-accent);
+  filter: url(#abyss-edge);
+  pointer-events: none;
+}
+
+.abyss-toast__sigil {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  margin-top: 1px;
+  font-size: 18px;
+  color: var(--abyss-toast-accent);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent));
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+}
+
+.abyss-toast__main {
+  flex: 1;
+  min-width: 0;
+}
+.abyss-toast__title {
+  margin: 0;
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-toast-accent);
+  text-shadow: 0 0 11px color-mix(in srgb, var(--abyss-toast-accent) 45%, transparent);
+}
+.abyss-toast__desc {
+  margin: var(--abyss-space-1) 0 0;
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  line-height: var(--abyss-lh-150);
+  color: var(--abyss-text-dim);
+}
+
+.abyss-toast__close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: -2px -2px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-mute);
+  cursor: pointer;
+  font-size: var(--abyss-fs-15);
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toast__close:hover {
+  color: var(--abyss-toast-accent);
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent));
+}
+.abyss-toast__close:focus-visible {
+  outline: none;
+  color: var(--abyss-toast-accent);
+  filter: drop-shadow(0 0 9px var(--abyss-glow-a70));
+}
+
+/* tones — info & success burn phosphor, warning gutters gold, danger bleeds */
+.abyss-toast--success {
+  --abyss-toast-accent: var(--abyss-glow);
+  --abyss-toast-accent-soft: var(--abyss-glow-soft);
+}
+.abyss-toast--warning {
+  --abyss-toast-accent: var(--abyss-gold);
+  --abyss-toast-accent-soft: var(--abyss-gold-soft);
+}
+.abyss-toast--danger {
+  --abyss-toast-accent: var(--abyss-blood);
+  --abyss-toast-accent-soft: var(--abyss-blood-soft);
+}

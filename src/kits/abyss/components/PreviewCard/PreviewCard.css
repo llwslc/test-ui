@@ -1,0 +1,51 @@
+.abyss-previewcard__positioner {
+  z-index: var(--abyss-z-tooltip);
+  filter: drop-shadow(var(--abyss-shadow-pop))
+    drop-shadow(0 0 14px var(--abyss-glow-soft));
+}
+
+.abyss-previewcard__popup {
+  position: relative;
+  width: 286px;
+}
+
+.abyss-previewcard__surface {
+  --abyss-frame-fill: radial-gradient(120% 80% at 50% -10%, rgba(70, 232, 184, 0.07), transparent 62%),
+    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-surface-popup));
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-round: 5px;
+  display: block;
+  padding: var(--abyss-space-4);
+}
+
+/* the watcher: a small eye scribed in the upper corner of the tablet, lid sealed
+   until the card scries open, then a dilating phosphor iris fixes on you */
+.abyss-previewcard__watcher {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 0 transparent);
+}
+.abyss-previewcard__popup[data-open] .abyss-previewcard__watcher {
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+}
+.abyss-previewcard__popup[data-open] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-previewcard__popup[data-open] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-previewcard__popup[data-open] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-previewcard__body {
+  position: relative;
+  color: var(--abyss-text);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-14);
+  line-height: var(--abyss-lh-150);
+}

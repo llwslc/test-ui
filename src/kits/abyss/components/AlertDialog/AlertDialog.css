@@ -1,0 +1,56 @@
+.abyss-alert {
+  --abyss-alert-accent: var(--abyss-blood);
+  --abyss-alert-accent-soft: var(--abyss-blood-soft);
+  --abyss-title-color: var(--abyss-blood-text);
+  position: relative;
+  width: min(92vw, 440px);
+  filter: drop-shadow(var(--abyss-shadow-modal))
+    drop-shadow(0 0 22px var(--abyss-alert-accent-soft));
+}
+.abyss-alert--warning {
+  --abyss-alert-accent: var(--abyss-gold);
+  --abyss-alert-accent-soft: var(--abyss-gold-soft);
+  --abyss-title-color: var(--abyss-gold);
+}
+.abyss-alert--primary {
+  --abyss-alert-accent: var(--abyss-glow);
+  --abyss-alert-accent-soft: var(--abyss-glow-soft);
+  --abyss-title-color: var(--abyss-glow);
+}
+
+.abyss-alert__tablet {
+  --abyss-frame-fill: radial-gradient(
+      130% 72% at 50% -8%,
+      color-mix(in srgb, var(--abyss-alert-accent) 14%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  --abyss-frame-ink: color-mix(in srgb, var(--abyss-alert-accent) 58%, transparent);
+  --abyss-frame-round: 5px;
+  position: relative;
+  padding: var(--abyss-space-6) var(--abyss-space-6) var(--abyss-space-5);
+}
+
+.abyss-alert__title {
+  margin-right: 0;
+}
+
+/* The unblinking watcher: iris + pupil forced wide, lids drawn back, tinted to
+   tone. No transition — it simply stares for the duration of the rite. */
+.abyss-alert__stare {
+  --eye: var(--abyss-alert-accent);
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--abyss-alert-accent) 55%, transparent));
+}
+.abyss-alert__stare .abyss-eye__sclera {
+  stroke: color-mix(in srgb, var(--abyss-alert-accent) 50%, var(--abyss-ink-strong));
+}
+.abyss-alert__stare .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+  transition: none;
+}
+.abyss-alert__stare .abyss-eye__pupil {
+  transform: scaleY(1);
+  transition: none;
+}

@@ -1,0 +1,32 @@
+.abyss-checkboxgroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-3);
+}
+
+/* the children indent beneath the parent eye, bound by an inked tendril that
+   wavers down the left margin like a dripped line of script */
+.abyss-checkboxgroup__items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-3);
+  margin-left: var(--abyss-space-3);
+  padding-left: var(--abyss-space-5);
+}
+.abyss-checkboxgroup__items::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  bottom: 6px;
+  left: 0;
+  width: 1.5px;
+  background: linear-gradient(
+    180deg,
+    var(--abyss-ink-strong),
+    var(--abyss-ink) 70%,
+    transparent
+  );
+  filter: url(#abyss-edge);
+  pointer-events: none;
+}

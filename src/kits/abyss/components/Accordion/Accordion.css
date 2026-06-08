@@ -1,0 +1,118 @@
+.abyss-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-2);
+  width: 100%;
+}
+
+/* each item is an inked tablet — a single grimoire page */
+.abyss-accordion__item {
+  --abyss-frame-round: 3px;
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-fill: var(--abyss-surface);
+  position: relative;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-accordion__item:has(.abyss-accordion__trigger[data-panel-open]) {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: var(--abyss-aura);
+}
+.abyss-accordion__item:has([data-disabled]) {
+  opacity: var(--abyss-disabled-opacity);
+}
+
+.abyss-accordion__header {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.abyss-accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  width: 100%;
+  padding: var(--abyss-space-4);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--abyss-text);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-14);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  text-align: left;
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-accordion__trigger:hover {
+  color: var(--abyss-text-bright);
+}
+.abyss-accordion__trigger[data-panel-open] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-accordion__trigger:focus-visible {
+  outline: none;
+  color: var(--abyss-glow);
+}
+.abyss-accordion__trigger[data-disabled] {
+  cursor: not-allowed;
+}
+
+/* the watching eye — closed by default, blinks open with the page */
+.abyss-accordion__eye {
+  flex: 0 0 auto;
+  width: 26px;
+}
+.abyss-accordion__trigger:hover .abyss-eye__iris {
+  opacity: 0.5;
+}
+.abyss-accordion__trigger[data-panel-open] .abyss-eye {
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+}
+.abyss-accordion__trigger[data-panel-open] .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-accordion__trigger[data-panel-open] .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-accordion__trigger[data-panel-open] .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-accordion__title {
+  flex: 1;
+}
+
+.abyss-accordion__chevron {
+  flex: 0 0 auto;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-accordion__trigger[data-panel-open] .abyss-accordion__chevron {
+  transform: rotate(180deg);
+  color: var(--abyss-glow);
+}
+
+/* the page unfurls on Base UI's measured panel height */
+.abyss-accordion__panel {
+  position: relative;
+  z-index: 1;
+  height: var(--accordion-panel-height);
+  overflow: hidden;
+  transition: height var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-accordion__panel[data-starting-style],
+.abyss-accordion__panel[data-ending-style] {
+  height: 0;
+}
+.abyss-accordion__content {
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 43px;
+  color: var(--abyss-text-dim);
+  font-size: var(--abyss-fs-14);
+  line-height: var(--abyss-lh-165);
+}

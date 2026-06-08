@@ -1,0 +1,116 @@
+.abyss-numberfield {
+  --eye: var(--abyss-glow);
+  display: inline-block;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-numberfield:focus-within {
+  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+}
+
+/* the sunken stone well — inset fill, ashen ink rim that lights phosphor on focus */
+.abyss-numberfield__group {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--abyss-control-h);
+  padding: 0 var(--abyss-space-2) 0 var(--abyss-space-3);
+  gap: var(--abyss-space-2);
+  transition: --abyss-frame-ink var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-numberfield__group:hover {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
+.abyss-numberfield:focus-within .abyss-numberfield__group {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+
+/* the watching marker — closed at rest, dilates open on focus */
+.abyss-numberfield__watcher {
+  flex: 0 0 auto;
+  width: 30px;
+  margin-right: 2px;
+}
+.abyss-numberfield__watcher .abyss-eye__sclera {
+  stroke-width: 1.6;
+}
+.abyss-numberfield:focus-within .abyss-numberfield__watcher {
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
+}
+.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+/* the carved numerals — mono, bone-bright, phosphor caret */
+.abyss-numberfield__input {
+  width: 64px;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  text-align: center;
+  background: transparent;
+  color: var(--abyss-text-bright);
+  caret-color: var(--abyss-glow);
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-16);
+  letter-spacing: var(--abyss-ls-2);
+}
+.abyss-numberfield:focus-within .abyss-numberfield__input {
+  text-shadow: var(--abyss-text-aura);
+}
+
+/* two stacked wax seals flanking the count */
+.abyss-numberfield__seals {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  margin: 4px 0;
+  border-left: 1px solid var(--abyss-ink-faint);
+  padding-left: var(--abyss-space-2);
+}
+
+.abyss-numberfield__btn {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  flex: 1;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  color: var(--abyss-glow-deep);
+  font-size: var(--abyss-fs-13);
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-numberfield__btn:hover {
+  color: var(--abyss-glow);
+  filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
+}
+.abyss-numberfield__btn:active {
+  color: var(--abyss-text-bright);
+}
+.abyss-numberfield__btn:focus-visible {
+  outline: none;
+  color: var(--abyss-glow);
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a70));
+}
+.abyss-numberfield__btn:disabled {
+  cursor: not-allowed;
+  color: var(--abyss-text-mute);
+  opacity: var(--abyss-disabled-opacity);
+  filter: none;
+}

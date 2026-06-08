@@ -1,0 +1,15 @@
+.abyss-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-5);
+}
+
+.abyss-form__row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  margin-top: var(--abyss-space-1);
+  padding-top: var(--abyss-space-4);
+  border-top: 1px solid var(--abyss-ink-faint);
+}

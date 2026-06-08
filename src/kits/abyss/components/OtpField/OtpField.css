@@ -1,0 +1,167 @@
+.abyss-otp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+}
+
+.abyss-otp__slot-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+}
+
+.abyss-otp__cell-glow {
+  display: inline-flex;
+  width: 44px;
+  height: 52px;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+
+/* the well: a wet-stone inset with a hand-inked wavering frame */
+.abyss-otp__cell {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  display: inline-flex;
+  width: 44px;
+  height: 52px;
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+
+.abyss-otp__slot {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  background: transparent;
+  color: var(--abyss-text);
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-24);
+  caret-color: transparent;
+  outline: none;
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+
+/* the watching eye, dormant at the floor of an empty well */
+.abyss-otp__eye {
+  position: absolute;
+  inset: auto 0 5px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.4;
+  transition:
+    opacity var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-otp__eye svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* the inked phosphor caret — blinks in the focused well */
+.abyss-otp__caret {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: auto;
+  width: 1.5px;
+  height: 24px;
+  background: var(--abyss-glow);
+  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a70));
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes abyss-otp-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* focused well — phosphor frame, lit glow, blinking caret, eye half-roused */
+.abyss-otp__cell-glow:has(.abyss-otp__slot:focus) {
+  filter: drop-shadow(0 2px 9px var(--abyss-glow-soft));
+}
+.abyss-otp__cell:has(.abyss-otp__slot:focus) {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: drop-shadow(0 0 7px var(--abyss-glow-soft));
+}
+.abyss-otp__cell:has(.abyss-otp__slot:focus) .abyss-otp__caret {
+  animation: abyss-otp-caret 1.1s steps(1, end) infinite;
+}
+.abyss-otp__cell:has(.abyss-otp__slot:focus) .abyss-otp__eye .abyss-eye__iris {
+  opacity: 0.55;
+}
+
+/* a glyph is inscribed — the well wakes: bone-bright mono, eye opens wide */
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) {
+  --abyss-frame-ink: var(--abyss-glow-a30);
+}
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) .abyss-otp__slot {
+  color: var(--abyss-text-bright);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) .abyss-otp__eye {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px var(--abyss-glow-a30));
+}
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) .abyss-otp__eye .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) .abyss-otp__eye .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]) .abyss-otp__eye .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+/* a filled-and-focused well keeps the caret quiet behind the inscribed glyph */
+.abyss-otp__cell:has(.abyss-otp__slot[data-filled]:focus) .abyss-otp__caret {
+  animation: none;
+  opacity: 0;
+}
+
+.abyss-otp__cell:has(.abyss-otp__slot:disabled) {
+  opacity: var(--abyss-disabled-opacity);
+}
+.abyss-otp__slot:disabled {
+  cursor: not-allowed;
+}
+
+/* the gap between groups — an ink tendril dash bridging the wells */
+.abyss-otp__divider {
+  width: 14px;
+  height: 1.5px;
+  background: var(--abyss-ink-strong);
+  filter: url(#abyss-edge);
+}
+
+@media (max-width: 360px) {
+  .abyss-otp,
+  .abyss-otp__slot-wrap {
+    gap: var(--abyss-space-1);
+  }
+  .abyss-otp__cell-glow,
+  .abyss-otp__cell {
+    width: 38px;
+    height: 48px;
+  }
+  .abyss-otp__slot {
+    font-size: var(--abyss-fs-19);
+  }
+  .abyss-otp__divider {
+    width: 8px;
+  }
+}

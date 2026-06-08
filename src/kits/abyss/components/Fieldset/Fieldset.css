@@ -1,0 +1,73 @@
+.abyss-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.abyss-fieldset__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  width: auto;
+  margin: 0 0 0 var(--abyss-space-4);
+  padding: 0 var(--abyss-space-3) 0 var(--abyss-space-2);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+  position: relative;
+  z-index: 1;
+}
+.abyss-fieldset__legend-text {
+  line-height: var(--abyss-lh-100);
+}
+
+.abyss-fieldset__eye {
+  width: 22px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 6px var(--abyss-glow-soft));
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+/* the legend's eye half-watches by default, opening fully when the group is
+   hovered — the tablet noticing the scribe */
+.abyss-fieldset__eye .abyss-eye__iris {
+  transform: scaleY(0.45);
+  opacity: 0.55;
+}
+.abyss-fieldset__eye .abyss-eye__pupil {
+  transform: scaleY(0.4);
+}
+.abyss-fieldset__eye .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+.abyss-fieldset:hover .abyss-fieldset__eye {
+  filter: drop-shadow(0 0 9px var(--abyss-glow-a55));
+}
+.abyss-fieldset:hover .abyss-fieldset__eye .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-fieldset:hover .abyss-fieldset__eye .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+
+/* the body is the inked tablet; the legend overlaps its top rule so it reads
+   as carved into the stone's edge */
+.abyss-fieldset__body {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 4px;
+  --abyss-frame-fill: radial-gradient(
+      120% 70% at 18% -12%,
+      var(--abyss-glow-soft),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-4);
+  margin-top: -10px;
+  padding: var(--abyss-space-5) var(--abyss-space-5) var(--abyss-space-5);
+}

@@ -113,8 +113,106 @@
   color: var(--abyss-text-dim);
 }
 
+.abyss-header__status {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+}
+
+.abyss-grid__group {
+  display: flex;
+  align-items: baseline;
+  gap: var(--abyss-space-3);
+  margin: var(--abyss-space-5) 0 calc(var(--abyss-space-2) * -1);
+  padding-bottom: var(--abyss-space-2);
+  border-bottom: 1px solid var(--abyss-ink-faint);
+}
+.abyss-grid__group:first-child {
+  margin-top: 0;
+}
+.abyss-grid__group-mark {
+  font-size: 15px;
+  color: var(--abyss-gold);
+  filter: var(--abyss-aura-gold);
+}
+.abyss-grid__group-title {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-16);
+  letter-spacing: var(--abyss-ls-12);
+  text-transform: uppercase;
+  color: var(--abyss-text);
+}
+.abyss-grid__group-sub {
+  font-family: var(--abyss-font-script);
+  font-style: italic;
+  font-size: var(--abyss-fs-13);
+  color: var(--abyss-text-mute);
+}
+
+.demo-toolbar__label {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-11);
+  letter-spacing: var(--abyss-ls-6);
+}
+.abyss-form__row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--abyss-space-2);
+}
+.demo-link {
+  color: var(--abyss-glow);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--abyss-glow-a55);
+}
+.demo-link:hover {
+  text-shadow: var(--abyss-text-aura);
+}
+kbd {
+  font-family: var(--abyss-font-mono);
+  font-size: 0.82em;
+  padding: 1px 6px;
+  border: 1px solid var(--abyss-ink);
+  border-radius: 3px;
+  color: var(--abyss-text-dim);
+}
+
+.demo-pcard__head {
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-3);
+  margin-bottom: var(--abyss-space-3);
+}
+.demo-pcard__name {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-15);
+  color: var(--abyss-text-bright);
+}
+.demo-pcard__handle {
+  font-size: var(--abyss-fs-12);
+  color: var(--abyss-text-mute);
+}
+.demo-pcard__bio {
+  margin: 0 0 var(--abyss-space-3);
+  font-size: var(--abyss-fs-13);
+  line-height: var(--abyss-lh-165);
+  color: var(--abyss-text-dim);
+}
+
+.abyss-footer {
+  margin-top: var(--abyss-space-7);
+  padding-top: var(--abyss-space-4);
+  border-top: 1px solid var(--abyss-ink-faint);
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-12);
+  color: var(--abyss-text-mute);
+  text-align: center;
+}
+
 @media (max-width: 860px) {
   .abyss-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .span-2 {
+    grid-column: auto;
   }
 }

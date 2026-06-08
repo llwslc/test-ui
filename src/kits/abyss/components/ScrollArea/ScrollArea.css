@@ -1,0 +1,153 @@
+.abyss-scrollarea {
+  --abyss-frame-fill: var(--abyss-inset);
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+/* phosphor pooling in the bottom of the well, brighter while scrolled */
+.abyss-scrollarea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--abyss-frame-round);
+  background: radial-gradient(
+    120% 70% at 50% 116%,
+    var(--abyss-glow-soft),
+    transparent 64%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-scrollarea:hover::after {
+  opacity: 1;
+}
+
+/* the watcher — a closed lidded eye in the corner, opening as you hover/scroll */
+.abyss-scrollarea__watcher {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  z-index: 3;
+  width: 26px;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-scrollarea:hover .abyss-scrollarea__watcher {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px var(--abyss-glow-a30));
+}
+.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__iris {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__pupil {
+  transform: scaleY(1);
+}
+.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__lid {
+  stroke: var(--abyss-glow-a55);
+}
+
+.abyss-scrollarea__viewport {
+  position: relative;
+  z-index: 1;
+  overscroll-behavior: contain;
+  outline: none;
+  /* contents dissolve into the dark at the lip and the floor */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+}
+.abyss-scrollarea__viewport:focus-visible {
+  outline: none;
+}
+.abyss-scrollarea:focus-within {
+  --abyss-frame-ink: var(--abyss-glow-a55);
+}
+
+.abyss-scrollarea__content {
+  padding: var(--abyss-space-4) var(--abyss-space-5);
+  color: var(--abyss-text);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  line-height: var(--abyss-lh-165);
+}
+
+/* the rail — a faint inked channel hugging the wall */
+.abyss-scrollarea__scrollbar {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 12px;
+  margin: 10px 3px;
+  background: var(--abyss-ink-faint);
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity var(--abyss-dur-slow) var(--abyss-ease);
+}
+.abyss-scrollarea:hover .abyss-scrollarea__scrollbar,
+.abyss-scrollarea__scrollbar[data-scrolling],
+.abyss-scrollarea__scrollbar[data-hovering] {
+  opacity: 1;
+}
+
+/* the thumb — a slim glowing tendril-bead descending the channel */
+.abyss-scrollarea__thumb {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: 28px;
+}
+.abyss-scrollarea__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0 3px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    var(--abyss-glow-deep),
+    var(--abyss-glow) 50%,
+    var(--abyss-glow-deep)
+  );
+  box-shadow:
+    0 0 7px var(--abyss-glow-a30),
+    inset 0 0 0 1px var(--abyss-glow-a30);
+  opacity: 0.62;
+  transition:
+    opacity var(--abyss-dur) var(--abyss-ease),
+    box-shadow var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-scrollarea__thumb:hover::before,
+.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__thumb::before {
+  opacity: 1;
+  box-shadow:
+    0 0 12px var(--abyss-glow-a55),
+    inset 0 0 0 1px var(--abyss-glow-a55);
+}
+/* a brighter living bead riding the centre of the tendril */
+.abyss-scrollarea__thumb::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--abyss-text-bright);
+  box-shadow: 0 0 8px var(--abyss-glow-a70);
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__thumb::after,
+.abyss-scrollarea__thumb:hover::after {
+  opacity: 1;
+}
