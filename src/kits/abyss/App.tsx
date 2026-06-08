@@ -649,8 +649,8 @@ function Demo() {
                 <div className="demo-stack">
                   <Checkbox defaultChecked label="Speak the name" />
                   <Checkbox label="Open the way" />
-                  <Checkbox label="Loose the tide" />
-                  <Checkbox disabled defaultChecked label="Warded (sealed)" />
+                  <Checkbox disabled defaultChecked label="Warded (sealed on)" />
+                  <Checkbox disabled label="Bound (sealed off)" />
                 </div>
               </Panel>
             </div>
