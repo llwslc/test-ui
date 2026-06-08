@@ -144,10 +144,7 @@
 }
 .abyss-btn:disabled,
 .abyss-btn[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
-  opacity: 0.72;
-  color: var(--abyss-text-mute);
-  --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-fill: var(--abyss-stone);
-  filter: none;
+  filter: grayscale(0.5);
 }
