@@ -1,18 +1,17 @@
 .abyss-togglegroup {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: 5px;
   display: inline-flex;
   width: fit-content;
-  padding: 3px;
-  gap: 0;
+  padding: 4px;
+  gap: 4px;
 }
 .abyss-toggle {
-  position: relative;
   min-height: 32px;
   padding: 0 16px;
   border: 0;
-  border-radius: 2px;
+  border-radius: 3px;
   background: transparent;
   cursor: pointer;
   font-family: var(--abyss-font-display);
@@ -25,16 +24,6 @@
     background var(--abyss-dur) var(--abyss-ease),
     box-shadow var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-toggle + .abyss-toggle::before {
-  content: "";
-  position: absolute;
-  left: -0.5px;
-  top: 7px;
-  bottom: 7px;
-  width: 1px;
-  background: var(--abyss-ink);
-  transition: opacity var(--abyss-dur) var(--abyss-ease);
-}
 .abyss-toggle:hover {
   color: var(--abyss-text);
 }
@@ -43,10 +32,6 @@
   background: var(--abyss-glow-soft);
   box-shadow: inset 0 0 0 1px var(--abyss-glow-a55);
   text-shadow: 0 0 8px var(--abyss-glow-a55);
-}
-.abyss-toggle[data-pressed]::before,
-.abyss-toggle[data-pressed] + .abyss-toggle::before {
-  opacity: 0;
 }
 .abyss-toggle:focus-visible {
   outline: none;

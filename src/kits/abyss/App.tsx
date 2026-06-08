@@ -1161,7 +1161,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="panel">
+            <div className="abyss-section" id="panel">
               <Panel title="Panel" meta="xxxviii" breathe>
                 <p className="abyss-text" style={{ margin: "0 0 18px" }}>
                   The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
