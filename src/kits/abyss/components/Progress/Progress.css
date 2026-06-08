@@ -1,0 +1,42 @@
+.abyss-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abyss-space-2);
+}
+.abyss-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--abyss-space-3);
+}
+.abyss-progress__value {
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-13);
+  color: var(--abyss-glow);
+}
+.abyss-progress__track {
+  position: relative;
+  height: 4px;
+  background: var(--abyss-inset);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--abyss-ink-faint);
+  filter: url(#abyss-edge);
+}
+.abyss-progress__indicator {
+  height: 100%;
+  background: linear-gradient(90deg, var(--abyss-glow-deep), var(--abyss-glow));
+  box-shadow: 0 0 8px var(--abyss-glow-a55);
+  transition: width var(--abyss-dur-slow) var(--abyss-ease);
+}
+/* indeterminate — a tendril roving the vein */
+.abyss-progress__track[data-indeterminate] .abyss-progress__indicator {
+  width: 40%;
+  margin-left: -40%;
+  animation: abyss-creep 1.5s var(--abyss-ease) infinite;
+}
+@keyframes abyss-creep {
+  to {
+    margin-left: 100%;
+  }
+}

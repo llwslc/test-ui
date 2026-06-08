@@ -1,0 +1,43 @@
+.abyss-togglegroup {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--abyss-space-2);
+  width: fit-content;
+}
+.abyss-toggle {
+  --abyss-frame-fill: transparent;
+  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-round: 3px;
+  position: relative;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-12);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  color: var(--abyss-text-dim);
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-toggle:hover {
+  color: var(--abyss-text);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
+.abyss-toggle[data-pressed] {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+  filter: var(--abyss-aura);
+}
+.abyss-toggle:focus-visible {
+  outline: none;
+  --abyss-frame-ink: var(--abyss-glow);
+}
+.abyss-toggle[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}
