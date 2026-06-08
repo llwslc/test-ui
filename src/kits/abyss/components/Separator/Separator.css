@@ -31,7 +31,7 @@
   color: var(--abyss-gold);
   filter: var(--abyss-aura-gold);
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
-  transition: transform var(--abyss-dur-2, 0.4s) ease, filter var(--abyss-dur-2, 0.4s) ease;
+  transition: transform var(--abyss-dur) var(--abyss-ease), filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-separator-labeled:hover .abyss-separator-labeled__sigil {
   transform: rotate(60deg);

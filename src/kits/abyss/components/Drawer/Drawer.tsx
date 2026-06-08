@@ -2,7 +2,7 @@ import { cx } from "../cx";
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
-import { EyeIcon, XIcon } from "../icons";
+import { KeyIcon, XIcon } from "../icons";
 import "./Drawer.css";
 
 export type DrawerSide = "left" | "right" | "top" | "bottom";
