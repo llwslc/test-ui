@@ -2,7 +2,7 @@ import { cx } from "../cx";
 import { Select as BaseSelect } from "@base-ui/react/select";
 import { useId } from "react";
 import type { ReactNode } from "react";
-import { EyeIcon, ChevronDownIcon } from "../icons";
+import { CheckIcon, ChevronDownIcon } from "../icons";
 import "./Select.css";
 
 export interface SelectOption {
@@ -24,9 +24,9 @@ export interface SelectProps<Value extends string = string> {
 }
 
 /* A scrying well: the trigger is a sunken stone slab showing the chosen name and
-   a downward-looking eye that flips shut/open as the tablet rises. The popup is
-   an inked tablet of options; the selected one is marked by an open phosphor
-   eye, the highlighted one washed in living light. */
+   a downward chevron that flips up as the tablet rises. The popup is an inked
+   tablet of options; the chosen one is struck with a phosphor seal (a glowing
+   check), the highlighted one washed in living light. */
 export function Select<Value extends string = string>({
   items,
   placeholder = "Select…",
@@ -86,7 +86,7 @@ export function Select<Value extends string = string>({
                 >
                   <span className="abyss-select__item-indicator" aria-hidden>
                     <BaseSelect.ItemIndicator>
-                      <EyeIcon className="abyss-select__item-eye" />
+                      <CheckIcon className="abyss-select__item-seal" />
                     </BaseSelect.ItemIndicator>
                   </span>
                   <BaseSelect.ItemText className="abyss-select__item-text">

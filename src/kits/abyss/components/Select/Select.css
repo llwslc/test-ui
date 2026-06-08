@@ -50,7 +50,7 @@
   color: var(--abyss-text-mute);
 }
 
-/* the trigger's watching eye — a downward-gazing chevron that flips open */
+/* the trigger marker — a downward chevron that flips up as the tablet rises */
 .abyss-select__chevron {
   display: inline-flex;
   flex: 0 0 auto;
@@ -114,16 +114,19 @@
   cursor: not-allowed;
 }
 
-/* the marker eye — closed for every option, opening on the chosen one */
+/* the seal — empty for every option, struck with a phosphor check on the chosen one */
 .abyss-select__item-indicator {
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  font-size: var(--abyss-fs-16);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
+}
+.abyss-select__item-seal {
+  font-size: var(--abyss-fs-16);
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 .abyss-select__item-text {
   flex: 1;
