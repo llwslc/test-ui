@@ -404,17 +404,15 @@
   text-shadow: 0 0 11px var(--abyss-gold-soft);
 }
 kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   font-family: var(--abyss-font-mono);
   font-size: 0.82em;
   padding: 1px 6px;
   border: 1px solid var(--abyss-ink);
   border-radius: 3px;
   color: var(--abyss-text-dim);
-}
-kbd .abyss-kbd-sym {
-  display: inline-block;
-  position: relative;
-  top: 0.18em;
 }
 .demo-pcard__head {
   display: flex;

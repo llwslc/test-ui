@@ -53,6 +53,7 @@ import {
   type NavMenuItem,
 } from "./components";
 import {
+  ChevronUpIcon,
   CopyIcon,
   EyeIcon,
   KeyIcon,
@@ -1072,7 +1073,8 @@ function Demo() {
                     <>
                       Right-click anywhere in these depths{" "}
                       <kbd>
-                        <span className="abyss-kbd-sym">⌃</span> click
+                        <ChevronUpIcon />
+                        click
                       </kbd>
                     </>
                   }
