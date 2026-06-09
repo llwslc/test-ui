@@ -37,8 +37,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--abyss-space-2);
-  height: 34px;
-  min-width: 34px;
+  height: var(--abyss-toolbar-btn-h);
+  min-width: var(--abyss-toolbar-btn-min-w);
   padding: 0 var(--abyss-space-3);
   border: 0;
   background: transparent;
@@ -97,7 +97,7 @@
 .abyss-toolbar__sep.abyss-separator {
   align-self: stretch;
   height: auto;
-  min-height: 18px;
+  min-height: var(--abyss-toolbar-sep-min-h);
   margin: 4px var(--abyss-space-1);
 }
 

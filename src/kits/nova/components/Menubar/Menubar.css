@@ -23,7 +23,7 @@
 .nova-menubar__trigger {
   display: inline-flex;
   align-items: center;
-  height: 30px;
+  height: var(--nova-menubar-trigger-h);
   padding: 0 var(--nova-space-4);
   border: 0;
   background: transparent;

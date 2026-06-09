@@ -5,7 +5,7 @@
 
 .nova-menu__popup {
   box-sizing: border-box;
-  min-width: 210px;
+  min-width: var(--nova-menu-min-w);
   padding: var(--nova-space-1);
   outline: none;
 }

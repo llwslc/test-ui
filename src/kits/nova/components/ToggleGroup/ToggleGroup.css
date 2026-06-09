@@ -32,8 +32,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--nova-space-2);
-  height: 32px;
-  min-width: 44px;
+  height: var(--nova-togglegroup-h);
+  min-width: var(--nova-togglegroup-min-w);
   padding: 0 var(--nova-space-4);
   border: 0;
   cursor: pointer;

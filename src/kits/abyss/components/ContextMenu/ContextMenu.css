@@ -3,7 +3,7 @@
   display: grid;
   place-items: center;
   gap: var(--abyss-space-2);
-  min-height: 132px;
+  min-height: var(--abyss-contextmenu-min-h);
   padding: var(--abyss-space-7);
   text-align: center;
   color: var(--abyss-text-dim);

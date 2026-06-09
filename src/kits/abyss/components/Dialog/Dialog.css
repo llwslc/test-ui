@@ -1,6 +1,6 @@
 .abyss-dialog {
   position: relative;
-  width: min(92vw, 460px);
+  width: min(100%, var(--abyss-w-dialog));
   filter: drop-shadow(var(--abyss-shadow-modal))
     drop-shadow(0 0 22px var(--abyss-glow-soft));
 }

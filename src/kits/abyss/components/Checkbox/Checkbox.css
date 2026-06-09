@@ -5,8 +5,8 @@
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: var(--abyss-checkbox-box);
+  height: var(--abyss-checkbox-box);
   flex: 0 0 auto;
   padding: 0;
   border: 0;
@@ -14,8 +14,8 @@
   cursor: pointer;
 }
 .abyss-check__sigil {
-  width: 24px;
-  height: 24px;
+  width: var(--abyss-checkbox-glyph);
+  height: var(--abyss-checkbox-glyph);
   overflow: visible;
 }
 .abyss-check__mark {

@@ -118,22 +118,22 @@
 }
 
 .abyss-btn--sm {
-  min-height: 32px;
+  min-height: var(--abyss-button-h-sm);
   padding: 0 var(--abyss-space-4);
   font-size: var(--abyss-fs-12);
 }
 .abyss-btn--lg {
-  min-height: 48px;
+  min-height: var(--abyss-button-h-lg);
   padding: 0 var(--abyss-space-6);
   font-size: var(--abyss-fs-15);
 }
 .abyss-btn--sm.abyss-btn--icon,
 .abyss-btn--sm.abyss-btn--icon-ghost {
-  width: 32px;
+  width: var(--abyss-button-icon-h-sm);
 }
 .abyss-btn--lg.abyss-btn--icon,
 .abyss-btn--lg.abyss-btn--icon-ghost {
-  width: 48px;
+  width: var(--abyss-button-icon-h-lg);
 }
 
 .abyss-btn:focus-visible {

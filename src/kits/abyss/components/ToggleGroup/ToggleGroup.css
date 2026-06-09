@@ -6,6 +6,7 @@
   align-items: center;
   gap: var(--abyss-space-1);
   width: fit-content;
+  max-width: 100%;
   padding: var(--abyss-space-1);
 }
 .abyss-togglegroup > * {
@@ -29,8 +30,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 34px;
-  min-width: 34px;
+  height: var(--abyss-togglegroup-h);
+  min-width: var(--abyss-togglegroup-min-w);
   padding: 0 var(--abyss-space-3);
   border: 0;
   background: transparent;

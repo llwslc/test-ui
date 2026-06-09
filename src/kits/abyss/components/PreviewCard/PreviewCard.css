@@ -1,12 +1,12 @@
 .abyss-previewcard__positioner {
-  z-index: var(--abyss-z-tooltip);
+  z-index: var(--abyss-z-menu);
   filter: drop-shadow(var(--abyss-shadow-pop))
     drop-shadow(0 0 14px var(--abyss-glow-soft));
 }
 
 .abyss-previewcard__popup {
   position: relative;
-  width: 286px;
+  width: var(--abyss-w-preview);
 }
 
 .abyss-previewcard__surface {
@@ -17,6 +17,7 @@
   --abyss-frame-round: 5px;
   display: block;
   padding: var(--abyss-space-4);
+  overflow: hidden;
 }
 
 .abyss-previewcard__mark {
@@ -24,8 +25,8 @@
   top: 9px;
   right: 11px;
   z-index: 1;
-  width: 16px;
-  height: 16px;
+  width: var(--abyss-preview-mark);
+  height: var(--abyss-preview-mark);
   pointer-events: none;
   color: var(--abyss-ink-strong);
   filter: drop-shadow(0 0 0 transparent);

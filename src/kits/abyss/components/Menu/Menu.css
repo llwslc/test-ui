@@ -1,5 +1,5 @@
 .abyss-menu__positioner {
-  z-index: var(--abyss-z-overlay);
+  z-index: var(--abyss-z-menu);
   outline: none;
   filter: drop-shadow(var(--abyss-shadow-pop))
     drop-shadow(0 0 14px var(--abyss-glow-soft));
@@ -10,7 +10,7 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: 4px;
   box-sizing: border-box;
-  min-width: 216px;
+  min-width: var(--abyss-menu-min-w);
   padding: var(--abyss-space-2);
   outline: none;
 }
@@ -76,7 +76,7 @@
   left: 1px;
   top: 50%;
   width: 12px;
-  height: 18px;
+  height: var(--abyss-menu-curl-h);
   transform: translateY(-50%);
   line-height: 0;
   pointer-events: none;

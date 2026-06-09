@@ -31,8 +31,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--nova-space-2);
-  height: 32px;
-  min-width: 32px;
+  height: var(--nova-toolbar-btn-h);
+  min-width: var(--nova-toolbar-btn-min-w);
   padding: 0 var(--nova-space-3);
   border: 0;
   background: transparent;

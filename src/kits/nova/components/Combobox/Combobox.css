@@ -4,7 +4,7 @@
   align-items: center;
   gap: var(--nova-space-2);
   width: 100%;
-  min-width: 240px;
+  min-width: var(--nova-combobox-min-w);
   height: var(--nova-control-h);
   padding: 0 var(--nova-space-2) 0 var(--nova-space-3);
   background: var(--nova-line);
@@ -67,8 +67,8 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: var(--nova-combobox-icon);
+  height: var(--nova-combobox-icon);
   padding: 0;
   border: 0;
   background: transparent;
@@ -117,8 +117,9 @@
 .nova-combobox__list {
   position: relative;
   z-index: 1;
-  max-height: min(var(--available-height), 264px);
+  max-height: min(var(--available-height), var(--nova-h-popup-list));
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .nova-combobox__item {
@@ -173,8 +174,8 @@
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
+  width: var(--nova-combobox-glyph);
+  height: var(--nova-combobox-glyph);
   font-size: var(--nova-fs-14);
   color: var(--nova-primary);
 }

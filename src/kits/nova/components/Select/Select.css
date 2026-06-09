@@ -1,7 +1,7 @@
 .nova-select__field {
   display: block;
   width: 100%;
-  min-width: 190px;
+  min-width: var(--nova-select-min-w);
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 
@@ -12,7 +12,7 @@
   justify-content: space-between;
   gap: var(--nova-space-3);
   width: 100%;
-  min-width: 190px;
+  min-width: var(--nova-select-min-w);
   height: var(--nova-control-h);
   padding: 0 var(--nova-space-3) 0 var(--nova-space-4);
   border: 0;
@@ -136,11 +136,17 @@
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
+  width: var(--nova-select-indicator);
+  height: var(--nova-select-indicator);
   font-size: var(--nova-fs-14);
   color: var(--nova-primary);
 }
 .nova-select__item-text {
   flex: 1;
+  min-width: 0;
+}
+.nova-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

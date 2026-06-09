@@ -19,8 +19,8 @@
   position: relative;
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: var(--abyss-radio-box);
+  height: var(--abyss-radio-box);
   flex: 0 0 auto;
   padding: 0;
   border: 0;
@@ -28,8 +28,8 @@
   cursor: pointer;
 }
 .abyss-radio__spark {
-  width: 22px;
-  height: 22px;
+  width: var(--abyss-radio-glyph);
+  height: var(--abyss-radio-glyph);
   overflow: visible;
 }
 .abyss-radio__spark path {

@@ -1,5 +1,5 @@
 .abyss-avatar {
-  --abyss-avatar-size: 46px;
+  --abyss-avatar-size: var(--abyss-avatar-size-base);
   position: relative;
   display: inline-block;
   width: var(--abyss-avatar-size);
@@ -54,9 +54,9 @@
   display: grid;
   place-items: center;
   width: calc(var(--abyss-avatar-size) * 0.34);
-  min-width: 14px;
+  min-width: var(--abyss-avatar-status-min-w);
   height: calc(var(--abyss-avatar-size) * 0.34);
-  min-height: 14px;
+  min-height: var(--abyss-avatar-status-min-h);
   padding: 2px;
   border-radius: 50%;
   background: radial-gradient(closest-side, var(--abyss-bg) 64%, transparent);

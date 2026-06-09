@@ -3,7 +3,7 @@
   --abyss-alert-accent-soft: var(--abyss-blood-soft);
   --abyss-title-color: var(--abyss-blood-text);
   position: relative;
-  width: min(92vw, 440px);
+  width: min(100%, var(--abyss-w-alert));
   filter: drop-shadow(var(--abyss-shadow-modal))
     drop-shadow(0 0 22px var(--abyss-alert-accent-soft));
 }

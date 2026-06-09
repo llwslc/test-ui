@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 26px;
+  height: var(--nova-slider-control-h);
   cursor: pointer;
   touch-action: none;
 }
@@ -51,8 +51,8 @@
 
 .nova-slider__thumb {
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: var(--nova-slider-thumb);
+  height: var(--nova-slider-thumb);
   box-shadow: 0 0 10px var(--nova-primary);
   transition:
     box-shadow var(--nova-dur) var(--nova-ease),

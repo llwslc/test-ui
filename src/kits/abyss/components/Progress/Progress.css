@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--abyss-space-2);
+  width: 100%;
 }
 .abyss-progress__head {
   display: flex;

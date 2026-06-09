@@ -25,7 +25,7 @@
 .abyss-menubar__trigger {
   display: inline-flex;
   align-items: center;
-  height: 30px;
+  height: var(--abyss-menubar-trigger-h);
   padding: 0 var(--abyss-space-4);
   border: 0;
   border-radius: 2px;

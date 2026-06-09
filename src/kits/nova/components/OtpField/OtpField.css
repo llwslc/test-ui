@@ -12,16 +12,16 @@
 
 .nova-otp__cell-glow {
   display: inline-flex;
-  width: 44px;
-  height: 52px;
+  width: var(--nova-otp-cell-w);
+  height: var(--nova-otp-cell-h);
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 
 .nova-otp__cell {
   position: relative;
   display: inline-flex;
-  width: 44px;
-  height: 52px;
+  width: var(--nova-otp-cell-w);
+  height: var(--nova-otp-cell-h);
   background: var(--nova-line-strong);
   clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
@@ -79,14 +79,15 @@
   background: var(--nova-text-mute);
 }
 
-@media (max-width: 360px) {
+@media (max-width: 768px) {
   .nova-otp,
   .nova-otp__slot-wrap {
     gap: var(--nova-space-1);
   }
+  .nova-otp__cell-glow,
   .nova-otp__cell {
-    width: 38px;
-    height: 48px;
+    width: var(--nova-otp-cell-w-sm);
+    height: var(--nova-otp-cell-h-sm);
   }
   .nova-otp__slot {
     font-size: var(--nova-fs-18);

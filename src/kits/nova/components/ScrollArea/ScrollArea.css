@@ -20,6 +20,7 @@
   padding: var(--nova-space-4) var(--nova-space-4);
   overscroll-behavior: contain;
   outline: none;
+  scrollbar-width: none;
   mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -27,6 +28,11 @@
     #000 calc(100% - 16px),
     transparent
   );
+}
+.nova-scrollarea__viewport::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 .nova-scrollarea__viewport:focus-visible {
   outline: none;

@@ -11,7 +11,7 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: 3px;
   display: block;
-  max-width: 240px;
+  max-width: var(--abyss-w-tooltip);
   padding: 7px 12px;
   font-family: var(--abyss-font);
   font-size: var(--abyss-fs-13);

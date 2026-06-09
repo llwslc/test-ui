@@ -468,7 +468,7 @@ kbd {
   transition-delay: 0.26s;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 768px) {
   .nova-hero {
     padding-right: 215px;
   }
@@ -546,13 +546,10 @@ kbd {
     transform: rotate(360deg);
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .nova-hero__reticle {
     display: none;
   }
-}
-
-@media (max-width: 900px) {
   .nova-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
@@ -564,8 +561,6 @@ kbd {
   .nova-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-}
-@media (max-width: 768px) {
   .nova-header {
     padding: 0 14px;
     gap: 12px;
@@ -583,8 +578,6 @@ kbd {
   .nova-hero__stats {
     gap: 14px 22px;
   }
-}
-@media (max-width: 540px) {
   .nova-logo__sub,
   .nova-header__status .nova-badge {
     display: none;

@@ -8,7 +8,7 @@
     0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent)
   );
   position: relative;
-  width: min(440px, 100%);
+  width: min(var(--nova-w-alert), 100%);
   outline: none;
   transition:
     opacity var(--nova-dur) var(--nova-ease),

@@ -50,7 +50,7 @@
 .abyss-drawer--left {
   top: 0;
   height: 100%;
-  width: min(420px, 80%);
+  width: min(var(--abyss-w-drawer), 80%);
   transform: translateX(var(--drawer-swipe-movement-x, 0px));
 }
 .abyss-drawer--right {
@@ -63,7 +63,7 @@
 .abyss-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(60%, 460px);
+  height: min(60%, var(--abyss-h-drawer));
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .abyss-drawer--top {

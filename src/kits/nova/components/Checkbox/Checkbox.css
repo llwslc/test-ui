@@ -1,8 +1,9 @@
 .nova-checkbox-box {
   position: relative;
   display: inline-grid;
-  width: 22px;
-  height: 22px;
+  width: var(--nova-checkbox-box);
+  height: var(--nova-checkbox-box);
+  flex: 0 0 auto;
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-checkbox-box:has([data-checked]),
@@ -17,8 +18,8 @@
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: var(--nova-checkbox-control);
+  height: var(--nova-checkbox-control);
   padding: 0;
   border: 0;
   cursor: pointer;

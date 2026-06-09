@@ -1,12 +1,12 @@
 .abyss-popover__pos {
-  z-index: var(--abyss-z-overlay);
+  z-index: var(--abyss-z-menu);
   filter: drop-shadow(var(--abyss-shadow-pop))
     drop-shadow(0 0 14px var(--abyss-glow-soft));
 }
 
 .abyss-popover__popup {
   position: relative;
-  max-width: 320px;
+  max-width: var(--abyss-w-popover);
 }
 
 .abyss-popover__surface {

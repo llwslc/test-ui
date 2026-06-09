@@ -28,7 +28,7 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 36px;
+  width: var(--nova-number-field-stepper);
   margin: 1px;
   padding: 0;
   border: 0;
@@ -57,7 +57,7 @@
 .nova-numberfield__input {
   position: relative;
   z-index: 1;
-  width: 66px;
+  width: var(--nova-number-field-w);
   margin: 1px 0;
   padding: 0 var(--nova-space-2);
   border: 0;

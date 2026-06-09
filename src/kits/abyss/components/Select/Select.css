@@ -1,7 +1,7 @@
 .abyss-select__field {
   display: block;
   width: 100%;
-  min-width: 190px;
+  min-width: var(--abyss-select-min-w);
 }
 
 .abyss-select__trigger {
@@ -14,7 +14,7 @@
   justify-content: space-between;
   gap: var(--abyss-space-3);
   width: 100%;
-  min-width: 190px;
+  min-width: var(--abyss-select-min-w);
   height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-3) 0 var(--abyss-space-4);
   border: 0;
@@ -62,7 +62,7 @@
 }
 
 .abyss-select__positioner {
-  z-index: var(--abyss-z-overlay);
+  z-index: var(--abyss-z-dropdown);
   outline: none;
   filter: drop-shadow(var(--abyss-shadow-pop))
     drop-shadow(0 0 12px var(--abyss-glow-soft));
@@ -114,8 +114,8 @@
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
+  width: var(--abyss-select-indicator);
+  height: var(--abyss-select-indicator);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }

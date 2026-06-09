@@ -3,7 +3,7 @@
   display: grid;
   place-items: center;
   gap: var(--nova-space-2);
-  min-height: 132px;
+  min-height: var(--nova-contextmenu-min-h);
   padding: var(--nova-space-7);
   text-align: center;
   color: var(--nova-text-dim);

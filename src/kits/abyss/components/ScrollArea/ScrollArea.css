@@ -86,7 +86,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 30px;
+  min-height: var(--abyss-scrollarea-thumb-min-h);
 }
 .abyss-scrollarea__thumb::before {
   content: "";

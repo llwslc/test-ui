@@ -1,7 +1,6 @@
 import { cx } from "../cx";
 import { SkullIcon } from "../icons";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
-import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
@@ -30,7 +29,6 @@ export function AlertDialog({
   onOpenChange,
   className,
 }: AlertDialogProps) {
-  const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseAlertDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseAlertDialog.Trigger render={trigger} />
@@ -38,8 +36,6 @@ export function AlertDialog({
         <BaseAlertDialog.Backdrop className="abyss-scrim" />
         <BaseAlertDialog.Viewport className="abyss-overlay-viewport">
           <BaseAlertDialog.Popup
-            ref={popupRef}
-            initialFocus={popupRef}
             className={cx(
               "abyss-aura-pop abyss-alert",
               `abyss-alert--${tone}`,

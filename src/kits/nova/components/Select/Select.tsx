@@ -50,7 +50,7 @@ export function Select<Value extends string = string>({
             {(val) => {
               const item = items.find((i) => i.value === val);
               return item ? (
-                item.label
+                <span className="nova-select__value">{item.label}</span>
               ) : (
                 <span className="nova-select__placeholder">{placeholder}</span>
               );

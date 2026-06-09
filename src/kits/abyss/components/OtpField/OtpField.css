@@ -12,8 +12,8 @@
 
 .abyss-otp__cell-glow {
   display: inline-flex;
-  width: 44px;
-  height: 52px;
+  width: var(--abyss-otp-cell-w);
+  height: var(--abyss-otp-cell-h);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 
@@ -23,8 +23,8 @@
   --abyss-frame-round: 3px;
   position: relative;
   display: inline-flex;
-  width: 44px;
-  height: 52px;
+  width: var(--abyss-otp-cell-w);
+  height: var(--abyss-otp-cell-h);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 
@@ -66,7 +66,7 @@
   z-index: 3;
   margin: auto;
   width: 1.5px;
-  height: 24px;
+  height: var(--abyss-otp-caret-h);
   background: var(--abyss-glow);
   filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a70));
   opacity: 0;
@@ -119,21 +119,21 @@
 }
 
 .abyss-otp__divider {
-  width: 14px;
+  width: var(--abyss-otp-divider);
   height: 1.5px;
   background: var(--abyss-ink-strong);
   filter: url(#abyss-edge);
 }
 
-@media (max-width: 360px) {
+@media (max-width: 768px) {
   .abyss-otp,
   .abyss-otp__slot-wrap {
     gap: var(--abyss-space-1);
   }
   .abyss-otp__cell-glow,
   .abyss-otp__cell {
-    width: 38px;
-    height: 48px;
+    width: var(--abyss-otp-cell-w-sm);
+    height: var(--abyss-otp-cell-h-sm);
   }
   .abyss-otp__slot {
     font-size: var(--abyss-fs-19);

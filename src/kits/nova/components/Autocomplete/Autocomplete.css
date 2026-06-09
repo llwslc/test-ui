@@ -1,7 +1,7 @@
 .nova-autocomplete__field {
   display: block;
   width: 100%;
-  min-width: 240px;
+  min-width: var(--nova-autocomplete-min-w);
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-autocomplete__field:has(:focus-within) {
@@ -13,7 +13,7 @@
   align-items: center;
   gap: var(--nova-space-2);
   width: 100%;
-  min-width: 240px;
+  min-width: var(--nova-autocomplete-min-w);
   height: var(--nova-control-h);
   padding: 0 var(--nova-space-3);
   background: var(--nova-line);
@@ -86,7 +86,7 @@
 .nova-autocomplete__list {
   position: relative;
   z-index: 1;
-  max-height: min(var(--available-height), 264px);
+  max-height: min(var(--available-height), var(--nova-h-popup-list));
   overflow-y: auto;
 }
 

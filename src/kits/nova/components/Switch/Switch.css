@@ -2,8 +2,8 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  width: 54px;
-  height: 26px;
+  width: var(--nova-switch-w);
+  height: var(--nova-switch-h);
   padding: 0;
   border: 0;
   cursor: pointer;
@@ -30,8 +30,8 @@
 .nova-switch__thumb {
   position: relative;
   z-index: 1;
-  width: 18px;
-  height: 18px;
+  width: var(--nova-switch-thumb);
+  height: var(--nova-switch-thumb);
   margin-left: var(--nova-space-1);
   background: linear-gradient(
     180deg,

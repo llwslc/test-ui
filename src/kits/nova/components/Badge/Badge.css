@@ -3,7 +3,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--nova-space-2);
-  height: 22px;
+  height: var(--nova-badge-h);
   padding: 0 var(--nova-space-3);
   background: color-mix(in srgb, var(--nova-badge-color) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);

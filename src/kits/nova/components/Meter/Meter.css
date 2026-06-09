@@ -41,7 +41,7 @@
 .nova-meter__track {
   position: relative;
   width: 100%;
-  height: 16px;
+  height: var(--nova-meter-track-h);
   background: var(--nova-track);
   box-shadow: inset 0 0 0 1px var(--nova-tint-soft);
   clip-path: var(--nova-clip-4);

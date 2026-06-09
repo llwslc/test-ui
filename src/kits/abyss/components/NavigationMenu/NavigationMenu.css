@@ -24,7 +24,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-2);
-  height: 38px;
+  height: var(--abyss-navmenu-trigger-h);
   padding: 0 var(--abyss-space-4);
   border: 0;
   background: transparent;
@@ -91,7 +91,7 @@
 }
 
 .abyss-navmenu__positioner {
-  z-index: var(--abyss-z-overlay);
+  z-index: var(--abyss-z-menu);
   outline: none;
   box-sizing: border-box;
   width: var(--positioner-width);

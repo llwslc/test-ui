@@ -4,7 +4,7 @@
 
 .nova-previewcard__popup {
   position: relative;
-  width: 286px;
+  width: var(--nova-w-preview);
 }
 
 .nova-previewcard__surface {

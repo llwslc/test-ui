@@ -181,14 +181,9 @@
     animation: none;
   }
 }
-@media (min-width: 760px) {
+@media (min-width: 768px) {
   .abyss-hero {
     padding-right: 236px;
-  }
-}
-@media (max-width: 760px) {
-  .abyss-hero__sigil {
-    display: none;
   }
 }
 
@@ -545,7 +540,7 @@ kbd {
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 768px) {
   .abyss-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
@@ -560,8 +555,6 @@ kbd {
   .abyss-section.span-2 {
     grid-column: auto;
   }
-}
-@media (max-width: 768px) {
   .abyss-header {
     padding: 0 14px;
     gap: 12px;
@@ -569,8 +562,13 @@ kbd {
   .abyss-header .abyss-navmenu {
     display: none;
   }
-}
-@media (max-width: 540px) {
+  .abyss-hero {
+    padding: 22px 18px;
+    margin-bottom: 18px;
+  }
+  .abyss-hero__sigil {
+    display: none;
+  }
   .abyss-logo__sub,
   .abyss-clock {
     display: none;

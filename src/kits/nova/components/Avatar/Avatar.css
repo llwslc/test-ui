@@ -1,5 +1,5 @@
 .nova-avatar {
-  --nova-avatar-size: 46px;
+  --nova-avatar-size: var(--nova-avatar-size-base);
   position: relative;
   display: inline-block;
   width: var(--nova-avatar-size);

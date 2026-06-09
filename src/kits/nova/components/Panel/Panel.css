@@ -21,7 +21,7 @@
   z-index: -1;
   clip-path: var(--nova-clip-12);
   background:
-    radial-gradient(120% 80% at 50% -10%, var(--nova-tint-faint), transparent 60%),
+    radial-gradient(120% 280px at 50% -36px, var(--nova-tint-faint), transparent 60%),
     var(--nova-surface-modal);
 }
 
@@ -48,8 +48,8 @@
 
 .nova-panel__corner {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: var(--nova-panel-corner);
+  height: var(--nova-panel-corner);
   z-index: 1;
   border: 0 solid var(--nova-primary);
   pointer-events: none;

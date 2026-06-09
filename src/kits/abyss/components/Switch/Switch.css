@@ -10,7 +10,7 @@
   border-radius: 4px;
 }
 .abyss-switch .abyss-eye {
-  width: 48px;
+  width: var(--abyss-switch-w);
 }
 .abyss-switch[data-checked] .abyss-eye {
   filter: drop-shadow(0 0 9px var(--abyss-glow-a55));

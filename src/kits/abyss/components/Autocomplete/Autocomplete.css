@@ -1,7 +1,7 @@
 .abyss-autocomplete__field {
   display: block;
   width: 100%;
-  min-width: 240px;
+  min-width: var(--abyss-autocomplete-min-w);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-autocomplete__field:has(:focus-within) {
@@ -17,7 +17,7 @@
   align-items: center;
   gap: var(--abyss-space-2);
   width: 100%;
-  min-width: 240px;
+  min-width: var(--abyss-autocomplete-min-w);
   min-height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-3);
 }
@@ -55,7 +55,7 @@
 }
 
 .abyss-autocomplete__positioner {
-  z-index: var(--abyss-z-tooltip);
+  z-index: var(--abyss-z-dropdown);
   outline: none;
   filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.66))
     drop-shadow(0 0 10px var(--abyss-glow-soft));
@@ -82,7 +82,7 @@
   display: none;
 }
 .abyss-autocomplete__list {
-  max-height: min(var(--available-height), 264px);
+  max-height: min(var(--available-height), var(--abyss-h-popup-list));
   overflow-y: auto;
 }
 

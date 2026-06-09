@@ -2,7 +2,7 @@
   --nova-overlay-shadow: var(--nova-shadow-modal);
   --nova-overlay-glow: var(--nova-glow-modal);
   position: relative;
-  width: min(460px, 100%);
+  width: min(var(--nova-w-dialog), 100%);
   outline: none;
   transition:
     opacity var(--nova-dur) var(--nova-ease),

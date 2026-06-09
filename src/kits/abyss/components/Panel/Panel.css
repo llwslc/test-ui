@@ -2,9 +2,10 @@
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: 4px;
   --abyss-frame-fill:
-    radial-gradient(130% 80% at 50% -10%, rgba(70, 232, 184, 0.05), transparent 62%),
-    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+    radial-gradient(130% 280px at 50% -36px, rgba(70, 232, 184, 0.05), transparent 62%),
+    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone) 240px);
   position: relative;
+  overflow: clip;
 }
 .abyss-panel__head {
   display: flex;
@@ -39,8 +40,8 @@
 }
 .abyss-panel__tendril {
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: var(--abyss-panel-corner);
+  height: var(--abyss-panel-corner);
   fill: none;
   stroke: var(--abyss-glow-a55);
   stroke-width: 1.4;

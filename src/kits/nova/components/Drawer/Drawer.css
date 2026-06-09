@@ -50,7 +50,7 @@
 .nova-drawer--left {
   top: 0;
   height: 100%;
-  width: min(420px, 80%);
+  width: min(var(--nova-w-drawer), 80%);
   transform: translateX(var(--drawer-swipe-movement-x, 0px));
 }
 .nova-drawer--right {
@@ -71,7 +71,7 @@
 .nova-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(60%, 460px);
+  height: min(60%, var(--nova-h-drawer));
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .nova-drawer--top {

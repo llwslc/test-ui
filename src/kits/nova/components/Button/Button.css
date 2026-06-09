@@ -130,7 +130,7 @@
 }
 
 .nova-btn--sm {
-  height: 30px;
+  height: var(--nova-button-h-sm);
   padding: 0 var(--nova-space-3);
   font-size: var(--nova-fs-11);
   clip-path: var(--nova-clip-9);
@@ -141,7 +141,7 @@
 }
 
 .nova-btn--lg {
-  height: 47px;
+  height: var(--nova-button-h-lg);
   padding: 0 var(--nova-space-7);
   font-size: var(--nova-fs-15);
   clip-path: var(--nova-clip-9);
@@ -152,8 +152,8 @@
 }
 
 .nova-btn--icon {
-  width: 28px;
-  height: 28px;
+  width: var(--nova-button-icon);
+  height: var(--nova-button-icon);
   padding: 0;
   border: 1px solid var(--nova-line);
   background: var(--nova-tint-faint);
@@ -177,8 +177,8 @@
 }
 
 .nova-btn--icon-ghost {
-  width: 22px;
-  height: 22px;
+  width: var(--nova-button-icon-ghost);
+  height: var(--nova-button-icon-ghost);
   padding: 0;
   background: transparent;
   color: var(--nova-text-mute);
