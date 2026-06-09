@@ -16,7 +16,7 @@
 - Vite + React 18 + TypeScript；构建 `tsc --noEmit && vite build`。
 - 样式 = 纯 CSS，与组件同目录（不用 Tailwind / CSS-in-JS / 运行时样式库）。
 - 跨组件复用的视觉配方放 `theme/effects.css`（`main.tsx` 引一次）；演示页背景氛围层放 `theme/global.css`。
-- **视觉值分两类，按值的性质而非所在文件判定**：属于**设计语言**的（调色板、body bg / 基础字型，及字号 / 切角 / 动效 / 层级 / 间距等各类尺度）一律走 `--nova-*` token，字面值只在 `tokens.css` 定义一次、组件与演示页都引用；**一次性 / 展示层值**（hero 的单点 `clamp`、demo chrome、氛围 alpha）就近写立即数。判据：换肤要跟着变、或在 kit 里有意复用 → token，否则立即数。
+- **视觉值分两类，按值的性质而非所在文件判定**：属于**设计语言**的（调色板、body bg / 基础字型，及字号 / 切角 / 动效 / 层级 / 间距等各类尺度，**以及所有组件 footprint 尺寸**——控件 / 浮层的 width / height / min- / max- 立即数，按 `--nova-<组件>-<角色>` 命名集中在 `tokens.css`，例如 `--nova-button-h-sm`、`--nova-checkbox-box`、`--nova-w-dialog`、`--nova-otp-cell-w`）一律走 `--nova-*` token，字面值只在 `tokens.css` 定义一次、组件与演示页都引用；只有**亚网格小值**（边框 1px、细轨道 / 小圆点 ≤8px）、**上下文式值**（`clamp` / `calc` / `%` / `100dvh`、Base UI 的 `--anchor-width` 等）与一次性展示层 alpha 才就近写立即数。判据：换肤要跟着变、或在 kit 里有意复用 → token，否则立即数。**换肤时按名补齐 `tokens.css` 全套 `--*-<组件>-*` 尺寸，不要在组件里另写尺寸数值。**
 
 ## 设计语言
 
@@ -130,7 +130,7 @@
 - inline-flex 分段控件（ToggleGroup）加 `width: fit-content`，否则被 `align-items: stretch` 拉满。
 - 细分隔条（1px）在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`，否则被压成 0。
 - grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`，否则撑破轨道。
-- 文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏 + 单列；≤768px 按手机处理（收紧间距、分段控件换行或横滚）。
+- 文档自身滚动，`#root` 仅 `min-height: 100vh`。**全站只有一个断点 = `768px`（CSS `@media` 不能吃 token，故唯一、两 kit 必须一致，不许再加别的数）**：`> 768` 为 PC（侧栏 + 双栏面板网格 + Hero 右侧装饰与 padding）；`≤ 768` 为手机（单列、收起侧栏、隐藏顶部 NavMenu、Tabs 横滚、收紧间距、隐藏 logo 副标题 / 时钟、OTP 单元收缩）。每个文件的手机改写集中进**单个** `@media (max-width: 768px)`，PC 专属样式放 `@media (min-width: 768px)` 或基样式。取舍：`769–900px` 侧栏+双栏面板会偏挤——已接受，不为它单设断点。
 - **iOS transform 溢出 / 动效选型**：`transform` 把层移出自身盒子时，iOS WebKit 会把超出部分计入祖先 `scrollWidth/Height` → 整页漂；`clip-path` 只裁绘制裁不住，`overflow:hidden`/`clip` 才裁得住——除非同一祖先还带 `clip-path`（裁剪被废）。据此选型：① 兜它的 `overflow` 祖先**不带 clip-path**（如 Drawer 的 viewport）→ 保留 `transform`（走合成层、最顺）；② 否则——扫光类（按钮高光 / 面板扫描）用 `background-position`（`::after` 原地不动、纯 paint），移动块 / 进度不定态用动 `top` / `left`（位置溢出能被 `overflow` 裁掉）。触发器被点后 iOS 留 sticky `:hover`，故「点开浮层」最易触发按钮高光卡住外溢。
 
 ## 演示页
