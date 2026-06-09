@@ -1070,7 +1070,10 @@ function Demo() {
                 <ContextMenu
                   trigger={
                     <>
-                      Right-click anywhere in these depths <kbd>⌃ click</kbd>
+                      Right-click anywhere in these depths{" "}
+                      <kbd>
+                        <span className="abyss-kbd-sym">⌃</span> click
+                      </kbd>
                     </>
                   }
                 >
