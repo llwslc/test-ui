@@ -2,30 +2,37 @@ import { Suspense, lazy } from "react";
 import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
-const LAZY = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.load)]));
+const HOLD_MS = sessionStorage.getItem("kit-switch") ? 900 : 0;
+sessionStorage.removeItem("kit-switch");
 
-function KitLoader() {
-  return (
-    <div className="shell-loader" role="status" aria-label="Loading kit">
-      <span className="shell-loader__ring" />
-    </div>
+const hold = <T,>(p: Promise<T>): Promise<T> =>
+  Promise.all([p, new Promise<void>((r) => setTimeout(r, HOLD_MS))]).then(
+    ([m]) => m,
   );
-}
+
+const APPS = Object.fromEntries(
+  KITS.map((k) => [k.id, lazy(() => hold(k.app()))]),
+);
+const LOADERS = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.loader)]));
 
 export function Shell() {
   const kit = resolveKit(localStorage.getItem("kit"));
-  const Active = LAZY[kit];
+  const Active = APPS[kit];
+  const KitLoader = LOADERS[kit];
 
   const switchKit = (id: string) => {
     if (id === kit) return;
     localStorage.setItem("kit", id);
+    sessionStorage.setItem("kit-switch", "1");
     location.reload();
   };
 
   return (
     <>
-      <Suspense fallback={<KitLoader />}>
-        <Active />
+      <Suspense fallback={<div className="shell-boot" />}>
+        <Suspense fallback={<KitLoader />}>
+          <Active />
+        </Suspense>
       </Suspense>
       <nav className="shell-switch" aria-label="Component kit">
         {KITS.map((k) => (

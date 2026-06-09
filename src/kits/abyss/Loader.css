@@ -1,0 +1,66 @@
+.abyss-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(110% 80% at 50% 46%, rgba(70, 232, 184, 0.07), transparent 62%),
+    #070c0b;
+}
+.abyss-loader__sigil {
+  overflow: visible;
+  transform-origin: 32px 32px;
+  animation: abyss-loader-spin 16s linear infinite;
+}
+.abyss-loader__ring {
+  fill: none;
+  stroke: rgba(70, 232, 184, 0.45);
+  stroke-width: 1;
+}
+.abyss-loader__star {
+  fill: none;
+  stroke: rgba(70, 232, 184, 0.4);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(70, 232, 184, 0.35));
+}
+.abyss-loader__eye {
+  fill: #46e8b8;
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 10px rgba(70, 232, 184, 0.7));
+  animation: abyss-loader-pulse 2.6s ease-in-out infinite;
+}
+.abyss-loader__label {
+  font-family: "Spectral", Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: rgba(205, 169, 74, 0.78);
+}
+@keyframes abyss-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes abyss-loader-pulse {
+  0%,
+  100% {
+    transform: scale(0.68);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abyss-loader__sigil,
+  .abyss-loader__eye {
+    animation: none;
+  }
+}
