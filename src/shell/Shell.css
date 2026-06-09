@@ -75,3 +75,30 @@
     padding: 9px 18px;
   }
 }
+
+.shell-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: #06100d;
+}
+.shell-loader__ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(150, 200, 185, 0.85);
+  animation: shell-loader-spin 0.8s linear infinite;
+}
+@keyframes shell-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shell-loader__ring {
+    animation-duration: 1.8s;
+  }
+}

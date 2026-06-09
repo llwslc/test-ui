@@ -1,4 +1,4 @@
-html[data-kit="abyss"] body {
+body {
   background-color: var(--abyss-bg);
   color: var(--abyss-text);
   font-family: var(--abyss-font);
@@ -8,7 +8,7 @@ html[data-kit="abyss"] body {
   text-rendering: optimizeLegibility;
 }
 
-html[data-kit="abyss"] body::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -20,7 +20,7 @@ html[data-kit="abyss"] body::before {
     linear-gradient(to bottom, var(--abyss-void), var(--abyss-bg) 42%, var(--abyss-bg-2));
 }
 
-html[data-kit="abyss"] body::after {
+body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -45,7 +45,7 @@ html[data-kit="abyss"] body::after {
   }
 }
 
-html[data-kit="abyss"]::before {
+html::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -60,7 +60,7 @@ html[data-kit="abyss"]::before {
   mix-blend-mode: multiply;
 }
 
-html[data-kit="abyss"]::after {
+html::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -72,29 +72,29 @@ html[data-kit="abyss"]::after {
   background-size: 240px 240px;
 }
 
-html[data-kit="abyss"] ::selection {
+::selection {
   background: var(--abyss-glow-a30);
   color: var(--abyss-text-bright);
 }
 
-html[data-kit="abyss"] * {
+* {
   scrollbar-width: thin;
   scrollbar-color: var(--abyss-ink-strong) transparent;
 }
-html[data-kit="abyss"] *::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 11px;
   height: 11px;
 }
-html[data-kit="abyss"] *::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.32);
 }
-html[data-kit="abyss"] *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--abyss-glow-deep), #0a3a30);
   border: 3px solid transparent;
   background-clip: padding-box;
   border-radius: 9px;
 }
-html[data-kit="abyss"] *::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: var(--abyss-glow-deep);
   background-clip: padding-box;
 }

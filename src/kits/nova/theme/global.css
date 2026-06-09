@@ -1,4 +1,4 @@
-html[data-kit="nova"] body {
+body {
   background-color: var(--nova-bg);
   color: var(--nova-text);
   font-family: var(--nova-font);
@@ -8,7 +8,7 @@ html[data-kit="nova"] body {
   text-rendering: optimizeLegibility;
 }
 
-html[data-kit="nova"] body::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -19,7 +19,7 @@ html[data-kit="nova"] body::before {
     linear-gradient(to bottom, var(--nova-bg), var(--nova-bg-2));
 }
 
-html[data-kit="nova"] body::after {
+body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -37,7 +37,7 @@ html[data-kit="nova"] body::after {
   }
 }
 
-html[data-kit="nova"]::before {
+html::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -54,7 +54,7 @@ html[data-kit="nova"]::before {
   opacity: 0.5;
 }
 
-html[data-kit="nova"]::after {
+html::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -66,28 +66,28 @@ html[data-kit="nova"]::after {
   background-size: 200px 200px;
 }
 
-html[data-kit="nova"] ::selection {
+::selection {
   background: var(--nova-tint-active);
   color: var(--nova-text-bright);
 }
 
-html[data-kit="nova"] * {
+* {
   scrollbar-width: thin;
   scrollbar-color: var(--nova-line-strong) transparent;
 }
-html[data-kit="nova"] *::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
-html[data-kit="nova"] *::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.25);
 }
-html[data-kit="nova"] *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--nova-primary-deep), var(--nova-primary));
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-html[data-kit="nova"] *::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: var(--nova-primary);
   background-clip: padding-box;
 }
