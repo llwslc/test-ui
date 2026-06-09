@@ -324,6 +324,17 @@
   text-shadow: var(--nova-glow-text);
   border-bottom-color: var(--nova-primary);
 }
+kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--nova-font-mono);
+  font-size: 0.82em;
+  padding: 1px 6px;
+  border: 1px solid var(--nova-line);
+  border-radius: 3px;
+  color: var(--nova-text-dim);
+}
 .demo-pcard__head {
   display: flex;
   align-items: center;

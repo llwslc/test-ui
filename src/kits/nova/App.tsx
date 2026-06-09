@@ -56,6 +56,7 @@ import {
 import {
   BoltIcon,
   CheckIcon,
+  ChevronUpIcon,
   CopyIcon,
   SearchIcon,
   SignalIcon,
@@ -950,7 +951,11 @@ function Demo() {
                 <ContextMenu
                   trigger={
                     <>
-                      Right-click anywhere in this zone <kbd>⌃ click</kbd>
+                      Right-click anywhere in this zone{" "}
+                      <kbd>
+                        <ChevronUpIcon />
+                        click
+                      </kbd>
                     </>
                   }
                 >
