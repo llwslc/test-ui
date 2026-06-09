@@ -1,7 +1,7 @@
 import { cx } from "../cx";
 import { Button as BaseButton } from "@base-ui/react/button";
 import { forwardRef } from "react";
-import type { ComponentPropsWithoutRef, PointerEvent, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Button.css";
 
 export type ButtonVariant =
@@ -20,18 +20,9 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", size = "md", icon, className, children, onPointerDown, ...props },
+  { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
 ) {
-  const handlePointerDown = (event: PointerEvent<HTMLButtonElement>) => {
-    const el = event.currentTarget;
-    if (!el.disabled) {
-      el.classList.remove("is-pressed");
-      void el.offsetWidth;
-      el.classList.add("is-pressed");
-    }
-    onPointerDown?.(event);
-  };
   return (
     <BaseButton
       ref={ref}
@@ -41,7 +32,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         `abyss-btn--${size}`,
         className,
       )}
-      onPointerDown={handlePointerDown}
       {...props}
     >
       <span className="abyss-btn__label">

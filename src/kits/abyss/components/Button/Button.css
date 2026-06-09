@@ -25,19 +25,9 @@
     filter var(--abyss-dur) var(--abyss-ease),
     transform 0.16s var(--abyss-ease-out);
 }
-.abyss-btn.is-pressed:not(:disabled) {
-  animation: abyss-btn-press 0.26s var(--abyss-ease-out);
-}
-@keyframes abyss-btn-press {
-  0% {
-    transform: scale(1);
-  }
-  36% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+.abyss-btn:active:not(:disabled) {
+  transform: scale(0.92) translateY(1px);
+  transition-duration: 0.05s;
 }
 .abyss-btn__label {
   position: relative;
