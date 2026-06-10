@@ -10,7 +10,7 @@
 
 - logo 副标:`<主题形容词> UI Kit`。
 - Hero eyebrow:`<主题系统名> · 37 <主题单位>`。
-- Hero 大标题:两行、单个重点词强调;hero 专属字号 `clamp(28px, 4.4vw, 46px)`,不用排版类档。
+- Hero 大标题:两行 `A(n) <主题形容词> interface kit / <主题动词短语>`(7±1 词),强调主题形容词;hero 专属字号 `clamp(28px, 4.4vw, 46px)` + 最重字重档,不用排版类档。
 - Hero 描述:一句主题化视觉描述 + 一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
 - 数据条 4 位:`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Runtime Deps`、`A11y / Built In`。
 - Footer:`<KIT> · built on @base-ui/react · themed via --<kit>-* tokens · <年>`。框架署名只出现在 footer,其余文案不提框架。

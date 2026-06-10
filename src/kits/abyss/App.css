@@ -271,6 +271,7 @@
 .abyss-hero h1 {
   margin: 0 0 16px;
   font-size: clamp(30px, 4.4vw, 46px);
+  font-weight: var(--abyss-fw-900);
 }
 .abyss-hero .abyss-text {
   max-width: 60ch;

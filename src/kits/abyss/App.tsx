@@ -639,9 +639,9 @@ function Demo() {
               <TentacleIcon /> Grimoire · 37 Rites
             </p>
             <h1 className="abyss-h1">
-              Tools dredged
+              An <span className="abyss-h1--accent">eldritch</span> interface kit
               <br />
-              from the <span className="abyss-h1--accent">deep</span>
+              dredged from the deep
             </h1>
             <p className="abyss-text">
               Thirty-seven accessible controls rebound as wet-stone tablets, watching
