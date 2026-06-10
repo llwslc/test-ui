@@ -114,7 +114,7 @@
 
 .nova-btn--ghost {
   background: var(--nova-line-strong);
-  color: var(--nova-primary);
+  color: var(--nova-text-dim);
 }
 .nova-btn--ghost::before {
   background: var(--nova-surface-popup);
@@ -123,7 +123,7 @@
   opacity: 0.25;
 }
 .nova-btn--ghost:hover {
-  color: var(--nova-text-bright);
+  color: var(--nova-primary);
 }
 .nova-btn--ghost:hover::before {
   background: var(--nova-ghost-hover);
