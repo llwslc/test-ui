@@ -1,6 +1,6 @@
 .abyss-menubar {
   --abyss-frame-fill: var(--abyss-surface);
-  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-4);
   display: inline-flex;
   align-items: center;
@@ -23,12 +23,14 @@
 }
 
 .abyss-menubar__trigger {
+  --abyss-frame-ink: transparent;
+  --abyss-frame-fill: transparent;
+  --abyss-frame-round: var(--abyss-round-3);
   display: inline-flex;
   align-items: center;
   height: var(--abyss-menubar-trigger-h);
-  padding: 0 var(--abyss-space-4);
+  padding: 0 var(--abyss-space-3);
   border: 0;
-  border-radius: var(--abyss-round-2);
   background: transparent;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
@@ -40,16 +42,20 @@
     background var(--abyss-dur) var(--abyss-ease),
     color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-menubar__trigger:hover,
-.abyss-menubar__trigger:focus-visible {
-  background: var(--abyss-glow-soft);
-  color: var(--abyss-text);
+.abyss-menubar__trigger:hover {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a30);
+  --abyss-frame-fill: var(--abyss-glow-soft);
 }
 .abyss-menubar__trigger:focus-visible {
-  box-shadow: inset 0 0 0 1px var(--abyss-glow-a55);
+  outline: none;
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow);
+  filter: var(--abyss-aura);
 }
 .abyss-menubar__trigger[data-popup-open] {
-  background: var(--abyss-glow-soft);
   color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a70);
+  --abyss-frame-fill: var(--abyss-glow-soft);
   text-shadow: var(--abyss-text-aura);
 }

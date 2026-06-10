@@ -84,7 +84,7 @@
 
 - **Badge / Panel** 是纯样式件,**不是** Base UI 组件(Base UI 没这俩)。
 - **Menu / ContextMenu / Menubar** 共享同一套底层复合件 `Menu/parts.tsx`(`MenuItem` / `MenuSeparator` / `MenuSub`,经 context 注入底层 primitive)三者复用,避免各写一套。
-- **Menubar 触发器走正文体、与菜单项同字**,不带 chevron;区别于 Tabs / NavMenu 的展示体导航面。独立 Menu 的触发按钮带会旋转的 chevron。**顶层触发器字号一律 `fs-13`**(Button / Menubar / NavMenu / Tabs),弹出项用各自正文档。
+- **Menubar 的条与触发器箱体照 Toolbar**(同暗框条、同钮高、同悬停 / 激活态);触发器文字走正文体、与菜单项同字,不带 chevron。独立 Menu 的触发按钮带会旋转的 chevron。**顶层触发器字号一律 `fs-13`**(Button / Menubar / NavMenu / Tabs),弹出项用各自正文档。
 - **AlertDialog** 与 Dialog 同基底,按 `tone` 重染:边框 / 标题 / 图记 + **表面顶部 tone 径向**(`color-mix(tone 20%)`,几何同 Dialog 的顶部径向)。
 
 ## 7. Base UI 对接

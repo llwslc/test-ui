@@ -1,4 +1,5 @@
 .nova-menubar {
+  --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
   gap: var(--nova-space-1);
@@ -23,7 +24,7 @@
   display: inline-flex;
   align-items: center;
   height: var(--nova-menubar-trigger-h);
-  padding: 0 var(--nova-space-4);
+  padding: 0 var(--nova-space-3);
   border: 0;
   background: transparent;
   color: var(--nova-text-dim);
@@ -40,7 +41,7 @@
 .nova-menubar__trigger:hover,
 .nova-menubar__trigger:focus-visible {
   background: var(--nova-tint-soft);
-  color: var(--nova-text);
+  color: var(--nova-primary);
 }
 .nova-menubar__trigger:focus-visible {
   box-shadow: inset 0 0 0 1px var(--nova-line-strong);
