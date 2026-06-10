@@ -189,18 +189,18 @@
 
 .abyss-shell {
   display: grid;
-  grid-template-columns: 224px minmax(0, 1fr);
-  gap: 28px;
-  max-width: 1340px;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 28px 24px 36px;
+  padding: 26px 22px 28px;
 }
 
 .abyss-sidebar {
   position: sticky;
-  top: 88px;
+  top: 94px;
   align-self: start;
-  max-height: calc(100vh - 112px);
+  max-height: calc(100vh - 118px);
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -247,8 +247,8 @@
 }
 .abyss-hero {
   position: relative;
-  margin-bottom: 24px;
-  padding: 34px 30px;
+  margin-bottom: 26px;
+  padding: 30px 28px;
   border: 1px solid var(--abyss-ink);
   border-radius: 5px;
   overflow: hidden;
@@ -306,12 +306,12 @@
 .abyss-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 18px;
 }
 .abyss-section {
   display: flex;
   min-width: 0;
-  scroll-margin-top: 84px;
+  scroll-margin-top: 88px;
 }
 .abyss-section.span-2 {
   grid-column: 1 / -1;
@@ -328,7 +328,7 @@
   gap: var(--abyss-space-3);
   margin: var(--abyss-space-5) 0 calc(var(--abyss-space-2) * -1);
   padding-bottom: var(--abyss-space-2);
-  scroll-margin-top: 84px;
+  scroll-margin-top: 88px;
   border-bottom: 1px solid var(--abyss-ink-faint);
 }
 .abyss-grid__group:first-child {
@@ -465,7 +465,7 @@ kbd {
 }
 
 .abyss-footer {
-  max-width: 1340px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: var(--abyss-space-7) 24px var(--abyss-space-4);
   border-top: 1px solid var(--abyss-ink-faint);
@@ -545,7 +545,7 @@ kbd {
   .abyss-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
-    padding: 18px 14px 24px;
+    padding: 16px 13px 20px;
   }
   .abyss-sidebar {
     display: none;
@@ -564,7 +564,7 @@ kbd {
     display: none;
   }
   .abyss-hero {
-    padding: 22px 18px;
+    padding: 20px 16px;
     margin-bottom: 18px;
   }
   .abyss-hero__sigil {
