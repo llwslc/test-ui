@@ -31,10 +31,9 @@
   border-radius: var(--abyss-round-2);
   background: transparent;
   color: var(--abyss-text-dim);
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-13);
-  letter-spacing: var(--abyss-ls-6);
-  text-transform: uppercase;
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  letter-spacing: var(--abyss-ls-2);
   cursor: pointer;
   outline: none;
   transition:
