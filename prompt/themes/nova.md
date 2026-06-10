@@ -1,51 +1,67 @@
-# Theme · NOVA —— 科幻 / HUD 皮肤
+# Theme · NOVA —— 科幻 HUD
 
-> 配合 `core.md`。本文只填 core 的 token 契约与"留空给 theme"的部分,定本套的**色 / 字 / 形 / 辉光 / 动效 / 配色态**;结构、组件、规则全在 core,不复述。`<kit>` = `nova`。
+> 配合 `core.md` + `app.md`,只填 core 的 token 契约与「留空给 theme」的部分。`<kit>` = `nova`。
 
 ## 0. 身份
 
-- 代号 **NOVA**;定位 **科幻 / HUD**;基调 深空暗色、锐利、克制。
-- 主色 电光青、副色 品红;辉光跟随切角轮廓。
+- 代号 **NOVA**,科幻指挥舱 HUD:深空暗色、锐利切角、电光青辉光,统一而克制。
 
-## 1. 调色板(填 core §3 色板 / 强调填充 / alpha 阶梯)
+## 1. 调色板
 
-- **强调色**(各配一个 `-deep` 暗档):primary `#2de2ff` · secondary `#ff2d75` · success `#54ffb0` · warning `#ffce54` · danger `#ff4d5e`。
-- **背景**:`bg` 深空蓝黑、`bg-2` 略亮(竖直渐变两端)。**文本**:`text` 冷白偏蓝、`-bright / -dim / -mute` 递降。**反色前景** `on-primary / -danger` 取深色(叠在亮填充上)。
-- **强调填充**(两条复用渐变):`accent-surface` = `linear-gradient(180deg, primary, primary-deep)`(「点亮表面」激活填充);`accent-fill` = `linear-gradient(90deg, primary-deep, primary 55%)`(方向指示条 Slider / Progress;Meter 同形,走自己的分级色)。
-- **青 alpha 阶梯**(同色不同透明度,新青 alpha 先在此找):`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。
-- hex 带不了 alpha 的另立:品牌填充、danger 家族(`-fill / -wash / -highlight / -text / -inset`)、中性效果色(关态轨 / 未填充轨皆蓝灰、不在青阶梯;ghost hover;白色扫光 `sheen / -soft`;关态 thumb 金属渐变)。
-- **表面**:`surface / -popup / -modal / -inset`、`scrim`、深表面渐变(Avatar 底 / Switch 选中 thumb)。
-- **辉光与阴影**:文字 `glow-text`、焦点 `glow-focus`、选中 `glow-active`(`0 0 8px line-strong`)、触发器 `glow-trigger`(`0 0 10px primary-a40`)、浮层 `glow-popup / -modal`;矩形 `shadow-popup / -modal`。
+- 背景:`bg #050a12`、`bg-2 #07101c`。
+- 五个强调色,各配一个 `-deep` 暗档:primary 电光青 `#2de2ff / #119cb8`,secondary 品红 `#ff2d75 / #c4185a`,success `#54ffb0 / #1f9c68`,warning `#ffce54 / #b8861f`,danger `#ff4d5e / #b3242f`。
+- 文本(冷白偏蓝):`text #d7ecff`、`-bright #eafdff`、`-dim #7793b0`、`-mute #46617e`;反色前景 `on-primary #02131a`、`on-danger #1c0406`。
+- 两条复用强调渐变:`accent-surface` = `180deg primary→deep`(点亮表面);`accent-fill` = `90deg deep→primary 55%`(方向指示条)。
+- 青 alpha 阶梯:`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新的青 alpha 先用阶梯。
+- 另立 alpha 家族:`secondary-fill .55`;danger 一组 `-fill .55 / -wash .12 / -highlight .16 / -text #ffd9dc / -inset #2a0e14`。
+- 中性 / 效果色:`off`(关态轨,蓝灰)、`track`(未填充轨)、`ghost-hover`、白扫光 `sheen .6 / sheen-soft .14`、关态旋钮金属渐变 `thumb-idle-top/-bottom`、深表面渐变 `surface-deep-top/-bottom`。
+- 表面:`surface .72`、`surface-popup .97`、`surface-modal`(160deg 深渐变)、`surface-inset #0a1a29`;`scrim .66`。
+- 辉光与阴影:文字 `glow-text`;drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal`;矩形影 `shadow-popup / -modal`。
 
-## 2. 字体(填 core 字体族 + 排版尺度)
+## 2. 字体与排版
 
-- `font-display` **Orbitron**(标题)、`font` **Rajdhani**(正文)、`font-mono` **Share Tech Mono**(数值 / 等宽)。`index.html` 经 Google Fonts 引入。
-- **三档标题**(规律:字号越大、字距越紧,皆 display / `fw-700` / 大写):`h1` `fs-22` `ls-4` · `h2` `fs-16` `ls-10`(= 模态标题字型)· `h3` `fs-13` `ls-16`(= 面板小节标题)。`text` = body `fs-14` `lh-160` `text-dim`。
-- **字段标签 caption**(控件名):display `fs-12` `fw-600` `ls-10` 大写 `text-dim`;字距固定 `ls-10`,不参与标题档的字号-字距递变。
+- **Orbitron**(display,大写)、**Rajdhani**(正文)、**Share Tech Mono**(数值)。
+- 尺度档:字号 `fs-11…22`,字距 `ls-4 / 10 / 16`,行高 `lh-100 / 150 / 160`,字重 `fw-600 / 700`。
+- 标题三档,全大写 `fw-700`,字号越大字距越紧:`h1` fs-22 + ls-4,`h2` fs-16 + ls-10,`h3` fs-13 + ls-16;正文 `text` = fs-14 + lh-160 + text-dim;`--accent` 修饰 = primary + glow-text。
+- 字段 caption 无独立 class:各组件就地写同一组属性(display · fs-12 · fw-600 · ls-10 · 大写 · text-dim)。
 
-## 3. 几何(填 core §3 几何槽 + §4.1 描边策略)
+## 3. 几何与描边
 
-- **形状语言 = 锐利切角(`clip-path` polygon)**。→ 因此描边走 core §4.1 的**双层 frame**(外层背景=边框色 + `clip-path`,`::before` 内缩 1px 填表面色;内容 `position:relative; z-index:1`)。
-- **切角阶梯 `--nova-clip-N`**(写死 polygon,按角色选;非矩形也命名,组件里不裸写 `polygon()`):`clip-12` 超大外框(Dialog / AlertDialog / Panel)· `clip-9` 默认控件 / 容器框及 `::before` · `clip-7` 容器内嵌套项 + 小交互 / 标签 chip(菜单项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb)· `clip-4` Progress / Meter / 滚动条 thumb / Slider thumb · `clip-3` Slider 轨道;`clip-tick` 标题尖角。
-- **辉光跟随切角**:用 `filter: drop-shadow()`(非 `box-shadow`);阴影 / 辉光挂**不切角的外层**(core elevation/surface 分层)。
+- 形状 = **锐利切角**(`clip-path` polygon)。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` + `clip-tick`,按 core §3 的角色档选用。
+- 描边走双层 frame(`.nova-surface`):外层背景 = 边框色 + clip-path,`::before` 内缩 1px 填表面;输入变量 `--nova-surface-clip`(默认 clip-9)、`-fill`(默认 surface-popup)、`-border`(默认 line-strong)。
+- 辉光用 `filter: drop-shadow()` 跟随切角轮廓,挂不切角的外层 `.nova-elevation`(输入 `--nova-overlay-shadow / -glow`,默认 shadow-popup / glow-popup)。
 
-## 4. 氛围层(填 core `global.css`,四层叠)
+## 4. 氛围层(`global.css`)
 
-角落径向辉光(品红右上 + 青左下)→ `bg→bg-2` 竖直渐变 → 漂移网格(径向遮罩向下淡出)→ 扫描线(`multiply`)→ 胶片噪点(内联 `feTurbulence` SVG,`overlay`);分挂 `body::before / ::after` 与根元素 `::before / ::after`。
+- `body::before`:品红右上 + 青左下两个角落径向辉光,叠 `bg→bg-2` 竖直渐变。
+- `body::after`:44px 网格线(tint-faint),径向遮罩向下淡出,`nova-grid-drift` 24s 平移。
+- 根元素 `::before`:扫描线(repeating 4px,multiply,.5);`::after`:feTurbulence 噪点 200px(overlay,.045)。
+- `::selection` = tint-active;全局滚动条 10px,thumb 青色渐变。
 
-## 5. 动效个性(填 core 动效语言)
+## 5. 动效个性
 
-- 微动:按钮高光斜扫、进度条流动条纹、面板扫描光、徽章呼吸、Hero 旋转准星。
-- 入场(用于演示页,见 `app.md`):顶栏下滑 + Hero 文案 stagger + 面板滚动渐入。全程尊重 `prefers-reduced-motion`。
+- `dur .22s / -slow .45s`,`ease (0.2, 0.8, 0.2, 1)`——快进缓出,干脆。
+- 微动:按钮高光斜扫(`background-position`)、进度条流动条纹、面板扫描光(`.nova-scan`,scaleX 呼吸)、徽章点 pulse、Hero 准星旋转。
+- 入场:顶栏下滑、Hero 文案 stagger(`nova-rise`)、面板滚动渐入;锚定浮层开合 = 淡入 + `translateY(-6px) scale(0.97)`。
 
-## 6. 交互态配色(填 core §5 的"颜色留空")
+## 6. 交互态配色(填 core §5 的留白)
 
-- 「点亮表面」(Button / Switch / Checkbox)= `accent-surface` 渐变;「分段选中」(ToggleGroup / Toolbar / Menubar)= 实心 `primary`;前景一律翻 `on-primary`(深勾 / 深字 / 深滑块,含箭头 / 占位 / 数值)。「文字强调选中」(列表 / Tab / NavMenu)只转 `primary`。
-- 悬停:分段 / 触发条 `tint-soft` 纯底(Tabs 与 NavMenu 复用同一 tab 皮肤:`linear-gradient(180deg, transparent, tint-soft)` + 底部辉光下划线);图标 / 动作按钮文字转 `primary`,菜单触发器 / 列表项转亮文。
-- 焦点:布尔开关 `glow-focus`;分段 / 触发条 `inset 0 0 0 1px line-strong`;输入框边框点亮 `primary` + 字段级 `glow-focus`。
+- 点亮表面(Button primary / Switch / Checkbox)= `accent-surface` 渐变填充,前景翻 `on-primary`(含箭头 / 占位 / 数值)。
+- 分段选中(ToggleGroup / Toolbar / Menubar)= 实心 `primary` + `on-primary`。
+- 文字强调选中(列表 / Tab / NavMenu)只转 `primary`;Tab / NavMenu 配底部辉光下划线。
+- 悬停:分段 / 触发条 `tint-soft` 纯底(Tabs / NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线);图标 / 动作按钮文字转 `primary`;菜单项转亮文。
+- 焦点:布尔开关 `glow-focus`;分段 / 触发条 `inset 0 0 0 1px line-strong`;输入框边框点亮 `primary` + `glow-focus`。
+- 危险态用 danger 家族(`-fill / -wash / -highlight / -text / -inset`)。
 
-## 7. 本套特有的组件皮肤决定(core 下放)
+## 7. 组件皮肤决定
 
-- **NavigationMenu** 触发器栏复用 **Tabs** 皮肤:大写 Orbitron、竖向渐变 hover、底部辉光下划线、开启态文字转 `primary` + 辉光、chevron 翻转。
-- **AlertDialog** 按 `tone`(danger / warning…)整体重染。
-- **共享配方色**:头部扫光 `--nova-scan-color`、标题尖角 `--nova-tick-color`、模态标题 `--nova-title-color` 等就近覆盖。
+- NavigationMenu 触发器栏复用 Tabs 皮肤(大写 Orbitron、渐变 hover、辉光下划线、开启态转 primary、chevron 翻转)。
+- AlertDialog 按 `tone`(danger / warning / primary)整体重染,scan / 标题 / tick 色随 tone。
+- Switch:关态金属 thumb(`thumb-idle` 渐变),选中 `accent-surface` 轨 + `surface-deep` thumb。
+- 共享配方色就近覆盖:`--nova-scan-color / -tick-color / -title-color`。
+
+## 8. 文案(填 `app.md` 的槽位)
+
+- logo:`NOVA`(VA 强调)/ 副标 `SCI-FI UI KIT`;状态徽章 `Online`(success)。
+- Hero:eyebrow `Component System · 37 Controls`;标题 `A **sci-fi** interface kit / forged in neon`;描述关键词 neon HUD skin、chamfered frames、reactive glow、scanline motion;单位词 `Controls`、`Token File`。
+- 区块组名:Input / Forms / Feedback / Overlays / Display / Foundations;面板 meta 用三字母缩码(BTN / DRW…);demo 文案走舰桥 / 遥测词汇(Command、Telemetry、Sensor)。

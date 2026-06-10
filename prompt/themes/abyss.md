@@ -1,0 +1,70 @@
+# Theme · ABYSS —— 沉没魔典
+
+> 配合 `core.md` + `app.md`,只填 core 的 token 契约与「留空给 theme」的部分。`<kit>` = `abyss`。
+
+## 0. 身份
+
+- 代号 **ABYSS**,克苏鲁深海魔典:湿石板、注视之眼、手绘符印;暖褐羊皮文字配深渊青辉光,一切边框是颤抖的墨线。
+
+## 1. 调色板
+
+- 背景:`void #030706`、`bg #070c0b`、`bg-2 #0a1512`;石板 `stone #0c1411`、`stone-raised #101b16`(不透明面板渐变两端)。
+- **墨线**(边框用暖灰绿"墨",不用强调色):`ink .3`、`ink-strong .52`、`ink-faint .1`。
+- 文本(暖褐羊皮):`text #d8ceb4`、`-bright #f3edda`、`-dim #8d9079`、`-mute #565a4b`。
+- 四个强调家族,各配 `-deep` + `-soft`(及反色前景 `on-*`):**glow** 深渊青 `#46e8b8`(主),**gold** 鎏金 `#cda94a`(注脚 / 警示),**ichor** 灵液紫 `#9176ff`(次强调),**blood** 血红 `#d24059`(危险,另有 `blood-text #f4c8cf`)。
+- glow 的 alpha 阶梯:`-soft .12 · -a30 · -a55 · -a70`。
+- 表面:`surface .84`、`surface-popup .97`、`inset #06100d`;`scrim .72`。
+- 辉光 token 化:`aura`(10px a30)、`aura-strong`(16px a55)、`aura-gold`;文字辉光 `text-aura`;矩形影 `shadow-pop / -modal`。
+
+## 2. 字体与排版
+
+- **Cinzel**(display,石刻小型大写)、**Spectral**(正文衬线;italic 兼作 script 注脚)、**UnifrakturCook**(rune,仅 logo 品牌字)、**Cutive Mono**(数值)。
+- 尺度档:字号 `fs-11…34`(含 19 / 24 / 34),字距 `ls-2 / 6 / 12 / 20`,行高 `lh-100 / 150 / 165`,字重 `fw-400 / 500 / 600 / 900`。
+- 标题三档 `fw-400`、不加 text-transform(Cinzel 天然小型大写):`h1` fs-34 + ls-2,`h2` fs-19 + ls-6,`h3` fs-13 + ls-12 + 大写 + dim;正文 `text` = fs-15 + lh-165 + dim;`--accent` 修饰 = glow + text-aura。
+- 字段 caption 有独立类 **`.abyss-cap`**(display · fs-12 · ls-12 · 大写 · dim),组件统一引用。
+- `.abyss-brand` = rune 字,只给 logo。
+
+## 3. 几何与描边
+
+- 形状 = **圆角矩形**(radius 3–5px),无 clip-path。
+- 全套统一 frame 原语 `.abyss-frame::before`:`inset: 0`、1.5px 墨线 border + radius;输入变量 `--abyss-frame-fill / -ink / -round`。`--double` 变体加 `inset: 4px` 的内圈细线。
+- **`#abyss-edge`**:演示页顶部内联一个 SVG filter(feTurbulence `0.013 0.018` + feDisplacementMap),frame / 分隔线 / 连接线 / 指示条统一挂它——所有线条呈手绘颤动。
+- 辉光 / 阴影挂不带该滤镜的外层(positioner / popup 的 drop-shadow),常为黑影 + glow-soft 双层。
+
+## 4. 氛围层(`global.css`)
+
+- `body::before`:深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向,叠 `void→bg→bg-2` 竖直渐变。
+- `body::after`:两层光尘孢子(radial 圆点,140 / 220px),`abyss-drift` 40s 向上漂,径向遮罩。
+- 根元素 `::before`:四周暗角 vignette(radial,multiply);`::after`:feTurbulence 噪点 240px(overlay,.05)。
+- `::selection` = glow-a30;全局滚动条 11px、圆角 thumb、glow-deep 渐变。
+
+## 5. 动效个性
+
+- `dur .3s / -slow .66s`,`ease (0.38, 0.1, 0.2, 1)`——比 NOVA 慢半拍、沉。
+- **呼吸是主旋律**:`--abyss-breath 7s`,`.abyss-breathe` 共享 class(徽章点、sigil、Toast 图记)。
+- **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾、Panel 触手)。
+- Hero 法阵:外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动;Dialog sigil 30s 自转;OTP 光标闪动;Drawer 钥匙动效。
+- 入场:Hero 文案 `abyss-rise` stagger、区块滚动渐入;锚定浮层开合 = 淡入 + `translateY(-6px) scale(0.97)`。
+
+## 6. 交互态配色(填 core §5 的留白)
+
+- 选中 / 激活**不实心填充、不翻深**:覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`,`-fill` 给 `glow-soft` 或淡 glow 渐变,文字转 `glow`,叠 `aura / aura-strong`。
+- Button 变体同构换色:primary = 淡 glow 渐变 + glow 文字 + aura(hover 渐变加深、文字转 bright、aura-strong);secondary = ichor;danger = blood;ghost 透明、hover 点亮 ink。
+- 文字强调选中(列表 / Tab / NavMenu)转 `glow` + `text-aura`;Tab / NavMenu 配辉光下划线。
+- 悬停:面 `glow-soft` 底;图标 / 动作按钮转 glow + aura;菜单项转亮文。
+- 焦点:`frame-ink` 直接点到实色 `glow`;输入框同。
+- 禁用 `opacity .55`。
+
+## 7. 组件皮肤决定
+
+- **Switch 是一只眼**(`.abyss-eye`:sclera / iris / pupil / lid SVG),选中 iris + pupil `scaleY(0.06→1)` 睁眼 + 辉光;无轨道滑块。
+- Panel:角部触手 tendril(stroke 描画入场);Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;Menu 带卷边;模态标题配注视眼(`.abyss-modal-title__eye`)。
+- AlertDialog 按 `tone` 重染:danger = blood(默认,骷髅图记)、warning = gold、primary = glow。
+- NavigationMenu 触发器栏复用 Tabs 皮肤;Hero 法阵、分组线 GroupRule 带 sigil 标记。
+- 背板 scrim 额外 `brightness(.8)` 压暗;连接线 1.5px glow + edge 滤镜。
+
+## 8. 文案(填 `app.md` 的槽位)
+
+- logo:`Abyss`(rune 体)/ 副标 `Eldritch UI Kit`;状态徽章 `Awake`(primary),时钟带月相图标。
+- Hero:eyebrow `Grimoire · 37 Rites`;标题 `An **eldritch** interface kit / dredged from the deep`;描述关键词 wet-stone tablets、watching eyes、inscribed sigils、hand-inked frames;单位词 `Rites`、`Sigil File`。
+- 区块组名带 script 斜体副题:Inputs · rites of intent,Forms · binding the acolyte,Feedback · what the deep returns,Overlays · things that surface,Display · what watches back,Foundations · stone & ink;面板 meta 用罗马数字;demo 文案走深海 / 仪式词汇(R'lyeh、Ward、Tide、Sounding)。
