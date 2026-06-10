@@ -83,7 +83,7 @@
 > 组件名即映射到 Base UI 基元 —— API / 语义 / 用法(Combobox vs Autocomplete、三种模态、AlertDialog 的 `alertdialog` 语义、Toast 的 `ToastProvider` + `useToast` 等)全用 Base UI 的,**不复述**。core 只记 Base UI 管不到的**结构决定**:
 
 - **Badge / Panel** 是纯样式件,**不是** Base UI 组件(Base UI 没这俩)。
-- **Menu / ContextMenu / Menubar** 共享同一套底层复合件 `Menu/parts.tsx`(`MenuItem` / `MenuSeparator` / `MenuSub`,经 context 注入底层 primitive)三者复用,避免各写一套;演示页三件连排(menu → menubar → context),NavigationMenu 排其后。
+- **Menu / ContextMenu / Menubar** 共享同一套底层复合件 `Menu/parts.tsx`(`MenuItem` / `MenuSeparator` / `MenuSub`,经 context 注入底层 primitive)三者复用,避免各写一套;演示页浮层区配对成行:`menu | menubar`、`navmenu | context`,Preview Card 通栏,不留半行空位。
 - **AlertDialog** 与 Dialog 同基底,按 `tone` 重染:边框 / 标题 / 图记 + **表面顶部 tone 径向**(`color-mix(tone 20%)`,几何同 Dialog 的顶部径向)。
 
 ## 7. Base UI 对接

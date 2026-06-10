@@ -109,8 +109,8 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["preview", "Preview Card", "PVW"],
       ["menu", "Menu", "MNU"],
       ["menubar", "Menubar", "MBR"],
-      ["context", "Context Menu", "CTX"],
       ["navmenu", "Navigation Menu", "NAV"],
+      ["context", "Context Menu", "CTX"],
       ["dialog", "Dialog", "DLG"],
       ["alert", "Alert Dialog", "ALT"],
       ["drawer", "Drawer", "DRW"],
@@ -833,7 +833,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="preview">
+            <div className="nova-section span-2" id="preview">
               <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
                   <span className="demo-tag">Hover the callsign</span>
@@ -903,7 +903,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="menubar">
+            <div className="nova-section" id="menubar">
               <Panel title="Menubar" meta="MBR">
                 <Menubar>
                   <MenubarMenu label="File">
@@ -937,7 +937,16 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="context">
+            <div className="nova-section" id="navmenu">
+              <Panel title="Navigation Menu" meta="NAV">
+                <NavigationMenu
+                  items={NAVMENU_ITEMS}
+                  onLinkClick={preventDemoNavigation}
+                />
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
                   trigger={
@@ -961,15 +970,6 @@ function Demo() {
                     Purge Node
                   </MenuItem>
                 </ContextMenu>
-              </Panel>
-            </div>
-
-            <div className="nova-section span-2" id="navmenu">
-              <Panel title="Navigation Menu" meta="NAV">
-                <NavigationMenu
-                  items={NAVMENU_ITEMS}
-                  onLinkClick={preventDemoNavigation}
-                />
               </Panel>
             </div>
 
