@@ -128,10 +128,10 @@
 .abyss-hero__sigil {
   position: absolute;
   top: 50%;
-  right: 30px;
+  right: 40px;
   transform: translateY(-50%);
-  width: 204px;
-  height: 204px;
+  width: 236px;
+  height: 236px;
   pointer-events: none;
   filter: drop-shadow(0 0 28px rgba(70, 232, 184, 0.22));
 }
@@ -183,7 +183,7 @@
 }
 @media (min-width: 768px) {
   .abyss-hero {
-    padding-right: 236px;
+    padding-right: 300px;
   }
 }
 
@@ -269,7 +269,8 @@
   color: var(--abyss-gold);
 }
 .abyss-hero h1 {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
+  font-size: clamp(30px, 4.4vw, 46px);
 }
 .abyss-hero .abyss-text {
   max-width: 60ch;

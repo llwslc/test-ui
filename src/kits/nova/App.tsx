@@ -475,7 +475,7 @@ function Demo() {
             <div className="nova-logo__text">
               NO<b>VA</b>
             </div>
-            <div className="nova-logo__sub">SCI-FI UI KIT · BASE UI</div>
+            <div className="nova-logo__sub">SCI-FI UI KIT</div>
           </div>
         </div>
         <NavigationMenu items={NAVMENU_ITEMS} />
@@ -510,13 +510,13 @@ function Demo() {
             <h1>
               A <b>sci-fi</b> interface kit
               <br />
-              forged on Base UI
+              forged in neon
             </h1>
             <p>
-              Accessible, unstyled Base UI primitives wrapped in a neon HUD aesthetic —
-              chamfered frames, reactive glow, and scanline motion. Every control lives in
-              its own folder and rides on portable
-              <code> --nova-* </code> CSS variables.
+              Thirty-seven accessible controls wrapped in a neon HUD skin — chamfered
+              frames, reactive glow, and scanline motion. Every control lives in its own
+              folder and rides on portable
+              <code> --nova-* </code> tokens.
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
@@ -533,7 +533,7 @@ function Demo() {
               </div>
               <div className="nova-hero__stat">
                 <b>A11y</b>
-                <span>Base UI Core</span>
+                <span>Built In</span>
               </div>
             </div>
             <div className="nova-hero__reticle" aria-hidden="true">
@@ -1016,7 +1016,7 @@ function Demo() {
                   side="right"
                   trigger={<Button variant="ghost">Open Console</Button>}
                   title="Systems Config"
-                  description="An edge-anchored panel sliding in from the right — a Base UI Dialog positioned at the screen edge."
+                  description="An edge-anchored console sliding in from the screen edge."
                   footer={<DialogClose variant="secondary">Apply</DialogClose>}
                 >
                   <div className="demo-spread">
@@ -1147,7 +1147,7 @@ function Demo() {
           </div>
 
           <footer className="nova-footer">
-            NOVA · built on @base-ui/react · theme via --nova-* tokens ·{" "}
+            NOVA · built on @base-ui/react · themed via --nova-* tokens ·{" "}
             {new Date().getFullYear()}
           </footer>
         </main>

@@ -603,18 +603,18 @@ function Demo() {
           </span>
           <span className="abyss-logo__words">
             <span className="abyss-brand abyss-logo__text">Abyss</span>
-            <span className="abyss-logo__sub">Eldritch Grimoire</span>
+            <span className="abyss-logo__sub">Eldritch UI Kit</span>
           </span>
         </div>
         <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
         <div className="abyss-header__status">
+          <Badge tone="primary" dot>
+            Awake
+          </Badge>
           <span className="abyss-header__tide">
             <MoonIcon />
             <Clock />
           </span>
-          <Badge tone="primary" dot>
-            Awake
-          </Badge>
         </div>
       </header>
 
@@ -636,7 +636,7 @@ function Demo() {
         <main className="abyss-main">
           <section className="abyss-hero">
             <p className="abyss-hero__eyebrow">
-              <TentacleIcon /> Grimoire · Summoned Interfaces
+              <TentacleIcon /> Grimoire · 37 Rites
             </p>
             <h1 className="abyss-h1">
               Tools dredged
@@ -644,9 +644,10 @@ function Demo() {
               from the <span className="abyss-h1--accent">deep</span>
             </h1>
             <p className="abyss-text">
-              Thirty-seven accessible Base UI primitives rebound as wet-stone tablets,
-              watching eyes, and inscribed sigils — hand-inked frames that waver, light
-              that breathes. Themed end to end through <code>--abyss-*</code> tokens.
+              Thirty-seven accessible controls rebound as wet-stone tablets, watching
+              eyes, and inscribed sigils — hand-inked frames that waver, light that
+              breathes. Every control lives in its own folder and rides on portable
+              <code> --abyss-* </code> tokens.
             </p>
             <div className="abyss-hero__stats">
               <div className="abyss-hero__stat">
@@ -663,7 +664,7 @@ function Demo() {
               </div>
               <div className="abyss-hero__stat">
                 <b>A11y</b>
-                <span>Base UI Core</span>
+                <span>Built In</span>
               </div>
             </div>
             <HeroSigil />
@@ -1264,7 +1265,8 @@ function Demo() {
           </div>
 
           <footer className="abyss-footer">
-            ABYSS · built on @base-ui/react · themed via --abyss-* tokens
+            ABYSS · built on @base-ui/react · themed via --abyss-* tokens ·{" "}
+            {new Date().getFullYear()}
           </footer>
         </main>
       </div>
