@@ -25,12 +25,14 @@
 ## 3. token 契约(`theme/tokens.css` 必须提供哪些"槽",**值由 theme 填**)
 
 > 设计语言的视觉值集中在此、组件只引用。**判据**:换肤要跟着变、或在 kit 内有意复用 → token;一次性 / 展示层值(单点 `clamp`、演示页布局、氛围 alpha)→ 就近立即数。
+> **token 为组件服务**:仅演示页 / Loader 使用的值不进 `tokens.css`,就近写在 App.css。
+> **阶梯通则**:相邻档须可感知(字号差 ≥2px、alpha 差 ≥0.1);调色板内任意两色肉眼可分;过近即合并。
 
 必备分组:
 
-- **色板**:背景档;N 个强调色,每个配一个 `-deep` 暗档(用作渐变暗端 / 填充底);文本 `text / -bright / -dim / -mute`;反色前景 `on-primary / -danger`。
+- **色板**:背景档;强调色**至少覆盖组件 API 的语义档**(primary / success / warning / danger,可加主题色),每个配一个 `-deep` 暗档(渐变暗端 / 填充底);文本 `text / -bright / -dim / -mute`;主色填充的反色前景档。
 - **强调填充**:两条复用渐变(主色 / `-deep` 拼)—— 一条「点亮表面」激活填充,一条「方向指示条」填充。
-- **alpha 阶梯**:主色的一组按透明度命名的档(hex 带不了 alpha 的色另立)。新的同色 alpha 先在阶梯里找,不随手新造。
+- **alpha 阶梯**:**每个强调家族**的 alpha 都走按透明度命名的档(hex 带不了 alpha 的色另立)。新的同色 alpha 先并入最近档,不随手新造。
 - **中性 / 效果色**:关态轨、未填充轨、ghost hover、扫光、关态旋钮金属渐变等。
 - **表面**:面板 / 浮层 / 模态 / 内嵌表面 + 背板 scrim。
 - **辉光与阴影**:文字辉光、焦点辉光、选中辉光、触发器激活辉光、浮层投影(随形状轮廓的 drop-shadow 与矩形 shadow 各一套)。
@@ -60,11 +62,11 @@
 重复视觉块抽到 `effects.css`,颜色差异用 `--<kit>-*-color` 就近覆盖:头部扫光、标题 / 图例标记、模态背板、模态文本(title / desc / body / actions)、关闭按钮、分隔线、折叠类(Accordion / Collapsible)共用的 trigger / marker / title / chevron / panel / content。
 
 ### 4.4 排版类(`theme/typography.css`)
-一组与语义标签解耦、可套任意标签的纯样式类:三档标题(`h1/h2/h3`,卡片 / 弹窗标题即 `h2` 字型、小节标题即 `h3`)、正文 `text`、修饰类(`--accent` / `--bright`)、**字段标签 caption**(控件名:display 小号大写 dim,Slider / Progress / Meter / Input 标签、Checkbox / Radio / Switch 行、ToggleGroup 选项统一此规格 —— 非独立 class,各组件就地写同组属性)。三档标题的字号 / 字距递变关系由 theme 定。
+一组与语义标签解耦、可套任意标签的纯样式类:三档标题(`h1/h2/h3`,卡片 / 弹窗标题即 `h2` 字型、小节标题即 `h3`)、正文 `text`、修饰类(`--accent` / `--bright`)、**字段标签 caption 共享类 `.<kit>-cap`**(控件名:display 小号大写 dim;Slider / Progress / Meter / Input 标签、Checkbox / Radio / Switch 行、ToggleGroup 选项统一引用,不在组件里重抄)。三档标题的字号 / 字距递变关系由 theme 定。
 
 ## 5. 交互态(统一约定,**颜色留空给 theme**)
 
-- **选中 / 激活**:按角色两种填充 —— 「点亮表面」(Button / Switch / Checkbox)用渐变填充;「分段选中」(ToggleGroup / Toolbar / Menubar)用实心主色。两者前景一律翻深(深勾 / 深字 / 深滑块),且**切到主色填充的元素,其箭头 / 占位符 / 数值也要翻深**。列表 / Tab / NavMenu 的「文字强调选中」只转文字色、不填充(Tab / NavMenu 另配底部辉光下划线)。
+- **选中 / 激活**:按角色分「点亮表面」(Button / Switch / Checkbox)与「分段选中」(ToggleGroup / Toolbar / Menubar)两档;填充配方由 theme 定(实心 / 渐变翻深,或半透明 wash + 强调文字)。**主色填充上的前景必须可读**:翻深时箭头 / 占位符 / 数值一并翻。列表 / Tab / NavMenu 的「文字强调选中」只转文字色、不填充(Tab / NavMenu 另配底部辉光下划线)。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**:分段 / 触发条统一柔色纯底(Tabs / NavMenu 复用同一 tab 皮肤:竖向渐变 + 底部辉光下划线);图标 / 动作按钮文字转主色,菜单触发器 / 列表项转亮文。
 - **键盘焦点**:布尔开关(Checkbox / Switch / Radio)用辉光;分段 / 触发条用 `inset 0 0 0 1px` 内描边;输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。
@@ -102,4 +104,5 @@
 
 - `tsc --noEmit && vite build` 通过。
 - 每个组件能在演示页渲染(演示页见 `app.md`),各形态 / 状态正常。
-- 抽查:组件 CSS 不裸写颜色 / 形状 / 字号 / 间距(走 token),框走 frame 原语,浮层走原语。
+- **机检(grep 逐类零报告)**:组件 CSS 零裸写(颜色 / 字号 / 字距 / 行高 / 字重 / 间距 >3px / 形状 / 时长 / z);零死 token;零仅 App 使用的 token;每个强调家族的 alpha 收敛在命名档上。
+- 人工:框走 frame 原语并经输入变量换色;重复 3 次以上的配方已抽共享类 / token;强调色覆盖组件 API 语义档。
