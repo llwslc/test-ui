@@ -13,6 +13,7 @@
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-13);
   color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
 }
 .abyss-slider__control {
   display: flex;
@@ -29,7 +30,7 @@
   background: var(--abyss-inset);
   border-radius: var(--abyss-round-3);
   filter: url(#abyss-edge);
-  box-shadow: inset 0 0 0 1px var(--abyss-ink-faint);
+  box-shadow: inset 0 0 0 1px var(--abyss-ink);
 }
 .abyss-slider__indicator {
   position: absolute;

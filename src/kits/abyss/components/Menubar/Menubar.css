@@ -19,16 +19,19 @@
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-menubar__triggerwrap:has([data-popup-open]) {
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-strong);
 }
 
 .abyss-menubar__trigger {
   --abyss-frame-ink: transparent;
   --abyss-frame-fill: transparent;
   --abyss-frame-round: var(--abyss-round-3);
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: var(--abyss-menubar-trigger-h);
+  min-width: var(--abyss-menubar-trigger-min-w);
   padding: 0 var(--abyss-space-3);
   border: 0;
   background: transparent;
@@ -40,8 +43,8 @@
   cursor: pointer;
   outline: none;
   transition:
-    background var(--abyss-dur) var(--abyss-ease),
-    color var(--abyss-dur) var(--abyss-ease);
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-menubar__trigger:hover {
   color: var(--abyss-glow);
@@ -59,4 +62,19 @@
   --abyss-frame-ink: var(--abyss-glow-a70);
   --abyss-frame-fill: var(--abyss-glow-soft);
   text-shadow: var(--abyss-text-aura);
+}
+.abyss-menubar__trigger[data-popup-open]::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: 0;
+  border: 1px solid var(--abyss-glow-a30);
+  border-radius: var(--abyss-round-2);
+  filter: url(#abyss-edge);
+  pointer-events: none;
+}
+.abyss-menubar__trigger[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+  filter: grayscale(0.5);
 }

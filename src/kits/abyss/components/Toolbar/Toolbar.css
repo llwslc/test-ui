@@ -58,7 +58,6 @@
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-2);
-  font-size: 1.05em;
 }
 .abyss-toolbar__btn:hover {
   color: var(--abyss-glow);

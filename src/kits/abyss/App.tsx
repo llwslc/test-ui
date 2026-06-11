@@ -71,6 +71,22 @@ import "./App.css";
 function EdgeFilter() {
   return (
     <svg className="abyss-defs" aria-hidden width="0" height="0">
+      <filter id="abyss-edge-soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.013 0.018"
+          numOctaves="2"
+          seed="7"
+          result="ns"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="ns"
+          scale="2"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
       <filter id="abyss-edge" x="-20%" y="-20%" width="140%" height="140%">
         <feTurbulence
           type="fractalNoise"
@@ -339,7 +355,7 @@ function AccessCodeField() {
 function ProgressDemo() {
   const [val, setVal] = useState(28);
   useEffect(() => {
-    const id = setInterval(() => setVal((v) => (v >= 100 ? 12 : v + 6)), 900);
+    const id = setInterval(() => setVal((v) => (v >= 100 ? 12 : Math.min(v + 6, 100))), 900);
     return () => clearInterval(id);
   }, []);
   return (

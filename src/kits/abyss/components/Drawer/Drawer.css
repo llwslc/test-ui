@@ -16,7 +16,7 @@
   position: absolute;
   outline: none;
   filter: drop-shadow(var(--abyss-shadow-modal))
-    drop-shadow(0 0 24px var(--abyss-glow-soft));
+    drop-shadow(0 0 22px var(--abyss-glow-soft));
   transition: transform var(--abyss-dur-slow) var(--abyss-ease-out);
 }
 .abyss-drawer[data-swiping] {

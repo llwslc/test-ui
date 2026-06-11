@@ -36,5 +36,10 @@
 .abyss-ctxmenu__zone kbd {
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-12);
+  color: var(--abyss-text-dim);
+  transition: color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-ctxmenu__zone:hover kbd,
+.abyss-ctxmenu__zone[data-popup-open] kbd {
   color: var(--abyss-glow);
 }

@@ -21,6 +21,9 @@
   min-height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-3);
 }
+.abyss-autocomplete__field:hover:not(:focus-within) .abyss-autocomplete__control {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
 .abyss-autocomplete__field:has(:focus-within) .abyss-autocomplete__control {
   --abyss-frame-ink: var(--abyss-glow-a55);
 }

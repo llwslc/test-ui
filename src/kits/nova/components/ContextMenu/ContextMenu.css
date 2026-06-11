@@ -32,5 +32,10 @@
 .nova-ctxmenu__zone kbd {
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);
+  color: var(--nova-text-dim);
+  transition: color var(--nova-dur) var(--nova-ease);
+}
+.nova-ctxmenu__zone:hover kbd,
+.nova-ctxmenu__zone[data-popup-open] kbd {
   color: var(--nova-primary);
 }

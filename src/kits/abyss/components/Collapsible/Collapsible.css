@@ -66,7 +66,7 @@
 .abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__rune {
   transform: rotate(180deg);
   color: var(--abyss-glow);
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+  filter: var(--abyss-aura-mark);
 }
 
 .abyss-collapsible__title {

@@ -18,6 +18,7 @@
 .abyss-toast {
   --abyss-toast-accent: var(--abyss-glow);
   --abyss-toast-accent-soft: var(--abyss-glow-soft);
+  --abyss-toast-accent-text: var(--abyss-toast-accent);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -41,11 +42,7 @@
   --abyss-frame-fill:
     radial-gradient(120% 80% at 0% 0%, var(--abyss-toast-accent-soft), transparent 62%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
-  --abyss-frame-ink: color-mix(
-    in srgb,
-    var(--abyss-toast-accent) 50%,
-    var(--abyss-ink-strong)
-  );
+  --abyss-frame-ink: color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent);
   --abyss-frame-round: var(--abyss-round-4);
   position: relative;
   display: flex;
@@ -111,7 +108,7 @@
   font-size: var(--abyss-fs-13);
   letter-spacing: var(--abyss-ls-12);
   text-transform: uppercase;
-  color: var(--abyss-toast-accent);
+  color: var(--abyss-toast-accent-text);
   text-shadow: 0 0 11px color-mix(in srgb, var(--abyss-toast-accent) 45%, transparent);
 }
 .abyss-toast__desc {
@@ -153,6 +150,7 @@
 .abyss-toast--info {
   --abyss-toast-accent: var(--abyss-ichor);
   --abyss-toast-accent-soft: var(--abyss-ichor-soft);
+  --abyss-toast-accent-text: var(--abyss-ichor-text);
 }
 .abyss-toast--success {
   --abyss-toast-accent: var(--abyss-glow);
@@ -165,4 +163,5 @@
 .abyss-toast--danger {
   --abyss-toast-accent: var(--abyss-blood);
   --abyss-toast-accent-soft: var(--abyss-blood-soft);
+  --abyss-toast-accent-text: var(--abyss-blood-text);
 }

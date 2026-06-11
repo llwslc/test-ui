@@ -33,7 +33,7 @@
 }
 .abyss-separator-labeled:hover .abyss-separator-labeled__sigil {
   transform: rotate(60deg);
-  filter: var(--abyss-aura-strong);
+  filter: var(--abyss-aura-gold-strong);
 }
 .abyss-separator-labeled__text {
   font-family: var(--abyss-font-display);

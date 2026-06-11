@@ -42,6 +42,9 @@
     transform var(--abyss-dur) var(--abyss-ease),
     opacity var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-radio:hover .abyss-radio__control:not([data-checked]) {
+  --abyss-frame-ink: var(--abyss-glow-a30);
+}
 .abyss-radio:hover .abyss-radio__spark path {
   transform: scale(0.4) rotate(-20deg);
   opacity: 0.4;
@@ -52,7 +55,7 @@
 .abyss-radio__control[data-checked] .abyss-radio__spark path {
   transform: scale(1) rotate(0deg);
   opacity: 1;
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-radio__control:focus-visible {
   outline: none;

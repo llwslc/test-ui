@@ -38,21 +38,21 @@
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-check:hover {
-  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-ink: var(--abyss-glow-a30);
 }
 .abyss-check[data-checked] {
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
 .abyss-check[data-checked] .abyss-check__mark {
   stroke-dashoffset: 0;
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-check[data-indeterminate] {
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
 .abyss-check[data-indeterminate] .abyss-check__bar {
   opacity: 1;
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-check:focus-visible {
   outline: none;
@@ -62,6 +62,7 @@
 .abyss-check[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
+  filter: grayscale(0.5);
 }
 
 .abyss-check-field {
@@ -74,8 +75,10 @@
   color: var(--abyss-text);
 }
 .abyss-check-field:has(.abyss-check[data-disabled]) {
-  opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
+}
+.abyss-check-field:has(.abyss-check[data-disabled]) .abyss-check-field__label {
+  opacity: var(--abyss-disabled-opacity);
 }
 .abyss-check-field__label {
   user-select: none;

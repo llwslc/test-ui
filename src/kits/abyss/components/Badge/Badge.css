@@ -18,6 +18,7 @@
   border-radius: 50%;
   background: currentColor;
   box-shadow: 0 0 6px currentColor;
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 .abyss-badge--primary {
   color: var(--abyss-glow);
@@ -25,7 +26,7 @@
   background: var(--abyss-glow-soft);
 }
 .abyss-badge--secondary {
-  color: var(--abyss-ichor);
+  color: var(--abyss-ichor-text);
   border-color: var(--abyss-ichor-a50);
   background: var(--abyss-ichor-soft);
 }
@@ -40,7 +41,7 @@
   background: var(--abyss-gold-soft);
 }
 .abyss-badge--danger {
-  color: var(--abyss-blood);
+  color: var(--abyss-blood-text);
   border-color: var(--abyss-blood-a55);
   background: var(--abyss-blood-soft);
 }

@@ -16,7 +16,6 @@
   height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-2);
   gap: var(--abyss-space-2);
-  transition: --abyss-frame-ink var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-numberfield__group:hover {
   --abyss-frame-ink: var(--abyss-ink-strong);
@@ -62,7 +61,7 @@
   border: 0;
   cursor: pointer;
   background: transparent;
-  color: var(--abyss-glow-deep);
+  color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-13);
   transition:
     color var(--abyss-dur) var(--abyss-ease),
@@ -81,6 +80,9 @@
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow);
   filter: drop-shadow(0 0 8px var(--abyss-glow-a70));
+}
+.abyss-numberfield__group:has(.abyss-numberfield__input:disabled) {
+  opacity: var(--abyss-disabled-opacity);
 }
 .abyss-numberfield__btn:disabled {
   cursor: not-allowed;

@@ -97,7 +97,7 @@
   width: var(--positioner-width);
   height: var(--positioner-height);
   filter: drop-shadow(var(--abyss-shadow-pop))
-    drop-shadow(0 0 12px var(--abyss-glow-soft));
+    drop-shadow(0 0 14px var(--abyss-glow-soft));
 }
 .abyss-navmenu__popup {
   --abyss-frame-fill: var(--abyss-surface-popup);
@@ -165,7 +165,7 @@
 .abyss-navmenu__link:hover .abyss-navmenu__mark,
 .abyss-navmenu__link:focus-visible .abyss-navmenu__mark {
   color: var(--abyss-glow);
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+  filter: var(--abyss-aura-mark);
   transform: rotate(180deg);
 }
 

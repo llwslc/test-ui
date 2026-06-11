@@ -20,6 +20,9 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
   filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
 }
+.abyss-input-wrap:not(.abyss-input-wrap--error):hover:not(:focus-within) {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
 .abyss-input-wrap--error,
 .abyss-input-wrap--error:focus-within {
   --abyss-frame-ink: var(--abyss-blood);
@@ -60,13 +63,19 @@
   padding-left: var(--abyss-space-3);
   color: var(--abyss-text-dim);
   font-size: 1.05em;
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-input-wrap:focus-within .abyss-input__icon {
   color: var(--abyss-glow);
+  filter: var(--abyss-aura);
 }
 .abyss-input:disabled {
-  opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
+}
+.abyss-input-wrap:has(.abyss-input:disabled) {
+  opacity: var(--abyss-disabled-opacity);
 }
 .abyss-field__desc {
   font-size: var(--abyss-fs-12);

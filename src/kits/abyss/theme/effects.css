@@ -11,7 +11,7 @@
   background: var(--abyss-frame-fill, var(--abyss-surface));
   border: 1.5px solid var(--abyss-frame-ink, var(--abyss-ink-strong));
   border-radius: var(--abyss-frame-round, var(--abyss-round-3));
-  filter: url(#abyss-edge);
+  filter: var(--abyss-frame-etch, url(#abyss-edge));
   pointer-events: none;
 }
 
@@ -188,7 +188,7 @@
   font-size: var(--abyss-fs-24);
   letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-title-color, var(--abyss-glow));
-  text-shadow: 0 0 12px
+  text-shadow: 0 0 11px
     color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
 }
 .abyss-modal-title__eye {

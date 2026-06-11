@@ -124,6 +124,9 @@
 .nova-btn--ghost:hover {
   color: var(--nova-primary);
 }
+.nova-btn--ghost[data-popup-open] {
+  color: var(--nova-primary);
+}
 .nova-btn--ghost:hover::before {
   background: var(--nova-ghost-hover);
 }

@@ -44,6 +44,7 @@
   --abyss-ichor: #9176ff;
   --abyss-ichor-soft: rgba(145, 118, 255, 0.16);
   --abyss-ichor-a50: rgba(145, 118, 255, 0.5);
+  --abyss-ichor-text: #d2c8ff;
 
   --abyss-blood: #d24059;
   --abyss-blood-deep: #7e2233;
@@ -60,6 +61,8 @@
   --abyss-aura: drop-shadow(0 0 10px var(--abyss-glow-a30));
   --abyss-aura-strong: drop-shadow(0 0 16px var(--abyss-glow-a55));
   --abyss-aura-gold: drop-shadow(0 0 12px rgba(205, 169, 74, 0.35));
+  --abyss-aura-gold-strong: drop-shadow(0 0 16px rgba(205, 169, 74, 0.55));
+  --abyss-aura-mark: drop-shadow(0 0 8px var(--abyss-glow-a55));
   --abyss-text-aura: 0 0 11px var(--abyss-glow-a55);
   --abyss-shadow-pop: 0 14px 34px rgba(0, 0, 0, 0.66);
   --abyss-shadow-modal: 0 26px 64px rgba(0, 0, 0, 0.72);
@@ -139,6 +142,7 @@
   --abyss-menu-min-w: 216px;
   --abyss-menu-curl-h: 18px;
   --abyss-menubar-trigger-h: 34px;
+  --abyss-menubar-trigger-min-w: 34px;
   --abyss-navmenu-trigger-h: 38px;
   --abyss-number-field-stepper: 28px;
   --abyss-number-field-w: 64px;

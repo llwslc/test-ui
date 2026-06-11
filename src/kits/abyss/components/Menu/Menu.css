@@ -142,7 +142,7 @@
 }
 .abyss-menu__item--danger::after {
   background: var(--abyss-blood);
-  box-shadow: 0 0 7px var(--abyss-blood);
+  box-shadow: 0 0 7px var(--abyss-blood-a55);
 }
 .abyss-menu__item--danger[data-highlighted] {
   background: var(--abyss-blood-soft);

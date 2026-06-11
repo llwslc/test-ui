@@ -56,7 +56,7 @@
 .abyss-btn--secondary {
   --abyss-frame-ink: var(--abyss-ichor-a50);
   --abyss-frame-fill: var(--abyss-ichor-soft);
-  color: var(--abyss-ichor);
+  color: var(--abyss-ichor-text);
 }
 .abyss-btn--secondary:hover {
   color: var(--abyss-text-bright);
@@ -66,7 +66,7 @@
 .abyss-btn--danger {
   --abyss-frame-ink: var(--abyss-blood-a55);
   --abyss-frame-fill: var(--abyss-blood-soft);
-  color: var(--abyss-blood);
+  color: var(--abyss-blood-text);
 }
 .abyss-btn--danger:hover {
   color: var(--abyss-blood-text);
@@ -82,6 +82,12 @@
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
+.abyss-btn--ghost[data-popup-open] {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a70);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+  text-shadow: var(--abyss-text-aura);
+}
 
 .abyss-btn--icon,
 .abyss-btn--icon-ghost {
@@ -89,7 +95,7 @@
   width: var(--abyss-control-h);
 }
 .abyss-btn--icon {
-  color: var(--abyss-text);
+  color: var(--abyss-text-bright);
 }
 .abyss-btn--icon:hover,
 .abyss-btn--icon-ghost:hover {
@@ -110,6 +116,7 @@
 }
 
 .abyss-btn--sm {
+  --abyss-frame-etch: url(#abyss-edge-soft);
   min-height: var(--abyss-button-h-sm);
   padding: 0 var(--abyss-space-4);
   font-size: var(--abyss-fs-12);
@@ -131,7 +138,7 @@
 .abyss-btn:focus-visible {
   outline: none;
   --abyss-frame-ink: var(--abyss-glow);
-  filter: var(--abyss-aura-strong);
+  filter: var(--abyss-aura);
 }
 .abyss-btn:disabled,
 .abyss-btn[data-disabled] {

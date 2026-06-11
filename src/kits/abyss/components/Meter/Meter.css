@@ -32,8 +32,8 @@
 .abyss-meter__value {
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-13);
-  color: var(--abyss-meter-fill);
-  text-shadow: 0 0 9px var(--abyss-meter-aura);
+  color: var(--abyss-meter-value, var(--abyss-meter-fill));
+  text-shadow: 0 0 11px var(--abyss-meter-aura);
 }
 
 .abyss-meter__track {
@@ -52,6 +52,6 @@
     var(--abyss-meter-fill-deep),
     var(--abyss-meter-fill)
   );
-  box-shadow: 0 0 9px var(--abyss-meter-aura);
+  box-shadow: 0 0 8px var(--abyss-meter-aura);
   transition: width var(--abyss-dur-slow) var(--abyss-ease);
 }

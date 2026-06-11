@@ -12,9 +12,9 @@
 .abyss-previewcard__surface {
   --abyss-frame-fill:
     radial-gradient(120% 80% at 50% -10%, var(--abyss-glow-faint), transparent 62%),
-    linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-surface-popup));
+    var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: var(--abyss-round-5);
+  --abyss-frame-round: var(--abyss-round-4);
   display: block;
   padding: var(--abyss-space-4);
   overflow: hidden;
@@ -36,7 +36,7 @@
 }
 .abyss-previewcard__popup[data-open] .abyss-previewcard__mark {
   color: var(--abyss-glow);
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+  filter: var(--abyss-aura-strong);
 }
 
 .abyss-previewcard__body {
@@ -44,5 +44,5 @@
   color: var(--abyss-text);
   font-family: var(--abyss-font);
   font-size: var(--abyss-fs-15);
-  line-height: var(--abyss-lh-150);
+  line-height: var(--abyss-lh-165);
 }

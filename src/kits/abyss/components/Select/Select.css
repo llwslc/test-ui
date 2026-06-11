@@ -52,10 +52,12 @@
 .abyss-select__chevron {
   display: inline-flex;
   flex: 0 0 auto;
-  color: var(--abyss-glow);
+  color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-19);
-  filter: var(--abyss-aura);
-  transition: transform var(--abyss-dur) var(--abyss-ease);
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-select__trigger[data-popup-open] .abyss-select__chevron {
   transform: rotate(180deg);
@@ -68,7 +70,9 @@
     drop-shadow(0 0 12px var(--abyss-glow-soft));
 }
 .abyss-select__popup {
-  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-fill:
+    radial-gradient(120% 80% at 50% -10%, var(--abyss-glow-faint), transparent 62%),
+    var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
   box-sizing: border-box;
@@ -86,7 +90,7 @@
   align-items: center;
   gap: var(--abyss-space-2);
   padding: var(--abyss-space-2) var(--abyss-space-3);
-  border-radius: var(--abyss-round-2);
+  border-radius: var(--abyss-round-3);
   cursor: pointer;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
@@ -97,9 +101,26 @@
     background var(--abyss-dur) var(--abyss-ease),
     color var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-select__item::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: var(--abyss-round-2);
+  background: var(--abyss-glow);
+  box-shadow: 0 0 7px var(--abyss-glow-a70);
+  filter: url(#abyss-edge);
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
 .abyss-select__item[data-highlighted] {
   background: var(--abyss-glow-soft);
   color: var(--abyss-text-bright);
+}
+.abyss-select__item[data-highlighted]::before {
+  opacity: 1;
 }
 .abyss-select__item[data-selected] {
   color: var(--abyss-glow);
@@ -117,7 +138,7 @@
   width: var(--abyss-select-indicator);
   height: var(--abyss-select-indicator);
   color: var(--abyss-glow);
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-select__item-seal {
   font-size: var(--abyss-fs-16);

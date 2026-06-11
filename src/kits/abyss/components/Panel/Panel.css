@@ -32,7 +32,7 @@
   letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-gold);
   padding: 2px var(--abyss-space-2);
-  border: 1px solid var(--abyss-gold-soft);
+  border: 1px solid var(--abyss-gold-a50);
   border-radius: var(--abyss-round-2);
 }
 .abyss-panel__body {

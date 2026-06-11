@@ -94,7 +94,20 @@
   --moon-glow: var(--abyss-glow-a55);
 }
 .abyss-avatar__status--online .abyss-avatar__moon {
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+  animation: abyss-moon-pulse var(--abyss-breath) ease-in-out infinite;
+}
+@keyframes abyss-moon-pulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px var(--abyss-ink-strong),
+      0 0 5px var(--abyss-glow-a30);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px var(--abyss-ink-strong),
+      0 0 9px var(--abyss-glow-a70);
+  }
 }
 .abyss-avatar__status--online .abyss-avatar__moon-shadow {
   transform: translateX(120%);

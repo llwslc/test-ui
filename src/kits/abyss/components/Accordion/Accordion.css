@@ -74,7 +74,7 @@
 .abyss-accordion__trigger[data-panel-open] .abyss-accordion__sigil {
   transform: rotate(90deg);
   color: var(--abyss-glow);
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
+  filter: var(--abyss-aura-mark);
 }
 
 .abyss-accordion__title {
@@ -87,11 +87,16 @@
   color: var(--abyss-text-dim);
   transition:
     transform var(--abyss-dur) var(--abyss-ease),
-    color var(--abyss-dur) var(--abyss-ease);
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-accordion__trigger:hover .abyss-accordion__chevron {
+  color: var(--abyss-text);
 }
 .abyss-accordion__trigger[data-panel-open] .abyss-accordion__chevron {
   transform: rotate(180deg);
   color: var(--abyss-glow);
+  filter: var(--abyss-aura-mark);
 }
 
 .abyss-accordion__panel {

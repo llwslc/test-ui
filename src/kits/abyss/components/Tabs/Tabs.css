@@ -73,7 +73,7 @@
   width: var(--active-tab-width);
   transform: translateX(var(--active-tab-left));
   background: var(--abyss-glow);
-  box-shadow: 0 0 8px var(--abyss-glow-a70);
+  box-shadow: 0 0 8px var(--abyss-glow-a55);
   filter: url(#abyss-edge);
   transition:
     transform var(--abyss-dur) var(--abyss-ease),

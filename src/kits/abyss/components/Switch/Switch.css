@@ -13,7 +13,7 @@
   width: var(--abyss-switch-w);
 }
 .abyss-switch[data-checked] .abyss-eye {
-  filter: drop-shadow(0 0 9px var(--abyss-glow-a55));
+  filter: var(--abyss-aura-mark);
 }
 .abyss-switch[data-checked] .abyss-eye__iris {
   transform: scaleY(1);
@@ -35,9 +35,10 @@
   outline: none;
 }
 .abyss-switch:focus-visible .abyss-eye {
-  filter: drop-shadow(0 0 10px var(--abyss-glow-a70));
+  filter: var(--abyss-aura-strong);
 }
 .abyss-switch[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
+  filter: grayscale(0.5);
 }

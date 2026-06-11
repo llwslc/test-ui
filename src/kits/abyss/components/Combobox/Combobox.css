@@ -12,6 +12,9 @@
   padding: 0 var(--abyss-space-2) 0 var(--abyss-space-3);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-combobox__control:hover:not(:focus-within) {
+  --abyss-frame-ink: var(--abyss-ink-strong);
+}
 .abyss-combobox__control:focus-within {
   --abyss-frame-ink: var(--abyss-glow-a55);
   filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
@@ -75,7 +78,7 @@
 }
 .abyss-combobox__clear:hover {
   color: var(--abyss-blood);
-  filter: drop-shadow(0 0 7px var(--abyss-blood-soft));
+  filter: drop-shadow(0 0 7px var(--abyss-blood-a55));
 }
 .abyss-combobox__trigger {
   font-size: var(--abyss-fs-19);
@@ -194,9 +197,10 @@
   flex: 0 0 auto;
   width: var(--abyss-combobox-glyph);
   height: var(--abyss-combobox-glyph);
-  font-size: var(--abyss-fs-15);
+  font-size: var(--abyss-fs-16);
   color: var(--abyss-glow);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-combobox__check {
-  filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
+  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
