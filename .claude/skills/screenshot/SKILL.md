@@ -53,4 +53,4 @@ const URL = 'http://127.0.0.1:<port>/';
 ```
 
 ## Look at the result
-Read the PNG. A Chrome error page (无法访问此网站) means wrong port or sandboxed networking — recheck both. Crop before judging fine detail: Read scales tall images down hard.
+Read the PNG. A Chrome error page ("This site can't be reached") means wrong port or sandboxed networking — recheck both. Crop before judging fine detail: Read scales tall images down hard.
