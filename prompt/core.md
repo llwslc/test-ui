@@ -38,7 +38,7 @@
 - **辉光与阴影**:文字辉光、焦点辉光、选中辉光、触发器激活辉光、浮层投影(随形状轮廓的 drop-shadow 与矩形 shadow 各一套)。
 - **几何尺度(强制 token 化、按角色分档)**:几何 corner 是设计语言的*尺度*,**必须**走命名 token 阶梯、按角色选,组件**绝不**裸写形状值。角色至少四类 —— ① 超大外框(Dialog / AlertDialog / Panel)② 默认控件 / 容器框及其 `::before` ③ 容器内嵌套项 + 小交互 / 标签 chip(菜单项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮)④ 细指示条 / 旋钮(按厚度再分)。**形状种类(切角 `polygon` 还是圆角值)与具体档数 / 档值 → theme**。
 - **层级阶梯**:一处定义浮层堆叠顺序(dropdown < menu < tooltip < backdrop < overlay < toast)。
-- **动效与度量**:`dur / -slow`、`ease / -in / -out`、控件高、禁用透明度、模态内边距。
+- **动效与度量**:`dur / -slow`、`ease / -out`、控件高、禁用透明度、模态内边距。
 - **间距(4px 网格)**:`space-1…N`(`4 / 8 / 12 …`)。组件 padding / margin / gap(含 `row-gap` 等长写)一律走此阶梯;只有不足一格的小值(`::before` 1px 内缩、细轨道高度)和演示页 `>28px` 的结构留白,才写立即数。
 - **组件尺寸 footprint(强制 token 化)**:每个控件 / 浮层的 `width` / `height` / `min-` / `max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token(如 `button-h-sm` / `checkbox-box` / `otp-cell-w` / `w-dialog` / `h-popup-list`),集中在 `tokens.css`、组件**绝不**裸写尺寸数值;换肤按名补齐全套。只有不足一格小值(边框 / 细轨道 / 小圆点 ≤8px)与上下文式(`clamp` / `calc` / `%` / `dvh` / Base UI 锚定变量)才就近立即数。
 - **排版尺度**:字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组"按名选";字体族 `font / -display / -mono`。组件里字号 / 字距 / 行高 / 字重一律走 token,不裸写(`clamp()` / `calc()` / `em` 等上下文式除外)。

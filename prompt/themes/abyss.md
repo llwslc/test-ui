@@ -63,7 +63,7 @@
 - Panel:角部触手 tendril;Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;模态标题配图记(Dialog 自转 sigil、Alert 按 tone)。
 - AlertDialog 按 `tone` 重染:danger = blood(默认,骷髅图记)、warning = gold、primary = glow。
 - NavigationMenu 触发器栏复用 Tabs 皮肤;Hero 法阵、分组线 GroupRule 带 sigil 标记。
-- Avatar = 圆形召唤环:头像外一圈虚线轨道 + 更外圈五点 72° 刻度(倒五芒星位,均挂 etch 滤镜,刻度带辉光),月相状态钉在环上。
+- Avatar = 圆形召唤环:头像外一圈虚线墨环(etch 滤镜,idle 走 ink 档),月相状态钉在环上。
 - 背板 scrim 额外 `brightness(.8)` 压暗;连接线 1.5px glow + edge 滤镜。
 
 ## 8. 文案(填 `app.md` 的槽位)

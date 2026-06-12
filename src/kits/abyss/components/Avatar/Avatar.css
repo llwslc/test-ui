@@ -4,32 +4,19 @@
   width: var(--abyss-avatar-size);
   height: var(--abyss-avatar-size);
 }
-.abyss-avatar::before,
-.abyss-avatar::after {
+.abyss-avatar::before {
   content: "";
   position: absolute;
+  inset: -5px;
   border-radius: 50%;
   pointer-events: none;
-}
-.abyss-avatar::before {
-  inset: -5px;
   background: repeating-conic-gradient(
     from -6deg,
-    var(--abyss-glow-a55) 0deg 10deg,
+    var(--abyss-ink-strong) 0deg 10deg,
     transparent 10deg 26deg
   );
   mask: radial-gradient(closest-side, transparent calc(100% - 2.4px), #000 calc(100% - 1.6px));
   filter: url(#abyss-edge);
-}
-.abyss-avatar::after {
-  inset: -8px;
-  background: repeating-conic-gradient(
-    from 34.5deg,
-    var(--abyss-glow) 0deg 3deg,
-    transparent 3deg 72deg
-  );
-  mask: radial-gradient(closest-side, transparent calc(100% - 7px), #000 calc(100% - 6px), #000);
-  filter: url(#abyss-edge) drop-shadow(0 0 4px var(--abyss-glow-a55));
 }
 
 .abyss-avatar__root {
