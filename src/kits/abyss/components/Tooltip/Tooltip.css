@@ -7,7 +7,10 @@
   position: relative;
 }
 .abyss-tooltip__surface {
-  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-bevel: var(--abyss-bevel);
+  --abyss-frame-fill:
+    var(--abyss-stone-grain),
+    var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   display: block;
   max-width: var(--abyss-w-tooltip);
