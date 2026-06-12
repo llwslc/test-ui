@@ -11,6 +11,7 @@
   background: var(--abyss-frame-fill, var(--abyss-surface));
   border: 1.5px solid var(--abyss-frame-ink, var(--abyss-ink-strong));
   border-radius: var(--abyss-frame-round, var(--abyss-round-3));
+  box-shadow: var(--abyss-frame-bevel, none);
   filter: var(--abyss-frame-etch, url(#abyss-edge));
   pointer-events: none;
 }

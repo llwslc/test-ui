@@ -1,8 +1,9 @@
 .abyss-panel {
+  --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: var(--abyss-round-4);
   --abyss-frame-fill:
-    var(--abyss-wash-top),
+    var(--abyss-stone-grain),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone) 240px);
   position: relative;
   overflow: clip;

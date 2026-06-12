@@ -5,8 +5,9 @@
     drop-shadow(0 0 22px var(--abyss-glow-soft));
 }
 .abyss-dialog__tablet {
+  --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:
-    var(--abyss-wash-top),
+    var(--abyss-stone-grain),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-5);

@@ -16,6 +16,7 @@
 }
 
 .abyss-alert__tablet {
+  --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:
     radial-gradient(
       130% 120px at 50% -20px,
@@ -23,6 +24,7 @@
       color-mix(in srgb, var(--abyss-alert-accent) 7%, transparent) 45%,
       transparent 78%
     ),
+    var(--abyss-stone-grain),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: color-mix(in srgb, var(--abyss-alert-accent) 55%, transparent);
   --abyss-frame-round: var(--abyss-round-5);

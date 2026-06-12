@@ -24,12 +24,10 @@
   --abyss-glow-a30: rgba(70, 232, 184, 0.3);
   --abyss-glow-a55: rgba(70, 232, 184, 0.55);
   --abyss-glow-a70: rgba(70, 232, 184, 0.7);
-  --abyss-wash-top: radial-gradient(
-    130% 120px at 50% -20px,
-    rgba(70, 232, 184, 0.12),
-    rgba(70, 232, 184, 0.04) 45%,
-    transparent 78%
-  );
+  --abyss-stone-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.42 0 0 0 0 0.55 0 0 0 0 0.47 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --abyss-bevel:
+    inset 0 1px 0 rgba(243, 237, 218, 0.055),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
   --abyss-glow-wash: linear-gradient(
     180deg,
     rgba(70, 232, 184, 0.11),

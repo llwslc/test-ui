@@ -12,8 +12,8 @@
 - **墨线**(边框用暖灰绿"墨",不用强调色):`ink .3`、`ink-strong .52`、`ink-faint .1`。
 - 文本(暖褐羊皮):`text #d8ceb4`、`-bright #f3edda`、`-dim #8d9079`、`-mute #565a4b`。
 - 五个强调家族,各配 `-soft` 与按需的 `-deep`:**glow** 深渊青 `#46e8b8`(主),**gold** 鎏金 `#cda94a`(注脚 / 警示),**ichor** 灵液紫 `#9176ff`(次强调),**blood** 血红 `#d24059`(危险),**success** 生苔绿 `#7ad99a`。
-- alpha 档:glow `-soft .12 · -a30 · -a55 · -a70` + 点亮渐变 `glow-wash / -strong` + 顶缘渗光 `wash-top`(Panel / 弹层 / 模态顶部统一引用,Alert 按 tone 重配);其余家族各一中强档 `gold-a50 / ichor-a50 / blood-a55 / success-a50`;暗色调配亮化文字档 `blood-text / ichor-text`(深色 accent 当文字时必用)。
-- 表面:`surface .84`、`surface-popup .97`、`inset #06100d`;`scrim .72`;旋钮高光 `thumb-glint`。
+- alpha 档:glow `-soft .12 · -a30 · -a55 · -a70` + 点亮渐变 `glow-wash / -strong`;其余家族各一中强档 `gold-a50 / ichor-a50 / blood-a55 / success-a50`;暗色调配亮化文字档 `blood-text / ichor-text`(深色 accent 当文字时必用)。
+- 表面:`surface .84`、`surface-popup .97`、`inset #06100d`;`scrim .72`;旋钮高光 `thumb-glint`;石材质感 = 颗粒瓦片 `stone-grain` 叠 fill 顶层 + 凿边 `bevel`(上亮下暗 1px 内沿),slab 面(Panel / 弹层 / 模态)统一引用,Alert 顶部另按 tone 径向重染。
 - 辉光 token 化:`aura`(10px a30)、`aura-strong`(16px a55)、`aura-mark`(标记辉光,8px a55)、`aura-gold / -strong`;文字辉光 `text-aura`;矩形影 `shadow-pop / -modal / -sm`。
 
 ## 2. 字体与排版
@@ -27,7 +27,7 @@
 ## 3. 几何与描边
 
 - 形状 = **圆角矩形**,无 clip-path。半径阶梯 `--abyss-round-2 / 3 / 4 / 5`,按角色选:嵌套项 / chip = round-2,默认控件 = round-3,容器 / 弹层 = round-4,模态 / 超大框 = round-5;组件不裸写 radius。
-- 全套统一 frame 原语 `.abyss-frame::before`:`inset: 0`、1.5px 墨线 border + radius;输入变量 `--abyss-frame-fill / -ink / -round`。`--double` 变体加 `inset: 4px` 的内圈细线。
+- 全套统一 frame 原语 `.abyss-frame::before`:`inset: 0`、1.5px 墨线 border + radius;输入变量 `--abyss-frame-fill / -ink / -round / -bevel`。`--double` 变体加 `inset: 4px` 的内圈细线。
 - **`#abyss-edge`**:演示页顶部内联一个 SVG filter(feTurbulence `0.013 0.018` + feDisplacementMap),frame / 分隔线 / 连接线 / 指示条统一挂它——所有线条呈手绘颤动。
 - 辉光 / 阴影挂不带该滤镜的外层(positioner / popup 的 drop-shadow),常为黑影 + glow-soft 双层。
 - 边框层级:页内 idle = `ink / ink-strong` 灰墨;浮层 = `glow-a55` 亮辉;状态走 glow 阶梯(a30 → a55 → glow);语义变体按 tone。

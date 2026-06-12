@@ -10,8 +10,9 @@
 }
 
 .abyss-previewcard__surface {
+  --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:
-    var(--abyss-wash-top),
+    var(--abyss-stone-grain),
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
