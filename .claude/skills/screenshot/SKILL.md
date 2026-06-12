@@ -13,8 +13,6 @@ description: Screenshot this repo's demo app (NOVA/ABYSS kits) headlessly — fu
 ## Library: playwright-core (one-time setup)
 `mkdir -p /tmp/pw && cd /tmp/pw && npm i playwright-core` — drives the system Chrome; nothing enters the repo. **Run node with sandbox disabled** (the Bash sandbox blocks Chrome's network process → "This site can't be reached").
 
-Do NOT use puppeteer-core: its networkidle accounting stalls ~10s per navigation on this dev server (measured 30s vs 16s for the identical job), and `page.$` doesn't wait for React to mount.
-
 ## Script template
 ```js
 // /tmp/pw/shot.js — node shot.js (sandbox-disabled)
@@ -26,8 +24,7 @@ const URL = 'http://127.0.0.1:<port>/';
     executablePath: CHROME,
     args: ['--disable-gpu', '--force-color-profile=srgb'],
   });
-  // tall viewport = every section in view, scroll-reveal animations already fired
-  const page = await browser.newPage({ viewport: { width: 1440, height: 6600 } });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
 
   for (const kit of ['nova', 'abyss']) {
     await page.goto(URL, { waitUntil: 'networkidle' });
@@ -35,8 +32,7 @@ const URL = 'http://127.0.0.1:<port>/';
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForTimeout(1200);                                  // entrance animations settle
 
-    await page.locator('#menu').screenshot({ path: `/tmp/${kit}_menu.png` }); // element shot (auto-waits)
-    await page.screenshot({ path: `/tmp/${kit}_full.png`, fullPage: true });  // full page
+    await page.locator('#menu').screenshot({ path: `/tmp/${kit}_menu.png` }); // element shot (auto-waits + scrolls)
 
     // open states before shooting: click/hover, settle, shoot
     await page.locator(`#select .${kit}-select__trigger`).click();
@@ -48,9 +44,10 @@ const URL = 'http://127.0.0.1:<port>/';
 })().catch((e) => { console.error(e); process.exit(1); });
 ```
 
+- Full page: `viewport: { width: 1440, height: 6600 }` + `page.screenshot({ fullPage: true })` (everything in view = all scroll-reveals fired). Use the tall viewport ONLY then — it makes Chrome rasterize the whole filter-heavy page on every shot (element shots: ~1.9s at 950 vs ~7.6s at 6600).
 - Fixed overlays (drawer/dialog/toast): screenshot the popup **element** (`page.locator('.abyss-drawer')`), never `page.screenshot({ clip })` — clip is in page coordinates and misses fixed elements once the page is scrolled.
 - Mobile-width checks: `viewport: { width: 420, height: 950 }` (900 for the two-column squeeze).
-- A run costs ~15-20s; batch every kit/state into ONE script instead of relaunching per shot.
+- Batch every kit/state into ONE script instead of relaunching per shot.
 
 ## Look at the result
 Read the PNG. A Chrome error page ("This site can't be reached") means wrong port or sandboxed networking — recheck both. Crop before judging fine detail (`sips -c <h> <w> --cropOffset <y> <x> in.png --out crop.png`): Read scales tall images down hard.
