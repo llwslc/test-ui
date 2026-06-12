@@ -21,6 +21,10 @@
   text-transform: uppercase;
   color: var(--abyss-text-dim);
 }
+.abyss-h1--accent {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
 .abyss-brand {
   font-family: var(--abyss-font-rune);
   font-weight: var(--abyss-fw-400);

@@ -20,7 +20,7 @@
 
 - **Cinzel**(display,石刻小型大写)、**Spectral**(正文衬线;italic 兼作 script 注脚)、**UnifrakturCook**(rune,仅 logo 品牌字)、**Cutive Mono**(数值)。
 - 尺度档:字号 `fs-12 / 13 / 15 / 16 / 19 / 24 / 34`,字距 `ls-2 / 6 / 12`,行高 `lh-100 / 150 / 165`,字重 `fw-400 / 600`。
-- 标题三档 `fw-400`、不加 text-transform(Cinzel 天然小型大写):`h1` fs-34 + ls-2,`h2` fs-19 + ls-6,`h3` fs-13 + ls-12 + 大写 + dim;正文 `text` = fs-15 + lh-165 + dim。
+- 标题三档 `fw-400`、不加 text-transform(Cinzel 天然小型大写):`h1` fs-34 + ls-2,`h2` fs-19 + ls-6,`h3` fs-13 + ls-12 + 大写 + dim;正文 `text` = fs-15 + lh-165 + dim;`h1--accent` 修饰 = glow + text-aura。
 - 字段 caption 有独立类 **`.abyss-cap`**(display · fs-12 · ls-12 · 大写 · dim),组件统一引用。
 - `.abyss-brand` = rune 字,只给 logo。
 

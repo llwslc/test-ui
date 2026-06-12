@@ -30,7 +30,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
 
   if (label == null) return box;
   return (
-    <label className="nova-checkbox-field">
+    <label className="nova-cap nova-checkbox-field">
       {box}
       <span className="nova-checkbox-field__label">{label}</span>
     </label>

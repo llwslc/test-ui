@@ -166,23 +166,14 @@
 }
 .nova-hero h1 {
   margin: 0 0 12px;
-  font-family: var(--nova-font-display);
-  font-weight: 900;
   font-size: clamp(28px, 4.4vw, 46px);
+  font-weight: 900;
   line-height: 1.02;
-  letter-spacing: 0.04em;
-  color: var(--nova-text);
 }
-.nova-hero h1 b {
-  color: var(--nova-primary);
-  text-shadow: var(--nova-glow-text);
-}
-.nova-hero p {
+.nova-hero .nova-text {
   max-width: 60ch;
   margin: 0 0 20px;
-  color: var(--nova-text-dim);
   font-size: 16px;
-  line-height: 1.6;
 }
 .nova-hero__stats {
   display: flex;
@@ -273,20 +264,11 @@
   flex-direction: column;
   gap: 12px;
 }
-.demo-tag,
 .demo-spread {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-}
-.demo-rowlabel {
-  font-family: var(--nova-font-display);
-  font-size: var(--nova-fs-12);
-  font-weight: var(--nova-fw-600);
-  letter-spacing: var(--nova-ls-10);
-  text-transform: uppercase;
-  color: var(--nova-text-dim);
 }
 
 .demo-link {

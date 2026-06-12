@@ -22,8 +22,8 @@
 
 - **Orbitron**(display,大写)、**Rajdhani**(正文)、**Share Tech Mono**(数值)。
 - 尺度档:字号 `fs-12 / 13 / 14 / 16 / 18 / 22`,字距 `ls-4 / 10 / 16`,行高 `lh-100 / 160`,字重 `fw-600 / 700`。
-- 标题三档,全大写 `fw-700`,字号越大字距越紧:`h1` fs-22 + ls-4,`h2` fs-16 + ls-10,`h3` fs-13 + ls-16;正文 `text` = fs-14 + lh-160 + text-dim。
-- 字段 caption 无独立 class:各组件就地写同一组属性(display · fs-12 · fw-600 · ls-10 · 大写 · text-dim)。
+- 标题三档,全大写 `fw-700`,字号越大字距越紧:`h1` fs-22 + ls-4,`h2` fs-16 + ls-10,`h3` fs-13 + ls-16;正文 `text` = fs-14 + lh-160 + text-dim;`h1--accent` 修饰 = primary + glow-text。
+- 字段 caption 有独立类 **`.nova-cap`**(display · fs-12 · fw-600 · ls-10 · 大写 · dim),组件统一引用。
 
 ## 3. 几何与描边
 

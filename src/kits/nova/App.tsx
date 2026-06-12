@@ -508,12 +508,12 @@ function Demo() {
             <div className="nova-hero__eyebrow">
               <BoltIcon /> Component System · 37 Controls
             </div>
-            <h1>
-              A <b>sci-fi</b> interface kit
+            <h1 className="nova-h1">
+              A <b className="nova-h1--accent">sci-fi</b> interface kit
               <br />
               forged in neon
             </h1>
-            <p>
+            <p className="nova-text">
               Thirty-seven accessible controls wrapped in a neon HUD skin — chamfered
               frames, reactive glow, and scanline motion. Every control lives in its own
               folder and rides on portable
@@ -590,15 +590,15 @@ function Demo() {
               <Panel title="Switch" meta="SWT">
                 <div className="demo-stack">
                   <div className="demo-spread">
-                    <span className="demo-rowlabel">Auto-Pilot</span>
+                    <span className="nova-cap">Auto-Pilot</span>
                     <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-rowlabel">Cloaking</span>
+                    <span className="nova-cap">Cloaking</span>
                     <Switch aria-label="Cloaking" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-rowlabel">Locked</span>
+                    <span className="nova-cap">Locked</span>
                     <Switch disabled defaultChecked aria-label="Locked" />
                   </div>
                 </div>
@@ -659,7 +659,7 @@ function Demo() {
             <div className="nova-section" id="select">
               <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
-                  <span className="demo-tag">Destination</span>
+                  <span className="nova-cap">Destination</span>
                   <Select items={SELECT_ITEMS} defaultValue="proxima" />
                 </div>
               </Panel>
@@ -668,7 +668,7 @@ function Demo() {
             <div className="nova-section" id="combobox">
               <Panel title="Combobox" meta="CBX">
                 <div className="demo-stack">
-                  <span className="demo-tag">Filter star systems</span>
+                  <span className="nova-cap">Filter star systems</span>
                   <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
                 </div>
               </Panel>
@@ -677,7 +677,7 @@ function Demo() {
             <div className="nova-section" id="autocomplete">
               <Panel title="Autocomplete" meta="ACP">
                 <div className="demo-stack">
-                  <span className="demo-tag">Command palette</span>
+                  <span className="nova-cap">Command palette</span>
                   <Autocomplete
                     items={AUTOCOMPLETE_ITEMS}
                     placeholder="Type a command…"
@@ -704,7 +704,7 @@ function Demo() {
             <div className="nova-section" id="number">
               <Panel title="Number Field" meta="NUM">
                 <div className="demo-stack">
-                  <span className="demo-tag">Jump Coordinates</span>
+                  <span className="nova-cap">Jump Coordinates</span>
                   <div className="demo-row">
                     <NumberField defaultValue={42} min={0} max={999} />
                     <NumberField defaultValue={7} min={0} max={12} step={1} />
@@ -731,7 +731,7 @@ function Demo() {
             <div className="nova-section" id="otp">
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
-                  <span className="demo-tag">Authorization code</span>
+                  <span className="nova-cap">Authorization code</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" />
                 </div>
               </Panel>
@@ -837,7 +837,7 @@ function Demo() {
             <div className="nova-section span-2" id="preview">
               <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
-                  <span className="demo-tag">Hover the callsign</span>
+                  <span className="nova-cap">Hover the callsign</span>
                   <div>
                     Patrol lead{" "}
                     <PreviewCard
@@ -1023,11 +1023,11 @@ function Demo() {
                   footer={<DialogClose variant="secondary">Apply</DialogClose>}
                 >
                   <div className="demo-spread">
-                    <span className="demo-rowlabel">Auto-Pilot</span>
+                    <span className="nova-cap">Auto-Pilot</span>
                     <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
-                    <span className="demo-rowlabel">Stealth Mode</span>
+                    <span className="nova-cap">Stealth Mode</span>
                     <Switch aria-label="Stealth Mode" />
                   </div>
                   <Slider label="Sensor Gain" defaultValue={72} />
@@ -1110,7 +1110,7 @@ function Demo() {
                     All systems nominal — reactor output holding at 98.4% across the
                     primary manifold, tracking 1,204 contacts in range.
                   </p>
-                  <span className="demo-tag">
+                  <span className="nova-cap">
                     .nova-h1 / h2 / h3 · .nova-text — style-only, any tag
                   </span>
                 </div>
@@ -1120,11 +1120,11 @@ function Demo() {
             <div className="nova-section" id="separator">
               <Panel title="Separator" meta="SEP">
                 <div className="demo-stack">
-                  <span className="demo-tag">Plain</span>
+                  <span className="nova-cap">Plain</span>
                   <Separator />
-                  <span className="demo-tag">Labelled</span>
+                  <span className="nova-cap">Labelled</span>
                   <Separator label="Section 7G" />
-                  <span className="demo-tag">Vertical</span>
+                  <span className="nova-cap">Vertical</span>
                   <div className="demo-row">
                     <span className="nova-text">Sector A</span>
                     <Separator orientation="vertical" />
@@ -1143,7 +1143,7 @@ function Demo() {
                   brackets and an optional scan sweep.
                 </p>
                 <Panel title="Nested Frame" meta="SUB">
-                  <span className="demo-tag">Composable to any depth</span>
+                  <span className="nova-cap">Composable to any depth</span>
                 </Panel>
               </Panel>
             </div>

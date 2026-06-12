@@ -18,7 +18,7 @@ export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Ro
 
 export function Radio({ className, children, ...props }: RadioProps) {
   return (
-    <label className="nova-radio">
+    <label className="nova-cap nova-radio">
       <BaseRadio.Root className={cx("nova-radio__control", className)} {...props}>
         <BaseRadio.Indicator className="nova-radio__indicator" keepMounted />
       </BaseRadio.Root>

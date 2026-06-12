@@ -47,7 +47,7 @@ export function Field({
   return (
     <BaseField.Root className={cx("nova-field", rootClassName)}>
       {label != null ? (
-        <BaseField.Label className="nova-field__label">{label}</BaseField.Label>
+        <BaseField.Label className="nova-cap nova-field__label">{label}</BaseField.Label>
       ) : null}
       <span className="nova-input-glow">
         <span

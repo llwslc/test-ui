@@ -270,16 +270,8 @@
 }
 .abyss-hero h1 {
   margin: 0 0 16px;
-  font-family: var(--abyss-font-display);
   font-size: clamp(30px, 4.4vw, 46px);
   font-weight: 900;
-  line-height: var(--abyss-lh-100);
-  letter-spacing: var(--abyss-ls-2);
-  color: var(--abyss-text-bright);
-}
-.abyss-hero h1 b {
-  color: var(--abyss-glow);
-  text-shadow: var(--abyss-text-aura);
 }
 .abyss-hero .abyss-text {
   max-width: 60ch;

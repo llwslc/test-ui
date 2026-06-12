@@ -13,7 +13,7 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
     <BaseSlider.Root className={cx("nova-slider", className)} {...props}>
       {(label != null || showValue) && (
         <div className="nova-slider__head">
-          {label != null ? <span className="nova-slider__label">{label}</span> : <span />}
+          {label != null ? <span className="nova-cap nova-slider__label">{label}</span> : <span />}
           {showValue ? <BaseSlider.Value className="nova-slider__value" /> : null}
         </div>
       )}

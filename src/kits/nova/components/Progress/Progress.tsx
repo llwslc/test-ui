@@ -21,7 +21,7 @@ export function Progress({
       {(label != null || showValue) && (
         <div className="nova-progress__head">
           {label != null ? (
-            <BaseProgress.Label className="nova-progress__label">
+            <BaseProgress.Label className="nova-cap nova-progress__label">
               {label}
             </BaseProgress.Label>
           ) : (

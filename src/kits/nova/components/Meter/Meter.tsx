@@ -24,7 +24,7 @@ export function Meter({
       {(label != null || showValue) && (
         <div className="nova-meter__head">
           {label != null ? (
-            <BaseMeter.Label className="nova-meter__label">{label}</BaseMeter.Label>
+            <BaseMeter.Label className="nova-cap nova-meter__label">{label}</BaseMeter.Label>
           ) : (
             <span />
           )}
