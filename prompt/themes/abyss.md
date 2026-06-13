@@ -32,7 +32,9 @@
 - 浮层抬升原语 `.abyss-elevation`,挂 positioner 与模态 popup 且不带 etch 滤镜:`drop-shadow(阴影) drop-shadow(辉光)` 双层,输入变量 `--abyss-overlay-shadow / -glow`;默认 `shadow-pop + glow-popup`,模态走 `shadow-modal + glow-modal`,Tooltip 小档,Alert 按 tone。
 - 边框层级:页内 idle = `ink / ink-strong` 灰墨;浮层 = `glow-a55` 亮辉;状态走 glow 阶梯 a30 → a55 → glow;语义变体按 tone。
 
-## 4. 氛围层 —— `global.css`
+## 4. 氛围层
+
+定义在 `global.css`。
 
 - `body::before`:深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向,叠 `void→bg→stone` 竖直渐变。
 - `body::after`:两层光尘孢子,即 radial 圆点 140 / 220px,`abyss-drift` 40s 向上漂,径向遮罩。
@@ -47,7 +49,9 @@
 - Hero 法阵:外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动;Dialog sigil 30s 自转;OTP 光标闪动;Drawer 钥匙动效。
 - 入场:Hero 文案 `abyss-rise` stagger、区块滚动渐入。
 
-## 6. 交互态配色 —— 填 core §5 的留白
+## 6. 交互态配色
+
+填充 core §5 的留白。
 
 - 选中 / 激活**不实心填充、不翻深**:覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`,`-fill` 给 `glow-soft` 或淡 glow 渐变,文字转 `glow`,叠 `aura / aura-strong`。
 - Button 变体同构换色:primary = `glow-wash` 渐变 + glow 文字 + aura,hover 换 `glow-wash-strong`、文字转 bright、aura-strong;secondary = ichor;danger = blood;ghost 透明、hover 点亮 ink。
@@ -65,7 +69,9 @@
 - NavigationMenu 触发器栏复用 Tabs 皮肤;Hero 法阵、分组线 GroupRule 带 sigil 标记。
 - 背板 scrim 额外 `brightness(.8)` 压暗;连接线 1.5px glow + edge 滤镜。
 
-## 8. 文案 —— 填 `app.md` 的槽位
+## 8. 文案
+
+用于填充 `app.md` 的文案槽位。
 
 - logo:`Abyss` 用 rune 体,副标 `Eldritch UI Kit`;状态徽章 `Awake` 为 primary,时钟带月相图标。
 - Hero:eyebrow `Grimoire · 37 Rites`;标题 `An **eldritch** interface kit / dredged from the deep`;描述关键词 wet-stone tablets、watching eyes、inscribed sigils、hand-inked frames;单位词 `Rites`、`Sigil File`。

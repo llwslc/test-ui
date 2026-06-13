@@ -2,7 +2,9 @@
 
 > 配合 `core.md` + `themes/<kit>.md`。承载 / 展示层,非控件。结构通用,文案 / 装饰 / loader 视觉随 theme。
 
-## 演示页 `App.tsx`,每套一个
+## 演示页
+
+每套一个 `App.tsx`。
 
 组装全部控件:顶部栏含 logo、NavigationMenu 主导航、状态徽章与时钟,接左侧 sticky 索引——按下表分组,锚点平滑跳转,接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件,接两栏 Panel 网格——版式见下表,根包 `ToastProvider`,整页挂 theme 氛围层。
 
@@ -45,7 +47,9 @@
 - `index.html` 设暗底;`#root` 仅 `min-height:100vh`,文档自身滚动。
 - 切换器:常驻浮层、中性外观。
 
-## Loader:`<kit>/Loader.tsx` + 自包含 CSS
+## Loader
+
+每套一个 `<kit>/Loader.tsx`,自包含 CSS。
 
 - 自包含:在主题 CSS 加载前显示,不引 theme token,自带暗底 + 动画 + 硬编码本套色。
 - 经 Suspense 两层兜底:外层中性兜底,内层本套 loader。

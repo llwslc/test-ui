@@ -22,7 +22,9 @@
 - 共享基建:`components/cx.ts` 做 className 合并;`components/icons.tsx` 放内联 SVG,统一 `base()` 设 `1em` 尺寸 / `currentColor` / 统一描边;内部 `Button` 可当触发器,`forwardRef`。
 - `theme/{tokens,effects,global,typography}.css`。
 
-## 3. token 契约:`theme/tokens.css` 必须提供哪些"槽",**值由 theme 填**
+## 3. token 契约
+
+`theme/tokens.css` 必须提供哪些"槽",**值由 theme 填**。
 
 > 设计语言的视觉值集中在此、组件只引用。**判据**:换肤要跟着变、或在 kit 内有意复用 → token;一次性 / 展示层值,如单点 `clamp`、演示页布局、氛围 alpha → 就近立即数。
 > **token 为组件服务**:仅演示页 / Loader 使用的值不进 `tokens.css`,就近写在 App.css。
@@ -43,9 +45,13 @@
 - **组件尺寸 footprint,强制 token 化**:每个控件 / 浮层的 `width` / `height` / `min-` / `max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token,如 `button-h-sm` / `checkbox-box` / `otp-cell-w` / `w-dialog` / `h-popup-list`,集中在 `tokens.css`、组件**绝不**裸写尺寸数值;换肤按名补齐全套。只有不足一格小值——边框 / 细轨道 / 小圆点 ≤8px——与上下文式——`clamp` / `calc` / `%` / `dvh` / Base UI 锚定变量——才就近立即数。
 - **排版尺度**:字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组"按名选";字体族 `font / -display / -mono`。组件里字号 / 字距 / 行高 / 字重一律走 token,不裸写,上下文式除外,如 `clamp()` / `calc()` / `em`。
 
-## 4. 核心技术 —— 结构性、主题无关
+## 4. 核心技术
 
-### 4.1 框与描边 —— 只定契约
+结构性约定,与主题无关。
+
+### 4.1 框与描边
+
+本节只定契约。
 - 每个带框元素都走**同一个 frame 原语** `.<kit>-surface` / `.<kit>-frame`,经输入变量取 填充 / 边框色 / 形状,如 `--<kit>-surface-fill / -border / -clip`;组件**不裸写形状**,只覆盖输入变量。
 - `isolation: isolate` + 填充层 `z-index: -1`,让任意内容自动压在填充上,含裸文本。
 - **具体描边策略 → theme**:形状吃不了 CSS `border` 的,即 `clip-path` / `polygon`,用双层 frame——外层背景＝边框色 + 形状,`::before` 内缩 1px 填表面色;圆角矩形直接 `border` + `border-radius`。
@@ -62,10 +68,14 @@
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`,颜色差异用 `--<kit>-*-color` 就近覆盖:头部扫光、标题 / 图例标记、模态背板、模态文本——title / desc / body / actions、关闭按钮、分隔线、折叠类 Accordion / Collapsible 共用的 trigger / marker / title / chevron / panel / content。
 
-### 4.4 排版类 —— `theme/typography.css`
+### 4.4 排版类
+
+定义在 `theme/typography.css`。
 一组与语义标签解耦、可套任意标签的纯样式类:三档标题 `h1/h2/h3`,卡片 / 弹窗标题即 `h2` 字型、小节标题即 `h3`;正文 `text`;修饰类 `h1--accent`;**字段标签 caption 共享类 `.<kit>-cap`**,即控件名,display 小号大写 dim,Slider / Progress / Meter / Input 标签、Checkbox / Radio / Switch 行、ToggleGroup 选项统一引用,不在组件里重抄。三档标题的字号 / 字距递变关系由 theme 定。
 
-## 5. 交互态 —— 统一约定,**颜色留空给 theme**
+## 5. 交互态
+
+统一约定,**颜色留空给 theme**。
 
 - **选中 / 激活**:按角色分两档——「点亮表面」用于 Button / Switch / Checkbox,「分段选中」用于 ToggleGroup / Toolbar / Menubar;填充配方由 theme 定,如实心 / 渐变翻深,或半透明 wash + 强调文字。**主色填充上的前景必须可读**:翻深时箭头 / 占位符 / 数值一并翻。列表 / Tab / NavMenu 的「文字强调选中」只转文字色、不填充,Tab / NavMenu 另配底部辉光下划线。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
@@ -73,7 +83,9 @@
 - **键盘焦点**:布尔开关 Checkbox / Switch / Radio 用辉光;分段 / 触发条用 `inset 0 0 0 1px` 内描边;输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。
 - **禁用**:`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`,整行 dim 不叠两层 opacity。
 
-## 6. 组件 —— 共 37 个
+## 6. 组件
+
+共 37 个。
 
 - **输入**:Button、Switch、Checkbox、CheckboxGroup、Radio、ToggleGroup、Slider、NumberField、Input(Field)、OtpField、Select、Combobox、Autocomplete
 - **表单**:Fieldset、Form
