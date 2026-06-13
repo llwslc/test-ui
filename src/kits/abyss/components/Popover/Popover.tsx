@@ -50,7 +50,7 @@ export function Popover({
                   <Button
                     variant="icon-ghost"
                     aria-label="Close"
-                    className="abyss-popover__x"
+                    className="abyss-modal-x abyss-popover__x"
                   >
                     <XIcon />
                   </Button>

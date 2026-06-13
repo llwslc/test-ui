@@ -38,14 +38,14 @@ export function Accordion({
           className="abyss-accordion__item abyss-frame"
         >
           <BaseAccordion.Header className="abyss-accordion__header">
-            <BaseAccordion.Trigger className="abyss-accordion__trigger">
+            <BaseAccordion.Trigger className="abyss-disclosure__trigger abyss-accordion__trigger">
               <SigilIcon className="abyss-accordion__sigil" aria-hidden />
-              <span className="abyss-accordion__title">{it.title}</span>
+              <span className="abyss-disclosure__title">{it.title}</span>
               <ChevronDownIcon className="abyss-accordion__chevron" />
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>
-          <BaseAccordion.Panel className="abyss-accordion__panel">
-            <div className="abyss-accordion__content abyss-text">{it.content}</div>
+          <BaseAccordion.Panel className="abyss-disclosure__panel">
+            <div className="abyss-disclosure__content abyss-text">{it.content}</div>
           </BaseAccordion.Panel>
         </BaseAccordion.Item>
       ))}

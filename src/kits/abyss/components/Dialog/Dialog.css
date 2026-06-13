@@ -14,10 +14,8 @@
   padding: var(--abyss-space-6) var(--abyss-space-6) var(--abyss-space-5);
 }
 .abyss-dialog__x {
-  position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 2;
 }
 .abyss-dialog__sigil {
   flex: 0 0 auto;

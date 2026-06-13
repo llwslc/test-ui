@@ -57,7 +57,7 @@ export function Drawer({
                   <Button
                     variant="icon-ghost"
                     aria-label="Close"
-                    className="abyss-drawer__x"
+                    className="abyss-modal-x abyss-drawer__x"
                   >
                     <XIcon />
                   </Button>

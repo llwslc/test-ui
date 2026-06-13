@@ -28,14 +28,14 @@ export function Collapsible({
       onOpenChange={onOpenChange}
       className={cx("abyss-collapsible abyss-frame", className)}
     >
-      <BaseCollapsible.Trigger className="abyss-collapsible__trigger">
+      <BaseCollapsible.Trigger className="abyss-disclosure__trigger abyss-collapsible__trigger">
         <span className="abyss-collapsible__rune" aria-hidden>
           <SigilIcon />
         </span>
-        <span className="abyss-collapsible__title">{title}</span>
+        <span className="abyss-disclosure__title">{title}</span>
       </BaseCollapsible.Trigger>
-      <BaseCollapsible.Panel className="abyss-collapsible__panel">
-        <div className="abyss-collapsible__content">{children}</div>
+      <BaseCollapsible.Panel className="abyss-disclosure__panel">
+        <div className="abyss-disclosure__content abyss-text">{children}</div>
       </BaseCollapsible.Panel>
     </BaseCollapsible.Root>
   );

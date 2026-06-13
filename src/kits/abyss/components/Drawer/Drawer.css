@@ -149,9 +149,10 @@
 }
 
 .abyss-drawer__x {
-  position: absolute;
   top: 14px;
   right: 14px;
+}
+.abyss-btn.abyss-drawer__x {
   z-index: 3;
 }
 
