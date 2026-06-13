@@ -32,7 +32,7 @@
 - 辉光用 `filter: drop-shadow()` 跟随切角轮廓,挂不切角的外层 `.nova-elevation`,其输入 `--nova-overlay-shadow / -glow` 默认 shadow-popup / glow-popup。
 - 边框层级:页内 idle = `line`;浮层 = `line-strong`,即 surface 默认;状态升 `line-strong` / `primary`;语义变体按 tone。
 
-## 4. 氛围层(`global.css`)
+## 4. 氛围层 —— `global.css`
 
 - `body::before`:品红右上 + 青左下两个角落径向辉光,叠 `bg→bg-2` 竖直渐变。
 - `body::after`:44px 网格线 tint-faint,径向遮罩向下淡出,`nova-grid-drift` 24s 平移。
@@ -45,7 +45,7 @@
 - 微动:按钮高光斜扫,即 `background-position`;进度条流动条纹;面板扫描光 `.nova-scan`,scaleX 呼吸;徽章点 pulse;Hero 准星旋转。
 - 入场:顶栏下滑、Hero 文案 stagger 即 `nova-rise`、面板滚动渐入。
 
-## 6. 交互态配色(填 core §5 的留白)
+## 6. 交互态配色 —— 填 core §5 的留白
 
 - 点亮表面用于 Button primary / Switch / Checkbox = `accent-surface` 渐变填充,前景翻 `on-primary`,含箭头、占位、数值。
 - 分段选中用于 ToggleGroup / Toolbar / Menubar = 实心 `primary` + `on-primary`。
@@ -61,7 +61,7 @@
 - Switch:关态金属 thumb 用 `thumb-idle` 渐变,选中 `accent-surface` 轨 + `surface-deep` thumb。
 - 共享配方色就近覆盖:`--nova-scan-color / -tick-color / -title-color`。
 
-## 8. 文案(填 `app.md` 的槽位)
+## 8. 文案 —— 填 `app.md` 的槽位
 
 - logo:`NOVA`,VA 强调;副标 `SCI-FI UI KIT`;状态徽章 `Online`,走 success。
 - Hero:eyebrow `Component System · 37 Controls`;标题 `A **sci-fi** interface kit / forged in neon`;描述关键词 neon HUD skin、chamfered frames、reactive glow、scanline motion;单位词 `Controls`、`Token File`。
