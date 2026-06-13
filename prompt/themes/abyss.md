@@ -41,7 +41,7 @@
 
 ## 5. 动效个性
 
-- `dur .3s / -slow .66s`,`ease (0.38, 0.1, 0.2, 1)`——比 NOVA 慢半拍、沉。
+- `dur .3s / -slow .66s`,`ease (0.38, 0.1, 0.2, 1)`——沉、缓。
 - **呼吸是主旋律**:`--abyss-breath 7s`,`.abyss-breathe` 共享 class(徽章点、sigil、Toast 图记)。
 - **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾)。
 - Hero 法阵:外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动;Dialog sigil 30s 自转;OTP 光标闪动;Drawer 钥匙动效。
