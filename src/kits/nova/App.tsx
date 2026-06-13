@@ -240,7 +240,7 @@ const TAB_ITEMS = [
     value: "logs",
     label: "Logs",
     content: (
-      <p style={{ margin: 0, color: "var(--nova-text-dim)", lineHeight: 1.7 }}>
+      <p className="nova-text" style={{ lineHeight: 1.7 }}>
         <code>04:12:07</code> · jump drive spooled to 99.4%
         <br />
         <code>04:12:31</code> · nav lock acquired — Proxima Centauri
@@ -546,7 +546,7 @@ function Demo() {
 
           <div className="nova-grid">
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Input</span>
+              <span className="nova-h3 nova-grid__group-title">Input</span>
             </div>
             <div className="nova-section span-2" id="button">
               <Panel title="Button" meta="BTN" scan>
@@ -738,7 +738,7 @@ function Demo() {
             </div>
 
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Forms</span>
+              <span className="nova-h3 nova-grid__group-title">Forms</span>
             </div>
             <div className="nova-section" id="fieldset">
               <Panel title="Fieldset" meta="FLD">
@@ -756,7 +756,7 @@ function Demo() {
             </div>
 
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Feedback</span>
+              <span className="nova-h3 nova-grid__group-title">Feedback</span>
             </div>
             <div className="nova-section" id="progress">
               <Panel title="Progress" meta="PRG">
@@ -801,7 +801,7 @@ function Demo() {
             </div>
 
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Overlay</span>
+              <span className="nova-h3 nova-grid__group-title">Overlay</span>
             </div>
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
@@ -1042,7 +1042,7 @@ function Demo() {
             </div>
 
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Display</span>
+              <span className="nova-h3 nova-grid__group-title">Display</span>
             </div>
             <div className="nova-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
@@ -1098,7 +1098,7 @@ function Demo() {
             </div>
 
             <div className="nova-grid__group">
-              <span className="nova-grid__group-title">Foundations</span>
+              <span className="nova-h3 nova-grid__group-title">Foundations</span>
             </div>
             <div className="nova-section span-2" id="typography">
               <Panel title="Typography" meta="TYP">
@@ -1138,7 +1138,7 @@ function Demo() {
 
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
-                <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
+                <p className="nova-text" style={{ marginTop: 0 }}>
                   The HUD frame wrapping every section: a chamfered border with corner
                   brackets and an optional scan sweep.
                 </p>
