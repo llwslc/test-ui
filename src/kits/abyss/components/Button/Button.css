@@ -25,7 +25,7 @@
     filter var(--abyss-dur) var(--abyss-ease),
     transform 0.16s var(--abyss-ease-out);
 }
-.abyss-btn:active:not(:disabled) {
+.abyss-btn:active {
   transform: scale(0.92) translateY(1px);
   transition-duration: 0s;
 }
