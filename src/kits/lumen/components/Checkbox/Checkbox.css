@@ -4,36 +4,27 @@
   width: var(--lumen-checkbox-box);
   height: var(--lumen-checkbox-box);
   flex: 0 0 auto;
-  transition: filter var(--lumen-dur) var(--lumen-ease);
-}
-.lumen-checkbox-box:has([data-checked]),
-.lumen-checkbox-box:has([data-indeterminate]) {
-  filter: drop-shadow(0 0 var(--lumen-glow-r) var(--lumen-line-strong));
-}
-.lumen-checkbox-box:has(:focus-visible) {
-  filter: var(--lumen-glow-focus);
 }
 
 .lumen-checkbox {
   position: relative;
+  box-sizing: border-box;
   display: inline-grid;
   place-items: center;
   width: var(--lumen-checkbox-control);
   height: var(--lumen-checkbox-control);
   padding: 0;
-  border: 0;
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
   cursor: pointer;
   color: var(--lumen-on-primary);
-  background: var(--lumen-line);
-  clip-path: var(--lumen-clip-9);
-}
-.lumen-checkbox::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  clip-path: var(--lumen-clip-9);
   background: var(--lumen-surface-popup);
-  transition: background var(--lumen-dur) var(--lumen-ease);
+  box-shadow: var(--lumen-shadow-sm);
+  transition:
+    background var(--lumen-dur) var(--lumen-ease),
+    box-shadow var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-checkbox:not([data-checked]):not([data-indeterminate]):hover {
+  background: var(--lumen-tint-soft);
 }
 
 .lumen-checkbox__indicator {
@@ -55,9 +46,9 @@
     transform var(--lumen-dur) var(--lumen-ease);
 }
 
-.lumen-checkbox[data-checked]::before,
-.lumen-checkbox[data-indeterminate]::before {
-  background: var(--lumen-accent-surface);
+.lumen-checkbox[data-checked],
+.lumen-checkbox[data-indeterminate] {
+  background: var(--lumen-primary);
 }
 .lumen-checkbox[data-checked] .lumen-checkbox__check,
 .lumen-checkbox[data-indeterminate] .lumen-checkbox__dash {
@@ -67,10 +58,12 @@
 
 .lumen-checkbox:focus-visible {
   outline: none;
+  box-shadow: var(--lumen-shadow-focus);
 }
 .lumen-checkbox[data-disabled] {
   cursor: not-allowed;
   opacity: var(--lumen-disabled-opacity);
+  box-shadow: none;
 }
 
 .lumen-checkbox-field {

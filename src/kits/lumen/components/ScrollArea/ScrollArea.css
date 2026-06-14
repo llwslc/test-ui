@@ -1,32 +1,18 @@
 .lumen-scrollarea {
   position: relative;
   width: 100%;
-  background: var(--lumen-line);
-  clip-path: var(--lumen-clip-9);
-}
-.lumen-scrollarea::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--lumen-clip-9);
-  background: var(--lumen-surface-popup);
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
+  background: var(--lumen-surface);
+  box-shadow: var(--lumen-shadow-sm);
 }
 
 .lumen-scrollarea__viewport {
   position: relative;
   z-index: 1;
-  padding: var(--lumen-space-4) var(--lumen-space-4);
+  padding: var(--lumen-space-4);
   overscroll-behavior: contain;
   outline: none;
   scrollbar-width: none;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    #000 16px,
-    #000 calc(100% - 16px),
-    transparent
-  );
 }
 .lumen-scrollarea__viewport::-webkit-scrollbar {
   width: 0;
@@ -34,16 +20,16 @@
   display: none;
 }
 .lumen-scrollarea__viewport:focus-visible {
-  box-shadow: inset 0 0 0 1px var(--lumen-line-strong);
+  box-shadow: inset 0 0 0 var(--lumen-edge) var(--lumen-line-strong);
 }
 
 .lumen-scrollarea__scrollbar {
   z-index: 2;
   display: flex;
   justify-content: center;
-  width: 11px;
-  margin: 1px;
-  background: var(--lumen-tint-faint);
+  width: 10px;
+  margin: var(--lumen-edge);
+  background: var(--lumen-track);
   opacity: 0;
   transition: opacity var(--lumen-dur-slow) var(--lumen-ease);
 }
@@ -55,18 +41,10 @@
 
 .lumen-scrollarea__thumb {
   flex: 1;
-  position: relative;
-  filter: drop-shadow(0 0 var(--lumen-glow-r) var(--lumen-primary-a40));
-}
-.lumen-scrollarea__thumb::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  clip-path: var(--lumen-clip-4);
-  background: var(--lumen-line-strong);
+  background: var(--lumen-text);
   transition: background var(--lumen-dur) var(--lumen-ease);
 }
-.lumen-scrollarea__thumb:hover::before,
-.lumen-scrollarea__scrollbar[data-scrolling] .lumen-scrollarea__thumb::before {
+.lumen-scrollarea__thumb:hover,
+.lumen-scrollarea__scrollbar[data-scrolling] .lumen-scrollarea__thumb {
   background: var(--lumen-primary);
 }

@@ -181,19 +181,19 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
   {
     label: "Studio",
     links: [
-      { label: "Letterpress", description: "Polymer & metal type" },
-      { label: "Risograph", description: "Two-colour drums" },
-      { label: "Screenprint", description: "Flatbed & rotary" },
-      { label: "Bindery", description: "Folding & stitching" },
+      { label: "Letterpress", description: "Relief plates & furniture" },
+      { label: "Risograph", description: "Spot-colour drum prints" },
+      { label: "Screenprint", description: "Mesh screens & squeegees" },
+      { label: "Bindery", description: "Folding, stitching & trim" },
     ],
   },
   {
     label: "Stock",
     links: [
-      { label: "Cotton Rag", description: "Mould-made, deckle edge" },
-      { label: "Newsprint", description: "High-speed web" },
-      { label: "Coated Gloss", description: "Photo offset" },
-      { label: "Kraft", description: "Unbleached pulp" },
+      { label: "Cotton Rag", description: "300gsm mould-made" },
+      { label: "Newsprint", description: "45gsm uncoated web" },
+      { label: "Coated Gloss", description: "150gsm art paper" },
+      { label: "Kraft", description: "90gsm recycled brown" },
     ],
   },
   { label: "Colophon", href: "#navmenu" },
@@ -256,19 +256,19 @@ const ACCORDION_ITEMS = [
     value: "a1",
     title: "Ink & Coverage",
     content:
-      "Two-colour risograph drums rated for 120 sheets per minute. Ink reserves at 76% — enough for 14 print runs before resupply.",
+      "Two-colour run on rubber-based ink, 1.45 density target. Drum reserves at 76% — good for 14 editions before the next mix.",
   },
   {
     value: "a2",
     title: "Registration",
     content:
-      "Plates aligned against 1,204 crop marks. Drift correction nominal within 0.03 mm across the sheet.",
+      "Plates pinned to 1,204 register marks. Trap and misregistration held within 0.08mm across the full sheet.",
   },
   {
     value: "a3",
     title: "Paper & Climate",
     content:
-      "Drying racks operating at peak. Humidity 48%, dust scrubbed below threshold. A six-colour run supported in a single pass.",
+      "Pressroom held at peak. Humidity 20.9%, dust scrubbed below threshold. Cotton rag conditioned 48 hours before the pull.",
   },
 ];
 
@@ -283,14 +283,14 @@ function Clock() {
 }
 
 const SHIP_LOG = [
-  { t: "08:42:01", m: "Press temperature nominal — 22°C" },
-  { t: "08:41:55", m: "Ink density recalibrated to 1.4 D" },
-  { t: "08:40:12", m: "Misregistration cleared, sheet 7-G" },
+  { t: "08:42:01", m: "Press temperature nominal — 21.4 °C" },
+  { t: "08:41:55", m: "Ink density recalibrated to 1.45 D" },
+  { t: "08:40:12", m: "Misregistration cleared, station 3" },
   { t: "08:39:03", m: "Plate exposure cycle initiated" },
-  { t: "08:37:48", m: "Paper jam cleared, tray 4" },
+  { t: "08:37:48", m: "Paper jam cleared, feed tray 4" },
   { t: "08:36:20", m: "Proof approved by the desk editor" },
   { t: "08:35:01", m: "Dryer holding at 98% efficiency" },
-  { t: "08:33:44", m: "Registration locked — Cotton Rag 300" },
+  { t: "08:33:44", m: "Registration locked — Cotton Rag sheet" },
   { t: "08:32:10", m: "Densitometer array online" },
   { t: "08:30:55", m: "Spot colour rerouted to drum 2" },
   { t: "08:29:31", m: "Edition count synced, 47 pulled" },
@@ -302,17 +302,17 @@ function AccessCodeField() {
   const valid = code.length >= 6;
   return (
     <Field
-      label="Access Code"
+      label="Plate Code"
       placeholder="Min 6 characters"
       value={code}
       onChange={(e) => setCode(e.currentTarget.value)}
-      error={touched && !valid ? "Clearance code too short" : undefined}
+      error={touched && !valid ? "Plate code too short" : undefined}
     />
   );
 }
 
 function ToolbarDemo() {
-  const [view, setView] = useState<"type" | "rule" | "grid">("type");
+  const [view, setView] = useState<"type" | "rule" | "baseline">("type");
   const [live, setLive] = useState(true);
   return (
     <Toolbar aria-label="Press toolbar">
@@ -332,7 +332,7 @@ function ToolbarDemo() {
       </ToolbarGroup>
       <ToolbarSeparator />
       <ToolbarGroup>
-        {(["type", "rule", "grid"] as const).map((v) => (
+        {(["type", "rule", "baseline"] as const).map((v) => (
           <ToolbarButton key={v} active={view === v} onClick={() => setView(v)}>
             <span className="demo-toolbar__label">{v.toUpperCase()}</span>
           </ToolbarButton>
@@ -635,7 +635,7 @@ function Demo() {
             <div className="lumen-section" id="checkbox-group">
               <Panel title="Checkbox Group" meta="CHG">
                 <CheckboxGroup
-                  parentLabel="All channels"
+                  parentLabel="All marks"
                   defaultValue={["crop"]}
                   items={CHECKGROUP_ITEMS}
                 />
@@ -646,8 +646,8 @@ function Demo() {
               <Panel title="Radio Group" meta="RDO">
                 <RadioGroup defaultValue="letterpress">
                   <Radio value="letterpress">Letterpress</Radio>
-                  <Radio value="riso">Risograph</Radio>
-                  <Radio value="screen">Screenprint</Radio>
+                  <Radio value="risograph">Risograph</Radio>
+                  <Radio value="screenprint">Screenprint</Radio>
                   <Radio value="foil" disabled>
                     Foil stamp (offline)
                   </Radio>
@@ -716,13 +716,13 @@ function Demo() {
               <Panel title="Text Field" meta="TXT">
                 <div className="demo-stack">
                   <Field
-                    label="Imprint"
-                    defaultValue="Nightjar Press"
-                    placeholder="Enter imprint"
+                    label="Byline"
+                    defaultValue="A. Reid"
+                    placeholder="Enter byline"
                   />
-                  <Input icon={<SearchIcon />} placeholder="Search registry…" />
+                  <Input icon={<SearchIcon />} placeholder="Search swatches…" />
                   <AccessCodeField />
-                  <Field label="Locked Channel" defaultValue="NX-CLASSIFIED" disabled />
+                  <Field label="Locked Field" defaultValue="EMBARGOED" disabled />
                 </div>
               </Panel>
             </div>
@@ -730,7 +730,7 @@ function Demo() {
             <div className="lumen-section" id="otp">
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
-                  <span className="lumen-cap">Authorization code</span>
+                  <span className="lumen-cap">Proof code</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" />
                 </div>
               </Panel>
@@ -741,9 +741,9 @@ function Demo() {
             </div>
             <div className="lumen-section" id="fieldset">
               <Panel title="Fieldset" meta="FLD">
-                <Fieldset legend="Pilot Credentials">
-                  <Field label="Imprint" defaultValue="Nightjar Press" />
-                  <Field label="Edition" defaultValue="No. 7" />
+                <Fieldset legend="Compositor Details">
+                  <Field label="Byline" defaultValue="A. Reid" />
+                  <Field label="Section" defaultValue="Folio-7" />
                 </Fieldset>
               </Panel>
             </div>
@@ -766,9 +766,9 @@ function Demo() {
             <div className="lumen-section" id="meter">
               <Panel title="Meter" meta="MTR">
                 <div className="demo-stack">
-                  <Meter label="Power Output" value={88} />
-                  <Meter label="Coolant" value={52} tone="warning" />
-                  <Meter label="Damage" value={23} tone="danger" />
+                  <Meter label="Ink Level" value={88} />
+                  <Meter label="Solvent" value={52} tone="warning" />
+                  <Meter label="Spoilage" value={23} tone="danger" />
                 </div>
               </Panel>
             </div>
@@ -789,11 +789,12 @@ function Demo() {
               <Panel title="Collapsible" meta="CLP">
                 <div className="demo-stack">
                   <Collapsible title="Press Check" defaultOpen>
-                    All stations reporting nominal. Last misregistration cleared 14 runs
-                    ago.
+                    All stations reporting nominal. Last misregistration cleared 14
+                    editions ago.
                   </Collapsible>
                   <Collapsible title="Colophon">
-                    6 plates · 2 spot colours · 1 flagged for a press check before the run.
+                    Set in Plantin · 2 spot colours · 1 sheet flagged for the desk
+                    editor's review.
                   </Collapsible>
                 </div>
               </Panel>
@@ -827,8 +828,8 @@ function Demo() {
                   trigger={<Button variant="ghost">Ink Notes</Button>}
                   title="Spot 7"
                 >
-                  Mixing notes for spot colour 7 — 94% cinnabar, 6% bone white. Click
-                  outside or ✕ to dismiss.
+                  Mix for this spot colour: 94% cinnabar, 6% bone white — click outside
+                  or ✕ to dismiss.
                 </Popover>
               </Panel>
             </div>
@@ -864,7 +865,7 @@ function Demo() {
                         </div>
                       </div>
                       <p className="demo-pcard__bio">
-                        Runs the print desk. 1,204 editions set, zero misprints shipped.
+                        Runs the print desk. 1,204 editions pulled, zero spoiled runs.
                       </p>
                       <div className="demo-pcard__stats">
                         <Badge tone="primary" dot>
@@ -979,7 +980,7 @@ function Demo() {
                 <Dialog
                   trigger={<Button variant="secondary">Start Run</Button>}
                   title="Confirm Print Run"
-                  description="Sending 500 sheets to the press on Cotton Rag. A run can't be stopped once it starts."
+                  description="Sending 500 sheets to the press on Cotton Rag. This action cannot be aborted once the run begins."
                   footer={
                     <>
                       <DialogClose>Cancel</DialogClose>
@@ -988,8 +989,8 @@ function Demo() {
                   }
                 >
                   <p style={{ margin: 0 }}>
-                    Estimated run: <b>14.2 minutes</b>. Please stand clear of the
-                    feed tray.
+                    Estimated run: <b>14.2 minutes</b>. Please stand clear of the feed
+                    tray.
                   </p>
                 </Dialog>
               </Panel>
@@ -1000,7 +1001,7 @@ function Demo() {
                 <AlertDialog
                   trigger={<Button variant="danger">Scrap Plate</Button>}
                   title="Scrap this plate?"
-                  description="This melts the polymer plate for good — the setting can't be recovered."
+                  description="This melts the polymer plate down and cannot be undone. The forme will have to be set again from scratch."
                   actions={
                     <>
                       <AlertDialogClose>Cancel</AlertDialogClose>
@@ -1061,14 +1062,14 @@ function Demo() {
               <Panel title="Badge" meta="BDG">
                 <div className="demo-row">
                   <Badge tone="primary" dot>
-                    Online
+                    Inked
                   </Badge>
                   <Badge tone="success">Stable</Badge>
                   <Badge tone="warning">Caution</Badge>
                   <Badge tone="danger" dot>
                     Critical
                   </Badge>
-                  <Badge tone="secondary">Limited</Badge>
+                  <Badge tone="secondary">Proofed</Badge>
                   <Badge tone="neutral">Standby</Badge>
                 </div>
               </Panel>
@@ -1105,8 +1106,8 @@ function Demo() {
                   <p className="lumen-h2">Edition Feed</p>
                   <p className="lumen-h3">Type Specimen</p>
                   <p className="lumen-text">
-                    Set in warm ink on rag paper — density holding at 98.4% across the
-                    sheet, with 1,204 marks tracked in register.
+                    All stations nominal — ink density holding at 98.4% across the
+                    primary forme, tracking 1,204 sheets in the run.
                   </p>
                   <span className="lumen-cap">
                     .lumen-h1 / h2 / h3 · .lumen-text — style-only, any tag
@@ -1137,8 +1138,8 @@ function Demo() {
             <div className="lumen-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
                 <p className="lumen-text" style={{ marginTop: 0 }}>
-                  The frame wrapping every section: a chamfered keyline with corner
-                  crops and an optional ink sweep.
+                  The keyline frame wrapping every section: a heavy black border with
+                  corner crop marks and an optional ink sweep.
                 </p>
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="lumen-cap">Composable to any depth</span>

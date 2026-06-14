@@ -1,4 +1,5 @@
 .lumen-previewcard__positioner {
+  --lumen-overlay-shadow: var(--lumen-shadow-popup);
   z-index: var(--lumen-z-menu);
 }
 
@@ -8,9 +9,9 @@
 }
 
 .lumen-previewcard__surface {
+  --lumen-surface-fill: var(--lumen-surface-popup);
   display: block;
   padding: var(--lumen-space-4);
-  overflow: hidden;
 }
 
 .lumen-previewcard__body {

@@ -12,24 +12,20 @@
 .lumen-loader__mark {
   overflow: visible;
 }
+.lumen-loader__box {
+  fill: none;
+  stroke: #16130c;
+  stroke-width: 3;
+}
 .lumen-loader__crop {
   fill: none;
-  stroke: #16130c;
+  stroke: #e4321f;
   stroke-width: 2.4;
 }
-.lumen-loader__reg {
-  fill: none;
-  stroke: #e4321f;
-  stroke-width: 3;
-  stroke-dasharray: 64 18;
-  transform-origin: 32px 32px;
-  animation: lumen-loader-ink 1.4s linear infinite;
-}
-.lumen-loader__cross {
-  fill: none;
-  stroke: #16130c;
-  stroke-width: 1.6;
-  animation: lumen-loader-pulse 1.4s ease-in-out infinite;
+.lumen-loader__fill {
+  fill: #e4321f;
+  transform-origin: 32px 52px;
+  animation: lumen-loader-ink 1.1s var(--lumen-ease, ease) infinite;
 }
 .lumen-loader__label {
   font-family: "Spline Sans Mono", ui-monospace, monospace;
@@ -39,22 +35,19 @@
   color: #16130c;
 }
 @keyframes lumen-loader-ink {
-  to {
-    transform: rotate(360deg);
+  0% {
+    transform: scaleY(0);
   }
-}
-@keyframes lumen-loader-pulse {
-  0%,
+  55% {
+    transform: scaleY(1);
+  }
   100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
+    transform: scaleY(1);
+    opacity: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lumen-loader__reg,
-  .lumen-loader__cross {
+  .lumen-loader__fill {
     animation: none;
   }
 }

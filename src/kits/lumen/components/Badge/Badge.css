@@ -4,24 +4,23 @@
   align-items: center;
   gap: var(--lumen-space-2);
   height: var(--lumen-badge-h);
-  padding: 0 var(--lumen-space-3);
-  background: color-mix(in srgb, var(--lumen-badge-color) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--lumen-badge-color) 45%, transparent);
+  padding: 0 var(--lumen-space-2);
+  border: var(--lumen-edge) solid var(--lumen-badge-color);
+  background: var(--lumen-surface);
   color: var(--lumen-badge-color);
-  font-family: var(--lumen-font-mono);
+  font-family: var(--lumen-font-display);
   font-size: var(--lumen-fs-12);
-  letter-spacing: var(--lumen-ls-10);
+  letter-spacing: var(--lumen-ls-8);
+  line-height: var(--lumen-lh-100);
   text-transform: uppercase;
   white-space: nowrap;
-  clip-path: var(--lumen-clip-7);
 }
 
 .lumen-badge__dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
   background: var(--lumen-badge-color);
-  border-radius: 50%;
-  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-badge-color);
   animation: lumen-badge-pulse 1.8s var(--lumen-ease) infinite;
 }
 @keyframes lumen-badge-pulse {

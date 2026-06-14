@@ -8,26 +8,29 @@
   text-align: center;
   color: var(--lumen-text-dim);
   font-size: var(--lumen-fs-14);
-  letter-spacing: var(--lumen-ls-4);
+  letter-spacing: var(--lumen-ls-2);
   cursor: context-menu;
   user-select: none;
   background:
     repeating-linear-gradient(-45deg, transparent 0 9px, var(--lumen-tint-faint) 9px 10px),
-    var(--lumen-surface-zone);
-  clip-path: var(--lumen-clip-9);
-  outline: 1px dashed var(--lumen-line);
-  outline-offset: -1px;
+    var(--lumen-surface-inset);
+  outline: var(--lumen-edge) dashed var(--lumen-line);
+  outline-offset: calc(-1 * var(--lumen-edge));
   transition:
     background var(--lumen-dur) var(--lumen-ease),
-    outline-color var(--lumen-dur) var(--lumen-ease);
+    outline-color var(--lumen-dur) var(--lumen-ease),
+    color var(--lumen-dur) var(--lumen-ease);
 }
 .lumen-ctxmenu__zone:hover {
   background:
-    repeating-linear-gradient(-45deg, transparent 0 9px, var(--lumen-tint-faint) 9px 10px),
+    repeating-linear-gradient(-45deg, transparent 0 9px, var(--lumen-tint-soft) 9px 10px),
     var(--lumen-surface-zone-hover);
+  color: var(--lumen-text);
 }
 .lumen-ctxmenu__zone[data-popup-open] {
+  outline-style: solid;
   outline-color: var(--lumen-primary);
+  color: var(--lumen-primary);
 }
 .lumen-ctxmenu__zone kbd {
   font-family: var(--lumen-font-mono);

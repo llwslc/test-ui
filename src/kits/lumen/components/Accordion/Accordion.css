@@ -6,18 +6,14 @@
 }
 
 .lumen-accordion__item {
-  --lumen-surface-border: var(--lumen-line);
   --lumen-surface-fill: var(--lumen-surface);
-  transition: background var(--lumen-dur) var(--lumen-ease);
+  transition: box-shadow var(--lumen-dur) var(--lumen-ease);
 }
-.lumen-accordion__item:hover {
-  --lumen-surface-border: var(--lumen-line-strong);
+.lumen-accordion__item:has([data-panel-open]) {
+  box-shadow: var(--lumen-shadow-sm);
 }
 .lumen-accordion__item:has([data-disabled]) {
   opacity: var(--lumen-disabled-opacity);
-}
-.lumen-accordion__item:has([data-disabled]):hover {
-  --lumen-surface-border: var(--lumen-line);
 }
 
 .lumen-accordion__header {

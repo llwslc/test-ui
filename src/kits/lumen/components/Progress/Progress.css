@@ -11,28 +11,27 @@
 .lumen-progress__value {
   font-family: var(--lumen-font-mono);
   font-size: var(--lumen-fs-13);
-  letter-spacing: var(--lumen-ls-4);
+  letter-spacing: var(--lumen-ls-2);
   color: var(--lumen-primary);
 }
 
 .lumen-progress__track {
   position: relative;
   width: 100%;
-  height: 11px;
+  height: var(--lumen-meter-track-h);
   background: var(--lumen-track);
-  box-shadow: inset 0 0 0 1px var(--lumen-tint-soft);
-  clip-path: var(--lumen-clip-4);
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
   overflow: hidden;
 }
 .lumen-progress__indicator {
   height: 100%;
   background-image:
-    repeating-linear-gradient(115deg, var(--lumen-sheen-soft) 0 8px, transparent 8px 18px),
-    var(--lumen-accent-fill);
-  background-size:
-    56px 100%,
-    100% 100%;
-  box-shadow: 0 0 12px var(--lumen-line-strong);
+    repeating-linear-gradient(
+      135deg,
+      var(--lumen-primary-deep) 0 var(--lumen-space-2),
+      var(--lumen-primary) var(--lumen-space-2) var(--lumen-space-4)
+    );
+  background-size: var(--lumen-space-7) 100%;
   transition: width var(--lumen-dur-slow) var(--lumen-ease);
   animation: lumen-progress-stripes 0.9s linear infinite;
 }
@@ -46,9 +45,7 @@
 }
 @keyframes lumen-progress-stripes {
   to {
-    background-position:
-      56px 0,
-      0 0;
+    background-position: var(--lumen-space-7) 0;
   }
 }
 @keyframes lumen-progress-sweep {

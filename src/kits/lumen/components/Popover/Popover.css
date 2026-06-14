@@ -1,4 +1,5 @@
 .lumen-popover__positioner {
+  --lumen-overlay-shadow: var(--lumen-shadow-popup);
   z-index: var(--lumen-z-menu);
 }
 
@@ -8,28 +9,27 @@
 }
 
 .lumen-popover__surface {
+  --lumen-surface-fill: var(--lumen-surface-popup);
   display: block;
-  padding: var(--lumen-space-4) var(--lumen-space-4);
+  padding: var(--lumen-space-4);
 }
 
 .lumen-popover__title {
   margin: 0 var(--lumen-space-6) var(--lumen-space-2) 0;
   font-family: var(--lumen-font-display);
   font-size: var(--lumen-fs-13);
-  font-weight: var(--lumen-fw-700);
-  letter-spacing: var(--lumen-ls-10);
+  letter-spacing: var(--lumen-ls-8);
   text-transform: uppercase;
   color: var(--lumen-primary);
-  text-shadow: var(--lumen-glow-text);
 }
 
 .lumen-popover__body {
   color: var(--lumen-text-dim);
   font-size: var(--lumen-fs-14);
-  line-height: var(--lumen-lh-160);
+  line-height: var(--lumen-lh-150);
 }
 
 .lumen-popover__x {
-  top: 10px;
-  right: 10px;
+  top: var(--lumen-space-2);
+  right: var(--lumen-space-2);
 }

@@ -1,4 +1,5 @@
 .lumen-tooltip__positioner {
+  --lumen-overlay-shadow: var(--lumen-shadow-popup);
   z-index: var(--lumen-z-tooltip);
 }
 
@@ -8,11 +9,12 @@
 }
 
 .lumen-tooltip__surface {
+  --lumen-surface-fill: var(--lumen-surface-popup);
   display: block;
   padding: var(--lumen-space-2) var(--lumen-space-3);
   color: var(--lumen-text);
   font-family: var(--lumen-font-mono);
   font-size: var(--lumen-fs-12);
-  letter-spacing: var(--lumen-ls-4);
-  line-height: var(--lumen-lh-160);
+  letter-spacing: var(--lumen-ls-2);
+  line-height: var(--lumen-lh-150);
 }

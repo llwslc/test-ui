@@ -10,5 +10,5 @@
   gap: var(--lumen-space-3);
   margin-left: var(--lumen-space-2);
   padding-left: var(--lumen-space-4);
-  border-left: 1px solid var(--lumen-line);
+  border-left: var(--lumen-edge-thin) solid var(--lumen-line);
 }

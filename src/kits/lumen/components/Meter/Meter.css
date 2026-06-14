@@ -1,19 +1,15 @@
 .lumen-meter {
   --lumen-meter-fill: var(--lumen-primary);
-  --lumen-meter-fill-deep: var(--lumen-primary-deep);
   width: 100%;
 }
 .lumen-meter--success {
   --lumen-meter-fill: var(--lumen-success);
-  --lumen-meter-fill-deep: var(--lumen-success-deep);
 }
 .lumen-meter--warning {
   --lumen-meter-fill: var(--lumen-warning);
-  --lumen-meter-fill-deep: var(--lumen-warning-deep);
 }
 .lumen-meter--danger {
   --lumen-meter-fill: var(--lumen-danger);
-  --lumen-meter-fill-deep: var(--lumen-danger-deep);
 }
 
 .lumen-meter__head {
@@ -26,7 +22,7 @@
 .lumen-meter__value {
   font-family: var(--lumen-font-mono);
   font-size: var(--lumen-fs-13);
-  letter-spacing: var(--lumen-ls-4);
+  letter-spacing: var(--lumen-ls-2);
   color: var(--lumen-meter-fill);
 }
 
@@ -35,18 +31,12 @@
   width: 100%;
   height: var(--lumen-meter-track-h);
   background: var(--lumen-track);
-  box-shadow: inset 0 0 0 1px var(--lumen-tint-soft);
-  clip-path: var(--lumen-clip-4);
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
   overflow: hidden;
 }
 .lumen-meter__indicator {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--lumen-meter-fill-deep),
-    var(--lumen-meter-fill) 55%
-  );
-  box-shadow: 0 0 14px var(--lumen-meter-fill);
+  background: var(--lumen-meter-fill);
   transition: width var(--lumen-dur-slow) var(--lumen-ease);
 }
 .lumen-meter__segments {
@@ -55,8 +45,8 @@
   pointer-events: none;
   background: repeating-linear-gradient(
     90deg,
-    transparent 0 13px,
-    var(--lumen-bg) 13px 16px
+    transparent 0 var(--lumen-space-4),
+    var(--lumen-line-strong) var(--lumen-space-4),
+    transparent calc(var(--lumen-space-4) + var(--lumen-edge))
   );
-  opacity: 0.92;
 }

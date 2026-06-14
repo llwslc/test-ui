@@ -14,18 +14,22 @@
 
 .lumen-radio__control {
   position: relative;
+  box-sizing: border-box;
   display: grid;
   place-items: center;
   width: var(--lumen-radio-box);
   height: var(--lumen-radio-box);
   padding: 0;
-  border: 1px solid var(--lumen-line);
-  border-radius: 50%;
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
   background: var(--lumen-surface-popup);
+  box-shadow: var(--lumen-shadow-sm);
   cursor: pointer;
   transition:
-    border-color var(--lumen-dur) var(--lumen-ease),
+    background var(--lumen-dur) var(--lumen-ease),
     box-shadow var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-radio__control:not([data-checked]):hover {
+  background: var(--lumen-tint-soft);
 }
 
 .lumen-radio__indicator {
@@ -36,20 +40,15 @@
 }
 .lumen-radio__indicator::before {
   content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--lumen-primary);
-  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-primary);
+  width: var(--lumen-space-2);
+  height: var(--lumen-space-2);
+  background: var(--lumen-on-primary);
   transform: scale(0);
-  transition: transform var(--lumen-dur) var(--lumen-ease-out);
+  transition: transform var(--lumen-dur) var(--lumen-ease);
 }
 
 .lumen-radio__control[data-checked] {
-  border-color: var(--lumen-primary);
-  box-shadow:
-    0 0 0 1px var(--lumen-tint-active),
-    0 0 var(--lumen-glow-r) var(--lumen-primary-a40);
+  background: var(--lumen-primary);
 }
 .lumen-radio__control[data-checked] .lumen-radio__indicator::before {
   transform: scale(1);
@@ -57,9 +56,7 @@
 
 .lumen-radio__control:focus-visible {
   outline: none;
-}
-.lumen-radio:has(.lumen-radio__control:focus-visible) {
-  filter: var(--lumen-glow-focus);
+  box-shadow: var(--lumen-shadow-focus);
 }
 .lumen-radio__control[data-disabled] {
   cursor: not-allowed;

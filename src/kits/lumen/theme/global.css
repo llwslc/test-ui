@@ -3,7 +3,7 @@ body {
   color: var(--lumen-text);
   font-family: var(--lumen-font);
   font-size: var(--lumen-fs-16);
-  line-height: var(--lumen-lh-160);
+  line-height: var(--lumen-lh-150);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

@@ -6,127 +6,71 @@
   height: var(--lumen-control-h);
   padding: 0 var(--lumen-space-5);
   margin: 0;
-  border: 0;
+  border: var(--lumen-edge) solid var(--lumen-line-strong);
   cursor: pointer;
   color: var(--lumen-on-primary);
-  background: var(--lumen-line);
-  clip-path: var(--lumen-clip-9);
+  background: var(--lumen-primary);
+  box-shadow: var(--lumen-shadow-sm);
   font-family: var(--lumen-font-display);
-  font-weight: var(--lumen-fw-700);
   font-size: var(--lumen-fs-13);
-  letter-spacing: var(--lumen-ls-10);
+  letter-spacing: var(--lumen-ls-2);
   text-transform: uppercase;
   white-space: nowrap;
   transition:
-    filter var(--lumen-dur) var(--lumen-ease),
     transform var(--lumen-dur) var(--lumen-ease),
+    box-shadow var(--lumen-dur) var(--lumen-ease),
+    background var(--lumen-dur) var(--lumen-ease),
     color var(--lumen-dur) var(--lumen-ease);
 }
-
-.lumen-btn::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--lumen-clip-9);
-  background: var(--lumen-accent-surface);
-  transition:
-    background var(--lumen-dur) var(--lumen-ease),
-    filter var(--lumen-dur) var(--lumen-ease);
-}
-
-.lumen-btn::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 1;
-  clip-path: var(--lumen-clip-9);
-  background: linear-gradient(
-    105deg,
-    transparent 46%,
-    var(--lumen-sheen) 50%,
-    transparent 54%
-  );
-  background-size: 300% 100%;
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  transition: background-position var(--lumen-dur-slow) var(--lumen-ease);
-  pointer-events: none;
-}
-
 .lumen-btn__label {
-  position: relative;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: var(--lumen-space-2);
 }
 .lumen-btn__icon {
   display: inline-flex;
-  font-size: 1.15em;
+  font-size: 1.1em;
 }
 
-.lumen-btn:hover::after {
-  background-position: 0 0;
+.lumen-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--lumen-line-strong);
 }
 .lumen-btn:active {
-  transform: translateY(1px);
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--lumen-line-strong);
   transition-duration: 0s;
 }
 .lumen-btn:focus-visible {
   outline: none;
+  box-shadow: var(--lumen-shadow-focus);
 }
 .lumen-btn[data-disabled],
 .lumen-btn:disabled {
   cursor: not-allowed;
-  filter: grayscale(0.6) brightness(0.6);
   opacity: var(--lumen-disabled-opacity);
-}
-.lumen-btn[data-disabled]::after,
-.lumen-btn:disabled::after {
-  display: none;
-}
-
-.lumen-btn--primary:hover::before,
-.lumen-btn--primary:focus-visible::before,
-.lumen-btn--secondary:hover::before,
-.lumen-btn--secondary:focus-visible::before,
-.lumen-btn--danger:hover::before,
-.lumen-btn--danger:focus-visible::before {
-  filter: brightness(1.15);
+  box-shadow: none;
+  transform: none;
 }
 
 .lumen-btn--secondary {
-  background: var(--lumen-secondary-fill);
+  background: var(--lumen-secondary);
   color: var(--lumen-on-danger);
 }
-.lumen-btn--secondary::before {
-  background: linear-gradient(180deg, var(--lumen-secondary), var(--lumen-secondary-deep));
-}
-
 .lumen-btn--danger {
-  background: var(--lumen-danger-fill);
+  background: var(--lumen-danger);
   color: var(--lumen-on-danger);
 }
-.lumen-btn--danger::before {
-  background: linear-gradient(180deg, var(--lumen-danger), var(--lumen-danger-deep));
-}
-
 .lumen-btn--ghost {
-  color: var(--lumen-text-dim);
-}
-.lumen-btn--ghost::before {
   background: var(--lumen-surface-popup);
-}
-.lumen-btn--ghost::after {
-  opacity: 0.25;
+  color: var(--lumen-text);
+  box-shadow: none;
 }
 .lumen-btn--ghost:hover,
 .lumen-btn--ghost[data-popup-open] {
-  color: var(--lumen-primary);
-}
-.lumen-btn--ghost:hover::before {
   background: var(--lumen-ghost-hover);
+  color: var(--lumen-primary);
+  transform: none;
 }
 
 .lumen-btn--sm {
@@ -134,7 +78,6 @@
   padding: 0 var(--lumen-space-3);
   font-size: var(--lumen-fs-12);
 }
-
 .lumen-btn--lg {
   height: var(--lumen-button-h-lg);
   padding: 0 var(--lumen-space-7);
@@ -145,38 +88,28 @@
   width: var(--lumen-button-icon);
   height: var(--lumen-button-icon);
   padding: 0;
-  border: 1px solid var(--lumen-line);
-  background: var(--lumen-tint-faint);
-  color: var(--lumen-text-dim);
+  background: var(--lumen-surface-popup);
+  color: var(--lumen-text);
+  box-shadow: none;
   font-size: var(--lumen-fs-14);
-  clip-path: var(--lumen-clip-7);
-  transition:
-    color var(--lumen-dur) var(--lumen-ease),
-    background var(--lumen-dur) var(--lumen-ease),
-    border-color var(--lumen-dur) var(--lumen-ease),
-    transform var(--lumen-dur) var(--lumen-ease);
 }
 .lumen-btn--icon-ghost {
   width: var(--lumen-button-icon-ghost);
   height: var(--lumen-button-icon-ghost);
   padding: 0;
+  border: 0;
   background: transparent;
   color: var(--lumen-text-mute);
+  box-shadow: none;
   font-size: var(--lumen-fs-14);
-  transition:
-    color var(--lumen-dur) var(--lumen-ease),
-    transform var(--lumen-dur) var(--lumen-ease);
-}
-.lumen-btn--icon::before,
-.lumen-btn--icon::after,
-.lumen-btn--icon-ghost::before,
-.lumen-btn--icon-ghost::after {
-  display: none;
 }
 .lumen-btn--icon:hover,
 .lumen-btn--icon:focus-visible,
 .lumen-btn--icon-ghost:hover,
 .lumen-btn--icon-ghost:focus-visible {
   color: var(--lumen-primary);
-  filter: none;
+  transform: none;
+}
+.lumen-btn--icon-ghost:active {
+  transform: none;
 }

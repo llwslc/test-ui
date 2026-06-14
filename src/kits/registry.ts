@@ -28,7 +28,7 @@ export const KITS: KitDef[] = [
   {
     id: "lumen",
     label: "LUMEN",
-    tag: "Editorial · Press",
+    tag: "Brutalist · Press",
     app: () => import("./lumen"),
     loader: () => import("./lumen/Loader"),
   },

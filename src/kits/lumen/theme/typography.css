@@ -10,11 +10,11 @@
 }
 .lumen-h1 {
   font-size: var(--lumen-fs-22);
-  letter-spacing: var(--lumen-ls-4);
+  letter-spacing: var(--lumen-ls-2);
 }
 .lumen-h2 {
   font-size: var(--lumen-fs-16);
-  letter-spacing: var(--lumen-ls-4);
+  letter-spacing: var(--lumen-ls-2);
 }
 .lumen-h3 {
   font-size: var(--lumen-fs-13);
@@ -22,14 +22,13 @@
 }
 .lumen-h1--accent {
   color: var(--lumen-primary);
-  text-shadow: var(--lumen-glow-text);
 }
 
 .lumen-text {
   margin: 0;
   font-family: var(--lumen-font);
   font-size: var(--lumen-fs-14);
-  line-height: var(--lumen-lh-160);
+  line-height: var(--lumen-lh-150);
   color: var(--lumen-text-dim);
 }
 
@@ -37,7 +36,7 @@
   font-family: var(--lumen-font-mono);
   font-size: var(--lumen-fs-12);
   font-weight: var(--lumen-fw-600);
-  letter-spacing: var(--lumen-ls-10);
+  letter-spacing: var(--lumen-ls-8);
   text-transform: uppercase;
   color: var(--lumen-text-dim);
 }
