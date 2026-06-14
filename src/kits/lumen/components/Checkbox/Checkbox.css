@@ -1,0 +1,93 @@
+.lumen-checkbox-box {
+  position: relative;
+  display: inline-grid;
+  width: var(--lumen-checkbox-box);
+  height: var(--lumen-checkbox-box);
+  flex: 0 0 auto;
+  transition: filter var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-checkbox-box:has([data-checked]),
+.lumen-checkbox-box:has([data-indeterminate]) {
+  filter: drop-shadow(0 0 var(--lumen-glow-r) var(--lumen-line-strong));
+}
+.lumen-checkbox-box:has(:focus-visible) {
+  filter: var(--lumen-glow-focus);
+}
+
+.lumen-checkbox {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--lumen-checkbox-control);
+  height: var(--lumen-checkbox-control);
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  color: var(--lumen-on-primary);
+  background: var(--lumen-line);
+  clip-path: var(--lumen-clip-9);
+}
+.lumen-checkbox::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  clip-path: var(--lumen-clip-9);
+  background: var(--lumen-surface-popup);
+  transition: background var(--lumen-dur) var(--lumen-ease);
+}
+
+.lumen-checkbox__indicator {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: var(--lumen-fs-14);
+}
+.lumen-checkbox__check,
+.lumen-checkbox__dash {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity var(--lumen-dur) var(--lumen-ease),
+    transform var(--lumen-dur) var(--lumen-ease);
+}
+
+.lumen-checkbox[data-checked]::before,
+.lumen-checkbox[data-indeterminate]::before {
+  background: var(--lumen-accent-surface);
+}
+.lumen-checkbox[data-checked] .lumen-checkbox__check,
+.lumen-checkbox[data-indeterminate] .lumen-checkbox__dash {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lumen-checkbox:focus-visible {
+  outline: none;
+}
+.lumen-checkbox[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--lumen-disabled-opacity);
+}
+
+.lumen-checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lumen-space-3);
+  cursor: pointer;
+  user-select: none;
+}
+.lumen-checkbox-field__label {
+  line-height: var(--lumen-lh-100);
+}
+
+.lumen-checkbox-field:has(.lumen-checkbox[data-disabled]) {
+  opacity: var(--lumen-disabled-opacity);
+  cursor: not-allowed;
+}
+.lumen-checkbox-field .lumen-checkbox[data-disabled] {
+  opacity: 1;
+}

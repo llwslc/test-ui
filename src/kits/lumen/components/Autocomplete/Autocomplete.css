@@ -1,0 +1,135 @@
+.lumen-autocomplete__field {
+  display: block;
+  width: 100%;
+  min-width: var(--lumen-autocomplete-min-w);
+  transition: filter var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-autocomplete__field:has(:focus-within) {
+  filter: var(--lumen-glow-focus);
+}
+.lumen-autocomplete__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--lumen-space-2);
+  width: 100%;
+  min-width: var(--lumen-autocomplete-min-w);
+  height: var(--lumen-control-h);
+  padding: 0 var(--lumen-space-3);
+  background: var(--lumen-line);
+  clip-path: var(--lumen-clip-9);
+  transition: background var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-autocomplete__control::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--lumen-clip-9);
+  background: var(--lumen-surface-popup);
+}
+.lumen-autocomplete__control > * {
+  position: relative;
+  z-index: 1;
+}
+.lumen-autocomplete__control:focus-within {
+  background: var(--lumen-primary);
+}
+.lumen-autocomplete__control:focus-within::before {
+  background: var(--lumen-surface-inset);
+}
+
+.lumen-autocomplete__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--lumen-fs-16);
+  color: var(--lumen-primary);
+}
+.lumen-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--lumen-text);
+  font-family: var(--lumen-font);
+  font-size: var(--lumen-fs-14);
+  letter-spacing: var(--lumen-ls-4);
+  outline: none;
+}
+.lumen-autocomplete__input::placeholder {
+  color: var(--lumen-text-mute);
+}
+
+.lumen-autocomplete__positioner {
+  z-index: var(--lumen-z-dropdown);
+  outline: none;
+}
+.lumen-autocomplete__popup {
+  min-width: var(--anchor-width);
+  padding: var(--lumen-space-1);
+}
+
+.lumen-autocomplete__empty {
+  position: relative;
+  z-index: 1;
+  padding: var(--lumen-space-4) var(--lumen-space-3);
+  text-align: center;
+  color: var(--lumen-text-mute);
+  font-size: var(--lumen-fs-13);
+  letter-spacing: var(--lumen-ls-4);
+}
+.lumen-autocomplete__empty:empty {
+  display: none;
+}
+.lumen-autocomplete__list {
+  position: relative;
+  z-index: 1;
+  max-height: min(var(--available-height), var(--lumen-h-popup-list));
+  overflow-y: auto;
+}
+
+.lumen-autocomplete__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--lumen-space-2) var(--lumen-space-3);
+  cursor: pointer;
+  color: var(--lumen-text-dim);
+  font-size: var(--lumen-fs-14);
+  user-select: none;
+  outline: none;
+  clip-path: var(--lumen-clip-7);
+  transition:
+    background var(--lumen-dur) var(--lumen-ease),
+    color var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-autocomplete__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--lumen-primary);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-primary);
+  opacity: 0;
+  transition: opacity var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-autocomplete__item[data-highlighted] {
+  background: var(--lumen-highlight);
+  color: var(--lumen-text-bright);
+}
+.lumen-autocomplete__item[data-highlighted]::after {
+  opacity: 1;
+}
+.lumen-autocomplete__item[data-disabled] {
+  opacity: var(--lumen-disabled-opacity);
+  cursor: not-allowed;
+}
+.lumen-autocomplete__input:disabled {
+  cursor: not-allowed;
+}
+.lumen-autocomplete__field:has(.lumen-autocomplete__input:disabled) {
+  opacity: var(--lumen-disabled-opacity);
+}

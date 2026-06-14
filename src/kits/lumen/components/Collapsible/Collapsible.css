@@ -1,0 +1,6 @@
+.lumen-collapsible {
+  display: block;
+  width: 100%;
+  --lumen-surface-border: var(--lumen-line);
+  --lumen-surface-fill: var(--lumen-surface);
+}

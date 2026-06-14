@@ -1,0 +1,41 @@
+.lumen-ctxmenu__zone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--lumen-space-2);
+  min-height: var(--lumen-contextmenu-min-h);
+  padding: var(--lumen-space-7);
+  text-align: center;
+  color: var(--lumen-text-dim);
+  font-size: var(--lumen-fs-14);
+  letter-spacing: var(--lumen-ls-4);
+  cursor: context-menu;
+  user-select: none;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 9px, var(--lumen-tint-faint) 9px 10px),
+    var(--lumen-surface-zone);
+  clip-path: var(--lumen-clip-9);
+  outline: 1px dashed var(--lumen-line);
+  outline-offset: -1px;
+  transition:
+    background var(--lumen-dur) var(--lumen-ease),
+    outline-color var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-ctxmenu__zone:hover {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 9px, var(--lumen-tint-faint) 9px 10px),
+    var(--lumen-surface-zone-hover);
+}
+.lumen-ctxmenu__zone[data-popup-open] {
+  outline-color: var(--lumen-primary);
+}
+.lumen-ctxmenu__zone kbd {
+  font-family: var(--lumen-font-mono);
+  font-size: var(--lumen-fs-12);
+  color: var(--lumen-text-dim);
+  transition: color var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-ctxmenu__zone:hover kbd,
+.lumen-ctxmenu__zone[data-popup-open] kbd {
+  color: var(--lumen-primary);
+}

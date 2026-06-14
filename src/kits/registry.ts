@@ -25,6 +25,13 @@ export const KITS: KitDef[] = [
     app: () => import("./nova"),
     loader: () => import("./nova/Loader"),
   },
+  {
+    id: "lumen",
+    label: "LUMEN",
+    tag: "Editorial · Press",
+    app: () => import("./lumen"),
+    loader: () => import("./lumen/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

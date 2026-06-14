@@ -1,0 +1,116 @@
+@property --toast-offset-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.lumen-toast__viewport {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: var(--lumen-z-toast);
+  width: var(--lumen-w-toast);
+  max-width: calc(100vw - 44px);
+  height: var(--toast-frontmost-height, 0px);
+  outline: none;
+}
+
+.lumen-toast {
+  --lumen-toast-accent: var(--lumen-primary);
+  --lumen-overlay-glow: drop-shadow(
+    0 0 20px color-mix(in srgb, var(--lumen-toast-accent) 15%, transparent)
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: var(--lumen-space-3);
+  outline: none;
+  transform: translateX(var(--toast-swipe-movement-x, 0px))
+    translateY(var(--toast-offset-y));
+  opacity: 1;
+  transition:
+    --toast-offset-y calc(var(--lumen-dur-slow) * 1.4) var(--lumen-ease-soft),
+    opacity calc(var(--lumen-dur-slow) * 1.4) var(--lumen-ease-soft);
+}
+.lumen-toast[data-swiping] {
+  transition: none;
+}
+
+.lumen-toast__surface {
+  --lumen-surface-border: color-mix(in srgb, var(--lumen-toast-accent) 50%, transparent);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--lumen-space-3);
+  padding: var(--lumen-space-4) var(--lumen-space-4);
+  overflow: hidden;
+  transition: transform calc(var(--lumen-dur-slow) * 1.4) var(--lumen-ease-soft);
+}
+
+.lumen-toast[data-starting-style],
+.lumen-toast[data-ending-style] {
+  opacity: 0;
+}
+.lumen-toast[data-starting-style] .lumen-toast__surface {
+  transform: translateY(-20px) scale(0.97);
+}
+.lumen-toast[data-ending-style] .lumen-toast__surface {
+  transform: translateY(16px) scale(0.97);
+}
+
+.lumen-toast__beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--lumen-toast-accent);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-toast-accent);
+}
+
+.lumen-toast__main {
+  flex: 1;
+  min-width: 0;
+}
+.lumen-toast__title {
+  margin: 0;
+  font-family: var(--lumen-font-display);
+  font-size: var(--lumen-fs-13);
+  font-weight: var(--lumen-fw-700);
+  letter-spacing: var(--lumen-ls-10);
+  text-transform: uppercase;
+  color: var(--lumen-toast-accent);
+}
+.lumen-toast__desc {
+  margin: var(--lumen-space-1) 0 0;
+  font-size: var(--lumen-fs-14);
+  line-height: var(--lumen-lh-160);
+  color: var(--lumen-text-dim);
+}
+
+.lumen-toast__close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: var(--lumen-toast-close);
+  height: var(--lumen-toast-close);
+  border: 0;
+  background: transparent;
+  color: var(--lumen-text-mute);
+  cursor: pointer;
+  font-size: var(--lumen-fs-14);
+  transition: color var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-toast__close:hover {
+  color: var(--lumen-primary);
+}
+
+.lumen-toast--success {
+  --lumen-toast-accent: var(--lumen-success);
+}
+.lumen-toast--warning {
+  --lumen-toast-accent: var(--lumen-warning);
+}
+.lumen-toast--danger {
+  --lumen-toast-accent: var(--lumen-danger);
+}

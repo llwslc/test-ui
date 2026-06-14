@@ -1,0 +1,18 @@
+.lumen-previewcard__positioner {
+  z-index: var(--lumen-z-menu);
+}
+
+.lumen-previewcard__popup {
+  position: relative;
+  width: var(--lumen-w-preview);
+}
+
+.lumen-previewcard__surface {
+  display: block;
+  padding: var(--lumen-space-4);
+  overflow: hidden;
+}
+
+.lumen-previewcard__body {
+  position: relative;
+}

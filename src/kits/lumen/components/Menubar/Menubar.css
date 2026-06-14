@@ -1,0 +1,54 @@
+.lumen-menubar {
+  --lumen-surface-border: var(--lumen-line);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lumen-space-1);
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--lumen-space-1);
+}
+.lumen-menubar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.lumen-menubar__triggerwrap {
+  display: inline-flex;
+  transition: filter var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-menubar__triggerwrap:has([data-popup-open]) {
+  filter: var(--lumen-glow-trigger);
+}
+
+.lumen-menubar__trigger {
+  display: inline-flex;
+  align-items: center;
+  height: var(--lumen-menubar-trigger-h);
+  padding: 0 var(--lumen-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--lumen-text-dim);
+  font-family: var(--lumen-font-display);
+  font-weight: var(--lumen-fw-600);
+  font-size: var(--lumen-fs-12);
+  letter-spacing: var(--lumen-ls-10);
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  clip-path: var(--lumen-clip-7);
+  transition:
+    background var(--lumen-dur) var(--lumen-ease),
+    color var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-menubar__trigger:hover,
+.lumen-menubar__trigger:focus-visible {
+  background: var(--lumen-tint-soft);
+  color: var(--lumen-primary);
+}
+.lumen-menubar__trigger:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--lumen-line-strong);
+}
+.lumen-menubar__trigger[data-popup-open] {
+  background: var(--lumen-primary);
+  color: var(--lumen-on-primary);
+}

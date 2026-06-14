@@ -1,0 +1,67 @@
+.lumen-avatar {
+  position: relative;
+  display: inline-block;
+  width: var(--lumen-avatar-size);
+  height: var(--lumen-avatar-size);
+  filter: var(--lumen-glow-active);
+}
+
+.lumen-avatar__root {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--lumen-line);
+  clip-path: var(--lumen-clip-9);
+  overflow: hidden;
+}
+
+.lumen-avatar__img {
+  position: absolute;
+  inset: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  object-fit: cover;
+  clip-path: var(--lumen-clip-9);
+}
+
+.lumen-avatar__fallback {
+  position: absolute;
+  inset: 1px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    160deg,
+    var(--lumen-surface-deep-top),
+    var(--lumen-surface-deep-bottom)
+  );
+  color: var(--lumen-primary);
+  font-family: var(--lumen-font-display);
+  font-weight: var(--lumen-fw-700);
+  font-size: calc(var(--lumen-avatar-size) * 0.36);
+  letter-spacing: var(--lumen-ls-4);
+  clip-path: var(--lumen-clip-9);
+}
+
+.lumen-avatar__status {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--lumen-bg);
+  background: var(--lumen-text-mute);
+  transform: rotate(45deg);
+}
+.lumen-avatar__status--online {
+  background: var(--lumen-success);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-success);
+}
+.lumen-avatar__status--busy {
+  background: var(--lumen-danger);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-danger);
+}
+.lumen-avatar__status--away {
+  background: var(--lumen-warning);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-warning);
+}

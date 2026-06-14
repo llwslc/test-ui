@@ -1,0 +1,101 @@
+.lumen-tabs {
+  width: 100%;
+}
+
+.lumen-tabs__list {
+  position: relative;
+  display: flex;
+  gap: var(--lumen-space-1);
+}
+.lumen-tabs__list::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--lumen-line);
+}
+
+@media (max-width: 768px) {
+  .lumen-tabs__list {
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--lumen-space-2);
+    margin-bottom: calc(var(--lumen-space-2) * -1);
+  }
+  .lumen-tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+  .lumen-tabs__list::after,
+  .lumen-tabs__list .lumen-tabs__indicator {
+    bottom: var(--lumen-space-2);
+  }
+  .lumen-tabs__tab {
+    flex: 0 0 auto;
+  }
+}
+
+.lumen-tabs__tab {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--lumen-space-3) var(--lumen-space-5);
+  color: var(--lumen-text-dim);
+  font-family: var(--lumen-font-display);
+  font-weight: var(--lumen-fw-600);
+  font-size: var(--lumen-fs-13);
+  letter-spacing: var(--lumen-ls-10);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    color var(--lumen-dur) var(--lumen-ease),
+    background var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-tabs__tab:hover {
+  color: var(--lumen-text);
+  background: linear-gradient(180deg, transparent, var(--lumen-tint-soft));
+}
+.lumen-tabs__tab[data-active] {
+  color: var(--lumen-primary);
+  text-shadow: var(--lumen-glow-text);
+}
+.lumen-tabs__tab:focus-visible {
+  outline: none;
+  color: var(--lumen-text);
+  box-shadow: inset 0 0 0 1px var(--lumen-line-strong);
+}
+.lumen-tabs__tab[data-disabled] {
+  opacity: var(--lumen-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.lumen-tabs__indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 2px;
+  width: var(--active-tab-width);
+  transform: translateX(var(--active-tab-left));
+  background: var(--lumen-primary);
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-primary);
+  transition:
+    transform var(--lumen-dur) var(--lumen-ease),
+    width var(--lumen-dur) var(--lumen-ease);
+}
+
+.lumen-tabs__panel {
+  padding: var(--lumen-space-5) 0;
+  color: var(--lumen-text);
+  outline: none;
+  animation: lumen-tab-fade var(--lumen-dur-slow) var(--lumen-ease);
+}
+@keyframes lumen-tab-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}

@@ -1,4 +1,4 @@
-// states.js — interaction-state sweep for both kits.
+// states.js — interaction-state sweep for every kit.
 // node states.js [port]   (run sandbox-disabled)
 // Captures the states the resting demo does NOT show on its own — pressed
 // buttons, steppers driven to their min/max disabled edge, and every opened
@@ -19,7 +19,7 @@ const shoot = async (loc, path) => { try { await loc.screenshot({ path }); } cat
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
   await page.emulateMedia({ reducedMotion: 'reduce' });
 
-  for (const kit of ['nova', 'abyss']) {
+  for (const kit of ['nova', 'abyss', 'lumen']) {
     await page.goto(URL, { waitUntil: 'networkidle' });
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });

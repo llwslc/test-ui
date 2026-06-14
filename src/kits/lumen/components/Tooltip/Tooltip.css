@@ -1,0 +1,18 @@
+.lumen-tooltip__positioner {
+  z-index: var(--lumen-z-tooltip);
+}
+
+.lumen-tooltip__popup {
+  position: relative;
+  max-width: var(--lumen-w-tooltip);
+}
+
+.lumen-tooltip__surface {
+  display: block;
+  padding: var(--lumen-space-2) var(--lumen-space-3);
+  color: var(--lumen-text);
+  font-family: var(--lumen-font-mono);
+  font-size: var(--lumen-fs-12);
+  letter-spacing: var(--lumen-ls-4);
+  line-height: var(--lumen-lh-160);
+}

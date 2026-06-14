@@ -1,0 +1,44 @@
+.lumen-alert__popup {
+  --lumen-alert-accent: var(--lumen-danger);
+  --lumen-scan-color: var(--lumen-alert-accent);
+  --lumen-title-color: var(--lumen-alert-accent);
+  --lumen-tick-color: var(--lumen-alert-accent);
+  --lumen-overlay-shadow: var(--lumen-shadow-modal);
+  --lumen-overlay-glow: drop-shadow(
+    0 0 22px color-mix(in srgb, var(--lumen-alert-accent) 26%, transparent)
+  );
+  position: relative;
+  width: min(var(--lumen-w-alert), 100%);
+  outline: none;
+  transition:
+    opacity var(--lumen-dur) var(--lumen-ease),
+    transform var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-alert__popup[data-starting-style],
+.lumen-alert__popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.94);
+}
+.lumen-alert__popup--warning {
+  --lumen-alert-accent: var(--lumen-warning);
+}
+.lumen-alert__popup--primary {
+  --lumen-alert-accent: var(--lumen-primary);
+}
+
+.lumen-alert__surface {
+  --lumen-surface-clip: var(--lumen-clip-12);
+  --lumen-surface-fill:
+    radial-gradient(
+      130% 72% at 50% -8%,
+      color-mix(in srgb, var(--lumen-alert-accent) 20%, transparent),
+      transparent 62%
+    ),
+    var(--lumen-surface-modal);
+  --lumen-surface-border: color-mix(in srgb, var(--lumen-alert-accent) 50%, transparent);
+  padding: var(--lumen-pad-modal);
+}
+
+.lumen-alert__popup .lumen-modal-title {
+  margin: 0 0 var(--lumen-space-2);
+}

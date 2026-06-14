@@ -1,0 +1,26 @@
+.lumen-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--lumen-space-4);
+  width: 100%;
+}
+.lumen-separator-labeled__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lumen-line));
+}
+.lumen-separator-labeled__line:last-child {
+  background: linear-gradient(90deg, var(--lumen-line), transparent);
+}
+.lumen-separator-labeled__text {
+  font-family: var(--lumen-font-mono);
+  font-size: var(--lumen-fs-12);
+  letter-spacing: var(--lumen-ls-16);
+  text-transform: uppercase;
+  color: var(--lumen-text-dim);
+  white-space: nowrap;
+}
+.lumen-separator-labeled__text::before {
+  content: "// ";
+  color: var(--lumen-primary);
+}

@@ -1,0 +1,26 @@
+.lumen-dialog__popup {
+  --lumen-overlay-shadow: var(--lumen-shadow-modal);
+  --lumen-overlay-glow: var(--lumen-glow-modal);
+  position: relative;
+  width: min(var(--lumen-w-dialog), 100%);
+  outline: none;
+  transition:
+    opacity var(--lumen-dur) var(--lumen-ease),
+    transform var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-dialog__popup[data-starting-style],
+.lumen-dialog__popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.lumen-dialog__surface {
+  --lumen-surface-clip: var(--lumen-clip-12);
+  --lumen-surface-fill: var(--lumen-surface-modal);
+  padding: var(--lumen-pad-modal);
+}
+
+.lumen-dialog__x {
+  top: 16px;
+  right: 16px;
+}

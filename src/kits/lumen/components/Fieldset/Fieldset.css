@@ -1,0 +1,32 @@
+.lumen-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.lumen-fieldset__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--lumen-space-2);
+  width: 100%;
+  padding: 0 0 var(--lumen-space-2);
+  margin-bottom: var(--lumen-space-4);
+  border-bottom: 1px solid var(--lumen-line);
+  font-family: var(--lumen-font-display);
+  font-size: var(--lumen-fs-12);
+  font-weight: var(--lumen-fw-700);
+  letter-spacing: var(--lumen-ls-16);
+  text-transform: uppercase;
+  color: var(--lumen-primary);
+  text-shadow: var(--lumen-glow-text);
+}
+
+.lumen-fieldset__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lumen-space-4);
+  margin-left: var(--lumen-space-1);
+  padding-left: var(--lumen-space-4);
+  border-left: 1px solid var(--lumen-line);
+}

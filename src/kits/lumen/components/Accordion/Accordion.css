@@ -1,0 +1,27 @@
+.lumen-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lumen-space-2);
+  width: 100%;
+}
+
+.lumen-accordion__item {
+  --lumen-surface-border: var(--lumen-line);
+  --lumen-surface-fill: var(--lumen-surface);
+  transition: background var(--lumen-dur) var(--lumen-ease);
+}
+.lumen-accordion__item:hover {
+  --lumen-surface-border: var(--lumen-line-strong);
+}
+.lumen-accordion__item:has([data-disabled]) {
+  opacity: var(--lumen-disabled-opacity);
+}
+.lumen-accordion__item:has([data-disabled]):hover {
+  --lumen-surface-border: var(--lumen-line);
+}
+
+.lumen-accordion__header {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}

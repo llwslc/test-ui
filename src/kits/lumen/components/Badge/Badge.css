@@ -1,0 +1,47 @@
+.lumen-badge {
+  --lumen-badge-color: var(--lumen-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lumen-space-2);
+  height: var(--lumen-badge-h);
+  padding: 0 var(--lumen-space-3);
+  background: color-mix(in srgb, var(--lumen-badge-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lumen-badge-color) 45%, transparent);
+  color: var(--lumen-badge-color);
+  font-family: var(--lumen-font-mono);
+  font-size: var(--lumen-fs-12);
+  letter-spacing: var(--lumen-ls-10);
+  text-transform: uppercase;
+  white-space: nowrap;
+  clip-path: var(--lumen-clip-7);
+}
+
+.lumen-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--lumen-badge-color);
+  border-radius: 50%;
+  box-shadow: 0 0 var(--lumen-glow-r) var(--lumen-badge-color);
+  animation: lumen-badge-pulse 1.8s var(--lumen-ease) infinite;
+}
+@keyframes lumen-badge-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.lumen-badge--secondary {
+  --lumen-badge-color: var(--lumen-secondary);
+}
+.lumen-badge--success {
+  --lumen-badge-color: var(--lumen-success);
+}
+.lumen-badge--warning {
+  --lumen-badge-color: var(--lumen-warning);
+}
+.lumen-badge--danger {
+  --lumen-badge-color: var(--lumen-danger);
+}
+.lumen-badge--neutral {
+  --lumen-badge-color: var(--lumen-text-dim);
+}
