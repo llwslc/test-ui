@@ -1,72 +1,72 @@
 :root {
-  --lumen-bg: #f4efe3;
-  --lumen-bg-2: #ece5d6;
-  --lumen-surface: rgba(253, 251, 245, 0.82);
-  --lumen-surface-popup: #fdfbf5;
-  --lumen-scrim: rgba(38, 28, 16, 0.42);
-  --lumen-surface-modal: linear-gradient(160deg, #fefdf9, #f6f1e6);
-  --lumen-surface-inset: #e9e1d0;
-  --lumen-surface-raised: #fbf7ee;
-  --lumen-surface-zone: rgba(42, 37, 29, 0.03);
-  --lumen-surface-zone-hover: rgba(42, 37, 29, 0.06);
+  --lumen-bg: #efece3;
+  --lumen-bg-2: #e4ded0;
+  --lumen-surface: rgba(255, 255, 255, 0.88);
+  --lumen-surface-popup: #ffffff;
+  --lumen-scrim: rgba(18, 16, 11, 0.55);
+  --lumen-surface-modal: linear-gradient(180deg, #ffffff, #ffffff);
+  --lumen-surface-inset: #e6e0d2;
+  --lumen-surface-raised: #ffffff;
+  --lumen-surface-zone: rgba(18, 16, 11, 0.03);
+  --lumen-surface-zone-hover: rgba(18, 16, 11, 0.07);
 
-  --lumen-primary: #e0531d;
-  --lumen-primary-deep: #a93a11;
-  --lumen-secondary: #2b50c8;
-  --lumen-success: #3f7d44;
-  --lumen-warning: #c98a12;
-  --lumen-danger: #cc2b46;
+  --lumen-primary: #e4321f;
+  --lumen-primary-deep: #b21f12;
+  --lumen-secondary: #1b1810;
+  --lumen-success: #2f7d3a;
+  --lumen-warning: #c5860d;
+  --lumen-danger: #d22f2f;
 
   --lumen-accent-surface: linear-gradient(
     180deg,
     var(--lumen-primary),
-    var(--lumen-primary-deep)
+    var(--lumen-primary)
   );
   --lumen-accent-fill: linear-gradient(
     90deg,
-    var(--lumen-primary-deep),
-    var(--lumen-primary) 55%
+    var(--lumen-primary),
+    var(--lumen-primary)
   );
 
-  --lumen-secondary-fill: rgba(43, 80, 200, 0.9);
-  --lumen-secondary-deep: #1c3690;
-  --lumen-danger-fill: rgba(204, 43, 70, 0.9);
-  --lumen-danger-wash: rgba(204, 43, 70, 0.12);
-  --lumen-danger-deep: #991f33;
-  --lumen-danger-text: #8f1426;
-  --lumen-danger-inset: #f7e4e0;
-  --lumen-success-deep: #2a5a30;
-  --lumen-warning-deep: #9a6708;
+  --lumen-secondary-fill: rgba(27, 24, 16, 0.96);
+  --lumen-secondary-deep: #000000;
+  --lumen-danger-fill: rgba(210, 47, 47, 0.96);
+  --lumen-danger-wash: rgba(210, 47, 47, 0.12);
+  --lumen-danger-deep: #9c1f1f;
+  --lumen-danger-text: #a01818;
+  --lumen-danger-inset: #f6e3e3;
+  --lumen-success-deep: #1f5a28;
+  --lumen-warning-deep: #946109;
 
-  --lumen-ghost-hover: rgba(42, 37, 29, 0.07);
-  --lumen-sheen: rgba(255, 255, 255, 0.9);
-  --lumen-sheen-soft: rgba(255, 255, 255, 0.5);
-  --lumen-off: rgba(120, 110, 92, 0.45);
+  --lumen-ghost-hover: rgba(18, 16, 11, 0.08);
+  --lumen-sheen: rgba(255, 255, 255, 0.22);
+  --lumen-sheen-soft: rgba(255, 255, 255, 0);
+  --lumen-off: rgba(18, 16, 11, 0.32);
 
-  --lumen-text: #2a251d;
-  --lumen-text-bright: #14110b;
-  --lumen-text-dim: #6f6554;
-  --lumen-text-mute: #a99f8a;
-  --lumen-on-primary: #fff7ef;
-  --lumen-on-danger: #fff1ee;
+  --lumen-text: #16130c;
+  --lumen-text-bright: #050402;
+  --lumen-text-dim: #57523f;
+  --lumen-text-mute: #8a8472;
+  --lumen-on-primary: #fffaf2;
+  --lumen-on-danger: #fff4f1;
 
-  --lumen-line: rgba(42, 37, 29, 0.16);
-  --lumen-line-strong: rgba(42, 37, 29, 0.34);
-  --lumen-tint-faint: rgba(224, 83, 29, 0.05);
-  --lumen-tint-soft: rgba(224, 83, 29, 0.09);
-  --lumen-highlight: rgba(224, 83, 29, 0.14);
-  --lumen-tint-active: rgba(224, 83, 29, 0.3);
-  --lumen-primary-a40: rgba(224, 83, 29, 0.4);
-  --lumen-track: rgba(42, 37, 29, 0.1);
-  --lumen-glow-r: 8px;
-  --lumen-glow-text: 0 1px 0 rgba(255, 250, 242, 0.6);
-  --lumen-glow-focus: drop-shadow(0 0 6px rgba(224, 83, 29, 0.5));
-  --lumen-glow-popup: drop-shadow(0 0 12px rgba(224, 83, 29, 0.14));
-  --lumen-glow-active: drop-shadow(0 0 7px rgba(224, 83, 29, 0.45));
-  --lumen-glow-trigger: drop-shadow(0 0 9px var(--lumen-primary-a40));
+  --lumen-line: rgba(18, 16, 11, 0.72);
+  --lumen-line-strong: #16130c;
+  --lumen-tint-faint: rgba(228, 50, 31, 0.06);
+  --lumen-tint-soft: rgba(228, 50, 31, 0.12);
+  --lumen-highlight: rgba(228, 50, 31, 0.18);
+  --lumen-tint-active: rgba(228, 50, 31, 0.3);
+  --lumen-primary-a40: rgba(228, 50, 31, 0.42);
+  --lumen-track: rgba(18, 16, 11, 0.14);
+  --lumen-glow-r: 0px;
+  --lumen-glow-text: 0 0 0 transparent;
+  --lumen-glow-focus: drop-shadow(2px 2px 0 var(--lumen-primary));
+  --lumen-glow-popup: drop-shadow(0 0 0 transparent);
+  --lumen-glow-active: drop-shadow(2px 2px 0 var(--lumen-primary));
+  --lumen-glow-trigger: drop-shadow(2px 2px 0 var(--lumen-primary));
 
-  --lumen-font: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
-  --lumen-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --lumen-font: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --lumen-font-display: "Archivo Black", "Hanken Grotesk", sans-serif;
   --lumen-font-mono: "Spline Sans Mono", ui-monospace, "SFMono-Regular", monospace;
 
   --lumen-fs-12: 12px;
@@ -76,24 +76,24 @@
   --lumen-fs-18: 18px;
   --lumen-fs-22: 22px;
 
-  --lumen-ls-4: 0.04em;
-  --lumen-ls-10: 0.1em;
+  --lumen-ls-4: 0.02em;
+  --lumen-ls-10: 0.08em;
   --lumen-ls-16: 0.16em;
 
   --lumen-lh-100: 1;
-  --lumen-lh-160: 1.6;
+  --lumen-lh-160: 1.55;
 
   --lumen-fw-600: 600;
   --lumen-fw-700: 700;
 
-  --lumen-dur: 0.18s;
-  --lumen-dur-slow: 0.4s;
-  --lumen-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --lumen-dur: 0.14s;
+  --lumen-dur-slow: 0.32s;
+  --lumen-ease: cubic-bezier(0.2, 0.9, 0.25, 1);
   --lumen-ease-soft: cubic-bezier(0.38, 0.1, 0.2, 1);
   --lumen-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --lumen-control-h: 38px;
-  --lumen-disabled-opacity: 0.4;
+  --lumen-disabled-opacity: 0.38;
 
   --lumen-space-1: 4px;
   --lumen-space-2: 8px;
@@ -103,17 +103,17 @@
   --lumen-space-6: 24px;
   --lumen-space-7: 28px;
 
-  --lumen-shadow-popup: 0 10px 24px rgba(40, 28, 16, 0.16);
-  --lumen-shadow-modal: 0 24px 60px rgba(40, 28, 16, 0.22);
-  --lumen-shadow-ink: rgba(40, 28, 16, 0.5);
-  --lumen-shadow-thumb: 0 1px 2px rgba(40, 28, 16, 0.28);
-  --lumen-glow-modal: drop-shadow(0 0 20px rgba(224, 83, 29, 0.12));
+  --lumen-shadow-popup: 5px 5px 0 #16130c;
+  --lumen-shadow-modal: 9px 9px 0 #16130c;
+  --lumen-shadow-ink: #16130c;
+  --lumen-shadow-thumb: 1.5px 1.5px 0 rgba(18, 16, 11, 0.45);
+  --lumen-glow-modal: drop-shadow(0 0 0 transparent);
   --lumen-pad-modal: 26px 28px;
 
-  --lumen-thumb-idle-top: #fbf8f1;
-  --lumen-thumb-idle-bottom: #d9cfba;
-  --lumen-surface-deep-top: #fdfaf3;
-  --lumen-surface-deep-bottom: #efe7d6;
+  --lumen-thumb-idle-top: #ffffff;
+  --lumen-thumb-idle-bottom: #d7d1c2;
+  --lumen-surface-deep-top: #ffffff;
+  --lumen-surface-deep-bottom: #ece6d8;
 
   --lumen-w-dialog: 460px;
   --lumen-w-alert: 440px;
@@ -171,45 +171,10 @@
 }
 
 :root {
-  --lumen-clip-3: polygon(
-    2px 0,
-    100% 0,
-    100% calc(100% - 2px),
-    calc(100% - 2px) 100%,
-    0 100%,
-    0 2px
-  );
-  --lumen-clip-4: polygon(
-    3px 0,
-    100% 0,
-    100% calc(100% - 3px),
-    calc(100% - 3px) 100%,
-    0 100%,
-    0 3px
-  );
-  --lumen-clip-7: polygon(
-    4px 0,
-    100% 0,
-    100% calc(100% - 4px),
-    calc(100% - 4px) 100%,
-    0 100%,
-    0 4px
-  );
-  --lumen-clip-9: polygon(
-    5px 0,
-    100% 0,
-    100% calc(100% - 5px),
-    calc(100% - 5px) 100%,
-    0 100%,
-    0 5px
-  );
-  --lumen-clip-12: polygon(
-    8px 0,
-    100% 0,
-    100% calc(100% - 8px),
-    calc(100% - 8px) 100%,
-    0 100%,
-    0 8px
-  );
+  --lumen-clip-3: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  --lumen-clip-4: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  --lumen-clip-7: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  --lumen-clip-9: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  --lumen-clip-12: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   --lumen-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }

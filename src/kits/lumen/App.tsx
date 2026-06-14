@@ -505,42 +505,41 @@ function Demo() {
 
         <main className="lumen-main">
           <section className="lumen-hero">
-            <div className="lumen-hero__eyebrow">
-              <BoltIcon /> Component System · 37 Controls
+            <div className="lumen-hero__masthead" aria-hidden="true">
+              <span>Lumen</span>
+              <span className="lumen-hero__dot" />
+              <span>Editorial UI Kit</span>
+              <span className="lumen-hero__no">No. 01 · MMXXVI</span>
             </div>
-            <h1 className="lumen-h1">
-              An <b className="lumen-h1--accent">editorial</b> interface kit
-              <br />
-              set in warm ink
+            <h1 className="lumen-hero__head">
+              <span>Thirty-seven</span>
+              <span className="lumen-hero__head-ink">controls,</span>
+              <span>set in ink.</span>
             </h1>
-            <p className="lumen-text">
-              Thirty-seven accessible controls pressed into warm paper — hairline
-              keylines, cinnabar ink, and letterpress depth. Every control lives in its
-              own folder and rides on portable
-              <code> --lumen-* </code> tokens.
-            </p>
-            <div className="lumen-hero__stats">
-              <div className="lumen-hero__stat">
-                <b>37</b>
-                <span>Controls</span>
-              </div>
-              <div className="lumen-hero__stat">
-                <b>1</b>
-                <span>Token File</span>
-              </div>
-              <div className="lumen-hero__stat">
-                <b>0</b>
-                <span>Runtime Deps</span>
-              </div>
-              <div className="lumen-hero__stat">
-                <b>A11y</b>
-                <span>Built In</span>
-              </div>
-            </div>
-            <div className="lumen-hero__reticle" aria-hidden="true">
-              <span className="lumen-hero__ring lumen-hero__ring--1" />
-              <span className="lumen-hero__ring lumen-hero__ring--2" />
-              <span className="lumen-hero__ring lumen-hero__ring--3" />
+            <div className="lumen-hero__foot">
+              <p className="lumen-hero__lead">
+                Accessible by default. Heavy black keylines, one savage red, square
+                frames, hard offset shadows — no gloss, no glow. Each control rides on
+                portable <code>--lumen-*</code> tokens.
+              </p>
+              <dl className="lumen-hero__spec">
+                <div>
+                  <dt>Controls</dt>
+                  <dd>37</dd>
+                </div>
+                <div>
+                  <dt>Token file</dt>
+                  <dd>01</dd>
+                </div>
+                <div>
+                  <dt>Runtime deps</dt>
+                  <dd>00</dd>
+                </div>
+                <div>
+                  <dt>Accessible</dt>
+                  <dd>AA</dd>
+                </div>
+              </dl>
             </div>
           </section>
 

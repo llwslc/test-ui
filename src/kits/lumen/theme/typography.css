@@ -5,7 +5,8 @@
   font-family: var(--lumen-font-display);
   font-weight: var(--lumen-fw-700);
   line-height: var(--lumen-lh-100);
-  color: var(--lumen-text);
+  text-transform: uppercase;
+  color: var(--lumen-text-bright);
 }
 .lumen-h1 {
   font-size: var(--lumen-fs-22);
@@ -18,7 +19,6 @@
 .lumen-h3 {
   font-size: var(--lumen-fs-13);
   letter-spacing: var(--lumen-ls-16);
-  text-transform: uppercase;
 }
 .lumen-h1--accent {
   color: var(--lumen-primary);
