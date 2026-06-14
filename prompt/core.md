@@ -7,6 +7,7 @@
 
 - 喂 AI 三份拼成一套 kit：本 `core.md` 是骨架，一份 `themes/<kit>.md` 是皮肤即填值与个性，再加 `app.md` 演示页 + 外壳 + 加载。
 - 想出全新一套 = 只写一份新的 `themes/<kit>.md`，`core`、`app` 复用。
+- 视觉方向索引见 `themes/README.md`。
 - 本文里 `<kit>` 是该套代号，如 `nova`、`abyss`，`--<kit>-*`、`.<kit>-*` 按代号替换。
 
 ## 1. 目标 & 技术栈
