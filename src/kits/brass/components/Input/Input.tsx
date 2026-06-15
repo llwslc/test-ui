@@ -8,9 +8,10 @@ export interface InputProps
   label?: ReactNode;
   description?: ReactNode;
   startIcon?: ReactNode;
+  error?: ReactNode;
 }
 
-export function Input({ label, description, startIcon, className, ...props }: InputProps) {
+export function Input({ label, description, startIcon, error, className, ...props }: InputProps) {
   return (
     <Field.Root className="brass-field">
       {label && <Field.Label className="brass-cap brass-field__label">{label}</Field.Label>}
@@ -19,6 +20,7 @@ export function Input({ label, description, startIcon, className, ...props }: In
         <Field.Control className={cx("brass-input__control", className)} {...props} />
       </div>
       {description && <Field.Description className="brass-text brass-field__desc">{description}</Field.Description>}
+      {error != null && <Field.Error className="brass-field__error" match>{error}</Field.Error>}
     </Field.Root>
   );
 }

@@ -6,6 +6,7 @@ import "./Select.css";
 export interface SelectOption {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
 export interface SelectProps extends React.ComponentProps<typeof BaseSelect.Root> {
@@ -32,7 +33,7 @@ export function Select({ items = [], placeholder = "Select…", className, ...pr
         <BaseSelect.Positioner className="brass-lift" sideOffset={6}>
           <BaseSelect.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-select__popup">
             {items.map((it) => (
-              <BaseSelect.Item key={it.value} value={it.value} className="brass-list-item">
+              <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="brass-list-item">
                 <BaseSelect.ItemText className="brass-list-item__text">{it.label}</BaseSelect.ItemText>
                 <BaseSelect.ItemIndicator className="brass-list-item__check">
                   <Check />

@@ -1,19 +1,27 @@
 import type { ReactNode } from "react";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
-import { Button } from "../Button";
+import { Button, type ButtonProps } from "../Button";
 import { Bolt, Close, Gauge, Gear } from "../icons";
 import "./AlertDialog.css";
 
 type Tone = "danger" | "warning" | "primary";
+type ButtonVariant = ButtonProps["variant"];
 
 export interface AlertDialogProps {
   trigger: ReactNode;
+  triggerVariant?: ButtonVariant;
   title: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   actions?: ReactNode;
   tone?: Tone;
   confirmLabel?: ReactNode;
+}
+
+export interface AlertDialogCloseProps {
+  children: ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonProps["size"];
 }
 
 const toneMarker = {
@@ -28,8 +36,15 @@ const toneVariant = {
   danger: "danger",
 } as const;
 
+export function AlertDialogClose({ children, variant = "ghost", size }: AlertDialogCloseProps) {
+  return (
+    <BaseAlertDialog.Close render={<Button variant={variant} size={size}>{children}</Button>} />
+  );
+}
+
 export function AlertDialog({
   trigger,
+  triggerVariant = "secondary",
   title,
   description,
   children,
@@ -39,7 +54,7 @@ export function AlertDialog({
 }: AlertDialogProps) {
   return (
     <BaseAlertDialog.Root>
-      <BaseAlertDialog.Trigger render={<Button>{trigger}</Button>} />
+      <BaseAlertDialog.Trigger render={<Button variant={triggerVariant}>{trigger}</Button>} />
       <BaseAlertDialog.Portal>
         <BaseAlertDialog.Backdrop className="brass-backdrop" />
         <BaseAlertDialog.Viewport className="brass-viewport">
@@ -59,9 +74,11 @@ export function AlertDialog({
             )}
             {children && <div className="brass-modal-body">{children}</div>}
             <div className="brass-modal-actions">
-              <BaseAlertDialog.Close render={<Button variant="ghost">Cancel</Button>} />
               {actions ?? (
-                <BaseAlertDialog.Close render={<Button variant={toneVariant[tone]}>{confirmLabel}</Button>} />
+                <>
+                  <AlertDialogClose>Cancel</AlertDialogClose>
+                  <AlertDialogClose variant={toneVariant[tone]}>{confirmLabel}</AlertDialogClose>
+                </>
               )}
             </div>
             <BaseAlertDialog.Close

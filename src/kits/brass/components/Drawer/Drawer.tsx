@@ -1,21 +1,32 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
-import { Button } from "../Button";
+import { Button, type ButtonProps } from "../Button";
 import { Close } from "../icons";
 import "./Drawer.css";
 
+type ButtonVariant = NonNullable<ButtonProps["variant"]>;
+type ButtonSize = NonNullable<ButtonProps["size"]>;
+
 export interface DrawerProps {
   trigger: ReactNode;
+  triggerVariant?: ButtonVariant;
   title: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   actions?: ReactNode;
 }
 
-export function Drawer({ trigger, title, description, children, actions }: DrawerProps) {
+export function Drawer({
+  trigger,
+  triggerVariant = "secondary",
+  title,
+  description,
+  children,
+  actions,
+}: DrawerProps) {
   return (
     <BaseDrawer.Root swipeDirection="right">
-      <BaseDrawer.Trigger render={<Button>{trigger}</Button>} />
+      <BaseDrawer.Trigger render={<Button variant={triggerVariant}>{trigger}</Button>} />
       <BaseDrawer.Portal>
         <BaseDrawer.Backdrop className="brass-backdrop" />
         <BaseDrawer.Viewport className="brass-drawer-viewport">
@@ -43,5 +54,33 @@ export function Drawer({ trigger, title, description, children, actions }: Drawe
         </BaseDrawer.Viewport>
       </BaseDrawer.Portal>
     </BaseDrawer.Root>
+  );
+}
+
+export type DrawerCloseVariant = ButtonVariant;
+
+export interface DrawerCloseProps
+  extends Omit<ComponentPropsWithoutRef<typeof BaseDrawer.Close>, "className" | "render"> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+}
+
+export function DrawerClose({
+  variant = "secondary",
+  size = "md",
+  className,
+  children,
+  ...props
+}: DrawerCloseProps) {
+  return (
+    <BaseDrawer.Close
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
+      {...props}
+    />
   );
 }

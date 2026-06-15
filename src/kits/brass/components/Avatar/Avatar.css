@@ -59,3 +59,36 @@
 .brass-avatar--sm .brass-avatar__fallback :where(svg) {
   font-size: var(--brass-fs-17);
 }
+
+.brass-avatar__status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: var(--brass-space-3);
+  height: var(--brass-space-3);
+  border-radius: 50%;
+  background: var(--brass-text-mute);
+  border: var(--brass-round-xs) solid var(--brass-plate);
+  box-shadow: var(--brass-bevel), var(--brass-shadow-ink);
+}
+.brass-avatar--sm .brass-avatar__status {
+  width: var(--brass-space-2);
+  height: var(--brass-space-2);
+}
+.brass-avatar--lg .brass-avatar__status {
+  width: var(--brass-space-4);
+  height: var(--brass-space-4);
+  border-width: var(--brass-round-sm);
+}
+.brass-avatar__status--online {
+  background: radial-gradient(circle at 38% 34%, var(--brass-sheen), var(--brass-success) 58%);
+}
+.brass-avatar__status--busy {
+  background: var(--brass-danger);
+}
+.brass-avatar__status--away {
+  background: var(--brass-warning);
+}
+.brass-avatar__status--offline {
+  background: var(--brass-text-mute);
+}

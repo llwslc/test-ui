@@ -58,6 +58,7 @@
   padding-left: var(--brass-space-4);
 }
 .brass-drawer .brass-modal-desc,
-.brass-drawer .brass-modal-body {
+.brass-drawer .brass-modal-body,
+.brass-drawer .brass-modal-actions {
   padding-left: var(--brass-space-4);
 }

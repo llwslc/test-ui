@@ -31,10 +31,34 @@
   height: 100%;
   object-fit: cover;
 }
+.brass-preview__ident {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-1);
+  min-width: 0;
+}
 .brass-preview__title {
   color: var(--brass-text-bright);
+}
+.brass-preview__handle {
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  letter-spacing: var(--brass-ls-2);
+  color: var(--brass-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .brass-preview__desc {
   margin-top: var(--brass-space-3);
   color: var(--brass-text);
+}
+.brass-preview__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--brass-space-2);
+  margin-top: var(--brass-space-3);
+  padding-top: var(--brass-space-3);
+  border-top: 1px solid var(--brass-line);
 }

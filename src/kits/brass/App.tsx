@@ -3,6 +3,7 @@ import "./App.css";
 import {
   Accordion,
   AlertDialog,
+  AlertDialogClose,
   Autocomplete,
   Avatar,
   AvatarFallback,
@@ -15,16 +16,16 @@ import {
   Combobox,
   ContextMenu,
   Dialog,
+  DialogClose,
   Drawer,
+  DrawerClose,
   Fieldset,
   Form,
   Input,
   Menu,
-  MenuCheckboxItem,
-  MenuGroup,
   MenuItem,
-  MenuLabel,
   MenuSeparator,
+  MenuSub,
   Menubar,
   Meter,
   NavigationMenu,
@@ -56,7 +57,7 @@ import {
   Tooltip,
   useToast,
 } from "./components";
-import { Bolt, Copy, Gauge, Gear, Pipe, Valve } from "./components/icons";
+import { Bolt, Clock as ClockIcon, Close, Copy, Gauge, Gear, Pipe, Search, Valve } from "./components/icons";
 
 const NAV = [
   {
@@ -64,7 +65,8 @@ const NAV = [
     links: [
       { label: "Boiler Room", href: "#inputs", description: "Intake valves & registers" },
       { label: "Manifold", href: "#feedback", description: "Pressure readouts" },
-      { label: "Telegraph", href: "#overlays", description: "Signals & surfacing parts" },
+      { label: "Governor", href: "#feedback", description: "Throttle & flywheel" },
+      { label: "Reservoir", href: "#overlays", description: "Feedwater & condensate" },
     ],
   },
   {
@@ -72,6 +74,8 @@ const NAV = [
     links: [
       { label: "Castings", href: "#display", description: "Plates & fittings" },
       { label: "Blueprints", href: "#foundations", description: "Type & rule" },
+      { label: "Forgings", href: "#display", description: "Cranks & connecting rods" },
+      { label: "Patterns", href: "#foundations", description: "Moulds & templates" },
     ],
   },
   { label: "Manual", href: "#hero" },
@@ -91,9 +95,38 @@ const PRESSURE = [
   { label: "Nominal", value: "nominal" },
   { label: "High", value: "high" },
   { label: "Critical", value: "critical" },
+  { label: "Sealed", value: "sealed", disabled: true },
 ];
 
-const FUELS = ["Anthracite", "Bituminous", "Coke", "Lignite", "Peat"];
+const FUEL_PARTS = [
+  { label: "Anthracite", value: "anthracite" },
+  { label: "Bituminous", value: "bituminous" },
+  { label: "Coke", value: "coke" },
+  { label: "Lignite", value: "lignite" },
+  { label: "Peat", value: "peat" },
+  { label: "Charcoal", value: "charcoal" },
+  { label: "Coal gas", value: "coal-gas" },
+  { label: "Producer gas", value: "producer-gas" },
+  { label: "Naphtha", value: "naphtha" },
+  { label: "Paraffin", value: "paraffin" },
+  { label: "Tar", value: "tar" },
+  { label: "Coke breeze", value: "coke-breeze" },
+];
+
+const FUELS = [
+  "Anthracite",
+  "Bituminous",
+  "Coke",
+  "Lignite",
+  "Peat",
+  "Charcoal",
+  "Coal gas",
+  "Producer gas",
+  "Naphtha",
+  "Paraffin",
+  "Tar",
+  "Coke breeze",
+];
 
 function Clock() {
   const [now, setNow] = useState(() => new Date());
@@ -137,6 +170,37 @@ function GaugeDial() {
   );
 }
 
+function ProgressGauges() {
+  const [val, setVal] = useState(24);
+  useEffect(() => {
+    const id = setInterval(() => setVal((v) => (v >= 100 ? 8 : v + 4)), 900);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="brass-stack">
+      <Progress label="Stoking firebox" value={val} />
+      <Progress label="Building pressure" value={67} />
+      <Progress label="Boiler primed" value={100} />
+      <Progress label="Sweeping gauges…" value={null} />
+    </div>
+  );
+}
+
+function IgnitionCodeField() {
+  const [code, setCode] = useState("");
+  const valid = code.length >= 6;
+  const touched = code.length > 0;
+  return (
+    <Input
+      label="Ignition code"
+      placeholder="6-digit code…"
+      value={code}
+      onChange={(e) => setCode(e.target.value)}
+      error={touched && !valid ? "Ignition code too short" : undefined}
+    />
+  );
+}
+
 export default function App() {
   return (
     <ToastProvider>
@@ -165,6 +229,7 @@ function Demo() {
           <Badge tone="success" dot>
             Pressurized
           </Badge>
+          <ClockIcon className="brass-shell__status-icon" aria-hidden="true" />
           <Clock />
         </div>
       </header>
@@ -220,17 +285,41 @@ function Demo() {
           <GroupRule id="inputs" label="Inputs" sub="intake & regulation" />
           <div className="brass-grid">
             <Panel id="button" title="Button" meta="BTN" wide>
-              <div className="brass-row">
-                <Button variant="primary">Engage</Button>
-                <Button variant="secondary">Standby</Button>
-                <Button variant="danger">Vent</Button>
-                <Button variant="ghost">Cancel</Button>
-                <Button variant="secondary" iconOnly aria-label="Copy">
-                  <Copy />
-                </Button>
-                <Button variant="primary" disabled>
-                  Locked
-                </Button>
+              <div className="brass-stack">
+                <div className="brass-row">
+                  <Button variant="primary">
+                    <Bolt />
+                    Engage
+                  </Button>
+                  <Button variant="secondary">Standby</Button>
+                  <Button variant="danger">Vent</Button>
+                  <Button variant="ghost">Cancel</Button>
+                  <Button disabled>Locked</Button>
+                </div>
+                <Separator />
+                <div className="brass-row">
+                  <Button size="sm">Trim</Button>
+                  <Button size="md">Set</Button>
+                  <Button size="lg">Drive</Button>
+                </div>
+                <Separator />
+                <div className="brass-row">
+                  <Button iconOnly aria-label="Copy reading">
+                    <Copy />
+                  </Button>
+                  <Button iconOnly aria-label="Adjust gear">
+                    <Gear />
+                  </Button>
+                  <Button iconOnly disabled aria-label="Valve locked">
+                    <Valve />
+                  </Button>
+                  <Button variant="ghost" iconOnly aria-label="Read gauge">
+                    <Gauge />
+                  </Button>
+                  <Button variant="ghost" iconOnly aria-label="Discharge">
+                    <Bolt />
+                  </Button>
+                </div>
               </div>
             </Panel>
 
@@ -244,14 +333,31 @@ function Demo() {
                   <span className="brass-cap">Bypass</span>
                   <Switch />
                 </label>
+                <label className="brass-row brass-row--between">
+                  <span className="brass-cap">Safety lock</span>
+                  <Switch disabled defaultChecked />
+                </label>
+                <label className="brass-row brass-row--between">
+                  <span className="brass-cap">Sealed port</span>
+                  <Switch disabled />
+                </label>
               </div>
             </Panel>
             <Panel id="toggle" title="Toggle Group" meta="TGL">
-              <ToggleGroup defaultValue={["heat"]}>
-                <ToggleItem value="heat">Heat</ToggleItem>
-                <ToggleItem value="steam">Steam</ToggleItem>
-                <ToggleItem value="cool">Cool</ToggleItem>
-              </ToggleGroup>
+              <div className="brass-stack">
+                <ToggleGroup defaultValue={["heat"]}>
+                  <ToggleItem value="heat">Heat</ToggleItem>
+                  <ToggleItem value="steam">Steam</ToggleItem>
+                  <ToggleItem value="cool" disabled>
+                    Cool
+                  </ToggleItem>
+                </ToggleGroup>
+                <ToggleGroup multiple defaultValue={["intake", "exhaust"]}>
+                  <ToggleItem value="intake">Intake</ToggleItem>
+                  <ToggleItem value="exhaust">Exhaust</ToggleItem>
+                  <ToggleItem value="purge">Purge</ToggleItem>
+                </ToggleGroup>
+              </div>
             </Panel>
 
             <Panel id="checkbox" title="Checkbox" meta="CHK">
@@ -265,8 +371,12 @@ function Demo() {
                   <span className="brass-cap">Manual feed</span>
                 </label>
                 <label className="brass-row">
-                  <Checkbox indeterminate />
-                  <span className="brass-cap">Mixed load</span>
+                  <Checkbox disabled defaultChecked />
+                  <span className="brass-cap">Locked open</span>
+                </label>
+                <label className="brass-row">
+                  <Checkbox disabled />
+                  <span className="brass-cap">Sealed shut</span>
                 </label>
               </div>
             </Panel>
@@ -283,10 +393,13 @@ function Demo() {
             </Panel>
 
             <Panel id="radio" title="Radio" meta="RAD">
-              <RadioGroup defaultValue="nominal">
+              <RadioGroup defaultValue="low">
                 <Radio value="low">Low draught</Radio>
                 <Radio value="nominal">Nominal</Radio>
                 <Radio value="high">Forced</Radio>
+                <Radio value="sealed" disabled>
+                  Sealed (offline)
+                </Radio>
               </RadioGroup>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
@@ -294,27 +407,32 @@ function Demo() {
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CMB">
-              <Combobox
-                items={PRESSURE}
-                placeholder="Search bands…"
-              />
+              <Combobox items={FUEL_PARTS} placeholder="Search fuel…" />
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <Autocomplete items={FUELS} placeholder="Fuel type…" />
             </Panel>
 
             <Panel id="slider" title="Slider" meta="SLD">
-              <Slider label="Throttle" defaultValue={62} />
+              <div className="brass-stack">
+                <Slider label="Throttle" defaultValue={62} />
+                <Slider label="Damper" defaultValue={40} disabled />
+              </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
-              <NumberField label="Boiler PSI" defaultValue={140} min={0} max={250} step={5} />
+              <NumberField label="Boiler PSI" defaultValue={7} min={0} max={12} step={1} />
             </Panel>
 
             <Panel id="input" title="Input" meta="INP">
-              <Input label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
+              <div className="brass-stack">
+                <Input label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
+                <Input startIcon={<Search />} placeholder="Search registry…" />
+                <IgnitionCodeField />
+                <Input label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
+              </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
-              <OtpField label="Ignition code" length={6} />
+              <OtpField label="Ignition code" length={6} splitAt={3} defaultValue="427" />
             </Panel>
           </div>
 
@@ -324,18 +442,19 @@ function Demo() {
             <Panel id="fieldset" title="Fieldset" meta="FLD">
               <Fieldset.Root>
                 <Fieldset.Legend>Engineer</Fieldset.Legend>
-                <Input label="Name" placeholder="I. K. Brunel" />
-                <Input label="Watch" placeholder="Forenoon" />
+                <Input label="Name" defaultValue="I. K. Brunel" />
+                <Input label="Watch" defaultValue="Forenoon" />
               </Fieldset.Root>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  toast.add({ title: "Logged", description: "Manifest submitted." });
+                  toast.add({ title: "Logged", description: "Manifest submitted.", type: "success" });
                 }}
               >
                 <Input label="Manifest" placeholder="Cargo…" />
+                <Input label="Cipher" type="password" placeholder="Watch cipher…" />
                 <Button type="submit" variant="primary">
                   Submit
                 </Button>
@@ -347,10 +466,14 @@ function Demo() {
           <GroupRule id="feedback" label="Feedback" sub="what the gauges return" />
           <div className="brass-grid">
             <Panel id="progress" title="Progress" meta="PRG">
-              <Progress label="Stoking" value={62} />
+              <ProgressGauges />
             </Panel>
             <Panel id="meter" title="Meter" meta="MTR">
-              <Meter label="Boiler pressure" value={78} />
+              <div className="brass-stack">
+                <Meter label="Boiler pressure" value={88} />
+                <Meter label="Coolant flow" value={52} tone="warning" />
+                <Meter label="Bearing temp" value={23} tone="danger" />
+              </div>
             </Panel>
 
             <Panel id="tabs" title="Tabs" meta="TAB" wide>
@@ -359,7 +482,7 @@ function Demo() {
                 items={[
                   { value: "steam", label: "Steam", content: "Saturated at 180 PSI, superheater online." },
                   { value: "water", label: "Water", content: "Feedwater tank at 74%, injectors primed." },
-                  { value: "fire", label: "Firebox", content: "Grate clean, draught nominal, ash bin clear." },
+                  { value: "fire", label: "Firebox", content: "Grate clean, draught nominal, ash bin clear.", disabled: true },
                 ]}
               />
             </Panel>
@@ -375,11 +498,18 @@ function Demo() {
               />
             </Panel>
             <Panel id="collapsible" title="Collapsible" meta="CLP">
-              <Collapsible title="Maintenance log">
-                <p className="brass-text">
-                  Last overhaul 14 days ago. Next inspection due at 2,000 running hours.
-                </p>
-              </Collapsible>
+              <div className="brass-stack">
+                <Collapsible title="Maintenance log" defaultOpen>
+                  <p className="brass-text">
+                    Last overhaul 14 days ago. Next inspection due at 2,000 running hours.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Spares inventory">
+                  <p className="brass-text">
+                    Two spare injectors, one gauge glass, half a ton of firebricks in the tender.
+                  </p>
+                </Collapsible>
+              </div>
             </Panel>
           </div>
 
@@ -387,23 +517,28 @@ function Demo() {
           <GroupRule id="overlays" label="Overlays" sub="signals & surfacing" />
           <div className="brass-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP">
-              <Tooltip content="Release excess pressure">
-                <Button variant="secondary" iconOnly aria-label="Vent">
-                  <Valve />
-                </Button>
-              </Tooltip>
+              <div className="brass-row">
+                <Tooltip content="Release pressure" side="top">
+                  <Button variant="ghost">Vent</Button>
+                </Tooltip>
+                <Tooltip content="Open intake" side="bottom">
+                  <Button variant="ghost">Intake</Button>
+                </Tooltip>
+                <Tooltip content="Force draught" side="left">
+                  <Button variant="ghost">Draught</Button>
+                </Tooltip>
+                <Tooltip content="Blow down" side="right">
+                  <Button variant="ghost">Blow down</Button>
+                </Tooltip>
+              </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
               <Popover
                 trigger="Readout"
+                triggerProps={{ variant: "ghost" }}
                 title="Manifold A"
-                description="Three cylinders nominal. One flagged for inspection."
-              >
-                <div className="brass-row">
-                  <Badge tone="success">OK</Badge>
-                  <Badge tone="warning">Watch</Badge>
-                </div>
-              </Popover>
+                description="Three cylinders nominal; one flagged for inspection on the next watch."
+              />
             </Panel>
 
             <Panel id="preview" title="Preview Card" meta="PVW" wide>
@@ -411,8 +546,22 @@ function Demo() {
                 Chief engineer{" "}
                 <PreviewCard
                   title="I. K. Brunel"
-                  description="Chief engineer, Great Western works. 40 years on the footplate."
-                  avatar="IB"
+                  handle="@brunel"
+                  description="Chief engineer, Great Western works. Forty years on the footplate, last man off the boiler at night."
+                  avatar={
+                    <Avatar status="online">
+                      <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
+                      <AvatarFallback>IB</AvatarFallback>
+                    </Avatar>
+                  }
+                  footer={
+                    <>
+                      <Badge tone="primary" dot>
+                        Engineer
+                      </Badge>
+                      <Badge tone="neutral">Off watch</Badge>
+                    </>
+                  }
                 >
                   <a href="#hero" className="brass-link">
                     @brunel
@@ -424,13 +573,22 @@ function Demo() {
 
             <Panel id="menu" title="Menu" meta="MNU">
               <Menu trigger="Actions">
-                <MenuGroup>
-                  <MenuLabel>Boiler</MenuLabel>
-                  <MenuItem>Stoke firebox</MenuItem>
-                  <MenuItem>Blow down</MenuItem>
-                </MenuGroup>
+                <MenuItem icon={<Bolt />} shortcut="⌘E">
+                  Stoke firebox
+                </MenuItem>
+                <MenuItem icon={<Gauge />} shortcut="⌘R">
+                  Read gauges
+                </MenuItem>
+                <MenuItem icon={<Valve />} shortcut="⌘B">
+                  Blow down
+                </MenuItem>
+                <MenuItem icon={<Gear />} disabled>
+                  Calibrate
+                </MenuItem>
                 <MenuSeparator />
-                <MenuCheckboxItem defaultChecked>Auto-regulate</MenuCheckboxItem>
+                <MenuItem icon={<Close />} tone="danger">
+                  Shut down
+                </MenuItem>
               </Menu>
             </Panel>
             <Panel id="menubar" title="Menubar" meta="MBR">
@@ -443,7 +601,7 @@ function Demo() {
                         <MenuItem>Start</MenuItem>
                         <MenuItem>Reverse</MenuItem>
                         <MenuSeparator />
-                        <MenuItem>Shut down</MenuItem>
+                        <MenuItem tone="danger">Shut down</MenuItem>
                       </>
                     ),
                   },
@@ -451,8 +609,24 @@ function Demo() {
                     label: "Gauges",
                     content: (
                       <>
-                        <MenuItem>Calibrate</MenuItem>
-                        <MenuItem>Reset</MenuItem>
+                        <MenuItem shortcut="⌘C">Calibrate</MenuItem>
+                        <MenuItem shortcut="⌘0">Reset</MenuItem>
+                      </>
+                    ),
+                  },
+                  {
+                    label: "Telegraph",
+                    content: (
+                      <>
+                        <MenuItem>Ahead</MenuItem>
+                        <MenuItem>Astern</MenuItem>
+                        <MenuSub label="More signals">
+                          <MenuItem>Slow</MenuItem>
+                          <MenuItem>Half</MenuItem>
+                          <MenuItem>Full</MenuItem>
+                          <MenuSeparator />
+                          <MenuItem>Stop</MenuItem>
+                        </MenuSub>
                       </>
                     ),
                   },
@@ -464,11 +638,17 @@ function Demo() {
               <NavigationMenu items={NAV} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
-              <ContextMenu hint="Right-click the plate">
-                <MenuItem>Inspect</MenuItem>
-                <MenuItem>Lubricate</MenuItem>
+              <ContextMenu
+                hint={
+                  <>
+                    Right-click the plate <kbd>⌥</kbd>
+                  </>
+                }
+              >
+                <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                <MenuItem shortcut="⌘L">Lubricate</MenuItem>
                 <MenuSeparator />
-                <MenuItem>Decommission</MenuItem>
+                <MenuItem tone="danger">Decommission</MenuItem>
               </ContextMenu>
             </Panel>
 
@@ -477,6 +657,12 @@ function Demo() {
                 trigger="Open hatch"
                 title="Inspection hatch"
                 description="Confirm the boiler is depressurized before opening the hatch."
+                footer={
+                  <>
+                    <DialogClose>Open hatch</DialogClose>
+                    <DialogClose variant="secondary">Stand clear</DialogClose>
+                  </>
+                }
               >
                 <p className="brass-text">Pressure: 0 PSI · Temperature: 38°C</p>
               </Dialog>
@@ -484,34 +670,68 @@ function Demo() {
             <Panel id="alert" title="Alert Dialog" meta="ALT">
               <AlertDialog
                 tone="danger"
+                triggerVariant="danger"
                 trigger="Emergency stop"
                 title="Trigger emergency stop?"
                 description="This vents all pressure and halts the engine immediately."
-                confirmLabel="Stop engine"
+                actions={
+                  <>
+                    <AlertDialogClose>Hold fast</AlertDialogClose>
+                    <AlertDialogClose variant="danger">Stop engine</AlertDialogClose>
+                  </>
+                }
               />
             </Panel>
 
             <Panel id="drawer" title="Drawer" meta="DRW">
               <Drawer
                 trigger="Open log"
-                title="Engine log"
-                description="Recent entries from the watch."
+                triggerVariant="ghost"
+                title="Watch settings"
+                description="Adjust the standing orders for this watch."
+                actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
               >
-                <p className="brass-text">06:00 — Lit fires.</p>
-                <p className="brass-text">08:20 — Pressure nominal.</p>
-                <p className="brass-text">11:45 — Took on water at depot.</p>
+                <label className="brass-row brass-row--between">
+                  <span className="brass-cap">Auto-stoke</span>
+                  <Switch defaultChecked />
+                </label>
+                <label className="brass-row brass-row--between">
+                  <span className="brass-cap">Night firing</span>
+                  <Switch />
+                </label>
+                <Slider label="Draught" defaultValue={50} />
               </Drawer>
             </Panel>
             <Panel id="toast" title="Toast" meta="TST">
               <div className="brass-row">
                 <Button
-                  variant="secondary"
+                  size="sm"
+                  variant="ghost"
                   onClick={() => toast.add({ title: "Valve opened", description: "Bypass engaged." })}
                 >
                   Notify
                 </Button>
                 <Button
-                  variant="danger"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() =>
+                    toast.add({ title: "Pressure nominal", description: "Boiler holding at 180 PSI.", type: "success" })
+                  }
+                >
+                  Confirm
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() =>
+                    toast.add({ title: "Watch gauge", description: "Coolant flow dropping.", type: "warning" })
+                  }
+                >
+                  Warn
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
                   onClick={() =>
                     toast.add({ title: "Over-pressure", description: "Boiler at 240 PSI.", type: "danger" })
                   }
@@ -527,27 +747,32 @@ function Demo() {
           <div className="brass-grid">
             <Panel id="avatar" title="Avatar" meta="AVT">
               <div className="brass-row">
-                <Avatar size="sm">
+                <Avatar status="online">
+                  <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
                   <AvatarFallback>IB</AvatarFallback>
                 </Avatar>
-                <Avatar size="md">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
+                <Avatar status="busy">
                   <AvatarFallback>GW</AvatarFallback>
                 </Avatar>
-                <Avatar size="lg">
-                  <AvatarFallback />
+                <Avatar status="away">
+                  <AvatarFallback>RS</AvatarFallback>
+                </Avatar>
+                <Avatar size="lg" status="offline">
+                  <AvatarFallback>TC</AvatarFallback>
                 </Avatar>
               </div>
             </Panel>
             <Panel id="badge" title="Badge" meta="BDG">
               <div className="brass-row">
-                <Badge tone="primary">Brass</Badge>
-                <Badge tone="secondary">Copper</Badge>
-                <Badge tone="success" dot>
-                  Online
+                <Badge tone="primary" dot>
+                  Brass
                 </Badge>
+                <Badge tone="success">Online</Badge>
                 <Badge tone="warning">Watch</Badge>
-                <Badge tone="danger">Fault</Badge>
+                <Badge tone="danger" dot>
+                  Fault
+                </Badge>
+                <Badge tone="secondary">Copper</Badge>
                 <Badge tone="neutral">Idle</Badge>
               </div>
             </Panel>
@@ -555,39 +780,53 @@ function Demo() {
             <Panel id="toolbar" title="Toolbar" meta="TBR">
               <Toolbar>
                 <ToolbarGroup>
-                  <ToolbarButton aria-label="Gear">
+                  <ToolbarButton aria-label="Adjust gear">
                     <Gear />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Gauge">
+                  <ToolbarButton aria-label="Read gauge">
                     <Gauge />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Valve">
+                  <ToolbarButton aria-label="Open valve">
                     <Valve />
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarButton aria-label="Bolt">
-                  <Bolt />
-                </ToolbarButton>
+                <ToggleGroup defaultValue={["heat"]}>
+                  <ToggleItem value="heat">Heat</ToggleItem>
+                  <ToggleItem value="steam">Steam</ToggleItem>
+                  <ToggleItem value="cool">Cool</ToggleItem>
+                </ToggleGroup>
+                <ToolbarSeparator />
+                <ToolbarButton
+                  render={
+                    <ToggleItem value="auto">
+                      <Bolt />
+                      Auto
+                    </ToggleItem>
+                  }
+                />
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
-              <ScrollArea style={{ height: 150 }}>
+              <ScrollArea style={{ maxHeight: 200 }}>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
                     <ol className="brass-scroll-list">
                       {[
-                        "Cylinder pressure",
-                        "Crank bearing temp",
-                        "Feedwater level",
-                        "Superheat margin",
-                        "Draught fan rpm",
-                        "Ash pan status",
-                        "Lubricator flow",
-                        "Stack temperature",
-                      ].map((t, i) => (
-                        <li key={t} className="brass-text">
-                          <span className="brass-cap">{String(i + 1).padStart(2, "0")}</span> {t}
+                        ["06:00", "Lit fires"],
+                        ["06:20", "Pressure rising"],
+                        ["06:40", "Pressure nominal"],
+                        ["07:10", "Took on water"],
+                        ["07:35", "Injectors primed"],
+                        ["08:00", "Departed depot"],
+                        ["08:45", "Banked the firebox"],
+                        ["09:30", "Lubricators topped"],
+                        ["10:15", "Blew down boiler"],
+                        ["11:00", "Coaled at siding"],
+                        ["11:45", "Stowed for the watch"],
+                      ].map(([time, msg]) => (
+                        <li key={time} className="brass-text">
+                          <span className="brass-cap">{time}</span> {msg}
                         </li>
                       ))}
                     </ol>
@@ -618,14 +857,27 @@ function Demo() {
 
             <Panel id="separator" title="Separator" meta="SEP">
               <div className="brass-stack">
-                <span className="brass-text">Above the line</span>
+                <span className="brass-cap">Plain</span>
                 <Separator />
-                <span className="brass-text">Below the line</span>
+                <span className="brass-cap">Stamped</span>
+                <Separator label="Gauge VII" />
+                <span className="brass-cap">Vertical</span>
+                <div className="brass-row">
+                  <span className="brass-text">Boiler A</span>
+                  <Separator orientation="vertical" />
+                  <span className="brass-text">Boiler B</span>
+                  <Separator orientation="vertical" />
+                  <span className="brass-text">Boiler C</span>
+                </div>
               </div>
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL">
-              <Panel title="Nested plate" meta="SUB" marker={<Gauge />}>
-                <p className="brass-text">Panels nest as riveted sub-plates.</p>
+              <p className="brass-text" style={{ marginTop: 0 }}>
+                The riveted instrument plate wrapping every section — brushed bezel, machined corner
+                brackets and a steam sheen. Composable to any depth.
+              </p>
+              <Panel title="Nested plate" meta="SUB">
+                <span className="brass-cap">A plate within a plate</span>
               </Panel>
             </Panel>
           </div>

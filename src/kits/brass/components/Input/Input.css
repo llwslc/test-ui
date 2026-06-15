@@ -6,6 +6,21 @@
 .brass-field__desc {
   font-size: var(--brass-fs-13);
 }
+.brass-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  letter-spacing: var(--brass-ls-3);
+  text-transform: uppercase;
+  color: var(--brass-danger);
+}
+.brass-field__error::before {
+  content: "△";
+  font-size: var(--brass-fs-13);
+  line-height: var(--brass-lh-100);
+}
 
 .brass-input {
   --brass-plate-bezel: var(--brass-bezel-dim);

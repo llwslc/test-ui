@@ -1,2 +1,2 @@
-export { Drawer } from "./Drawer";
-export type { DrawerProps } from "./Drawer";
+export { Drawer, DrawerClose } from "./Drawer";
+export type { DrawerProps, DrawerCloseProps, DrawerCloseVariant } from "./Drawer";

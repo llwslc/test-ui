@@ -10,3 +10,4 @@ export {
   MenuRadioItem,
   MenuSub,
 } from "./parts";
+export type { MenuItemProps } from "./parts";

@@ -13,3 +13,33 @@
   height: 100%;
   background: linear-gradient(180deg, transparent, var(--brass-line-strong), transparent);
 }
+
+.brass-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-3);
+  width: 100%;
+}
+.brass-separator-labeled__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass-line-strong));
+}
+.brass-separator-labeled__line--end {
+  background: linear-gradient(90deg, var(--brass-line-strong), transparent);
+}
+.brass-separator-labeled__text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  white-space: nowrap;
+  color: var(--brass-text-dim);
+}
+.brass-separator-labeled__text::before {
+  content: "";
+  width: var(--brass-space-2);
+  height: var(--brass-space-2);
+  border-radius: var(--brass-round-pill);
+  background: var(--brass-rivet);
+  box-shadow: var(--brass-bevel);
+}

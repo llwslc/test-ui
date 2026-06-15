@@ -1,7 +1,21 @@
 .brass-meter {
+  --brass-meter-fill: var(--brass-accent-fill);
+  --brass-meter-tint: var(--brass-primary);
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-3);
+}
+.brass-meter--success {
+  --brass-meter-fill: linear-gradient(90deg, var(--brass-success), var(--brass-success) 62%);
+  --brass-meter-tint: var(--brass-success);
+}
+.brass-meter--warning {
+  --brass-meter-fill: linear-gradient(90deg, var(--brass-warning-deep), var(--brass-warning) 62%);
+  --brass-meter-tint: var(--brass-warning);
+}
+.brass-meter--danger {
+  --brass-meter-fill: linear-gradient(90deg, var(--brass-danger-deep), var(--brass-danger) 62%);
+  --brass-meter-tint: var(--brass-danger);
 }
 .brass-meter__head {
   display: flex;
@@ -12,7 +26,7 @@
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-13);
   font-weight: var(--brass-fw-700);
-  color: var(--brass-primary);
+  color: var(--brass-meter-tint);
 }
 .brass-meter__track {
   position: relative;
@@ -43,6 +57,6 @@
 .brass-meter__indicator {
   height: 100%;
   border-radius: var(--brass-round-pill);
-  background: var(--brass-accent-fill);
+  background: var(--brass-meter-fill);
   box-shadow: var(--brass-bevel);
 }

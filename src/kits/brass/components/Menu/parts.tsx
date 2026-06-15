@@ -3,8 +3,32 @@ import { Menu } from "@base-ui/react/menu";
 import { cx } from "../cx";
 import { Check, ChevronRight, Dot } from "../icons";
 
-export function MenuItem({ className, ...props }: React.ComponentProps<typeof Menu.Item>) {
-  return <Menu.Item className={cx("brass-list-item", className)} {...props} />;
+export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
+  icon?: ReactNode;
+  shortcut?: ReactNode;
+  tone?: "default" | "danger";
+}
+
+export function MenuItem({
+  className,
+  children,
+  icon,
+  shortcut,
+  tone = "default",
+  label,
+  ...props
+}: MenuItemProps) {
+  return (
+    <Menu.Item
+      className={cx("brass-list-item", tone === "danger" && "brass-list-item--danger", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      {icon && <span className="brass-menu-item__icon">{icon}</span>}
+      <span className="brass-list-item__text">{children}</span>
+      {shortcut && <span className="brass-menu-item__shortcut">{shortcut}</span>}
+    </Menu.Item>
+  );
 }
 
 export function MenuGroup(props: React.ComponentProps<typeof Menu.Group>) {

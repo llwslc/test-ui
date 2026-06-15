@@ -5,11 +5,15 @@ import "./Meter.css";
 
 export interface MeterProps extends React.ComponentProps<typeof BaseMeter.Root> {
   label?: ReactNode;
+  tone?: "primary" | "success" | "warning" | "danger";
 }
 
-export function Meter({ label, className, ...props }: MeterProps) {
+export function Meter({ label, tone = "primary", className, ...props }: MeterProps) {
   return (
-    <BaseMeter.Root className={cx("brass-meter", className)} {...props}>
+    <BaseMeter.Root
+      className={cx("brass-meter", `brass-meter--${tone}`, className)}
+      {...props}
+    >
       {label && (
         <div className="brass-meter__head">
           <BaseMeter.Label className="brass-cap">{label}</BaseMeter.Label>
