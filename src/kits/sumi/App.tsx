@@ -497,6 +497,10 @@ function HeroSigil() {
   return (
     <div className="sumi-hero__sigil" aria-hidden>
       <svg viewBox="0 0 240 240">
+        <g className="sumi-hero__grid">
+          <rect x="22" y="22" width="196" height="196" />
+          <path d="M120 22V218 M22 120H218 M30 30L210 210 M210 30L30 210" />
+        </g>
         <circle
           className="sumi-hero__enso"
           cx="120"
