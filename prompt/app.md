@@ -27,6 +27,66 @@
 
 侧栏索引与面板同序；面板 id 各 kit 同名。
 
+## 面板内容与状态
+
+每面板演示哪些控件、变体、预置状态与项数，各 kit 同构、逐项对齐，仅文案随 theme 换；动画与受控演示用就近 helper 组件。
+
+**Inputs**
+
+- button：三行，以 2 条 Separator 分隔 —— ① 五枚 `primary`（带前导图标）、`secondary`、`danger`、`ghost`、`disabled`；② 三枚尺寸 `sm`、`md`、`lg`；③ 五枚图标钮 `icon`、`icon`、`icon` + `disabled`、`icon-ghost`、`icon-ghost`。
+- switch：三行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开。
+- toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1，多选组（`multiple`）默认选前 2。
+- checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
+- checkbox-group：一个带父级全选的 CheckboxGroup，3 项，默认勾 1，父级呈 indeterminate。
+- radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
+- select：「caption + Select」，5 项、末项 `disabled`，默认选第 2。
+- combobox：「caption + Combobox」，可过滤列表 10 项，无默认值。
+- autocomplete：「caption + Autocomplete」，建议列表 7 项，无默认值。
+- slider：两个 Slider —— 其一仅 label + 默认值（默认 0–100），其二再加显式 `min`、`max`、`step`。
+- number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
+- input：四个字段 —— ① label + 默认值 + placeholder；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
+- otp：「caption + OtpField」，`length` 6、`splitAt` 3、预填 3 位。
+
+**Forms**
+
+- fieldset：Fieldset + legend + 2 个字段，各 label + 默认值。
+- form：Form（提交触发 `success` toast）+ 2 字段（第 2 为密码 placeholder）+ 一行提交 Button（`type="submit"`）。
+
+**Feedback**
+
+- progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
+- meter：三条 Meter —— 默认色 88、`warning` 52、`danger` 23。
+- tabs：3 个 tab，默认第 1 激活，每 tab 内容为一段正文。
+- accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
+- collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
+
+**Overlays**
+
+- tooltip：一行 4 个 Tooltip，各裹一个 `ghost` Button，side 依次 top、bottom、left、right。
+- popover：一个 Popover，trigger = `ghost` Button，内容 = 标题 + 一段正文。
+- preview：「caption + 内联文本」内嵌 PreviewCard，trigger 为内联链接；卡片 = Avatar（图片、status online）+ 名 + handle + 一段简介 + 一行 2 个 Badge（`primary` 带 dot、`neutral`）。
+- menu：trigger = `ghost` Button（内联标签 + 翻转 chevron）；5 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后第 5 项 `tone="danger"`。
+- menubar：3 个菜单 —— ① 2 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 3 项 + 分隔 + 1 项。
+- navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
+- context：trigger = 文本投放区 + kbd 提示；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
+- dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
+- alert：trigger = `danger` Button；内容 = 标题 + 描述 + actions 2 个 AlertDialogClose（默认、`danger`）。
+- drawer：`side="right"`，trigger = `ghost` Button；体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider + 页脚 1 个 DialogClose（`secondary`）。
+- toast：一行 4 个 Button（`sm`、`ghost`），分别触发默认、`success`、`warning`、`danger` 四种 toast。
+
+**Display**
+
+- avatar：一行 4 个 Avatar —— ① 图片 + online；② fallback + busy；③ fallback + away；④ fallback + 放大 + online。
+- badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
+- toolbar：ToolbarGroup（3 图标钮）+ 分隔 + ToolbarGroup（3 个互斥 toggle、1 个 active）+ 分隔 + 1 个独立 ToolbarButton（图标 + 标签、可切）；共 7 钮、2 组、2 分隔。
+- scroll：ScrollArea（`maxHeight` 200），内嵌 11 行「时间 + 消息」列表。
+
+**Foundations**
+
+- typography：h1、h2、h3、一段正文、一个 caption，共 5 行。
+- separator：裸 Separator；带 label 的 Separator；一行 3 段文本以 2 条竖向 Separator 分隔。
+- panel：一段正文 + 一个嵌套 Panel（`meta` 为 SUB）含一个 caption。
+
 ## 文案槽位
 
 各 kit 同构，词由 theme 填。
