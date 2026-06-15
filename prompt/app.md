@@ -6,13 +6,13 @@
 
 每套一个 `App.tsx`。
 
-组装全部控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章与时钟，接左侧 sticky 索引——按下表分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
+组装全部控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按下表分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
 
 样式先复用 kit 的排版类、组件类；复用不了的页面装置才就近自定义，例如侧栏、hero 装饰。
 
 ## 面板版式
 
-两栏网格；组标题通栏分隔，每组从新行起，不留半行空位。
+两栏网格；组标题通栏分隔——主题标记 + 组名 + 一句副题，每组从新行起，不留半行空位。
 
 跨度规则：演示内容横向铺开的面板通栏 `span-2`，其余单栏、逐行配对。`·` 分行，`|` 同行：
 
@@ -34,15 +34,15 @@
 **Inputs**
 
 - button：三行，以 2 条 Separator 分隔 —— ① 五枚 `primary`（带前导图标）、`secondary`、`danger`、`ghost`、`disabled`；② 三枚尺寸 `sm`、`md`、`lg`；③ 五枚图标钮 `icon`、`icon`、`icon` + `disabled`、`icon-ghost`、`icon-ghost`。
-- switch：三行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开。
-- toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1，多选组（`multiple`）默认选前 2。
+- switch：四行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开、`disabled` 且关。
+- toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1、末项 `disabled`，多选组（`multiple`）默认选前 2。
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
-- checkbox-group：一个带父级全选的 CheckboxGroup，3 项，默认勾 1，父级呈 indeterminate。
+- checkbox-group：一个带父级全选的 CheckboxGroup，3 项，默认勾 1、1 项 `disabled`，父级呈 indeterminate。
 - radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
 - select：「caption + Select」，5 项、末项 `disabled`，默认选第 2。
-- combobox：「caption + Combobox」，可过滤列表 10 项，无默认值。
-- autocomplete：「caption + Autocomplete」，建议列表 7 项，无默认值。
-- slider：两个 Slider —— 其一仅 label + 默认值（默认 0–100），其二再加显式 `min`、`max`、`step`。
+- combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
+- autocomplete：「caption + Autocomplete」，建议列表 12 项，无默认值。
+- slider：两个 Slider —— 其一 label + 默认值，其二 `disabled` 且带值。
 - number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
 - input：四个字段 —— ① label + 默认值 + placeholder；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
 - otp：「caption + OtpField」，`length` 6、`splitAt` 3、预填 3 位。
@@ -56,7 +56,7 @@
 
 - progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
 - meter：三条 Meter —— 默认色 88、`warning` 52、`danger` 23。
-- tabs：3 个 tab，默认第 1 激活，每 tab 内容为一段正文。
+- tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
 - accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
 
@@ -76,7 +76,7 @@
 
 **Display**
 
-- avatar：一行 4 个 Avatar —— ① 图片 + online；② fallback + busy；③ fallback + away；④ fallback + 放大 + online。
+- avatar：一行 4 个 Avatar，覆盖全部 4 种 status —— ① 图片 + online；② fallback + busy；③ fallback + away；④ fallback + 放大 + offline。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
 - toolbar：ToolbarGroup（3 图标钮）+ 分隔 + ToolbarGroup（3 个互斥 toggle、1 个 active）+ 分隔 + 1 个独立 ToolbarButton（图标 + 标签、可切）；共 7 钮、2 组、2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 11 行「时间 + 消息」列表。
@@ -97,6 +97,7 @@
 - Hero 描述：一句主题化视觉描述，再一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
 - 数据条 4 位：`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Runtime Deps`、`A11y / Built In`。
 - 面板 meta：三字母缩码，如 BTN、DRW；嵌套面板 `SUB`。
+- 组副题：每组一句主题化短语，随组名同行。
 - Footer：`<KIT> · built on @base-ui/react · themed via --<kit>-* tokens · <年>`。框架署名只出现在 footer，其余文案不提框架。
 
 ## 外壳 Shell
