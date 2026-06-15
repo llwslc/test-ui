@@ -247,47 +247,17 @@ const TAB_ITEMS = [
   {
     value: "omens",
     label: "Omens",
-    content: (
-      <div className="demo-row">
-        <Badge tone="success" dot>
-          Tide Rising
-        </Badge>
-        <Badge tone="primary" dot>
-          Wards Held
-        </Badge>
-        <Badge tone="warning" dot>
-          Fathom 52
-        </Badge>
-        <Badge tone="danger" dot>
-          Seal 34%
-        </Badge>
-      </div>
-    ),
+    content: <p className="abyss-text">The tide rises and the wards hold, though the seal weakens to 34%.</p>,
   },
   {
     value: "rites",
     label: "Rites",
-    content: (
-      <div className="demo-row">
-        <Avatar fallback="DG" status="online" />
-        <Avatar fallback="YH" status="busy" />
-        <Avatar fallback="IN" status="away" />
-        <Avatar fallback="—" status="offline" />
-      </div>
-    ),
+    content: <p className="abyss-text">Four acolytes keep the vigil, each bound to a separate ward.</p>,
   },
   {
     value: "dives",
     label: "Dives",
-    content: (
-      <p className="abyss-text" style={{ margin: 0, lineHeight: 1.7 }}>
-        <code>04:12</code> · descent began
-        <br />
-        <code>04:31</code> · sigil answered
-        <br />
-        <code>04:52</code> · the water held its breath
-      </p>
-    ),
+    content: <p className="abyss-text">The descent began at 0.42 fathoms and the water held its breath.</p>,
   },
 ];
 
@@ -379,9 +349,6 @@ function ToolbarDemo() {
         </ToolbarButton>
         <ToolbarButton aria-label="Mark">
           <KeyIcon />
-        </ToolbarButton>
-        <ToolbarButton aria-label="Echo">
-          <CopyIcon />
         </ToolbarButton>
         <ToolbarButton aria-label="Banish">
           <TrashIcon />
@@ -847,7 +814,6 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="abyss-cap">Fathom Mark</span>
                   <div className="demo-row">
-                    <NumberField defaultValue={42} min={0} max={999} />
                     <NumberField defaultValue={7} min={0} max={12} step={1} />
                   </div>
                 </div>

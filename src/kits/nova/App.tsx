@@ -207,47 +207,17 @@ const TAB_ITEMS = [
   {
     value: "telemetry",
     label: "Telemetry",
-    content: (
-      <div className="demo-row">
-        <Badge tone="success" dot>
-          Reactor Online
-        </Badge>
-        <Badge tone="primary" dot>
-          Nav Locked
-        </Badge>
-        <Badge tone="warning" dot>
-          Coolant 52%
-        </Badge>
-        <Badge tone="danger" dot>
-          Hull 34%
-        </Badge>
-      </div>
-    ),
+    content: <p className="nova-text">Reactor online, navigation locked to Proxima, coolant holding at 52%.</p>,
   },
   {
     value: "crew",
     label: "Crew",
-    content: (
-      <div className="demo-row">
-        <Avatar fallback="VK" status="online" />
-        <Avatar fallback="R7" status="busy" />
-        <Avatar fallback="ZX" status="away" />
-        <Avatar fallback="—" status="offline" />
-      </div>
-    ),
+    content: <p className="nova-text">Four officers on the bridge, every station reporting nominal.</p>,
   },
   {
     value: "logs",
     label: "Logs",
-    content: (
-      <p className="nova-text" style={{ lineHeight: 1.7 }}>
-        <code>04:12:07</code> · jump drive spooled to 99.4%
-        <br />
-        <code>04:12:31</code> · nav lock acquired — Proxima Centauri
-        <br />
-        <code>04:13:02</code> · all systems nominal
-      </p>
-    ),
+    content: <p className="nova-text">Jump drive spooled to 99.4% — telemetry nominal across all decks.</p>,
   },
 ];
 
@@ -322,9 +292,6 @@ function ToolbarDemo() {
         </ToolbarButton>
         <ToolbarButton aria-label="Charge">
           <BoltIcon />
-        </ToolbarButton>
-        <ToolbarButton aria-label="Duplicate">
-          <CopyIcon />
         </ToolbarButton>
         <ToolbarButton aria-label="Purge">
           <TrashIcon />
@@ -706,7 +673,6 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="nova-cap">Jump Coordinates</span>
                   <div className="demo-row">
-                    <NumberField defaultValue={42} min={0} max={999} />
                     <NumberField defaultValue={7} min={0} max={12} step={1} />
                   </div>
                 </div>

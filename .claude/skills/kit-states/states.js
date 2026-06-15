@@ -44,14 +44,16 @@ const shoot = async (loc, path) => { try { await loc.screenshot({ path }); } cat
     await P('number');
     for (const [val, tag] of [['12', 'max'], ['0', 'min']]) {
       await page.evaluate(({ k, v }) => {
-        const g = document.querySelectorAll('#number .' + k + '-numberfield')[1];
+        const els = document.querySelectorAll('#number .' + k + '-numberfield');
+        const g = els[els.length - 1];
         const inp = g && g.querySelector('.' + k + '-numberfield__input');
         if (!inp) return;
         const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
         set.call(inp, v); inp.dispatchEvent(new Event('input', { bubbles: true })); inp.dispatchEvent(new Event('change', { bubbles: true }));
       }, { k: kit, v: val });
       await page.waitForTimeout(250);
-      const g = (await page.$$(`#number .${kit}-numberfield`))[1];
+      const arr = await page.$$(`#number .${kit}-numberfield`);
+      const g = arr[arr.length - 1];
       if (g) await shoot(g, `/tmp/states/${kit}_numberfield_${tag}.png`);
     }
 
