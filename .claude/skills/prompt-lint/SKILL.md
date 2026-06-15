@@ -30,6 +30,7 @@ Keep (NOT violations): the rule itself, and a short parenthetical that **disambi
    - connectives: `grep -rniE "because|otherwise|tradeoff|originally|used to|was .* now|note that" <dir>`
    - heading qualifiers: `grep -rnE '^#+ .+ (—|--|:|\()' <dir>` (a code-span `()` is exempt)
    - clauses shared across sibling variant files: `for f in <variants>; do tr ';,、；,' '\n' < "$f"; done | sed 's/^ *//' | sort | uniq -d`
+   - mixed punctuation register — a CJK doc uses full-width `，：；（）`, never ASCII against Chinese: `perl -CSD -ne '$c+=()=/(?:\p{Han}[,:;()]|[,:;()]\p{Han})/g; END{print "$ARGV: $c\n"}' <files>` (ASCII `,:;()` is fine only inside `code spans`; a nonzero count outside code = the doc is half-and-half)
 3. **Report** each hit as `file:line`, the offending text, and a one-line terse rewrite (or "delete"). Group by file. Don't auto-edit unless asked.
 
 ## Example
