@@ -1,0 +1,295 @@
+.ormolu-elevation {
+  border-radius: var(--ormolu-round-6);
+  box-shadow:
+    var(--ormolu-overlay-shadow, var(--ormolu-shadow-pop)),
+    0 0 0 1px var(--ormolu-gild-soft);
+}
+
+.ormolu-frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.ormolu-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--ormolu-frame-round, var(--ormolu-round-3));
+  background: var(--ormolu-frame-fill, var(--ormolu-surface));
+  box-shadow:
+    inset 0 0 0 1.5px var(--ormolu-frame-gild, var(--ormolu-gild-soft)),
+    var(--ormolu-frame-bevel, none);
+  pointer-events: none;
+}
+
+.ormolu-frame--double::before {
+  box-shadow:
+    inset 0 0 0 1.5px var(--ormolu-frame-gild, var(--ormolu-gild)),
+    inset 0 0 0 4px var(--ormolu-silk),
+    inset 0 0 0 5px var(--ormolu-gild-soft),
+    var(--ormolu-frame-bevel, none);
+}
+
+.ormolu-cartouche {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  color: var(--ormolu-gild-a55);
+  pointer-events: none;
+}
+.ormolu-cartouche svg {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+}
+.ormolu-cartouche .ormolu-volute--tl {
+  inset: 0 auto auto 0;
+}
+.ormolu-cartouche .ormolu-volute--tr {
+  inset: 0 0 auto auto;
+  scale: -1 1;
+}
+.ormolu-cartouche .ormolu-volute--bl {
+  inset: auto auto 0 0;
+  scale: 1 -1;
+}
+.ormolu-cartouche .ormolu-volute--br {
+  inset: auto 0 0 auto;
+  scale: -1 -1;
+}
+
+.ormolu-sheen-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.ormolu-sheen-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(
+    118deg,
+    transparent 40%,
+    var(--ormolu-glint) 50%,
+    transparent 60%
+  );
+  background-size: 240% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  animation: ormolu-sheen 6s var(--ormolu-ease) infinite;
+}
+
+.ormolu-disclosure__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ormolu-space-3);
+  width: 100%;
+  padding: var(--ormolu-space-4);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--ormolu-font-display);
+  font-weight: var(--ormolu-fw-600);
+  font-size: var(--ormolu-fs-15);
+  letter-spacing: var(--ormolu-ls-2);
+  color: var(--ormolu-text);
+  transition: color var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-disclosure__trigger:hover,
+.ormolu-disclosure__trigger:focus-visible,
+.ormolu-disclosure__trigger[data-panel-open] {
+  outline: none;
+  color: var(--ormolu-gild-deep);
+}
+.ormolu-disclosure__trigger[data-disabled] {
+  cursor: not-allowed;
+}
+.ormolu-disclosure__title {
+  flex: 1;
+}
+.ormolu-disclosure__panel {
+  position: relative;
+  z-index: 1;
+  height: var(--accordion-panel-height, var(--collapsible-panel-height));
+  overflow: hidden;
+  transition: height var(--ormolu-dur-slow) var(--ormolu-ease);
+}
+.ormolu-disclosure__panel[data-starting-style],
+.ormolu-disclosure__panel[data-ending-style] {
+  height: 0;
+}
+.ormolu-disclosure__content {
+  padding: 0 var(--ormolu-space-4) var(--ormolu-space-4) 47px;
+}
+
+@keyframes ormolu-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    scale: 0.99;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.01;
+  }
+}
+.ormolu-breathe {
+  animation: ormolu-breathe var(--ormolu-breath) ease-in-out infinite;
+}
+
+@keyframes ormolu-sheen {
+  0% {
+    background-position: -120% 0;
+  }
+  55%,
+  100% {
+    background-position: 220% 0;
+  }
+}
+
+@keyframes ormolu-unfurl {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.ormolu-anim-pop {
+  transform-origin: var(--transform-origin, center);
+  transition:
+    opacity var(--ormolu-dur) var(--ormolu-ease),
+    translate var(--ormolu-dur) var(--ormolu-ease-out),
+    scale var(--ormolu-dur) var(--ormolu-ease-out);
+}
+.ormolu-anim-pop[data-starting-style],
+.ormolu-anim-pop[data-ending-style] {
+  opacity: 0;
+  translate: 0 -6px;
+  scale: 0.96;
+}
+
+.ormolu-connector {
+  z-index: 2;
+  width: 14px;
+  height: 8px;
+}
+.ormolu-connector::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1.5px;
+  height: 100%;
+  background: var(--ormolu-gild);
+}
+.ormolu-connector[data-side="left"],
+.ormolu-connector[data-side="right"] {
+  width: 8px;
+  height: 14px;
+}
+.ormolu-connector[data-side="left"]::before,
+.ormolu-connector[data-side="right"]::before {
+  width: 100%;
+  height: 1.5px;
+}
+.ormolu-connector[data-side="top"] {
+  bottom: -8px;
+}
+.ormolu-connector[data-side="bottom"] {
+  top: -8px;
+}
+.ormolu-connector[data-side="left"] {
+  right: -8px;
+}
+.ormolu-connector[data-side="right"] {
+  left: -8px;
+}
+
+.ormolu-separator {
+  width: 100%;
+  height: 7px;
+  border: 0;
+  background:
+    radial-gradient(circle at center, var(--ormolu-gild-a55) 1.4px, transparent 2px) center / 12px 100% repeat-x,
+    linear-gradient(90deg, transparent, var(--ormolu-gild-a30) 30%, var(--ormolu-gild-a30) 70%, transparent) center / 100% 1px no-repeat;
+}
+.ormolu-separator--vertical {
+  width: 7px;
+  height: 100%;
+  min-height: 1em;
+  flex: 0 0 7px;
+  background:
+    radial-gradient(circle at center, var(--ormolu-gild-a55) 1.4px, transparent 2px) center / 100% 12px repeat-y,
+    linear-gradient(180deg, transparent, var(--ormolu-gild-a30) 30%, var(--ormolu-gild-a30) 70%, transparent) center / 1px 100% no-repeat;
+}
+
+.ormolu-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ormolu-z-backdrop);
+  background:
+    radial-gradient(120% 90% at 50% 0%, transparent, var(--ormolu-scrim)),
+    var(--ormolu-scrim);
+  backdrop-filter: blur(2px) saturate(0.94) brightness(0.97);
+  transition: opacity var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-scrim[data-starting-style],
+.ormolu-scrim[data-ending-style] {
+  opacity: 0;
+}
+.ormolu-overlay-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  z-index: var(--ormolu-z-overlay);
+  display: grid;
+  padding: 18px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.ormolu-overlay-viewport > * {
+  margin: auto;
+}
+.ormolu-btn.ormolu-modal-x {
+  position: absolute;
+  z-index: 2;
+}
+.ormolu-modal-title {
+  display: flex;
+  align-items: center;
+  gap: var(--ormolu-space-3);
+  margin: 0 36px var(--ormolu-space-2) 0;
+  font-family: var(--ormolu-font-display);
+  font-weight: var(--ormolu-fw-700);
+  font-size: var(--ormolu-fs-22);
+  letter-spacing: var(--ormolu-ls-2);
+  color: var(--ormolu-title-color, var(--ormolu-text-bright));
+}
+.ormolu-modal-desc {
+  margin: 0 0 var(--ormolu-space-4);
+  color: var(--ormolu-text-dim);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-16);
+  line-height: var(--ormolu-lh-170);
+}
+.ormolu-modal-body {
+  color: var(--ormolu-text);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-16);
+  line-height: var(--ormolu-lh-170);
+}
+.ormolu-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ormolu-space-3);
+  margin-top: var(--ormolu-space-6);
+}

@@ -25,6 +25,13 @@ export const KITS: KitDef[] = [
     app: () => import("./nova"),
     loader: () => import("./nova/Loader"),
   },
+  {
+    id: "ormolu",
+    label: "ORMOLU",
+    tag: "Rococo · Salon",
+    app: () => import("./ormolu"),
+    loader: () => import("./ormolu/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

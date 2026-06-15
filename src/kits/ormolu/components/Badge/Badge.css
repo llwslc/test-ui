@@ -1,0 +1,47 @@
+.ormolu-badge {
+  --ormolu-chip-wash: var(--ormolu-gild-soft);
+  --ormolu-chip-rule: var(--ormolu-gild-a55);
+  --ormolu-chip-text: var(--ormolu-gild-deep);
+  height: var(--ormolu-badge-h);
+  padding: 0 var(--ormolu-space-3);
+  display: inline-flex;
+  gap: var(--ormolu-space-2);
+  align-items: center;
+  white-space: nowrap;
+  border: 0;
+  border-radius: var(--ormolu-round-2);
+  background: var(--ormolu-chip-wash);
+  box-shadow: inset 0 0 0 1.5px var(--ormolu-chip-rule);
+  color: var(--ormolu-chip-text);
+  font-family: var(--ormolu-font-display);
+  font-weight: var(--ormolu-fw-600);
+  font-size: var(--ormolu-fs-12);
+  letter-spacing: var(--ormolu-ls-6);
+  text-transform: uppercase;
+}
+
+.ormolu-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.ormolu-badge--secondary,
+.ormolu-badge--success {
+  --ormolu-chip-wash: var(--ormolu-sage-soft);
+  --ormolu-chip-rule: var(--ormolu-sage-a50);
+  --ormolu-chip-text: var(--ormolu-sage-deep);
+}
+
+.ormolu-badge--danger {
+  --ormolu-chip-wash: var(--ormolu-rouge-soft);
+  --ormolu-chip-rule: var(--ormolu-rouge-a55);
+  --ormolu-chip-text: var(--ormolu-rouge-deep);
+}
+
+.ormolu-badge--neutral {
+  --ormolu-chip-wash: transparent;
+  --ormolu-chip-rule: var(--ormolu-gild-a30);
+  --ormolu-chip-text: var(--ormolu-text-dim);
+}

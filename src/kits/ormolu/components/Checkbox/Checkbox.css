@@ -1,0 +1,83 @@
+.ormolu-check {
+  --ormolu-frame-fill: var(--ormolu-inset);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  --ormolu-frame-round: var(--ormolu-round-4);
+  cursor: pointer;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--ormolu-checkbox-box);
+  height: var(--ormolu-checkbox-box);
+  flex: 0 0 auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  transition: box-shadow var(--ormolu-dur) var(--ormolu-ease);
+}
+
+.ormolu-check__sigil {
+  width: var(--ormolu-checkbox-glyph);
+  height: var(--ormolu-checkbox-glyph);
+  overflow: visible;
+  stroke: var(--ormolu-gild-deep);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ormolu-check__mark {
+  fill: none;
+  stroke-width: 1.7;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--ormolu-dur-slow) var(--ormolu-ease);
+}
+.ormolu-check__bar {
+  opacity: 0;
+  stroke-width: 2.2;
+  transition: opacity var(--ormolu-dur) var(--ormolu-ease);
+}
+
+.ormolu-check:hover {
+  --ormolu-frame-gild: var(--ormolu-gild-a30);
+}
+.ormolu-check:focus-visible {
+  --ormolu-frame-gild: var(--ormolu-gild);
+  outline: none;
+  box-shadow: var(--ormolu-shadow-sm);
+}
+
+.ormolu-check[data-checked],
+.ormolu-check[data-indeterminate] {
+  --ormolu-frame-fill: var(--ormolu-gild-wash);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-check[data-checked] .ormolu-check__mark {
+  stroke-dashoffset: 0;
+}
+.ormolu-check[data-indeterminate] .ormolu-check__bar {
+  opacity: 1;
+}
+
+.ormolu-check[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--ormolu-disabled-opacity);
+  filter: grayscale(0.5);
+}
+
+.ormolu-check-field {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ormolu-space-3);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  color: var(--ormolu-text);
+}
+.ormolu-check-field__label {
+  user-select: none;
+}
+.ormolu-check-field:has(.ormolu-check[data-disabled]) {
+  cursor: not-allowed;
+}
+.ormolu-check-field:has(.ormolu-check[data-disabled]) .ormolu-check-field__label {
+  opacity: var(--ormolu-disabled-opacity);
+}

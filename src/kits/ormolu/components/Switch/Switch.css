@@ -1,0 +1,50 @@
+.ormolu-switch {
+  --ormolu-frame-round: var(--ormolu-round-full);
+  --ormolu-frame-fill: var(--ormolu-sage-soft);
+  --ormolu-frame-gild: var(--ormolu-sage-a50);
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: var(--ormolu-switch-w);
+  height: 26px;
+  padding: 3px;
+  background: transparent;
+  border: 0;
+  transition: box-shadow var(--ormolu-dur) var(--ormolu-ease);
+}
+
+.ormolu-switch__clasp {
+  width: 20px;
+  height: 20px;
+  background:
+    radial-gradient(circle at 36% 30%, var(--ormolu-thumb-glint), transparent 56%),
+    var(--ormolu-leaf);
+  border-radius: var(--ormolu-round-full);
+  box-shadow: var(--ormolu-bevel), var(--ormolu-shadow-sm);
+  transition: translate var(--ormolu-dur) var(--ormolu-ease-out);
+}
+
+.ormolu-switch:hover:not([data-checked]) {
+  --ormolu-frame-gild: var(--ormolu-sage);
+}
+
+.ormolu-switch[data-checked] {
+  --ormolu-frame-fill: var(--ormolu-gild-wash);
+  --ormolu-frame-gild: var(--ormolu-gild);
+}
+.ormolu-switch[data-checked] .ormolu-switch__clasp {
+  translate: calc(var(--ormolu-switch-w) - 26px) 0;
+}
+
+.ormolu-switch:focus-visible {
+  --ormolu-frame-gild: var(--ormolu-gild);
+  outline: none;
+  box-shadow: var(--ormolu-shadow-sm);
+}
+
+.ormolu-switch[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--ormolu-disabled-opacity);
+  filter: grayscale(0.5);
+}

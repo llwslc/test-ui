@@ -1,0 +1,49 @@
+.ormolu-dialog {
+  --ormolu-overlay-shadow: var(--ormolu-shadow-modal);
+  --ormolu-overlay-sheen: var(--ormolu-sheen-modal);
+  position: relative;
+  width: min(100%, var(--ormolu-w-dialog));
+}
+
+.ormolu-dialog__tablet {
+  padding: var(--ormolu-space-6) var(--ormolu-space-6) var(--ormolu-space-5);
+  --ormolu-frame-round: var(--ormolu-round-6);
+  --ormolu-frame-bevel: var(--ormolu-bevel);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  --ormolu-frame-fill:
+    var(--ormolu-marble),
+    linear-gradient(180deg, var(--ormolu-silk-shade), var(--ormolu-silk) 240px);
+}
+.ormolu-dialog__tablet.ormolu-frame::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: var(--ormolu-space-2);
+  border-radius: var(--ormolu-round-3);
+  box-shadow:
+    inset 0 0 0 1.5px var(--ormolu-gild-soft),
+    inset 0 0 0 2.5px var(--ormolu-silk);
+  pointer-events: none;
+}
+
+.ormolu-dialog__x {
+  top: var(--ormolu-space-3);
+  right: var(--ormolu-space-3);
+}
+
+.ormolu-dialog__sigil {
+  flex: 0 0 auto;
+  color: var(--ormolu-gild);
+  font-size: var(--ormolu-fs-22);
+  animation: ormolu-dialog-sigil 30s linear infinite;
+}
+@keyframes ormolu-dialog-sigil {
+  to {
+    rotate: 360deg;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ormolu-dialog__sigil {
+    animation: none;
+  }
+}

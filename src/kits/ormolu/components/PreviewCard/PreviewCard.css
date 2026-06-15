@@ -1,0 +1,57 @@
+.ormolu-previewcard__positioner {
+  z-index: var(--ormolu-z-menu);
+}
+
+.ormolu-previewcard__popup {
+  width: var(--ormolu-w-preview);
+  position: relative;
+}
+
+.ormolu-previewcard__surface {
+  display: block;
+  overflow: hidden;
+  padding: var(--ormolu-space-4);
+  --ormolu-frame-round: var(--ormolu-round-4);
+  --ormolu-frame-fill: var(--ormolu-surface-popup);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-previewcard__surface::after {
+  content: "";
+  position: absolute;
+  inset: var(--ormolu-space-2);
+  border-radius: var(--ormolu-round-2);
+  box-shadow: inset 0 0 0 1px var(--ormolu-gild-soft);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ormolu-previewcard__body {
+  color: var(--ormolu-text);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  line-height: var(--ormolu-lh-170);
+  position: relative;
+  z-index: 1;
+}
+
+.ormolu-previewcard__mark {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 11px;
+  width: var(--ormolu-preview-mark);
+  height: var(--ormolu-preview-mark);
+  color: var(--ormolu-gild-a55);
+  rotate: -8deg;
+  scale: 0.92;
+  pointer-events: none;
+  transition:
+    color var(--ormolu-dur) var(--ormolu-ease),
+    rotate var(--ormolu-dur) var(--ormolu-ease),
+    scale var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-previewcard__popup[data-open] .ormolu-previewcard__mark {
+  color: var(--ormolu-gild);
+  rotate: 0deg;
+  scale: 1;
+}

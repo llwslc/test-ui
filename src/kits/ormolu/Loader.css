@@ -1,0 +1,83 @@
+.ormolu-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background:
+    radial-gradient(120% 86% at 50% 42%, rgba(255, 255, 255, 0.7), transparent 60%),
+    linear-gradient(to bottom, #fbf6ec, #f4ecda 46%, #e7d9bf);
+}
+.ormolu-loader__crest {
+  overflow: visible;
+  transform-origin: 36px 36px;
+  filter: drop-shadow(0 4px 14px rgba(80, 54, 24, 0.16));
+}
+.ormolu-loader__ring {
+  fill: none;
+  stroke: rgba(184, 149, 78, 0.4);
+  stroke-width: 1;
+}
+.ormolu-loader__scroll {
+  transform-origin: 36px 36px;
+  animation: ormolu-loader-turn 14s linear infinite;
+}
+.ormolu-loader__volute {
+  fill: none;
+  stroke: #b8954e;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 64;
+  stroke-dashoffset: 64;
+  animation: ormolu-loader-draw 2.8s ease-in-out infinite alternate;
+}
+.ormolu-loader__pearl {
+  fill: #b8954e;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ormolu-loader-breathe 2.8s ease-in-out infinite;
+}
+.ormolu-loader__label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: #876626;
+}
+@keyframes ormolu-loader-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ormolu-loader-draw {
+  from {
+    stroke-dashoffset: 64;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ormolu-loader-breathe {
+  0%,
+  100% {
+    transform: scale(0.7);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ormolu-loader__scroll,
+  .ormolu-loader__volute,
+  .ormolu-loader__pearl {
+    animation: none;
+  }
+  .ormolu-loader__volute {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,77 @@
+.ormolu-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ormolu-space-3);
+}
+
+.ormolu-radio {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ormolu-space-3);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  color: var(--ormolu-text);
+}
+.ormolu-radio__label {
+  user-select: none;
+}
+
+.ormolu-radio__control {
+  --ormolu-frame-fill: var(--ormolu-inset);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  --ormolu-frame-round: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: var(--ormolu-radio-box);
+  height: var(--ormolu-radio-box);
+  flex: 0 0 auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  transition: box-shadow var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-radio__spark {
+  width: var(--ormolu-radio-glyph);
+  height: var(--ormolu-radio-glyph);
+  overflow: visible;
+}
+.ormolu-radio__spark circle {
+  fill: var(--ormolu-gild-deep);
+  transform-box: fill-box;
+  transform-origin: center;
+  scale: 0;
+  opacity: 0;
+  transition:
+    scale var(--ormolu-dur) var(--ormolu-ease-out),
+    opacity var(--ormolu-dur) var(--ormolu-ease);
+}
+
+.ormolu-radio:hover .ormolu-radio__control:not([data-checked]) {
+  --ormolu-frame-gild: var(--ormolu-gild-a30);
+}
+.ormolu-radio:hover .ormolu-radio__spark circle {
+  scale: 0.45;
+  opacity: 0.4;
+}
+
+.ormolu-radio__control[data-checked] {
+  --ormolu-frame-fill: var(--ormolu-gild-wash);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-radio__control[data-checked] .ormolu-radio__spark circle {
+  scale: 1;
+  opacity: 1;
+}
+
+.ormolu-radio__control:focus-visible {
+  --ormolu-frame-gild: var(--ormolu-gild);
+  outline: none;
+  box-shadow: var(--ormolu-shadow-sm);
+}
+
+.ormolu-radio:has([data-disabled]) {
+  cursor: not-allowed;
+  opacity: var(--ormolu-disabled-opacity);
+}

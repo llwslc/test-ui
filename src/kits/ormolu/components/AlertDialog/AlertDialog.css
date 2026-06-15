@@ -1,0 +1,44 @@
+.ormolu-alert {
+  --ormolu-overlay-shadow: var(--ormolu-shadow-modal);
+  --ormolu-overlay-sheen: var(--ormolu-sheen-modal);
+  --ormolu-alert-tone: var(--ormolu-rouge);
+  --ormolu-title-color: var(--ormolu-rouge-deep);
+  position: relative;
+  width: min(100%, var(--ormolu-w-alert));
+}
+.ormolu-alert--danger {
+  --ormolu-alert-tone: var(--ormolu-rouge);
+  --ormolu-title-color: var(--ormolu-rouge-deep);
+}
+.ormolu-alert--warning,
+.ormolu-alert--primary {
+  --ormolu-alert-tone: var(--ormolu-gild);
+  --ormolu-title-color: var(--ormolu-gild-deep);
+}
+
+.ormolu-alert__tablet {
+  padding: var(--ormolu-space-6) var(--ormolu-space-6) var(--ormolu-space-5);
+  --ormolu-frame-round: var(--ormolu-round-6);
+  --ormolu-frame-bevel: var(--ormolu-bevel);
+  --ormolu-frame-gild: color-mix(in srgb, var(--ormolu-alert-tone) 55%, transparent);
+  --ormolu-frame-fill:
+    radial-gradient(
+      120% 50% at 50% 0%,
+      color-mix(in srgb, var(--ormolu-alert-tone) 14%, transparent),
+      transparent 70%
+    ),
+    var(--ormolu-marble),
+    linear-gradient(180deg, var(--ormolu-silk-shade), var(--ormolu-silk) 240px);
+}
+
+.ormolu-alert__title {
+  margin-right: 0;
+}
+
+.ormolu-alert__skull {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--ormolu-alert-tone);
+  font-size: var(--ormolu-fs-30);
+}

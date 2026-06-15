@@ -1,0 +1,133 @@
+.ormolu-autocomplete__field {
+  display: block;
+  width: 100%;
+  min-width: var(--ormolu-autocomplete-min-w);
+  transition: box-shadow var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-autocomplete__field:has(:focus-within) {
+  box-shadow: var(--ormolu-sheen-focus);
+}
+
+.ormolu-autocomplete__control {
+  --ormolu-frame-round: var(--ormolu-round-3);
+  --ormolu-frame-fill: var(--ormolu-inset);
+  --ormolu-frame-gild: var(--ormolu-gild-a30);
+  display: flex;
+  align-items: center;
+  gap: var(--ormolu-space-2);
+  width: 100%;
+  min-height: var(--ormolu-control-h);
+  padding-inline: var(--ormolu-space-3);
+}
+.ormolu-autocomplete__field:hover:not(:focus-within) .ormolu-autocomplete__control,
+.ormolu-autocomplete__field:has(:focus-within) .ormolu-autocomplete__control {
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+
+.ormolu-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: var(--ormolu-control-h);
+  border: 0;
+  background: transparent;
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  letter-spacing: var(--ormolu-ls-2);
+  color: var(--ormolu-text-bright);
+  caret-color: var(--ormolu-gild);
+  outline: none;
+}
+.ormolu-autocomplete__input::placeholder {
+  font-style: italic;
+  color: var(--ormolu-text-mute);
+}
+.ormolu-autocomplete__input:disabled {
+  cursor: not-allowed;
+}
+.ormolu-autocomplete__field:has(.ormolu-autocomplete__input:disabled) {
+  opacity: var(--ormolu-disabled-opacity);
+}
+
+.ormolu-autocomplete__lead {
+  flex: none;
+  display: inline-flex;
+  font-size: var(--ormolu-fs-16);
+  color: var(--ormolu-text-dim);
+  transition: color var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-autocomplete__field:has(:focus-within) .ormolu-autocomplete__lead {
+  color: var(--ormolu-gild);
+  filter: var(--ormolu-sheen);
+}
+
+.ormolu-autocomplete__positioner {
+  outline: none;
+  z-index: var(--ormolu-z-dropdown);
+}
+.ormolu-autocomplete__popup {
+  --ormolu-frame-fill: var(--ormolu-surface-popup);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  --ormolu-frame-bevel: var(--ormolu-bevel);
+  min-width: var(--anchor-width);
+  padding: var(--ormolu-space-1);
+}
+.ormolu-autocomplete__list {
+  overflow-y: auto;
+  max-height: min(var(--available-height), var(--ormolu-h-popup-list));
+}
+.ormolu-autocomplete__empty {
+  padding: var(--ormolu-space-4) var(--ormolu-space-3);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-13);
+  font-style: italic;
+  letter-spacing: var(--ormolu-ls-2);
+  color: var(--ormolu-text-mute);
+  text-align: center;
+}
+.ormolu-autocomplete__empty:empty {
+  display: none;
+}
+
+.ormolu-autocomplete__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ormolu-space-3);
+  padding: var(--ormolu-space-2) var(--ormolu-space-3);
+  border-radius: var(--ormolu-round-3);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  color: var(--ormolu-text-dim);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    color var(--ormolu-dur) var(--ormolu-ease),
+    background var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-autocomplete__item[data-highlighted] {
+  color: var(--ormolu-gild-deep);
+  background: var(--ormolu-gild-soft);
+}
+.ormolu-autocomplete__item[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--ormolu-disabled-opacity);
+}
+.ormolu-autocomplete__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  border-radius: var(--ormolu-round-2);
+  background: var(--ormolu-gild-bar);
+  scale: 1 0;
+  transition: scale var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-autocomplete__item[data-highlighted]::after {
+  scale: 1 1;
+}
+.ormolu-autocomplete__label {
+  min-width: 0;
+}

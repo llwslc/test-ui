@@ -1,0 +1,24 @@
+.ormolu-checkboxgroup {
+  display: flex;
+  gap: var(--ormolu-space-3);
+  flex-direction: column;
+}
+
+.ormolu-checkboxgroup__items {
+  position: relative;
+  margin-left: var(--ormolu-space-3);
+  padding-left: var(--ormolu-space-5);
+  display: flex;
+  gap: var(--ormolu-space-3);
+  flex-direction: column;
+}
+.ormolu-checkboxgroup__items::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  bottom: 6px;
+  width: 3px;
+  background: radial-gradient(circle, var(--ormolu-gild-a55) 1.4px, transparent 2px) center / 100% 10px repeat-y;
+  pointer-events: none;
+}

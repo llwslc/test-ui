@@ -1,0 +1,56 @@
+.ormolu-meter {
+  width: 100%;
+  display: flex;
+  gap: var(--ormolu-space-2);
+  flex-direction: column;
+}
+.ormolu-meter {
+  --ormolu-meter-value: var(--ormolu-gild-deep);
+  --ormolu-meter-ring: var(--ormolu-gild-a30);
+  --ormolu-meter-bar: var(--ormolu-gild-bar);
+}
+.ormolu-meter--warning {
+  --ormolu-meter-value: var(--ormolu-gild-deep);
+  --ormolu-meter-ring: var(--ormolu-gild-a55);
+  --ormolu-meter-bar: var(--ormolu-leaf);
+}
+.ormolu-meter--success {
+  --ormolu-meter-value: var(--ormolu-sage-deep);
+  --ormolu-meter-ring: var(--ormolu-sage-a50);
+  --ormolu-meter-bar: linear-gradient(180deg, var(--ormolu-sage), var(--ormolu-sage-deep));
+}
+.ormolu-meter--danger {
+  --ormolu-meter-value: var(--ormolu-rouge-deep);
+  --ormolu-meter-ring: var(--ormolu-rouge-a55);
+  --ormolu-meter-bar: linear-gradient(180deg, var(--ormolu-rouge), var(--ormolu-rouge-deep));
+}
+
+.ormolu-meter__head {
+  display: flex;
+  gap: var(--ormolu-space-3);
+  justify-content: space-between;
+  align-items: baseline;
+}
+.ormolu-meter__value {
+  color: var(--ormolu-meter-value);
+  font-family: var(--ormolu-font-mono);
+  font-size: var(--ormolu-fs-13);
+  letter-spacing: var(--ormolu-ls-2);
+}
+
+.ormolu-meter__track {
+  height: 6px;
+  position: relative;
+  border-radius: var(--ormolu-round-6);
+  background: var(--ormolu-inset);
+  box-shadow:
+    inset 0 0 0 1.5px var(--ormolu-meter-ring),
+    inset 0 1px 2px var(--ormolu-gild-soft);
+}
+.ormolu-meter__indicator {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ormolu-meter-bar);
+  box-shadow: var(--ormolu-bevel);
+  transition: width var(--ormolu-dur-slow) var(--ormolu-ease);
+}

@@ -1,0 +1,185 @@
+.ormolu-drawer__viewport {
+  position: fixed;
+  z-index: var(--ormolu-z-overlay);
+  inset: 0 0 auto 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.ormolu-drawer__backdrop {
+  transition-duration: var(--ormolu-dur-slow);
+}
+
+.ormolu-drawer {
+  --ormolu-overlay-shadow: var(--ormolu-shadow-modal);
+  --ormolu-overlay-sheen: var(--ormolu-sheen-modal);
+  position: absolute;
+  outline: none;
+  transition: transform var(--ormolu-dur-slow) var(--ormolu-ease-out);
+}
+.ormolu-drawer[data-swiping] {
+  transition: none;
+}
+
+.ormolu-drawer__tablet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: var(--ormolu-space-6);
+  color: var(--ormolu-text);
+  --ormolu-frame-round: var(--ormolu-round-4);
+  --ormolu-frame-fill: var(--ormolu-surface);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-drawer__tablet.ormolu-frame::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: var(--ormolu-space-2);
+  border-radius: var(--ormolu-round-2);
+  box-shadow:
+    inset 0 0 0 1px var(--ormolu-gild-a30),
+    inset 0 0 0 2.5px var(--ormolu-silk);
+  pointer-events: none;
+}
+
+/* a gilt seam runs the joining edge of the panel */
+.ormolu-drawer__seam {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ormolu-drawer--left,
+.ormolu-drawer--right {
+  top: 0;
+  height: 100%;
+  width: min(var(--ormolu-w-drawer), 80%);
+  transform: translateX(var(--drawer-swipe-movement-x, 0px));
+}
+.ormolu-drawer--left {
+  left: 0;
+}
+.ormolu-drawer--right {
+  right: 0;
+}
+.ormolu-drawer--top,
+.ormolu-drawer--bottom {
+  left: 0;
+  width: 100%;
+  height: min(60%, var(--ormolu-h-drawer));
+  transform: translateY(var(--drawer-swipe-movement-y, 0px));
+}
+.ormolu-drawer--top {
+  top: 0;
+}
+.ormolu-drawer--bottom {
+  bottom: 0;
+}
+
+.ormolu-drawer--left .ormolu-drawer__seam,
+.ormolu-drawer--right .ormolu-drawer__seam {
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--ormolu-gild), transparent);
+}
+.ormolu-drawer--top .ormolu-drawer__seam,
+.ormolu-drawer--bottom .ormolu-drawer__seam {
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ormolu-gild), transparent);
+}
+.ormolu-drawer--left .ormolu-drawer__seam {
+  right: 0;
+}
+.ormolu-drawer--right .ormolu-drawer__seam {
+  left: 0;
+}
+.ormolu-drawer--top .ormolu-drawer__seam {
+  bottom: 0;
+}
+.ormolu-drawer--bottom .ormolu-drawer__seam {
+  top: 0;
+}
+
+.ormolu-drawer--left[data-starting-style],
+.ormolu-drawer--left[data-ending-style] {
+  transform: translateX(-100%);
+}
+.ormolu-drawer--right[data-starting-style],
+.ormolu-drawer--right[data-ending-style] {
+  transform: translateX(100%);
+}
+.ormolu-drawer--top[data-starting-style],
+.ormolu-drawer--top[data-ending-style] {
+  transform: translateY(-100%);
+}
+.ormolu-drawer--bottom[data-starting-style],
+.ormolu-drawer--bottom[data-ending-style] {
+  transform: translateY(100%);
+}
+
+.ormolu-drawer__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ormolu-space-5);
+  min-height: 0;
+  margin: calc(var(--ormolu-space-3) * -1);
+  padding: var(--ormolu-space-3);
+  overflow-y: auto;
+}
+
+.ormolu-drawer__footer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ormolu-space-3);
+  margin-top: var(--ormolu-space-5);
+  padding-top: var(--ormolu-space-5);
+}
+.ormolu-drawer__footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ormolu-gild-a55), transparent);
+}
+
+.ormolu-drawer__x {
+  top: 14px;
+  right: 14px;
+}
+.ormolu-btn.ormolu-drawer__x {
+  z-index: 3;
+}
+
+.ormolu-drawer__key {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--ormolu-gild-deep);
+  font-size: var(--ormolu-fs-22);
+  transform-origin: 8px 8px;
+  animation: ormolu-drawer-key var(--ormolu-dur-slow) var(--ormolu-ease-out) both;
+}
+@keyframes ormolu-drawer-key {
+  0% {
+    opacity: 0;
+    rotate: -78deg;
+  }
+  55% {
+    rotate: 8deg;
+  }
+  100% {
+    opacity: 1;
+    rotate: 0deg;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ormolu-drawer__key {
+    animation: none;
+  }
+}

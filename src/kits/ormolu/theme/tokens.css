@@ -1,0 +1,174 @@
+:root {
+  --ormolu-ivory: #f4ecda;
+  --ormolu-ivory-deep: #e7d9bf;
+
+  --ormolu-silk: #fbf6ec;
+  --ormolu-silk-shade: #f1e7d2;
+  --ormolu-surface: #f7efe0;
+  --ormolu-surface-popup: #fdf9f0;
+  --ormolu-inset: #ece0c8;
+  --ormolu-scrim: rgba(72, 56, 66, 0.34);
+
+  --ormolu-gild: #b8954e;
+  --ormolu-gild-deep: #876626;
+  --ormolu-gild-soft: rgba(184, 149, 78, 0.16);
+  --ormolu-gild-a30: rgba(184, 149, 78, 0.3);
+  --ormolu-gild-a55: rgba(184, 149, 78, 0.55);
+
+  --ormolu-text: #483842;
+  --ormolu-text-bright: #36262c;
+  --ormolu-text-dim: #7c6a64;
+  --ormolu-text-mute: #a89a8c;
+
+  --ormolu-on-gild: #fbf6ec;
+
+  --ormolu-sage: #8da078;
+  --ormolu-sage-deep: #5f7a4c;
+  --ormolu-sage-soft: rgba(141, 160, 120, 0.18);
+  --ormolu-sage-a50: rgba(141, 160, 120, 0.5);
+
+  --ormolu-rouge: #c15c6e;
+  --ormolu-rouge-deep: #9c3d4e;
+  --ormolu-rouge-soft: rgba(193, 92, 110, 0.14);
+  --ormolu-rouge-a55: rgba(193, 92, 110, 0.55);
+
+  --ormolu-thumb-glint: #fffaf0;
+
+  --ormolu-marble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.53 0 0 0 0 0.42 0 0 0 0 0.15 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  --ormolu-leaf: linear-gradient(
+    135deg,
+    #e2c682 0%,
+    #b8954e 38%,
+    #876626 62%,
+    #cdac68 100%
+  );
+  --ormolu-bevel:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(135, 102, 38, 0.12);
+
+  --ormolu-gild-wash: linear-gradient(
+    180deg,
+    rgba(184, 149, 78, 0.18),
+    rgba(184, 149, 78, 0.04)
+  );
+  --ormolu-gild-bar: linear-gradient(180deg, var(--ormolu-gild), var(--ormolu-gild-deep));
+  --ormolu-glint: rgba(255, 255, 255, 0.45);
+
+  --ormolu-sheen: drop-shadow(0 0 8px var(--ormolu-gild-a30));
+  --ormolu-leaf-text: 0 1px 0 #e8cd8a, 0 0 14px rgba(184, 149, 78, 0.4);
+
+  --ormolu-shadow-pop: 0 14px 34px rgba(80, 54, 24, 0.18);
+  --ormolu-shadow-modal: 0 26px 64px rgba(80, 54, 24, 0.24);
+  --ormolu-shadow-sm: 0 4px 14px rgba(80, 54, 24, 0.12);
+  --ormolu-sheen-focus: drop-shadow(0 2px 8px var(--ormolu-gild-soft));
+  --ormolu-sheen-pop: drop-shadow(0 0 12px rgba(184, 149, 78, 0.2));
+  --ormolu-sheen-modal: drop-shadow(0 0 20px rgba(184, 149, 78, 0.22));
+
+  --ormolu-font: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --ormolu-font-display: "Playfair Display", "Cormorant Garamond", serif;
+  --ormolu-font-brand: "Pinyon Script", "Playfair Display", cursive;
+  --ormolu-font-mono: "Cutive Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --ormolu-fs-12: 12px;
+  --ormolu-fs-13: 13px;
+  --ormolu-fs-15: 15px;
+  --ormolu-fs-16: 16px;
+  --ormolu-fs-22: 22px;
+  --ormolu-fs-30: 30px;
+  --ormolu-fs-44: 44px;
+
+  --ormolu-ls-2: 0.02em;
+  --ormolu-ls-6: 0.06em;
+  --ormolu-ls-12: 0.12em;
+
+  --ormolu-lh-100: 1;
+  --ormolu-lh-150: 1.5;
+  --ormolu-lh-170: 1.7;
+
+  --ormolu-fw-400: 400;
+  --ormolu-fw-600: 600;
+  --ormolu-fw-700: 700;
+
+  --ormolu-dur: 0.4s;
+  --ormolu-dur-slow: 0.7s;
+  --ormolu-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ormolu-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ormolu-breath: 8s;
+
+  --ormolu-control-h: 40px;
+  --ormolu-disabled-opacity: 0.5;
+
+  --ormolu-space-1: 4px;
+  --ormolu-space-2: 8px;
+  --ormolu-space-3: 12px;
+  --ormolu-space-4: 16px;
+  --ormolu-space-5: 20px;
+  --ormolu-space-6: 24px;
+  --ormolu-space-7: 32px;
+
+  --ormolu-round-2: 2px;
+  --ormolu-round-3: 3px;
+  --ormolu-round-4: 4px;
+  --ormolu-round-6: 6px;
+  --ormolu-round-full: 999px;
+
+  --ormolu-w-dialog: 460px;
+  --ormolu-w-alert: 440px;
+  --ormolu-w-drawer: 420px;
+  --ormolu-h-drawer: 460px;
+  --ormolu-w-popover: 320px;
+  --ormolu-w-preview: 286px;
+  --ormolu-w-tooltip: 240px;
+  --ormolu-w-toast: 360px;
+  --ormolu-h-popup-list: 264px;
+
+  --ormolu-autocomplete-min-w: 240px;
+  --ormolu-avatar-status-min-w: 14px;
+  --ormolu-avatar-status-min-h: 14px;
+  --ormolu-badge-h: 22px;
+  --ormolu-button-h-sm: 32px;
+  --ormolu-button-h-lg: 48px;
+  --ormolu-button-icon-h-sm: 32px;
+  --ormolu-button-icon-h-lg: 48px;
+  --ormolu-checkbox-box: 28px;
+  --ormolu-checkbox-glyph: 24px;
+  --ormolu-combobox-min-w: 240px;
+  --ormolu-combobox-icon: 24px;
+  --ormolu-combobox-glyph: 18px;
+  --ormolu-contextmenu-min-h: 132px;
+  --ormolu-menu-min-w: 216px;
+  --ormolu-menubar-trigger-h: 34px;
+  --ormolu-menubar-trigger-min-w: 34px;
+  --ormolu-navmenu-trigger-h: 38px;
+  --ormolu-number-field-stepper: 28px;
+  --ormolu-number-field-w: 64px;
+  --ormolu-otp-cell-w: 44px;
+  --ormolu-otp-cell-h: 52px;
+  --ormolu-otp-cell-w-sm: 38px;
+  --ormolu-otp-cell-h-sm: 48px;
+  --ormolu-otp-caret-h: 24px;
+  --ormolu-otp-divider: 14px;
+  --ormolu-panel-corner: 32px;
+  --ormolu-preview-mark: 16px;
+  --ormolu-radio-box: 28px;
+  --ormolu-radio-glyph: 22px;
+  --ormolu-scrollarea-thumb-min-h: 30px;
+  --ormolu-select-min-w: 190px;
+  --ormolu-select-indicator: 18px;
+  --ormolu-slider-control-h: 24px;
+  --ormolu-slider-thumb: 16px;
+  --ormolu-switch-w: 48px;
+  --ormolu-toast-close: 22px;
+  --ormolu-togglegroup-h: 34px;
+  --ormolu-togglegroup-min-w: 34px;
+  --ormolu-toolbar-btn-h: 34px;
+  --ormolu-toolbar-btn-min-w: 34px;
+  --ormolu-toolbar-sep-min-h: 18px;
+
+  --ormolu-z-dropdown: 1200;
+  --ormolu-z-menu: 1250;
+  --ormolu-z-tooltip: 1300;
+  --ormolu-z-backdrop: 1400;
+  --ormolu-z-overlay: 1401;
+  --ormolu-z-toast: 1500;
+}

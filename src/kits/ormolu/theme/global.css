@@ -1,0 +1,99 @@
+body {
+  background-color: var(--ormolu-ivory);
+  color: var(--ormolu-text);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-16);
+  line-height: var(--ormolu-lh-150);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60% 44% at 12% 6%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(60% 44% at 88% 4%, rgba(251, 246, 236, 0.55), transparent 62%),
+    linear-gradient(to bottom, var(--ormolu-silk), var(--ormolu-ivory) 44%, var(--ormolu-ivory-deep));
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    var(--ormolu-marble),
+    radial-gradient(rgba(184, 149, 78, 0.16) 1px, transparent 1.7px);
+  background-size:
+    220px 220px,
+    150px 150px;
+  background-position:
+    0 0,
+    30px 60px;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(135% 120% at 50% 56%, #000 32%, transparent 92%);
+  animation: ormolu-drift 60s linear infinite;
+}
+@keyframes ormolu-drift {
+  to {
+    background-position:
+      0 0,
+      30px -90px;
+  }
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 0% 0%, var(--ormolu-gild-soft), transparent 70%),
+    radial-gradient(38% 30% at 100% 0%, var(--ormolu-gild-soft), transparent 70%),
+    radial-gradient(40% 32% at 0% 100%, var(--ormolu-gild-soft), transparent 70%),
+    radial-gradient(40% 32% at 100% 100%, var(--ormolu-gild-soft), transparent 70%);
+  mix-blend-mode: multiply;
+}
+
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: var(--ormolu-marble);
+  background-size: 320px 320px;
+}
+
+::selection {
+  background: var(--ormolu-gild-a30);
+  color: var(--ormolu-text-bright);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ormolu-gild-a55) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--ormolu-gild-bar);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--ormolu-gild-deep);
+  background-clip: padding-box;
+}

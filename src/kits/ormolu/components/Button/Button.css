@@ -1,0 +1,152 @@
+.ormolu-btn {
+  --ormolu-frame-round: var(--ormolu-round-3);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  --ormolu-frame-fill: linear-gradient(
+    180deg,
+    var(--ormolu-silk),
+    var(--ormolu-silk-shade)
+  );
+  --ormolu-frame-bevel: var(--ormolu-bevel);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ormolu-space-2);
+  min-height: var(--ormolu-control-h);
+  padding-inline: var(--ormolu-space-5);
+  background: transparent;
+  border: 0;
+  color: var(--ormolu-text-bright);
+  font-family: var(--ormolu-font-display);
+  font-weight: var(--ormolu-fw-600);
+  font-size: var(--ormolu-fs-13);
+  letter-spacing: var(--ormolu-ls-2);
+  transition:
+    color var(--ormolu-dur) var(--ormolu-ease),
+    box-shadow var(--ormolu-dur) var(--ormolu-ease),
+    scale 0.16s var(--ormolu-ease-out),
+    translate 0.16s var(--ormolu-ease-out);
+}
+
+.ormolu-btn__label {
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ormolu-space-2);
+  position: relative;
+}
+
+.ormolu-btn__icon {
+  font-size: 1.1em;
+  display: inline-flex;
+}
+
+.ormolu-btn:active {
+  scale: 0.97;
+  translate: 0 1px;
+  transition-duration: 0s;
+}
+
+.ormolu-btn--primary {
+  --ormolu-frame-fill: var(--ormolu-gild-wash);
+  --ormolu-frame-gild: var(--ormolu-gild);
+  color: var(--ormolu-gild-deep);
+}
+.ormolu-btn--primary:hover {
+  --ormolu-frame-gild: var(--ormolu-gild-deep);
+  --ormolu-frame-fill: var(--ormolu-gild-bar);
+  color: var(--ormolu-on-gild);
+  box-shadow: var(--ormolu-shadow-sm);
+}
+
+.ormolu-btn--secondary {
+  --ormolu-frame-fill: var(--ormolu-sage-soft);
+  --ormolu-frame-gild: var(--ormolu-sage-a50);
+  color: var(--ormolu-sage-deep);
+}
+.ormolu-btn--secondary:hover {
+  --ormolu-frame-gild: var(--ormolu-sage-deep);
+  --ormolu-frame-fill: linear-gradient(180deg, var(--ormolu-sage), var(--ormolu-sage-deep));
+  color: var(--ormolu-on-gild);
+}
+
+.ormolu-btn--danger {
+  --ormolu-frame-fill: linear-gradient(180deg, var(--ormolu-rouge), var(--ormolu-rouge-deep));
+  --ormolu-frame-gild: var(--ormolu-rouge-deep);
+  color: var(--ormolu-on-gild);
+}
+.ormolu-btn--danger:hover {
+  --ormolu-frame-fill: var(--ormolu-rouge-deep);
+  box-shadow: var(--ormolu-shadow-sm);
+}
+
+.ormolu-btn--ghost {
+  --ormolu-frame-fill: transparent;
+  --ormolu-frame-gild: transparent;
+  --ormolu-frame-bevel: none;
+  color: var(--ormolu-text-dim);
+}
+.ormolu-btn--ghost:hover {
+  --ormolu-frame-fill: var(--ormolu-gild-soft);
+  color: var(--ormolu-gild-deep);
+}
+.ormolu-btn--ghost[data-popup-open] {
+  --ormolu-frame-fill: var(--ormolu-gild-soft);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  color: var(--ormolu-gild-deep);
+}
+
+.ormolu-btn--icon,
+.ormolu-btn--icon-ghost {
+  width: var(--ormolu-control-h);
+  padding-inline: 0;
+}
+.ormolu-btn--icon:hover,
+.ormolu-btn--icon-ghost:hover {
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+  color: var(--ormolu-gild-deep);
+}
+.ormolu-btn--icon-ghost {
+  --ormolu-frame-fill: transparent;
+  --ormolu-frame-gild: transparent;
+  --ormolu-frame-bevel: none;
+  color: var(--ormolu-text-dim);
+}
+.ormolu-btn--icon-ghost:hover {
+  --ormolu-frame-fill: var(--ormolu-gild-soft);
+}
+.ormolu-btn--icon .ormolu-btn__label,
+.ormolu-btn--icon-ghost .ormolu-btn__label {
+  font-size: 1.2em;
+}
+
+.ormolu-btn--sm {
+  min-height: var(--ormolu-button-h-sm);
+  padding-inline: var(--ormolu-space-4);
+  font-size: var(--ormolu-fs-12);
+}
+.ormolu-btn--lg {
+  min-height: var(--ormolu-button-h-lg);
+  padding-inline: var(--ormolu-space-6);
+  font-size: var(--ormolu-fs-15);
+}
+.ormolu-btn--sm.ormolu-btn--icon,
+.ormolu-btn--sm.ormolu-btn--icon-ghost {
+  width: var(--ormolu-button-icon-h-sm);
+}
+.ormolu-btn--lg.ormolu-btn--icon,
+.ormolu-btn--lg.ormolu-btn--icon-ghost {
+  width: var(--ormolu-button-icon-h-lg);
+}
+
+.ormolu-btn:focus-visible {
+  --ormolu-frame-gild: var(--ormolu-gild);
+  outline: none;
+  box-shadow: var(--ormolu-shadow-sm);
+}
+.ormolu-btn:disabled,
+.ormolu-btn[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--ormolu-disabled-opacity);
+  filter: grayscale(0.5);
+}

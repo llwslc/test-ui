@@ -1,0 +1,30 @@
+.ormolu-tooltip__pos {
+  --ormolu-overlay-shadow: var(--ormolu-shadow-sm);
+  --ormolu-overlay-sheen: var(--ormolu-sheen-pop);
+  z-index: var(--ormolu-z-tooltip);
+}
+
+.ormolu-tooltip__popup {
+  position: relative;
+}
+
+.ormolu-tooltip__surface {
+  display: block;
+  max-width: var(--ormolu-w-tooltip);
+  padding: var(--ormolu-space-2) var(--ormolu-space-3);
+  color: var(--ormolu-text-bright);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-13);
+  line-height: var(--ormolu-lh-150);
+  --ormolu-frame-round: var(--ormolu-round-3);
+  --ormolu-frame-fill: var(--ormolu-surface-popup);
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-tooltip__surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ormolu-round-3);
+  box-shadow: inset 0 -1.5px 0 var(--ormolu-gild-soft);
+  pointer-events: none;
+}

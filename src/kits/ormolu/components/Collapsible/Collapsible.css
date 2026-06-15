@@ -1,0 +1,48 @@
+.ormolu-collapsible {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.ormolu-collapsible {
+  --ormolu-frame-round: var(--ormolu-round-3);
+  --ormolu-frame-fill: var(--ormolu-surface);
+  --ormolu-frame-gild: var(--ormolu-gild-a30);
+  --ormolu-frame-bevel: var(--ormolu-bevel);
+}
+.ormolu-collapsible:has(.ormolu-collapsible__trigger:hover) {
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+.ormolu-collapsible:has(.ormolu-collapsible__trigger[data-panel-open]) {
+  --ormolu-frame-gild: var(--ormolu-gild);
+  --ormolu-frame-fill: linear-gradient(180deg, var(--ormolu-silk), var(--ormolu-silk-shade));
+}
+.ormolu-collapsible:has([data-disabled]) {
+  opacity: var(--ormolu-disabled-opacity);
+}
+
+.ormolu-collapsible__trigger {
+  z-index: 1;
+  position: relative;
+}
+
+.ormolu-collapsible__rune {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--ormolu-text-dim);
+  font-size: var(--ormolu-fs-22);
+}
+.ormolu-collapsible__rune {
+  transition:
+    rotate var(--ormolu-dur-slow) var(--ormolu-ease),
+    scale var(--ormolu-dur) var(--ormolu-ease),
+    color var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-collapsible__trigger:hover .ormolu-collapsible__rune {
+  rotate: 60deg;
+  color: var(--ormolu-text);
+}
+.ormolu-collapsible__trigger[data-panel-open] .ormolu-collapsible__rune {
+  rotate: 180deg;
+  scale: 1.08;
+  color: var(--ormolu-gild-deep);
+}

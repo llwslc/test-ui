@@ -1,0 +1,43 @@
+.ormolu-separator-labeled {
+  width: 100%;
+  display: flex;
+  gap: var(--ormolu-space-3);
+  align-items: center;
+}
+
+.ormolu-separator-labeled__line {
+  flex: 1;
+  height: 2px;
+  background:
+    radial-gradient(circle, var(--ormolu-gild-a55) 1.4px, transparent 2px) right center / 9px 100% repeat-x,
+    linear-gradient(90deg, transparent, var(--ormolu-gild-a30)) center / 100% 1px no-repeat;
+}
+.ormolu-separator-labeled__line--end {
+  background:
+    radial-gradient(circle, var(--ormolu-gild-a55) 1.4px, transparent 2px) left center / 9px 100% repeat-x,
+    linear-gradient(90deg, var(--ormolu-gild-a30), transparent) center / 100% 1px no-repeat;
+}
+
+.ormolu-separator-labeled__mark {
+  flex: 0 0 auto;
+  display: inline-flex;
+  gap: var(--ormolu-space-2);
+  align-items: center;
+}
+.ormolu-separator-labeled__text {
+  white-space: nowrap;
+}
+
+.ormolu-separator-labeled__sigil {
+  display: inline-flex;
+  color: var(--ormolu-gild);
+  font-size: var(--ormolu-fs-15);
+  text-shadow: var(--ormolu-leaf-text);
+  transition:
+    rotate var(--ormolu-dur) var(--ormolu-ease),
+    scale var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-separator-labeled:hover .ormolu-separator-labeled__sigil {
+  rotate: 60deg;
+  scale: 1.12;
+}

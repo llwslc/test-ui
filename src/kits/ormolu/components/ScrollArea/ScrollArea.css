@@ -1,0 +1,78 @@
+.ormolu-scrollarea {
+  --ormolu-frame-round: var(--ormolu-round-3);
+  --ormolu-frame-fill: var(--ormolu-inset);
+  --ormolu-frame-gild: var(--ormolu-gild-a30);
+  position: relative;
+  width: 100%;
+}
+.ormolu-scrollarea:focus-within {
+  --ormolu-frame-gild: var(--ormolu-gild-a55);
+}
+
+.ormolu-scrollarea__viewport {
+  position: relative;
+  z-index: 1;
+  outline: none;
+  overscroll-behavior: contain;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+}
+.ormolu-scrollarea .ormolu-scrollarea__viewport {
+  scrollbar-width: none;
+}
+.ormolu-scrollarea .ormolu-scrollarea__viewport::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.ormolu-scrollarea__content {
+  padding: var(--ormolu-space-4) var(--ormolu-space-5);
+  color: var(--ormolu-text);
+  font-family: var(--ormolu-font);
+  font-size: var(--ormolu-fs-15);
+  line-height: var(--ormolu-lh-170);
+}
+
+.ormolu-scrollarea__scrollbar {
+  z-index: 2;
+  width: 12px;
+  margin: var(--ormolu-space-2) 3px;
+  display: flex;
+  justify-content: center;
+  border-radius: var(--ormolu-round-6);
+  opacity: 0;
+  transition: opacity var(--ormolu-dur-slow) var(--ormolu-ease);
+}
+.ormolu-scrollarea:hover .ormolu-scrollarea__scrollbar,
+.ormolu-scrollarea__scrollbar[data-scrolling],
+.ormolu-scrollarea__scrollbar[data-hovering] {
+  opacity: 1;
+}
+
+.ormolu-scrollarea__thumb {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: var(--ormolu-scrollarea-thumb-min-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ormolu-scrollarea__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0 3px;
+  background: var(--ormolu-gild-a55);
+  border-radius: var(--ormolu-round-6);
+  transition: background var(--ormolu-dur) var(--ormolu-ease);
+}
+.ormolu-scrollarea__thumb:hover::before,
+.ormolu-scrollarea__scrollbar[data-scrolling] .ormolu-scrollarea__thumb::before {
+  background: var(--ormolu-gild-bar);
+}
