@@ -105,6 +105,21 @@
 .abyss-btn--icon-ghost:hover {
   --abyss-frame-fill: var(--abyss-glow-soft);
 }
+
+/* Borderless variants paint no frame at rest — a fully transparent frame layer
+   still leaves a faint embossed patch over the blended atmosphere; render it
+   only when there is a fill or focus ring to show. */
+.abyss-btn--ghost::before,
+.abyss-btn--icon-ghost::before {
+  display: none;
+}
+.abyss-btn--ghost:hover::before,
+.abyss-btn--ghost:focus-visible::before,
+.abyss-btn--ghost[data-popup-open]::before,
+.abyss-btn--icon-ghost:hover::before,
+.abyss-btn--icon-ghost:focus-visible::before {
+  display: block;
+}
 .abyss-btn--icon .abyss-btn__label,
 .abyss-btn--icon-ghost .abyss-btn__label {
   font-size: 1.2em;
