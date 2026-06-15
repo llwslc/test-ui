@@ -25,6 +25,13 @@ export const KITS: KitDef[] = [
     app: () => import("./nova"),
     loader: () => import("./nova/Loader"),
   },
+  {
+    id: "brass",
+    label: "BRASS",
+    tag: "Steampunk · Clockwork",
+    app: () => import("./brass"),
+    loader: () => import("./brass/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

@@ -1,0 +1,15 @@
+.brass-collapsible {
+  border: 1px solid var(--brass-line);
+  border-radius: var(--brass-round-md);
+  background: var(--brass-surface-zone);
+}
+.brass-collapsible[data-disabled] .brass-collapse-trigger {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+}
+.brass-collapsible .brass-collapse-trigger:focus-visible {
+  outline: none;
+  color: var(--brass-text-bright);
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+  border-radius: var(--brass-round-md);
+}

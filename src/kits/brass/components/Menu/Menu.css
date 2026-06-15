@@ -1,0 +1,8 @@
+.brass-menu-trigger__chevron {
+  color: var(--brass-text-dim);
+  transition: transform var(--brass-dur) var(--brass-ease);
+}
+.brass-menu-trigger[data-popup-open] .brass-menu-trigger__chevron {
+  transform: rotate(180deg);
+  color: var(--brass-primary);
+}

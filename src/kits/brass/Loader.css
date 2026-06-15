@@ -1,0 +1,66 @@
+.brass-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: radial-gradient(80% 60% at 50% 30%, #1d1810, #15110b 70%);
+}
+.brass-loader__gears {
+  position: relative;
+  width: 96px;
+  height: 72px;
+}
+.brass-loader__gear {
+  position: absolute;
+  fill: none;
+  stroke: #cf9d3a;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(207, 157, 58, 0.4));
+}
+.brass-loader__gear--a {
+  width: 60px;
+  height: 60px;
+  left: 0;
+  top: 0;
+  animation: brass-loader-cw 3.6s linear infinite;
+}
+.brass-loader__gear--b {
+  width: 44px;
+  height: 44px;
+  right: 0;
+  bottom: 0;
+  stroke: #c2683b;
+  animation: brass-loader-ccw 2.6s linear infinite;
+}
+@keyframes brass-loader-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes brass-loader-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.brass-loader__label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a99c82;
+  animation: brass-loader-pulse 1.8s ease-in-out infinite;
+}
+@keyframes brass-loader-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}

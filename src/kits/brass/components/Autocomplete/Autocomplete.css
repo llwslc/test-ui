@@ -1,0 +1,77 @@
+.brass-autocomplete {
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bevel: var(--brass-bevel-inset);
+  --brass-plate-round: var(--brass-round-md);
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-control-h);
+  padding: 0 var(--brass-space-2) 0 var(--brass-space-3);
+  transition: filter var(--brass-dur) var(--brass-ease);
+}
+.brass-autocomplete__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--brass-text-dim);
+  font-size: var(--brass-fs-17);
+}
+.brass-autocomplete__control {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--brass-text-bright);
+  font-family: var(--brass-font);
+  font-size: var(--brass-fs-15);
+}
+.brass-autocomplete__control::placeholder {
+  color: var(--brass-text-mute);
+}
+.brass-autocomplete__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--brass-seg-h);
+  height: var(--brass-seg-h);
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--brass-round-sm);
+  color: var(--brass-text-dim);
+  font-size: var(--brass-fs-15);
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease);
+}
+.brass-autocomplete__clear:hover {
+  background: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
+.brass-autocomplete__clear:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+.brass-autocomplete:hover {
+  --brass-plate-bezel: var(--brass-bezel);
+}
+.brass-autocomplete:focus-within {
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  filter: var(--brass-glow-focus);
+}
+.brass-autocomplete:has(.brass-autocomplete__control:disabled) {
+  opacity: var(--brass-disabled-opacity);
+}
+
+.brass-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+.brass-autocomplete__empty {
+  padding: var(--brass-space-4) var(--brass-space-3);
+  text-align: center;
+  color: var(--brass-text-mute);
+}

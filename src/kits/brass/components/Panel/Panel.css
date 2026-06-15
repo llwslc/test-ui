@@ -1,0 +1,73 @@
+/* BRASS Panel — the signature riveted instrument plate. */
+.brass-panel {
+  --brass-plate-round: var(--brass-round-lg);
+  --brass-plate-fill: var(--brass-plate-grad);
+  display: flex;
+  flex-direction: column;
+}
+
+/* App grid uses this for span-2; grid-column lives in App, not here. */
+.brass-panel--wide {
+  width: 100%;
+}
+
+/* ── Machined corner brackets: L-shaped, two brass edges each ── */
+.brass-panel__bracket {
+  position: absolute;
+  width: var(--brass-space-4);
+  height: var(--brass-space-4);
+  pointer-events: none;
+}
+.brass-panel__bracket--tl {
+  top: var(--brass-space-4);
+  left: var(--brass-space-4);
+  border-top: 2px solid var(--brass-line-strong);
+  border-left: 2px solid var(--brass-line-strong);
+  border-top-left-radius: var(--brass-round-sm);
+}
+.brass-panel__bracket--tr {
+  top: var(--brass-space-4);
+  right: var(--brass-space-4);
+  border-top: 2px solid var(--brass-line-strong);
+  border-right: 2px solid var(--brass-line-strong);
+  border-top-right-radius: var(--brass-round-sm);
+}
+.brass-panel__bracket--bl {
+  bottom: var(--brass-space-4);
+  left: var(--brass-space-4);
+  border-bottom: 2px solid var(--brass-line-strong);
+  border-left: 2px solid var(--brass-line-strong);
+  border-bottom-left-radius: var(--brass-round-sm);
+}
+.brass-panel__bracket--br {
+  bottom: var(--brass-space-4);
+  right: var(--brass-space-4);
+  border-bottom: 2px solid var(--brass-line-strong);
+  border-right: 2px solid var(--brass-line-strong);
+  border-bottom-right-radius: var(--brass-round-sm);
+}
+
+/* ── Header row: marker + mono title + meta code ── */
+.brass-panel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-3);
+  padding: var(--brass-space-4) var(--brass-space-5);
+  border-bottom: 1px solid var(--brass-line);
+}
+.brass-panel__marker {
+  flex: 0 0 auto;
+  font-size: var(--brass-fs-17);
+}
+.brass-panel__title {
+  flex: 1;
+  min-width: 0;
+}
+.brass-panel__meta {
+  flex: 0 0 auto;
+  color: var(--brass-text-mute);
+}
+
+.brass-panel__body {
+  padding: var(--brass-space-5);
+}

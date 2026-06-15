@@ -1,0 +1,8 @@
+.brass-tooltip {
+  max-width: var(--brass-tooltip-w);
+  padding: var(--brass-space-2) var(--brass-space-3);
+  font-family: var(--brass-font);
+  font-size: var(--brass-fs-13);
+  line-height: var(--brass-lh-140);
+  color: var(--brass-text-bright);
+}

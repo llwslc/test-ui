@@ -1,0 +1,94 @@
+.brass-btn {
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-fill: var(--brass-surface-raised);
+  --brass-plate-round: var(--brass-round-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-control-h);
+  padding: 0 var(--brass-space-4);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-13);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-2);
+  text-transform: uppercase;
+  color: var(--brass-text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    filter var(--brass-dur) var(--brass-ease),
+    color var(--brass-dur) var(--brass-ease),
+    transform var(--brass-dur) var(--brass-ease);
+}
+.brass-btn :where(svg) {
+  font-size: var(--brass-fs-17);
+}
+.brass-btn:hover {
+  --brass-plate-bezel: var(--brass-bezel);
+  color: var(--brass-text-bright);
+}
+.brass-btn:active {
+  transform: translateY(1px);
+}
+.brass-btn:focus-visible {
+  outline: none;
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  filter: var(--brass-glow-focus);
+}
+.brass-btn[data-disabled],
+.brass-btn:disabled {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.brass-btn--sm {
+  height: var(--brass-button-h-sm);
+  padding: 0 var(--brass-space-3);
+  font-size: var(--brass-fs-11);
+}
+.brass-btn--lg {
+  height: var(--brass-button-h-lg);
+  padding: 0 var(--brass-space-6);
+  font-size: var(--brass-fs-15);
+}
+.brass-btn--icon {
+  width: var(--brass-button-icon);
+  padding: 0;
+}
+.brass-btn--icon.brass-btn--sm {
+  width: var(--brass-button-h-sm);
+}
+
+.brass-btn--primary {
+  --brass-plate-fill: var(--brass-accent-surface);
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  color: var(--brass-on-primary);
+}
+.brass-btn--primary:hover {
+  color: var(--brass-on-primary);
+  filter: var(--brass-glow-active);
+}
+
+.brass-btn--danger {
+  --brass-plate-fill: linear-gradient(180deg, var(--brass-danger), var(--brass-danger-deep));
+  --brass-plate-bezel: var(--brass-danger-deep);
+  color: var(--brass-text-bright);
+}
+.brass-btn--danger:hover {
+  color: var(--brass-text-bright);
+  filter: drop-shadow(0 0 8px var(--brass-danger-fill));
+}
+
+.brass-btn--ghost {
+  --brass-plate-bezel: transparent;
+  --brass-plate-fill: transparent;
+  --brass-plate-bevel: none;
+  color: var(--brass-text-dim);
+}
+.brass-btn--ghost:hover {
+  --brass-plate-bezel: transparent;
+  --brass-plate-fill: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}

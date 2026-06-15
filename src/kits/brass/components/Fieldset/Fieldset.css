@@ -1,0 +1,17 @@
+/* BRASS Fieldset — a grouped form section in a bordered brass enclosure. */
+.brass-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-4);
+  margin: 0;
+  padding: var(--brass-space-5);
+  border: 1px solid var(--brass-line);
+  border-radius: var(--brass-round-md);
+  background: var(--brass-surface-zone);
+}
+
+.brass-fieldset__legend {
+  padding: 0 var(--brass-space-2);
+  margin-left: calc(-1 * var(--brass-space-1));
+  color: var(--brass-text-mute);
+}

@@ -1,0 +1,39 @@
+.brass-alert {
+  width: var(--brass-alert-w);
+  --brass-tone: var(--brass-danger);
+  --brass-tone-deep: var(--brass-danger-deep);
+  --brass-plate-bezel: linear-gradient(
+    150deg,
+    var(--brass-tone-deep),
+    var(--brass-tone) 24%,
+    var(--brass-tone-deep) 52%,
+    var(--brass-tone) 78%,
+    var(--brass-tone-deep)
+  );
+  --brass-plate-fill: radial-gradient(
+      120% 78% at 50% 0,
+      color-mix(in srgb, var(--brass-tone) 20%, transparent),
+      transparent 58%
+    ),
+    var(--brass-surface-modal);
+}
+
+.brass-alert--primary {
+  --brass-tone: var(--brass-primary);
+  --brass-tone-deep: var(--brass-primary-deep);
+}
+.brass-alert--warning {
+  --brass-tone: var(--brass-warning);
+  --brass-tone-deep: var(--brass-warning-deep);
+}
+.brass-alert--danger {
+  --brass-tone: var(--brass-danger);
+  --brass-tone-deep: var(--brass-danger-deep);
+}
+
+.brass-alert .brass-marker {
+  --brass-marker-color: var(--brass-tone);
+}
+.brass-alert .brass-modal-title {
+  color: var(--brass-tone);
+}

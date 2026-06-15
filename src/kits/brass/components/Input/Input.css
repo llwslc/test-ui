@@ -1,0 +1,53 @@
+.brass-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-2);
+}
+.brass-field__desc {
+  font-size: var(--brass-fs-13);
+}
+
+.brass-input {
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bevel: var(--brass-bevel-inset);
+  --brass-plate-round: var(--brass-round-md);
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-control-h);
+  padding: 0 var(--brass-space-3);
+  transition: filter var(--brass-dur) var(--brass-ease);
+}
+.brass-input__icon {
+  display: inline-flex;
+  color: var(--brass-text-dim);
+  font-size: var(--brass-fs-17);
+}
+.brass-input__control {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--brass-text-bright);
+  font-family: var(--brass-font);
+  font-size: var(--brass-fs-15);
+}
+.brass-input__control::placeholder {
+  color: var(--brass-text-mute);
+}
+.brass-input:hover {
+  --brass-plate-bezel: var(--brass-bezel);
+}
+.brass-input:focus-within {
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  filter: var(--brass-glow-focus);
+}
+.brass-input:has(.brass-input__control:disabled) {
+  opacity: var(--brass-disabled-opacity);
+}
+.brass-input:has([data-invalid]) {
+  --brass-plate-bezel: var(--brass-danger-deep);
+}

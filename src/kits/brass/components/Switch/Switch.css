@@ -1,0 +1,63 @@
+.brass-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--brass-switch-w);
+  height: var(--brass-switch-h);
+  padding: 0;
+  border: 1px solid var(--brass-primary-deep);
+  border-radius: var(--brass-round-pill);
+  background: var(--brass-off);
+  box-shadow: var(--brass-bevel-inset);
+  cursor: pointer;
+  transition:
+    background var(--brass-dur) var(--brass-ease),
+    filter var(--brass-dur) var(--brass-ease);
+}
+.brass-switch::before,
+.brass-switch::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  color: var(--brass-text-mute);
+  transition: color var(--brass-dur) var(--brass-ease);
+}
+.brass-switch::before {
+  content: "O";
+  left: 7px;
+}
+.brass-switch::after {
+  content: "I";
+  right: 9px;
+}
+.brass-switch__thumb {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: var(--brass-switch-knob);
+  height: var(--brass-switch-knob);
+  transform: translateY(-50%);
+  transition: transform var(--brass-dur) var(--brass-ease-detent);
+}
+.brass-switch[data-checked] {
+  background: var(--brass-accent-surface);
+  filter: var(--brass-glow-active);
+}
+.brass-switch[data-checked]::before,
+.brass-switch[data-checked]::after {
+  color: var(--brass-on-primary);
+}
+.brass-switch[data-checked] .brass-switch__thumb {
+  background-image: var(--brass-knurl), var(--brass-accent-surface);
+  transform: translate(calc(var(--brass-switch-w) - var(--brass-switch-knob) - 6px), -50%);
+}
+.brass-switch:focus-visible {
+  outline: none;
+  filter: var(--brass-glow-focus);
+}
+.brass-switch[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+}

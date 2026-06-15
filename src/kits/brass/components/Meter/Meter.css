@@ -1,0 +1,48 @@
+.brass-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-3);
+}
+.brass-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.brass-meter__value {
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-13);
+  font-weight: var(--brass-fw-700);
+  color: var(--brass-primary);
+}
+.brass-meter__track {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--brass-meter-h);
+  border-radius: var(--brass-round-pill);
+  background-image: linear-gradient(
+    90deg,
+    var(--brass-success-wash) 0%,
+    var(--brass-success-wash) 55%,
+    var(--brass-warning-wash) 78%,
+    var(--brass-danger-wash) 100%
+  );
+  background-color: var(--brass-track);
+  box-shadow: var(--brass-bevel-inset);
+}
+.brass-meter__track::after {
+  content: "";
+  position: absolute;
+  top: var(--brass-space-1);
+  bottom: var(--brass-space-1);
+  right: var(--brass-space-2);
+  width: 2px;
+  border-radius: var(--brass-round-pill);
+  background: var(--brass-line-strong);
+}
+.brass-meter__indicator {
+  height: 100%;
+  border-radius: var(--brass-round-pill);
+  background: var(--brass-accent-fill);
+  box-shadow: var(--brass-bevel);
+}

@@ -1,0 +1,15 @@
+.brass-separator {
+  flex: 0 0 auto;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--brass-line-strong), transparent);
+}
+.brass-separator[data-orientation="horizontal"] {
+  width: 100%;
+  height: 1px;
+}
+.brass-separator[data-orientation="vertical"] {
+  align-self: stretch;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--brass-line-strong), transparent);
+}

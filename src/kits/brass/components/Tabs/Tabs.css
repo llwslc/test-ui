@@ -1,0 +1,22 @@
+.brass-tabs {
+  display: flex;
+  flex-direction: column;
+}
+.brass-tabs__panel {
+  padding: var(--brass-space-4) var(--brass-space-1) 0;
+}
+.brass-tabs__panel:focus-visible {
+  outline: none;
+}
+@media (max-width: 768px) {
+  .brass-tabs__rail {
+    overflow-x: auto;
+  }
+  .brass-tabs-list {
+    width: max-content;
+    min-width: 100%;
+  }
+  .brass-tab {
+    flex: 0 0 auto;
+  }
+}

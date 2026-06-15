@@ -1,0 +1,179 @@
+/* BRASS — design tokens. Values only; components reference, never restate. */
+
+:root {
+  /* ── Backgrounds & plate ───────────────────────────── */
+  --brass-bg: #15110b;
+  --brass-bg-2: #1d1810;
+  --brass-plate: #1a150d;
+  --brass-plate-raised: #241d12;
+  --brass-plate-grad: linear-gradient(180deg, var(--brass-plate-raised), var(--brass-plate));
+
+  /* ── Accent families (semantic + copper theme), each with -deep ── */
+  --brass-primary: #cf9d3a;
+  --brass-primary-deep: #876521;
+  --brass-secondary: #c2683b;
+  --brass-success: #56a98a;
+  --brass-warning: #f0bf3a;
+  --brass-warning-deep: #9c7418;
+  --brass-danger: #d2503c;
+  --brass-danger-deep: #7c281d;
+
+  /* ── Text & reverse foreground ─────────────────────── */
+  --brass-text: #e3dac6;
+  --brass-text-bright: #f7f1e2;
+  --brass-text-dim: #a99c82;
+  --brass-text-mute: #6f6552;
+  --brass-on-primary: #271a06;
+
+  /* ── Reusable accent gradients ─────────────────────── */
+  --brass-accent-surface: linear-gradient(180deg, #e6c266 0%, var(--brass-primary) 46%, #9a7528 100%);
+  --brass-accent-fill: linear-gradient(90deg, var(--brass-primary-deep), var(--brass-primary) 62%);
+
+  /* ── Brass alpha ladder (by opacity) ───────────────── */
+  --brass-tint-soft: rgba(207, 157, 58, 0.09);
+  --brass-tint: rgba(207, 157, 58, 0.14);
+  --brass-line: rgba(207, 157, 58, 0.18);
+  --brass-tint-active: rgba(207, 157, 58, 0.26);
+  --brass-line-strong: rgba(207, 157, 58, 0.4);
+
+  /* ── Per-family alpha & danger set ─────────────────── */
+  --brass-success-wash: rgba(86, 169, 138, 0.12);
+  --brass-warning-wash: rgba(240, 191, 58, 0.12);
+  --brass-danger-fill: rgba(210, 80, 60, 0.5);
+  --brass-danger-wash: rgba(210, 80, 60, 0.12);
+
+  /* ── Neutrals & effect colors ──────────────────────── */
+  --brass-off: #2c2519;
+  --brass-track: #221c12;
+  --brass-sheen: rgba(255, 246, 222, 0.55);
+  --brass-thumb-top: #6a5f49;
+  --brass-thumb-bottom: #312a1d;
+  --brass-knurl: repeating-linear-gradient(135deg, rgba(255, 238, 196, 0.16) 0 1px, rgba(0, 0, 0, 0.18) 1px 3px);
+  --brass-rivet: radial-gradient(circle at 38% 34%, #f1d585, #b8923a 44%, #6e521f 74%, #2f2310 100%);
+
+  /* ── Surfaces ──────────────────────────────────────── */
+  --brass-surface: rgba(28, 23, 14, 0.82);
+  --brass-surface-popup: rgba(33, 27, 16, 0.975);
+  --brass-surface-modal: linear-gradient(165deg, #241d12, #15100a);
+  --brass-surface-inset: #100c06;
+  --brass-surface-raised: linear-gradient(180deg, #2a2215, #1c160e);
+  --brass-surface-zone: rgba(207, 157, 58, 0.05);
+  --brass-scrim: rgba(9, 6, 3, 0.66);
+
+  /* ── Bezel (metallic frame edge) & bevel ───────────── */
+  --brass-bezel-dim: linear-gradient(150deg, #5f4d29, #8a7038 24%, #4a3c20 52%, #7d6531 78%, #43361d);
+  --brass-bezel: linear-gradient(150deg, #9a7c3a, #d8b65e 20%, #6f5526 48%, #c2a04c 76%, #5d4a22);
+  --brass-bezel-strong: linear-gradient(150deg, #c49a44, #f0d488 18%, #8a6a2c 46%, #e6c163 74%, #7a5d28);
+  --brass-bevel: inset 0 1px 0 rgba(255, 238, 196, 0.16), inset 0 -1px 1px rgba(0, 0, 0, 0.45);
+  --brass-bevel-inset: inset 0 2px 3px rgba(0, 0, 0, 0.55), inset 0 -1px 0 rgba(255, 238, 196, 0.05);
+
+  /* ── Glows (drop-shadow, follow rounded outline) ───── */
+  --brass-glow-text: 0 0 14px rgba(240, 191, 58, 0.35);
+  --brass-glow-focus: drop-shadow(0 0 6px rgba(207, 157, 58, 0.55));
+  --brass-glow-popup: drop-shadow(0 0 12px rgba(207, 157, 58, 0.22));
+  --brass-glow-active: drop-shadow(0 0 9px rgba(207, 157, 58, 0.5));
+  --brass-glow-trigger: drop-shadow(0 0 5px rgba(207, 157, 58, 0.42));
+  --brass-glow-modal: drop-shadow(0 0 24px rgba(207, 157, 58, 0.26));
+
+  /* ── Depth shadows: drop-shadow form (elevation filter, follow rounded outline) ── */
+  --brass-shadow-popup: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 3px 7px rgba(0, 0, 0, 0.5));
+  --brass-shadow-modal: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.68)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  --brass-shadow-pop-sm: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+  /* ── Rectangular shadows: box-shadow form (chips, knobs) ── */
+  --brass-shadow-ink: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --brass-shadow-thumb: 0 2px 4px rgba(0, 0, 0, 0.6);
+
+  /* ── Geometry (machined radii, by role) ────────────── */
+  --brass-round-xs: 2px;
+  --brass-round-sm: 3px;
+  --brass-round-md: 5px;
+  --brass-round-lg: 8px;
+  --brass-round-pill: 999px;
+
+  /* ── Z-layer ladder ────────────────────────────────── */
+  --brass-z-dropdown: 50;
+  --brass-z-menu: 60;
+  --brass-z-tooltip: 70;
+  --brass-z-backdrop: 80;
+  --brass-z-overlay: 90;
+  --brass-z-toast: 100;
+
+  /* ── Motion & metrics ──────────────────────────────── */
+  --brass-dur: 0.26s;
+  --brass-dur-slow: 0.5s;
+  --brass-dur-breath: 6s;
+  --brass-dur-spin: 30s;
+  --brass-ease: cubic-bezier(0.32, 0.72, 0.2, 1);
+  --brass-ease-detent: cubic-bezier(0.5, 1.4, 0.5, 1);
+  --brass-control-h: 38px;
+  --brass-disabled-opacity: 0.42;
+  --brass-modal-pad: 24px;
+
+  /* ── Spacing (4px grid) ────────────────────────────── */
+  --brass-space-1: 4px;
+  --brass-space-2: 8px;
+  --brass-space-3: 12px;
+  --brass-space-4: 16px;
+  --brass-space-5: 20px;
+  --brass-space-6: 24px;
+  --brass-space-7: 28px;
+  --brass-space-8: 32px;
+  --brass-space-9: 36px;
+  --brass-space-10: 40px;
+
+  /* ── Typography ────────────────────────────────────── */
+  --brass-font: "Domine", Georgia, "Times New Roman", serif;
+  --brass-font-display: "Yeseva One", "Domine", serif;
+  --brass-font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+  --brass-fs-11: 11px;
+  --brass-fs-13: 13px;
+  --brass-fs-15: 15px;
+  --brass-fs-17: 17px;
+  --brass-fs-20: 20px;
+  --brass-fs-26: 26px;
+  --brass-fs-34: 34px;
+  --brass-ls-1: 0.01em;
+  --brass-ls-2: 0.03em;
+  --brass-ls-3: 0.08em;
+  --brass-ls-4: 0.16em;
+  --brass-lh-100: 1;
+  --brass-lh-140: 1.4;
+  --brass-lh-160: 1.6;
+  --brass-fw-400: 400;
+  --brass-fw-700: 700;
+
+  /* ── Component footprints ──────────────────────────── */
+  --brass-button-h-sm: 30px;
+  --brass-button-h-lg: 46px;
+  --brass-button-icon: 38px;
+  --brass-switch-w: 52px;
+  --brass-switch-h: 26px;
+  --brass-switch-knob: 20px;
+  --brass-checkbox-box: 20px;
+  --brass-radio-box: 20px;
+  --brass-radio-dot: 8px;
+  --brass-seg-h: 32px;
+  --brass-slider-track: 6px;
+  --brass-slider-thumb: 18px;
+  --brass-numberfield-step: 36px;
+  --brass-otp-cell-w: 40px;
+  --brass-otp-cell-h: 48px;
+  --brass-progress-h: 10px;
+  --brass-meter-h: 14px;
+  --brass-tab-h: 40px;
+  --brass-scrollbar: 11px;
+  --brass-popup-w: 220px;
+  --brass-popup-h: 264px;
+  --brass-tooltip-w: 240px;
+  --brass-popover-w: 284px;
+  --brass-preview-w: 320px;
+  --brass-nav-w: 440px;
+  --brass-dialog-w: 460px;
+  --brass-alert-w: 408px;
+  --brass-drawer-w: 366px;
+  --brass-toast-w: 344px;
+  --brass-avatar-sm: 32px;
+  --brass-avatar-md: 44px;
+  --brass-avatar-lg: 64px;
+  --brass-badge-h: 19px;
+}

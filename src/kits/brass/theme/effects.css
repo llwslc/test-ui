@@ -1,0 +1,452 @@
+/* BRASS — shared visual primitives & recipes. Components compose these; colors via input vars. */
+
+/* ── Frame: double-layer brass bezel ──────────────────── */
+.brass-plate {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--brass-plate-round, var(--brass-round-md));
+  background: var(--brass-plate-bezel, var(--brass-bezel));
+}
+.brass-plate::before {
+  content: "";
+  position: absolute;
+  inset: var(--brass-plate-edge, 2px);
+  z-index: -1;
+  border-radius: calc(var(--brass-plate-round, var(--brass-round-md)) - 1px);
+  background: var(--brass-plate-fill, var(--brass-surface));
+  box-shadow: var(--brass-plate-bevel, var(--brass-bevel));
+}
+
+/* ── Rivets: four corner studs (signature ornament) ───── */
+.brass-rivets::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--brass-rivet), var(--brass-rivet), var(--brass-rivet), var(--brass-rivet);
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+  background-position: top left, top right, bottom left, bottom right;
+}
+
+/* ── Knurled brass knob (Switch / Slider thumbs) ──────── */
+.brass-knob {
+  border-radius: var(--brass-round-pill);
+  background-image: var(--brass-knurl), linear-gradient(180deg, var(--brass-thumb-top), var(--brass-thumb-bottom));
+  box-shadow: var(--brass-shadow-thumb), var(--brass-bevel);
+}
+
+/* ── Elevation: shadow + warm glow, no shape clip ─────── */
+.brass-lift {
+  z-index: var(--brass-z-dropdown);
+  filter: var(--brass-overlay-shadow, var(--brass-shadow-popup)) var(--brass-overlay-glow, var(--brass-glow-popup));
+}
+.brass-lift--sm {
+  z-index: var(--brass-z-tooltip);
+  --brass-overlay-shadow: var(--brass-shadow-pop-sm);
+}
+.brass-lift--modal {
+  --brass-overlay-shadow: var(--brass-shadow-modal);
+  --brass-overlay-glow: var(--brass-glow-modal);
+}
+
+/* ── Popup surface + option list (Select/Menu/Combobox/Nav) ── */
+.brass-popup {
+  --brass-plate-fill: var(--brass-surface-popup);
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  --brass-plate-round: var(--brass-round-md);
+}
+.brass-popup-list {
+  min-width: var(--brass-popup-w);
+  max-height: var(--brass-popup-h);
+  overflow-y: auto;
+  padding: var(--brass-space-1);
+  outline: none;
+}
+.brass-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  padding: var(--brass-space-2) var(--brass-space-3);
+  border-radius: var(--brass-round-sm);
+  font-family: var(--brass-font);
+  font-size: var(--brass-fs-15);
+  color: var(--brass-text);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--brass-dur) var(--brass-ease),
+    color var(--brass-dur) var(--brass-ease);
+}
+.brass-list-item[data-highlighted],
+.brass-list-item:hover {
+  background: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
+.brass-list-item[data-selected] {
+  color: var(--brass-primary);
+}
+.brass-list-item[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+}
+.brass-list-item__check {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--brass-fs-15);
+  color: var(--brass-primary);
+}
+.brass-list-item__text {
+  flex: 1;
+}
+.brass-list-item__chevron {
+  flex: 0 0 auto;
+  color: var(--brass-text-dim);
+}
+.brass-menu-label {
+  padding: var(--brass-space-2) var(--brass-space-3) var(--brass-space-1);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-3);
+  text-transform: uppercase;
+  color: var(--brass-text-mute);
+}
+.brass-menu-sep {
+  height: 1px;
+  margin: var(--brass-space-1) var(--brass-space-2);
+  background: var(--brass-line);
+}
+
+/* ── Anchored popup open/close ────────────────────────── */
+.brass-pop {
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity var(--brass-dur) var(--brass-ease),
+    transform var(--brass-dur) var(--brass-ease);
+}
+.brass-pop[data-starting-style],
+.brass-pop[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+}
+
+/* ── Connector: 1px brass pipe stub (Base UI Arrow) ───── */
+.brass-connector {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  color: var(--brass-primary);
+}
+.brass-connector::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: currentColor;
+}
+.brass-connector[data-side="top"]::before,
+.brass-connector[data-side="bottom"]::before {
+  width: 2px;
+  height: 9px;
+}
+.brass-connector[data-side="left"]::before,
+.brass-connector[data-side="right"]::before {
+  width: 9px;
+  height: 2px;
+}
+
+/* ── Modal viewport & backdrop (Dialog / AlertDialog) ─── */
+.brass-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  z-index: var(--brass-z-overlay);
+  display: grid;
+  overflow: auto;
+  padding: var(--brass-space-5);
+}
+.brass-viewport > * {
+  margin: auto;
+}
+.brass-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--brass-z-backdrop);
+  background: var(--brass-scrim);
+  backdrop-filter: blur(1.5px) brightness(0.82);
+  opacity: 1;
+  transition: opacity var(--brass-dur) var(--brass-ease);
+}
+.brass-backdrop[data-starting-style],
+.brass-backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+/* ── Header sheen: breathing brushed highlight ────────── */
+.brass-sheen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--brass-sheen-color, var(--brass-sheen)) 50%, transparent);
+  transform-origin: center;
+  animation: brass-breathe var(--brass-dur-breath) ease-in-out infinite;
+}
+@keyframes brass-breathe {
+  0%,
+  100% {
+    transform: scaleX(0.55);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* ── Segmented family (ToggleGroup / Toolbar / Menubar) ── */
+.brass-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-1);
+  padding: var(--brass-space-1);
+  background: var(--brass-surface-inset);
+  border: 1px solid var(--brass-line);
+  border-radius: var(--brass-round-md);
+  box-shadow: var(--brass-bevel-inset);
+}
+.brass-seg__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-seg-h);
+  padding: 0 var(--brass-space-3);
+  border: 0;
+  background: none;
+  border-radius: var(--brass-round-sm);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-2);
+  text-transform: uppercase;
+  color: var(--brass-text-dim);
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease);
+}
+.brass-seg__btn :where(svg) {
+  font-size: var(--brass-fs-17);
+}
+.brass-seg__btn:hover,
+.brass-seg__btn[data-highlighted] {
+  background: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
+.brass-seg__btn:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+.brass-seg__btn[data-pressed],
+.brass-seg__btn[data-selected],
+.brass-seg__btn[data-popup-open] {
+  background: var(--brass-primary);
+  color: var(--brass-on-primary);
+  box-shadow: var(--brass-bevel);
+}
+.brass-seg__btn[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+}
+@media (max-width: 768px) {
+  .brass-seg {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .brass-seg__btn {
+    flex: 0 0 auto;
+  }
+}
+
+/* ── Feedback / legend marker (gear-stud) ─────────────── */
+.brass-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brass-marker-color, var(--brass-primary));
+  filter: drop-shadow(0 0 5px var(--brass-tint-active));
+}
+@keyframes brass-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Modal popup base (Dialog / AlertDialog / Drawer); set width per component ── */
+.brass-modal {
+  --brass-plate-fill: var(--brass-surface-modal);
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  --brass-plate-round: var(--brass-round-lg);
+  position: relative;
+  max-width: 100%;
+  padding: var(--brass-modal-pad);
+}
+.brass-modal__head {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-3);
+  padding-right: var(--brass-space-8);
+}
+.brass-modal__sigil {
+  font-size: var(--brass-fs-20);
+}
+
+/* ── Tab skin (Tabs / NavigationMenu) ─────────────────── */
+.brass-tabs-list {
+  position: relative;
+  display: flex;
+  gap: var(--brass-space-1);
+  border-bottom: 1px solid var(--brass-line);
+}
+.brass-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-tab-h);
+  padding: 0 var(--brass-space-4);
+  border: 0;
+  background: none;
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-2);
+  text-transform: uppercase;
+  color: var(--brass-text-dim);
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease);
+}
+.brass-tab :where(svg) {
+  font-size: var(--brass-fs-17);
+}
+.brass-tab:hover {
+  background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
+  color: var(--brass-text-bright);
+}
+.brass-tab[data-selected],
+.brass-tab[data-popup-open] {
+  color: var(--brass-primary);
+}
+.brass-tab:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+.brass-tab[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
+}
+.brass-tab-indicator {
+  position: absolute;
+  bottom: -1px;
+  left: var(--active-tab-left);
+  width: var(--active-tab-width);
+  height: 2px;
+  background: var(--brass-primary);
+  box-shadow: var(--brass-glow-text);
+  transition:
+    left var(--brass-dur) var(--brass-ease),
+    width var(--brass-dur) var(--brass-ease);
+}
+
+/* ── Shared modal text parts (Dialog / AlertDialog / Drawer); compose .brass-h2 / .brass-text ── */
+.brass-modal-title {
+  margin: 0;
+}
+.brass-modal-desc {
+  margin: var(--brass-space-2) 0 0;
+}
+.brass-modal-body {
+  margin-top: var(--brass-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-3);
+}
+.brass-modal-actions {
+  margin-top: var(--brass-space-6);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--brass-space-2);
+}
+.brass-modal-close {
+  position: absolute;
+  top: var(--brass-space-4);
+  right: var(--brass-space-4);
+}
+.brass-modal-sep {
+  height: 1px;
+  margin: var(--brass-space-4) 0;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--brass-line-strong), transparent);
+}
+
+/* ── Collapse family (Accordion / Collapsible) ────────── */
+.brass-collapse-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-3);
+  width: 100%;
+  padding: var(--brass-space-3) var(--brass-space-4);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--brass-text);
+  transition: color var(--brass-dur) var(--brass-ease);
+}
+.brass-collapse-trigger:hover {
+  color: var(--brass-text-bright);
+}
+.brass-collapse-marker {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--brass-primary);
+  transition: transform var(--brass-dur-slow) var(--brass-ease);
+}
+.brass-collapse-trigger[data-panel-open] .brass-collapse-marker {
+  transform: rotate(60deg);
+}
+.brass-collapse-title {
+  flex: 1;
+}
+.brass-collapse-chevron {
+  flex: 0 0 auto;
+  color: var(--brass-text-dim);
+  transition: transform var(--brass-dur) var(--brass-ease);
+}
+.brass-collapse-trigger[data-panel-open] .brass-collapse-chevron {
+  transform: rotate(180deg);
+  color: var(--brass-primary);
+}
+.brass-collapse-panel {
+  overflow: hidden;
+  height: var(--collapsible-panel-height, var(--accordion-panel-height));
+  transition: height var(--brass-dur) var(--brass-ease);
+}
+.brass-collapse-panel[data-starting-style],
+.brass-collapse-panel[data-ending-style] {
+  height: 0;
+}
+.brass-collapse-content {
+  padding: 0 var(--brass-space-4) var(--brass-space-4);
+}

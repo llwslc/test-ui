@@ -1,0 +1,63 @@
+.brass-drawer-viewport {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--brass-z-overlay);
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.brass-drawer {
+  --brass-plate-fill: var(--brass-surface-modal);
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  --brass-plate-round: 0;
+  position: relative;
+  width: var(--brass-drawer-w);
+  max-width: 100%;
+  height: 100dvh;
+  padding: var(--brass-modal-pad);
+  overflow-y: auto;
+  filter: var(--brass-shadow-modal) var(--brass-glow-modal);
+}
+.brass-drawer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--brass-primary);
+  box-shadow: var(--brass-glow-text);
+}
+
+.brass-drawer.brass-pop {
+  transform: translateX(var(--drawer-swipe-movement-x, 0));
+}
+.brass-drawer.brass-pop[data-starting-style],
+.brass-drawer.brass-pop[data-ending-style] {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.brass-drawer__handle {
+  position: absolute;
+  top: 50%;
+  left: var(--brass-space-2);
+  width: var(--brass-space-1);
+  height: var(--brass-space-9);
+  transform: translateY(-50%);
+  border-radius: var(--brass-round-xs);
+  background: var(--brass-knurl);
+  box-shadow: var(--brass-bevel-inset);
+  pointer-events: none;
+}
+
+.brass-drawer .brass-modal__head {
+  padding-left: var(--brass-space-4);
+}
+.brass-drawer .brass-modal-desc,
+.brass-drawer .brass-modal-body {
+  padding-left: var(--brass-space-4);
+}

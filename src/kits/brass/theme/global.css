@@ -1,0 +1,96 @@
+/* BRASS — atmosphere: engine-room lamp glow, steam, brushed metal, grain. */
+
+body {
+  margin: 0;
+  background: var(--brass-bg);
+  color: var(--brass-text);
+  font-family: var(--brass-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* lamp glow + base gradient */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(95% 60% at 50% -16%, rgba(240, 191, 58, 0.16), transparent 60%),
+    radial-gradient(52% 52% at 88% 94%, rgba(194, 104, 59, 0.13), transparent 70%),
+    radial-gradient(46% 52% at 8% 96%, rgba(86, 169, 138, 0.1), transparent 70%),
+    linear-gradient(180deg, var(--brass-bg), var(--brass-bg-2));
+}
+
+/* rivet grid + drifting steam, masked to fade downward */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -12% 0 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(207, 157, 58, 0.05) 1px, transparent 1.6px) 0 0 / 32px 32px,
+    radial-gradient(58% 42% at 72% 82%, rgba(255, 246, 222, 0.035), transparent 62%);
+  -webkit-mask-image: radial-gradient(125% 100% at 50% 0%, #000 28%, transparent 78%);
+  mask-image: radial-gradient(125% 100% at 50% 0%, #000 28%, transparent 78%);
+  animation: brass-steam var(--brass-dur-spin) linear infinite;
+}
+@keyframes brass-steam {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 -32px, 0 -48px;
+  }
+}
+
+/* brushed-metal vertical streaks */
+:root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(255, 238, 196, 0.014) 0 2px, transparent 2px 5px);
+  mix-blend-mode: overlay;
+}
+
+/* aged-metal grain */
+:root::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+::selection {
+  background: var(--brass-tint-active);
+  color: var(--brass-text-bright);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass-primary-deep) transparent;
+}
+::-webkit-scrollbar {
+  width: var(--brass-scrollbar);
+  height: var(--brass-scrollbar);
+}
+::-webkit-scrollbar-track {
+  background: var(--brass-track);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: var(--brass-round-sm);
+  background: linear-gradient(180deg, var(--brass-primary), var(--brass-primary-deep));
+  background-image: var(--brass-knurl), linear-gradient(180deg, var(--brass-primary), var(--brass-primary-deep));
+  border: 2px solid var(--brass-track);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-image: var(--brass-knurl), var(--brass-bezel-strong);
+}

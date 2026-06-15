@@ -1,0 +1,55 @@
+/* BRASS — typography classes, decoupled from semantic tags. */
+
+.brass-h1 {
+  margin: 0;
+  font-family: var(--brass-font-display);
+  font-weight: var(--brass-fw-400);
+  font-size: var(--brass-fs-34);
+  line-height: var(--brass-lh-100);
+  letter-spacing: var(--brass-ls-1);
+  color: var(--brass-text-bright);
+}
+.brass-h1--accent {
+  color: var(--brass-primary);
+  text-shadow: var(--brass-glow-text);
+  padding-bottom: var(--brass-space-1);
+  border-bottom: 1px solid var(--brass-line-strong);
+}
+
+.brass-h2 {
+  margin: 0;
+  font-family: var(--brass-font-display);
+  font-weight: var(--brass-fw-400);
+  font-size: var(--brass-fs-20);
+  line-height: var(--brass-lh-140);
+  color: var(--brass-text-bright);
+}
+
+.brass-h3 {
+  margin: 0;
+  font-family: var(--brass-font-mono);
+  font-weight: var(--brass-fw-700);
+  font-size: var(--brass-fs-13);
+  line-height: var(--brass-lh-140);
+  letter-spacing: var(--brass-ls-4);
+  text-transform: uppercase;
+  color: var(--brass-text-dim);
+}
+
+.brass-text {
+  margin: 0;
+  font-family: var(--brass-font);
+  font-weight: var(--brass-fw-400);
+  font-size: var(--brass-fs-15);
+  line-height: var(--brass-lh-160);
+  color: var(--brass-text-dim);
+}
+
+.brass-cap {
+  font-family: var(--brass-font-mono);
+  font-weight: var(--brass-fw-700);
+  font-size: var(--brass-fs-11);
+  letter-spacing: var(--brass-ls-3);
+  text-transform: uppercase;
+  color: var(--brass-text-dim);
+}

@@ -1,0 +1,50 @@
+.brass-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-3);
+}
+.brass-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.brass-progress__value {
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-13);
+  font-weight: var(--brass-fw-700);
+  color: var(--brass-primary);
+}
+.brass-progress__track {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--brass-progress-h);
+  border-radius: var(--brass-round-pill);
+  background-color: var(--brass-track);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc(10% - 1px),
+    var(--brass-line) calc(10% - 1px),
+    var(--brass-line) 10%
+  );
+  box-shadow: var(--brass-bevel-inset);
+}
+.brass-progress__indicator {
+  height: 100%;
+  border-radius: var(--brass-round-pill);
+  background: var(--brass-accent-fill);
+  transition: width var(--brass-dur) var(--brass-ease);
+}
+.brass-progress__indicator[data-indeterminate] {
+  width: 38%;
+  animation: brass-progress-slide var(--brass-dur-slow) var(--brass-ease) infinite alternate;
+}
+@keyframes brass-progress-slide {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 62%;
+  }
+}

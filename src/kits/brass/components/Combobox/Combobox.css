@@ -1,0 +1,153 @@
+.brass-combobox {
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bevel: var(--brass-bevel-inset);
+  --brass-plate-round: var(--brass-round-md);
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  min-height: var(--brass-control-h);
+  padding: 0 var(--brass-space-2) 0 var(--brass-space-3);
+  transition: filter var(--brass-dur) var(--brass-ease);
+}
+.brass-combobox--multi {
+  flex-wrap: wrap;
+  padding-block: var(--brass-space-1);
+}
+.brass-combobox__control {
+  flex: 1;
+  min-width: 0;
+  height: var(--brass-control-h);
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--brass-text-bright);
+  font-family: var(--brass-font);
+  font-size: var(--brass-fs-15);
+}
+.brass-combobox--multi .brass-combobox__control {
+  width: auto;
+  min-width: var(--brass-space-10);
+  height: var(--brass-seg-h);
+}
+.brass-combobox__control::placeholder {
+  color: var(--brass-text-mute);
+}
+.brass-combobox__aux {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.brass-combobox__clear,
+.brass-combobox__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--brass-seg-h);
+  height: var(--brass-seg-h);
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--brass-round-sm);
+  color: var(--brass-text-dim);
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease),
+    transform var(--brass-dur) var(--brass-ease);
+}
+.brass-combobox__clear {
+  font-size: var(--brass-fs-15);
+}
+.brass-combobox__trigger {
+  font-size: var(--brass-fs-17);
+}
+.brass-combobox__clear:hover,
+.brass-combobox__trigger:hover {
+  background: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
+.brass-combobox__clear:focus-visible,
+.brass-combobox__trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+.brass-combobox__trigger[data-popup-open] {
+  color: var(--brass-primary);
+  transform: rotate(180deg);
+}
+.brass-combobox:hover {
+  --brass-plate-bezel: var(--brass-bezel);
+}
+.brass-combobox:focus-within {
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  filter: var(--brass-glow-focus);
+}
+.brass-combobox:has(.brass-combobox__control:disabled) {
+  opacity: var(--brass-disabled-opacity);
+}
+
+/* ── Multi-select chips ──────────────────────────────── */
+.brass-combobox__chips {
+  display: contents;
+}
+.brass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-1);
+  height: var(--brass-seg-h);
+  padding: 0 var(--brass-space-1) 0 var(--brass-space-2);
+  background: var(--brass-tint);
+  border: 1px solid var(--brass-line);
+  border-radius: var(--brass-round-sm);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-2);
+  text-transform: uppercase;
+  color: var(--brass-text-bright);
+  cursor: default;
+  user-select: none;
+}
+.brass-chip[data-highlighted] {
+  background: var(--brass-tint-active);
+  border-color: var(--brass-line-strong);
+}
+.brass-chip[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+}
+.brass-chip__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--brass-fs-17);
+  height: var(--brass-fs-17);
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--brass-round-xs);
+  color: var(--brass-text-dim);
+  font-size: var(--brass-fs-13);
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease);
+}
+.brass-chip__remove:hover {
+  background: var(--brass-tint-active);
+  color: var(--brass-text-bright);
+}
+.brass-chip__remove:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+
+/* ── Popup geometry ──────────────────────────────────── */
+.brass-combobox__popup {
+  min-width: var(--anchor-width);
+}
+.brass-combobox__empty {
+  padding: var(--brass-space-4) var(--brass-space-3);
+  text-align: center;
+  color: var(--brass-text-mute);
+}
