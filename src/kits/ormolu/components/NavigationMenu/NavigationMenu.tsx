@@ -1,6 +1,6 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import type { MouseEvent, ReactNode } from "react";
-import { ChevronDownIcon, FleurIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./NavigationMenu.css";
 
 export interface NavMenuLink {
@@ -18,10 +18,6 @@ export interface NavMenuItem {
 export interface NavigationMenuProps {
   items: NavMenuItem[];
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
-}
-
-function MarkerSigil() {
-  return <FleurIcon className="ormolu-navmenu__mark" aria-hidden />;
 }
 
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
@@ -48,7 +44,6 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                         className="ormolu-navmenu__link"
                         onClick={onLinkClick}
                       >
-                        <MarkerSigil />
                         <span className="ormolu-navmenu__link-text">
                           <span className="ormolu-navmenu__link-title">{link.label}</span>
                           {link.description != null ? (

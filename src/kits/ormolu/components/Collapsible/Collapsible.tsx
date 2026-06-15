@@ -1,7 +1,7 @@
 import { cx } from "../cx";
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible";
 import type { ReactNode } from "react";
-import { FleurIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./Collapsible.css";
 
 export interface CollapsibleProps {
@@ -29,10 +29,8 @@ export function Collapsible({
       className={cx("ormolu-collapsible ormolu-frame", className)}
     >
       <BaseCollapsible.Trigger className="ormolu-disclosure__trigger ormolu-collapsible__trigger">
-        <span className="ormolu-collapsible__rune" aria-hidden>
-          <FleurIcon />
-        </span>
         <span className="ormolu-disclosure__title">{title}</span>
+        <ChevronDownIcon className="ormolu-collapsible__chevron" />
       </BaseCollapsible.Trigger>
       <BaseCollapsible.Panel className="ormolu-disclosure__panel">
         <div className="ormolu-disclosure__content ormolu-text">{children}</div>

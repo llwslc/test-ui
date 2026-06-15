@@ -25,24 +25,19 @@
   position: relative;
 }
 
-.ormolu-collapsible__rune {
+.ormolu-collapsible__chevron {
   flex: 0 0 auto;
-  display: inline-flex;
+  margin-left: auto;
   color: var(--ormolu-text-dim);
   font-size: var(--ormolu-fs-22);
-}
-.ormolu-collapsible__rune {
   transition:
-    rotate var(--ormolu-dur-slow) var(--ormolu-ease),
-    scale var(--ormolu-dur) var(--ormolu-ease),
+    rotate var(--ormolu-dur) var(--ormolu-ease),
     color var(--ormolu-dur) var(--ormolu-ease);
 }
-.ormolu-collapsible__trigger:hover .ormolu-collapsible__rune {
-  rotate: 60deg;
+.ormolu-collapsible__trigger:hover .ormolu-collapsible__chevron {
   color: var(--ormolu-text);
 }
-.ormolu-collapsible__trigger[data-panel-open] .ormolu-collapsible__rune {
+.ormolu-collapsible__trigger[data-panel-open] .ormolu-collapsible__chevron {
   rotate: 180deg;
-  scale: 1.08;
   color: var(--ormolu-gild-deep);
 }

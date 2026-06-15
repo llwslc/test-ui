@@ -30,20 +30,3 @@
   top: var(--ormolu-space-3);
   right: var(--ormolu-space-3);
 }
-
-.ormolu-dialog__sigil {
-  flex: 0 0 auto;
-  color: var(--ormolu-gild);
-  font-size: var(--ormolu-fs-22);
-  animation: ormolu-dialog-sigil 30s linear infinite;
-}
-@keyframes ormolu-dialog-sigil {
-  to {
-    rotate: 360deg;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ormolu-dialog__sigil {
-    animation: none;
-  }
-}

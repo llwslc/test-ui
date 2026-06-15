@@ -1,7 +1,7 @@
 import { cx } from "../cx";
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion";
 import type { ReactNode } from "react";
-import { ChevronDownIcon, FleurIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./Accordion.css";
 
 export interface AccordionItem {
@@ -39,7 +39,6 @@ export function Accordion({
         >
           <BaseAccordion.Header className="ormolu-accordion__header">
             <BaseAccordion.Trigger className="ormolu-disclosure__trigger ormolu-accordion__trigger">
-              <FleurIcon className="ormolu-accordion__sigil" aria-hidden />
               <span className="ormolu-disclosure__title">{it.title}</span>
               <ChevronDownIcon className="ormolu-accordion__chevron" />
             </BaseAccordion.Trigger>

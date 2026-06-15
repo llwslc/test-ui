@@ -34,24 +34,3 @@
   z-index: 1;
 }
 
-.ormolu-previewcard__mark {
-  position: absolute;
-  z-index: 2;
-  top: 9px;
-  right: 11px;
-  width: var(--ormolu-preview-mark);
-  height: var(--ormolu-preview-mark);
-  color: var(--ormolu-gild-a55);
-  rotate: -8deg;
-  scale: 0.92;
-  pointer-events: none;
-  transition:
-    color var(--ormolu-dur) var(--ormolu-ease),
-    rotate var(--ormolu-dur) var(--ormolu-ease),
-    scale var(--ormolu-dur) var(--ormolu-ease);
-}
-.ormolu-previewcard__popup[data-open] .ormolu-previewcard__mark {
-  color: var(--ormolu-gild);
-  rotate: 0deg;
-  scale: 1;
-}

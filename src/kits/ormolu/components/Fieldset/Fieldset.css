@@ -10,10 +10,7 @@
   z-index: 1;
   width: auto;
   margin: 0 0 var(--ormolu-space-2) var(--ormolu-space-1);
-  padding: 0;
-  display: flex;
-  gap: var(--ormolu-space-2);
-  align-items: center;
+  padding: 0 0 var(--ormolu-space-1);
   color: var(--ormolu-gild-deep);
   font-family: var(--ormolu-font-display);
   font-size: var(--ormolu-fs-13);
@@ -23,19 +20,14 @@
 .ormolu-fieldset__legend-text {
   line-height: var(--ormolu-lh-100);
 }
-
-.ormolu-fieldset__sigil {
-  flex: 0 0 auto;
-  color: var(--ormolu-gild-a55);
-  font-size: var(--ormolu-fs-22);
-  rotate: 0deg;
-  transition:
-    rotate var(--ormolu-dur-slow) var(--ormolu-ease),
-    color var(--ormolu-dur) var(--ormolu-ease);
-}
-.ormolu-fieldset:hover .ormolu-fieldset__sigil {
-  rotate: 45deg;
-  color: var(--ormolu-gild);
+.ormolu-fieldset__legend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: radial-gradient(circle, var(--ormolu-gild-a55) 1.4px, transparent 2px) left center / 8px 100% repeat-x;
 }
 
 .ormolu-fieldset__body {

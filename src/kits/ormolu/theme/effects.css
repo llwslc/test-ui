@@ -122,7 +122,7 @@
   height: 0;
 }
 .ormolu-disclosure__content {
-  padding: 0 var(--ormolu-space-4) var(--ormolu-space-4) 47px;
+  padding: 0 var(--ormolu-space-4) var(--ormolu-space-4);
 }
 
 @keyframes ormolu-breathe {

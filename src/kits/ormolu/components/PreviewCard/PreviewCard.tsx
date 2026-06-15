@@ -1,7 +1,6 @@
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card";
 import { useState } from "react";
 import type { PointerEvent, ReactElement, ReactNode } from "react";
-import { FleurIcon } from "../icons";
 import "./PreviewCard.css";
 
 export interface PreviewCardProps {
@@ -39,7 +38,6 @@ export function PreviewCard({
         >
           <BasePreviewCard.Popup className="ormolu-anim-pop ormolu-previewcard__popup">
             <span className="ormolu-frame ormolu-previewcard__surface">
-              <FleurIcon className="ormolu-previewcard__mark" aria-hidden />
               <div className="ormolu-previewcard__body">{children}</div>
             </span>
             <BasePreviewCard.Arrow className="ormolu-connector" />

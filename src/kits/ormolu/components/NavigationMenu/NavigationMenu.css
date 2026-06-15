@@ -149,16 +149,6 @@
   transition: background var(--ormolu-dur) var(--ormolu-ease);
 }
 
-.ormolu-navmenu__mark {
-  flex: 0 0 auto;
-  margin-top: 1px;
-  font-size: var(--ormolu-fs-22);
-  color: var(--ormolu-gild-a55);
-  transition:
-    color var(--ormolu-dur) var(--ormolu-ease),
-    rotate var(--ormolu-dur-slow) var(--ormolu-ease);
-}
-
 .ormolu-navmenu__link-text {
   display: block;
   min-width: 0;
@@ -186,11 +176,6 @@
 .ormolu-navmenu__link:hover,
 .ormolu-navmenu__link:focus-visible {
   background: var(--ormolu-gild-soft);
-}
-.ormolu-navmenu__link:hover .ormolu-navmenu__mark,
-.ormolu-navmenu__link:focus-visible .ormolu-navmenu__mark {
-  color: var(--ormolu-gild);
-  rotate: 180deg;
 }
 .ormolu-navmenu__link:hover .ormolu-navmenu__link-title,
 .ormolu-navmenu__link:focus-visible .ormolu-navmenu__link-title {

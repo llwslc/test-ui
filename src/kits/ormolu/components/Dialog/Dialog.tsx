@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { FleurIcon, XIcon } from "../icons";
+import { XIcon } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -54,7 +54,6 @@ export function Dialog({
               />
               {title != null ? (
                 <BaseDialog.Title className="ormolu-modal-title">
-                  <FleurIcon className="ormolu-dialog__sigil" aria-hidden />
                   {title}
                 </BaseDialog.Title>
               ) : null}

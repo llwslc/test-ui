@@ -18,26 +18,8 @@
     linear-gradient(90deg, var(--ormolu-gild-a30), transparent) center / 100% 1px no-repeat;
 }
 
-.ormolu-separator-labeled__mark {
-  flex: 0 0 auto;
-  display: inline-flex;
-  gap: var(--ormolu-space-2);
-  align-items: center;
-}
 .ormolu-separator-labeled__text {
+  flex: 0 0 auto;
   white-space: nowrap;
-}
-
-.ormolu-separator-labeled__sigil {
-  display: inline-flex;
-  color: var(--ormolu-gild);
-  font-size: var(--ormolu-fs-15);
-  text-shadow: var(--ormolu-leaf-text);
-  transition:
-    rotate var(--ormolu-dur) var(--ormolu-ease),
-    scale var(--ormolu-dur) var(--ormolu-ease);
-}
-.ormolu-separator-labeled:hover .ormolu-separator-labeled__sigil {
-  rotate: 60deg;
-  scale: 1.12;
+  color: var(--ormolu-gild-deep);
 }
