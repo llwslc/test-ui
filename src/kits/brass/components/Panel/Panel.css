@@ -14,8 +14,11 @@
 /* ── Machined corner brackets: L-shaped, two brass edges each ── */
 .brass-panel__bracket {
   position: absolute;
-  width: var(--brass-space-4);
-  height: var(--brass-space-4);
+  /* small corner tick: sits in the 16-20px band — past the rivets (7-14px),
+     stopping at the content edge (20px padding) so it never crowds the
+     header marker/meta or a corner-most control. */
+  width: var(--brass-space-1);
+  height: var(--brass-space-1);
   pointer-events: none;
 }
 .brass-panel__bracket--tl {
