@@ -151,3 +151,6 @@
   text-align: center;
   color: var(--brass-text-mute);
 }
+.brass-combobox__empty:empty {
+  display: none;
+}
