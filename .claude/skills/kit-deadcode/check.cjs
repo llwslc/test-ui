@@ -23,7 +23,7 @@ for (const kit of kits) {
     if (c !== base && tsxAll.includes(base + '--')) continue;
     const esc = c.replace(/[-]/g, '\\$&');
     const uses = (cssAll.match(new RegExp('\\.' + esc + '(?![a-z0-9_-])', 'g')) || []).length;
-    const heads = (cssAll.match(new RegExp('(^|[\\s,])\\.' + esc + '(?=[\\s,{:])', 'gm')) || []).length;
+    const heads = (cssAll.match(new RegExp('(^|[\\s,])\\.' + esc + '(?=[\\s,{:\\[])', 'gm')) || []).length;
     if (uses > heads) continue;
     findings.push(`dead class    .${c}`);
   }
@@ -32,6 +32,17 @@ for (const kit of kits) {
   for (const kf of [...new Set(kfDefs)].sort()) {
     const used = (cssAll.match(new RegExp('animation[^;]*\\b' + kf + '\\b', 'g')) || []).length;
     if (!used) findings.push(`unused keyframe @${kf}`);
+  }
+
+  const tsxFiles = files.filter((f) => f.endsWith('.tsx'));
+  const dirOf = (f) => { const mm = f.match(/components\/([^/]+)\//); return mm ? mm[1] : null; };
+  for (const dir of [...new Set(tsxFiles.map(dirOf).filter((d) => d && d !== 'icons'))].sort()) {
+    const src = tsxFiles.filter((f) => dirOf(f) === dir).map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+    const exps = [...new Set([...src.matchAll(/export (?:function|const) ([A-Z][A-Za-z0-9]+)/g)].map((mm) => mm[1]))];
+    for (const e of exps.sort()) {
+      const used = tsxFiles.some((f) => dirOf(f) !== dir && new RegExp('\\b' + e + '\\b').test(fs.readFileSync(f, 'utf8')));
+      if (!used) findings.push(`dead export   ${dir}.${e}`);
+    }
   }
 
   console.log(`\n=== ${kit} ===`);
