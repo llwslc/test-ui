@@ -395,12 +395,6 @@
   top: var(--brass-space-4);
   right: var(--brass-space-4);
 }
-.brass-modal-sep {
-  height: 1px;
-  margin: var(--brass-space-4) 0;
-  border: 0;
-  background: linear-gradient(90deg, transparent, var(--brass-line-strong), transparent);
-}
 
 /* ── Collapse family (Accordion / Collapsible) ────────── */
 .brass-collapse-trigger {
