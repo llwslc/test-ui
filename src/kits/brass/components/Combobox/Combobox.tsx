@@ -1,6 +1,6 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 import { cx } from "../cx";
-import { Check, ChevronDown, Close } from "../icons";
+import { Check, ChevronDown, Close, Search } from "../icons";
 import "./Combobox.css";
 
 export interface ComboboxOption {
@@ -27,6 +27,9 @@ export function Combobox<Multiple extends boolean | undefined = false>({
   return (
     <BaseCombobox.Root items={items} multiple={multiple} {...props}>
       <div className={cx("brass-plate", "brass-combobox", multiple && "brass-combobox--multi", className)}>
+        <span className="brass-combobox__lead" aria-hidden>
+          <Search />
+        </span>
         {multiple ? (
           <BaseCombobox.Chips className="brass-combobox__chips">
             <BaseCombobox.Value>

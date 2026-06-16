@@ -403,14 +403,23 @@ function Demo() {
               </RadioGroup>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
-              <Select items={PRESSURE} placeholder="Pressure band" defaultValue="nominal" />
+              <div className="brass-stack">
+                <span className="brass-cap">Boiler pressure</span>
+                <Select items={PRESSURE} placeholder="Pressure band" defaultValue="nominal" />
+              </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CMB">
-              <Combobox items={FUEL_PARTS} placeholder="Search fuel…" />
+              <div className="brass-stack">
+                <span className="brass-cap">Filter feedstock</span>
+                <Combobox items={FUEL_PARTS} placeholder="Search fuel…" />
+              </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
-              <Autocomplete items={FUELS} placeholder="Fuel type…" />
+              <div className="brass-stack">
+                <span className="brass-cap">Fuel by name</span>
+                <Autocomplete items={FUELS} placeholder="Fuel type…" />
+              </div>
             </Panel>
 
             <Panel id="slider" title="Slider" meta="SLD">

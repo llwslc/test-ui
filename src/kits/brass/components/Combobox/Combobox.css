@@ -14,6 +14,13 @@
   flex-wrap: wrap;
   padding-block: var(--brass-space-1);
 }
+.brass-combobox__lead {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  color: var(--brass-text-dim);
+  font-size: var(--brass-fs-17);
+}
 .brass-combobox__control {
   flex: 1;
   min-width: 0;
