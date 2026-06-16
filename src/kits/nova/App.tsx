@@ -355,7 +355,7 @@ function FormDemo() {
         })
       }
     >
-      <Field label="Operator ID" name="op" defaultValue="NX-7" />
+      <Field label="Operator ID" name="op" placeholder="NX-0000" />
       <Field label="Access Code" name="code" placeholder="••••••" />
       <div className="nova-form__row">
         <Button type="submit">Transmit</Button>
@@ -881,7 +881,7 @@ function Demo() {
                     Hail Vessel
                   </MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                  <MenuItem icon={<TrashIcon />} tone="danger">
                     Jettison Cargo
                   </MenuItem>
                 </Menu>
@@ -944,14 +944,14 @@ function Demo() {
                     </>
                   }
                 >
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘C">
+                  <MenuItem shortcut="⌘C">
                     Copy Coordinates
                   </MenuItem>
-                  <MenuItem icon={<SignalIcon />} shortcut="⌘B">
+                  <MenuItem shortcut="⌘B">
                     Ping Beacon
                   </MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                  <MenuItem tone="danger">
                     Purge Node
                   </MenuItem>
                 </ContextMenu>

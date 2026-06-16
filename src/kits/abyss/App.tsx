@@ -391,7 +391,7 @@ function FormDemo() {
         })
       }
     >
-      <Field label="Acolyte Mark" name="op" defaultValue="DG-7" />
+      <Field label="Acolyte Mark" name="op" placeholder="DG-0000" />
       <Field label="Cipher Key" name="code" placeholder="••••••" />
       <div className="abyss-form__row">
         <Button type="submit">Send Down</Button>
@@ -1012,7 +1012,7 @@ function Demo() {
                     Hail the Dark
                   </MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                  <MenuItem icon={<TrashIcon />} tone="danger">
                     Cast Overboard
                   </MenuItem>
                 </Menu>
@@ -1075,14 +1075,14 @@ function Demo() {
                     </>
                   }
                 >
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘C">
+                  <MenuItem shortcut="⌘C">
                     Mark Bearing
                   </MenuItem>
-                  <MenuItem icon={<SignalIcon />} shortcut="⌘B">
+                  <MenuItem shortcut="⌘B">
                     Sound Beacon
                   </MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌫" tone="danger">
+                  <MenuItem tone="danger">
                     Banish Node
                   </MenuItem>
                 </ContextMenu>
