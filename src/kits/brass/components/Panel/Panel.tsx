@@ -18,15 +18,12 @@ export function Panel({ id, title, meta, marker, wide, children }: PanelProps) {
       id={id}
       className={cx(
         "brass-plate",
+        "brass-rivets",
         "brass-panel",
         wide && "brass-panel--wide",
       )}
     >
       <span className="brass-sheen" />
-      <span className="brass-panel__bracket brass-panel__bracket--tl" />
-      <span className="brass-panel__bracket brass-panel__bracket--tr" />
-      <span className="brass-panel__bracket brass-panel__bracket--bl" />
-      <span className="brass-panel__bracket brass-panel__bracket--br" />
       {(title || meta || marker) && (
         <header className="brass-panel__head">
           {marker !== undefined ? (
