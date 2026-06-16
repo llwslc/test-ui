@@ -94,3 +94,16 @@ body::after {
 ::-webkit-scrollbar-thumb:hover {
   background-image: var(--brass-knurl), var(--brass-bezel-strong);
 }
+
+/* Honor reduced-motion: kill the gear spins, gauge needle, breathing dots,
+   steam drift and every transition kit-wide (the kit has many infinite
+   animations, so neutralize globally rather than per-selector). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
