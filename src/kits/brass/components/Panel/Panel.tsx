@@ -18,7 +18,6 @@ export function Panel({ id, title, meta, marker, wide, children }: PanelProps) {
       id={id}
       className={cx(
         "brass-plate",
-        "brass-rivets",
         "brass-panel",
         wide && "brass-panel--wide",
       )}

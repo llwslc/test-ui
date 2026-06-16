@@ -14,34 +14,34 @@
 /* ── Machined corner brackets: L-shaped, two brass edges each ── */
 .brass-panel__bracket {
   position: absolute;
-  width: var(--brass-space-1);
-  height: var(--brass-space-1);
+  width: var(--brass-space-4);
+  height: var(--brass-space-4);
   pointer-events: none;
 }
 .brass-panel__bracket--tl {
-  top: var(--brass-space-4);
-  left: var(--brass-space-4);
+  top: var(--brass-space-1);
+  left: var(--brass-space-1);
   border-top: 2px solid var(--brass-line-strong);
   border-left: 2px solid var(--brass-line-strong);
   border-top-left-radius: var(--brass-round-sm);
 }
 .brass-panel__bracket--tr {
-  top: var(--brass-space-4);
-  right: var(--brass-space-4);
+  top: var(--brass-space-1);
+  right: var(--brass-space-1);
   border-top: 2px solid var(--brass-line-strong);
   border-right: 2px solid var(--brass-line-strong);
   border-top-right-radius: var(--brass-round-sm);
 }
 .brass-panel__bracket--bl {
-  bottom: var(--brass-space-4);
-  left: var(--brass-space-4);
+  bottom: var(--brass-space-1);
+  left: var(--brass-space-1);
   border-bottom: 2px solid var(--brass-line-strong);
   border-left: 2px solid var(--brass-line-strong);
   border-bottom-left-radius: var(--brass-round-sm);
 }
 .brass-panel__bracket--br {
-  bottom: var(--brass-space-4);
-  right: var(--brass-space-4);
+  bottom: var(--brass-space-1);
+  right: var(--brass-space-1);
   border-bottom: 2px solid var(--brass-line-strong);
   border-right: 2px solid var(--brass-line-strong);
   border-bottom-right-radius: var(--brass-round-sm);
