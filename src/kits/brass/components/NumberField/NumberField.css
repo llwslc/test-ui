@@ -9,7 +9,8 @@
   --brass-plate-fill: var(--brass-surface-inset);
   --brass-plate-bevel: var(--brass-bevel-inset);
   --brass-plate-round: var(--brass-round-md);
-  display: flex;
+  display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   height: var(--brass-control-h);
   transition: filter var(--brass-dur) var(--brass-ease);
@@ -29,8 +30,7 @@
 }
 
 .brass-numberfield__input {
-  flex: 1;
-  min-width: 0;
+  width: var(--brass-numberfield-w);
   height: 100%;
   padding: 0 var(--brass-space-2);
   background: none;

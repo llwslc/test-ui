@@ -35,12 +35,14 @@ export function CheckboxGroup({
           <span className="brass-cap brass-check-row__label">{selectAllLabel}</span>
         </label>
       )}
-      {items.map((item) => (
-        <label key={item.value} className="brass-check-row">
-          <Checkbox value={item.value} />
-          <span className="brass-cap brass-check-row__label">{item.label}</span>
-        </label>
-      ))}
+      <div className="brass-check-group__items">
+        {items.map((item) => (
+          <label key={item.value} className="brass-check-row">
+            <Checkbox value={item.value} />
+            <span className="brass-cap brass-check-row__label">{item.label}</span>
+          </label>
+        ))}
+      </div>
     </BaseCheckboxGroup>
   );
 }
