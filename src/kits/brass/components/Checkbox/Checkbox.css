@@ -31,6 +31,27 @@
   opacity: var(--brass-disabled-opacity);
   cursor: not-allowed;
 }
+
+.brass-checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  cursor: pointer;
+}
+.brass-checkbox-field__label {
+  color: var(--brass-text);
+  transition: color var(--brass-dur) var(--brass-ease);
+}
+.brass-checkbox-field:hover .brass-checkbox-field__label {
+  color: var(--brass-text-bright);
+}
+.brass-checkbox-field:has(.brass-checkbox[data-disabled]) {
+  cursor: not-allowed;
+}
+.brass-checkbox-field:has(.brass-checkbox[data-disabled]) .brass-checkbox-field__label {
+  opacity: var(--brass-disabled-opacity);
+}
+
 .brass-checkbox__ind {
   display: inline-flex;
   color: var(--brass-on-primary);

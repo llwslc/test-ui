@@ -364,22 +364,10 @@ function Demo() {
 
             <Panel id="checkbox" title="Checkbox" meta="CHK">
               <div className="brass-stack">
-                <label className="brass-row">
-                  <Checkbox defaultChecked />
-                  <span className="brass-cap">Auto-stoke</span>
-                </label>
-                <label className="brass-row">
-                  <Checkbox />
-                  <span className="brass-cap">Manual feed</span>
-                </label>
-                <label className="brass-row">
-                  <Checkbox disabled defaultChecked />
-                  <span className="brass-cap">Locked open</span>
-                </label>
-                <label className="brass-row">
-                  <Checkbox disabled />
-                  <span className="brass-cap">Sealed shut</span>
-                </label>
+                <Checkbox defaultChecked label="Auto-stoke" />
+                <Checkbox label="Manual feed" />
+                <Checkbox disabled defaultChecked label="Locked open" />
+                <Checkbox disabled label="Sealed shut" />
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CBG">

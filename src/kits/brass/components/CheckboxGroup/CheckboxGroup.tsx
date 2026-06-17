@@ -5,8 +5,9 @@ import { Checkbox } from "../Checkbox";
 import "./CheckboxGroup.css";
 
 export interface CheckboxGroupOption {
-  label: ReactNode;
   value: string;
+  label: ReactNode;
+  disabled?: boolean;
 }
 
 export interface CheckboxGroupProps
@@ -25,22 +26,14 @@ export function CheckboxGroup({
   const all = allValues ?? items.map((item) => item.value);
   return (
     <BaseCheckboxGroup
-      className={cx("brass-check-group", className)}
+      className={cx("brass-checkboxgroup", className)}
       allValues={all}
       {...props}
     >
-      {parentLabel && (
-        <label className="brass-check-row brass-check-row--parent">
-          <Checkbox parent />
-          <span className="brass-cap brass-check-row__label">{parentLabel}</span>
-        </label>
-      )}
-      <div className="brass-check-group__items">
+      {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
+      <div className="brass-checkboxgroup__items">
         {items.map((item) => (
-          <label key={item.value} className="brass-check-row">
-            <Checkbox value={item.value} />
-            <span className="brass-cap brass-check-row__label">{item.label}</span>
-          </label>
+          <Checkbox key={item.value} name={item.value} disabled={item.disabled} label={item.label} />
         ))}
       </div>
     </BaseCheckboxGroup>
