@@ -1,19 +1,24 @@
-import type { ReactNode } from "react";
 import { Slider as BaseSlider } from "@base-ui/react/slider";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import "./Slider.css";
 
-export interface SliderProps extends React.ComponentProps<typeof BaseSlider.Root> {
+export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.Root> {
   label?: ReactNode;
+  showValue?: boolean;
 }
 
-export function Slider({ label, className, ...props }: SliderProps) {
+export function Slider({ label, showValue = true, className, ...props }: SliderProps) {
   return (
     <BaseSlider.Root className={cx("brass-slider", className)} {...props}>
-      {label && (
+      {(label != null || showValue) && (
         <div className="brass-slider__head">
-          <BaseSlider.Label className="brass-cap">{label}</BaseSlider.Label>
-          <BaseSlider.Value className="brass-slider__value" />
+          {label != null ? (
+            <BaseSlider.Label className="brass-cap">{label}</BaseSlider.Label>
+          ) : (
+            <span />
+          )}
+          {showValue ? <BaseSlider.Value className="brass-slider__value" /> : null}
         </div>
       )}
       <BaseSlider.Control className="brass-slider__control">

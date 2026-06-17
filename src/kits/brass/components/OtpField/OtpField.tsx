@@ -1,18 +1,41 @@
 import { OTPFieldPreview as OtpFieldBase } from "@base-ui/react/otp-field";
-import { Fragment, type ReactNode } from "react";
-import { cx } from "../cx";
+import { Fragment, useId } from "react";
 import "./OtpField.css";
 
-export interface OtpFieldProps
-  extends Omit<React.ComponentProps<typeof OtpFieldBase.Root>, "render"> {
-  label?: ReactNode;
+export interface OtpFieldProps {
+  length?: number;
+  name?: string;
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  mask?: boolean;
+  disabled?: boolean;
   splitAt?: number;
 }
 
-export function OtpField({ label, length, splitAt, className, ...props }: OtpFieldProps) {
+export function OtpField({
+  length = 6,
+  name,
+  defaultValue,
+  value,
+  onValueChange,
+  mask,
+  disabled,
+  splitAt,
+}: OtpFieldProps) {
+  const id = useId();
   return (
-    <OtpFieldBase.Root className={cx("brass-otp-root", className)} length={length} {...props}>
-      {label && <span className="brass-cap brass-otp__label">{label}</span>}
+    <OtpFieldBase.Root
+      id={id}
+      name={name}
+      length={length}
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange ? (v) => onValueChange(v) : undefined}
+      mask={mask}
+      disabled={disabled}
+      className="brass-otp-root"
+    >
       <div className="brass-otp__cells">
         {Array.from({ length }, (_, i) => (
           <Fragment key={i}>

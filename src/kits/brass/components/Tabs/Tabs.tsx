@@ -11,13 +11,32 @@ export interface TabItem {
   disabled?: boolean;
 }
 
-export interface TabsProps extends Omit<React.ComponentProps<typeof BaseTabs.Root>, "children"> {
+export interface TabsProps {
   items: TabItem[];
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  className?: string;
 }
 
-export function Tabs({ items, className, ...props }: TabsProps) {
+export function Tabs({
+  items,
+  defaultValue,
+  value,
+  onValueChange,
+  className,
+}: TabsProps) {
   return (
-    <BaseTabs.Root className={cx("brass-tabs", className)} {...props}>
+    <BaseTabs.Root
+      className={cx("brass-tabs", className)}
+      defaultValue={defaultValue ?? items[0]?.value}
+      value={value}
+      onValueChange={
+        onValueChange
+          ? (v: unknown) => onValueChange(v == null ? "" : String(v))
+          : undefined
+      }
+    >
       <div className="brass-tabs__rail">
         <BaseTabs.List className="brass-tabs-list">
           {items.map((it) => (

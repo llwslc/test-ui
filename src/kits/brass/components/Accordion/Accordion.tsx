@@ -11,13 +11,25 @@ export interface AccordionItem {
   disabled?: boolean;
 }
 
-export interface AccordionProps extends Omit<BaseAccordion.Root.Props, "children"> {
+export interface AccordionProps {
   items: AccordionItem[];
+  openMultiple?: boolean;
+  defaultValue?: string[];
+  className?: string;
 }
 
-export function Accordion({ items, className, ...props }: AccordionProps) {
+export function Accordion({
+  items,
+  openMultiple = false,
+  defaultValue,
+  className,
+}: AccordionProps) {
   return (
-    <BaseAccordion.Root className={cx("brass-accordion", className)} {...props}>
+    <BaseAccordion.Root
+      className={cx("brass-accordion", className)}
+      multiple={openMultiple}
+      defaultValue={defaultValue}
+    >
       {items.map((it) => (
         <BaseAccordion.Item key={it.value} value={it.value} disabled={it.disabled} className="brass-accordion__item">
           <BaseAccordion.Header className="brass-accordion__header">

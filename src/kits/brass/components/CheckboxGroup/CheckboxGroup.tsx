@@ -1,5 +1,5 @@
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import { Checkbox } from "../Checkbox";
 import "./CheckboxGroup.css";
@@ -11,7 +11,7 @@ export interface CheckboxGroupOption {
 }
 
 export interface CheckboxGroupProps
-  extends Omit<React.ComponentProps<typeof BaseCheckboxGroup>, "children"> {
+  extends Omit<ComponentPropsWithoutRef<typeof BaseCheckboxGroup>, "children"> {
   items: CheckboxGroupOption[];
   parentLabel?: ReactNode;
 }

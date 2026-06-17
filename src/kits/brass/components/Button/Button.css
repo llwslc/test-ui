@@ -53,12 +53,28 @@
   padding: 0 var(--brass-space-6);
   font-size: var(--brass-fs-15);
 }
-.brass-btn--icon {
+.brass-btn--icon,
+.brass-btn--icon-ghost {
   width: var(--brass-button-icon);
   padding: 0;
 }
-.brass-btn--icon.brass-btn--sm {
+.brass-btn--icon.brass-btn--sm,
+.brass-btn--icon-ghost.brass-btn--sm {
   width: var(--brass-button-h-sm);
+}
+.brass-btn--icon-ghost {
+  --brass-plate-bezel: transparent;
+  --brass-plate-fill: transparent;
+  --brass-plate-bevel: none;
+  color: var(--brass-text-dim);
+}
+.brass-btn--icon-ghost:hover,
+.brass-btn--icon-ghost:focus-visible {
+  --brass-plate-fill: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
+.brass-btn__icon {
+  display: inline-flex;
 }
 
 .brass-btn--primary {

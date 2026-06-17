@@ -289,10 +289,7 @@ function Demo() {
             <Panel id="button" title="Button" meta="BTN" wide>
               <div className="brass-stack">
                 <div className="brass-row">
-                  <Button variant="primary">
-                    <Bolt />
-                    Engage
-                  </Button>
+                  <Button icon={<Bolt />}>Engage</Button>
                   <Button variant="secondary">Standby</Button>
                   <Button variant="danger">Vent</Button>
                   <Button variant="ghost">Cancel</Button>
@@ -306,19 +303,19 @@ function Demo() {
                 </div>
                 <Separator />
                 <div className="brass-row">
-                  <Button iconOnly aria-label="Copy reading">
+                  <Button variant="icon" aria-label="Copy reading">
                     <Copy />
                   </Button>
-                  <Button iconOnly aria-label="Adjust gear">
+                  <Button variant="icon" aria-label="Adjust gear">
                     <Gear />
                   </Button>
-                  <Button iconOnly disabled aria-label="Valve locked">
+                  <Button variant="icon" disabled aria-label="Valve locked">
                     <Valve />
                   </Button>
-                  <Button variant="ghost" iconOnly aria-label="Read gauge">
+                  <Button variant="icon-ghost" aria-label="Read gauge">
                     <Gauge />
                   </Button>
-                  <Button variant="ghost" iconOnly aria-label="Discharge">
+                  <Button variant="icon-ghost" aria-label="Discharge">
                     <Bolt />
                   </Button>
                 </div>
@@ -419,7 +416,10 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
-              <NumberField label="Boiler PSI" defaultValue={7} min={0} max={12} step={1} />
+              <div className="brass-stack">
+                <span className="brass-cap">Boiler PSI</span>
+                <NumberField defaultValue={7} min={0} max={12} step={1} />
+              </div>
             </Panel>
 
             <Panel id="input" title="Input" meta="INP">
@@ -431,7 +431,7 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
-              <OtpField label="Ignition code" length={6} splitAt={3} defaultValue="427" />
+              <OtpField length={6} splitAt={3} defaultValue="427" />
             </Panel>
           </div>
 
@@ -785,14 +785,10 @@ function Demo() {
                   <Toggle value="cool">Cool</Toggle>
                 </ToggleGroup>
                 <ToolbarSeparator />
-                <ToolbarButton
-                  render={
-                    <Toggle value="auto">
-                      <Bolt />
-                      Auto
-                    </Toggle>
-                  }
-                />
+                <Toggle value="auto">
+                  <Bolt />
+                  Auto
+                </Toggle>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">

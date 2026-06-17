@@ -1,16 +1,16 @@
 import { Radio as BaseRadio } from "@base-ui/react/radio";
 import { RadioGroup as BaseRadioGroup } from "@base-ui/react/radio-group";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import "./Radio.css";
 
-export interface RadioGroupProps extends React.ComponentProps<typeof BaseRadioGroup> {}
+export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof BaseRadioGroup> {}
 
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
   return <BaseRadioGroup className={cx("brass-radiogroup", className)} {...props} />;
 }
 
-export interface RadioProps extends React.ComponentProps<typeof BaseRadio.Root> {
+export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Root> {
   children?: ReactNode;
 }
 

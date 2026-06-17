@@ -1,10 +1,10 @@
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import { Check, Minus } from "../icons";
 import "./Checkbox.css";
 
-export interface CheckboxProps extends React.ComponentProps<typeof BaseCheckbox.Root> {
+export interface CheckboxProps extends ComponentPropsWithoutRef<typeof BaseCheckbox.Root> {
   label?: ReactNode;
 }
 

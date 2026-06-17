@@ -1,8 +1,9 @@
 import { Form as BaseForm } from "@base-ui/react/form";
 import { cx } from "../cx";
+import type { ComponentPropsWithoutRef } from "react";
 import "./Form.css";
 
-export type FormProps = React.ComponentProps<typeof BaseForm>;
+export interface FormProps extends ComponentPropsWithoutRef<typeof BaseForm> {}
 
 export function Form({ className, ...props }: FormProps) {
   return <BaseForm className={cx("brass-form", className)} {...props} />;

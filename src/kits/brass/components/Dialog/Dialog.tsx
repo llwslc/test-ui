@@ -45,7 +45,7 @@ export function Dialog({ trigger, title, description, children, footer }: Dialog
             <BaseDialog.Close
               className="brass-modal-close"
               render={
-                <Button iconOnly variant="ghost" aria-label="Close">
+                <Button variant="icon-ghost" aria-label="Close">
                   <Close />
                 </Button>
               }

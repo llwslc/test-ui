@@ -33,7 +33,7 @@ function ToastList() {
           <BaseToast.Close
             className="brass-toast__close"
             render={
-              <Button iconOnly variant="ghost" size="sm" aria-label="Close">
+              <Button variant="icon-ghost" size="sm" aria-label="Close">
                 <Close />
               </Button>
             }

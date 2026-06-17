@@ -31,7 +31,7 @@ export function Popover({ trigger, title, description, children, side = "bottom"
             <BasePopover.Close
               className="brass-popover__close"
               render={
-                <Button iconOnly variant="ghost" aria-label="Close">
+                <Button variant="icon-ghost" aria-label="Close">
                   <Close />
                 </Button>
               }

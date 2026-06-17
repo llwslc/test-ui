@@ -1,52 +1,44 @@
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
-import { useId, useState, type ReactNode } from "react";
+import { useId, useState } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { cx } from "../cx";
 import { Plus, Minus } from "../icons";
 import "./NumberField.css";
 
-export interface NumberFieldProps
-  extends Omit<React.ComponentProps<typeof BaseNumberField.Root>, "render"> {
-  label?: ReactNode;
-}
+export interface NumberFieldProps extends ComponentPropsWithoutRef<
+  typeof BaseNumberField.Root
+> {}
 
 export function NumberField({
-  label,
   className,
   id,
+  name,
   min,
   max,
-  value,
   defaultValue,
+  value: controlled,
   onValueChange,
   ...props
 }: NumberFieldProps) {
-  const reactId = useId();
-  const fieldId = id ?? reactId;
-  const [internal, setInternal] = useState<number | null>(defaultValue ?? null);
-  const current = value !== undefined ? value : internal;
-
-  const atMin = min != null && current != null && current <= min;
-  const atMax = max != null && current != null && current >= max;
+  const autoId = useId();
+  const [tracked, setTracked] = useState<number | null>(defaultValue ?? null);
+  const value = controlled !== undefined ? controlled : tracked;
+  const atMin = min != null && value != null && value <= min;
+  const atMax = max != null && value != null && value >= max;
 
   return (
     <BaseNumberField.Root
-      id={fieldId}
       className={cx("brass-numberfield-root", className)}
+      name={name ?? autoId}
       min={min}
       max={max}
-      value={value}
-      defaultValue={defaultValue}
+      {...(controlled !== undefined ? { value: controlled } : { defaultValue })}
       onValueChange={(next, details) => {
-        if (value === undefined) setInternal(next);
+        if (controlled === undefined) setTracked(next);
         onValueChange?.(next, details);
       }}
       {...props}
     >
-      {label && (
-        <label htmlFor={fieldId} className="brass-cap brass-numberfield__label">
-          {label}
-        </label>
-      )}
       <BaseNumberField.Group className="brass-plate brass-numberfield">
         <BaseNumberField.Decrement
           className="brass-numberfield__step"
@@ -54,7 +46,7 @@ export function NumberField({
         >
           <Minus />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input className="brass-numberfield__input" />
+        <BaseNumberField.Input id={id ?? autoId} className="brass-numberfield__input" />
         <BaseNumberField.Increment
           className="brass-numberfield__step"
           disabled={atMax}

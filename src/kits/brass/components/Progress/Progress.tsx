@@ -1,9 +1,11 @@
-import type { ReactNode } from "react";
 import { Progress as BaseProgress } from "@base-ui/react/progress";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import "./Progress.css";
 
-export interface ProgressProps extends React.ComponentProps<typeof BaseProgress.Root> {
+export interface ProgressProps extends ComponentPropsWithoutRef<
+  typeof BaseProgress.Root
+> {
   label?: ReactNode;
   showValue?: boolean;
 }

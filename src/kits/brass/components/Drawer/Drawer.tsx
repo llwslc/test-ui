@@ -55,7 +55,7 @@ export function Drawer({
             <BaseDrawer.Close
               className="brass-modal-close"
               render={
-                <Button iconOnly variant="ghost" aria-label="Close">
+                <Button variant="icon-ghost" aria-label="Close">
                   <Close />
                 </Button>
               }

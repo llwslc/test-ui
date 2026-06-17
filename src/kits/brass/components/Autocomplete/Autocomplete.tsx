@@ -1,31 +1,37 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
-import type { AutocompleteRootProps } from "@base-ui/react/autocomplete";
-import type { ReactNode } from "react";
+import { useId } from "react";
 import { cx } from "../cx";
 import { Close, Search } from "../icons";
 import "./Autocomplete.css";
 
-export interface AutocompleteProps extends AutocompleteRootProps<string> {
-  items?: string[];
+export interface AutocompleteProps {
+  items: string[];
   placeholder?: string;
+  defaultValue?: string;
   emptyText?: string;
-  startIcon?: ReactNode;
-  className?: string;
+  label?: string;
 }
 
 export function Autocomplete({
-  items = [],
+  items,
   placeholder = "Search…",
+  defaultValue,
   emptyText = "No suggestions",
-  startIcon = <Search />,
-  className,
-  ...props
+  label,
 }: AutocompleteProps) {
+  const inputId = useId();
   return (
-    <BaseAutocomplete.Root items={items} {...props}>
-      <div className={cx("brass-plate", "brass-autocomplete", className)}>
-        {startIcon && <span className="brass-autocomplete__icon">{startIcon}</span>}
-        <BaseAutocomplete.Input placeholder={placeholder} className="brass-autocomplete__control" />
+    <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
+      <div className={cx("brass-plate", "brass-autocomplete")}>
+        <span className="brass-autocomplete__icon">
+          <Search />
+        </span>
+        <BaseAutocomplete.Input
+          id={inputId}
+          placeholder={placeholder}
+          aria-label={label ?? placeholder}
+          className="brass-autocomplete__control"
+        />
         <BaseAutocomplete.Clear className="brass-autocomplete__clear" aria-label="Clear">
           <Close />
         </BaseAutocomplete.Clear>
