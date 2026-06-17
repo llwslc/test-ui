@@ -1,103 +1,70 @@
+import type { ReactNode } from "react";
+import { Menu } from "@base-ui/react/menu";
 import { cx } from "../cx";
-import { createContext, useContext } from "react";
-import type { ComponentType, ReactNode } from "react";
 import { ChevronRightIcon } from "../icons";
 
-export interface MenuParts {
-  Item: ComponentType<any>;
-  Separator: ComponentType<any>;
-  SubmenuRoot: ComponentType<any>;
-  SubmenuTrigger: ComponentType<any>;
-  Portal: ComponentType<any>;
-  Positioner: ComponentType<any>;
-  Popup: ComponentType<any>;
-}
-
-const MenuPartsContext = createContext<MenuParts | null>(null);
-export const MenuPartsProvider = MenuPartsContext.Provider;
-
-function useParts() {
-  const parts = useContext(MenuPartsContext);
-  if (!parts) {
-    throw new Error(
-      "MenuItem / MenuSeparator / MenuSub must be rendered inside a Menu, Menubar (MenubarMenu), or ContextMenu.",
-    );
-  }
-  return parts;
-}
-
-export interface MenuItemProps {
-  children: ReactNode;
+export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
-  shortcut?: string;
-  onClick?: () => void;
-  disabled?: boolean;
+  shortcut?: ReactNode;
   tone?: "default" | "danger";
 }
 
 export function MenuItem({
+  className,
   children,
   icon,
   shortcut,
-  onClick,
-  disabled,
-  tone,
+  tone = "default",
+  label,
+  ...props
 }: MenuItemProps) {
-  const { Item } = useParts();
   return (
-    <Item
-      className={cx(
-        "abyss-menu__item",
-        tone === "danger" ? "abyss-menu__item--danger" : "",
-      )}
-      disabled={disabled}
-      onClick={onClick}
+    <Menu.Item
+      className={cx("abyss-menu__item", tone === "danger" && "abyss-menu__item--danger", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
     >
       <span className="abyss-menu__icon">{icon}</span>
       <span className="abyss-menu__label">{children}</span>
       {shortcut ? <kbd className="abyss-menu__shortcut">{shortcut}</kbd> : null}
-    </Item>
+    </Menu.Item>
   );
 }
 
 export function MenuSeparator() {
-  const { Separator } = useParts();
-  return <Separator className="abyss-separator abyss-menu__separator" />;
+  return <Menu.Separator className="abyss-separator abyss-menu__separator" />;
 }
 
-export interface MenuSubProps {
+export function MenuSub({
+  label,
+  icon,
+  children,
+}: {
   label: ReactNode;
   icon?: ReactNode;
-  disabled?: boolean;
   children: ReactNode;
-}
-
-export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
-  const { SubmenuRoot, SubmenuTrigger, Portal, Positioner, Popup } = useParts();
+}) {
   return (
-    <SubmenuRoot>
-      <SubmenuTrigger
-        className="abyss-menu__item abyss-menu__item--sub"
-        disabled={disabled}
-      >
+    <Menu.SubmenuRoot>
+      <Menu.SubmenuTrigger className="abyss-menu__item abyss-menu__item--sub">
         <span className="abyss-menu__icon">{icon}</span>
         <span className="abyss-menu__label">{label}</span>
         <span className="abyss-menu__arrow">
           <ChevronRightIcon />
         </span>
-      </SubmenuTrigger>
-      <Portal>
-        <Positioner
+      </Menu.SubmenuTrigger>
+      <Menu.Portal>
+        <Menu.Positioner
           className="abyss-elevation abyss-menu__positioner"
           side="right"
           align="start"
           sideOffset={14}
         >
-          <Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
+          <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
             {children}
-          </Popup>
-        </Positioner>
-      </Portal>
-    </SubmenuRoot>
+          </Menu.Popup>
+        </Menu.Positioner>
+      </Menu.Portal>
+    </Menu.SubmenuRoot>
   );
 }

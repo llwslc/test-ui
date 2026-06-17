@@ -3,13 +3,13 @@ import { Button as BaseButton } from "@base-ui/react/button";
 import { cx } from "../cx";
 import "./Button.css";
 
-type Variant = "primary" | "secondary" | "danger" | "ghost";
-type Size = "sm" | "md" | "lg";
+export type ButtonVariant = "primary" | "secondary" | "danger" | "ghost";
+export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps
   extends React.ComponentPropsWithoutRef<typeof BaseButton> {
-  variant?: Variant;
-  size?: Size;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   iconOnly?: boolean;
 }
 

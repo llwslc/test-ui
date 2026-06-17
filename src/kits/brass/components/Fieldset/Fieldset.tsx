@@ -2,7 +2,9 @@ import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
 import { cx } from "../cx";
 import "./Fieldset.css";
 
-function Root({ className, ...props }: React.ComponentProps<typeof BaseFieldset.Root>) {
+export interface FieldsetProps extends React.ComponentProps<typeof BaseFieldset.Root> {}
+
+function Root({ className, ...props }: FieldsetProps) {
   return <BaseFieldset.Root className={cx("brass-fieldset", className)} {...props} />;
 }
 

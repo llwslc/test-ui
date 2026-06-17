@@ -1,10 +1,10 @@
 import { cx } from "../cx";
 import "./Badge.css";
 
-type Tone = "primary" | "secondary" | "success" | "warning" | "danger" | "neutral";
+export type BadgeTone = "primary" | "secondary" | "success" | "warning" | "danger" | "neutral";
 
 export interface BadgeProps extends React.ComponentPropsWithoutRef<"span"> {
-  tone?: Tone;
+  tone?: BadgeTone;
   dot?: boolean;
 }
 

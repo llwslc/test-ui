@@ -1,3 +1,2 @@
-export { Menubar } from "./Menubar";
-export type { MenubarProps, MenubarMenu } from "./Menubar";
-export { MenuItem, MenuSeparator } from "../Menu";
+export { Menubar, MenubarMenu } from "./Menubar";
+export type { MenubarProps, MenubarMenuProps } from "./Menubar";

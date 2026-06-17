@@ -2,11 +2,15 @@ import { Toolbar as BaseToolbar } from "@base-ui/react/toolbar";
 import { cx } from "../cx";
 import "./Toolbar.css";
 
-export function Toolbar({ className, ...props }: React.ComponentProps<typeof BaseToolbar.Root>) {
+export interface ToolbarProps extends React.ComponentProps<typeof BaseToolbar.Root> {}
+
+export function Toolbar({ className, ...props }: ToolbarProps) {
   return <BaseToolbar.Root className={cx("brass-seg", "brass-toolbar", className)} {...props} />;
 }
 
-export function ToolbarButton({ className, ...props }: React.ComponentProps<typeof BaseToolbar.Button>) {
+export interface ToolbarButtonProps extends React.ComponentProps<typeof BaseToolbar.Button> {}
+
+export function ToolbarButton({ className, ...props }: ToolbarButtonProps) {
   return <BaseToolbar.Button className={cx("brass-seg__btn", "brass-toolbar__btn", className)} {...props} />;
 }
 

@@ -3,21 +3,21 @@ import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import { ChevronDown, ChevronRight } from "../icons";
 import "./NavigationMenu.css";
 
-export interface NavLink {
+export interface NavMenuLink {
   label: ReactNode;
   href?: string;
   description?: ReactNode;
   icon?: ReactNode;
 }
 
-export interface NavItem {
+export interface NavMenuItem {
   label: ReactNode;
   href?: string;
-  links?: NavLink[];
+  links?: NavMenuLink[];
 }
 
 export interface NavigationMenuProps {
-  items: NavItem[];
+  items: NavMenuItem[];
 }
 
 export function NavigationMenu({ items }: NavigationMenuProps) {

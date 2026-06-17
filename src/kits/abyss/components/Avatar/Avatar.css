@@ -1,17 +1,18 @@
 .abyss-avatar {
+  --abyss-frame-fill: var(--abyss-stone-raised);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-round: 36%;
+  --abyss-avatar-size: var(--abyss-avatar-md);
   position: relative;
   display: inline-block;
   width: var(--abyss-avatar-size);
   height: var(--abyss-avatar-size);
 }
-.abyss-avatar__root {
-  --abyss-frame-fill: var(--abyss-stone-raised);
-  --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 36%;
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
+.abyss-avatar--sm {
+  --abyss-avatar-size: var(--abyss-avatar-sm);
+}
+.abyss-avatar--lg {
+  --abyss-avatar-size: var(--abyss-avatar-lg);
 }
 
 .abyss-avatar__img {

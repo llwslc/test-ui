@@ -1,2 +1,7 @@
-export { ScrollArea } from "./ScrollArea";
-export type { ScrollAreaProps } from "./ScrollArea";
+export {
+  ScrollArea,
+  ScrollAreaViewport,
+  ScrollAreaContent,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+} from "./ScrollArea";

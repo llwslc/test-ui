@@ -4,7 +4,7 @@ import { cx } from "../cx";
 import { Gear, ChevronDown } from "../icons";
 import "./Accordion.css";
 
-export interface AccordionItemData {
+export interface AccordionItem {
   value: string;
   title: ReactNode;
   content: ReactNode;
@@ -12,7 +12,7 @@ export interface AccordionItemData {
 }
 
 export interface AccordionProps extends Omit<BaseAccordion.Root.Props, "children"> {
-  items: AccordionItemData[];
+  items: AccordionItem[];
 }
 
 export function Accordion({ items, className, ...props }: AccordionProps) {

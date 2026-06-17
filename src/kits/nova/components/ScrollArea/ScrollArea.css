@@ -1,6 +1,7 @@
 .nova-scrollarea {
   position: relative;
   width: 100%;
+  max-height: var(--nova-h-scrollarea);
   background: var(--nova-line);
   clip-path: var(--nova-clip-9);
 }

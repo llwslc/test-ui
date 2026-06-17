@@ -1,7 +1,8 @@
 import { cx } from "../cx";
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
-import type { ReactElement, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
+import type { ButtonVariant, ButtonSize } from "../Button";
 import { XIcon } from "../icons";
 import "./Drawer.css";
 
@@ -89,5 +90,35 @@ export function Drawer({
         </BaseDrawer.Viewport>
       </BaseDrawer.Portal>
     </BaseDrawer.Root>
+  );
+}
+
+export type DrawerCloseVariant = ButtonVariant;
+
+export interface DrawerCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDrawer.Close>,
+  "className" | "render"
+> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+}
+
+export function DrawerClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: DrawerCloseProps) {
+  return (
+    <BaseDrawer.Close
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
+      {...props}
+    />
   );
 }

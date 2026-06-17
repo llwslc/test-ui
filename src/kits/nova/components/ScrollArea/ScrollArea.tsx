@@ -1,29 +1,23 @@
-import { cx } from "../cx";
 import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
-import type { CSSProperties, ReactNode } from "react";
+import { cx } from "../cx";
 import "./ScrollArea.css";
 
-export interface ScrollAreaProps {
-  children: ReactNode;
-  maxHeight?: number | string;
-  className?: string;
+export function ScrollArea({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Root>) {
+  return <BaseScrollArea.Root className={cx("nova-scrollarea", className)} {...props} />;
 }
 
-export function ScrollArea({ children, maxHeight = 220, className }: ScrollAreaProps) {
-  return (
-    <BaseScrollArea.Root className={cx("nova-scrollarea", className)}>
-      <BaseScrollArea.Viewport
-        className="nova-scrollarea__viewport"
-        style={{ maxHeight } as CSSProperties}
-      >
-        {children}
-      </BaseScrollArea.Viewport>
-      <BaseScrollArea.Scrollbar
-        className="nova-scrollarea__scrollbar"
-        orientation="vertical"
-      >
-        <BaseScrollArea.Thumb className="nova-scrollarea__thumb" />
-      </BaseScrollArea.Scrollbar>
-    </BaseScrollArea.Root>
-  );
+export function ScrollAreaViewport({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Viewport>) {
+  return <BaseScrollArea.Viewport className={cx("nova-scrollarea__viewport", className)} {...props} />;
+}
+
+export function ScrollAreaContent({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Content>) {
+  return <BaseScrollArea.Content className={cx("nova-scrollarea__content", className)} {...props} />;
+}
+
+export function ScrollAreaScrollbar({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Scrollbar>) {
+  return <BaseScrollArea.Scrollbar className={cx("nova-scrollarea__scrollbar", className)} {...props} />;
+}
+
+export function ScrollAreaThumb({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Thumb>) {
+  return <BaseScrollArea.Thumb className={cx("nova-scrollarea__thumb", className)} {...props} />;
 }

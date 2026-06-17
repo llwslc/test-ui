@@ -1,19 +1,8 @@
 import { cx } from "../cx";
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
 import type { ReactNode } from "react";
-import { MenuPartsProvider, type MenuParts } from "../Menu/parts";
 import "../Menu/Menu.css";
 import "./ContextMenu.css";
-
-const ctxMenuParts: MenuParts = {
-  Item: BaseContextMenu.Item,
-  Separator: BaseContextMenu.Separator,
-  SubmenuRoot: BaseContextMenu.SubmenuRoot,
-  SubmenuTrigger: BaseContextMenu.SubmenuTrigger,
-  Portal: BaseContextMenu.Portal,
-  Positioner: BaseContextMenu.Positioner,
-  Popup: BaseContextMenu.Popup,
-};
 
 export interface ContextMenuProps {
   trigger: ReactNode;
@@ -30,7 +19,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="abyss-menu__positioner">
           <BaseContextMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            <MenuPartsProvider value={ctxMenuParts}>{children}</MenuPartsProvider>
+            {children}
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
       </BaseContextMenu.Portal>

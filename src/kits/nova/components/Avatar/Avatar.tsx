@@ -1,46 +1,41 @@
-import { cx } from "../cx";
 import { Avatar as BaseAvatar } from "@base-ui/react/avatar";
-import type { CSSProperties, ReactNode } from "react";
+import { cx } from "../cx";
 import "./Avatar.css";
 
-export type AvatarStatus = "online" | "busy" | "away" | "offline";
+type Size = "sm" | "md" | "lg";
+type Status = "online" | "busy" | "away" | "offline";
 
-export interface AvatarProps {
-  src?: string;
-  alt?: string;
-  fallback?: ReactNode;
-  size?: number;
-  status?: AvatarStatus;
-  className?: string;
+const STATUS_LABEL: Record<Status, string> = {
+  online: "Online",
+  busy: "Busy",
+  away: "Away",
+  offline: "Offline",
+};
+
+export interface AvatarProps extends React.ComponentProps<typeof BaseAvatar.Root> {
+  size?: Size;
+  status?: Status;
 }
 
-export function Avatar({
-  src,
-  alt,
-  fallback,
-  size = 46,
-  status,
-  className,
-}: AvatarProps) {
+export function Avatar({ size = "md", status, className, children, ...props }: AvatarProps) {
   return (
-    <span
-      className={cx("nova-avatar", className)}
-      style={{ "--nova-avatar-size": `${size}px` } as CSSProperties}
-    >
-      <BaseAvatar.Root className="nova-avatar__root">
-        {src ? (
-          <BaseAvatar.Image src={src} alt={alt} className="nova-avatar__img" />
-        ) : null}
-        <BaseAvatar.Fallback className="nova-avatar__fallback">
-          {fallback}
-        </BaseAvatar.Fallback>
-      </BaseAvatar.Root>
+    <BaseAvatar.Root className={cx("nova-avatar", `nova-avatar--${size}`, className)} {...props}>
+      {children}
       {status ? (
         <span
-          className={`nova-avatar__status nova-avatar__status--${status}`}
-          title={status}
+          className={cx("nova-avatar__status", `nova-avatar__status--${status}`)}
+          role="img"
+          aria-label={STATUS_LABEL[status]}
         />
       ) : null}
-    </span>
+    </BaseAvatar.Root>
   );
+}
+
+export function AvatarImage({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Image>) {
+  return <BaseAvatar.Image className={cx("nova-avatar__img", className)} {...props} />;
+}
+
+export function AvatarFallback({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Fallback>) {
+  return <BaseAvatar.Fallback className={cx("nova-avatar__fallback", className)} {...props} />;
 }

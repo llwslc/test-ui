@@ -43,7 +43,11 @@ function ToastList() {
   );
 }
 
-export function ToastProvider({ children }: { children?: ReactNode }) {
+export interface ToastProviderProps {
+  children?: ReactNode;
+}
+
+export function ToastProvider({ children }: ToastProviderProps) {
   return (
     <BaseToast.Provider>
       {children}

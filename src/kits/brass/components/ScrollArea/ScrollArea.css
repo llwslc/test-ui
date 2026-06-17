@@ -1,6 +1,7 @@
 .brass-scrollarea {
   position: relative;
   overflow: hidden;
+  max-height: var(--brass-scrollarea-h);
   border-radius: var(--brass-round-md);
 }
 

@@ -1,5 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
+import { cx } from "../cx";
 import { Button, type ButtonProps } from "../Button";
 import { Close } from "../icons";
 import "./Drawer.css";
@@ -7,41 +8,50 @@ import "./Drawer.css";
 type ButtonVariant = NonNullable<ButtonProps["variant"]>;
 type ButtonSize = NonNullable<ButtonProps["size"]>;
 
+export type DrawerSide = "left" | "right" | "top" | "bottom";
+
+const SWIPE_DIRECTION: Record<DrawerSide, "left" | "right" | "up" | "down"> = {
+  left: "left",
+  right: "right",
+  top: "up",
+  bottom: "down",
+};
+
 export interface DrawerProps {
-  trigger: ReactNode;
-  triggerVariant?: ButtonVariant;
-  title: ReactNode;
+  trigger: ReactElement;
+  title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  actions?: ReactNode;
+  footer?: ReactNode;
+  side?: DrawerSide;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
 }
 
 export function Drawer({
   trigger,
-  triggerVariant = "secondary",
   title,
   description,
   children,
-  actions,
+  footer,
+  side = "right",
+  open,
+  onOpenChange,
+  className,
 }: DrawerProps) {
   return (
-    <BaseDrawer.Root swipeDirection="right">
-      <BaseDrawer.Trigger render={<Button variant={triggerVariant}>{trigger}</Button>} />
+    <BaseDrawer.Root
+      open={open}
+      onOpenChange={onOpenChange}
+      swipeDirection={SWIPE_DIRECTION[side]}
+    >
+      <BaseDrawer.Trigger render={trigger} />
       <BaseDrawer.Portal>
         <BaseDrawer.Backdrop className="brass-backdrop" />
         <BaseDrawer.Viewport className="brass-drawer-viewport">
-          <BaseDrawer.Popup className="brass-plate brass-pop brass-drawer">
+          <BaseDrawer.Popup className={cx("brass-plate brass-pop brass-drawer", className)}>
             <span className="brass-drawer__handle" aria-hidden="true" />
-            <header className="brass-modal__head">
-              <BaseDrawer.Title className="brass-h2 brass-modal-title">{title}</BaseDrawer.Title>
-            </header>
-            {description && (
-              <BaseDrawer.Description className="brass-text brass-modal-desc">
-                {description}
-              </BaseDrawer.Description>
-            )}
-            {children && <div className="brass-modal-body">{children}</div>}
-            {actions && <div className="brass-modal-actions">{actions}</div>}
             <BaseDrawer.Close
               className="brass-modal-close"
               render={
@@ -50,6 +60,20 @@ export function Drawer({
                 </Button>
               }
             />
+            {title != null ? (
+              <header className="brass-modal__head">
+                <BaseDrawer.Title className="brass-h2 brass-modal-title">
+                  {title}
+                </BaseDrawer.Title>
+              </header>
+            ) : null}
+            {description != null ? (
+              <BaseDrawer.Description className="brass-text brass-modal-desc">
+                {description}
+              </BaseDrawer.Description>
+            ) : null}
+            {children != null ? <div className="brass-modal-body">{children}</div> : null}
+            {footer != null ? <div className="brass-modal-actions">{footer}</div> : null}
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>
       </BaseDrawer.Portal>

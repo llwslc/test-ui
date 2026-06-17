@@ -89,6 +89,23 @@ echo "## alpha spread per rgb family (components + tokens; review for clusters)"
   | sed -E 's/rgba\(([0-9, ]+),([ 0-9.]+)\)/\1 ->\2/' | sort | awk -F' ->' '{a[$1]=a[$1]" "$2} END {for (k in a) print "  rgb("k"):"a[k]}' | sort
 
 
+# 10b. raw pixel sizes passed as .tsx props / inline styles (core.md: component size footprint must be a --<kit>- token)
+#   .css is covered above; this catches sizes that bypass css via JSX — size={56}, maxHeight={200}, style={{ width: 120 }}, style={{ height: "48px" }}.
+#   scope = size-footprint keys only (size/width/height/min-/max-), so semantic data props (value/min/max/step/length) and
+#   Base UI anchor props (sideOffset/alignOffset/collisionPadding) are excluded by construction. tokens/%/dvh/vh/vw/em/clamp/calc/0 pass.
+SZ='size|width|height|minWidth|maxWidth|minHeight|maxHeight|minBlockSize|maxBlockSize|minInlineSize|maxInlineSize|blockSize|inlineSize'
+#   (a) numeric-literal size prop:  maxHeight={200}   size={56}   width={120}
+a=$(grep -rnoE "\b($SZ)=\{-?[0-9]+(\.[0-9]+)?\}" "$ROOT" --include='*.tsx' 2>/dev/null)
+#   (b) px-string size prop:  height={"48px"}   width={'120px'}
+b=$(grep -rnoE "\b($SZ)=\{[\"'][0-9.]+px[\"']\}" "$ROOT" --include='*.tsx' 2>/dev/null)
+#   (c) size key inside an inline style object:  style={{ maxHeight: 200 }}  { width: "120px" }  — allow 0, var(), %, dvh/vh/vw, em, clamp/calc
+#   match consumes the whole value (incl. any unit) so the unit-based allowlist below can see it.
+c=$(grep -rnoE "\b($SZ):[[:space:]]*[\"']?[0-9][0-9.]*(px|%|dvh|svh|lvh|vh|vw|em|rem|ch)?[\"']?" "$ROOT" --include='*.tsx' 2>/dev/null \
+  | grep -vE ":[[:space:]]*[\"']?0[\"']?($|[^0-9.])" \
+  | grep -vE "var\(|clamp|calc|[0-9](%|dvh|svh|lvh|vh|vw|em|rem|ch)([\"']|[[:space:]]|\}|$)")
+f=$(printf '%s\n%s\n%s\n' "$a" "$b" "$c" | grep .)
+run "raw pixel sizes in .tsx props / inline styles (route through a --$KIT- size token)" "$f"
+
 # 10. repeated recipe across components (a rich filter/box-shadow/animation value in 2+ files = extract to a shared class/token)
 f=$(find "$C" -name '*.css' | xargs awk '
   FNR==1 { file=FILENAME; sub(/.*\/components\//,"",file); sub(/\/[a-zA-Z0-9_.-]+$/,"",file) }

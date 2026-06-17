@@ -4,14 +4,14 @@ import { cx } from "../cx";
 import { Checkbox } from "../Checkbox";
 import "./CheckboxGroup.css";
 
-export interface CheckboxGroupItem {
+export interface CheckboxGroupOption {
   label: ReactNode;
   value: string;
 }
 
 export interface CheckboxGroupProps
   extends Omit<React.ComponentProps<typeof BaseCheckboxGroup>, "children"> {
-  items: CheckboxGroupItem[];
+  items: CheckboxGroupOption[];
   selectAllLabel?: ReactNode;
 }
 

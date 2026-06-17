@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { cx } from "../cx";
 import "./Radio.css";
 
-export function RadioGroup({ className, ...props }: React.ComponentProps<typeof BaseRadioGroup>) {
+export interface RadioGroupProps extends React.ComponentProps<typeof BaseRadioGroup> {}
+
+export function RadioGroup({ className, ...props }: RadioGroupProps) {
   return <BaseRadioGroup className={cx("brass-radiogroup", className)} {...props} />;
 }
 

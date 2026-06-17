@@ -1,8 +1,6 @@
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import type { ReactNode } from "react";
-import { MenuPartsProvider } from "../Menu/parts";
-import { baseMenuParts } from "../Menu";
 import "../Menu/Menu.css";
 import "./Menubar.css";
 
@@ -33,7 +31,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
           sideOffset={6}
         >
           <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            <MenuPartsProvider value={baseMenuParts}>{children}</MenuPartsProvider>
+            {children}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

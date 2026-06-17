@@ -5,6 +5,8 @@ import {
   AlertDialogClose,
   Autocomplete,
   Avatar,
+  AvatarFallback,
+  AvatarImage,
   Badge,
   Button,
   Checkbox,
@@ -15,6 +17,7 @@ import {
   Dialog,
   DialogClose,
   Drawer,
+  DrawerClose,
   Field,
   Fieldset,
   Form,
@@ -36,6 +39,10 @@ import {
   Radio,
   RadioGroup,
   ScrollArea,
+  ScrollAreaContent,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
   Select,
   Separator,
   Slider,
@@ -965,11 +972,13 @@ function Demo() {
                       }
                     >
                       <div className="demo-pcard__head">
-                        <Avatar
-                          src="https://i.pravatar.cc/96?img=15"
-                          alt="The Keeper"
-                          status="online"
-                        />
+                        <Avatar status="online">
+                          <AvatarImage
+                            src="https://i.pravatar.cc/96?img=15"
+                            alt="The Keeper"
+                          />
+                          <AvatarFallback>TK</AvatarFallback>
+                        </Avatar>
                         <div>
                           <div className="demo-pcard__name">The Keeper</div>
                           <div className="demo-pcard__handle">
@@ -1132,7 +1141,7 @@ function Demo() {
                   trigger={<Button variant="ghost">Open the Rites</Button>}
                   title="Ward Settings"
                   description="An edge-anchored tablet sliding in from the deep."
-                  footer={<DialogClose variant="secondary">Bind</DialogClose>}
+                  footer={<DrawerClose variant="secondary">Bind</DrawerClose>}
                 >
                   <div className="demo-spread">
                     <span className="abyss-cap">Ward Sigil</span>
@@ -1158,14 +1167,22 @@ function Demo() {
             <div className="abyss-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
-                  <Avatar
-                    src="https://i.pravatar.cc/96?img=12"
-                    alt="Acolyte"
-                    status="online"
-                  />
-                  <Avatar fallback="DG" status="busy" />
-                  <Avatar fallback="HY" status="away" />
-                  <Avatar fallback="NL" size={60} status="offline" />
+                  <Avatar status="online">
+                    <AvatarImage
+                      src="https://i.pravatar.cc/96?img=12"
+                      alt="Acolyte"
+                    />
+                    <AvatarFallback>AC</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="busy">
+                    <AvatarFallback>DG</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>HY</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>NL</AvatarFallback>
+                  </Avatar>
                 </div>
               </Panel>
             </div>
@@ -1195,15 +1212,22 @@ function Demo() {
 
             <div className="abyss-section" id="scroll">
               <Panel title="Scroll Area" meta="SCR">
-                <ScrollArea maxHeight={200}>
-                  <ol className="demo-log">
-                    {DIVE_LOG.map((entry, i) => (
-                      <li key={i}>
-                        <span className="demo-log__t">{entry.t}</span>
-                        <span className="demo-log__m">{entry.m}</span>
-                      </li>
-                    ))}
-                  </ol>
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="demo-log">
+                        {DIVE_LOG.map((entry, i) => (
+                          <li key={i}>
+                            <span className="demo-log__t">{entry.t}</span>
+                            <span className="demo-log__m">{entry.m}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
                 </ScrollArea>
               </Panel>
             </div>

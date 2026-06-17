@@ -3,7 +3,9 @@ import { cx } from "../cx";
 import { Check, Minus } from "../icons";
 import "./Checkbox.css";
 
-export function Checkbox({ className, ...props }: React.ComponentProps<typeof BaseCheckbox.Root>) {
+export interface CheckboxProps extends React.ComponentProps<typeof BaseCheckbox.Root> {}
+
+export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <BaseCheckbox.Root className={cx("brass-plate", "brass-checkbox", className)} {...props}>
       <BaseCheckbox.Indicator

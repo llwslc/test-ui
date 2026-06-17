@@ -20,6 +20,7 @@ Exit 0 = clean. Fix or explicitly justify every finding, then re-run until PASS.
 Two failure shapes, mechanically:
 
 - **Raw value** — a literal where a token belongs: colors (hex/rgba), type (px font-size / letter-spacing / line-height / numeric weight), spacing off the grid (>3px), shapes (polygon / radius px), z-index, motion (informational). Also a literal that duplicates a token value verbatim. Contextual forms (`clamp`/`calc`/`em`, ≤3px sub-grid, `#000` shadow stops) pass.
+- **Raw size in .tsx** — a component size footprint passed through JSX instead of a token: a numeric/px size prop (`size={56}`, `maxHeight={200}`, `height={"48px"}`) or a size key in an inline `style` object (`style={{ width: 120 }}`). Scoped to size keys (`size`/`width`/`height`/`min-`/`max-`), so semantic data props (`value`/`min`/`max`/`step`/`length`) and Base UI anchor props (`sideOffset`/`alignOffset`/`collisionPadding`) never trip it; tokens (`var(--`), `%`, `dvh`/`vh`/`vw`, `em`, `clamp`/`calc`, and `0` pass.
 - **Restated recipe** — a rich `filter`/`box-shadow`/`animation` value appearing in 2+ component files. That recipe belongs in a token or a shared class/primitive, applied once.
 
 Plus token hygiene: no dead tokens (defined, never consumed), no app-only tokens (a token used only by App/Loader should be an inline value there), and an alpha-spread report per color family to eyeball for smear.

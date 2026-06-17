@@ -1,102 +1,72 @@
+import type { ReactNode } from "react";
+import { Menu } from "@base-ui/react/menu";
 import { cx } from "../cx";
-import { createContext, useContext } from "react";
-import type { ComponentType, ReactNode } from "react";
 import { ChevronRightIcon } from "../icons";
 
-export interface MenuParts {
-  Item: ComponentType<any>;
-  Separator: ComponentType<any>;
-  SubmenuRoot: ComponentType<any>;
-  SubmenuTrigger: ComponentType<any>;
-  Portal: ComponentType<any>;
-  Positioner: ComponentType<any>;
-  Popup: ComponentType<any>;
-}
-
-const MenuPartsContext = createContext<MenuParts | null>(null);
-export const MenuPartsProvider = MenuPartsContext.Provider;
-
-function useParts() {
-  const parts = useContext(MenuPartsContext);
-  if (!parts) {
-    throw new Error(
-      "MenuItem / MenuSeparator / MenuSub must be rendered inside a Menu, Menubar (MenubarMenu), or ContextMenu.",
-    );
-  }
-  return parts;
-}
-
-export interface MenuItemProps {
-  children: ReactNode;
+export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
-  shortcut?: string;
-  onClick?: () => void;
-  disabled?: boolean;
+  shortcut?: ReactNode;
   tone?: "default" | "danger";
 }
 
 export function MenuItem({
+  className,
   children,
   icon,
   shortcut,
-  onClick,
-  disabled,
-  tone,
+  tone = "default",
+  label,
+  ...props
 }: MenuItemProps) {
-  const { Item } = useParts();
   return (
-    <Item
-      className={cx(
-        "nova-menu__item",
-        tone === "danger" ? "nova-menu__item--danger" : "",
-      )}
-      disabled={disabled}
-      onClick={onClick}
+    <Menu.Item
+      className={cx("nova-menu__item", tone === "danger" && "nova-menu__item--danger", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
     >
       <span className="nova-menu__icon">{icon}</span>
       <span className="nova-menu__label">{children}</span>
       {shortcut ? <kbd className="nova-menu__shortcut">{shortcut}</kbd> : null}
-    </Item>
+    </Menu.Item>
   );
 }
 
 export function MenuSeparator() {
-  const { Separator } = useParts();
   return (
-    <Separator className="nova-separator nova-separator--horizontal nova-menu__separator" />
+    <Menu.Separator className="nova-separator nova-separator--horizontal nova-menu__separator" />
   );
 }
 
-export interface MenuSubProps {
+export function MenuSub({
+  label,
+  icon,
+  children,
+}: {
   label: ReactNode;
   icon?: ReactNode;
-  disabled?: boolean;
   children: ReactNode;
-}
-
-export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
-  const { SubmenuRoot, SubmenuTrigger, Portal, Positioner, Popup } = useParts();
+}) {
   return (
-    <SubmenuRoot>
-      <SubmenuTrigger className="nova-menu__item" disabled={disabled}>
+    <Menu.SubmenuRoot>
+      <Menu.SubmenuTrigger className="nova-menu__item">
         <span className="nova-menu__icon">{icon}</span>
         <span className="nova-menu__label">{label}</span>
         <span className="nova-menu__arrow">
           <ChevronRightIcon />
         </span>
-      </SubmenuTrigger>
-      <Portal>
-        <Positioner
+      </Menu.SubmenuTrigger>
+      <Menu.Portal>
+        <Menu.Positioner
           className="nova-elevation nova-menu__positioner"
           side="right"
           align="start"
           sideOffset={10}
         >
-          <Popup className="nova-surface nova-anim-pop nova-menu__popup">
+          <Menu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
             {children}
-          </Popup>
-        </Positioner>
-      </Portal>
-    </SubmenuRoot>
+          </Menu.Popup>
+        </Menu.Positioner>
+      </Menu.Portal>
+    </Menu.SubmenuRoot>
   );
 }

@@ -1,51 +1,49 @@
-import { cx } from "../cx";
 import { Avatar as BaseAvatar } from "@base-ui/react/avatar";
-import type { CSSProperties, ReactNode } from "react";
+import { cx } from "../cx";
 import "./Avatar.css";
 
-export type AvatarStatus = "online" | "busy" | "away" | "offline";
+type Size = "sm" | "md" | "lg";
+type Status = "online" | "busy" | "away" | "offline";
 
-export interface AvatarProps {
-  src?: string;
-  alt?: string;
-  fallback?: ReactNode;
-  size?: number;
-  status?: AvatarStatus;
-  className?: string;
+const STATUS_LABEL: Record<Status, string> = {
+  online: "Online",
+  busy: "Busy",
+  away: "Away",
+  offline: "Offline",
+};
+
+export interface AvatarProps extends React.ComponentProps<typeof BaseAvatar.Root> {
+  size?: Size;
+  status?: Status;
 }
 
-export function Avatar({
-  src,
-  alt,
-  fallback,
-  size = 46,
-  status,
-  className,
-}: AvatarProps) {
+export function Avatar({ size = "md", status, className, children, ...props }: AvatarProps) {
   return (
-    <span
-      className={cx("abyss-avatar", className)}
-      style={{ "--abyss-avatar-size": `${size}px` } as CSSProperties}
+    <BaseAvatar.Root
+      className={cx("abyss-avatar", `abyss-avatar--${size}`, "abyss-frame", className)}
+      {...props}
     >
-      <BaseAvatar.Root className="abyss-avatar__root abyss-frame">
-        {src ? (
-          <BaseAvatar.Image src={src} alt={alt} className="abyss-avatar__img" />
-        ) : null}
-        <BaseAvatar.Fallback className="abyss-avatar__fallback">
-          {fallback}
-        </BaseAvatar.Fallback>
-      </BaseAvatar.Root>
+      {children}
       {status ? (
         <span
-          className={`abyss-avatar__status abyss-avatar__status--${status}`}
+          className={cx("abyss-avatar__status", `abyss-avatar__status--${status}`)}
           data-status={status}
-          title={status}
+          role="img"
+          aria-label={STATUS_LABEL[status]}
         >
           <span className="abyss-avatar__moon" aria-hidden>
             <span className="abyss-avatar__moon-shadow" />
           </span>
         </span>
       ) : null}
-    </span>
+    </BaseAvatar.Root>
   );
+}
+
+export function AvatarImage({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Image>) {
+  return <BaseAvatar.Image className={cx("abyss-avatar__img", className)} {...props} />;
+}
+
+export function AvatarFallback({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Fallback>) {
+  return <BaseAvatar.Fallback className={cx("abyss-avatar__fallback", className)} {...props} />;
 }

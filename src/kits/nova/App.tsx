@@ -6,6 +6,8 @@ import {
   AlertDialogClose,
   Autocomplete,
   Avatar,
+  AvatarFallback,
+  AvatarImage,
   Badge,
   Button,
   Checkbox,
@@ -16,6 +18,7 @@ import {
   Dialog,
   DialogClose,
   Drawer,
+  DrawerClose,
   Field,
   Fieldset,
   Form,
@@ -37,6 +40,10 @@ import {
   Radio,
   RadioGroup,
   ScrollArea,
+  ScrollAreaContent,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
   Select,
   Separator,
   Slider,
@@ -834,11 +841,13 @@ function Demo() {
                       }
                     >
                       <div className="demo-pcard__head">
-                        <Avatar
-                          src="https://i.pravatar.cc/96?img=15"
-                          alt="Cmdr. Nova"
-                          status="online"
-                        />
+                        <Avatar status="online">
+                          <AvatarImage
+                            src="https://i.pravatar.cc/96?img=15"
+                            alt="Cmdr. Nova"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
                         <div>
                           <div className="demo-pcard__name">Cmdr. Nova</div>
                           <div className="demo-pcard__handle">
@@ -1002,7 +1011,7 @@ function Demo() {
                   trigger={<Button variant="ghost">Open Console</Button>}
                   title="Systems Config"
                   description="An edge-anchored console sliding in from the screen edge."
-                  footer={<DialogClose variant="secondary">Apply</DialogClose>}
+                  footer={<DrawerClose variant="secondary">Apply</DrawerClose>}
                 >
                   <div className="demo-spread">
                     <span className="nova-cap">Auto-Pilot</span>
@@ -1027,14 +1036,22 @@ function Demo() {
             <div className="nova-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
-                  <Avatar
-                    src="https://i.pravatar.cc/96?img=12"
-                    alt="Operator"
-                    status="online"
-                  />
-                  <Avatar fallback="VK" status="busy" />
-                  <Avatar fallback="R7" status="away" />
-                  <Avatar fallback="ZX" size={56} status="offline" />
+                  <Avatar status="online">
+                    <AvatarImage
+                      src="https://i.pravatar.cc/96?img=12"
+                      alt="Operator"
+                    />
+                    <AvatarFallback>OP</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="busy">
+                    <AvatarFallback>VK</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>R7</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>ZX</AvatarFallback>
+                  </Avatar>
                 </div>
               </Panel>
             </div>
@@ -1064,15 +1081,22 @@ function Demo() {
 
             <div className="nova-section" id="scroll">
               <Panel title="Scroll Area" meta="SCR">
-                <ScrollArea maxHeight={200}>
-                  <ol className="demo-log">
-                    {SHIP_LOG.map((entry, i) => (
-                      <li key={i}>
-                        <span className="demo-log__t">{entry.t}</span>
-                        <span className="demo-log__m">{entry.m}</span>
-                      </li>
-                    ))}
-                  </ol>
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="demo-log">
+                        {SHIP_LOG.map((entry, i) => (
+                          <li key={i}>
+                            <span className="demo-log__t">{entry.t}</span>
+                            <span className="demo-log__m">{entry.m}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
                 </ScrollArea>
               </Panel>
             </div>

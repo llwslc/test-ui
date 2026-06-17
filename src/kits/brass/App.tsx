@@ -19,6 +19,7 @@ import {
   DialogClose,
   Drawer,
   DrawerClose,
+  Field,
   Fieldset,
   Form,
   Input,
@@ -27,6 +28,7 @@ import {
   MenuSeparator,
   MenuSub,
   Menubar,
+  MenubarMenu,
   Meter,
   NavigationMenu,
   NumberField,
@@ -48,8 +50,8 @@ import {
   Switch,
   Tabs,
   ToastProvider,
+  Toggle,
   ToggleGroup,
-  ToggleItem,
   Toolbar,
   ToolbarButton,
   ToolbarGroup,
@@ -191,7 +193,7 @@ function IgnitionCodeField() {
   const valid = code.length >= 6;
   const touched = code.length > 0;
   return (
-    <Input
+    <Field
       label="Ignition code"
       placeholder="6-digit code…"
       value={code}
@@ -346,16 +348,16 @@ function Demo() {
             <Panel id="toggle" title="Toggle Group" meta="TGL">
               <div className="brass-stack">
                 <ToggleGroup defaultValue={["heat"]}>
-                  <ToggleItem value="heat">Heat</ToggleItem>
-                  <ToggleItem value="steam">Steam</ToggleItem>
-                  <ToggleItem value="cool" disabled>
+                  <Toggle value="heat">Heat</Toggle>
+                  <Toggle value="steam">Steam</Toggle>
+                  <Toggle value="cool" disabled>
                     Cool
-                  </ToggleItem>
+                  </Toggle>
                 </ToggleGroup>
                 <ToggleGroup multiple defaultValue={["intake", "exhaust"]}>
-                  <ToggleItem value="intake">Intake</ToggleItem>
-                  <ToggleItem value="exhaust">Exhaust</ToggleItem>
-                  <ToggleItem value="purge">Purge</ToggleItem>
+                  <Toggle value="intake">Intake</Toggle>
+                  <Toggle value="exhaust">Exhaust</Toggle>
+                  <Toggle value="purge">Purge</Toggle>
                 </ToggleGroup>
               </div>
             </Panel>
@@ -434,10 +436,10 @@ function Demo() {
 
             <Panel id="input" title="Input" meta="INP">
               <div className="brass-stack">
-                <Input label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
-                <Input startIcon={<Search />} placeholder="Search registry…" />
+                <Field label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
+                <Input icon={<Search />} placeholder="Search registry…" />
                 <IgnitionCodeField />
-                <Input label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
+                <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -451,8 +453,8 @@ function Demo() {
             <Panel id="fieldset" title="Fieldset" meta="FLD">
               <Fieldset.Root>
                 <Fieldset.Legend>Engineer</Fieldset.Legend>
-                <Input label="Name" defaultValue="I. K. Brunel" />
-                <Input label="Watch" defaultValue="Forenoon" />
+                <Field label="Name" defaultValue="I. K. Brunel" />
+                <Field label="Watch" defaultValue="Forenoon" />
               </Fieldset.Root>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
@@ -462,8 +464,8 @@ function Demo() {
                   toast.add({ title: "Logged", description: "Manifest submitted.", type: "success" });
                 }}
               >
-                <Input label="Manifest" placeholder="Cargo…" />
-                <Input label="Cipher" type="password" placeholder="Watch cipher…" />
+                <Field label="Manifest" placeholder="Cargo…" />
+                <Field label="Cipher" type="password" placeholder="Watch cipher…" />
                 <Button type="submit" variant="primary">
                   Submit
                 </Button>
@@ -604,46 +606,29 @@ function Demo() {
               </Menu>
             </Panel>
             <Panel id="menubar" title="Menubar" meta="MBR">
-              <Menubar
-                menus={[
-                  {
-                    label: "Engine",
-                    content: (
-                      <>
-                        <MenuItem>Start</MenuItem>
-                        <MenuItem>Reverse</MenuItem>
-                        <MenuSeparator />
-                        <MenuItem tone="danger">Shut down</MenuItem>
-                      </>
-                    ),
-                  },
-                  {
-                    label: "Gauges",
-                    content: (
-                      <>
-                        <MenuItem shortcut="⌘C">Calibrate</MenuItem>
-                        <MenuItem shortcut="⌘0">Reset</MenuItem>
-                      </>
-                    ),
-                  },
-                  {
-                    label: "Telegraph",
-                    content: (
-                      <>
-                        <MenuItem>Ahead</MenuItem>
-                        <MenuItem>Astern</MenuItem>
-                        <MenuSub label="More signals">
-                          <MenuItem>Slow</MenuItem>
-                          <MenuItem>Half</MenuItem>
-                          <MenuItem>Full</MenuItem>
-                          <MenuSeparator />
-                          <MenuItem>Stop</MenuItem>
-                        </MenuSub>
-                      </>
-                    ),
-                  },
-                ]}
-              />
+              <Menubar>
+                <MenubarMenu label="Engine">
+                  <MenuItem>Start</MenuItem>
+                  <MenuItem>Reverse</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem tone="danger">Shut down</MenuItem>
+                </MenubarMenu>
+                <MenubarMenu label="Gauges">
+                  <MenuItem shortcut="⌘C">Calibrate</MenuItem>
+                  <MenuItem shortcut="⌘0">Reset</MenuItem>
+                </MenubarMenu>
+                <MenubarMenu label="Telegraph">
+                  <MenuItem>Ahead</MenuItem>
+                  <MenuItem>Astern</MenuItem>
+                  <MenuSub label="More signals">
+                    <MenuItem>Slow</MenuItem>
+                    <MenuItem>Half</MenuItem>
+                    <MenuItem>Full</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem>Stop</MenuItem>
+                  </MenuSub>
+                </MenubarMenu>
+              </Menubar>
             </Panel>
 
             <Panel id="navmenu" title="Navigation Menu" meta="NAV">
@@ -697,11 +682,11 @@ function Demo() {
 
             <Panel id="drawer" title="Drawer" meta="DRW">
               <Drawer
-                trigger="Open log"
-                triggerVariant="ghost"
+                side="right"
+                trigger={<Button variant="ghost">Open log</Button>}
                 title="Watch settings"
                 description="Adjust the standing orders for this watch."
-                actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
+                footer={<DrawerClose variant="secondary">Close log</DrawerClose>}
               >
                 <label className="brass-row brass-row--between">
                   <span className="brass-cap">Auto-stoke</span>
@@ -804,23 +789,23 @@ function Demo() {
                 </ToolbarGroup>
                 <ToolbarSeparator />
                 <ToggleGroup defaultValue={["heat"]}>
-                  <ToggleItem value="heat">Heat</ToggleItem>
-                  <ToggleItem value="steam">Steam</ToggleItem>
-                  <ToggleItem value="cool">Cool</ToggleItem>
+                  <Toggle value="heat">Heat</Toggle>
+                  <Toggle value="steam">Steam</Toggle>
+                  <Toggle value="cool">Cool</Toggle>
                 </ToggleGroup>
                 <ToolbarSeparator />
                 <ToolbarButton
                   render={
-                    <ToggleItem value="auto">
+                    <Toggle value="auto">
                       <Bolt />
                       Auto
-                    </ToggleItem>
+                    </Toggle>
                   }
                 />
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
-              <ScrollArea style={{ maxHeight: 200 }}>
+              <ScrollArea>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
                     <ol className="brass-scroll-list">

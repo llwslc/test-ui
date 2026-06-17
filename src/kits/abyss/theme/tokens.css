@@ -129,8 +129,12 @@
   --abyss-w-tooltip: 240px;
   --abyss-w-toast: 360px;
   --abyss-h-popup-list: 264px;
+  --abyss-h-scrollarea: 200px;
 
   --abyss-autocomplete-min-w: 240px;
+  --abyss-avatar-sm: 34px;
+  --abyss-avatar-md: 46px;
+  --abyss-avatar-lg: 64px;
   --abyss-avatar-status-min-w: 14px;
   --abyss-avatar-status-min-h: 14px;
   --abyss-badge-h: 22px;

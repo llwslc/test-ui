@@ -4,6 +4,7 @@
   --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   width: 100%;
+  max-height: var(--abyss-h-scrollarea);
 }
 .abyss-scrollarea::after {
   content: "";

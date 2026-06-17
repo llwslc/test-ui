@@ -128,6 +128,10 @@
   --nova-w-tooltip: 240px;
   --nova-w-toast: 360px;
   --nova-h-popup-list: 264px;
+  --nova-h-scrollarea: 200px;
+  --nova-avatar-sm: 34px;
+  --nova-avatar-md: 46px;
+  --nova-avatar-lg: 64px;
 
   --nova-autocomplete-min-w: 240px;
   --nova-badge-h: 22px;
