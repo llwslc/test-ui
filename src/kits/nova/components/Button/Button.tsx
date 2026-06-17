@@ -1,5 +1,5 @@
 import "./Button.css";
 import { makeButton } from "../../../../ui/components/Button/Button";
 
-export const Button = makeButton();
+export const Button = makeButton("nova");
 export type { ButtonProps, ButtonVariant, ButtonSize } from "../../../../ui/components/Button/Button";

@@ -18,7 +18,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   icon?: ReactNode;
 }
 
-export function makeButton(rootClass = "") {
+export function makeButton(prefix: string, { rootClass = "" }: { rootClass?: string } = {}) {
   return forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     { variant = "primary", size = "md", icon, className, children, ...props },
     ref,
@@ -26,11 +26,11 @@ export function makeButton(rootClass = "") {
     return (
       <BaseButton
         ref={ref}
-        className={cx(rootClass, "k-btn", `k-btn--${variant}`, `k-btn--${size}`, className)}
+        className={cx(rootClass, `${prefix}-btn`, `${prefix}-btn--${variant}`, `${prefix}-btn--${size}`, className)}
         {...props}
       >
-        <span className="k-btn__label">
-          {icon ? <span className="k-btn__icon">{icon}</span> : null}
+        <span className={`${prefix}-btn__label`}>
+          {icon ? <span className={`${prefix}-btn__icon`}>{icon}</span> : null}
           {children}
         </span>
       </BaseButton>
