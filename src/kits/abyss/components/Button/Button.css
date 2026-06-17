@@ -73,7 +73,7 @@
 }
 
 .abyss-btn--ghost {
-  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-fill: var(--abyss-glow-soft);
   --abyss-frame-ink: transparent;
   --abyss-frame-bevel: none;
   color: var(--abyss-text-dim);

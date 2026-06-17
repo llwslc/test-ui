@@ -97,7 +97,7 @@
 }
 
 .brass-btn--ghost {
-  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-fill: var(--brass-tint-soft);
   --brass-plate-bezel: transparent;
   --brass-plate-bevel: none;
   color: var(--brass-text-dim);
@@ -105,6 +105,6 @@
 .brass-btn--ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--ghost:focus-visible {
   --brass-plate-bezel: transparent;
-  --brass-plate-fill: var(--brass-tint-soft);
+  --brass-plate-fill: var(--brass-tint-active);
   color: var(--brass-text-bright);
 }
