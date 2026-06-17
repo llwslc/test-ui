@@ -64,7 +64,6 @@ import {
   BoltIcon,
   CheckIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   CopyIcon,
   SearchIcon,
   SignalIcon,
@@ -943,15 +942,7 @@ function Demo() {
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
-                  trigger={
-                    <>
-                      Right-click anywhere in this zone{" "}
-                      <kbd>
-                        <ChevronUpIcon />
-                        click
-                      </kbd>
-                    </>
-                  }
+                  trigger="Right-click anywhere in this zone"
                 >
                   <MenuItem shortcut="⌘C">
                     Copy Coordinates

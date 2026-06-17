@@ -45,6 +45,14 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-toggle::before {
+  display: none;
+}
+.abyss-toggle:hover::before,
+.abyss-toggle:focus-visible::before,
+.abyss-toggle[data-pressed]::before {
+  display: block;
+}
 .abyss-toggle:hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);

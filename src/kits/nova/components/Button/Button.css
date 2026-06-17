@@ -87,11 +87,11 @@
   display: none;
 }
 
-.nova-btn--primary:hover::before,
+.nova-btn--primary:not(:disabled):not([data-disabled]):hover::before,
 .nova-btn--primary:focus-visible::before,
-.nova-btn--secondary:hover::before,
+.nova-btn--secondary:not(:disabled):not([data-disabled]):hover::before,
 .nova-btn--secondary:focus-visible::before,
-.nova-btn--danger:hover::before,
+.nova-btn--danger:not(:disabled):not([data-disabled]):hover::before,
 .nova-btn--danger:focus-visible::before {
   filter: brightness(1.15);
 }
@@ -121,11 +121,11 @@
 .nova-btn--ghost::after {
   opacity: 0.25;
 }
-.nova-btn--ghost:hover,
+.nova-btn--ghost:not(:disabled):not([data-disabled]):hover,
 .nova-btn--ghost[data-popup-open] {
   color: var(--nova-primary);
 }
-.nova-btn--ghost:hover::before {
+.nova-btn--ghost:not(:disabled):not([data-disabled]):hover::before {
   background: var(--nova-ghost-hover);
 }
 
@@ -173,9 +173,9 @@
 .nova-btn--icon-ghost::after {
   display: none;
 }
-.nova-btn--icon:hover,
+.nova-btn--icon:not(:disabled):not([data-disabled]):hover,
 .nova-btn--icon:focus-visible,
-.nova-btn--icon-ghost:hover,
+.nova-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .nova-btn--icon-ghost:focus-visible {
   color: var(--nova-primary);
   filter: none;

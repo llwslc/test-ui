@@ -61,6 +61,14 @@
   align-items: center;
   gap: var(--abyss-space-2);
 }
+.abyss-toolbar__btn::before {
+  display: none;
+}
+.abyss-toolbar__btn:hover::before,
+.abyss-toolbar__btn:focus-visible::before,
+.abyss-toolbar__btn.is-active::before {
+  display: block;
+}
 .abyss-toolbar__btn:hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);

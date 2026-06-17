@@ -47,7 +47,7 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
-.abyss-btn--primary:hover {
+.abyss-btn--primary:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-text-bright);
   --abyss-frame-fill: var(--abyss-glow-wash-strong);
   filter: var(--abyss-aura-strong);
@@ -58,7 +58,7 @@
   --abyss-frame-fill: var(--abyss-ichor-soft);
   color: var(--abyss-ichor-text);
 }
-.abyss-btn--secondary:hover {
+.abyss-btn--secondary:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-text-bright);
   filter: drop-shadow(0 0 12px var(--abyss-ichor-a50));
 }
@@ -68,18 +68,17 @@
   --abyss-frame-fill: var(--abyss-blood-soft);
   color: var(--abyss-blood-text);
 }
-.abyss-btn--danger:hover {
+.abyss-btn--danger:not(:disabled):not([data-disabled]):hover {
   filter: drop-shadow(0 0 12px var(--abyss-blood-a55));
 }
 
 .abyss-btn--ghost {
-  --abyss-frame-fill: transparent;
-  --abyss-frame-ink: var(--abyss-ink);
+  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-ink: transparent;
   --abyss-frame-bevel: none;
-  --abyss-frame-etch: none;
   color: var(--abyss-text-dim);
 }
-.abyss-btn--ghost:hover {
+.abyss-btn--ghost:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
@@ -95,8 +94,8 @@
   padding: 0;
   width: var(--abyss-control-h);
 }
-.abyss-btn--icon:hover,
-.abyss-btn--icon-ghost:hover {
+.abyss-btn--icon:not(:disabled):not([data-disabled]):hover,
+.abyss-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
@@ -105,16 +104,9 @@
   --abyss-frame-fill: transparent;
   color: var(--abyss-text-dim);
 }
-.abyss-btn--icon-ghost:hover {
-  --abyss-frame-fill: var(--abyss-glow-soft);
-}
 
 .abyss-btn--icon-ghost::before {
   display: none;
-}
-.abyss-btn--icon-ghost:hover::before,
-.abyss-btn--icon-ghost:focus-visible::before {
-  display: block;
 }
 .abyss-btn--icon .abyss-btn__label,
 .abyss-btn--icon-ghost .abyss-btn__label {

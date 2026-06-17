@@ -1,10 +1,17 @@
 import type { ReactNode } from "react";
 import { Toast as BaseToast } from "@base-ui/react/toast";
 import { Button } from "../Button";
-import { Close, Gear } from "../icons";
+import { Bolt, Check, Close, Gauge, Gear } from "../icons";
 import "./Toast.css";
 
 export const useToast = BaseToast.useToastManager;
+
+function toneIcon(type?: string) {
+  if (type === "success") return <Check />;
+  if (type === "warning") return <Gauge />;
+  if (type === "danger") return <Bolt />;
+  return <Gear />;
+}
 
 function ToastList() {
   const { toasts } = BaseToast.useToastManager();
@@ -18,7 +25,7 @@ function ToastList() {
           className="brass-plate brass-pop brass-toast"
         >
           <span className="brass-marker brass-toast__marker">
-            <Gear />
+            {toneIcon(toast.type)}
           </span>
           <BaseToast.Content className="brass-toast__content">
             <BaseToast.Title className="brass-h3 brass-toast__title" />

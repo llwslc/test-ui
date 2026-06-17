@@ -45,6 +45,14 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-menubar__trigger::before {
+  display: none;
+}
+.abyss-menubar__trigger:hover::before,
+.abyss-menubar__trigger:focus-visible::before,
+.abyss-menubar__trigger[data-popup-open]::before {
+  display: block;
+}
 .abyss-menubar__trigger:hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);

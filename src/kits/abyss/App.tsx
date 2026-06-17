@@ -61,7 +61,6 @@ import {
 } from "./components";
 import {
   ChevronDownIcon,
-  ChevronUpIcon,
   CopyIcon,
   EyeIcon,
   KeyIcon,
@@ -1073,17 +1072,7 @@ function Demo() {
 
             <div className="abyss-section" id="context">
               <Panel title="Context Menu" meta="CTX">
-                <ContextMenu
-                  trigger={
-                    <>
-                      Right-click anywhere in these depths{" "}
-                      <kbd>
-                        <ChevronUpIcon />
-                        click
-                      </kbd>
-                    </>
-                  }
-                >
+                <ContextMenu trigger="Right-click anywhere in these depths">
                   <MenuItem shortcut="⌘C">
                     Mark Bearing
                   </MenuItem>

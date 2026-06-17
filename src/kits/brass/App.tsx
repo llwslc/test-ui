@@ -627,11 +627,7 @@ function Demo() {
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
               <ContextMenu
-                hint={
-                  <>
-                    Right-click the plate <kbd>⌃</kbd>
-                  </>
-                }
+                hint="Right-click the plate to open the works"
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘L">Lubricate</MenuItem>

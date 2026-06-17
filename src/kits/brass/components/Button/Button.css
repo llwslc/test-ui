@@ -24,7 +24,7 @@
 .brass-btn :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-btn:hover {
+.brass-btn:not(:disabled):not([data-disabled]):hover {
   --brass-plate-bezel: var(--brass-bezel);
   color: var(--brass-text-bright);
 }
@@ -68,9 +68,8 @@
   --brass-plate-bevel: none;
   color: var(--brass-text-dim);
 }
-.brass-btn--icon-ghost:hover,
+.brass-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--icon-ghost:focus-visible {
-  --brass-plate-fill: var(--brass-tint-soft);
   color: var(--brass-text-bright);
 }
 .brass-btn__icon {
@@ -82,7 +81,7 @@
   --brass-plate-bezel: var(--brass-bezel-strong);
   color: var(--brass-on-primary);
 }
-.brass-btn--primary:hover {
+.brass-btn--primary:not(:disabled):not([data-disabled]):hover {
   color: var(--brass-on-primary);
   filter: var(--brass-glow-active);
 }
@@ -92,19 +91,18 @@
   --brass-plate-bezel: var(--brass-danger-deep);
   color: var(--brass-text-bright);
 }
-.brass-btn--danger:hover {
+.brass-btn--danger:not(:disabled):not([data-disabled]):hover {
   color: var(--brass-text-bright);
   filter: drop-shadow(0 0 8px var(--brass-danger-fill));
 }
 
 .brass-btn--ghost {
-  --brass-plate-edge: 1px;
-  --brass-plate-bezel: var(--brass-line);
-  --brass-plate-fill: transparent;
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bezel: transparent;
   --brass-plate-bevel: none;
   color: var(--brass-text-dim);
 }
-.brass-btn--ghost:hover,
+.brass-btn--ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--ghost:focus-visible {
   --brass-plate-bezel: transparent;
   --brass-plate-fill: var(--brass-tint-soft);
