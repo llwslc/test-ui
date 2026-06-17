@@ -4,3 +4,6 @@
   flex-direction: column;
   gap: var(--brass-space-4);
 }
+.brass-form button[type="submit"] {
+  align-self: flex-end;
+}

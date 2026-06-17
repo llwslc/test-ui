@@ -56,8 +56,8 @@
 }
 
 .brass-nav-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
   gap: var(--brass-space-1);
   width: var(--brass-nav-w);
   max-width: 100%;

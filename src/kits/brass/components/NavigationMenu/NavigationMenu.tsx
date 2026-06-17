@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
-import { ChevronDown, ChevronRight } from "../icons";
+import { ChevronDown } from "../icons";
 import "./NavigationMenu.css";
 
 export interface NavMenuLink {
@@ -47,7 +47,6 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
                         <span className="brass-nav-link__desc">{link.description}</span>
                       )}
                     </span>
-                    <ChevronRight className="brass-list-item__chevron" />
                   </BaseNav.Link>
                 ))}
               </BaseNav.Content>
