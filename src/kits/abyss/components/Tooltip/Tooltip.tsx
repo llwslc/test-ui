@@ -1,5 +1,5 @@
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
@@ -19,14 +19,24 @@ export function Tooltip({
   delay = 200,
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
+  const touch = useRef(false);
   const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
     if (event.pointerType !== "touch") return;
-    event.preventDefault();
+    touch.current = true;
     setOpen((prev) => !prev);
   };
   return (
     <BaseTooltip.Provider delay={delay}>
-      <BaseTooltip.Root open={open} onOpenChange={setOpen}>
+      <BaseTooltip.Root
+        open={open}
+        onOpenChange={(next) => {
+          if (touch.current && !next) {
+            touch.current = false;
+            return;
+          }
+          setOpen(next);
+        }}
+      >
         <BaseTooltip.Trigger
           render={children}
           closeOnClick={false}

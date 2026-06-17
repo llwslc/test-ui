@@ -6,5 +6,4 @@
 }
 .brass-dialog__actions:not(:empty) {
   padding-top: var(--brass-space-4);
-  border-top: 1px solid var(--brass-line);
 }

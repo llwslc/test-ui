@@ -1,6 +1,7 @@
-.brass-nav-list {
+.brass-nav-list.brass-tabs-list {
   margin: 0;
   padding: 0;
+  border-bottom: 0;
   list-style: none;
 }
 .brass-nav-item {

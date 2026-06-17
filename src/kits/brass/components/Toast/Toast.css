@@ -14,6 +14,7 @@
   --brass-plate-round: var(--brass-round-md);
   --brass-toast-tone: var(--brass-primary);
   position: absolute;
+  z-index: calc(99 - var(--toast-index));
   right: 0;
   bottom: 0;
   left: 0;

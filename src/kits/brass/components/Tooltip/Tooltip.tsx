@@ -1,6 +1,6 @@
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
 import type { ReactElement, ReactNode } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./Tooltip.css";
 
 export interface TooltipProps {
@@ -11,12 +11,25 @@ export interface TooltipProps {
 
 export function Tooltip({ content, children, side = "top" }: TooltipProps) {
   const [open, setOpen] = useState(false);
+  const touch = useRef(false);
   return (
-    <BaseTooltip.Root open={open} onOpenChange={setOpen}>
+    <BaseTooltip.Root
+      open={open}
+      onOpenChange={(next) => {
+        if (touch.current && !next) {
+          touch.current = false;
+          return;
+        }
+        setOpen(next);
+      }}
+    >
       <BaseTooltip.Trigger
         render={children}
         onPointerDown={(event: React.PointerEvent) => {
-          if (event.pointerType === "touch") setOpen((o) => !o);
+          if (event.pointerType === "touch") {
+            touch.current = true;
+            setOpen((o) => !o);
+          }
         }}
       />
       <BaseTooltip.Portal>

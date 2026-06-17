@@ -48,8 +48,8 @@
   --moon: var(--abyss-text-mute);
   --moon-glow: transparent;
   position: absolute;
-  right: -5px;
-  bottom: -5px;
+  right: -2px;
+  bottom: -2px;
   display: grid;
   place-items: center;
   width: calc(var(--abyss-avatar-size) * 0.34);

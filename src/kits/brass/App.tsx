@@ -576,7 +576,11 @@ function Demo() {
                     </>
                   }
                 >
-                  <a href="#hero" className="brass-link">
+                  <a
+                    href="#preview"
+                    className="brass-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
                     @brunel
                   </a>
                 </PreviewCard>{" "}
@@ -869,7 +873,7 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL">
-              <p className="brass-text" style={{ marginTop: 0 }}>
+              <p className="brass-text" style={{ margin: "0 0 16px" }}>
                 The riveted instrument plate wrapping every section — brushed bezel, machined corner
                 brackets and a steam sheen. Composable to any depth.
               </p>

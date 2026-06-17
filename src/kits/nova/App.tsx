@@ -1140,7 +1140,7 @@ function Demo() {
 
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
-                <p className="nova-text" style={{ marginTop: 0 }}>
+                <p className="nova-text" style={{ margin: "0 0 16px" }}>
                   The HUD frame wrapping every section: a chamfered border with corner
                   brackets and an optional scan sweep.
                 </p>
