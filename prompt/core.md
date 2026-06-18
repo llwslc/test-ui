@@ -58,7 +58,7 @@
 凡带弹出层的组件都用 `effects.css` 同一套原语拼，**把形状与阴影分两层**：阴影、辉光挂"不带形状裁剪"的外层，形状挂内层；同一元素不同时带这两层。
 - **elevation** —— 不裁形状的抬升层，挂 drop-shadow + 辉光，经输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态、Toast 挂 Popup、Root。
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
-- **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + `translateY(-6px) scale(0.97)`。
+- **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
 - **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。
 
@@ -95,7 +95,7 @@
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件，Base UI 没这俩。
 - **Menu、ContextMenu、Menubar** 共享同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，经 context 注入底层 primitive——三者复用，避免各写一套。
 - **分段条家族**：Toolbar、Menubar、ToggleGroup 共用同一箱体与文字语言——暗框条，`space-1` 内衬，加紧凑 chip 触发钮，同钮高档，加分段文字规格，display 体大写、档值由 theme 定；悬停、激活态同 §5「分段」档。Menubar 触发器不带 chevron；独立 Menu 的触发按钮带会旋转的 chevron。
-- **AlertDialog** 与 Dialog 同基底，按 `tone` 重染：边框、标题、图记 + **表面顶部 tone 径向**，`color-mix(tone 20%)`，几何同 Dialog 的顶部径向。
+- **AlertDialog** 与 Dialog 同基底，按 `tone` 重染：边框、标题、图记 + **表面顶部 tone 径向**（tone 与表面的混合比 → theme），几何同 Dialog 的顶部径向。
 
 ## 6.1 逐组件结构
 
@@ -103,7 +103,7 @@
 
 **输入**
 
-- **Button**：变体 `primary·secondary·danger·ghost·icon·icon-ghost`（默认 primary）；尺寸 `sm·md·lg`（默认 md）；props `variant·size·icon`；`forwardRef` 可作触发器。`BaseButton > label[icon? + children]`，图标在前居中。icon-ghost 透明无底无边、rest 不露 frame。
+- **Button**：变体 `primary·secondary·danger·ghost·icon·icon-ghost`（默认 primary）；尺寸 `sm·md·lg`（默认 md）；props `variant·size·icon`；`forwardRef` 可作触发器。图标在文字前、与文字同一 inline-flex 居中。icon-ghost 透明无底无边、rest 不露 frame。
 - **Switch**：指示物从一端滑到另一端，态 +checked；轨与旋钮形态 = theme。
 - **Checkbox**：props `label`；`<label> = 控件 + .cap 文字`，控件在前，标记在控件内，态 +checked、+indeterminate。
 - **CheckboxGroup**：props `items·parentLabel`（allValues 默认取 items）；`Root 竖排 > [parent Checkbox?] + items 容器`，items 靠左缩进带左引导线。
@@ -114,7 +114,8 @@
 - **Input/Field**：props `label·icon·description·error`；`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标左侧绝对定位、Control `flex:1`，态 +focus（边框亮 + 字段辉光）、+error。
 - **OtpField**：props `length·splitAt·mask`；cells 横排等宽，`splitAt` 处插分隔，cell 态 +filled、+focus。
 - **Select**：props `items·placeholder`；`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`；item 态 +selected、+highlighted。
-- **Combobox、Autocomplete**：props `items·placeholder·emptyText·label`；`control[左图标? + Input flex:1 + 辅助钮?] + Popup[Empty + List]`，弹层向下，项不带勾选。
+- **Combobox**：props `items·placeholder·emptyText·label`；`control[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(带勾选 右)]`，弹层向下。
+- **Autocomplete**：props 同 Combobox；`control[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下，项不带勾选、无 Trigger chevron。
 - **Fieldset**（props `legend`）、**Form** 竖排，Base UI 直管。
 
 **反馈**
@@ -132,7 +133,7 @@
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
 - **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
-- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体（默认 ghost）。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体（默认变体由 theme 定）。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 
 **展示**
