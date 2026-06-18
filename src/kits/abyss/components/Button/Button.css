@@ -73,14 +73,14 @@
 }
 
 .abyss-btn--ghost {
-  --abyss-frame-fill: var(--abyss-glow-soft);
-  --abyss-frame-ink: transparent;
-  --abyss-frame-bevel: none;
+  --abyss-frame-fill: var(--abyss-surface-popup);
+  --abyss-frame-ink: var(--abyss-glow-a30);
   color: var(--abyss-text-dim);
 }
 .abyss-btn--ghost:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-fill: var(--abyss-glow-soft);
 }
 .abyss-btn--ghost[data-popup-open] {
   color: var(--abyss-glow);

@@ -70,7 +70,7 @@
 }
 .brass-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--icon-ghost:focus-visible {
-  color: var(--brass-text-bright);
+  color: var(--brass-primary);
 }
 .brass-btn__icon {
   display: inline-flex;
@@ -97,14 +97,15 @@
 }
 
 .brass-btn--ghost {
-  --brass-plate-fill: var(--brass-tint-soft);
-  --brass-plate-bezel: transparent;
-  --brass-plate-bevel: none;
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-bevel: var(--brass-bevel-inset);
   color: var(--brass-text-dim);
 }
 .brass-btn--ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--ghost:focus-visible {
-  --brass-plate-bezel: transparent;
-  --brass-plate-fill: var(--brass-tint-active);
+  --brass-plate-fill: var(--brass-surface-raised);
+  --brass-plate-bezel: var(--brass-bezel);
+  --brass-plate-bevel: var(--brass-bevel);
   color: var(--brass-text-bright);
 }
