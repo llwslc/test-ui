@@ -101,11 +101,11 @@
 .brass-btn--secondary {
   --brass-plate-fill: var(--brass-secondary-surface);
   --brass-plate-bezel: var(--brass-bezel-strong);
-  color: var(--brass-on-primary);
+  color: var(--brass-text-bright);
 }
 .brass-btn--secondary:not(:disabled):not([data-disabled]):hover {
-  color: var(--brass-on-primary);
-  filter: brightness(1.08);
+  color: var(--brass-text-bright);
+  filter: brightness(1.18);
 }
 
 .brass-btn--ghost {
