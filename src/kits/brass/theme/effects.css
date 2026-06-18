@@ -376,9 +376,11 @@
   display: flex;
   align-items: center;
   gap: var(--brass-space-3);
+}
+.brass-h2.brass-modal-title {
   margin: 0 var(--brass-space-9) var(--brass-space-2) 0;
 }
-.brass-modal-desc {
+.brass-text.brass-modal-desc {
   margin: 0 0 var(--brass-space-4);
 }
 .brass-modal-body {
