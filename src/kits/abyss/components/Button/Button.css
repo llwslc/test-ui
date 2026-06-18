@@ -101,7 +101,9 @@
   color: var(--abyss-text-mute);
 }
 .abyss-btn--icon:not(:disabled):not([data-disabled]):hover,
-.abyss-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
+.abyss-btn--icon:focus-visible,
+.abyss-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
+.abyss-btn--icon-ghost:focus-visible {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
