@@ -13,7 +13,7 @@ export function Menu({ trigger, children }: MenuProps) {
       <BaseMenu.Trigger render={trigger as React.ReactElement} />
       <BaseMenu.Portal>
         <BaseMenu.Positioner
-          className="abyss-menu__positioner"
+          className="abyss-elevation abyss-menu__positioner"
           side="bottom"
           align="start"
           sideOffset={6}

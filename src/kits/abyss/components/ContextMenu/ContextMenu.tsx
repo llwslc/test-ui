@@ -17,7 +17,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
-        <BaseContextMenu.Positioner className="abyss-menu__positioner">
+        <BaseContextMenu.Positioner className="abyss-elevation abyss-menu__positioner">
           <BaseContextMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
             {children}
           </BaseContextMenu.Popup>
