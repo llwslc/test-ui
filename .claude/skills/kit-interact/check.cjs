@@ -51,6 +51,20 @@ const setKit = async (page, kit) => {
     await setKit(m, kit);
     const pageOver = await m.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     if (pageOver > 1) out.push(`HIGH  ${kit}  mobile page overflows horizontally by ${Math.round(pageOver)}px — an element is wider than the phone`);
+    const hdrGap = await m.evaluate(() => {
+      const h = document.querySelector('header');
+      if (!h) return null;
+      const hr = h.getBoundingClientRect();
+      const pad = parseFloat(getComputedStyle(h).paddingRight) || 0;
+      const kids = [...h.children].filter((c) => {
+        const cs = getComputedStyle(c), r = c.getBoundingClientRect();
+        return cs.display !== 'none' && cs.visibility !== 'hidden' && r.width > 2;
+      });
+      if (kids.length < 2) return null;
+      const rightmost = Math.max(...kids.map((c) => c.getBoundingClientRect().right));
+      return Math.round((hr.right - pad) - rightmost);
+    });
+    if (hdrGap !== null && hdrGap > 24) out.push(`HIGH  ${kit}  mobile header: right group sits ${hdrGap}px short of the edge — logo+status bunched on one side; use justify-content: space-between so the hidden nav doesn't collapse the bar`);
     for (const [id, trig] of TAP_OPEN) {
       try {
         await setKit(m, kit);                       // clean state per overlay — no leakage
