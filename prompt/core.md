@@ -97,6 +97,51 @@
 - **分段条家族**：Toolbar、Menubar、ToggleGroup 共用同一箱体与文字语言——暗框条，`space-1` 内衬，加紧凑 chip 触发钮，同钮高档，加分段文字规格，display 体大写、档值由 theme 定；悬停、激活态同 §5「分段」档。Menubar 触发器不带 chevron；独立 Menu 的触发按钮带会旋转的 chevron。
 - **AlertDialog** 与 Dialog 同基底，按 `tone` 重染：边框、标题、图记 + **表面顶部 tone 径向**，`color-mix(tone 20%)`，几何同 Dialog 的顶部径向。
 
+## 6.1 逐组件结构
+
+每件只记「Base UI 不管、跨 kit 必须一致」的骨架、指示物方位、关键布局关系、行为 prop。**标记字形、装饰槽、填充配方、beam = theme**，不在此。
+
+**输入**
+
+- **Button**：图标在文字前，同一 inline-flex 居中。
+- **Switch**：指示物从一端滑到另一端；轨与旋钮形态 = theme。
+- **Checkbox、Radio**：`<label> = 控件 + .cap 文字`，控件在前；勾选、选中标记在控件内，字形 = theme。
+- **CheckboxGroup**：`Root 竖排 > [parent Checkbox?] + items 容器`；items 靠左缩进带左引导线。
+- **Slider**：`Root 竖排 > head[label .cap + Value] + Control > Track > Indicator + Thumb`；head 两端对齐、value 在右；Indicator 自左起。
+- **NumberField**：`Group > [减 + Input + 加]`，步进钮等宽夹住输入；到 min/max 自行 disable 步进钮 + 置灰。
+- **Input/Field**：`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`；图标左侧绝对定位，Control `flex:1`。
+- **OtpField**：cells 横排等宽，`splitAt` 处插分隔。
+- **Select**：`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`。
+- **Combobox、Autocomplete**：`control[左图标? + Input flex:1 + 辅助钮?] + Popup[Empty + List]`；弹层向下；项不带勾选标记。
+- **ToggleGroup**：分段条家族，`width: fit-content`。
+- Fieldset、Form 竖排，Base UI 直管，略。
+
+**反馈**
+
+- **Progress、Meter**：`Root > head[label + Value 右] + Track > Indicator`；Indicator 自左满宽填充；Meter 按 tone 重染。
+- **Tabs**：`Root > List[Tab* + Indicator] + Panel*`；Indicator 底部下划线，随 `--active-tab-*` 移；手机横滚。
+- **Accordion、Collapsible**：§4.3 折叠配方 `trigger[marker 左 + title + chevron 右] + panel > content`；**content 左缩进须对齐 title 文字起点（= trigger 左内距 + marker 宽 + gap）**；开合须有可见 affordance（chevron 或会动的 marker）。
+
+**浮层**
+
+- **通则**（承 §4.2）：`Trigger + Portal > Positioner(elevation 阴影) > Popup(anim-pop + surface 形状，或内嵌 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或其子层，二者绝不同元素**。
+- **Tooltip、PreviewCard**：`mouseOnly` + focus 开 + `pointerType==="touch"` 轻点补触摸路径；Tooltip `closeOnClick=false`。
+- **Popover**：surface 内 `title? + body + Close`，Close 复用 Button icon-ghost。
+- **Menu、Menubar、ContextMenu**：共用 `Menu/parts`；item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
+- **NavigationMenu**：`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
+- **Dialog、AlertDialog**：共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上绝对 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向。
+- **Drawer**：`全屏 viewport > Popup(按 side 定位) > Content > [Close + 边缘辉光 + title + desc + body(flex:1 滚动、留辉光余地) + footer 右对齐带顶分隔]`，四边全驱动。
+- **Toast**：`Provider(timeout、limit) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；新条压顶。
+
+**展示**
+
+- **Avatar**：`Root > frame(裁剪 + 定位上下文) > [Image + Fallback] + Status 右下`。
+- **Badge**：`[dot? + 文字]`，纯样式件。
+- **Toolbar**：分段条家族；手机横滚。
+- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 必须挂 Viewport、不是 Root**。
+- **Separator**：无标签 = BaseSeparator；有标签 = `线 + 文字/标记 + 线`；会缩的 flex 里加 `flex:0 0`。
+- **Panel**：`外框? > section > header[marker 左? + title + meta 右] + body + footer?`；header `:empty` 隐藏。
+
 ## 7. Base UI 对接
 
 - 状态样式对着 data 属性写：`[data-checked]`、`[data-highlighted]`、`[data-selected]`、`[data-popup-open]`、`[data-panel-open]`、`[data-starting-style]`、`[data-ending-style]`。
