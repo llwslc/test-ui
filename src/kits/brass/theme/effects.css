@@ -448,5 +448,5 @@
   height: 0;
 }
 .brass-collapse-content {
-  padding: 0 var(--brass-space-4) var(--brass-space-4);
+  padding: 0 var(--brass-space-4) var(--brass-space-4) calc(var(--brass-space-4) + var(--brass-space-6));
 }
