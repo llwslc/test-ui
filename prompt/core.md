@@ -60,7 +60,7 @@
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
-- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。
+- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。**模态宽高固定、各 kit 同值、不归 theme**：走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`；模态 Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`，配 viewport 内边距，窄屏不溢出、不左右滑。drawer body 作滚动容器（`overflow-y:auto` 横竖都裁）→ 用 padding + 等量负 margin 预留 ≥ 最大控件辉光的余地。
 
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`，颜色差异用 `--<kit>-*-color` 就近覆盖：头部扫光、标题、图例标记、模态背板、模态文本——title、desc、body、actions、关闭按钮、分隔线、折叠类 Accordion、Collapsible 共用的 trigger、marker、title、chevron、panel、content。
@@ -74,11 +74,11 @@
 
 统一约定，**颜色留空给 theme**。
 
-- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充，Tab、NavMenu 另配底部辉光下划线。
+- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充；Tab、NavMenu 另带独立选中指示（形式 theme 定）。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
-- **悬停**：分段、触发条统一柔色纯底——Tabs、NavMenu 复用同一 tab 皮肤：竖向渐变 + 底部辉光下划线；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。
+- **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。Tab、NavMenu 的 hover/选中皮肤是否共用、其渐变与下划线形式由 theme 定。
 - **键盘焦点**：布尔开关 Checkbox、Switch、Radio 用辉光；分段、触发条用 `inset 0 0 0 1px` 内描边；输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。
-- **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity；主题可另叠去饱和滤镜。
+- **禁用**：`cursor: not-allowed` + 单层 dim（`opacity: var(--<kit>-disabled-opacity)`，可选叠加去饱和）；父子**绝不各设一次 opacity**（只在一处压暗整行）。
 
 ## 6. 组件
 
