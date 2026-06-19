@@ -9,7 +9,7 @@
 ## 1. 调色板
 
 - 背景：`void #030706`、`bg #070c0b`；石板 `stone #0c1411`、`stone-raised #101b16` 是不透明面板渐变两端，其中 `stone` 兼作页底渐变末端。
-- 墨线：边框用暖灰绿"墨"而非强调色——`ink .3`、`ink-strong .52`、`ink-faint .1`。
+- 墨线：边框用暖灰绿“墨”——`ink .3`、`ink-strong .52`、`ink-faint .1`。
 - 文本走暖褐羊皮：`text #d8ceb4`、`-bright #f3edda`、`-dim #8d9079`、`-mute #565a4b`。
 - 五个强调家族，各配 `-soft` 与按需的 `-deep`：glow 深渊青 `#46e8b8` 为主，gold 鎏金 `#cda94a` 用于注脚与警示，ichor 灵液紫 `#9176ff` 为次强调，blood 血红 `#d24059` 表危险，success 生苔绿 `#7ad99a`。
 - alpha 档：glow `-soft .12 · -a30 · -a55 · -a70`，外加点亮渐变 `glow-wash / -strong`；其余家族各一中强档 `gold-a50 / ichor-a50 / blood-a55 / success-a50`；暗色调配亮化文字档 `blood-text / ichor-text`，深色 accent 当文字时必用。
@@ -53,7 +53,7 @@
 
 填充 core §5 的留白。
 
-- 选中、激活**不填实色、不加深底色**：覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡 glow 渐变，文字转 `glow`，叠 `aura / aura-strong`。
+- 选中、激活：覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡 glow 渐变，文字转 `glow`，叠 `aura / aura-strong`。
 - Button 变体同构换色：primary = `glow-wash` 渐变 + glow 文字 + aura，hover 换 `glow-wash-strong`、文字转 bright、aura-strong；secondary = ichor；danger = blood；ghost 透明、hover 点亮 ink。
 - 文字强调选中，如列表、Tab、NavMenu，转 `glow` + `text-aura`；Tab、NavMenu 配辉光下划线。
 - 悬停：面 `glow-soft` 底；图标、动作按钮转 glow + aura。

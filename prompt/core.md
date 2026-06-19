@@ -11,7 +11,7 @@
 
 ## 1. 目标 & 技术栈
 
-- 基于 **Base UI**——`@base-ui/react`，无样式 + 无障碍基元——做一套带主题的 React 组件库：37 个控件、一套可整体换肤的设计 token、统一而克制。
+- 基于 **Base UI**（`@base-ui/react`）做一套带主题的 React 组件库：37 个控件、一套可整体换肤的设计 token、统一而克制。
 - Vite + React 18 + TypeScript；构建 `tsc --noEmit && vite build`。
 - 样式 = 纯 CSS，与组件同目录，不用 Tailwind、CSS-in-JS、运行时样式库。
 - 跨组件复用的视觉配方 → `theme/effects.css`；主题值 → `theme/tokens.css`；氛围层 → `theme/global.css`；排版类 → `theme/typography.css`，四者由 `<kit>/index.tsx` 引入。
@@ -90,7 +90,7 @@
 - **浮层**：Tooltip、Popover、PreviewCard、Menu、Menubar、NavigationMenu、ContextMenu、Dialog、AlertDialog、Drawer、Toast
 - **展示**：Avatar、Badge、Toolbar、ScrollArea、Separator、Panel
 
-> 组件名即映射到 Base UI 基元 —— API、语义、用法全用 Base UI 的，如 Combobox vs Autocomplete、三种模态、AlertDialog 的 `alertdialog` 语义、Toast 的 `ToastProvider` + `useToast` 等，**不复述**。core 只记 Base UI 管不到的**结构决定**：
+> 组件名映射到 Base UI 基元，API、语义、用法用 Base UI 的；core 只记 Base UI 管不到的**结构决定**：
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件，Base UI 没这俩。
 - **Menu、ContextMenu、Menubar** 共享同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，经 context 注入底层 primitive——三者复用，避免各写一套。

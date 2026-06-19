@@ -30,7 +30,7 @@
 
 - 形状 = **机加工圆角**，无 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按 core §3 角色选：细指示条、旋钮床 = xs，嵌套项、chip、菜单项 = sm，默认控件、容器框及其 `::before` = md，模态、超大框 = lg；组件不裸写 radius。
 - 描边走**双层黄铜 bezel 原语** `.brass-plate`：外层背景 = `bezel` 拉丝黄铜渐变 + radius，`::before` 内缩 2px = 板填充 + 内嵌 `bevel`（上亮下暗金属内沿）；输入变量 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 三档：`bezel-dim` 页内 idle 陈旧铜、`bezel` 默认、`bezel-strong` 浮层与升态亮铜。
-- **铆钉** `.brass-rivets`：`::after` 四角嵌铆钉钉头径向点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板与招牌件，不给每个控件。
+- **铆钉** `.brass-rivets`：`::after` 四角嵌铆钉钉头径向点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板与招牌件。
 - **滚花** `--brass-knurl`：repeating-linear-gradient 斜纹，用于 Switch 旋钮、Slider 旋钮缘、滚动条 thumb。
 - 浮层抬升原语 `.brass-lift`，挂 positioner 与模态 popup 且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 双层，输入变量 `--brass-overlay-shadow / -glow`；默认 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，Tooltip 小档，Alert 按 tone。
 - 边框层级：页内 idle = `bezel-dim`；浮层 = `bezel-strong`，即 plate 默认；状态升 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 与 fill。

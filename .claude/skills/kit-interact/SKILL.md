@@ -21,7 +21,7 @@ node .claude/skills/kit-interact/check.cjs 5273 brass # one kit / port
 Run IN PLACE. Kits come from the live switcher. It reloads to a clean state
 before **every** check, so no popup leaks into the next check (a flaky gate is
 worse than none — an early version false-flagged 22 faults from state leakage).
-Slow by design (~1–2 min). Exit 1 on any HIGH fault.
+~1–2 min per run. Exit 1 on any HIGH fault.
 
 ## What it asserts
 

@@ -25,6 +25,6 @@ Calibration: a pure reskin sits ~95–100% identical after normalization; the tw
 
 ## Review
 
-A FAIL names the sibling and lists the per-file ≥90% hits — those are the files you *copied* rather than designed. **Don't lower the threshold to pass.** Author the visual layer native: your own frame/elevation primitive, geometry ladder, component CSS, and signature `.tsx`; reuse ONLY the Base UI `.tsx` wiring (the kit-agnostic skeleton `core.md` mandates). See `prompt/playbook.md`.
+A FAIL names the sibling and lists the per-file ≥90% hits — those are the files you *copied* rather than designed. Author the visual layer native: your own frame/elevation primitive, geometry ladder, component CSS, and signature `.tsx`; reuse ONLY the Base UI `.tsx` wiring (the kit-agnostic skeleton `core.md` mandates). See `prompt/playbook.md`.
 
 The acceptance trio: **kit-lint** (static token contract), **kit-states** (rendered dynamic states), and **kit-distinct** (the visual layer is native, not a reskin).
