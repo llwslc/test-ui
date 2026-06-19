@@ -3,4 +3,9 @@
   --shell-sticky-gap: 26px;
   --shell-scroll-margin: 20px;
   --shell-sidebar-cap: calc(100vh - var(--shell-header-h) - 50px);
+
+  --shell-dialog-w: 460px;
+  --shell-alert-w: 440px;
+  --shell-drawer-w: 420px;
+  --shell-drawer-h: 460px;
 }

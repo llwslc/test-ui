@@ -172,10 +172,10 @@
   --brass-popover-w: 284px;
   --brass-preview-w: 320px;
   --brass-nav-w: 440px;
-  --brass-dialog-w: 460px;
-  --brass-alert-w: 408px;
-  --brass-drawer-w: 366px;
-  --brass-drawer-h: 460px;
+  --brass-dialog-w: var(--shell-dialog-w);
+  --brass-alert-w: var(--shell-alert-w);
+  --brass-drawer-w: var(--shell-drawer-w);
+  --brass-drawer-h: var(--shell-drawer-h);
   --brass-toast-w: 344px;
   --brass-avatar-sm: 32px;
   --brass-avatar-md: 44px;

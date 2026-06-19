@@ -121,10 +121,10 @@
   --abyss-round-4: 4px;
   --abyss-round-5: 5px;
 
-  --abyss-w-dialog: 460px;
-  --abyss-w-alert: 440px;
-  --abyss-w-drawer: 420px;
-  --abyss-h-drawer: 460px;
+  --abyss-w-dialog: var(--shell-dialog-w);
+  --abyss-w-alert: var(--shell-alert-w);
+  --abyss-w-drawer: var(--shell-drawer-w);
+  --abyss-h-drawer: var(--shell-drawer-h);
   --abyss-w-popover: 320px;
   --abyss-w-preview: 286px;
   --abyss-w-tooltip: 240px;
