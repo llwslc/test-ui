@@ -802,6 +802,7 @@ function Demo() {
                         ["10:15", "Blew down boiler"],
                         ["11:00", "Coaled at siding"],
                         ["11:45", "Stowed for the watch"],
+                        ["12:30", "Relieved the watch"],
                       ].map(([time, msg]) => (
                         <li key={time} className="brass-text">
                           <span className="brass-cap">{time}</span> {msg}

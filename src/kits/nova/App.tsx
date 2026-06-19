@@ -206,6 +206,7 @@ const SHIP_LOG = [
   { t: "08:32:10", m: "Gravimetric sensor array online" },
   { t: "08:30:55", m: "Auxiliary power rerouted to forward thrusters" },
   { t: "08:29:31", m: "Crew manifest synced, 47 aboard" },
+  { t: "08:28:12", m: "Star chart cache rebuilt — 1.2M points" },
 ];
 
 function AccessCodeField() {

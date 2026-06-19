@@ -233,6 +233,7 @@ const DIVE_LOG = [
   { t: "08:32:10", m: "Pressure array woke and listened" },
   { t: "08:30:55", m: "Lantern oil rerouted to the forward bells" },
   { t: "08:29:31", m: "Roll called, forty-seven souls aboard" },
+  { t: "08:28:12", m: "Tide tables recopied by candlelight" },
 ];
 
 function Clock() {
