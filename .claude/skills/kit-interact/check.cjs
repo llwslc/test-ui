@@ -130,6 +130,42 @@ const setKit = async (page, kit) => {
           out.push(`HIGH  ${kit}  ${id}: trigger click scroll-JUMPED (Δy=${Math.round(after.y - before.y)}, hash ${before.h || '∅'}→${after.h || '∅'})`);
       } catch (e) { /* not a link in this kit */ }
     }
+    for (const [id, trig] of [['dialog', '#dialog button'], ['alert', '#alert button'], ['drawer', '#drawer button'], ['popover', '#popover button']]) {
+      try {
+        await setKit(d, kit);
+        await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+        const t = d.locator(trig).first();
+        await t.scrollIntoViewIfNeeded();
+        await t.click();
+        await d.waitForTimeout(450);
+        const g = await d.evaluate(() => {
+          const pop = [...document.querySelectorAll('body > div [class*="popup"], body > div [role="dialog"], body > div [role="alertdialog"]')]
+            .find((el) => { const r = el.getBoundingClientRect(); return r.width > 40 && r.height > 40; });
+          if (!pop) return null;
+          const title = pop.querySelector('[class*="title"]');
+          if (!title) return { noTitle: true };
+          const desc = pop.querySelector('[class*="desc"]');
+          const anchor = desc || title;
+          const ab = anchor.getBoundingClientRect();
+          let firstTop = Infinity;
+          for (const el of pop.querySelectorAll('p, span, label, input, button, [role="switch"], [role="slider"], [class*="field"]')) {
+            if (el === title || el === desc || title.contains(el) || (desc && desc.contains(el))) continue;
+            const r = el.getBoundingClientRect();
+            if (r.width < 4 || r.height < 4) continue;
+            if (r.top >= ab.bottom - 1) firstTop = Math.min(firstTop, r.top);
+          }
+          const tb = title.getBoundingClientRect(), db = desc ? desc.getBoundingClientRect() : null;
+          return {
+            titleNext: db ? Math.round(db.top - tb.bottom) : (firstTop < Infinity ? Math.round(firstTop - tb.bottom) : null),
+            descNext: db && firstTop < Infinity ? Math.round(firstTop - db.bottom) : null,
+          };
+        });
+        if (g && !g.noTitle) {
+          if (g.titleNext !== null && g.titleNext < 6) out.push(`HIGH  ${kit}  ${id}: title sits ${g.titleNext}px from the next row — no padding, add bottom margin`);
+          if (g.descNext !== null && g.descNext < 6) out.push(`HIGH  ${kit}  ${id}: desc sits ${g.descNext}px from the body — no padding, add bottom margin`);
+        }
+      } catch (e) { out.push(`WARN  ${kit}  ${id}: title-spacing check errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    }
     try {
       await setKit(d, kit);
       const sb = await d.evaluate(() => {

@@ -1,6 +1,6 @@
 ---
 name: kit-interact
-description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, and a mobile shell header that bunches logo+status to one side once the nav hides, and a left sidebar index that doesn't resolve to / match the panel set across kits. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
+description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, a mobile shell header that bunches logo+status to one side once the nav hides, a left sidebar index that doesn't resolve to / match the panel set across kits, and an overlay title/desc cramped against the body (no padding). Run when accepting or QAing a kit, alongside kit-visual + kit-states.
 ---
 
 # kit-interact
@@ -59,6 +59,13 @@ Slow by design (~1–2 min). Exit 1 on any HIGH fault.
   not move the page. Uses a DOM `el.click()` (not Playwright's `.click()`, which
   auto-scrolls the target to center and would false-flag). Caught the PreviewCard
   `@handle` trigger `href="#hero"` jumping to the header on click.
+- **OVERLAY title/desc spacing (HIGH)** — open dialog/alert/drawer/popover on
+  desktop; the title (and desc) must sit ≥6px from the next row. Drills past
+  container border-boxes to the first real text/control (a drawer body's negative
+  glow-room margin offsets its border but not its content, so a naive
+  desc→body-element read false-reports 4px). Caught the recurring "title/desc has
+  no padding" that kept being eyeballed; revert-tested: zeroing the brass
+  modal-title bottom margin → 3 FAILs (dialog/alert/drawer).
 
 Pair with kit-visual (rendered geometry) + kit-states (rendered states):
 those photograph, this one *operates* the components.
