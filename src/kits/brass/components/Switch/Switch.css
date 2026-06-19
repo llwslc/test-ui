@@ -17,26 +17,14 @@
   position: absolute;
   top: 50%;
   left: 3px;
-  display: grid;
-  place-items: center;
   width: var(--brass-switch-knob);
   height: var(--brass-switch-knob);
   transform: translateY(-50%);
   transition: transform var(--brass-dur) var(--brass-ease-detent);
 }
-.brass-switch__thumb::before {
-  content: "O";
-  font-family: var(--brass-font-mono);
-  font-size: var(--brass-fs-11);
-  font-weight: var(--brass-fw-700);
-  color: var(--brass-on-primary);
-}
 .brass-switch[data-checked] {
   background: var(--brass-accent-surface);
   filter: var(--brass-glow-active);
-}
-.brass-switch[data-checked] .brass-switch__thumb::before {
-  content: "I";
 }
 .brass-switch[data-checked] .brass-switch__thumb {
   background-image: var(--brass-knurl), var(--brass-accent-surface);
