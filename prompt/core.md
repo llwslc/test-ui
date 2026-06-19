@@ -60,7 +60,7 @@
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
-- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。**模态宽高固定、各 kit 同值、不归 theme**：走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`；模态 Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`，配 viewport 内边距，窄屏不溢出、不左右滑。drawer body 作滚动容器（`overflow-y:auto` 横竖都裁）→ 用 padding + 等量负 margin 预留 ≥ 最大控件辉光的余地。
+- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件辉光。
 
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`，颜色差异用 `--<kit>-*-color` 就近覆盖：头部扫光、标题、图例标记、模态背板、模态文本——title、desc、body、actions、关闭按钮、分隔线、折叠类 Accordion、Collapsible 共用的 trigger、marker、title、chevron、panel、content。
@@ -74,11 +74,11 @@
 
 统一约定，**颜色留空给 theme**。
 
-- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充；Tab、NavMenu 另带独立选中指示（形式 theme 定）。
+- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充；Tab、NavMenu 另带独立选中指示。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
-- **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。Tab、NavMenu 的 hover/选中皮肤是否共用、其渐变与下划线形式由 theme 定。
+- **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。
 - **键盘焦点**：布尔开关 Checkbox、Switch、Radio 用辉光；分段、触发条用 `inset 0 0 0 1px` 内描边；输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。
-- **禁用**：`cursor: not-allowed` + 单层 dim（`opacity: var(--<kit>-disabled-opacity)`，可选叠加去饱和）；父子**绝不各设一次 opacity**（只在一处压暗整行）。
+- **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行单层 dim、opacity 不叠两层。
 
 ## 6. 组件
 
@@ -123,7 +123,7 @@
 - **Progress**：props `label·showValue`；`Root > head[label + Value 右] + Track > Indicator`，Indicator 自左满宽。
 - **Meter**：同 Progress + props `tone`（`primary·success·warning·danger`），按 tone 重染。
 - **Tabs**：props `items·defaultValue`；`Root > List[Tab* + Indicator] + Panel*`，Indicator 底部下划线随 `--active-tab-*` 移，手机横滚，tab 态 +selected。
-- **Accordion**（props `items·openMultiple·defaultValue`）、**Collapsible**（props `title·defaultOpen`）：§4.3 折叠配方 `trigger[marker 左 + title + chevron 右] + panel > content`；**content 左缩进对齐 title 起点（= trigger 左内距 + marker 宽 + gap）**；态 +panel-open，须有可见 affordance（chevron 或会动的 marker）。
+- **Accordion**（props `items·openMultiple·defaultValue`）、**Collapsible**（props `title·defaultOpen`）：§4.3 折叠配方 `trigger[marker 左 + title + chevron 右] + panel > content`；**content 左缩进对齐 title 起点（= trigger 左内距 + marker 宽 + gap）**；态 +panel-open，指示物旋转。
 
 **浮层**
 
@@ -133,7 +133,7 @@
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
 - **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
-- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体（默认变体由 theme 定）。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 
 **展示**
