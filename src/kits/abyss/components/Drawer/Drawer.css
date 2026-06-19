@@ -125,8 +125,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--abyss-space-5);
-  padding: var(--abyss-space-3);
-  margin: calc(var(--abyss-space-3) * -1);
+  padding: var(--abyss-space-3) var(--abyss-space-4);
+  margin: calc(var(--abyss-space-3) * -1) calc(var(--abyss-space-4) * -1);
 }
 
 .abyss-drawer__footer {
