@@ -78,7 +78,7 @@
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**：分段、触发条统一柔色纯底——Tabs、NavMenu 复用同一 tab 皮肤：竖向渐变 + 底部辉光下划线；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。
 - **键盘焦点**：布尔开关 Checkbox、Switch、Radio 用辉光；分段、触发条用 `inset 0 0 0 1px` 内描边；输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。
-- **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity。
+- **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity；主题可另叠去饱和滤镜。
 
 ## 6. 组件
 
