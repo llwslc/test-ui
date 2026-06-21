@@ -7,6 +7,14 @@ description: Audit a generation-prompt / spec doc, or a skill SKILL.md, on two a
 
 A spec is the text you feed an AI to build something. It must read like a professional reference doc written by a native speaker, and contain only what changes the build. Two axes: **what it contains** and **how it reads**. Read each file in full and judge every line against both.
 
+## Run — mechanical pre-pass
+
+```
+sh .claude/skills/prompt-lint/check.sh [file ...]      # default: prompt/**/*.md
+```
+
+Exit 0 = the greppable Form rules are clean: punctuation register (ASCII `,:;()` touching 汉字 outside code spans) and headings carrying a trailing qualifier. It also prints a REVIEW list of bullet blocks that mix `- **bold**` and `- plain` leads — a heuristic with false positives (bold font/term beside plain prose is fine); the real defect it surfaces is parallel peers split on bold (e.g. some component bullets bold, some not). This is a PRE-PASS, not the check — the Content axis and the full emphasis-systematic judgment below are a READ no regex can do.
+
 ## Axis 1 — Content: only build decisions, correctly placed
 
 - **How, not why.** Each line states a decision: what to do, what value, what to name, what not to do. Cut anything that doesn't change the output — rationale ("because / to avoid / otherwise"), history ("was X now Y, originally, accepted/rejected"), incident anecdotes ("this broke, the old bug"), framework restatement (re-explaining an API / CSS property / library the model knows), and hedging ("note that, for clarity"). **Negating a past misconception is still residue** — "not an X thing / not actually Y" corrects a belief the reader never held; state the rule positively and don't name the wrong idea at all.
