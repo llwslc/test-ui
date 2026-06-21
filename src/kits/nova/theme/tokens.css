@@ -93,6 +93,7 @@
   --nova-dur: 0.22s;
   --nova-dur-slow: 0.45s;
   --nova-dur-sweep: 1.4s;
+  --nova-dur-stripe: 0.9s;
   --nova-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --nova-ease-soft: cubic-bezier(0.38, 0.1, 0.2, 1);
   --nova-ease-out: cubic-bezier(0.16, 1, 0.3, 1);

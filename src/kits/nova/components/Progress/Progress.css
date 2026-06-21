@@ -34,14 +34,14 @@
     100% 100%;
   box-shadow: 0 0 12px var(--nova-line-strong);
   transition: width var(--nova-dur-slow) var(--nova-ease);
-  animation: nova-progress-stripes 0.9s linear infinite;
+  animation: nova-progress-stripes var(--nova-dur-stripe) linear infinite;
 }
 .nova-progress__indicator[data-indeterminate] {
   position: absolute;
   width: 40%;
   transition: none;
   animation:
-    nova-progress-stripes 0.9s linear infinite,
+    nova-progress-stripes var(--nova-dur-stripe) linear infinite,
     nova-progress-sweep var(--nova-dur-sweep) var(--nova-ease) infinite;
 }
 @keyframes nova-progress-stripes {
