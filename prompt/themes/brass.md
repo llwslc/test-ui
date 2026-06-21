@@ -17,7 +17,7 @@
 - 另立 alpha 家族：`secondary-fill .50`；success `-a45 / -wash .12`；warning `-a45`；danger 一组 `-fill .50 / -wash .12 / -text #f4c3b5 / -inset #2a0d09`。
 - 中性与效果色：`off #2c2519` 关态轨呈发蓝褐钢；`track #221c12` 未填充轨；`ghost-hover` 暖象牙 .06；金属扫光 `sheen .55 / sheen-soft .12`；关态旋钮金属渐变 `thumb-top #6a5f49 / -bottom #312a1d`；步进钮底渐变 `surface-raised`。
 - 表面：`surface .82`、`surface-popup .975`、`surface-modal` 走 165deg 深渐变、`surface-inset #100c06` 凹陷井、`surface-zone / -hover` 右键区底；`scrim .66`。
-- 辉光与阴影：文字 `glow-text` 暖琥珀；drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕，半径 `--brass-glow-r` 9px；矩形影 `shadow-popup / -modal`、硬机加工影 `shadow-ink`、旋钮微影 `shadow-thumb`。
+- 辉光与阴影：文字 `glow-text` 暖琥珀；drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕，半径 `--brass-glow-r` 9px；焦点描边环 `ring-focus`（暗座 + 亮铜外圈）、`-recessed`（叠 `bevel-inset`，给 Switch、Radio）；矩形影 `shadow-popup / -modal`、硬机加工影 `shadow-ink`、旋钮微影 `shadow-thumb`。
 
 ## 2. 字体与排版
 
@@ -58,7 +58,7 @@
 - 分段选中用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary` + 内嵌 `bevel`，呈按下黄铜键。
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部黄铜灯丝下划线。
 - 悬停：分段与触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent → tint-soft` 渐变 + 下划线；图标与动作按钮文字转 `primary`，菜单触发器、列表项转 bright。
-- 焦点：布尔开关 Switch、Checkbox、Radio 用 `glow-focus` 黄铜灯晕；分段与触发条用 `inset 0 0 0 1px primary`；输入框边框升 `bezel-strong` + 字段级 `glow-focus`。可聚焦浮层 popup 加 `outline:none`。
+- 焦点：布尔开关 Checkbox、Switch、Radio 用 `ring-focus` 黄铜描边环，Switch、Radio 叠 bevel 用 `-recessed`；分段与触发条用 `inset 0 0 0 1px primary`；输入框边框升 `bezel-strong` + 字段级 `glow-focus`。可聚焦浮层 popup 加 `outline:none`。
 - 危险态用 danger 家族：`-fill / -wash / -text / -inset`，bezel 转 danger。
 
 ## 7. 组件皮肤决定

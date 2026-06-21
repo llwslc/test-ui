@@ -37,7 +37,7 @@
 - **alpha 阶梯**：**每个强调家族**的 alpha 都走按透明度命名的档，hex 带不了 alpha 的色另立。新的同色 alpha 先并入最近档，不随手新造。
 - **中性、效果色**：关态轨、未填充轨、ghost hover、扫光、关态旋钮金属渐变等。
 - **表面**：面板、浮层、模态、内嵌表面 + 背板 scrim。
-- **辉光与阴影**：文字辉光、焦点辉光、选中辉光、触发器激活辉光、浮层投影——随形状轮廓的 drop-shadow 与矩形 shadow 各一套。
+- **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——随形状轮廓的 drop-shadow 与矩形 shadow 各一套；具体效果 → theme。
 - **几何尺度，强制 token 化、按角色分档**：转角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色选，组件**绝不**裸写形状值。角色至少四类 —— ① 超大外框，如 Dialog、AlertDialog、Panel ② 默认控件、容器框及其 `::before` ③ 容器内嵌套项 + 小交互、标签 chip，即菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮 ④ 细指示条、旋钮，按厚度再分。**形状种类——切角 `polygon` 还是圆角值——与具体档数、档值 → theme**。
 - **层级阶梯**：一处定义浮层堆叠顺序 dropdown < menu < tooltip < backdrop < overlay < toast。
 - **动效与度量**：`dur / -slow`、`ease / -out`、控件高、禁用透明度、模态内边距。
@@ -111,7 +111,7 @@
 - **ToggleGroup**：分段条家族，`width: fit-content`，段 +pressed。
 - **Slider**：props `label·showValue`（默认 true）；`Root 竖排 > head[label .cap + Value 右] + Control > Track > Indicator + Thumb`，Indicator 自左起。
 - **NumberField**：`Group > [减 + Input + 加]`，步进钮等宽夹住输入；到 min/max 自行 disable 步进钮 + 置灰。
-- **Input/Field**：props `label·icon·description·error`；`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标左侧绝对定位、Control `flex:1`，态 +focus（边框亮 + 字段辉光）、+error。
+- **Input/Field**：props `label·icon·description·error`；`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标左侧绝对定位、Control `flex:1`，态 +focus、+error。
 - **OtpField**：props `length·splitAt·mask`；cells 横排等宽，`splitAt` 处插分隔，cell 态 +filled、+focus。
 - **Select**：props `items·placeholder`；`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`；item 态 +selected、+highlighted。
 - **Combobox**：props `items·placeholder·emptyText·label`；`control[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(带勾选 右)]`，弹层向下。
@@ -133,7 +133,7 @@
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
 - **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
-- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留焦点提示余量。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 
 **展示**

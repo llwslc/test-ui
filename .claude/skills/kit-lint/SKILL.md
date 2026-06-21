@@ -27,7 +27,7 @@ Plus token hygiene: no dead tokens (defined, never consumed), no app-only tokens
 
 ## What the read covers (judgment — the script can't)
 
-- **Contract complete** — tokens.css has every group core.md §3 names (palette, accent fills, alpha ladder, surfaces, glow/shadow, geometry ladder, z tiers, motion, spacing, type, component footprints). A missing group is a silent gap: the kit hand-rolls what the slot should have held — exactly how a value or recipe ends up duplicated. When the script flags a restated recipe, ask first *which contract slot is missing*, fill it, then route consumers through it.
+- **Contract complete** — tokens.css has every group core.md §3 names (palette, accent fills, alpha ladder, surfaces, emphasis/shadow, geometry ladder, z tiers, motion, spacing, type, component footprints). A missing group is a silent gap: the kit hand-rolls what the slot should have held — exactly how a value or recipe ends up duplicated. When the script flags a restated recipe, ask first *which contract slot is missing*, fill it, then route consumers through it.
 - **Semantic coverage** — the palette defines an accent family (base + deep + alpha steps) for every tone the component APIs expose. A component inventing a color inline is the tell.
 - **Ladder perceptibility** — adjacent steps differ enough to matter (font ≥2px, alpha ≥0.1, no two palette colors a few RGB points apart). Merge anything closer.
 - **Primitive routing** — every bordered/elevated surface goes through the kit's frame/elevation primitive, recolored via its input vars — never by overriding a global token on a container.
