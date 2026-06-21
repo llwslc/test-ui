@@ -12,7 +12,7 @@
 - 墨线：边框用暖灰绿「墨」——`ink .3`、`ink-strong .52`、`ink-faint .1`。
 - 文本走暖褐羊皮：`text #d8ceb4`、`-bright #f3edda`、`-dim #8d9079`、`-mute #565a4b`。
 - 五个强调家族，各配 `-soft` 与按需的 `-deep`：glow 深渊青 `#46e8b8` 为主，gold 鎏金 `#cda94a` 用于注脚与警示，ichor 灵液紫 `#9176ff` 为次强调，blood 血红 `#d24059` 表危险，success 生苔绿 `#7ad99a`。
-- alpha 档：glow `-soft .12 · -a30 · -a55 · -a70`，外加点亮渐变 `glow-wash / -strong`；其余家族各一中强档 `gold-a50 / ichor-a50 / blood-a55 / success-a50`；暗色调配亮化文字档 `blood-text / ichor-text`，深色 accent 当文字时必用。
+- alpha 档：glow `-soft .12 · -a30 · -a55 · -a70`，外加点亮渐变 `glow-wash / -strong`；其余家族各一中强档 `gold-a50 / ichor-a50 / blood-a55 / success-a50`；暗色家族各一亮化文字档 `blood-text / ichor-text`，深色 accent 当文字时必用。
 - 表面：`surface .84`、`surface-popup .97`、`inset #06100d`；`scrim .72`；旋钮高光 `thumb-glint`；石材质感 = 颗粒瓦片 `stone-grain` 叠 fill 顶层 + 凿边 `bevel`，即上亮下暗 1px 内沿，slab 面如 Panel、弹层、模态统一引用，Alert 顶部另按 tone 径向重染。
 - 辉光 token 化：`aura` 为 10px a30、`aura-strong` 为 16px a55、`aura-mark` 是标记辉光 8px a55、`aura-gold / -strong`；drop-shadow 辉光 `glow-focus / -popup / -modal`；文字辉光 `text-aura`；矩形影 `shadow-pop / -modal / -sm`。
 

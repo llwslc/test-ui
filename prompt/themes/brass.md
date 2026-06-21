@@ -46,7 +46,7 @@
 
 ## 5. 动效个性
 
-- `dur .26s / -slow .5s`，`ease (0.32, 0.72, 0.2, 1)`——干脆机械落定；`ease-out (0.34, 0.11, 0.2, 1)` 给 Toast 栈位移大位移；`ease-detent (0.5, 1.4, 0.5, 1)` 微过冲给指针、阀门落位。
+- `dur .26s / -slow .5s`，`ease (0.32, 0.72, 0.2, 1)`——干脆机械落定；`ease-out (0.34, 0.11, 0.2, 1)` 给 Toast 栈位移这类大位移；`ease-detent (0.5, 1.4, 0.5, 1)` 微过冲给指针、阀门落位。
 - 微动：头部拉丝金属扫光，即 `background-position`；进度条流动；面板扫光 `.brass-sheen`，scaleX 呼吸；徽章点是琥珀灯 pulse；Hero 表盘指针摆动 + 齿轮咬合转。
 - 入场：顶栏机械落定下滑、Hero 文案 stagger 即 `brass-rise`、面板滚动渐入。
 
@@ -69,7 +69,7 @@
 - **AlertDialog** 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone，表面顶部加 tone 径向 20%，几何同 Dialog。
 - NavigationMenu 触发器栏复用 Tabs 皮肤：Yeseva 标题、渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
 - Panel：角部铆钉 + 黄铜角托；Toast：右下角向上堆叠，左缘黄铜光束 + 齿轮图记；Dialog 标题配齿轮 cartouche 图记。
-- 招牌 SVG：Loader 啮合双齿轮 + 蒸汽，Hero 压力表盘 + 摆针 + 小齿轮，Checkbox 黄铜板刻印对勾，Radio 凹陷黄铜孔眼选中亮琥珀芯，Avatar 兜底齿轮字母组。
+- 招牌 SVG：Loader 啮合双齿轮 + 蒸汽，Hero 压力表盘 + 摆针 + 小齿轮，Checkbox 黄铜板刻印对勾，Radio 凹陷黄铜孔眼、选中亮琥珀芯，Avatar 兜底齿轮字母组。
 - 共享配方色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`。
 
 ## 8. 文案
