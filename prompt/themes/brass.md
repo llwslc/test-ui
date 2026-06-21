@@ -29,9 +29,9 @@
 ## 3. 几何与描边
 
 - 形状 = **机加工圆角**，无 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按 core §3 角色选：细指示条、旋钮床 = xs，嵌套项、chip、菜单项 = sm，默认控件、容器框及其 `::before` = md，模态、超大框 = lg；组件不裸写 radius。
-- 描边走**双层黄铜 bezel 原语** `.brass-plate`：外层背景 = `bezel` 拉丝黄铜渐变 + radius，`::before` 内缩 2px = 板填充 + 内嵌 `bevel`（上亮下暗金属内沿）；输入变量 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 三档：`bezel-dim` 页内 idle 陈旧铜、`bezel` 默认、`bezel-strong` 浮层与升态亮铜。
-- **铆钉** `.brass-rivets`：`::after` 四角嵌铆钉钉头径向点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板与招牌件。
-- **滚花** `--brass-knurl`：repeating-linear-gradient 斜纹，用于 Switch 旋钮、Slider 旋钮缘、滚动条 thumb。
+- 描边走双层黄铜 bezel 原语 `.brass-plate`：外层背景 = `bezel` 拉丝黄铜渐变 + radius，`::before` 内缩 2px = 板填充 + 内嵌 `bevel`（上亮下暗金属内沿）；输入变量 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 三档：`bezel-dim` 页内 idle 陈旧铜、`bezel` 默认、`bezel-strong` 浮层与升态亮铜。
+- 铆钉 `.brass-rivets`：`::after` 四角嵌铆钉钉头径向点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板与招牌件。
+- 滚花 `--brass-knurl`：repeating-linear-gradient 斜纹，用于 Switch 旋钮、Slider 旋钮缘、滚动条 thumb。
 - 浮层抬升原语 `.brass-lift`，挂 positioner 与模态 popup 且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 双层，输入变量 `--brass-overlay-shadow / -glow`；默认 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，Tooltip 小档，Alert 按 tone。
 - 边框层级：页内 idle = `bezel-dim`；浮层 = `bezel-strong`，即 plate 默认；状态升 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 与 fill。
 
@@ -63,10 +63,10 @@
 
 ## 7. 组件皮肤决定
 
-- **Switch** 是黄铜阀杆：开槽发蓝钢轨 `off` + 滚花黄铜旋钮 `thumb` 渐变，刻印 O/I 端记；选中轨转 `accent-surface` + 旋钮滑右 + `glow-active`，`ease-detent` 落位。
-- **Meter** 是压力表：横轨分三色区 success → warning → danger，填充走 `accent-fill`，端部刻度记。
-- **Progress** 黄铜灯丝填充 + 刻度记；不定态滑块走 `left`。
-- **AlertDialog** 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone，表面顶部加 tone 径向 20%，几何同 Dialog。
+- Switch 是黄铜阀杆：开槽发蓝钢轨 `off` + 滚花黄铜旋钮 `thumb` 渐变，刻印 O/I 端记；选中轨转 `accent-surface` + 旋钮滑右 + `glow-active`，`ease-detent` 落位。
+- Meter 是压力表：横轨分三色区 success → warning → danger，填充走 `accent-fill`，端部刻度记。
+- Progress 黄铜灯丝填充 + 刻度记；不定态滑块走 `left`。
+- AlertDialog 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone，表面顶部加 tone 径向 20%，几何同 Dialog。
 - NavigationMenu 触发器栏复用 Tabs 皮肤：Yeseva 标题、渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
 - Panel：角部铆钉 + 黄铜角托；Toast：右下角向上堆叠，左缘黄铜光束 + 齿轮图记；Dialog 标题配齿轮 cartouche 图记。
 - 招牌 SVG：Loader 啮合双齿轮 + 蒸汽，Hero 压力表盘 + 摆针 + 小齿轮，Checkbox 黄铜板刻印对勾，Radio 凹陷黄铜孔眼、选中亮琥珀芯，Avatar 兜底齿轮字母组。
