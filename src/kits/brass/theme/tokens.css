@@ -76,6 +76,10 @@
   --brass-glow-trigger: drop-shadow(0 0 5px rgba(207, 157, 58, 0.42));
   --brass-glow-modal: drop-shadow(0 0 24px rgba(207, 157, 58, 0.26));
 
+  /* ── Focus ring (machined outer ring, follows radius) ── */
+  --brass-ring-focus: 0 0 0 1px var(--brass-bg), 0 0 0 3px var(--brass-primary);
+  --brass-ring-focus-recessed: var(--brass-bevel-inset), var(--brass-ring-focus);
+
   /* ── Depth shadows: drop-shadow form (elevation filter, follow rounded outline) ── */
   --brass-shadow-popup: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 3px 7px rgba(0, 0, 0, 0.5));
   --brass-shadow-modal: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.68)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));

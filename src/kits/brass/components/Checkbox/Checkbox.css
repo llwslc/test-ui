@@ -19,7 +19,7 @@
 }
 .brass-checkbox:focus-visible {
   outline: none;
-  filter: var(--brass-glow-focus);
+  box-shadow: var(--brass-ring-focus);
 }
 .brass-checkbox[data-checked],
 .brass-checkbox[data-indeterminate] {

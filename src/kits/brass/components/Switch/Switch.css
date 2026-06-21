@@ -32,7 +32,7 @@
 }
 .brass-switch:focus-visible {
   outline: none;
-  filter: var(--brass-glow-focus);
+  box-shadow: var(--brass-ring-focus-recessed);
 }
 .brass-switch[data-disabled] {
   opacity: var(--brass-disabled-opacity);
