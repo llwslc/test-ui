@@ -23,7 +23,7 @@
   align-items: center;
   font-size: var(--bauhaus-fs-18);
 }
-.bauhaus-btn:hover {
+.bauhaus-btn:not(:disabled):not([data-disabled]):hover {
   box-shadow: var(--bauhaus-shadow-hard);
 }
 .bauhaus-btn:active {
@@ -50,7 +50,7 @@
   background: none;
   color: var(--bauhaus-text);
 }
-.bauhaus-btn--ghost:hover {
+.bauhaus-btn--ghost:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-ink-faint);
   color: var(--bauhaus-text-bright);
   box-shadow: none;
@@ -67,7 +67,7 @@
 .bauhaus-btn--icon-ghost .bauhaus-btn__icon {
   font-size: var(--bauhaus-fs-22);
 }
-.bauhaus-btn--icon:hover {
+.bauhaus-btn--icon:not(:disabled):not([data-disabled]):hover {
   --bauhaus-surface-fill: var(--bauhaus-tint-soft);
   color: var(--bauhaus-primary);
   box-shadow: none;
@@ -80,7 +80,7 @@
   background: none;
   color: var(--bauhaus-text-dim);
 }
-.bauhaus-btn--icon-ghost:hover {
+.bauhaus-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-ink-faint);
   color: var(--bauhaus-primary);
   box-shadow: none;

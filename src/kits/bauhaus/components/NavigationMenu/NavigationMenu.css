@@ -30,7 +30,7 @@
 .bauhaus-nav__trigger :where(svg) {
   font-size: var(--bauhaus-fs-18);
 }
-.bauhaus-nav__trigger:hover {
+.bauhaus-nav__trigger:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-text-bright);
 }

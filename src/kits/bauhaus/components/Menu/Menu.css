@@ -43,7 +43,7 @@
   color: var(--bauhaus-text-mute);
 }
 .bauhaus-list-item[data-highlighted] .bauhaus-menu-item__icon,
-.bauhaus-list-item:hover .bauhaus-menu-item__icon {
+.bauhaus-list-item:not(:disabled):not([data-disabled]):hover .bauhaus-menu-item__icon {
   color: var(--bauhaus-primary);
 }
 
@@ -61,10 +61,10 @@
 .bauhaus-menu-item--danger .bauhaus-menu-item__icon,
 .bauhaus-menu-item--danger[data-highlighted],
 .bauhaus-menu-item--danger[data-highlighted] .bauhaus-menu-item__icon,
-.bauhaus-menu-item--danger:hover {
+.bauhaus-menu-item--danger:not(:disabled):not([data-disabled]):hover {
   color: var(--bauhaus-danger-text);
 }
 .bauhaus-menu-item--danger[data-highlighted],
-.bauhaus-menu-item--danger:hover {
+.bauhaus-menu-item--danger:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-danger-wash);
 }

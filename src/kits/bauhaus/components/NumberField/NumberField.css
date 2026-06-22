@@ -24,7 +24,7 @@
     background var(--bauhaus-dur) var(--bauhaus-ease),
     color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-numberfield__step:hover {
+.bauhaus-numberfield__step:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-primary);
 }

@@ -11,7 +11,7 @@
   cursor: pointer;
   transition: box-shadow var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-select__trigger:hover {
+.bauhaus-select__trigger:not(:disabled):not([data-disabled]):hover {
   color: var(--bauhaus-text-bright);
 }
 .bauhaus-select__trigger:focus-visible,

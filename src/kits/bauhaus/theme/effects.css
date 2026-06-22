@@ -54,7 +54,7 @@
   background: var(--bauhaus-primary);
   color: var(--bauhaus-on-fill);
 }
-.bauhaus-seg__btn:hover,
+.bauhaus-seg__btn:not(:disabled):not([data-disabled]):hover,
 .bauhaus-seg__btn[data-highlighted] {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-text-bright);
@@ -102,7 +102,7 @@
   outline: none;
   transition: background var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-list-item:hover,
+.bauhaus-list-item:not(:disabled):not([data-disabled]):hover,
 .bauhaus-list-item[data-highlighted],
 .bauhaus-list-item[data-popup-open] {
   background: var(--bauhaus-tint-soft);
@@ -152,7 +152,7 @@
   cursor: pointer;
   transition: color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-collapse-trigger:hover {
+.bauhaus-collapse-trigger:not(:disabled):not([data-disabled]):hover {
   color: var(--bauhaus-text-bright);
 }
 .bauhaus-collapse-marker {

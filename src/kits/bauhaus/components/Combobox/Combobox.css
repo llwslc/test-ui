@@ -52,8 +52,8 @@
     background var(--bauhaus-dur) var(--bauhaus-ease),
     transform var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-combobox__clear:hover,
-.bauhaus-combobox__trigger:hover {
+.bauhaus-combobox__clear:not(:disabled):not([data-disabled]):hover,
+.bauhaus-combobox__trigger:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-ink-faint);
   color: var(--bauhaus-primary);
 }
