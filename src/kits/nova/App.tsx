@@ -79,6 +79,13 @@ const SELECT_ITEMS = [
   { label: "Proxima Centauri", value: "proxima" },
   { label: "Trappist-1e", value: "trappist" },
   { label: "Kepler-442b", value: "kepler" },
+  { label: "Alpha Centauri A", value: "alphacen" },
+  { label: "Barnard's Star", value: "barnard" },
+  { label: "Wolf 359", value: "wolf359" },
+  { label: "Tau Ceti f", value: "tauceti" },
+  { label: "Vega — Sector 4F", value: "vega" },
+  { label: "Sirius B", value: "sirius" },
+  { label: "Ross 128b", value: "ross128" },
   { label: "Gliese 581g [locked]", value: "gliese", disabled: true },
 ];
 

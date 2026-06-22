@@ -120,6 +120,13 @@ const SELECT_ITEMS = [
   { label: "Y'ha-nthlei", value: "yhanthlei" },
   { label: "Innsmouth Shoal", value: "innsmouth" },
   { label: "The Drowned Spire", value: "spire" },
+  { label: "Pnakotus", value: "pnakotus" },
+  { label: "Sarnath", value: "sarnath" },
+  { label: "The Black Reef", value: "blackreef" },
+  { label: "Leng Plateau", value: "leng" },
+  { label: "Unknown Kadath", value: "kadath" },
+  { label: "The Sunless Sea", value: "sunless" },
+  { label: "Dagon's Trench", value: "dagon" },
   { label: "Carcosa [sealed]", value: "carcosa", disabled: true },
 ];
 

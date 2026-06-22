@@ -41,7 +41,7 @@
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
 - checkbox-group：一个带父级全选的 CheckboxGroup，3 项均可选、默认勾 1，父级呈 indeterminate；禁用态见 checkbox 面板。
 - radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
-- select：「caption + Select」，5 项、末项 `disabled`，默认选第 2。
+- select：「caption + Select」，12 项、末项 `disabled`，默认选第 2。
 - combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
 - autocomplete：「caption + Autocomplete」，建议列表 12 项，无默认值。
 - slider：两个 Slider —— 其一 label + 默认值，其二 `disabled` 且带值。

@@ -100,8 +100,15 @@ const NAV = [
 const WEIGHTS = [
   { label: "Hairline", value: "hair" },
   { label: "Regular", value: "regular" },
+  { label: "Thin", value: "thin" },
+  { label: "Extra Light", value: "extralight" },
+  { label: "Light", value: "light" },
+  { label: "Book", value: "book" },
   { label: "Medium", value: "medium" },
+  { label: "Semibold", value: "semibold" },
   { label: "Bold", value: "bold" },
+  { label: "Extra Bold", value: "extrabold" },
+  { label: "Heavy", value: "heavy" },
   { label: "Black", value: "black", disabled: true },
 ];
 

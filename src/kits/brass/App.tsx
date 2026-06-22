@@ -90,6 +90,13 @@ const PRESSURE = [
   { label: "Nominal", value: "nominal" },
   { label: "High", value: "high" },
   { label: "Critical", value: "critical" },
+  { label: "Idle", value: "idle" },
+  { label: "Warming", value: "warming" },
+  { label: "Charging", value: "charging" },
+  { label: "Venting", value: "venting" },
+  { label: "Overpressure", value: "overpressure" },
+  { label: "Reserve", value: "reserve" },
+  { label: "Banked", value: "banked" },
   { label: "Sealed", value: "sealed", disabled: true },
 ];
 
