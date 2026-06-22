@@ -596,6 +596,27 @@ function Demo() {
                 <MenuItem icon={<Gear />} disabled>
                   Calibrate
                 </MenuItem>
+                <MenuItem icon={<Pipe />}>
+                  Prime pump
+                </MenuItem>
+                <MenuItem icon={<Valve />}>
+                  Tighten valve
+                </MenuItem>
+                <MenuItem icon={<Gauge />}>
+                  Bleed line
+                </MenuItem>
+                <MenuItem icon={<Bolt />}>
+                  Oil bearings
+                </MenuItem>
+                <MenuItem icon={<Pipe />}>
+                  Vent steam
+                </MenuItem>
+                <MenuItem icon={<Gauge />}>
+                  Log pressure
+                </MenuItem>
+                <MenuItem icon={<Copy />}>
+                  Duplicate run
+                </MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<Close />} tone="danger">
                   Shut down

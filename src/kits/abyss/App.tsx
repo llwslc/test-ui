@@ -952,6 +952,27 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />} disabled>
                     Hail the Dark
                   </MenuItem>
+                  <MenuItem icon={<KeyIcon />}>
+                    Drop Anchor
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />}>
+                    Trace Current
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />}>
+                    Echo Sounding
+                  </MenuItem>
+                  <MenuItem icon={<SearchIcon />}>
+                    Chart Trench
+                  </MenuItem>
+                  <MenuItem icon={<KeyIcon />}>
+                    Seal Hatch
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />}>
+                    Ping Sonar
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />}>
+                    Log Bearing
+                  </MenuItem>
                   <MenuSeparator />
                   <MenuItem icon={<TrashIcon />} tone="danger">
                     Cast Overboard

@@ -587,6 +587,27 @@ function Demo() {
                 <MenuItem icon={<Square />} disabled>
                   Rasterize
                 </MenuItem>
+                <MenuItem icon={<Grid />}>
+                  Group
+                </MenuItem>
+                <MenuItem icon={<Dot />}>
+                  Lock layer
+                </MenuItem>
+                <MenuItem icon={<Copy />}>
+                  Flip horizontal
+                </MenuItem>
+                <MenuItem icon={<Square />}>
+                  Rotate 90°
+                </MenuItem>
+                <MenuItem icon={<Grid />}>
+                  Snap to guide
+                </MenuItem>
+                <MenuItem icon={<Dot />}>
+                  Outline stroke
+                </MenuItem>
+                <MenuItem icon={<Copy />}>
+                  Merge shapes
+                </MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<Close />} tone="danger">
                   Delete

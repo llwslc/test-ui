@@ -821,6 +821,27 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />} disabled>
                     Hail Vessel
                   </MenuItem>
+                  <MenuItem icon={<BoltIcon />}>
+                    Calibrate Array
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />}>
+                    Sync Beacon
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />}>
+                    Mirror Telemetry
+                  </MenuItem>
+                  <MenuItem icon={<SearchIcon />}>
+                    Sweep Debris
+                  </MenuItem>
+                  <MenuItem icon={<BoltIcon />}>
+                    Boost Signal
+                  </MenuItem>
+                  <MenuItem icon={<SignalIcon />}>
+                    Map Nebula
+                  </MenuItem>
+                  <MenuItem icon={<CopyIcon />}>
+                    Clone Manifest
+                  </MenuItem>
                   <MenuSeparator />
                   <MenuItem icon={<TrashIcon />} tone="danger">
                     Jettison Cargo
