@@ -84,7 +84,7 @@
   padding: var(--nova-space-1);
 }
 .nova-select__list {
-  max-height: var(--available-height);
+  max-height: min(var(--available-height), var(--nova-h-popup-list));
   overflow-y: auto;
 }
 

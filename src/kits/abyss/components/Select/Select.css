@@ -84,7 +84,7 @@
   padding: var(--abyss-space-1);
 }
 .abyss-select__list {
-  max-height: var(--available-height);
+  max-height: min(var(--available-height), var(--abyss-h-popup-list));
   overflow-y: auto;
 }
 
