@@ -66,10 +66,6 @@
   background: transparent;
   color: var(--brass-text-mute);
 }
-.brass-btn--icon.brass-btn--sm,
-.brass-btn--icon-ghost.brass-btn--sm {
-  width: var(--brass-button-h-sm);
-}
 .brass-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--icon-ghost:focus-visible {
   color: var(--brass-primary);

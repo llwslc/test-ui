@@ -92,7 +92,7 @@
 
 .abyss-btn--icon {
   padding: 0;
-  width: var(--abyss-control-h);
+  width: var(--abyss-button-icon);
 }
 .abyss-btn--icon-ghost {
   padding: 0;
@@ -127,14 +127,6 @@
   min-height: var(--abyss-button-h-lg);
   padding: 0 var(--abyss-space-6);
   font-size: var(--abyss-fs-15);
-}
-.abyss-btn--sm.abyss-btn--icon,
-.abyss-btn--sm.abyss-btn--icon-ghost {
-  width: var(--abyss-button-icon-h-sm);
-}
-.abyss-btn--lg.abyss-btn--icon,
-.abyss-btn--lg.abyss-btn--icon-ghost {
-  width: var(--abyss-button-icon-h-lg);
 }
 
 .abyss-btn:focus-visible {
