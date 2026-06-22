@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
@@ -47,22 +48,24 @@ export function Combobox({
             <BaseCombobox.Empty className="abyss-combobox__empty">
               {emptyText}
             </BaseCombobox.Empty>
-            <BaseCombobox.List className="abyss-combobox__list">
-              {(item: string) => (
-                <BaseCombobox.Item
-                  key={item}
-                  value={item}
-                  className="abyss-combobox__item"
-                >
-                  <span className="abyss-combobox__item-text">{item}</span>
-                  <span className="abyss-combobox__indicator" aria-hidden>
-                    <BaseCombobox.ItemIndicator>
-                      <CheckIcon className="abyss-breathe" />
-                    </BaseCombobox.ItemIndicator>
-                  </span>
-                </BaseCombobox.Item>
-              )}
-            </BaseCombobox.List>
+            <ScrollArea variant="popup">
+              <BaseCombobox.List className="abyss-combobox__list">
+                {(item: string) => (
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    className="abyss-combobox__item"
+                  >
+                    <span className="abyss-combobox__item-text">{item}</span>
+                    <span className="abyss-combobox__indicator" aria-hidden>
+                      <BaseCombobox.ItemIndicator>
+                        <CheckIcon className="abyss-breathe" />
+                      </BaseCombobox.ItemIndicator>
+                    </span>
+                  </BaseCombobox.Item>
+                )}
+              </BaseCombobox.List>
+            </ScrollArea>
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>
       </BaseCombobox.Portal>

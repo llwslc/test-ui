@@ -83,10 +83,6 @@
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);
 }
-.abyss-select__list {
-  max-height: min(var(--available-height), var(--abyss-popup-h));
-  overflow-y: auto;
-}
 
 .abyss-select__item {
   position: relative;

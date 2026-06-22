@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
 import { ChevronRightIcon } from "../icons";
 
@@ -61,7 +62,7 @@ export function MenuSub({
           sideOffset={14}
         >
           <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            <div className="abyss-menu__scroll">{children}</div>
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

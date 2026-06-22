@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import "./Menu.css";
 
 export interface MenuProps {
@@ -19,7 +20,7 @@ export function Menu({ trigger, children }: MenuProps) {
           sideOffset={6}
         >
           <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            <div className="abyss-menu__scroll">{children}</div>
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

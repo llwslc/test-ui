@@ -3,6 +3,7 @@ import { Select as BaseSelect } from "@base-ui/react/select";
 import { useId } from "react";
 import type { ReactNode } from "react";
 import { CheckIcon, ChevronDownIcon } from "../icons";
+import { ScrollArea } from "../ScrollArea";
 import "./Select.css";
 
 export interface SelectOption {
@@ -72,7 +73,7 @@ export function Select<Value extends string = string>({
           alignItemWithTrigger={false}
         >
           <BaseSelect.Popup className="abyss-frame abyss-aura-pop abyss-select__popup">
-            <div className="abyss-select__list">
+            <ScrollArea variant="popup">
               {items.map((it) => (
                 <BaseSelect.Item
                   key={it.value}
@@ -90,7 +91,7 @@ export function Select<Value extends string = string>({
                   </span>
                 </BaseSelect.Item>
               ))}
-            </div>
+            </ScrollArea>
           </BaseSelect.Popup>
         </BaseSelect.Positioner>
       </BaseSelect.Portal>

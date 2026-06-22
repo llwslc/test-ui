@@ -81,27 +81,3 @@ html::after {
   scrollbar-width: thin;
   scrollbar-color: var(--abyss-ink-strong) transparent;
 }
-.abyss-menu__scroll,
-.abyss-select__list,
-.abyss-combobox__list,
-.abyss-autocomplete__list {
-  scrollbar-width: auto;
-  scrollbar-color: auto;
-}
-*::-webkit-scrollbar {
-  width: 11px;
-  height: 11px;
-}
-*::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.32);
-}
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--abyss-glow-deep), #0a3a30);
-  border: 3px solid transparent;
-  background-clip: padding-box;
-  border-radius: 9px;
-}
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--abyss-glow-deep);
-  background-clip: padding-box;
-}

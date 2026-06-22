@@ -111,3 +111,21 @@
     0 0 12px var(--abyss-glow-a55),
     inset 0 0 0 1px var(--abyss-glow-a55);
 }
+
+.abyss-scrollarea--popup {
+  width: auto;
+}
+.abyss-scrollarea--popup::after {
+  display: none;
+}
+.abyss-scrollarea--popup .abyss-scrollarea__viewport {
+  max-height: min(var(--available-height), var(--abyss-popup-h));
+  mask-image: none;
+}
+.abyss-scrollarea--popup .abyss-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--abyss-space-4);
+}
+.abyss-scrollarea--popup .abyss-scrollarea__scrollbar {
+  margin: 1px;
+  opacity: 1;
+}

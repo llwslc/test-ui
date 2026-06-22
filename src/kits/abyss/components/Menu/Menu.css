@@ -14,12 +14,6 @@
   padding: var(--abyss-space-2);
   outline: none;
 }
-.abyss-menu__scroll {
-  max-height: min(var(--available-height), var(--abyss-popup-h));
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-}
 
 .abyss-menu__item {
   position: relative;
@@ -118,7 +112,7 @@
 .abyss-menu__separator.abyss-separator {
   position: relative;
   z-index: 1;
-  margin: var(--abyss-space-2) var(--abyss-space-2);
+  margin: var(--abyss-space-2) 0;
 }
 
 .abyss-menu__arrow {

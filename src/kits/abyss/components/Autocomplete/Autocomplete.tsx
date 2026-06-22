@@ -1,4 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { SearchIcon } from "../icons";
 import "./Autocomplete.css";
@@ -43,17 +44,19 @@ export function Autocomplete({
             <BaseAutocomplete.Empty className="abyss-autocomplete__empty">
               {emptyText}
             </BaseAutocomplete.Empty>
-            <BaseAutocomplete.List className="abyss-autocomplete__list">
-              {(item: string) => (
-                <BaseAutocomplete.Item
-                  key={item}
-                  value={item}
-                  className="abyss-autocomplete__item"
-                >
-                  <span className="abyss-autocomplete__label">{item}</span>
-                </BaseAutocomplete.Item>
-              )}
-            </BaseAutocomplete.List>
+            <ScrollArea variant="popup">
+              <BaseAutocomplete.List className="abyss-autocomplete__list">
+                {(item: string) => (
+                  <BaseAutocomplete.Item
+                    key={item}
+                    value={item}
+                    className="abyss-autocomplete__item"
+                  >
+                    <span className="abyss-autocomplete__label">{item}</span>
+                  </BaseAutocomplete.Item>
+                )}
+              </BaseAutocomplete.List>
+            </ScrollArea>
           </BaseAutocomplete.Popup>
         </BaseAutocomplete.Positioner>
       </BaseAutocomplete.Portal>

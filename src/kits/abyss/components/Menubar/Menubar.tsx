@@ -1,5 +1,6 @@
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
 import "../Menu/Menu.css";
 import "./Menubar.css";
@@ -31,7 +32,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
           sideOffset={6}
         >
           <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            <div className="abyss-menu__scroll">{children}</div>
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>
