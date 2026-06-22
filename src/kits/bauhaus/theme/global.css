@@ -32,7 +32,7 @@ body::before {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--bauhaus-ink) var(--bauhaus-paper-2);
+  scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-2);
 }
 ::-webkit-scrollbar {
   width: var(--bauhaus-scrollbar);
@@ -43,8 +43,11 @@ body::before {
 }
 ::-webkit-scrollbar-thumb {
   border-radius: var(--bauhaus-r-frame);
-  background: var(--bauhaus-ink);
+  background: var(--bauhaus-primary);
   border: 3px solid var(--bauhaus-paper-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bauhaus-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
