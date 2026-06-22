@@ -47,11 +47,11 @@
 }
 
 .bauhaus-btn--ghost {
-  background: none;
+  --bauhaus-surface-fill: transparent;
   color: var(--bauhaus-text);
 }
 .bauhaus-btn--ghost:not(:disabled):not([data-disabled]):hover {
-  background: var(--bauhaus-ink-faint);
+  --bauhaus-surface-fill: var(--bauhaus-ink-faint);
   color: var(--bauhaus-text-bright);
   box-shadow: none;
 }
