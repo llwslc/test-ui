@@ -23,6 +23,7 @@
   align-items: center;
   width: 100%;
   height: var(--bauhaus-control-h);
+  touch-action: none;
 }
 .bauhaus-slider__track {
   position: relative;

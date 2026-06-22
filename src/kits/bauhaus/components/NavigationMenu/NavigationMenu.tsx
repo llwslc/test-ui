@@ -67,7 +67,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
         )}
       </BaseNav.List>
       <BaseNav.Portal>
-        <BaseNav.Positioner className="bauhaus-lift">
+        <BaseNav.Positioner className="bauhaus-lift" collisionPadding={16}>
           <BaseNav.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-nav__popup">
             <BaseNav.Viewport className="bauhaus-nav__viewport" />
           </BaseNav.Popup>

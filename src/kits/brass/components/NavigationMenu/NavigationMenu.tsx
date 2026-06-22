@@ -64,7 +64,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       </BaseNav.List>
 
       <BaseNav.Portal>
-        <BaseNav.Positioner className="brass-lift brass-nav-positioner" sideOffset={8}>
+        <BaseNav.Positioner className="brass-lift brass-nav-positioner" sideOffset={8} collisionPadding={16}>
           <BaseNav.Popup className="brass-plate brass-pop brass-popup brass-nav-popup">
             <BaseNav.Viewport className="brass-nav-viewport" />
           </BaseNav.Popup>

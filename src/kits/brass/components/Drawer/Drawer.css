@@ -149,6 +149,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--brass-space-3) var(--brass-space-4);
   margin: calc(var(--brass-space-3) * -1) calc(var(--brass-space-4) * -1);
 }

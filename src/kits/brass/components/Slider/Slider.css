@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   height: var(--brass-control-h);
+  touch-action: none;
 }
 .brass-slider__track {
   position: relative;
