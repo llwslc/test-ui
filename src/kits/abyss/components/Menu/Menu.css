@@ -17,6 +17,7 @@
 .abyss-menu__scroll {
   max-height: min(var(--available-height), var(--abyss-popup-h));
   overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
 }
 
