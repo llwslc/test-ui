@@ -71,11 +71,16 @@ html::after {
   color: var(--nova-text-bright);
 }
 
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--nova-line-strong) transparent;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nova-line-strong) transparent;
+}
+.nova-menu__scroll,
+.nova-select__list,
+.nova-combobox__list,
+.nova-autocomplete__list {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
 }
 *::-webkit-scrollbar {
   width: 10px;

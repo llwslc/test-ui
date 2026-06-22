@@ -74,11 +74,13 @@ body::after {
   color: var(--brass-text-bright);
 }
 
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--brass-primary-deep) transparent;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass-primary-deep) transparent;
+}
+.brass-popup-list {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
 }
 ::-webkit-scrollbar {
   width: var(--brass-scrollbar);

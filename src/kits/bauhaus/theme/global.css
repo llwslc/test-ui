@@ -45,11 +45,13 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--bauhaus-ink);
 }
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-2);
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-2);
+}
+.bauhaus-popup-list {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

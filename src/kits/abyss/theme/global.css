@@ -77,11 +77,16 @@ html::after {
   color: var(--abyss-text-bright);
 }
 
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--abyss-ink-strong) transparent;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--abyss-ink-strong) transparent;
+}
+.abyss-menu__scroll,
+.abyss-select__list,
+.abyss-combobox__list,
+.abyss-autocomplete__list {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
 }
 *::-webkit-scrollbar {
   width: 11px;
