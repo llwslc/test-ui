@@ -61,7 +61,7 @@
 .brass-popup-list {
   box-sizing: border-box;
   min-width: var(--brass-popup-w);
-  max-height: min(var(--available-height), var(--brass-h-popup-list));
+  max-height: min(var(--available-height), var(--brass-popup-h));
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: var(--brass-space-1);
