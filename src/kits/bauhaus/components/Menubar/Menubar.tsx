@@ -1,4 +1,5 @@
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
+import { ScrollArea } from "../ScrollArea";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import type { ReactNode } from "react";
 import "../Menu/Menu.css";
@@ -16,7 +17,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
       <BaseMenu.Portal>
         <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner" sideOffset={8} align="start">
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-menu__popup">
-            {children}
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

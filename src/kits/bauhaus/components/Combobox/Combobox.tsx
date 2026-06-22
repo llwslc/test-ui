@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { ScrollArea } from "../ScrollArea";
 import { useId, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { Check, ChevronDown, Close } from "../icons";
@@ -56,16 +57,18 @@ export function Combobox({
         <BaseCombobox.Positioner className="bauhaus-lift" sideOffset={6} side="bottom" align="start">
           <BaseCombobox.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-combobox__popup">
             <BaseCombobox.Empty className="bauhaus-combobox__empty">{emptyText}</BaseCombobox.Empty>
-            <BaseCombobox.List className="bauhaus-combobox__list">
-              {(item: string) => (
-                <BaseCombobox.Item key={item} value={item} className="bauhaus-list-item">
-                  <span className="bauhaus-list-item__text">{item}</span>
-                  <BaseCombobox.ItemIndicator className="bauhaus-list-item__check">
-                    <Check />
-                  </BaseCombobox.ItemIndicator>
-                </BaseCombobox.Item>
-              )}
-            </BaseCombobox.List>
+            <ScrollArea variant="popup">
+              <BaseCombobox.List className="bauhaus-combobox__list">
+                {(item: string) => (
+                  <BaseCombobox.Item key={item} value={item} className="bauhaus-list-item">
+                    <span className="bauhaus-list-item__text">{item}</span>
+                    <BaseCombobox.ItemIndicator className="bauhaus-list-item__check">
+                      <Check />
+                    </BaseCombobox.ItemIndicator>
+                  </BaseCombobox.Item>
+                )}
+              </BaseCombobox.List>
+            </ScrollArea>
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>
       </BaseCombobox.Portal>

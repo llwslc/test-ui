@@ -83,10 +83,7 @@
 .bauhaus-popup-list {
   box-sizing: border-box;
   min-width: var(--bauhaus-popup-w);
-  max-height: min(var(--available-height), var(--bauhaus-popup-h));
   padding: var(--bauhaus-space-1);
-  overflow-y: auto;
-  overscroll-behavior: contain;
   outline: none;
 }
 .bauhaus-list-item {

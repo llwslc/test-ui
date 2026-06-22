@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
 import { Button } from "../Button";
 import { ChevronDown } from "../icons";
@@ -21,7 +22,7 @@ export function Menu({ trigger, children }: MenuProps) {
       <BaseMenu.Portal>
         <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner" sideOffset={6} align="start">
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-menu__popup">
-            {children}
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

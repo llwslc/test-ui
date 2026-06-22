@@ -1,4 +1,5 @@
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
+import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
 import { cx } from "../cx";
 import "../Menu/Menu.css";
@@ -19,7 +20,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner" sideOffset={2}>
           <BaseContextMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-menu__popup">
-            {children}
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
       </BaseContextMenu.Portal>

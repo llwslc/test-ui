@@ -25,3 +25,19 @@
   background: var(--bauhaus-ink);
   border-radius: var(--bauhaus-r-control);
 }
+
+.bauhaus-scrollarea--popup .bauhaus-scrollarea__viewport {
+  max-height: min(var(--available-height), var(--bauhaus-popup-h));
+  scrollbar-width: none;
+}
+.bauhaus-scrollarea--popup .bauhaus-scrollarea__viewport::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.bauhaus-scrollarea--popup .bauhaus-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--bauhaus-space-4);
+}
+.bauhaus-scrollarea--popup .bauhaus-scrollarea__bar {
+  opacity: 1;
+}

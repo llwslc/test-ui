@@ -1,4 +1,5 @@
 import { Select as BaseSelect } from "@base-ui/react/select";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import type { ReactNode } from "react";
 import { cx } from "../cx";
@@ -61,14 +62,16 @@ export function Select<Value extends string = string>({
       <BaseSelect.Portal>
         <BaseSelect.Positioner className="bauhaus-lift" sideOffset={6} alignItemWithTrigger={false}>
           <BaseSelect.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-select__popup">
-            {items.map((it) => (
-              <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-list-item">
-                <BaseSelect.ItemText className="bauhaus-list-item__text">{it.label}</BaseSelect.ItemText>
-                <BaseSelect.ItemIndicator className="bauhaus-list-item__check">
-                  <Check />
-                </BaseSelect.ItemIndicator>
-              </BaseSelect.Item>
-            ))}
+            <ScrollArea variant="popup">
+              {items.map((it) => (
+                <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-list-item">
+                  <BaseSelect.ItemText className="bauhaus-list-item__text">{it.label}</BaseSelect.ItemText>
+                  <BaseSelect.ItemIndicator className="bauhaus-list-item__check">
+                    <Check />
+                  </BaseSelect.ItemIndicator>
+                </BaseSelect.Item>
+              ))}
+            </ScrollArea>
           </BaseSelect.Popup>
         </BaseSelect.Positioner>
       </BaseSelect.Portal>
