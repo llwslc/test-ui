@@ -83,14 +83,11 @@
 .nova-scrollarea--popup .nova-scrollarea__viewport {
   max-height: min(var(--available-height), var(--nova-popup-h));
   padding: 0;
-  overflow-x: hidden !important;
   mask-image: none;
 }
-.nova-scrollarea--popup .nova-scrollarea__scrollbar {
-  width: 10px;
-  margin: 0 0 var(--nova-space-2) 0;
-  opacity: 1;
+.nova-scrollarea--popup .nova-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--nova-space-4);
 }
-.nova-scrollarea--popup .nova-scrollarea__thumb {
-  filter: none;
+.nova-scrollarea--popup .nova-scrollarea__scrollbar {
+  opacity: 1;
 }

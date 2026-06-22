@@ -95,7 +95,7 @@
 .nova-menu__separator.nova-separator {
   position: relative;
   z-index: 1;
-  margin: var(--nova-space-2) var(--nova-space-2);
+  margin: var(--nova-space-2) 0;
 }
 
 .nova-menu__arrow {
