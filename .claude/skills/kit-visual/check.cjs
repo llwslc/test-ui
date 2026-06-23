@@ -80,6 +80,23 @@ const AUDIT = () => {
       }
     }
 
+    // a CONTROL whose center sits outside the panel with NO scroller to reveal it = hidden/clipped away
+    // (the toolbar-overflow class the spill check above misses, because the panel hard-clips it out of view)
+    for (const el of panel.querySelectorAll('button, a[href], [role="button"], input:not([type="hidden"]), select, textarea')) {
+      if (!vis(el)) continue;
+      const r = R.get(el);
+      if (!r || r.width < 4 || r.height < 4 || srOnly(el, r)) continue;
+      const mx = (r.left + r.right) / 2, my = (r.top + r.bottom) / 2;
+      if (mx <= pr.right + 1 && mx >= pr.left - 1 && my <= pr.bottom + 1 && my >= pr.top - 1) continue;
+      let scrollable = false;
+      for (let p = el.parentElement; p && p !== panel.parentElement; p = p.parentElement) {
+        const c = cs(p);
+        if (/(auto|scroll)/.test(c.overflowX + c.overflowY) && (p.scrollWidth > p.clientWidth + 2 || p.scrollHeight > p.clientHeight + 2)) { scrollable = true; break; }
+        if (p === panel) break;
+      }
+      if (!scrollable) out.push(`HIGH   ${id}  control off-panel (clipped/hidden, no scroll to reveal): ${desc(el)}`);
+    }
+
     const parts = els.filter((el) => {
       if (!vis(el) || overlapExempt(el)) return false;
       const r = R.get(el);
@@ -108,16 +125,27 @@ const AUDIT = () => {
   let kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
   if (ONLY) kits = kits.filter((k) => k === ONLY);
 
+  // Audit at a roomy AND a tight-panel desktop width. The demo is a fixed 2-col
+  // grid down to 768px, so panels only get narrow as the window shrinks — a bar
+  // that overflows/clips its controls (toolbar-overflow class) shows up only at
+  // the tight width, never at 1440. Both stay in desktop mode (> 768).
+  const WIDTHS = [1440, 1100];
   let total = 0;
   for (const kit of kits) {
     await page.goto(URL, { waitUntil: 'networkidle' });
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-    await page.reload({ waitUntil: 'networkidle' });
-    await page.waitForTimeout(700);
-    const findings = await page.evaluate(AUDIT);
     console.log(`\n=== ${kit} ===`);
-    if (!findings.length) console.log('  clean');
-    else { findings.forEach((f) => console.log('  ' + f)); total += findings.length; }
+    let kitN = 0;
+    for (const w of WIDTHS) {
+      await page.setViewportSize({ width: w, height: 950 });
+      await page.reload({ waitUntil: 'networkidle' });
+      await page.waitForTimeout(500);
+      const findings = await page.evaluate(AUDIT);
+      findings.forEach((f) => console.log(`  @${w} ${f}`));
+      kitN += findings.length;
+    }
+    if (!kitN) console.log('  clean');
+    total += kitN;
   }
   await browser.close();
   console.log(`\nRESULT: ${total === 0 ? 'PASS (no geometry faults)' : total + ' finding(s) — HIGH = fix, REVIEW = confirm with a corner crop'}`);

@@ -1,6 +1,6 @@
 ---
 name: kit-visual
-description: Rendered-GEOMETRY gate for theme kits — measure every demo panel's element boxes in a real browser and flag objective layout faults the source-text gates and the eye both miss: an element collapsed to a 0 dimension, content clipped out of its panel, or a decoration/control overlapping something it shouldn't. The other gates lint CSS text (kit-lint=tokens, kit-distinct/kit-parity=structure); kit-states only SAVES screenshots. This one asserts on the layout. Run when accepting or QAing a kit, especially after changing a frame primitive, panel padding, or a decoration's size/position.
+description: Rendered-GEOMETRY gate for theme kits — measure every demo panel's element boxes in a real browser and flag objective layout faults the source-text gates and the eye both miss: an element collapsed to a 0 dimension, content clipped out of its panel — including a control pushed off-panel and hidden only when the window is narrow, so it audits at a roomy AND a tight desktop width (a toolbar/bar that overflows and clips a button shows up only at the tight one) — or a decoration/control overlapping something it shouldn't. The other gates lint CSS text (kit-lint=tokens, kit-distinct/kit-parity=structure); kit-states only SAVES screenshots. This one asserts on the layout. Run when accepting or QAing a kit, especially after changing a frame primitive, panel padding, or a decoration's size/position.
 ---
 
 # kit-visual

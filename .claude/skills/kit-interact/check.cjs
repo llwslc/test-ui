@@ -182,6 +182,42 @@ const setKit = async (page, kit) => {
       if (restyled.length) out.push(`HIGH  ${kit}  ${restyled.length} disabled control(s) restyle on hover — guard :hover with :not(:disabled):not([data-disabled]): ${[...new Set(restyled)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  disabled-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
+      // a SELECTED/open segmented control (ToggleGroup toggle, Toolbar button) must KEEP its look on hover —
+      // the selected fill must not lose to an over-specific :hover (core.md §5). Force :hover via CDP (real
+      // hover is flaky headless) and disable motion so the read is the settled value, not a mid-fade sample.
+      await setKit(d, kit);
+      await d.emulateMedia({ reducedMotion: 'reduce' });
+      const cdp = await d.context().newCDPSession(d);
+      await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
+      const sigH = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color, c.boxShadow, c.filter, c.textShadow, c.getPropertyValue('--abyss-frame-ink').trim()].join('|'); };
+      const tags = await d.evaluate(() => {
+        const segish = (el) => /(-toggle\b|seg__btn|toolbar__btn|menubar__trigger)/.test(el.getAttribute('class') || '');
+        const list = [...document.querySelectorAll('[data-pressed], [aria-pressed="true"], [class*="toolbar__btn"].is-active')].filter((el) => {
+          if (el.tagName !== 'BUTTON' && el.getAttribute('role') !== 'button') return false;
+          if (!segish(el)) return false;
+          const r = el.getBoundingClientRect(), c = getComputedStyle(el);
+          return r.width > 4 && r.height > 4 && c.visibility !== 'hidden' && +c.opacity > 0.01;
+        });
+        return list.map((el, i) => { el.setAttribute('data-hovchk', 'h' + i); return 'h' + i; });
+      });
+      const drift = [];
+      for (const t of tags) {
+        const el = await d.$(`[data-hovchk="${t}"]`);
+        if (!el) continue;
+        const before = await el.evaluate(sigH);
+        const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
+        const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: `[data-hovchk="${t}"]` });
+        if (!nodeId) continue;
+        await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: ['hover'] });
+        await d.waitForTimeout(60);
+        const after = await el.evaluate(sigH);
+        await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
+        if (before !== after) drift.push(await el.evaluate((e) => (e.getAttribute('class') || e.tagName).replace(/[a-z0-9]+-/, '').slice(0, 24)));
+      }
+      await cdp.detach().catch(() => {});
+      if (drift.length) out.push(`HIGH  ${kit}  ${drift.length} selected control(s) change look on hover — selected/open fill loses to :hover; wrap the hover disabled-guard in :where() so it can't out-specify [data-pressed]: ${[...new Set(drift)].join(', ')}`);
+    } catch (e) { out.push(`WARN  ${kit}  selected-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    try {
       await setKit(d, kit);
       const sb = await d.evaluate(() => {
         const hrefs = [...document.querySelectorAll('[class*="sidebar__link"]')]
