@@ -197,6 +197,7 @@
   position: relative;
   max-width: 100%;
   padding: var(--bauhaus-modal-pad);
+  filter: var(--bauhaus-overlay-shadow, var(--bauhaus-cast-modal));
 }
 .bauhaus-modal__sigil {
   font-size: var(--bauhaus-fs-22);
@@ -230,10 +231,8 @@
 }
 
 /* ═══ Overlay mechanics ═══ */
-/* depth = a hard solid offset cast (no blur, no glow) on the un-clipped positioner */
 .bauhaus-lift {
   z-index: var(--bauhaus-z-dropdown);
-  filter: var(--bauhaus-overlay-shadow, var(--bauhaus-cast-pop));
 }
 .bauhaus-lift--sm {
   z-index: var(--bauhaus-z-tooltip);
@@ -244,15 +243,16 @@
 }
 /* entrance = a hard block-reveal wiping down from the top edge */
 .bauhaus-pop {
+  filter: var(--bauhaus-overlay-shadow, var(--bauhaus-cast-pop));
   transition:
     opacity var(--bauhaus-dur) var(--bauhaus-ease-out),
     clip-path var(--bauhaus-dur) var(--bauhaus-ease-out);
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(0 -8px -8px 0);
 }
 .bauhaus-pop[data-starting-style],
 .bauhaus-pop[data-ending-style] {
   opacity: 0;
-  clip-path: inset(0 0 100% 0);
+  clip-path: inset(0 -8px 100% 0);
 }
 /* connector = a solid black triangle notch pointing at the trigger (Base UI Arrow) */
 .bauhaus-connector {

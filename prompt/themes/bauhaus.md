@@ -34,7 +34,7 @@
 - 浮层连接件 = `ink` 纯黑实心三角缺口，底边贴弹层边、尖端指向触发器。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接走 CSS `border`，无双层 `::before`、无 bevel、无渐变。
 - 边框层级：页内 idle 与浮层一律 `ink` 纯黑，统一黑网格；状态升靠**加色**——焦点蓝环、选中实填；语义变体改 FILL 色、border 恒黑。
-- 抬升原语 `.bauhaus-lift`：drop-shadow 硬切偏移实影，输入变量 `--bauhaus-overlay-shadow`；默认 `cast-pop`，模态 `cast-modal`，Tooltip `cast-sm`。无辉光层。
+- 抬升：硬切偏移实影 drop-shadow 挂浮层自身（弹层、模态）、不挂 positioner，入场 clip-path 在投影侧留出、不裁影；输入变量 `--bauhaus-overlay-shadow`，默认 `cast-pop`、模态 `cast-modal`、Tooltip `cast-sm`；`.bauhaus-lift` 仅作 z 档。无辉光层。
 - 基本形 marker 母题：圆、三角、方三原形作 Panel 角标、tone 图记、列表标记与招牌，经输入变量换色。
 
 ## 4. 氛围层
