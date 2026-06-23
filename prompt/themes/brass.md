@@ -34,7 +34,7 @@
 - 滚花 `--brass-knurl`：repeating-linear-gradient 斜纹，用于 Switch 旋钮、Slider 旋钮缘、滚动条 thumb。
 - 浮层抬升原语 `.brass-lift`，挂 positioner 与模态 popup 且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 双层，输入变量 `--brass-overlay-shadow / -glow`；默认 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，Tooltip 小档，Alert 按 tone。
 - 边框层级：页内 idle = `bezel-dim`；浮层 = `bezel-strong`，即 plate 默认；状态升 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 与 fill。
-- 浮层连接件 = `primary` 黄铜实心三角缺口，底边贴弹层边、尖端指向触发器。
+- 浮层连接件 = 2px `primary` 黄铜线，长度取 `--brass-overlay-gap` 跨缝连触发器。
 
 ## 4. 氛围层
 

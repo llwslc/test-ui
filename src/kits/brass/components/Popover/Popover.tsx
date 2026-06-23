@@ -15,7 +15,7 @@ export interface PopoverProps {
   className?: string;
 }
 
-export function Popover({ trigger, title, children, side = "bottom", align = "center", sideOffset = 6, className }: PopoverProps) {
+export function Popover({ trigger, title, children, side = "bottom", align = "center", sideOffset = 8, className }: PopoverProps) {
   return (
     <BasePopover.Root>
       <BasePopover.Trigger render={trigger} />

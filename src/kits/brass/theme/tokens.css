@@ -173,6 +173,7 @@
   --brass-popup-w: 220px;
   --brass-popup-h: calc(var(--brass-control-h) * 7);
   --brass-tooltip-w: 240px;
+  --brass-overlay-gap: 8px;
   --brass-popover-w: 284px;
   --brass-preview-w: 320px;
   --brass-nav-w: 440px;
