@@ -59,7 +59,7 @@
 - **elevation** —— 不裁形状的抬升层，挂 drop-shadow + 辉光，经输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态、Toast 挂 Popup、Root。
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
-- **connector** —— Base UI 的 Arrow 连触发器：四方向定位、与弹层边框同色、真正跨过 `sideOffset` 缝隙贴到触发器；形状（细线或三角缺口）由 theme 定。
+- **connector** —— Base UI 的 Arrow 连触发器：四方向定位、与弹层边框同色、跨过 `sideOffset` 缝隙贴到触发器；形状由 theme 定。
 - **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四向都由 `side` 驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
 - **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）包其列表内容；上限 `min(var(--available-height), var(--<kit>-popup-h))` 挂该 viewport，`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`，超出即滚，`overscroll-behavior: contain`。框面／底板不自己当滚动器，只该 viewport 滚。
 - **滚动条**：页面与一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色，macOS 滑动才现）；弹层列表的常驻条即上条 ScrollArea「popup」型的自绘 DOM 条（viewport `scrollbar-width: none` 藏原生），跑满全高，仅 viewport 带 `data-has-overflow-y` 时给它 `padding-right` 让内容避开条。宽度、thumb 配色 → theme。
