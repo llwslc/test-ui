@@ -184,6 +184,22 @@
   width: 100%;
   height: 1.5px;
 }
+.abyss-connector[data-open] {
+  animation: abyss-connector-in var(--abyss-dur) var(--abyss-ease-out);
+}
+.abyss-connector[data-closed] {
+  animation: abyss-connector-out var(--abyss-dur) var(--abyss-ease-out) forwards;
+}
+@keyframes abyss-connector-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes abyss-connector-out {
+  to {
+    opacity: 0;
+  }
+}
 
 .abyss-separator {
   border: 0;

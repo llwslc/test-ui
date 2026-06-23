@@ -175,6 +175,22 @@
 .brass-connector[data-side="right"] {
   left: calc(-1 * var(--brass-overlay-gap));
 }
+.brass-connector[data-open] {
+  animation: brass-connector-in var(--brass-dur) var(--brass-ease);
+}
+.brass-connector[data-closed] {
+  animation: brass-connector-out var(--brass-dur) var(--brass-ease) forwards;
+}
+@keyframes brass-connector-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes brass-connector-out {
+  to {
+    opacity: 0;
+  }
+}
 
 /* ── Modal viewport & backdrop (Dialog / AlertDialog) ─── */
 .brass-viewport {
