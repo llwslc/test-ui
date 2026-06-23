@@ -1,5 +1,6 @@
 .nova-toolbar {
   --nova-surface-border: var(--nova-line);
+  --nova-surface-clip: var(--nova-clip-9);
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;

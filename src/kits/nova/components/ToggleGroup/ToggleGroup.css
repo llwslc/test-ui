@@ -5,6 +5,7 @@
   padding: var(--nova-space-1);
   gap: var(--nova-space-1);
   --nova-surface-border: var(--nova-line);
+  --nova-surface-clip: var(--nova-clip-9);
 }
 
 .nova-toggle-wrap {

@@ -8,6 +8,7 @@
 .nova-accordion__item {
   --nova-surface-border: var(--nova-line);
   --nova-surface-fill: var(--nova-surface);
+  --nova-surface-clip: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-accordion__item:hover {

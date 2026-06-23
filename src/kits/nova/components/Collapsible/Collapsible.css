@@ -3,6 +3,7 @@
   width: 100%;
   --nova-surface-border: var(--nova-line);
   --nova-surface-fill: var(--nova-surface);
+  --nova-surface-clip: var(--nova-clip-9);
 }
 .nova-collapsible:has([data-disabled]) {
   opacity: var(--nova-disabled-opacity);

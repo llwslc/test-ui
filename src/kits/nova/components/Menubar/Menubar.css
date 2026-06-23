@@ -1,5 +1,6 @@
 .nova-menubar {
   --nova-surface-border: var(--nova-line);
+  --nova-surface-clip: var(--nova-clip-9);
   display: inline-flex;
   align-items: center;
   gap: var(--nova-space-1);
