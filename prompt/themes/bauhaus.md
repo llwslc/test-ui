@@ -31,7 +31,7 @@
 
 - 形状 = **锐角矩形 + 正圆**，无 clip-path、无圆角矩形过渡。半径阶梯二元：`--bauhaus-r-frame / -control / -chip` 全 `0`，硬网格锐角；`--bauhaus-r-round 999px` 给正圆即 Radio、Switch 旋钮、状态点、圆形 marker；组件不裸写 radius。
 - 尺度走**描边粗细**而非圆角，阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色选：细分隔 = hair，控件与容器 = default，面板与段箱 = bold，Dialog、AlertDialog、Drawer、Hero = heavy；组件不裸写 border-width。
-- 浮层连接件 = `ink` 纯黑实心三角缺口，底边贴弹层边、尖端指向触发器。
+- 浮层连接件 = 纸面填充、`ink` 描边的三角尾，尖端指向触发器。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接走 CSS `border`，无双层 `::before`、无 bevel、无渐变。
 - 边框层级：页内 idle 与浮层一律 `ink` 纯黑，统一黑网格；状态升靠**加色**——焦点蓝环、选中实填；语义变体改 FILL 色、border 恒黑。
 - 抬升：硬切偏移实影 drop-shadow 挂浮层自身（弹层、模态）、不挂 positioner，入场 clip-path 在投影侧留出、不裁影；输入变量 `--bauhaus-overlay-shadow`，默认 `cast-pop`、模态 `cast-modal`、Tooltip `cast-sm`；`.bauhaus-lift` 仅作 z 档。无辉光层。

@@ -254,35 +254,32 @@
   opacity: 0;
   clip-path: inset(0 -8px 100% 0);
 }
-/* connector = a solid black triangle notch pointing at the trigger (Base UI Arrow) */
+/* connector = an ink-edged paper tail (rotated square, half-tucked behind the popup) */
 .bauhaus-connector {
-  width: 0;
-  height: 0;
-  background: none;
+  width: var(--bauhaus-space-2);
+  height: var(--bauhaus-space-2);
+  background: var(--bauhaus-surface-popup);
+  transform: rotate(45deg);
 }
 .bauhaus-connector[data-side="top"] {
-  bottom: calc(-1 * var(--bauhaus-space-2));
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: var(--bauhaus-space-2) solid var(--bauhaus-ink);
+  bottom: calc(-1 * var(--bauhaus-space-1));
+  border-right: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="bottom"] {
-  top: calc(-1 * var(--bauhaus-space-2));
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: var(--bauhaus-space-2) solid var(--bauhaus-ink);
+  top: calc(-1 * var(--bauhaus-space-1));
+  border-left: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-top: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="left"] {
-  right: calc(-1 * var(--bauhaus-space-2));
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-left: var(--bauhaus-space-2) solid var(--bauhaus-ink);
+  right: calc(-1 * var(--bauhaus-space-1));
+  border-top: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-right: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="right"] {
-  left: calc(-1 * var(--bauhaus-space-2));
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-right: var(--bauhaus-space-2) solid var(--bauhaus-ink);
+  left: calc(-1 * var(--bauhaus-space-1));
+  border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-left: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
 /* modal scaffold */
 .bauhaus-viewport {
