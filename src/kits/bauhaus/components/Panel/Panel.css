@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 .bauhaus-panel--wide {
-  grid-column: span 2;
+  grid-column: 1 / -1;
 }
 .bauhaus-panel__head {
   display: flex;

@@ -8,8 +8,9 @@ const PORT = process.argv[2] || '5273';
 const URL = `http://127.0.0.1:${PORT}/`;
 const ONLY = process.argv[3];
 
-const AUDIT = () => {
+const AUDIT = (vw) => {
   const out = [];
+  const MOBILE = vw <= 480;
   const cs = (el) => getComputedStyle(el);
   const vis = (el) => { const c = cs(el); return c.display !== 'none' && c.visibility !== 'hidden' && +c.opacity > 0.01; };
   const ownText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
@@ -50,6 +51,19 @@ const AUDIT = () => {
     if (pr.width < 4) continue;
     const els = [...panel.querySelectorAll('*')];
     const R = new Map(els.map((e) => [e, e.getBoundingClientRect()]));
+
+    if (MOBILE) {
+      let contentBottom = pr.top;
+      for (const el of els) {
+        if (!vis(el)) continue;
+        const r = R.get(el);
+        if (r.width < 1 || r.height < 1 || srOnly(el, r)) continue;
+        if (!(isContent(el) || (el.children.length === 0 && hasPaint(el)))) continue;
+        if (r.bottom > contentBottom) contentBottom = r.bottom;
+      }
+      const dead = pr.bottom - contentBottom;
+      if (dead > 120) out.push(`HIGH   ${id}  dead space: ${Math.round(dead)}px empty below content on mobile (panel not collapsing — wide/span panels must use grid-column 1/-1, not a fixed span)`);
+    }
 
     for (const vp of panel.querySelectorAll('[class*="scrollarea__viewport"]')) {
       if (!vis(vp)) continue;
@@ -125,11 +139,7 @@ const AUDIT = () => {
   let kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
   if (ONLY) kits = kits.filter((k) => k === ONLY);
 
-  // Audit at a roomy AND a tight-panel desktop width. The demo is a fixed 2-col
-  // grid down to 768px, so panels only get narrow as the window shrinks — a bar
-  // that overflows/clips its controls (toolbar-overflow class) shows up only at
-  // the tight width, never at 1440. Both stay in desktop mode (> 768).
-  const WIDTHS = [1440, 1100];
+  const WIDTHS = [1440, 1100, 390];
   let total = 0;
   for (const kit of kits) {
     await page.goto(URL, { waitUntil: 'networkidle' });
@@ -140,7 +150,7 @@ const AUDIT = () => {
       await page.setViewportSize({ width: w, height: 950 });
       await page.reload({ waitUntil: 'networkidle' });
       await page.waitForTimeout(500);
-      const findings = await page.evaluate(AUDIT);
+      const findings = await page.evaluate(AUDIT, w);
       findings.forEach((f) => console.log(`  @${w} ${f}`));
       kitN += findings.length;
     }

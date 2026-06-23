@@ -1,6 +1,6 @@
 ---
 name: kit-visual
-description: Rendered-GEOMETRY gate for theme kits — measure every demo panel's element boxes in a real browser and flag objective layout faults the source-text gates and the eye both miss: an element collapsed to a 0 dimension, content clipped out of its panel — including a control pushed off-panel and hidden only when the window is narrow, so it audits at a roomy AND a tight desktop width (a toolbar/bar that overflows and clips a button shows up only at the tight one) — or a decoration/control overlapping something it shouldn't. The other gates lint CSS text (kit-lint=tokens, kit-distinct/kit-parity=structure); kit-states only SAVES screenshots. This one asserts on the layout. Run when accepting or QAing a kit, especially after changing a frame primitive, panel padding, or a decoration's size/position.
+description: Rendered-GEOMETRY gate for theme kits — measure every demo panel's element boxes in a real browser and flag objective layout faults the source-text gates and the eye both miss: an element collapsed to a 0 dimension, content clipped out of its panel — including a control pushed off-panel and hidden only when the window is narrow, so it audits at a roomy AND a tight desktop width (a toolbar/bar that overflows and clips a button shows up only at the tight one) PLUS a phone width — where a panel that fails to collapse to one column leaves a big dead band of empty space below its content (a wide panel using a fixed grid-column span instead of 1/-1) — or a decoration/control overlapping something it shouldn't. The other gates lint CSS text (kit-lint=tokens, kit-distinct/kit-parity=structure); kit-states only SAVES screenshots. This one asserts on the layout. Run when accepting or QAing a kit, especially after changing a frame primitive, panel padding, a decoration's size/position, or the panel grid / its mobile collapse.
 ---
 
 # kit-visual
@@ -43,6 +43,13 @@ Exit 1 if any finding.
   marker / meta tag / a corner-most checkbox. REVIEW (not HIGH) because a hollow
   bordered decoration *overstates* its bbox — confirm with a 4× corner crop before
   fixing.
+- **DEAD SPACE (HIGH, phone width only)** — at 390px the grid is one column, so a
+  panel should hug its content; >120px of empty space below the last content box
+  means the panel didn't collapse. Caught a wide panel using `grid-column: span 2`
+  (fixed) instead of `1 / -1` (adaptive) — `span 2` synthesises an implicit 2nd
+  column in the collapsed grid, so panels pair up per row and the shorter stretches
+  to its neighbour's height. Desktop-exempt: there equal-height cards in a 2-col row
+  make that dead space intentional, so the check fires only on the mobile pass.
 
 ## What it excludes
 
@@ -52,9 +59,10 @@ overlays (Base UI slider/checkbox); and by-design stacked parts / ornaments matc
 by class — control sub-parts that are *meant* to overlap (`__thumb`/`__track`,
 `__indicator`/`__segments`/`__range`/`__fill`/`__progress`) and sparse-bbox flourishes
 (`__status`/`__dot`/`__moon`/`__tendril`/`__corner`/`__mark`/`__glyph`/`__rivet`/
-`__scan`/`__sheen`/`__glow`/`__tick`). It runs clean on the current
-NOVA/ABYSS/BRASS demos; re-introducing the Separator collapse, the oversized corner
-bracket, or an unbounded ScrollArea makes it fail, as designed.
+`__scan`/`__sheen`/`__glow`/`__tick`). It runs clean on all live kit
+demos; re-introducing the Separator collapse, the oversized corner bracket, an
+unbounded ScrollArea, or a wide panel's fixed `grid-column: span 2` (which won't
+collapse on mobile) makes it fail, as designed.
 
 Pair with kit-lint + kit-distinct + kit-parity + kit-states when accepting a kit:
 those cover tokens, anti-reskin, functional parity and rendered states; this covers
