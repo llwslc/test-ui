@@ -78,7 +78,7 @@
 
 - **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充；Tab、NavMenu 另带独立选中指示。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
-- **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文；选中、开启态压过悬停。
+- **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。
 - **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整件提示，分段、触发条用 `inset 0 0 0 1px` 内描边，输入框边框点亮 + 字段级提示；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
 - **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行单层 dim、opacity 不叠两层。
 

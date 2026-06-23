@@ -79,7 +79,7 @@
   outline: none;
 }
 .bauhaus-nav__content {
-  padding: var(--bauhaus-space-3);
+  padding: var(--bauhaus-space-4);
 }
 .bauhaus-nav__grid {
   display: grid;
