@@ -191,8 +191,8 @@ const setKit = async (page, kit) => {
       await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
       const sigH = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color, c.boxShadow, c.filter, c.textShadow, c.getPropertyValue('--abyss-frame-ink').trim()].join('|'); };
       const tags = await d.evaluate(() => {
-        const segish = (el) => /(-toggle\b|seg__btn|toolbar__btn|menubar__trigger)/.test(el.getAttribute('class') || '');
-        const list = [...document.querySelectorAll('[data-pressed], [aria-pressed="true"], [class*="toolbar__btn"].is-active')].filter((el) => {
+        const segish = (el) => /(-toggle\b|seg__btn|toolbar__btn|menubar__trigger|-tab\b|tabs__tab)/.test(el.getAttribute('class') || '');
+        const list = [...document.querySelectorAll('[data-pressed], [aria-pressed="true"], [data-active], [class*="toolbar__btn"].is-active')].filter((el) => {
           if (el.tagName !== 'BUTTON' && el.getAttribute('role') !== 'button') return false;
           if (!segish(el)) return false;
           const r = el.getBoundingClientRect(), c = getComputedStyle(el);

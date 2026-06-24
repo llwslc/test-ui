@@ -54,7 +54,7 @@
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease);
 }
-.nova-tabs__tab:not(:disabled):not([data-disabled]):hover {
+.nova-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--nova-text);
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft));
 }

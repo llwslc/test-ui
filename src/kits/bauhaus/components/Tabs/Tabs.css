@@ -32,7 +32,7 @@
   align-items: center;
   font-size: var(--bauhaus-fs-18);
 }
-.bauhaus-tab:not(:disabled):not([data-disabled]):hover {
+.bauhaus-tab:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--bauhaus-text-bright);
 }
 .bauhaus-tab[data-active],

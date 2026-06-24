@@ -50,7 +50,7 @@
   color: var(--abyss-text-dim);
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-tabs__tab:not(:disabled):not([data-disabled]):hover {
+.abyss-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--abyss-text);
 }
 .abyss-tabs__tab[data-active] {
