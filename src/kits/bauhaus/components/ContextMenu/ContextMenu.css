@@ -1,7 +1,14 @@
 .bauhaus-context-zone {
+  display: grid;
+  place-items: center;
+  gap: var(--bauhaus-space-2);
+  min-height: var(--bauhaus-contextmenu-min-h);
+  padding: var(--bauhaus-space-7);
+  text-align: center;
   background: var(--bauhaus-surface-zone);
   border: var(--bauhaus-stroke) dashed var(--bauhaus-ink);
   border-radius: var(--bauhaus-r-control);
+  cursor: context-menu;
   transition: background var(--bauhaus-dur) var(--bauhaus-ease);
 }
 .bauhaus-context-zone[data-popup-open] {

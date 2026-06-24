@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: var(--brass-button-h-lg);
+  min-height: var(--brass-contextmenu-min-h);
   padding: var(--brass-space-6) var(--brass-space-4);
   text-align: center;
   cursor: context-menu;

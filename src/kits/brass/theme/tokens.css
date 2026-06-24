@@ -177,6 +177,7 @@
   --brass-popover-w: 284px;
   --brass-preview-w: 320px;
   --brass-navmenu-w: 440px;
+  --brass-contextmenu-min-h: 132px;
   --brass-dialog-w: var(--shell-dialog-w);
   --brass-alert-w: var(--shell-alert-w);
   --brass-drawer-w: var(--shell-drawer-w);
