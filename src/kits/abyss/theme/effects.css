@@ -96,22 +96,22 @@
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
-.abyss-eye {
+.abyss-switch__eye {
   display: inline-block;
   line-height: 0;
   filter: drop-shadow(0 0 0 transparent);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-eye svg {
+.abyss-switch__eye svg {
   display: block;
   overflow: visible;
 }
-.abyss-eye .abyss-eye__sclera {
+.abyss-switch__eye .abyss-switch__eye-sclera {
   fill: var(--abyss-inset);
   stroke: var(--abyss-ink-strong);
   stroke-width: 1.4;
 }
-.abyss-eye .abyss-eye__iris {
+.abyss-switch__eye .abyss-switch__eye-iris {
   fill: var(--abyss-glow);
   transform-box: fill-box;
   transform-origin: center;
@@ -121,14 +121,14 @@
     transform var(--abyss-dur) var(--abyss-ease),
     opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-eye .abyss-eye__pupil {
+.abyss-switch__eye .abyss-switch__eye-pupil {
   fill: var(--abyss-void);
   transform-box: fill-box;
   transform-origin: center;
   transform: scaleY(0.06);
   transition: transform var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-eye .abyss-eye__lid {
+.abyss-switch__eye .abyss-switch__eye-lid {
   fill: none;
   stroke: var(--abyss-ink-strong);
   stroke-width: 1.6;

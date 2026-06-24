@@ -1,4 +1,4 @@
-.abyss-check {
+.abyss-checkbox {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: var(--abyss-round-4);
@@ -15,12 +15,12 @@
   filter: drop-shadow(0 0 0 transparent);
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-check__sigil {
+.abyss-checkbox__sigil {
   width: var(--abyss-checkbox-glyph);
   height: var(--abyss-checkbox-glyph);
   overflow: visible;
 }
-.abyss-check__mark {
+.abyss-checkbox__mark {
   fill: none;
   stroke: var(--abyss-glow);
   stroke-width: 1.7;
@@ -30,39 +30,39 @@
   stroke-dashoffset: 1;
   transition: stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease);
 }
-.abyss-check__bar {
+.abyss-checkbox__bar {
   stroke: var(--abyss-glow);
   stroke-width: 2.2;
   stroke-linecap: round;
   opacity: 0;
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-check:hover {
+.abyss-checkbox:hover {
   --abyss-frame-ink: var(--abyss-glow-a30);
 }
-.abyss-check[data-checked],
-.abyss-check[data-indeterminate] {
+.abyss-checkbox[data-checked],
+.abyss-checkbox[data-indeterminate] {
   --abyss-frame-ink: var(--abyss-glow-a55);
   filter: var(--abyss-aura-mark);
 }
-.abyss-check[data-checked] .abyss-check__mark {
+.abyss-checkbox[data-checked] .abyss-checkbox__mark {
   stroke-dashoffset: 0;
 }
-.abyss-check[data-indeterminate] .abyss-check__bar {
+.abyss-checkbox[data-indeterminate] .abyss-checkbox__bar {
   opacity: 1;
 }
-.abyss-check:focus-visible {
+.abyss-checkbox:focus-visible {
   outline: none;
   --abyss-frame-ink: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
-.abyss-check[data-disabled] {
+.abyss-checkbox[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
   filter: grayscale(0.5);
 }
 
-.abyss-check-field {
+.abyss-checkbox-field {
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-3);
@@ -71,12 +71,12 @@
   font-size: var(--abyss-fs-15);
   color: var(--abyss-text);
 }
-.abyss-check-field:has(.abyss-check[data-disabled]) {
+.abyss-checkbox-field:has(.abyss-checkbox[data-disabled]) {
   cursor: not-allowed;
 }
-.abyss-check-field:has(.abyss-check[data-disabled]) .abyss-check-field__label {
+.abyss-checkbox-field:has(.abyss-checkbox[data-disabled]) .abyss-checkbox-field__label {
   opacity: var(--abyss-disabled-opacity);
 }
-.abyss-check-field__label {
+.abyss-checkbox-field__label {
   user-select: none;
 }

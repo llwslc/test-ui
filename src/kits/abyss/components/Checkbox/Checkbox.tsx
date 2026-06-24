@@ -15,25 +15,25 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const box = (
     <BaseCheckbox.Root
       id={id ?? autoId}
-      className={cx("abyss-check abyss-frame", className)}
+      className={cx("abyss-checkbox abyss-frame", className)}
       {...props}
     >
-      <svg className="abyss-check__sigil" viewBox="0 0 28 28" aria-hidden>
+      <svg className="abyss-checkbox__sigil" viewBox="0 0 28 28" aria-hidden>
         <path
-          className="abyss-check__mark"
+          className="abyss-checkbox__mark"
           pathLength="1"
           d="M14 5 L19.3 21.3 L5.4 11.2 L22.6 11.2 L8.7 21.3 Z"
         />
-        <line className="abyss-check__bar" x1="8" y1="14" x2="20" y2="14" />
+        <line className="abyss-checkbox__bar" x1="8" y1="14" x2="20" y2="14" />
       </svg>
     </BaseCheckbox.Root>
   );
 
   if (label == null) return box;
   return (
-    <label className="abyss-check-field">
+    <label className="abyss-checkbox-field">
       {box}
-      <span className="abyss-cap abyss-check-field__label">{label}</span>
+      <span className="abyss-cap abyss-checkbox-field__label">{label}</span>
     </label>
   );
 }

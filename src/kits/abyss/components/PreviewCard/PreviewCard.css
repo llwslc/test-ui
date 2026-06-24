@@ -1,13 +1,13 @@
-.abyss-previewcard__positioner {
+.abyss-preview__positioner {
   z-index: var(--abyss-z-menu);
 }
 
-.abyss-previewcard__popup {
+.abyss-preview__popup {
   position: relative;
   width: var(--abyss-preview-w);
 }
 
-.abyss-previewcard__surface {
+.abyss-preview__surface {
   --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:
     var(--abyss-stone-grain),
@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-.abyss-previewcard__mark {
+.abyss-preview__mark {
   position: absolute;
   top: 9px;
   right: 11px;
@@ -33,12 +33,12 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-previewcard__popup[data-open] .abyss-previewcard__mark {
+.abyss-preview__popup[data-open] .abyss-preview__mark {
   color: var(--abyss-glow);
   filter: var(--abyss-aura-strong);
 }
 
-.abyss-previewcard__body {
+.abyss-preview__body {
   position: relative;
   color: var(--abyss-text);
   font-family: var(--abyss-font);

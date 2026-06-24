@@ -1,4 +1,4 @@
-.nova-ctxmenu__zone {
+.nova-context__zone {
   position: relative;
   display: grid;
   place-items: center;
@@ -21,21 +21,21 @@
     background var(--nova-dur) var(--nova-ease),
     outline-color var(--nova-dur) var(--nova-ease);
 }
-.nova-ctxmenu__zone:hover {
+.nova-context__zone:hover {
   background:
     repeating-linear-gradient(-45deg, transparent 0 9px, var(--nova-tint-faint) 9px 10px),
     var(--nova-surface-zone-hover);
 }
-.nova-ctxmenu__zone[data-popup-open] {
+.nova-context__zone[data-popup-open] {
   outline-color: var(--nova-primary);
 }
-.nova-ctxmenu__zone kbd {
+.nova-context__zone kbd {
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);
   color: var(--nova-text-dim);
   transition: color var(--nova-dur) var(--nova-ease);
 }
-.nova-ctxmenu__zone:hover kbd,
-.nova-ctxmenu__zone[data-popup-open] kbd {
+.nova-context__zone:hover kbd,
+.nova-context__zone[data-popup-open] kbd {
   color: var(--nova-primary);
 }

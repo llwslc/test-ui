@@ -1,4 +1,4 @@
-.abyss-ctxmenu__zone {
+.abyss-context__zone {
   position: relative;
   isolation: isolate;
   display: grid;
@@ -21,7 +21,7 @@
     outline-color var(--abyss-dur) var(--abyss-ease),
     color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-ctxmenu__zone::before {
+.abyss-context__zone::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -32,23 +32,23 @@
   pointer-events: none;
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-ctxmenu__zone:hover {
+.abyss-context__zone:hover {
   color: var(--abyss-text);
 }
-.abyss-ctxmenu__zone:hover::before {
+.abyss-context__zone:hover::before {
   opacity: 1;
 }
-.abyss-ctxmenu__zone[data-popup-open] {
+.abyss-context__zone[data-popup-open] {
   color: var(--abyss-glow);
   outline-color: var(--abyss-glow-a55);
 }
-.abyss-ctxmenu__zone kbd {
+.abyss-context__zone kbd {
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-12);
   color: var(--abyss-text-dim);
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-ctxmenu__zone:hover kbd,
-.abyss-ctxmenu__zone[data-popup-open] kbd {
+.abyss-context__zone:hover kbd,
+.abyss-context__zone[data-popup-open] kbd {
   color: var(--abyss-glow);
 }

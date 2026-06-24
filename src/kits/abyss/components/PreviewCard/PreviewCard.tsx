@@ -32,15 +32,15 @@ export function PreviewCard({
       <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner
-          className="abyss-elevation abyss-previewcard__positioner"
+          className="abyss-elevation abyss-preview__positioner"
           side={side}
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePreviewCard.Popup className="abyss-aura-pop abyss-previewcard__popup">
-            <span className="abyss-frame abyss-previewcard__surface">
-              <SigilIcon className="abyss-previewcard__mark" aria-hidden />
-              <div className="abyss-previewcard__body">{children}</div>
+          <BasePreviewCard.Popup className="abyss-aura-pop abyss-preview__popup">
+            <span className="abyss-frame abyss-preview__surface">
+              <SigilIcon className="abyss-preview__mark" aria-hidden />
+              <div className="abyss-preview__body">{children}</div>
             </span>
             <BasePreviewCard.Arrow className="abyss-connector" />
           </BasePreviewCard.Popup>

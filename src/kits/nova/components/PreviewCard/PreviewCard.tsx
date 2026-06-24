@@ -31,15 +31,15 @@ export function PreviewCard({
       <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner
-          className="nova-elevation nova-previewcard__positioner"
+          className="nova-elevation nova-preview__positioner"
           side={side}
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePreviewCard.Popup className="nova-anim-pop nova-previewcard__popup">
-            <span className="nova-surface nova-previewcard__surface">
+          <BasePreviewCard.Popup className="nova-anim-pop nova-preview__popup">
+            <span className="nova-surface nova-preview__surface">
               <span className="nova-scan" />
-              <div className="nova-previewcard__body">{children}</div>
+              <div className="nova-preview__body">{children}</div>
             </span>
             <BasePreviewCard.Arrow className="nova-connector" />
           </BasePreviewCard.Popup>

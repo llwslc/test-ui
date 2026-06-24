@@ -8,32 +8,32 @@
   cursor: pointer;
   border-radius: var(--abyss-round-4);
 }
-.abyss-switch .abyss-eye {
+.abyss-switch .abyss-switch__eye {
   width: var(--abyss-switch-w);
 }
-.abyss-switch[data-checked] .abyss-eye {
+.abyss-switch[data-checked] .abyss-switch__eye {
   filter: var(--abyss-aura-mark);
 }
-.abyss-switch[data-checked] .abyss-eye__iris {
+.abyss-switch[data-checked] .abyss-switch__eye-iris {
   transform: scaleY(1);
   opacity: 1;
 }
-.abyss-switch[data-checked] .abyss-eye__pupil {
+.abyss-switch[data-checked] .abyss-switch__eye-pupil {
   transform: scaleY(1);
 }
-.abyss-switch[data-checked] .abyss-eye__lid {
+.abyss-switch[data-checked] .abyss-switch__eye-lid {
   stroke: var(--abyss-glow-a55);
 }
-.abyss-switch:hover .abyss-eye__iris {
+.abyss-switch:hover .abyss-switch__eye-iris {
   opacity: 0.5;
 }
-.abyss-switch[data-checked]:hover .abyss-eye__iris {
+.abyss-switch[data-checked]:hover .abyss-switch__eye-iris {
   opacity: 1;
 }
 .abyss-switch:focus-visible {
   outline: none;
 }
-.abyss-switch:focus-visible .abyss-eye {
+.abyss-switch:focus-visible .abyss-switch__eye {
   filter: var(--abyss-aura-strong);
 }
 .abyss-switch[data-disabled] {

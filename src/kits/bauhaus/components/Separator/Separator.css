@@ -1,40 +1,40 @@
-.bauhaus-sep {
+.bauhaus-separator {
   background: var(--bauhaus-ink);
   border: 0;
 }
-.bauhaus-sep--horizontal {
+.bauhaus-separator--horizontal {
   width: 100%;
   height: var(--bauhaus-stroke-hair);
 }
-.bauhaus-sep--vertical {
+.bauhaus-separator--vertical {
   flex: 0 0 var(--bauhaus-stroke-hair);
   align-self: stretch;
   width: var(--bauhaus-stroke-hair);
 }
 
-.bauhaus-sep-label {
+.bauhaus-separator-label {
   display: flex;
   align-items: center;
   gap: var(--bauhaus-space-3);
   color: var(--bauhaus-text-dim);
 }
-.bauhaus-sep-label--vertical {
+.bauhaus-separator-label--vertical {
   flex-direction: column;
   align-self: stretch;
 }
-.bauhaus-sep-label__line {
+.bauhaus-separator-label__line {
   flex: 1;
   background: var(--bauhaus-ink);
 }
-.bauhaus-sep-label--horizontal .bauhaus-sep-label__line {
+.bauhaus-separator-label--horizontal .bauhaus-separator-label__line {
   height: var(--bauhaus-stroke-hair);
 }
-.bauhaus-sep-label--vertical .bauhaus-sep-label__line {
+.bauhaus-separator-label--vertical .bauhaus-separator-label__line {
   width: var(--bauhaus-stroke-hair);
 }
-.bauhaus-sep-label__text {
+.bauhaus-separator-label__text {
   flex: 0 0 auto;
 }
-.bauhaus-sep-label--vertical .bauhaus-sep-label__text {
+.bauhaus-separator-label--vertical .bauhaus-separator-label__text {
   writing-mode: vertical-rl;
 }

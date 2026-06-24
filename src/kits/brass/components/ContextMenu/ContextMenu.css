@@ -1,4 +1,4 @@
-.brass-ctx-zone {
+.brass-context-zone {
   --brass-plate-fill: var(--brass-surface-inset);
   --brass-plate-bevel: var(--brass-bevel-inset);
   --brass-plate-bezel: var(--brass-bezel-dim);
@@ -13,10 +13,10 @@
   user-select: none;
   transition: filter var(--brass-dur) var(--brass-ease);
 }
-.brass-ctx-zone:hover {
+.brass-context-zone:hover {
   --brass-plate-bezel: var(--brass-bezel);
 }
-.brass-ctx-zone[data-popup-open] {
+.brass-context-zone[data-popup-open] {
   --brass-plate-bezel: var(--brass-bezel-strong);
   filter: var(--brass-glow-focus);
 }

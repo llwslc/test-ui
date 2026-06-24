@@ -1,18 +1,18 @@
-.nova-previewcard__positioner {
+.nova-preview__positioner {
   z-index: var(--nova-z-menu);
 }
 
-.nova-previewcard__popup {
+.nova-preview__popup {
   position: relative;
   width: var(--nova-preview-w);
 }
 
-.nova-previewcard__surface {
+.nova-preview__surface {
   display: block;
   padding: var(--nova-space-4);
   overflow: hidden;
 }
 
-.nova-previewcard__body {
+.nova-preview__body {
   position: relative;
 }
