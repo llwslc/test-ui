@@ -13,8 +13,10 @@ The convention is `<kit>-<component>__<part>` — so the same component should c
 node .claude/skills/kit-naming/check.cjs
 ```
 
-Derives kits from `src/kits/*`. For each component dir present in all kits, computes the dominant `<kit>-<block>` class stem per kit (token refs `--<kit>-…` and shared primitives like `plate`/`lift`/`surface`/`list` excluded) and reports any component whose block name isn't identical across kits.
+Derives kits from `src/kits/*`. For each component dir present in all kits, computes the dominant `<kit>-<block>` class stem per kit and reports any component whose own block name isn't identical across kits. Excluded from the dominant: token refs (`--<kit>-…`, via lookbehind), a static primitive denylist, and — crucially — **any block used in ≥2 of a kit's components** (auto-detected shared-composition primitives: `seg` across 5 components, `modal` across Dialog/Drawer/AlertDialog, `disclosure`/`collapse` across Accordion+Collapsible, `menu` across Menu+Menubar+ContextMenu, `checkbox` across Checkbox+CheckboxGroup). A kit whose component is pure shared-skin reuse (no own block) is skipped, not flagged.
+
+This shared-exclusion is what keeps it from crying wolf: without it the gate flagged 11 components, but ~half were deliberate DRY skins (renaming `seg` would hit 5 components) and Dialog was a pure false positive (every kit uses `dialog` + shared `modal`). With it, only genuine per-component naming sloppiness surfaces.
 
 ## Reading the output
 
-`DIVERGENT` = the block name differs across kits. Most are real ("unify to the component name"), but some may be **intentional** — a deliberate motif name (abyss `eye` for Switch), a shared block (brass/bauhaus `modal` across Dialog/Drawer/AlertDialog), or reuse (brass `seg` for Menubar). So it's a **review** gate: confirm intent (git-blame) before renaming, per memory `audit-respect-intentional-exceptions`. Proven catch: against pre-1a63744 it flags `NavigationMenu: nova=navmenu brass=nav`.
+`DIVERGENT` = the component's OWN block name differs across kits — a real fix (unify to one name). Proven catch: against pre-1a63744 it flags `NavigationMenu: nova=navmenu brass=nav`. Still confirm with git-blame before renaming (memory `audit-respect-intentional-exceptions`), and watch for the item-vs-wrapper case (`toggle` item vs `togglegroup` wrapper) where the fix is to nest the item under the component block, not a flat merge (which would collide).

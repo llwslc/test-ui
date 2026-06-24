@@ -8,19 +8,36 @@ const compsOf = (k) => fs.readdirSync(path.join(ROOT, k, 'components')).filter((
 const compsByKit = Object.fromEntries(kits.map((k) => [k, new Set(compsOf(k))]));
 const shared = [...compsByKit[kits[0]]].filter((c) => kits.every((k) => compsByKit[k].has(c)));
 
-const dominantBlock = (kit, comp) => {
+const blockCounts = (kit, comp) => {
   const dir = path.join(ROOT, kit, 'components', comp);
-  let text = '';
-  for (const f of fs.readdirSync(dir)) if (/\.(tsx|css)$/.test(f)) text += fs.readFileSync(path.join(dir, f), 'utf8');
-  const re = new RegExp(`(?<![-\\w])${kit}-([a-z0-9]+(?:[-_][a-z0-9]+)*)`, 'g');
   const counts = {};
-  let m;
-  while ((m = re.exec(text))) {
-    const block = m[1].split(/__|-/)[0];
-    if (SHARED.has(block)) continue;
-    counts[block] = (counts[block] || 0) + 1;
+  for (const f of fs.readdirSync(dir)) {
+    if (!/\.(tsx|css)$/.test(f)) continue;
+    const text = fs.readFileSync(path.join(dir, f), 'utf8');
+    const re = new RegExp(`(?<![-\\w])${kit}-([a-z0-9]+(?:[-_][a-z0-9]+)*)`, 'g');
+    let m;
+    while ((m = re.exec(text))) {
+      const block = m[1].split(/__|-/)[0];
+      counts[block] = (counts[block] || 0) + 1;
+    }
   }
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  return counts;
+};
+
+// a block used in >= 2 of a kit's components is a SHARED composition primitive
+// (seg, modal, disclosure, list-item, …) — architecture, not a per-component name. Exclude it.
+const sharedBlocksByKit = {};
+for (const k of kits) {
+  const seen = {};
+  for (const c of compsByKit[k]) for (const b of Object.keys(blockCounts(k, c))) seen[b] = (seen[b] || 0) + 1;
+  sharedBlocksByKit[k] = new Set(Object.entries(seen).filter(([, n]) => n >= 2).map(([b]) => b));
+}
+
+const dominantBlock = (kit, comp) => {
+  const counts = blockCounts(kit, comp);
+  const sorted = Object.entries(counts)
+    .filter(([b]) => !SHARED.has(b) && !sharedBlocksByKit[kit].has(b))
+    .sort((a, b) => b[1] - a[1]);
   return sorted.length ? sorted[0][0] : null;
 };
 
