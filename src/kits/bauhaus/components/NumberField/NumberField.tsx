@@ -42,14 +42,14 @@ export function NumberField({
     >
       <BaseNumberField.Group className="bauhaus-numberfield__group">
         <BaseNumberField.Decrement
-          className="bauhaus-surface bauhaus-numberfield__step"
+          className="bauhaus-surface bauhaus-numberfield__btn"
           disabled={atMin}
         >
           <Minus />
         </BaseNumberField.Decrement>
         <BaseNumberField.Input className="bauhaus-surface bauhaus-numberfield__input" />
         <BaseNumberField.Increment
-          className="bauhaus-surface bauhaus-numberfield__step"
+          className="bauhaus-surface bauhaus-numberfield__btn"
           disabled={atMax}
         >
           <Plus />

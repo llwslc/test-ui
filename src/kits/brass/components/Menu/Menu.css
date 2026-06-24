@@ -1,32 +1,32 @@
-.brass-menu-trigger__label {
+.brass-menu__trigger-label {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.brass-menu-trigger__chevron {
+.brass-menu__trigger-chevron {
   color: var(--brass-text-dim);
   transition: transform var(--brass-dur) var(--brass-ease);
 }
-.brass-menu-trigger[data-popup-open] .brass-menu-trigger__chevron {
+.brass-menu__trigger[data-popup-open] .brass-menu__trigger-chevron {
   transform: rotate(180deg);
   color: var(--brass-primary);
 }
 
-.brass-menu-item__icon {
+.brass-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
   width: var(--brass-fs-15);
   color: var(--brass-text-dim);
   transition: color var(--brass-dur) var(--brass-ease);
 }
-.brass-list-item[data-highlighted] .brass-menu-item__icon,
-.brass-list-item:hover .brass-menu-item__icon {
+.brass-list-item[data-highlighted] .brass-menu__icon,
+.brass-list-item:hover .brass-menu__icon {
   color: var(--brass-primary);
 }
 
-.brass-menu-item__shortcut {
+.brass-menu__shortcut {
   flex: 0 0 auto;
   padding: 0 var(--brass-space-1);
   border-radius: var(--brass-round-xs);
@@ -42,7 +42,7 @@
 .brass-list-item--danger {
   color: var(--brass-danger);
 }
-.brass-list-item--danger .brass-menu-item__icon {
+.brass-list-item--danger .brass-menu__icon {
   color: var(--brass-danger);
 }
 .brass-list-item--danger[data-highlighted],
@@ -50,10 +50,10 @@
   background: var(--brass-danger-wash);
   color: var(--brass-danger);
 }
-.brass-list-item--danger[data-highlighted] .brass-menu-item__icon,
-.brass-list-item--danger:hover .brass-menu-item__icon {
+.brass-list-item--danger[data-highlighted] .brass-menu__icon,
+.brass-list-item--danger:hover .brass-menu__icon {
   color: var(--brass-danger);
 }
-.brass-list-item--danger .brass-menu-item__shortcut {
+.brass-list-item--danger .brass-menu__shortcut {
   color: var(--brass-danger-deep);
 }

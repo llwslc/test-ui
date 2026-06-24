@@ -8,16 +8,16 @@ export interface SwitchProps extends ComponentPropsWithoutRef<typeof BaseSwitch.
 export function Switch({ className, ...props }: SwitchProps) {
   return (
     <BaseSwitch.Root className={cx("abyss-switch", className)} {...props}>
-      <span className="abyss-switch__eye" aria-hidden>
+      <span className="abyss-switch__thumb" aria-hidden>
         <svg viewBox="0 0 48 28" width="48" height="28">
           <path
-            className="abyss-switch__eye-sclera"
+            className="abyss-switch__sclera"
             d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14C45 14 37 23 24 23C11 23 3 14 3 14Z"
           />
-          <circle className="abyss-switch__eye-iris" cx="24" cy="14" r="7.2" />
-          <circle className="abyss-switch__eye-pupil" cx="24" cy="14" r="3" />
-          <path className="abyss-switch__eye-lid" d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14" />
-          <path className="abyss-switch__eye-lid" d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14" />
+          <circle className="abyss-switch__iris" cx="24" cy="14" r="7.2" />
+          <circle className="abyss-switch__pupil" cx="24" cy="14" r="3" />
+          <path className="abyss-switch__lid" d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14" />
+          <path className="abyss-switch__lid" d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14" />
         </svg>
       </span>
     </BaseSwitch.Root>

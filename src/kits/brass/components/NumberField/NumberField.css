@@ -47,12 +47,12 @@
   color: var(--brass-text-mute);
 }
 
-.brass-numberfield__step {
+.brass-numberfield__btn {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--brass-numberfield-step);
+  width: var(--brass-numberfield-btn);
   height: 100%;
   padding: 0;
   border: 0;
@@ -65,28 +65,28 @@
     background var(--brass-dur) var(--brass-ease),
     color var(--brass-dur) var(--brass-ease);
 }
-.brass-numberfield__step:first-child {
+.brass-numberfield__btn:first-child {
   border-right: 1px solid var(--brass-line);
   border-radius: calc(var(--brass-round-md) - 2px) 0 0 calc(var(--brass-round-md) - 2px);
 }
-.brass-numberfield__step:last-child {
+.brass-numberfield__btn:last-child {
   border-left: 1px solid var(--brass-line);
   border-radius: 0 calc(var(--brass-round-md) - 2px) calc(var(--brass-round-md) - 2px) 0;
 }
-.brass-numberfield__step:hover {
+.brass-numberfield__btn:hover {
   background: var(--brass-tint);
   color: var(--brass-text-bright);
 }
-.brass-numberfield__step:active {
+.brass-numberfield__btn:active {
   background: var(--brass-tint-active);
 }
-.brass-numberfield__step:focus-visible {
+.brass-numberfield__btn:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 1px var(--brass-primary);
   color: var(--brass-text-bright);
 }
-.brass-numberfield__step[data-disabled],
-.brass-numberfield__step:disabled {
+.brass-numberfield__btn[data-disabled],
+.brass-numberfield__btn:disabled {
   opacity: var(--brass-disabled-opacity);
   color: var(--brass-text-mute);
   cursor: not-allowed;

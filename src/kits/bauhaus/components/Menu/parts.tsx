@@ -13,12 +13,12 @@ export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
 export function MenuItem({ icon, shortcut, tone, className, children, ...props }: MenuItemProps) {
   return (
     <BaseMenu.Item
-      className={cx("bauhaus-list-item", tone === "danger" && "bauhaus-menu-item--danger", className)}
+      className={cx("bauhaus-list-item", tone === "danger" && "bauhaus-list-item--danger", className)}
       {...props}
     >
-      {icon ? <span className="bauhaus-menu-item__icon">{icon}</span> : null}
+      {icon ? <span className="bauhaus-menu__icon">{icon}</span> : null}
       <span className="bauhaus-list-item__text">{children}</span>
-      {shortcut ? <span className="bauhaus-menu-item__shortcut">{shortcut}</span> : null}
+      {shortcut ? <span className="bauhaus-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.Item>
   );
 }
@@ -38,8 +38,8 @@ export function MenuSub({
 }) {
   return (
     <BaseMenu.SubmenuRoot>
-      <BaseMenu.SubmenuTrigger className="bauhaus-list-item bauhaus-menu-item__sub">
-        {icon ? <span className="bauhaus-menu-item__icon">{icon}</span> : null}
+      <BaseMenu.SubmenuTrigger className="bauhaus-list-item bauhaus-menu__sub">
+        {icon ? <span className="bauhaus-menu__icon">{icon}</span> : null}
         <span className="bauhaus-list-item__text">{label}</span>
         <span className="bauhaus-list-item__chevron">
           <ChevronRight />

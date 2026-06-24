@@ -25,9 +25,9 @@ export function MenuItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      {icon && <span className="brass-menu-item__icon">{icon}</span>}
+      {icon && <span className="brass-menu__icon">{icon}</span>}
       <span className="brass-list-item__text">{children}</span>
-      {shortcut && <span className="brass-menu-item__shortcut">{shortcut}</span>}
+      {shortcut && <span className="brass-menu__shortcut">{shortcut}</span>}
     </Menu.Item>
   );
 }

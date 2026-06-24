@@ -15,9 +15,9 @@ export function Menu({ trigger, children }: MenuProps) {
     <BaseMenu.Root>
       <BaseMenu.Trigger
         render={
-          <Button variant="ghost" className="brass-menu-trigger">
-            <span className="brass-menu-trigger__label">{trigger}</span>
-            <ChevronDown className="brass-menu-trigger__chevron" />
+          <Button variant="ghost" className="brass-menu__trigger">
+            <span className="brass-menu__trigger-label">{trigger}</span>
+            <ChevronDown className="brass-menu__trigger-chevron" />
           </Button>
         }
       />

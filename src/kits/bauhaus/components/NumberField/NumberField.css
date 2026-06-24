@@ -9,12 +9,12 @@
   width: fit-content;
   max-width: 100%;
 }
-.bauhaus-numberfield__step {
+.bauhaus-numberfield__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  width: var(--bauhaus-numberfield-step);
+  width: var(--bauhaus-numberfield-btn);
   height: var(--bauhaus-control-h);
   padding: 0;
   color: var(--bauhaus-text);
@@ -24,19 +24,19 @@
     background var(--bauhaus-dur) var(--bauhaus-ease),
     color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-numberfield__step:not(:disabled):not([data-disabled]):hover {
+.bauhaus-numberfield__btn:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-primary);
 }
-.bauhaus-numberfield__step:focus-visible {
+.bauhaus-numberfield__btn:focus-visible {
   outline: none;
   z-index: 1;
 }
-.bauhaus-numberfield__step:active {
+.bauhaus-numberfield__btn:active {
   background: var(--bauhaus-primary);
   color: var(--bauhaus-on-fill);
 }
-.bauhaus-numberfield__step:disabled {
+.bauhaus-numberfield__btn:disabled {
   opacity: var(--bauhaus-disabled-opacity);
   cursor: not-allowed;
 }
@@ -55,7 +55,7 @@
   outline: none;
   z-index: 1;
 }
-.bauhaus-numberfield__group:focus-within .bauhaus-numberfield__step,
+.bauhaus-numberfield__group:focus-within .bauhaus-numberfield__btn,
 .bauhaus-numberfield__group:focus-within .bauhaus-numberfield__input {
   --bauhaus-surface-border: var(--bauhaus-primary);
 }
@@ -65,6 +65,6 @@
 .bauhaus-numberfield[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
 }
-.bauhaus-numberfield[data-disabled] .bauhaus-numberfield__step {
+.bauhaus-numberfield[data-disabled] .bauhaus-numberfield__btn {
   cursor: not-allowed;
 }
