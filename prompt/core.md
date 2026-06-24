@@ -51,15 +51,15 @@
 ### 4.1 框与描边
 
 - 每个带框元素都走**同一个 frame 原语** `.<kit>-surface`、`.<kit>-frame`，经输入变量取 填充、边框色、形状，如 `--<kit>-surface-fill / -border / -clip`；组件**不裸写形状**，只覆盖输入变量。
-- `isolation: isolate` + 填充层 `z-index: -1`，让任意内容自动压在填充上，含裸文本。
-- **具体描边策略 → theme**：形状吃不了 CSS `border` 的，即 `clip-path`、`polygon`，用双层 frame——外层背景＝边框色 + 形状，`::before` 内缩 1px 填表面色；圆角矩形直接 `border` + `border-radius`。
+- `isolation: isolate`，让任意内容（含裸文本）自动压在填充之上。
+- **具体描边策略 → theme**：形状吃不了 CSS `border` 的，即 `clip-path`、`polygon`，用双层 frame——外层背景＝边框色 + 形状，`::before` 挂 `z-index: -1`、内缩一个边框宽、填表面色；圆角矩形直接 `border` + `border-radius`、填充即元素自身背景。
 - **边框层级**：页内控件、容器的 idle 边框一律安静 chrome 档；浮层 surface 一律强档；状态 hover、focus、选中 升档；语义变体按 tone 重染。档值 → theme。
 
 ### 4.2 浮层原语
 凡带弹出层的组件都用 `effects.css` 同一套原语拼，**把形状与阴影分两层**：阴影、辉光挂「不带形状裁剪」的外层，形状挂内层；同一元素不同时带这两层。
 - **elevation** —— 不裁形状的抬升层，挂 drop-shadow + 辉光，经输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态、Toast 挂 Popup、Root。
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
-- **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
+- **anim-pop** —— 锚定浮层统一开合动效：`[data-starting/ending-style]` 定起始、结束态 = 淡入 + 轻微入场变换；变换形式（位移、缩放、裁切等）与量 → theme。
 - **connector** —— Base UI 的 Arrow 连触发器：四方向定位、与弹层边框同色、跨过 `sideOffset` 缝隙贴到触发器；形状由 theme 定。
 - **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四向都由 `side` 驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
 - **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）包其列表内容；上限 `min(var(--available-height), var(--<kit>-popup-h))` 挂该 viewport，`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`，超出即滚，`overscroll-behavior: contain`。框面／底板不自己当滚动器，只该 viewport 滚。
@@ -81,7 +81,7 @@
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文；选中、开启态压过悬停（悬停的禁用守卫用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 形变瞬时到位（`transition-duration: 0s`），松手按 `dur` 回弹；具体形变 → theme。
-- **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整个控件一起亮，分段、触发条用 `inset 0 0 0 1px` 内描边，输入框聚焦时整框点亮、多块拼成的（如 NumberField 步进钮夹输入框）整组一起亮、不只亮中间一块；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
+- **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整个控件一起亮，分段、触发条收一圈内描边（宽度 → theme），输入框聚焦时整框点亮、多块拼成的（如 NumberField 步进钮夹输入框）整组一起亮、不只亮中间一块；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
 - **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行单层 dim、opacity 不叠两层。
 
 ## 6. 组件
