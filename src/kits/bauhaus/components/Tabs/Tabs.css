@@ -82,10 +82,6 @@
   .bauhaus-tabs__list {
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: none;
-  }
-  .bauhaus-tabs__list::-webkit-scrollbar {
-    display: none;
   }
   .bauhaus-tabs__tab {
     flex: 0 0 auto;
