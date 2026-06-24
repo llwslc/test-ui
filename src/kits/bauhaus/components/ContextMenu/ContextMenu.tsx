@@ -14,7 +14,7 @@ export interface ContextMenuProps {
 export function ContextMenu({ trigger, children, className }: ContextMenuProps) {
   return (
     <BaseContextMenu.Root>
-      <BaseContextMenu.Trigger className={cx("bauhaus-context-zone", className)}>
+      <BaseContextMenu.Trigger className={cx("bauhaus-context__zone", className)}>
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>

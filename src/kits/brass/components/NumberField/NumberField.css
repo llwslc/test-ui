@@ -1,10 +1,10 @@
-.brass-numberfield-root {
+.brass-numberfield {
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-2);
 }
 
-.brass-numberfield {
+.brass-numberfield__group {
   --brass-plate-bezel: var(--brass-bezel-dim);
   --brass-plate-fill: var(--brass-surface-inset);
   --brass-plate-bevel: var(--brass-bevel-inset);
@@ -15,17 +15,17 @@
   height: var(--brass-control-h);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
-.brass-numberfield:hover {
+.brass-numberfield__group:hover {
   --brass-plate-bezel: var(--brass-bezel);
 }
-.brass-numberfield:focus-within {
+.brass-numberfield__group:focus-within {
   --brass-plate-bezel: var(--brass-bezel-strong);
   filter: var(--brass-glow-focus);
 }
-.brass-numberfield:has(.brass-numberfield__input:disabled) {
+.brass-numberfield__group:has(.brass-numberfield__input:disabled) {
   opacity: var(--brass-disabled-opacity);
 }
-.brass-numberfield:has([data-invalid]) {
+.brass-numberfield__group:has([data-invalid]) {
   --brass-plate-bezel: var(--brass-danger-deep);
 }
 

@@ -1,4 +1,4 @@
-.bauhaus-radio-group {
+.bauhaus-radiogroup {
   display: flex;
   flex-direction: column;
   gap: var(--bauhaus-space-3);

@@ -14,7 +14,7 @@ export interface CheckboxProps extends ComponentPropsWithoutRef<
 export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const autoId = useId();
   const box = (
-    <span className="nova-checkbox-box">
+    <span className="nova-checkbox__box">
       <BaseCheckbox.Root
         id={id ?? autoId}
         className={cx("nova-checkbox", className)}

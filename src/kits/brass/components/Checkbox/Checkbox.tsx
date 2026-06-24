@@ -14,7 +14,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const box = (
     <BaseCheckbox.Root id={id ?? autoId} className={cx("brass-plate", "brass-checkbox", className)} {...props}>
       <BaseCheckbox.Indicator
-        className="brass-checkbox__ind"
+        className="brass-checkbox__indicator"
         render={(renderProps, state) => (
           <span {...renderProps}>{state.indeterminate ? <Minus /> : <Check />}</span>
         )}

@@ -31,7 +31,7 @@
 .bauhaus-otp__cell:disabled {
   cursor: not-allowed;
 }
-.bauhaus-otp__sep {
+.bauhaus-otp__divider {
   flex: 0 0 auto;
   width: var(--bauhaus-space-3);
   height: var(--bauhaus-stroke-bold);

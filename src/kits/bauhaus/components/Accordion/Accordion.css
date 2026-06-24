@@ -3,10 +3,10 @@
   flex-direction: column;
   border-top: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
-.bauhaus-accordion-item {
+.bauhaus-accordion__item {
   border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
-.bauhaus-accordion-header {
+.bauhaus-accordion__header {
   margin: 0;
 }
 .bauhaus-accordion .bauhaus-collapse-trigger:focus-visible {

@@ -39,7 +39,7 @@ export function OtpField({
       {Array.from({ length }, (_, i) => (
         <Fragment key={i}>
           {splitAt != null && i === splitAt ? (
-            <span className="bauhaus-otp__sep" aria-hidden="true" />
+            <span className="bauhaus-otp__divider" aria-hidden="true" />
           ) : null}
           <BaseOtp.Input className="bauhaus-surface bauhaus-otp__cell" />
         </Fragment>

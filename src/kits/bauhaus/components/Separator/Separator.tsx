@@ -13,13 +13,13 @@ export function Separator({ orientation = "horizontal", label, className }: Sepa
   if (label != null) {
     return (
       <div
-        className={cx("bauhaus-separator-label", `bauhaus-separator-label--${orientation}`, className)}
+        className={cx("bauhaus-separator-labeled", `bauhaus-separator-labeled--${orientation}`, className)}
         role="separator"
         aria-orientation={orientation}
       >
-        <span className="bauhaus-separator-label__line" />
-        <span className="bauhaus-cap bauhaus-separator-label__text">{label}</span>
-        <span className="bauhaus-separator-label__line" />
+        <span className="bauhaus-separator-labeled__line" />
+        <span className="bauhaus-cap bauhaus-separator-labeled__text">{label}</span>
+        <span className="bauhaus-separator-labeled__line" />
       </div>
     );
   }

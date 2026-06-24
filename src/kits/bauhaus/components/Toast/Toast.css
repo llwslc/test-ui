@@ -1,5 +1,5 @@
 /* ── Toast: bottom-right, stacks upward (newest on top), left tone bar + geometric marker ── */
-.bauhaus-toast-viewport {
+.bauhaus-toast__viewport {
   position: fixed;
   right: var(--bauhaus-space-5);
   bottom: var(--bauhaus-space-5);
@@ -110,7 +110,7 @@
 }
 
 @media (max-width: 768px) {
-  .bauhaus-toast-viewport {
+  .bauhaus-toast__viewport {
     right: var(--bauhaus-space-3);
     left: var(--bauhaus-space-3);
     bottom: var(--bauhaus-space-3);

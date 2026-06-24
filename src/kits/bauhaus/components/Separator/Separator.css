@@ -12,29 +12,29 @@
   width: var(--bauhaus-stroke-hair);
 }
 
-.bauhaus-separator-label {
+.bauhaus-separator-labeled {
   display: flex;
   align-items: center;
   gap: var(--bauhaus-space-3);
   color: var(--bauhaus-text-dim);
 }
-.bauhaus-separator-label--vertical {
+.bauhaus-separator-labeled--vertical {
   flex-direction: column;
   align-self: stretch;
 }
-.bauhaus-separator-label__line {
+.bauhaus-separator-labeled__line {
   flex: 1;
   background: var(--bauhaus-ink);
 }
-.bauhaus-separator-label--horizontal .bauhaus-separator-label__line {
+.bauhaus-separator-labeled--horizontal .bauhaus-separator-labeled__line {
   height: var(--bauhaus-stroke-hair);
 }
-.bauhaus-separator-label--vertical .bauhaus-separator-label__line {
+.bauhaus-separator-labeled--vertical .bauhaus-separator-labeled__line {
   width: var(--bauhaus-stroke-hair);
 }
-.bauhaus-separator-label__text {
+.bauhaus-separator-labeled__text {
   flex: 0 0 auto;
 }
-.bauhaus-separator-label--vertical .bauhaus-separator-label__text {
+.bauhaus-separator-labeled--vertical .bauhaus-separator-labeled__text {
   writing-mode: vertical-rl;
 }

@@ -28,7 +28,7 @@ export function NumberField({
 
   return (
     <BaseNumberField.Root
-      className={cx("brass-numberfield-root", className)}
+      className={cx("brass-numberfield", className)}
       name={name ?? autoId}
       min={min}
       max={max}
@@ -39,7 +39,7 @@ export function NumberField({
       }}
       {...props}
     >
-      <BaseNumberField.Group className="brass-plate brass-numberfield">
+      <BaseNumberField.Group className="brass-plate brass-numberfield__group">
         <BaseNumberField.Decrement
           className="brass-numberfield__step"
           disabled={atMin}

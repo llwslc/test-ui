@@ -1,4 +1,4 @@
-.brass-toast-viewport {
+.brass-toast__viewport {
   position: fixed;
   right: var(--brass-space-5);
   bottom: var(--brass-space-5);
@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 768px) {
-  .brass-toast-viewport {
+  .brass-toast__viewport {
     right: var(--brass-space-3);
     left: var(--brass-space-3);
     bottom: var(--brass-space-3);

@@ -34,7 +34,7 @@ export function OtpField({
       onValueChange={onValueChange ? (v) => onValueChange(v) : undefined}
       mask={mask}
       disabled={disabled}
-      className="brass-otp-root"
+      className="brass-otp"
     >
       <div className="brass-otp__cells">
         {Array.from({ length }, (_, i) => (

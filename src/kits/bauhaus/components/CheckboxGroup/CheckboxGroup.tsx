@@ -26,11 +26,11 @@ export function CheckboxGroup({
   return (
     <BaseCheckboxGroup
       allValues={allValues ?? items.map((it) => it.value)}
-      className={cx("bauhaus-checkbox-group", className)}
+      className={cx("bauhaus-checkboxgroup", className)}
       {...props}
     >
       {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
-      <div className="bauhaus-checkbox-group__items">
+      <div className="bauhaus-checkboxgroup__items">
         {items.map((it) => (
           <Checkbox key={it.value} name={it.value} disabled={it.disabled} label={it.label} />
         ))}

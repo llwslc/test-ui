@@ -29,7 +29,7 @@ export function ToastProvider({ children, timeout = 5000, limit = 4 }: ToastProv
     <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
       <BaseToast.Portal>
-        <BaseToast.Viewport className="bauhaus-toast-viewport">
+        <BaseToast.Viewport className="bauhaus-toast__viewport">
           <ToastList />
         </BaseToast.Viewport>
       </BaseToast.Portal>

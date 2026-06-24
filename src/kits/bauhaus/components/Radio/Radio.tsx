@@ -7,7 +7,7 @@ import "./Radio.css";
 export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof BaseRadioGroup> {}
 
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
-  return <BaseRadioGroup className={cx("bauhaus-radio-group", className)} {...props} />;
+  return <BaseRadioGroup className={cx("bauhaus-radiogroup", className)} {...props} />;
 }
 
 export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Root> {

@@ -1,4 +1,4 @@
-.brass-otp-root {
+.brass-otp {
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-2);

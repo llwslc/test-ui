@@ -52,12 +52,12 @@
   opacity: var(--brass-disabled-opacity);
 }
 
-.brass-checkbox__ind {
+.brass-checkbox__indicator {
   display: inline-flex;
   color: var(--brass-on-primary);
   font-size: var(--brass-fs-15);
 }
-.brass-checkbox__ind svg {
+.brass-checkbox__indicator svg {
   animation: brass-stamp var(--brass-dur) var(--brass-ease-detent);
 }
 @keyframes brass-stamp {

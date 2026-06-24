@@ -1,4 +1,4 @@
-.bauhaus-context-zone {
+.bauhaus-context__zone {
   display: grid;
   place-items: center;
   gap: var(--bauhaus-space-2);
@@ -11,6 +11,6 @@
   cursor: context-menu;
   transition: background var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-context-zone[data-popup-open] {
+.bauhaus-context__zone[data-popup-open] {
   background: var(--bauhaus-tint);
 }

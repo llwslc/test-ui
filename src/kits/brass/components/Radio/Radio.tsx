@@ -16,11 +16,11 @@ export interface RadioProps extends ComponentPropsWithoutRef<typeof BaseRadio.Ro
 
 export function Radio({ children, className, ...props }: RadioProps) {
   return (
-    <label className="brass-cap brass-radio-row">
-      <BaseRadio.Root className={cx("brass-radio", className)} {...props}>
-        <BaseRadio.Indicator className="brass-radio__ind" keepMounted />
+    <label className="brass-cap brass-radio">
+      <BaseRadio.Root className={cx("brass-radio__control", className)} {...props}>
+        <BaseRadio.Indicator className="brass-radio__indicator" keepMounted />
       </BaseRadio.Root>
-      {children && <span className="brass-radio-row__label">{children}</span>}
+      {children && <span className="brass-radio__label">{children}</span>}
     </label>
   );
 }

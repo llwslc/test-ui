@@ -1,4 +1,4 @@
-.nova-checkbox-box {
+.nova-checkbox__box {
   position: relative;
   display: inline-grid;
   width: var(--nova-checkbox-box);
@@ -6,11 +6,11 @@
   flex: 0 0 auto;
   transition: filter var(--nova-dur) var(--nova-ease);
 }
-.nova-checkbox-box:has([data-checked]),
-.nova-checkbox-box:has([data-indeterminate]) {
+.nova-checkbox__box:has([data-checked]),
+.nova-checkbox__box:has([data-indeterminate]) {
   filter: drop-shadow(0 0 var(--nova-glow-r) var(--nova-line-strong));
 }
-.nova-checkbox-box:has(:focus-visible) {
+.nova-checkbox__box:has(:focus-visible) {
   filter: var(--nova-glow-focus);
 }
 

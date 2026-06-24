@@ -31,8 +31,8 @@ export function Accordion({
       defaultValue={defaultValue}
     >
       {items.map((it) => (
-        <BaseAccordion.Item key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-accordion-item">
-          <BaseAccordion.Header className="bauhaus-accordion-header">
+        <BaseAccordion.Item key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-accordion__item">
+          <BaseAccordion.Header className="bauhaus-accordion__header">
             <BaseAccordion.Trigger className="bauhaus-collapse-trigger">
               <span className="bauhaus-collapse-marker">
                 <SquareFill />

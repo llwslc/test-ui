@@ -13,7 +13,7 @@ export interface ContextMenuProps {
 export function ContextMenu({ trigger, children, className }: ContextMenuProps) {
   return (
     <BaseContextMenu.Root>
-      <BaseContextMenu.Trigger className={cx("brass-plate brass-context-zone", className)}>
+      <BaseContextMenu.Trigger className={cx("brass-plate brass-context__zone", className)}>
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
