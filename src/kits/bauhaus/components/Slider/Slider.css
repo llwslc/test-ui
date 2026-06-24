@@ -44,7 +44,6 @@
   background: var(--bauhaus-on-fill);
   border: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
   border-radius: var(--bauhaus-r-round);
-  box-shadow: var(--bauhaus-shadow-hard);
   cursor: grab;
 }
 .bauhaus-slider__thumb:active {
@@ -52,7 +51,7 @@
 }
 .bauhaus-slider__thumb:focus-visible {
   outline: none;
-  box-shadow: var(--bauhaus-shadow-hard), var(--bauhaus-ring);
+  box-shadow: var(--bauhaus-ring);
 }
 .bauhaus-slider[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
