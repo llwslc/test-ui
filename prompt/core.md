@@ -103,7 +103,7 @@
 
 ## 6.1 逐组件结构
 
-每件记跨 kit 必须一致的四项：类型集（变体、尺寸、tone）、自定义 props、骨架、态。**类型集与 props 名跨 kit 逐字一致；字形、装饰、填充、beam = theme**。交互件的态统一覆盖 rest、hover、focus-visible、disabled 加自身开态（`active·checked·selected·open` 取一），配色按 §5；下列只补组件专属处。变体、尺寸列表内首项加（默认）即缺省值。
+每件记跨 kit 必须一致的四项：类型集（变体、尺寸、tone）、自定义 props、骨架、态。**类型集与 props 名跨 kit 逐字一致；字形、装饰、填充、光束 = theme**。交互件的态统一覆盖 rest、hover、focus-visible、disabled 加自身开态（`active·checked·selected·open` 取一），配色按 §5；下列只补组件专属处。变体、尺寸列表内首项加（默认）即缺省值。
 
 **输入**
 
