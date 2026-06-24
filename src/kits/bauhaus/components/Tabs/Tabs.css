@@ -79,6 +79,13 @@
 }
 
 @media (max-width: 768px) {
+  .bauhaus-tabs__list {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .bauhaus-tabs__list::-webkit-scrollbar:horizontal {
+    display: none;
+  }
   .bauhaus-tabs__tab {
     flex: 0 0 auto;
   }
