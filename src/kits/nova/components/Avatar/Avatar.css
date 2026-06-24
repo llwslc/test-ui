@@ -54,7 +54,7 @@
   bottom: -2px;
   width: 12px;
   height: 12px;
-  border: 2px solid var(--nova-bg);
+  border: 2px solid var(--nova-base);
   background: var(--nova-text-mute);
   transform: rotate(45deg);
 }

@@ -1,5 +1,5 @@
 body {
-  background-color: var(--abyss-bg);
+  background-color: var(--abyss-base);
   color: var(--abyss-text);
   font-family: var(--abyss-font);
   font-size: var(--abyss-fs-16);
@@ -17,7 +17,7 @@ body::before {
     radial-gradient(95% 60% at 50% 116%, rgba(70, 232, 184, 0.13), transparent 60%),
     radial-gradient(80% 60% at 86% -12%, rgba(145, 118, 255, 0.1), transparent 60%),
     radial-gradient(70% 50% at 8% 108%, rgba(210, 64, 89, 0.06), transparent 60%),
-    linear-gradient(to bottom, var(--abyss-void), var(--abyss-bg) 42%, var(--abyss-stone));
+    linear-gradient(to bottom, var(--abyss-void), var(--abyss-base) 42%, var(--abyss-stone));
 }
 
 body::after {

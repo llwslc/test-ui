@@ -58,7 +58,7 @@
   min-height: var(--abyss-avatar-status-min-h);
   padding: 2px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--abyss-bg) 64%, transparent);
+  background: radial-gradient(closest-side, var(--abyss-base) 64%, transparent);
 }
 .abyss-avatar__moon {
   position: relative;

@@ -1,6 +1,6 @@
 :root {
-  --nova-bg: #050a12;
-  --nova-bg-2: #07101c;
+  --nova-base: #050a12;
+  --nova-base-raised: #07101c;
   --nova-surface: rgba(13, 27, 45, 0.72);
   --nova-surface-popup: #070e18;
   --nova-scrim: rgba(2, 6, 12, 0.66);

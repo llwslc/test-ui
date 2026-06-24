@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  background: var(--brass-bg);
+  background: var(--brass-base);
   color: var(--brass-text);
   font-family: var(--brass-font);
   -webkit-font-smoothing: antialiased;
@@ -19,7 +19,7 @@ body::before {
     radial-gradient(95% 60% at 50% -16%, rgba(240, 191, 58, 0.16), transparent 60%),
     radial-gradient(52% 52% at 88% 94%, rgba(194, 104, 59, 0.13), transparent 70%),
     radial-gradient(46% 52% at 8% 96%, rgba(86, 169, 138, 0.1), transparent 70%),
-    linear-gradient(180deg, var(--brass-bg), var(--brass-bg-2));
+    linear-gradient(180deg, var(--brass-base), var(--brass-base-raised));
 }
 
 /* rivet grid + drifting steam, masked to fade downward */

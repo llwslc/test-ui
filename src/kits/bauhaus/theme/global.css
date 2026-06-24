@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: var(--bauhaus-bg);
+  background: var(--bauhaus-base);
   color: var(--bauhaus-text);
   font-family: var(--bauhaus-font);
   -webkit-font-smoothing: antialiased;
@@ -30,7 +30,7 @@ body::before {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-2);
+  scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-raised);
 }
 
 @media (prefers-reduced-motion: reduce) {

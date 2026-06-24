@@ -1,8 +1,8 @@
 :root {
   /* ── Backgrounds & paper ───────────────────────────── */
-  --bauhaus-bg: #ece5d3;
+  --bauhaus-base: #ece5d3;
   --bauhaus-paper: #f7f3e8;
-  --bauhaus-paper-2: #efe9d8;
+  --bauhaus-paper-raised: #efe9d8;
 
   /* ── Accent families (semantic) ────────────────────── */
   --bauhaus-primary: #1a4fd6;
