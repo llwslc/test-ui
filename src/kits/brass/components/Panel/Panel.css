@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-/* App grid uses this for span-2; grid-column lives in App, not here. */
+/* App grid spans this full-width; grid-column lives in App, not here. */
 .brass-panel--wide {
   width: 100%;
 }

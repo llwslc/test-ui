@@ -314,7 +314,7 @@
   min-width: 0;
   scroll-margin-top: calc(var(--shell-header-h) + var(--shell-scroll-margin));
 }
-.abyss-section.span-2 {
+.abyss-section--wide {
   grid-column: 1 / -1;
 }
 .abyss-section > .abyss-panel {
@@ -551,7 +551,7 @@ kbd {
   .abyss-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .abyss-section.span-2 {
+  .abyss-section--wide {
     grid-column: auto;
   }
   .abyss-header {

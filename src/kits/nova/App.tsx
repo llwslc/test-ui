@@ -479,7 +479,7 @@ function Demo() {
 
           <div className="nova-grid">
             <GroupRule group="Inputs" sub="operator console inputs" />
-            <div className="nova-section span-2" id="button">
+            <div className="nova-section nova-section--wide" id="button">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
                   <div className="demo-row">
@@ -700,7 +700,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="tabs">
+            <div className="nova-section nova-section--wide" id="tabs">
               <Panel title="Tabs" meta="TAB">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
@@ -725,7 +725,7 @@ function Demo() {
                 </div>
               </Panel>
             </div>
-            <div className="nova-section span-2" id="loader">
+            <div className="nova-section nova-section--wide" id="loader">
               <Panel title="Loader" meta="LDR">
                 <div className="demo-loader-stage">
                   <Loader />
@@ -765,7 +765,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="preview">
+            <div className="nova-section nova-section--wide" id="preview">
               <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
                   <span className="nova-cap">Hover the callsign</span>
@@ -1062,7 +1062,7 @@ function Demo() {
             </div>
 
             <GroupRule group="Foundations" sub="the hull beneath the HUD" />
-            <div className="nova-section span-2" id="typography">
+            <div className="nova-section nova-section--wide" id="typography">
               <Panel title="Typography" meta="TYP">
                 <div className="demo-col">
                   <p className="nova-h1">Nova Command</p>

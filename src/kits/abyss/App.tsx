@@ -403,7 +403,7 @@ function ToastDemo() {
 
 function GroupRule({ group, sub }: { group: string; sub: string }) {
   return (
-    <div className="abyss-grid__group span-2">
+    <div className="abyss-grid__group">
       <SigilIcon className="abyss-grid__group-mark" />
       <span className="abyss-grid__group-title">{group}</span>
       <span className="abyss-grid__group-sub">{sub}</span>
@@ -609,7 +609,7 @@ function Demo() {
           <div className="abyss-grid">
             <GroupRule group="Inputs" sub="rites of intent" />
 
-            <div className="abyss-section span-2" id="button">
+            <div className="abyss-section abyss-section--wide" id="button">
               <Panel title="Button" meta="BTN" breathe>
                 <div className="demo-stack">
                   <div className="demo-row">
@@ -829,7 +829,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="tabs">
+            <div className="abyss-section abyss-section--wide" id="tabs">
               <Panel title="Tabs" meta="TAB">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
@@ -855,7 +855,7 @@ function Demo() {
                 </div>
               </Panel>
             </div>
-            <div className="abyss-section span-2" id="loader">
+            <div className="abyss-section abyss-section--wide" id="loader">
               <Panel title="Loader" meta="LDR">
                 <div className="demo-loader-stage">
                   <Loader />
@@ -896,7 +896,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="preview">
+            <div className="abyss-section abyss-section--wide" id="preview">
               <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
                   <span className="abyss-cap">Hover the sea-name</span>
@@ -1192,7 +1192,7 @@ function Demo() {
 
             <GroupRule group="Foundations" sub="stone & ink" />
 
-            <div className="abyss-section span-2" id="typography">
+            <div className="abyss-section abyss-section--wide" id="typography">
               <Panel title="Typography" meta="TYP">
                 <div className="demo-stack">
                   <p className="abyss-h1">R'lyeh Rises</p>

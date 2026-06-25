@@ -217,7 +217,7 @@
   min-width: 0;
   scroll-margin-top: calc(var(--shell-header-h) + var(--shell-scroll-margin));
 }
-.nova-section.span-2 {
+.nova-section--wide {
   grid-column: 1 / -1;
 }
 .nova-section > .nova-panel-frame {
