@@ -689,23 +689,28 @@ function Demo() {
             </Panel>
 
             <Panel id="drawer" title="Drawer" meta="DRW">
-              <Drawer
-                side="right"
-                trigger={<Button variant="ghost">Open panel</Button>}
-                title="Layer settings"
-                description="Adjust how this layer sits on the grid."
-                footer={<DrawerClose variant="secondary">Close</DrawerClose>}
-              >
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Snap to grid</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Show outline</span>
-                  <Switch />
-                </label>
-                <Slider label="Opacity" defaultValue={50} />
-              </Drawer>
+              <div className="bauhaus-row">
+                {(["left", "right", "top", "bottom"] as const).map((side) => (
+                  <Drawer
+                    key={side}
+                    side={side}
+                    trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                    title="Layer settings"
+                    description="Adjust how this layer sits on the grid."
+                    footer={<DrawerClose variant="secondary">Close</DrawerClose>}
+                  >
+                    <label className="bauhaus-row bauhaus-row--between">
+                      <span className="bauhaus-cap">Snap to grid</span>
+                      <Switch defaultChecked />
+                    </label>
+                    <label className="bauhaus-row bauhaus-row--between">
+                      <span className="bauhaus-cap">Show outline</span>
+                      <Switch />
+                    </label>
+                    <Slider label="Opacity" defaultValue={50} />
+                  </Drawer>
+                ))}
+              </div>
             </Panel>
             <Panel id="toast" title="Toast" meta="TST">
               <div className="bauhaus-row">

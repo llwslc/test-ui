@@ -953,23 +953,28 @@ function Demo() {
 
             <div className="nova-section" id="drawer">
               <Panel title="Drawer" meta="DRW">
-                <Drawer
-                  side="right"
-                  trigger={<Button variant="ghost">Open Console</Button>}
-                  title="Systems Config"
-                  description="An edge-anchored console sliding in from the screen edge."
-                  footer={<DrawerClose variant="secondary">Apply</DrawerClose>}
-                >
-                  <div className="demo-spread">
-                    <span className="nova-cap">Auto-Pilot</span>
-                    <Switch defaultChecked aria-label="Auto-Pilot" />
-                  </div>
-                  <div className="demo-spread">
-                    <span className="nova-cap">Stealth Mode</span>
-                    <Switch aria-label="Stealth Mode" />
-                  </div>
-                  <Slider label="Sensor Gain" defaultValue={72} />
-                </Drawer>
+                <div className="demo-row">
+                  {(["left", "right", "top", "bottom"] as const).map((side) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                      title="Systems Config"
+                      description="An edge-anchored console sliding in from the screen edge."
+                      footer={<DrawerClose variant="secondary">Apply</DrawerClose>}
+                    >
+                      <div className="demo-spread">
+                        <span className="nova-cap">Auto-Pilot</span>
+                        <Switch defaultChecked aria-label="Auto-Pilot" />
+                      </div>
+                      <div className="demo-spread">
+                        <span className="nova-cap">Stealth Mode</span>
+                        <Switch aria-label="Stealth Mode" />
+                      </div>
+                      <Slider label="Sensor Gain" defaultValue={72} />
+                    </Drawer>
+                  ))}
+                </div>
               </Panel>
             </div>
 

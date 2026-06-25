@@ -1081,23 +1081,28 @@ function Demo() {
 
             <div className="abyss-section" id="drawer">
               <Panel title="Drawer" meta="DRW">
-                <Drawer
-                  side="right"
-                  trigger={<Button variant="ghost">Open the Rites</Button>}
-                  title="Ward Settings"
-                  description="An edge-anchored tablet sliding in from the deep."
-                  footer={<DrawerClose variant="secondary">Bind</DrawerClose>}
-                >
-                  <div className="demo-spread">
-                    <span className="abyss-cap">Ward Sigil</span>
-                    <Switch defaultChecked aria-label="Ward Sigil" />
-                  </div>
-                  <div className="demo-spread">
-                    <span className="abyss-cap">Walk Unseen</span>
-                    <Switch aria-label="Walk Unseen" />
-                  </div>
-                  <Slider label="Lantern Gain" defaultValue={72} />
-                </Drawer>
+                <div className="demo-row">
+                  {(["left", "right", "top", "bottom"] as const).map((side) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                      title="Ward Settings"
+                      description="An edge-anchored tablet sliding in from the deep."
+                      footer={<DrawerClose variant="secondary">Bind</DrawerClose>}
+                    >
+                      <div className="demo-spread">
+                        <span className="abyss-cap">Ward Sigil</span>
+                        <Switch defaultChecked aria-label="Ward Sigil" />
+                      </div>
+                      <div className="demo-spread">
+                        <span className="abyss-cap">Walk Unseen</span>
+                        <Switch aria-label="Walk Unseen" />
+                      </div>
+                      <Slider label="Lantern Gain" defaultValue={72} />
+                    </Drawer>
+                  ))}
+                </div>
               </Panel>
             </div>
 

@@ -73,7 +73,7 @@
 - context：trigger = 文本投放区 + kbd 提示；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：trigger = `danger` Button；内容 = 标题 + 描述 + actions 2 个 AlertDialogClose（默认、`danger`）。
-- drawer：`side="right"`，trigger = `ghost` Button；体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider + 页脚 1 个 DialogClose（`secondary`）。
+- drawer：四个 `ghost` Button 排一行，各弹一个方向——`left`／`right`／`top`／`bottom`；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider + 页脚 1 个 DrawerClose（`secondary`）。
 - toast：一行 4 个 Button（`sm`、`ghost`），分别触发默认、`success`、`warning`、`danger` 四种 toast。
 
 **Display**

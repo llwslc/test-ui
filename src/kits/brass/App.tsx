@@ -700,23 +700,28 @@ function Demo() {
             </Panel>
 
             <Panel id="drawer" title="Drawer" meta="DRW">
-              <Drawer
-                side="right"
-                trigger={<Button variant="ghost">Open log</Button>}
-                title="Watch settings"
-                description="Adjust the standing orders for this watch."
-                footer={<DrawerClose variant="secondary">Close log</DrawerClose>}
-              >
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Auto-stoke</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Night firing</span>
-                  <Switch />
-                </label>
-                <Slider label="Draught" defaultValue={50} />
-              </Drawer>
+              <div className="brass-row">
+                {(["left", "right", "top", "bottom"] as const).map((side) => (
+                  <Drawer
+                    key={side}
+                    side={side}
+                    trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                    title="Watch settings"
+                    description="Adjust the standing orders for this watch."
+                    footer={<DrawerClose variant="secondary">Close log</DrawerClose>}
+                  >
+                    <label className="brass-row brass-row--between">
+                      <span className="brass-cap">Auto-stoke</span>
+                      <Switch defaultChecked />
+                    </label>
+                    <label className="brass-row brass-row--between">
+                      <span className="brass-cap">Night firing</span>
+                      <Switch />
+                    </label>
+                    <Slider label="Draught" defaultValue={50} />
+                  </Drawer>
+                ))}
+              </div>
             </Panel>
             <Panel id="toast" title="Toast" meta="TST">
               <div className="brass-row">
