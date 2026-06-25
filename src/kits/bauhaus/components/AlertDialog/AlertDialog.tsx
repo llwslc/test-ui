@@ -2,16 +2,16 @@ import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
 import { Button, type ButtonProps } from "../Button";
-import { Circle, Triangle, Square } from "../icons";
+import { CircleFill, TriangleFill, SquareFill } from "../icons";
 import "./AlertDialog.css";
 
 type Tone = "danger" | "warning" | "primary";
 type ButtonVariant = ButtonProps["variant"];
 
 const TONE_MARKER: Record<Tone, ReactNode> = {
-  primary: <Circle />,
-  warning: <Triangle />,
-  danger: <Square />,
+  primary: <CircleFill />,
+  warning: <TriangleFill />,
+  danger: <SquareFill />,
 };
 
 export interface AlertDialogProps {

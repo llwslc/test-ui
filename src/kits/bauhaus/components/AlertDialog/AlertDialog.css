@@ -1,22 +1,29 @@
+/* ── AlertDialog: constructivist plate — a tone shape stamped in a black grid module,
+   header split from body by a full-bleed heavy black rule; no tone band ── */
 .bauhaus-alert {
   width: min(var(--bauhaus-alert-w), 100%);
+  --bauhaus-alert-mark: 44px;
 }
 .bauhaus-alert .bauhaus-h2.bauhaus-modal-title {
-  margin: calc(-1 * var(--bauhaus-modal-pad)) calc(-1 * var(--bauhaus-modal-pad)) var(--bauhaus-space-5);
-  padding: var(--bauhaus-space-4) var(--bauhaus-modal-pad);
-  background: var(--bauhaus-bar-color, var(--bauhaus-primary));
-  color: var(--bauhaus-on-fill);
+  gap: var(--bauhaus-space-4);
+  margin: 0 calc(-1 * var(--bauhaus-modal-pad)) var(--bauhaus-space-5);
+  padding: 0 var(--bauhaus-modal-pad) var(--bauhaus-space-4);
+  border-bottom: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
 }
-.bauhaus-alert--warning .bauhaus-h2.bauhaus-modal-title {
-  color: var(--bauhaus-on-warning);
+.bauhaus-alert .bauhaus-modal__sigil {
+  flex: 0 0 auto;
+  padding: var(--bauhaus-space-2);
+  border: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
+  font-size: var(--bauhaus-alert-mark);
+  color: var(--bauhaus-alert-tone, var(--bauhaus-primary));
 }
 
 .bauhaus-alert--primary {
-  --bauhaus-bar-color: var(--bauhaus-primary);
+  --bauhaus-alert-tone: var(--bauhaus-primary);
 }
 .bauhaus-alert--warning {
-  --bauhaus-bar-color: var(--bauhaus-warning);
+  --bauhaus-alert-tone: var(--bauhaus-warning);
 }
 .bauhaus-alert--danger {
-  --bauhaus-bar-color: var(--bauhaus-danger);
+  --bauhaus-alert-tone: var(--bauhaus-danger);
 }
