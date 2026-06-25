@@ -163,7 +163,7 @@
 
 - inline-flex 分段控件 ToggleGroup 加 `width: fit-content`；细分隔条 1px 在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；跨列子项用 `grid-column: 1 / -1`、不用定值 `span N`。
 - 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea、Accordion 这类输入控件。
-- **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs、NavMenu **横滚**不换行；横滚条常显不藏（`scrollbar-width: auto` + `scrollbar-color: auto` 让 Chrome 用样式化 `::-webkit-scrollbar`、盖过 macOS 自动隐藏，`@supports` 给 Firefox 细标准条）；Toolbar **换行**不横滚。外壳、侧栏、演示页响应式 → `app.md`。
+- **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs、NavMenu **横滚**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。外壳、侧栏、演示页响应式 → `app.md`。
 - **装饰层不得撑宽页面**：扫光走 `background-position`、移动块、不定态进度走 `top`/`left`；非用 `transform` 不可时，关进不带 `clip-path` 的 `overflow:hidden` 祖先。
 
 ## 9. 验收门

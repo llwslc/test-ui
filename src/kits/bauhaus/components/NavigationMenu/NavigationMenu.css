@@ -124,20 +124,7 @@
   .bauhaus-navmenu__list {
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
-  }
-  .bauhaus-navmenu__list::-webkit-scrollbar {
-    height: 6px;
-  }
-  .bauhaus-navmenu__list::-webkit-scrollbar-thumb {
-    background: var(--bauhaus-primary);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .bauhaus-navmenu__list {
-      scrollbar-width: thin;
-      scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-raised);
-    }
+    scrollbar-width: none;
   }
   .bauhaus-navmenu__list > * {
     flex: 0 0 auto;

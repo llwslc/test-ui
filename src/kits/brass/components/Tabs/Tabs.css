@@ -11,20 +11,7 @@
 @media (max-width: 768px) {
   .brass-tabs__rail {
     overflow-x: auto;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
-  }
-  .brass-tabs__rail::-webkit-scrollbar {
-    height: 6px;
-  }
-  .brass-tabs__rail::-webkit-scrollbar-thumb {
-    background: var(--brass-primary-deep);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .brass-tabs__rail {
-      scrollbar-width: thin;
-      scrollbar-color: var(--brass-primary-deep) transparent;
-    }
+    scrollbar-width: none;
   }
   .brass-tabs__list {
     width: max-content;

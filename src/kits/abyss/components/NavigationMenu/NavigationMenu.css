@@ -195,20 +195,7 @@
   .abyss-navmenu__list {
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
-  }
-  .abyss-navmenu__list::-webkit-scrollbar {
-    height: 6px;
-  }
-  .abyss-navmenu__list::-webkit-scrollbar-thumb {
-    background: var(--abyss-glow-deep);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .abyss-navmenu__list {
-      scrollbar-width: thin;
-      scrollbar-color: var(--abyss-glow-deep) transparent;
-    }
+    scrollbar-width: none;
   }
   .abyss-navmenu__list > * {
     flex: 0 0 auto;

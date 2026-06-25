@@ -22,22 +22,12 @@
 @media (max-width: 768px) {
   .abyss-tabs__list {
     overflow-x: auto;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
+    scrollbar-width: none;
     padding-bottom: var(--abyss-space-2);
     margin-bottom: calc(var(--abyss-space-2) * -1);
   }
   .abyss-tabs__list::-webkit-scrollbar {
-    height: 6px;
-  }
-  .abyss-tabs__list::-webkit-scrollbar-thumb {
-    background: var(--abyss-glow-deep);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .abyss-tabs__list {
-      scrollbar-width: thin;
-      scrollbar-color: var(--abyss-glow-deep) transparent;
-    }
+    display: none;
   }
   .abyss-tabs__list::after,
   .abyss-tabs__list .abyss-tabs__indicator {

@@ -20,22 +20,12 @@
 @media (max-width: 768px) {
   .nova-tabs__list {
     overflow-x: auto;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
+    scrollbar-width: none;
     padding-bottom: var(--nova-space-2);
     margin-bottom: calc(var(--nova-space-2) * -1);
   }
   .nova-tabs__list::-webkit-scrollbar {
-    height: 6px;
-  }
-  .nova-tabs__list::-webkit-scrollbar-thumb {
-    background: var(--nova-line-strong);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .nova-tabs__list {
-      scrollbar-width: thin;
-      scrollbar-color: var(--nova-line-strong) transparent;
-    }
+    display: none;
   }
   .nova-tabs__list::after,
   .nova-tabs__list .nova-tabs__indicator {

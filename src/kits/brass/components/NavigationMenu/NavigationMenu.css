@@ -145,20 +145,7 @@
     max-width: 100%;
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: auto;
-    scrollbar-color: auto;
-  }
-  .brass-navmenu__list::-webkit-scrollbar {
-    height: 6px;
-  }
-  .brass-navmenu__list::-webkit-scrollbar-thumb {
-    background: var(--brass-primary-deep);
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    .brass-navmenu__list {
-      scrollbar-width: thin;
-      scrollbar-color: var(--brass-primary-deep) transparent;
-    }
+    scrollbar-width: none;
   }
   .brass-navmenu__item {
     flex: 0 0 auto;
