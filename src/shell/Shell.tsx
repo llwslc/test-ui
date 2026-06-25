@@ -31,10 +31,10 @@ export function Shell() {
             data-kit-id={k.id}
             className={"shell-switch__btn" + (kit === k.id ? " is-active" : "")}
             aria-pressed={kit === k.id}
+            title={k.tag}
             onClick={() => switchKit(k.id)}
           >
             <span className="shell-switch__label">{k.label}</span>
-            <span className="shell-switch__tag">{k.tag}</span>
           </button>
         ))}
       </nav>
