@@ -61,7 +61,7 @@ export function MenuSub({
           className="nova-elevation nova-menu__positioner"
           side="right"
           align="start"
-          sideOffset={12}
+          sideOffset={10}
         >
           <Menu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
             <ScrollArea variant="popup">{children}</ScrollArea>

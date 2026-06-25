@@ -59,7 +59,7 @@ export function MenuSub({
           className="abyss-elevation abyss-menu__positioner"
           side="right"
           align="start"
-          sideOffset={12}
+          sideOffset={14}
         >
           <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
             <ScrollArea variant="popup">{children}</ScrollArea>
