@@ -45,7 +45,7 @@
 .brass-drawer--left {
   top: 0;
   height: 100%;
-  width: min(var(--brass-drawer-w), 80%);
+  width: min(var(--brass-drawer-w), var(--brass-drawer-w-cap));
   transform: translateX(var(--drawer-swipe-movement-x, 0px));
 }
 .brass-drawer--right {
@@ -58,7 +58,7 @@
 .brass-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(60%, var(--brass-drawer-h));
+  height: min(var(--brass-drawer-h-cap), var(--brass-drawer-h));
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .brass-drawer--top {

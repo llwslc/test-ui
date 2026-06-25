@@ -125,6 +125,8 @@
   --nova-alert-w: var(--shell-alert-w);
   --nova-drawer-w: var(--shell-drawer-w);
   --nova-drawer-h: var(--shell-drawer-h);
+  --nova-drawer-w-cap: var(--shell-drawer-w-cap);
+  --nova-drawer-h-cap: var(--shell-drawer-h-cap);
   --nova-navmenu-col-w: var(--shell-navmenu-col-w);
   --nova-popover-w: 300px;
   --nova-preview-w: 286px;

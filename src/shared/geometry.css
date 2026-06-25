@@ -8,6 +8,8 @@
   --shell-alert-w: 440px;
   --shell-drawer-w: 420px;
   --shell-drawer-h: 460px;
+  --shell-drawer-w-cap: 80%;
+  --shell-drawer-h-cap: 60%;
 
   --shell-navmenu-col-w: 210px;
 }

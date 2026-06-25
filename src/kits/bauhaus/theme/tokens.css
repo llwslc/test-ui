@@ -146,6 +146,8 @@
   --bauhaus-alert-w: var(--shell-alert-w);
   --bauhaus-drawer-w: var(--shell-drawer-w);
   --bauhaus-drawer-h: var(--shell-drawer-h);
+  --bauhaus-drawer-w-cap: var(--shell-drawer-w-cap);
+  --bauhaus-drawer-h-cap: var(--shell-drawer-h-cap);
   --bauhaus-navmenu-col-w: var(--shell-navmenu-col-w);
   --bauhaus-toast-w: 344px;
   --bauhaus-avatar-sm: 32px;

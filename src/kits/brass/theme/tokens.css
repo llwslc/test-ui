@@ -182,6 +182,8 @@
   --brass-alert-w: var(--shell-alert-w);
   --brass-drawer-w: var(--shell-drawer-w);
   --brass-drawer-h: var(--shell-drawer-h);
+  --brass-drawer-w-cap: var(--shell-drawer-w-cap);
+  --brass-drawer-h-cap: var(--shell-drawer-h-cap);
   --brass-navmenu-col-w: var(--shell-navmenu-col-w);
   --brass-toast-w: 344px;
   --brass-avatar-sm: 32px;

@@ -49,7 +49,7 @@
 .abyss-drawer--left {
   top: 0;
   height: 100%;
-  width: min(var(--abyss-drawer-w), 80%);
+  width: min(var(--abyss-drawer-w), var(--abyss-drawer-w-cap));
   transform: translateX(var(--drawer-swipe-movement-x, 0px));
 }
 .abyss-drawer--right {
@@ -62,7 +62,7 @@
 .abyss-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(60%, var(--abyss-drawer-h));
+  height: min(var(--abyss-drawer-h-cap), var(--abyss-drawer-h));
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .abyss-drawer--top {

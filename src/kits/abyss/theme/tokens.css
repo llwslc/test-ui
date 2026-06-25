@@ -125,6 +125,8 @@
   --abyss-alert-w: var(--shell-alert-w);
   --abyss-drawer-w: var(--shell-drawer-w);
   --abyss-drawer-h: var(--shell-drawer-h);
+  --abyss-drawer-w-cap: var(--shell-drawer-w-cap);
+  --abyss-drawer-h-cap: var(--shell-drawer-h-cap);
   --abyss-navmenu-col-w: var(--shell-navmenu-col-w);
   --abyss-popover-w: 320px;
   --abyss-preview-w: 286px;
