@@ -111,6 +111,19 @@
   width: 100%;
 }
 
+.brass-drawer--right .brass-drawer__sheet {
+  border-left-width: 0;
+}
+.brass-drawer--left .brass-drawer__sheet {
+  border-right-width: 0;
+}
+.brass-drawer--top .brass-drawer__sheet {
+  border-bottom-width: 0;
+}
+.brass-drawer--bottom .brass-drawer__sheet {
+  border-top-width: 0;
+}
+
 .brass-drawer__handle {
   position: absolute;
   border-radius: var(--brass-round-xs);
