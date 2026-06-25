@@ -1,27 +1,19 @@
-/* ── AlertDialog: typographic confirm — the title set as a Bauhaus poster
-   (Archivo Black, uppercase, large), tone demoted to a small index stamp +
-   the action button; full-bleed heavy black rule splits header from body ── */
+/* ── AlertDialog: per-tone — a thin tone rule across the top + a tone shape mark;
+   title, body and actions on the paper below ── */
 .bauhaus-alert {
   width: min(var(--bauhaus-alert-w), 100%);
-  --bauhaus-alert-title: 30px;
+  padding-top: var(--bauhaus-space-7);
 }
-.bauhaus-alert .bauhaus-h2.bauhaus-modal-title {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--bauhaus-space-3);
-  margin: 0 calc(-1 * var(--bauhaus-modal-pad)) var(--bauhaus-space-5);
-  padding: 0 var(--bauhaus-modal-pad) var(--bauhaus-space-4);
-  border-bottom: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
-  font-size: var(--bauhaus-alert-title);
-  line-height: var(--bauhaus-lh-100);
-  letter-spacing: var(--bauhaus-ls-1);
-  text-transform: uppercase;
+.bauhaus-alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bauhaus-space-2);
+  background: var(--bauhaus-alert-tone, var(--bauhaus-primary));
 }
 .bauhaus-alert .bauhaus-modal__sigil {
-  flex: 0 0 auto;
-  padding: var(--bauhaus-space-1);
-  border: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
-  font-size: var(--bauhaus-fs-18);
   color: var(--bauhaus-alert-tone, var(--bauhaus-primary));
 }
 
