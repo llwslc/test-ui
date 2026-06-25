@@ -72,7 +72,7 @@
 - Radio 是正圆 + `ink` border；选中 = 实色 `primary` 填充 + 纸白圆心点；取「圆」原形。
 - Progress、Meter 是锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示；Meter 按 `tone` 重染填充，warning 黄填配 `on-warning` 深色刻度。
 - Tabs、NavigationMenu：一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动，hover 用 `tint-soft`；触发器是 Jost 大写、打开时转 `primary`、chevron 翻转。
-- AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：border 仍黑、纸面不铺色带；**tone 只落两处、连成对角动势**——左上角一个黑描边方形模块里嵌一个实色三原形 tone 图记，右下角的主操作按钮也走 tone。标题排在模块右侧，模块与标题底下压一道贯通左右的粗黑模数线，把头部跟下面的描述、body、actions 分成上下两格。
+- AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：border 仍黑、纸面不铺色带；**标题排成一张海报**——Archivo Black、大写、大号、`ls-1` 紧排、左对齐压在纸上当主角；tone 只落两处、连成对角动势：左上角一个黑描边小方块嵌实色三原形 tone 图记当索引标，右下角主操作按钮也走 tone。标题底下压一道贯通左右的粗黑模数线，把头部跟下面的描述、body、actions 分成上下两格。
 - Panel：角部放三原形角标 + meta。Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）。Dialog 标题配一个三原形图标。
 - 招牌 SVG：Loader 是圆／三角／方三原形在蓝黄红之间旋转步进，Hero 用三原形构成主视觉 + 对角动势，Checkbox 是纸白几何对勾，Radio 是实蓝圆心点，Avatar 的兜底是 Archivo Black 字母压在实色块上、方形裁剪，占位图标是几何线形。
 - 共享配方的颜色就近覆盖：`--bauhaus-marker-color`。
