@@ -136,7 +136,7 @@
 - **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；`mouseOnly` + focus 开 + `pointerType==="touch"` 轻点补触摸；`closeOnClick=false`。
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
-- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone、给足高度（明显的右键投放区，min-height）。
+- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开（子菜单与父级的缝 `sideOffset` 按各 kit 框宽调出**一致的视觉缝**——框越粗、值越大，不取同一数值，由 `kit-submenu-gap` 闸门量）；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone、给足高度（明显的右键投放区，min-height）。
 - **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、`side` 四向定位、body 留焦点提示余量。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(锚定一角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
