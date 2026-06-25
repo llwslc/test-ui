@@ -1,8 +1,8 @@
 .abyss-fieldset {
-  border: 0;
+  min-width: 0;
   margin: 0;
   padding: 0;
-  min-width: 0;
+  border: 0;
 }
 
 .abyss-fieldset__legend {
