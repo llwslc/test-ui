@@ -74,6 +74,8 @@
 
 .brass-navmenu__positioner {
   z-index: var(--brass-z-menu);
+  width: var(--positioner-width);
+  height: var(--positioner-height);
 }
 
 .brass-navmenu__popup {
