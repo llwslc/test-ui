@@ -43,3 +43,14 @@
 .bauhaus-otp[data-disabled] .bauhaus-otp__cell {
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .bauhaus-otp {
+    gap: var(--bauhaus-space-1);
+  }
+  .bauhaus-otp__cell {
+    width: var(--bauhaus-otp-cell-w-sm);
+    height: var(--bauhaus-otp-cell-h-sm);
+    font-size: var(--bauhaus-fs-18);
+  }
+}
