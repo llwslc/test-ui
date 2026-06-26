@@ -104,10 +104,15 @@
     background var(--brass-dur) var(--brass-ease),
     border-color var(--brass-dur) var(--brass-ease);
 }
-.brass-sidebar__link:hover {
+.brass-sidebar__link:hover,
+.brass-sidebar__link:focus-visible {
   background: var(--brass-tint-soft);
   border-left-color: var(--brass-primary);
   color: var(--brass-text-bright);
+}
+.brass-sidebar__link:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
 }
 .brass-sidebar__meta {
   font-family: var(--brass-font-mono);

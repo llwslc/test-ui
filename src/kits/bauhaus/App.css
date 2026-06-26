@@ -121,10 +121,15 @@
     background var(--bauhaus-dur) var(--bauhaus-ease),
     border-color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-sidebar__link:hover {
+.bauhaus-sidebar__link:hover,
+.bauhaus-sidebar__link:focus-visible {
   background: var(--bauhaus-tint-soft);
   border-left-color: var(--bauhaus-primary);
   color: var(--bauhaus-text-bright);
+}
+.bauhaus-sidebar__link:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--bauhaus-stroke) var(--bauhaus-primary);
 }
 .bauhaus-sidebar__meta {
   font-family: var(--bauhaus-font-mono);

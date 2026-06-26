@@ -231,10 +231,15 @@
     background var(--abyss-dur) var(--abyss-ease),
     border-color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-sidebar__link:hover {
+.abyss-sidebar__link:hover,
+.abyss-sidebar__link:focus-visible {
   color: var(--abyss-text-bright);
   background: var(--abyss-glow-soft);
   border-left-color: var(--abyss-glow-a55);
+}
+.abyss-sidebar__link:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--abyss-glow);
 }
 .abyss-sidebar__link span {
   font-family: var(--abyss-font-mono);
