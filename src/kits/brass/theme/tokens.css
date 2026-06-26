@@ -96,12 +96,12 @@
   --brass-round-pill: 999px;
 
   /* ── Z-layer ladder ────────────────────────────────── */
-  --brass-z-dropdown: var(--shell-z-dropdown);
-  --brass-z-menu: var(--shell-z-menu);
-  --brass-z-tooltip: var(--shell-z-tooltip);
-  --brass-z-backdrop: var(--shell-z-backdrop);
-  --brass-z-overlay: var(--shell-z-overlay);
-  --brass-z-toast: var(--shell-z-toast);
+  --brass-z-dropdown: 1200;
+  --brass-z-menu: 1250;
+  --brass-z-tooltip: 1300;
+  --brass-z-backdrop: 1400;
+  --brass-z-overlay: 1401;
+  --brass-z-toast: 1500;
 
   /* ── Motion & metrics ──────────────────────────────── */
   --brass-dur: 0.26s;
@@ -178,13 +178,13 @@
   --brass-preview-w: 320px;
   --brass-navmenu-w: 440px;
   --brass-contextmenu-min-h: 132px;
-  --brass-dialog-w: var(--shell-dialog-w);
-  --brass-alert-w: var(--shell-alert-w);
-  --brass-drawer-w: var(--shell-drawer-w);
-  --brass-drawer-h: var(--shell-drawer-h);
-  --brass-drawer-w-cap: var(--shell-drawer-w-cap);
-  --brass-drawer-h-cap: var(--shell-drawer-h-cap);
-  --brass-navmenu-col-w: var(--shell-navmenu-col-w);
+  --brass-dialog-w: 460px;
+  --brass-alert-w: 440px;
+  --brass-drawer-w: 420px;
+  --brass-drawer-h: 460px;
+  --brass-drawer-w-cap: 80%;
+  --brass-drawer-h-cap: 60%;
+  --brass-navmenu-col-w: 210px;
   --brass-toast-w: 344px;
   --brass-avatar-sm: 32px;
   --brass-avatar-md: 44px;

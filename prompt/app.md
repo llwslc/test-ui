@@ -110,7 +110,7 @@
 - 切换：写 `localStorage` + `location.reload()`；启动读 `localStorage` 决定加载哪套，默认第一套。
 - 各套 `global.css` 与演示页 helper 类用裸选择器、无作用域。
 - `index.html` 设暗底；`#root` 仅 `min-height:100vh`，文档自身滚动。
-- 切换器：常驻浮层、中性外观；压在浮层阶梯之下（低于 `backdrop`），遇模态打开即隐藏，绝不遮挡其内容。
+- 切换器：常驻浮层、中性外观；压在浮层阶梯之下（z `1350`，低于 `backdrop` `1400`），遇模态打开即隐藏，绝不遮挡其内容。
 
 ## Loader
 
@@ -122,6 +122,6 @@
 
 ## 布局与响应式
 
-- **外壳几何，各 kit 同值**：顶栏 `height 60`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；Hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；Panel 网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
+- **外壳几何，各 kit 同值（各自写字面量、gate 核对）**：顶栏 `height 60`、`z-index 100`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；Hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；Panel 网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
 - **唯一断点 `768px`**，组件级断点见 core §8：`> 768` 为 PC——左侧 sticky 索引 + 双栏 Panel 网格 + Hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与 Panel 网格转单列、隐藏顶部 NavMenu、收紧间距、Hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
 - 手机改写集中进单个 `@media (max-width: 768px)`；PC 专属放 `@media (min-width: 768px)` 或基样式。

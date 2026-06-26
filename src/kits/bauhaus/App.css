@@ -1,5 +1,5 @@
 .bauhaus-app {
-  --bar-h: var(--shell-header-h);
+  --bar-h: 60px;
   min-height: 100vh;
 }
 
@@ -7,13 +7,13 @@
 .bauhaus-header {
   position: sticky;
   top: 0;
-  z-index: var(--shell-z-header);
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--bauhaus-space-5);
   height: var(--bar-h);
-  padding: var(--shell-header-pad);
+  padding: 0 22px;
   background: var(--bauhaus-paper);
   border-bottom: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
 }
@@ -80,18 +80,18 @@
 
 /* ── Body shell ────────────────────────────────────── */
 .bauhaus-shell {
-  max-width: var(--shell-max-w);
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: var(--shell-sidebar-w) minmax(0, 1fr);
-  gap: var(--shell-grid-gap);
-  padding: var(--shell-pad);
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  padding: 26px 22px 28px;
 }
 .bauhaus-sidebar {
   position: sticky;
-  top: calc(var(--bar-h) + var(--shell-sticky-gap));
+  top: calc(var(--bar-h) + 26px);
   align-self: start;
-  max-height: var(--shell-sidebar-cap);
+  max-height: calc(100vh - 60px - 50px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -141,9 +141,9 @@
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--bauhaus-space-8);
-  margin-bottom: var(--shell-hero-mb);
-  padding: var(--shell-hero-pad);
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  margin-bottom: 26px;
+  padding: 30px 28px;
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .bauhaus-hero__eyebrow {
   display: block;
@@ -225,7 +225,7 @@
   align-items: center;
   gap: var(--bauhaus-space-3);
   margin: var(--bauhaus-space-8) 0 var(--bauhaus-space-5);
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .bauhaus-grouprule__marker {
   font-size: var(--bauhaus-fs-18);
@@ -243,10 +243,10 @@
 .bauhaus-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--shell-panel-gap);
+  gap: 18px;
 }
 .bauhaus-panel {
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 
 /* ── Demo helpers ──────────────────────────────────── */
@@ -339,19 +339,19 @@
   }
   .bauhaus-header {
     gap: var(--bauhaus-space-3);
-    padding: var(--shell-header-pad-m);
+    padding: 0 14px;
   }
   .bauhaus-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
-    padding: var(--shell-pad-m);
+    padding: 16px 13px 20px;
   }
   .bauhaus-sidebar {
     display: none;
   }
   .bauhaus-hero {
     grid-template-columns: minmax(0, 1fr);
-    padding: var(--shell-hero-pad-m);
+    padding: 20px 16px;
   }
   .bauhaus-hero__visual {
     display: none;

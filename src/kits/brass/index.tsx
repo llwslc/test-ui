@@ -1,4 +1,3 @@
-import "../../shared/geometry.css";
 import "./theme/tokens.css";
 import "./theme/effects.css";
 import "./theme/typography.css";

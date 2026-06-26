@@ -1,5 +1,5 @@
 .brass-app {
-  --bar-h: var(--shell-header-h);
+  --bar-h: 60px;
   min-height: 100vh;
 }
 
@@ -7,13 +7,13 @@
 .brass-header {
   position: sticky;
   top: 0;
-  z-index: var(--shell-z-header);
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--brass-space-5);
   height: var(--bar-h);
-  padding: var(--shell-header-pad);
+  padding: 0 22px;
   background: rgba(21, 17, 11, 0.86);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--brass-line);
@@ -62,18 +62,18 @@
 
 /* ── Body shell ────────────────────────────────────── */
 .brass-shell {
-  max-width: var(--shell-max-w);
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: var(--shell-sidebar-w) minmax(0, 1fr);
-  gap: var(--shell-grid-gap);
-  padding: var(--shell-pad);
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  padding: 26px 22px 28px;
 }
 .brass-sidebar {
   position: sticky;
-  top: calc(var(--bar-h) + var(--shell-sticky-gap));
+  top: calc(var(--bar-h) + 26px);
   align-self: start;
-  max-height: var(--shell-sidebar-cap);
+  max-height: calc(100vh - 60px - 50px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -124,9 +124,9 @@
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--brass-space-8);
-  margin-bottom: var(--shell-hero-mb);
-  padding: var(--shell-hero-pad);
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  margin-bottom: 26px;
+  padding: 30px 28px;
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .brass-hero__eyebrow {
   display: block;
@@ -232,7 +232,7 @@
   align-items: center;
   gap: var(--brass-space-3);
   margin: var(--brass-space-8) 0 var(--brass-space-5);
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .brass-grouprule__marker {
   font-size: var(--brass-fs-17);
@@ -250,13 +250,13 @@
 .brass-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--shell-panel-gap);
+  gap: 18px;
 }
 .brass-panel--wide {
   grid-column: 1 / -1;
 }
 .brass-panel {
-  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
+  scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 
 /* ── Demo helpers ──────────────────────────────────── */
@@ -316,19 +316,19 @@
   }
   .brass-header {
     gap: var(--brass-space-3);
-    padding: var(--shell-header-pad-m);
+    padding: 0 14px;
   }
   .brass-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
-    padding: var(--shell-pad-m);
+    padding: 16px 13px 20px;
   }
   .brass-sidebar {
     display: none;
   }
   .brass-hero {
     grid-template-columns: minmax(0, 1fr);
-    padding: var(--shell-hero-pad-m);
+    padding: 20px 16px;
   }
   .brass-hero__visual {
     display: none;

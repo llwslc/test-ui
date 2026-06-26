@@ -41,7 +41,7 @@
 - **表面**：面板、浮层、模态、内嵌表面，外加背板 scrim。
 - **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——投影分两套，一套是随形状轮廓的 drop-shadow、一套是矩形 shadow；**具体效果由 theme 定**。
 - **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色至少分四类——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几档、每档多少，全由 theme 定。**
-- **层级阶梯**：浮层堆叠顺序 `dropdown < menu < tooltip < backdrop < overlay < toast`、跨 kit 同值，走 `src/shared` 的 `--shell-z-*` 一处定义、各 kit 引别名。
+- **层级阶梯**：浮层堆叠顺序与固定值（各 kit 同值、各自写 `--<kit>-z-*` 字面量，gate 核对）——`dropdown 1200 < menu 1250 < tooltip 1300 < backdrop 1400 < overlay 1401 < toast 1500`。
 - **动效与度量**：时长 `dur / -slow`、缓动 `ease / -out`、控件高度、禁用透明度、模态内边距。
 - **间距（4px 网格）**：`space-1…N`，即 `4 / 8 / 12 …`。组件的 padding、margin、gap（含 `row-gap` 等）一律走这套阶梯；只有不足一格的小值（如 `::before` 1px 内缩、细轨道高度）和演示页里 `>28px` 的结构留白，才写立即数。
 - **组件尺寸 footprint（强制 token 化）**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，与 `src/shared/geometry.css` 里 `--shell-*` 同构，如 `header-h`、`dialog-w`），例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`；都集中在 `tokens.css`，组件**绝不**裸写尺寸数字，换皮时按名补齐。只有不足一格的小值（边框、细轨道、`≤8px` 的小圆点）和上下文式的值（`clamp`、`calc`、`%`、`dvh`、Base UI 的锚定变量）才就近写立即数。
@@ -64,7 +64,7 @@
 - **surface**——带框的表面（见 4.1），尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop**——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
-- **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高走 `src/shared` 里的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，drawer 再加两档视口占比上限 `-drawer-w-cap`（左右）、`-drawer-h-cap`（上下），各 kit 同值**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
+- **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高（各 kit 同值、各自写 `--<kit>-*` 字面量，gate 核对）：dialog `460`、alert `440`、drawer `420`×`460`；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。
 - **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色，macOS 上拖动才显现）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），它跑满全高，且仅当 viewport 带 `data-has-overflow-y` 时给它 `padding-right` 让内容避开条。**条的宽度、thumb 配色由 theme 定。**
 
@@ -141,7 +141,7 @@
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制，**要调出跨 kit 一致的视觉缝**——框越粗、值要越大，不取同一个数字，由 `kit-submenu-gap` 闸门量。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），要给足高度（明显可点的 min-height）。
-- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽走 `src/shared` 的 `--shell-navmenu-col-w`（各 kit 同值，kit 内 alias 成 `--<kit>-navmenu-col-w`），网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`。
+- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`（各 kit 同值、各自写 `--<kit>-navmenu-col-w` 字面量，gate 核对），网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位，body 留出焦点提示的余量。
 - **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；结构 `Provider > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Close]`。按语义色 tone（`info·success·warning·danger`）区分；**用什么承载 tone、长什么样，由 theme 定。**
 

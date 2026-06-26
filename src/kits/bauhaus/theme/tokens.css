@@ -65,12 +65,12 @@
   --bauhaus-r-round: 999px;
 
   /* ── Z-layer ladder ────────────────────────────────── */
-  --bauhaus-z-dropdown: var(--shell-z-dropdown);
-  --bauhaus-z-menu: var(--shell-z-menu);
-  --bauhaus-z-tooltip: var(--shell-z-tooltip);
-  --bauhaus-z-backdrop: var(--shell-z-backdrop);
-  --bauhaus-z-overlay: var(--shell-z-overlay);
-  --bauhaus-z-toast: var(--shell-z-toast);
+  --bauhaus-z-dropdown: 1200;
+  --bauhaus-z-menu: 1250;
+  --bauhaus-z-tooltip: 1300;
+  --bauhaus-z-backdrop: 1400;
+  --bauhaus-z-overlay: 1401;
+  --bauhaus-z-toast: 1500;
 
   /* ── Motion & metrics ──────────────────────────────── */
   --bauhaus-dur: 0.16s;
@@ -142,13 +142,13 @@
   --bauhaus-popover-w: 288px;
   --bauhaus-preview-w: 320px;
   --bauhaus-contextmenu-min-h: 132px;
-  --bauhaus-dialog-w: var(--shell-dialog-w);
-  --bauhaus-alert-w: var(--shell-alert-w);
-  --bauhaus-drawer-w: var(--shell-drawer-w);
-  --bauhaus-drawer-h: var(--shell-drawer-h);
-  --bauhaus-drawer-w-cap: var(--shell-drawer-w-cap);
-  --bauhaus-drawer-h-cap: var(--shell-drawer-h-cap);
-  --bauhaus-navmenu-col-w: var(--shell-navmenu-col-w);
+  --bauhaus-dialog-w: 460px;
+  --bauhaus-alert-w: 440px;
+  --bauhaus-drawer-w: 420px;
+  --bauhaus-drawer-h: 460px;
+  --bauhaus-drawer-w-cap: 80%;
+  --bauhaus-drawer-h-cap: 60%;
+  --bauhaus-navmenu-col-w: 210px;
   --bauhaus-toast-w: 344px;
   --bauhaus-avatar-sm: 32px;
   --bauhaus-avatar-md: 44px;

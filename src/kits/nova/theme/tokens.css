@@ -121,13 +121,13 @@
   --nova-surface-deep-top: #0e2236;
   --nova-surface-deep-bottom: #081523;
 
-  --nova-dialog-w: var(--shell-dialog-w);
-  --nova-alert-w: var(--shell-alert-w);
-  --nova-drawer-w: var(--shell-drawer-w);
-  --nova-drawer-h: var(--shell-drawer-h);
-  --nova-drawer-w-cap: var(--shell-drawer-w-cap);
-  --nova-drawer-h-cap: var(--shell-drawer-h-cap);
-  --nova-navmenu-col-w: var(--shell-navmenu-col-w);
+  --nova-dialog-w: 460px;
+  --nova-alert-w: 440px;
+  --nova-drawer-w: 420px;
+  --nova-drawer-h: 460px;
+  --nova-drawer-w-cap: 80%;
+  --nova-drawer-h-cap: 60%;
+  --nova-navmenu-col-w: 210px;
   --nova-popover-w: 300px;
   --nova-preview-w: 286px;
   --nova-tooltip-w: 240px;
@@ -176,12 +176,12 @@
   --nova-toolbar-btn-h: 32px;
   --nova-toolbar-btn-min-w: 32px;
 
-  --nova-z-dropdown: var(--shell-z-dropdown);
-  --nova-z-menu: var(--shell-z-menu);
-  --nova-z-tooltip: var(--shell-z-tooltip);
-  --nova-z-backdrop: var(--shell-z-backdrop);
-  --nova-z-overlay: var(--shell-z-overlay);
-  --nova-z-toast: var(--shell-z-toast);
+  --nova-z-dropdown: 1200;
+  --nova-z-menu: 1250;
+  --nova-z-tooltip: 1300;
+  --nova-z-backdrop: 1400;
+  --nova-z-overlay: 1401;
+  --nova-z-toast: 1500;
 }
 
 :root {

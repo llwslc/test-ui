@@ -121,13 +121,13 @@
   --abyss-round-4: 4px;
   --abyss-round-5: 5px;
 
-  --abyss-dialog-w: var(--shell-dialog-w);
-  --abyss-alert-w: var(--shell-alert-w);
-  --abyss-drawer-w: var(--shell-drawer-w);
-  --abyss-drawer-h: var(--shell-drawer-h);
-  --abyss-drawer-w-cap: var(--shell-drawer-w-cap);
-  --abyss-drawer-h-cap: var(--shell-drawer-h-cap);
-  --abyss-navmenu-col-w: var(--shell-navmenu-col-w);
+  --abyss-dialog-w: 460px;
+  --abyss-alert-w: 440px;
+  --abyss-drawer-w: 420px;
+  --abyss-drawer-h: 460px;
+  --abyss-drawer-w-cap: 80%;
+  --abyss-drawer-h-cap: 60%;
+  --abyss-navmenu-col-w: 210px;
   --abyss-popover-w: 320px;
   --abyss-preview-w: 286px;
   --abyss-tooltip-w: 240px;
@@ -182,10 +182,10 @@
   --abyss-toolbar-btn-min-w: 34px;
   --abyss-toolbar-sep-min-h: 18px;
 
-  --abyss-z-dropdown: var(--shell-z-dropdown);
-  --abyss-z-menu: var(--shell-z-menu);
-  --abyss-z-tooltip: var(--shell-z-tooltip);
-  --abyss-z-backdrop: var(--shell-z-backdrop);
-  --abyss-z-overlay: var(--shell-z-overlay);
-  --abyss-z-toast: var(--shell-z-toast);
+  --abyss-z-dropdown: 1200;
+  --abyss-z-menu: 1250;
+  --abyss-z-tooltip: 1300;
+  --abyss-z-backdrop: 1400;
+  --abyss-z-overlay: 1401;
+  --abyss-z-toast: 1500;
 }
