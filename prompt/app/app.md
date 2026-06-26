@@ -1,6 +1,6 @@
 # App —— 演示页 + 外壳 + 加载
 
-> 读 `theme/<kit>.md`（风格）+ `app/theme/<kit>.md`（文案）皮这张展示页：外壳、Hero、面板网格、氛围、loader。承载层、非控件，不引 `components/`。结构通用，装饰与 loader 视觉随风格。
+> 皮这张展示页（外壳、Hero、面板网格、氛围、loader）。只需要两样：**控件的名字**（摆哪个、归哪组——见「面板清单」）和**风格**（`theme/<kit>.md`）；控件怎么实现是 `components/` 的事，这里不碰。文案在 `app/theme/<kit>.md`。
 
 ## 演示页
 
@@ -11,6 +11,18 @@
 外壳类名按独立 block 命名：`<kit>-header`（顶栏）、`<kit>-shell`（两栏网格）、`<kit>-sidebar`（索引）、`<kit>-logo`（品牌）、`<kit>-clock`（时钟），各自带 `__` 元素。
 
 样式先复用 kit 的排版类、组件类；复用不了的页面装置才就近自定义，例如侧栏、hero 装饰。
+
+## 面板清单
+
+各 kit **逐字复制**，不自创——`id`、标题、三字母缩码、分组名都是固定值，驱动侧栏索引、顶栏导航、区块顺序与面板 meta。
+
+- **Inputs**：`button` Button BTN · `switch` Switch SWT · `toggle` Toggle Group TGL · `checkbox` Checkbox CHK · `checkbox-group` Checkbox Group CHG · `radio` Radio Group RDO · `select` Select SEL · `combobox` Combobox CBX · `autocomplete` Autocomplete ACP · `slider` Slider SLD · `number` Number Field NUM · `input` Text Field TXT · `otp` OTP Field OTP
+- **Forms**：`fieldset` Fieldset FLD · `form` Form FRM
+- **Feedback**：`progress` Progress PRG · `meter` Meter MTR · `tabs` Tabs TAB · `accordion` Accordion ACC · `collapsible` Collapsible CLP
+- **Overlays**：`tooltip` Tooltip TIP · `popover` Popover POP · `preview` Preview Card PVW · `menu` Menu MNU · `menubar` Menubar MBR · `navmenu` Navigation Menu NAV · `context` Context Menu CTX · `dialog` Dialog DLG · `alert` Alert Dialog ALT · `drawer` Drawer DRW · `toast` Toast TST
+- **Display**：`avatar` Avatar AVT · `badge` Badge BDG · `toolbar` Toolbar TBR · `scroll` Scroll Area SCR
+- **Foundations**：`typography` Typography TYP · `separator` Separator SEP · `panel` Panel PNL
+- **Signature**：`loader` Loader LDR
 
 ## 面板版式
 
@@ -62,7 +74,6 @@
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
 - accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
-- loader：通栏面板，内嵌展示该 kit 的 Loader（即 Suspense 兜底那枚），用 `demo-loader-stage` 容器收进面板、不占全屏。
 
 **Overlays**
 
@@ -90,6 +101,10 @@
 - typography：h1、h2、h3、一段正文、一个 caption，共 5 行。
 - separator：裸 Separator；带 label 的 Separator；一行 3 段文本以 2 条竖向 Separator 分隔。
 - panel：一段正文 + 一个嵌套 Panel（`meta` 为 SUB）含一个 caption。
+
+**Signature**
+
+- loader：通栏面板，内嵌展示该 kit 的 Loader（即 Suspense 兜底那枚），用 `demo-loader-stage` 容器收进面板、不占全屏。
 
 ## 文案槽位
 
