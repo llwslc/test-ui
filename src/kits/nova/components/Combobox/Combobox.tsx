@@ -24,23 +24,25 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <BaseCombobox.InputGroup className="nova-combobox__control">
-        <span className="nova-combobox__lead">
-          <SearchIcon />
-        </span>
-        <BaseCombobox.Input
-          id={inputId}
-          className="nova-combobox__input"
-          placeholder={placeholder}
-          aria-label={label ?? placeholder}
-        />
-        <BaseCombobox.Clear className="nova-combobox__clear" aria-label="Clear">
-          <XIcon />
-        </BaseCombobox.Clear>
-        <BaseCombobox.Trigger className="nova-combobox__trigger" aria-label="Open list">
-          <ChevronDownIcon />
-        </BaseCombobox.Trigger>
-      </BaseCombobox.InputGroup>
+      <div className="nova-combobox__field">
+        <BaseCombobox.InputGroup className="nova-combobox__control">
+          <span className="nova-combobox__lead">
+            <SearchIcon />
+          </span>
+          <BaseCombobox.Input
+            id={inputId}
+            className="nova-combobox__input"
+            placeholder={placeholder}
+            aria-label={label ?? placeholder}
+          />
+          <BaseCombobox.Clear className="nova-combobox__clear" aria-label="Clear">
+            <XIcon />
+          </BaseCombobox.Clear>
+          <BaseCombobox.Trigger className="nova-combobox__trigger" aria-label="Open list">
+            <ChevronDownIcon />
+          </BaseCombobox.Trigger>
+        </BaseCombobox.InputGroup>
+      </div>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner
           className="nova-elevation nova-combobox__positioner"

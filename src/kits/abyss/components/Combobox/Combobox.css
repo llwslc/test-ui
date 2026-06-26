@@ -1,3 +1,13 @@
+.abyss-combobox__field {
+  display: block;
+  width: 100%;
+  min-width: var(--abyss-combobox-min-w);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-combobox__field:has(:focus-within) {
+  filter: var(--abyss-glow-focus);
+}
+
 .abyss-combobox__control {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
@@ -9,16 +19,14 @@
   min-width: var(--abyss-combobox-min-w);
   height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-2) 0 var(--abyss-space-3);
-  transition: filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-combobox__control:hover:not(:focus-within) {
+.abyss-combobox__field:hover:not(:focus-within) .abyss-combobox__control {
   --abyss-frame-ink: var(--abyss-ink-strong);
 }
-.abyss-combobox__control:focus-within {
+.abyss-combobox__field:has(:focus-within) .abyss-combobox__control {
   --abyss-frame-ink: var(--abyss-glow-a55);
-  filter: var(--abyss-glow-focus);
 }
-.abyss-combobox__control:has(.abyss-combobox__input:disabled) {
+.abyss-combobox__field:has(.abyss-combobox__input:disabled) {
   opacity: var(--abyss-disabled-opacity);
 }
 
@@ -29,7 +37,7 @@
   color: var(--abyss-text-dim);
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-combobox__control:focus-within .abyss-combobox__lead {
+.abyss-combobox__field:has(:focus-within) .abyss-combobox__lead {
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
