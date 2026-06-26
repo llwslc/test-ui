@@ -109,6 +109,7 @@
     left: var(--bauhaus-space-3);
     bottom: var(--bauhaus-space-3);
     width: auto;
+    max-width: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {

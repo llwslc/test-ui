@@ -89,5 +89,6 @@
     left: var(--brass-space-3);
     bottom: var(--brass-space-3);
     width: auto;
+    max-width: none;
   }
 }

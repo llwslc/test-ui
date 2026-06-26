@@ -14,6 +14,14 @@
   height: var(--toast-frontmost-height, 0px);
   outline: none;
 }
+@media (max-width: 768px) {
+  .abyss-toast__viewport {
+    left: var(--abyss-space-3);
+    right: var(--abyss-space-3);
+    width: auto;
+    max-width: none;
+  }
+}
 
 .abyss-toast {
   --abyss-toast-accent: var(--abyss-glow);

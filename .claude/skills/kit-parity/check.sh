@@ -65,6 +65,19 @@ for comp in $COMPS; do
       esac
     done
   done
+  # responsive @media(max-width) parity — the mobile adapt/shrink class (OTP cells,
+  # Toast viewport, NavMenu scroll…). Trivial static check: a component that adapts
+  # on mobile in 2+ kits but not another is a likely gap.
+  rhaves=""; for k in $KITS; do grep -rqlE "@media[^{]*max-width" "src/kits/$k/components/$comp" 2>/dev/null && rhaves="$rhaves $k"; done
+  rn=$(echo $rhaves | wc -w | tr -d ' ')
+  if [ "$rn" -ge 2 ]; then
+    for k in $KITS; do
+      case " $rhaves " in *" $k "*) ;; *)
+        [ -n "$ONLY" ] && [ "$ONLY" != "$k" ] && continue
+        echo "GAP  $comp — $k missing responsive @media(max-width) (present in:$rhaves)"; PFAIL=1; FAIL=1;;
+      esac
+    done
+  fi
 done
 [ "$PFAIL" = 0 ] && echo "-> clean"
 
