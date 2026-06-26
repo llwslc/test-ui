@@ -394,9 +394,14 @@
   text-decoration: none;
   border-bottom: 1px dashed var(--abyss-gold-deep);
 }
-.demo-link:hover {
+.demo-link:hover,
+.demo-link:focus-visible {
   border-bottom-color: var(--abyss-gold);
   text-shadow: 0 0 11px var(--abyss-gold-soft);
+}
+.demo-link:focus-visible {
+  outline: 2px solid var(--abyss-gold);
+  outline-offset: 3px;
 }
 kbd {
   display: inline-flex;

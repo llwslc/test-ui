@@ -74,6 +74,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  outline: none;
   transition:
     color var(--abyss-dur) var(--abyss-ease),
     transform var(--abyss-dur) var(--abyss-ease),

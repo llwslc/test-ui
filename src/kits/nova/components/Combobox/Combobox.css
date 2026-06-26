@@ -79,6 +79,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  outline: none;
   transition:
     color var(--nova-dur) var(--nova-ease),
     transform var(--nova-dur) var(--nova-ease);

@@ -308,9 +308,14 @@
     text-shadow var(--nova-dur) var(--nova-ease),
     border-color var(--nova-dur) var(--nova-ease);
 }
-.demo-link:hover {
+.demo-link:hover,
+.demo-link:focus-visible {
   text-shadow: var(--nova-glow-text);
   border-bottom-color: var(--nova-primary);
+}
+.demo-link:focus-visible {
+  outline: 2px solid var(--nova-primary);
+  outline-offset: 3px;
 }
 kbd {
   display: inline-flex;

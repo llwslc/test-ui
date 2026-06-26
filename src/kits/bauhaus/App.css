@@ -275,9 +275,14 @@
   font-weight: var(--bauhaus-fw-500);
   border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-primary);
 }
-.bauhaus-link:hover {
+.bauhaus-link:hover,
+.bauhaus-link:focus-visible {
   color: var(--bauhaus-text-bright);
   border-bottom-color: var(--bauhaus-ink);
+}
+.bauhaus-link:focus-visible {
+  outline: var(--bauhaus-stroke-bold) solid var(--bauhaus-primary);
+  outline-offset: 3px;
 }
 .bauhaus-panel-note {
   margin: 0 0 var(--bauhaus-space-4);

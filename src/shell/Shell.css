@@ -38,6 +38,10 @@
   color: #fff;
   cursor: pointer;
 }
+.shell-switch__trigger:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
 .shell-switch__chev {
   font-size: 10px;
   opacity: 0.7;
