@@ -11,7 +11,8 @@
 
 ## 1. 目标 & 技术栈
 
-- 用 **Base UI**（`@base-ui/react`）做一套可换肤的 React 组件库：37 个控件，一套能整体换皮的设计 token，风格统一而克制。
+- 用 **Base UI**（`@base-ui/react`）做一套可换肤的 React 组件库：37 个控件，一套能整体换皮的设计 token。**底盘统一克制**——四套皮共用同一套结构、token 契约、交互骨架；**每套皮自成一个视觉世界**，不是同一张皮改色。
+- **皮带招牌**：每套皮要拿出成体系的招牌——招牌动效是底线，再按各自美学叠上自绘控件、装饰层次或构成动势；这与结构、token 同等要紧，克制说的是底盘、不是皮。**招牌取什么形、走哪条路，全由 theme 定。**
 - Vite + React 18 + TypeScript；构建命令 `tsc --noEmit && vite build`。
 - 样式用纯 CSS，和组件放同一目录；不用 Tailwind、CSS-in-JS、或任何运行时样式库。
 - 主题文件有四份，都由 `<kit>/index.tsx` 引入：跨组件复用的视觉配方放 `theme/effects.css`，主题值放 `theme/tokens.css`，氛围层放 `theme/global.css`，排版类放 `theme/typography.css`。
