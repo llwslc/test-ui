@@ -6,11 +6,11 @@
 
 ## 跨 kit 同值
 
-**没有 `src/shared/`，每套 kit 完全自包含**——拷一个 `src/kits/<kit>/` 即可独立跑，不引任何共享 `src`。「各 kit 同值」的数**不共享运行时变量**，而是 **spec 钉固定值 → 各 kit 写成本套 `--<kit>-*` 字面量（或自带数组）→ gate 核对各套相等**。
+**每套 kit 完全自包含**——拷一个 `src/kits/<kit>/` 即可独立跑，不引任何共享 `src`。「各 kit 同值」的数**不共享运行时变量**：**spec 钉固定值，各 kit 各写本套 `--<kit>-*` 字面量（或自带数组），写出来必须相等**。
 
 - **面板清单**（分组 + `[id, title, code]`）：固定值见 `app.md` §面板版式与§面板内容；各 kit 在自己 `App.tsx` 内写一份 `SECTIONS` 数组，驱动侧栏索引与区块顺序，面板演示 JSX 各写各的、按 id 对应。区块副标 `sub` 是主题文案，就近内联。
 - **外壳几何 / 浮层尺寸 / z 阶梯**：固定值见 `app.md` §布局（外壳几何）与 `core.md`（模态/抽屉宽高与 cap、NavigationMenu 列宽、层级阶梯）；各 kit 在 `tokens.css`/`App.css` 写本套字面量，不引任何共享文件。
-- 隔离：绝不 import 另一套 **kit**，**也不** import 任何共享 `src`（没有 `src/shared/`）。
+- 隔离：绝不 import 另一套 **kit**，**也不** import 任何共享 `src`。
 
 公共 UI 分三层固定，强→弱：① 跨 kit 同值的数据/几何——**spec 钉固定值、各 kit 写字面量、gate 核对相等**（kit-shell-tokens 核数、kit-panels 核清单）；② 锁不了的形状（组合、骨架、DOM 顺序、指示器侧、缩进、撑满 vs 紧凑）进 `core.md`，逐组件精确；③ 其余由 gate 机械核对（kit-api=prop 接口、kit-structure=组合、kit-parity=功能选择器、kit-interact=侧栏/外壳/交互）。对着 `core.md`/`app.md` 写，不照兄弟 kit。
 
@@ -26,8 +26,7 @@
    - **kit-lint** 零报告，契约组齐全（z 阶梯、containment、触屏、响应式不漏）。
    - **kit-distinct** 退出 0。从零写本应自然过；FAIL 说明不知不觉照搬了某套的结构，去原生重写。
    - **kit-states** 每交互态、每浮层开态渲染正常。
-   - **kit-richness** 退出 0。招牌动效不塌到远低于最丰的那套；FAIL = 本套 §5 的招牌没落地，照 `themes/<kit>.md` 补齐、别拉平别套。
-   - **screenshot** 逐区人工过对比度、主题个性、装饰位置，迭代打磨。
+   - **screenshot** 逐区人工过对比度、主题个性、招牌动效、装饰位置，迭代打磨——`§5` 的招牌要真做出来。
 
 ## 横切注意
 
