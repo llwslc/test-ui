@@ -1,0 +1,21 @@
+# 控件皮肤 · NOVA —— 科幻 HUD
+
+## 1. 交互态配色
+
+填 core §5 留的空。
+
+- 「点亮表面」用于 Button primary、Switch、Checkbox = 用 `accent-surface` 渐变填充，前景（含箭头、占位符、数值）转 `on-primary`。
+- 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary`。
+- 「文字强调选中」用于列表、Tab、NavMenu，只把文字转 `primary`；Tab、NavMenu 另配一条底部的辉光下划线。
+- 悬停：分段控件和触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线；图标和动作按钮的文字转 `primary`。
+- 焦点：布尔开关（Checkbox、Switch、Radio）用 `glow-focus`；分段控件和触发条用 `inset 0 0 0 1px line-strong`；输入框聚焦时边框点亮成 `primary` + 加 `glow-focus`。
+- 危险态走 danger 家族：`-fill / -wash / -highlight / -text / -inset`。
+
+## 2. 组件皮肤决定
+
+- NavigationMenu 的触发器栏复用 Tabs 的皮肤：大写 Orbitron、渐变 hover、辉光下划线、打开时转 primary、chevron 翻转。
+- AlertDialog 按 `tone` 整体重染，tone 取 danger、warning、primary：扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。
+- Switch：关态的 thumb 用 `thumb-idle` 金属渐变，选中后轨道转 `accent-surface`、thumb 转 `surface-deep`。
+- Drawer：只在朝屏内那一条边描一道 `line-strong` 细线，内沿再叠一道霓虹光边（`primary` 渐变 + 辉光）。
+- 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
+
