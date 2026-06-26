@@ -45,13 +45,10 @@
 .nova-select__trigger:focus-visible {
   outline: none;
   background: var(--nova-primary);
-  color: var(--nova-on-primary);
 }
-.nova-select__trigger[data-popup-open] .nova-select__chevron,
-.nova-select__trigger:focus-visible .nova-select__chevron,
-.nova-select__trigger[data-popup-open] .nova-select__placeholder,
-.nova-select__trigger:focus-visible .nova-select__placeholder {
-  color: var(--nova-on-primary);
+.nova-select__trigger[data-popup-open]::before,
+.nova-select__trigger:focus-visible::before {
+  background: var(--nova-surface-inset);
 }
 .nova-select__field:has(.nova-select__trigger[data-popup-open]),
 .nova-select__field:has(.nova-select__trigger:focus-visible) {
