@@ -1,6 +1,6 @@
 ---
 name: kit-api
-description: Wrapper-layer API parity gate for the theme kits. Each kit is a Base UI primitive + a hand-written wrapper component, and Base UI does NOT keep the wrappers' PUBLIC API consistent across kits — prop names, prop presence, exported symbols, and the `extends` clause drift (the selectAllLabel-vs-parentLabel / iconOnly-vs-icon / missing-showValue class). This gate diffs each component's exported API across kits and FAILs on divergence. Run when accepting or aligning a kit, alongside kit-structure.
+description: Wrapper-layer API parity gate for the theme kits. Each kit is a Base UI primitive + a hand-written wrapper component, and Base UI does NOT keep the wrappers' PUBLIC API consistent across kits — prop names, prop presence, prop types, exported symbols, and the `extends` clause drift (the selectAllLabel-vs-parentLabel / iconOnly-vs-icon / missing-showValue class). This gate diffs each component's exported API across kits and FAILs on divergence. Run when accepting or aligning a kit, alongside kit-structure.
 ---
 
 # kit-api
@@ -33,10 +33,16 @@ filesystem — never hardcoded.
   then compared (caught brass using `React.ComponentProps<X>` where siblings use
   `ComponentPropsWithoutRef<X>`, and `extends Base...Props` passthrough where
   siblings curate explicit props).
+- **`<Comp>Props` prop TYPES match** — for a prop present in every kit, its type
+  must be identical, after resolving local `type X = …` aliases and normalizing
+  unions (order- and leading-pipe-agnostic) so `Tone` vs the inline union, or a
+  multi-line vs single-line union, are NOT false positives. Catches the real
+  semantic class: a same-named prop typed differently (`label: string` vs
+  `ReactNode`) — which passes the name check but means a different contract.
 
-It does NOT check prop TYPES or defaults (a same-named prop with a different type,
-or a different default value like Button's `variant` default, still needs a
-cross-kit read). It checks the surface, which is where most drift lives.
+It does NOT check default VALUES (a different default like Button's `variant`
+default still needs a cross-kit read). It checks the API surface — names, presence,
+exports, `extends`, and prop types — which is where the drift lives.
 
 Pair with `kit-structure` (§5 composition parity = Base UI behavioral props +
 indicator side; §6 = component-class coupling). kit-api = the wrapper's own
