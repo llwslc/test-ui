@@ -51,8 +51,8 @@
   border-radius: var(--bauhaus-r-round);
 }
 .bauhaus-avatar--lg .bauhaus-avatar__status {
-  width: var(--bauhaus-slider-thumb);
-  height: var(--bauhaus-slider-thumb);
+  width: var(--bauhaus-space-3);
+  height: var(--bauhaus-space-3);
 }
 .bauhaus-avatar__status--online {
   background: var(--bauhaus-success);

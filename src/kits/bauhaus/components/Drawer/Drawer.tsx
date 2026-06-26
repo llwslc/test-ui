@@ -2,7 +2,7 @@ import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
 import { Button, type ButtonProps } from "../Button";
-import { Square, Close } from "../icons";
+import { SquareFill, Close } from "../icons";
 import "./Drawer.css";
 
 type ButtonVariant = NonNullable<ButtonProps["variant"]>;
@@ -59,7 +59,7 @@ export function Drawer({
               {title != null ? (
                 <BaseDrawer.Title className="bauhaus-h2 bauhaus-modal-title">
                   <span className="bauhaus-modal__sigil" aria-hidden="true">
-                    <Square />
+                    <SquareFill />
                   </span>
                   {title}
                 </BaseDrawer.Title>

@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
 import { Button } from "../Button";
 import type { ButtonProps } from "../Button";
-import { Circle, Close } from "../icons";
+import { CircleFill, Close } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -42,7 +42,7 @@ export function Dialog({ trigger, title, description, children, footer, open, on
             {title != null ? (
               <BaseDialog.Title className="bauhaus-h2 bauhaus-modal-title">
                 <span className="bauhaus-modal__sigil" aria-hidden="true">
-                  <Circle />
+                  <CircleFill />
                 </span>
                 {title}
               </BaseDialog.Title>
