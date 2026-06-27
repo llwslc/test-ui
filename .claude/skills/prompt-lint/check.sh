@@ -26,12 +26,17 @@ if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's/^/  /'; fail=1; else echo
 
 echo
 echo "## layer separation — components/ ⊥ demo · app/ ⊥ library · theme/(风格) ⊥ both"
+# demo artifacts (page-only): hero banner, the Suspense Loader, the brand logo.
+demo='[Hh]ero|[Ll]oader|[Ll]ogo'
+# Base UI control names (PascalCase, case-sensitive so 'radial'/'::selection'/'transform' don't trip).
+# theme/ is the 风格 root: it skins NOTHING by name — it owns palette/type/geometry/atmosphere/motion only.
+ctrl='Button|Switch|ToggleGroup|Toggle|Checkbox|Radio|Select|Combobox|Autocomplete|Slider|NumberField|TextField|Fieldset|Progress|Meter|Tabs|Accordion|Collapsible|Tooltip|Popover|PreviewCard|Menubar|NavigationMenu|NavMenu|ContextMenu|Dialog|AlertDialog|Drawer|Toast|Avatar|Badge|Toolbar|ScrollArea|Panel|Separator|徽章|进度条'
 lk=0
 for f in $FILES; do
   case "$f" in
-    */components/*) pat='演示|app\.md|App\.|外壳|侧栏'; why='components/ must not know the demo';;
-    */app/*)        pat='components\.md|components/'; why='app/ knows control NAMES + 风格 only, not components/';;
-    prompt/theme/*) pat='components/|app/|components\.md|app\.md|演示页'; why='theme/ is the 风格 root, knows neither side';;
+    */components/*) pat="演示|app\.md|App\.|外壳|侧栏|$demo"; why='components/ must not know the demo (no hero/loader/logo/shell/sidebar)';;
+    */app/*)        pat='components\.md|components/'; why='app/ knows control NAMES + 风格 only, not the components/ layer';;
+    prompt/theme/*) pat="components/|app/|components\.md|app\.md|演示页|$demo|$ctrl"; why='theme/ is the 风格 root — names no control and no demo part';;
     *)              pat=''; why='';;
   esac
   [ -n "$pat" ] || continue

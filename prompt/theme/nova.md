@@ -45,7 +45,7 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .22s / -slow .45s`；缓动 `ease (0.2, 0.8, 0.2, 1)`——快进缓出、干脆，`ease-soft (0.38, 0.1, 0.2, 1)` 给 Toast 栈位移这类大位移、起步缓一点。
-- 微动：按钮高光斜扫（即移动 `background-position`）；进度条流动的条纹；面板的扫描光 `.nova-scan`，靠 scaleX 来回呼吸；徽章上的点平闪 pulse；Hero 的准星旋转。
-- 入场：顶栏下滑进来；Hero 文案逐行错开（即 `nova-rise` stagger）；面板随滚动渐入。
+- 时长 `dur .22s / -slow .45s`；缓动 `ease (0.2, 0.8, 0.2, 1)`——快进缓出、干脆，`ease-soft (0.38, 0.1, 0.2, 1)` 给栈位移这类大位移、起步缓一点。
+- 微动：高光斜扫（即移动 `background-position`）；流动的条纹；扫描光 `.nova-scan` 靠 scaleX 来回呼吸；点状 pulse 平闪。
+- 入场：自上滑入；逐行错开（即 `nova-rise` stagger）；随滚动渐入。
 

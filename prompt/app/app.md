@@ -1,16 +1,18 @@
 # App —— 演示页 + 外壳 + 加载
 
-> 皮这张展示页（外壳、Hero、面板网格、氛围、loader）。只需要两样：**控件的名字**（摆哪个、归哪组——见「面板清单」）和**风格**（`theme/<kit>.md`）。文案在 `app/theme/<kit>.md`。
+> 皮这张展示页（外壳、hero、面板网格、氛围、loader）。只需要两样：**控件的名字**（摆哪个、归哪组——见「面板清单」）和**风格**（`theme/<kit>.md`）。文案在 `app/theme/<kit>.md`。
 
 ## 演示页
 
 每套一个 `App.tsx`。
 
-按「面板清单」摆出要演示的控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
+按「面板清单」摆出要演示的控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏面板网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
 
 外壳类名按独立 block 命名：`<kit>-header`（顶栏）、`<kit>-shell`（两栏网格）、`<kit>-sidebar`（索引）、`<kit>-logo`（品牌）、`<kit>-clock`（时钟），各自带 `__` 元素。
 
 样式先复用 kit 的排版类、组件类；复用不了的页面装置才就近自定义，例如侧栏、hero 装饰。
+
+入场：顶栏滑入、hero 文案逐行错开、面板随滚动渐入，位移与缓动走 theme 的入场动效。
 
 ## 面板清单
 
@@ -111,9 +113,9 @@
 各 kit 同构，词由 theme 填。
 
 - logo 副标：`<主题形容词> UI Kit`。
-- Hero eyebrow：`<主题系统名> · 37 <主题单位>`。
-- Hero 大标题：两行 `A(n) <主题形容词> interface kit / <主题动词短语>`，排版类 `h1` + `h1--accent` 强调主题形容词；hero 专属字号 `clamp(28px, 4.4vw, 46px)`，最重字重就近覆盖。
-- Hero 描述：一句主题化视觉描述，再一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
+- hero eyebrow：`<主题系统名> · 37 <主题单位>`。
+- hero 大标题：两行 `A(n) <主题形容词> interface kit / <主题动词短语>`，排版类 `h1` + `h1--accent` 强调主题形容词；hero 专属字号 `clamp(28px, 4.4vw, 46px)`，最重字重就近覆盖。
+- hero 描述：一句主题化视觉描述，再一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
 - 数据条 4 位：`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Runtime Deps`、`A11y / Built In`。
 - 面板 meta：三字母缩码，如 BTN、DRW；嵌套面板 `SUB`。
 - 组副题：每组一句主题化短语，随组名同行。
@@ -137,6 +139,6 @@
 
 ## 布局与响应式
 
-- **外壳几何，各 kit 同值**：顶栏 `height 60`、`z-index 100`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；Hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；Panel 网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
-- **唯一断点 `768px`**：`> 768` 为 PC——左侧 sticky 索引 + 双栏 Panel 网格 + Hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与 Panel 网格转单列、隐藏顶部 NavMenu、收紧间距、Hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
+- **外壳几何，各 kit 同值**：顶栏 `height 60`、`z-index 100`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；面板网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
+- **唯一断点 `768px`**：`> 768` 为 PC——左侧 sticky 索引 + 双栏面板网格 + hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与面板网格转单列、隐藏顶部 NavMenu、收紧间距、hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
 - 手机改写集中进单个 `@media (max-width: 768px)`；PC 专属放 `@media (min-width: 768px)` 或基样式。

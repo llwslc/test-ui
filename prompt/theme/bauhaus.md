@@ -29,13 +29,13 @@
 
 ## 3. 几何与描边
 
-- 造型只有**锐角矩形 + 正圆**，不用 clip-path、不用圆角矩形过渡。半径只有两档：`--bauhaus-r-frame / -control / -chip` 全为 `0`（硬网格、锐角），`--bauhaus-r-round 999px` 给正圆（Radio、Switch 旋钮、状态点、圆形 marker）；组件不裸写 radius。
-- 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色挑：细分隔用 hair，控件和容器用 default，面板和分段箱用 bold，Dialog／AlertDialog／Drawer／Hero 用 heavy；组件不裸写 border-width。
+- 造型只有**锐角矩形 + 正圆**，不用 clip-path、不用圆角矩形过渡。半径只有两档：`--bauhaus-r-frame / -control / -chip` 全为 `0`（硬网格、锐角），`--bauhaus-r-round 999px` 给正圆（旋钮、状态点、圆形 marker 等）；组件不裸写 radius。
+- 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色挑：细分隔用 hair，控件和容器框用 default，大型框面用 bold，超大外框用 heavy；组件不裸写 border-width。
 - 浮层的连接件（连到触发器的那个小箭头）是一个旋转 45° 的方块、当作纸面三角的尾巴，两条边描 `ink`，尖端指向触发器，跟弹层一起淡入淡出。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量是 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接用 CSS `border`，不搞双层 `::before`、不要 bevel、不要渐变。
 - 边框轻重：页内静止框和浮层框一律 `ink` 纯黑，统一成黑网格；状态升级靠**加颜色**——焦点加蓝环、选中加实填；语义变体只改填充色，border 始终黑。
-- 抬升：硬边偏移的实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；入场用的 clip-path 要在投影那一侧留出余量、别把影子裁掉；输入变量 `--bauhaus-overlay-shadow`，默认取 `cast-pop`、模态取 `cast-modal`、Tooltip 取 `cast-sm`；`.bauhaus-lift` 只用来定 z 层、不画别的。没有辉光层。
-- 基本形 marker 母题：圆、三角、方三种原形，用作 Panel 角标、tone 图标、列表标记和招牌，靠输入变量换色。
+- 抬升：硬边偏移的实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；入场用的 clip-path 要在投影那一侧留出余量、别把影子裁掉；输入变量 `--bauhaus-overlay-shadow`，默认取 `cast-pop`、模态取 `cast-modal`、小档取 `cast-sm`；`.bauhaus-lift` 只用来定 z 层、不画别的。没有辉光层。
+- 基本形 marker 母题：圆、三角、方三种原形，用作角标、tone 图标、列表标记和招牌，靠输入变量换色。
 
 ## 4. 氛围层
 
@@ -49,7 +49,7 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .16s / -slow .34s`；缓动 `ease (0.2, 0, 0, 1)` 硬落定，`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移；另加 `dur-sweep` 给进度条和 loader。
-- 微动：进度条流动；招牌的三原形旋转、步进；徽章上的点是平闪 pulse、不是辉光。
-- 入场：硬切 + 块面滑移（即 `translate` 位移），Hero 文案逐行错开（stagger），面板滑入；Loader 用形状旋转。
+- 时长 `dur .16s / -slow .34s`；缓动 `ease (0.2, 0, 0, 1)` 硬落定，`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移；另加 `dur-sweep` 给扫掠类动画。
+- 微动：条状填充流动；三原形旋转、步进；点状是平闪 pulse、不是辉光。
+- 入场：硬切 + 块面滑移（即 `translate` 位移）、逐行错开（stagger）、滑入。
 

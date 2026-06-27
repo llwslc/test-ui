@@ -17,6 +17,6 @@
 - Panel：角部放触手 tendril；Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；模态标题配一个图记，其中 Dialog 是自转的 sigil、Alert 按 tone。
 - Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束。
 - AlertDialog 按 `tone` 重染：danger = blood 红（默认档）、配骷髅图记，warning = gold 金，primary = glow 青。
-- NavigationMenu 的触发器栏复用 Tabs 的皮肤；Hero 法阵、分组线 GroupRule 都带 sigil 标记。
+- NavigationMenu 的触发器栏复用 Tabs 的皮肤。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗；连接线是 1.5px 的 glow + edge 颤动滤镜。
 

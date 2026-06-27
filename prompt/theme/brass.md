@@ -17,7 +17,7 @@
 - 另立的几个 alpha 家族：success 的 `-wash .12`；warning 的 `-wash .12`；danger 的 `-fill .50 / -wash .12`。
 - 中性与效果色：`off #2c2519` 是关态轨道，呈发蓝褐的钢色；`track #221c12` 是未填充的轨道；金属扫光 `sheen .55`；关态旋钮的金属渐变 `thumb-top #6a5f49 / -bottom #312a1d`；步进钮的底部渐变取 `surface-raised`。
 - 表面：`surface .82`、`surface-popup .975`；`surface-modal` 走一条 165deg 的深色渐变；`surface-inset #100c06` 是凹陷的井底；`surface-zone` 是右键投放区的底色；`scrim .66`。
-- 辉光与阴影：文字辉光 `glow-text` 是暖琥珀色；一组 drop-shadow `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕；焦点描边环 `ring-focus`（暗色底座 + 亮铜外圈），`-recessed` 是它再叠一层 `bevel-inset`、给 Switch 和 Radio 用；矩形投影 `shadow-popup / -modal`，硬机加工感的投影 `shadow-ink`，旋钮的微影 `shadow-thumb`。
+- 辉光与阴影：文字辉光 `glow-text` 是暖琥珀色；一组 drop-shadow `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕；焦点描边环 `ring-focus`（暗色底座 + 亮铜外圈），`-recessed` 是它再叠一层 `bevel-inset`、给凹陷式控件用；矩形投影 `shadow-popup / -modal`，硬机加工感的投影 `shadow-ink`，旋钮的微影 `shadow-thumb`。
 
 ## 2. 字体与排版
 
@@ -30,9 +30,9 @@
 
 - 形状用**机加工圆角**，不用 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg；组件不裸写 radius。
 - 描边走双层黄铜 bezel 原语 `.brass-plate`：外层背景是 `bezel` 拉丝黄铜渐变 + radius，内缩 2px 的 `::before` 是板的填充 + 内嵌 `bevel`（上沿亮、下沿暗的金属内沿）；输入变量是 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 分三档：`bezel-dim` 给页内静止态的陈旧铜，`bezel` 是默认，`bezel-strong` 给浮层和升起态的亮铜。
-- 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板和招牌件用。
-- 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在 Switch 旋钮、Slider 旋钮缘、滚动条 thumb 上。
-- 浮层抬升原语 `.brass-lift`，挂在 positioner 和模态 popup 上、且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 两层叠加，输入变量是 `--brass-overlay-shadow / -glow`；默认取 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，Tooltip 取小档，AlertDialog 按 tone 走。
+- 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给超大外框和招牌板用。
+- 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在旋钮、滑块缘、滚动条 thumb 上。
+- 浮层抬升原语 `.brass-lift`，挂在 positioner 和模态 popup 上、且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 两层叠加，输入变量是 `--brass-overlay-shadow / -glow`；默认取 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，另有小档与按 tone 重染档。
 - 边框轻重：页内静止态用 `bezel-dim`；浮层用 `bezel-strong`，也就是 plate 的默认值；状态升级时升到 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 和填充。
 - 浮层的连接件（连到触发器的那截）是一道 2px 的 `primary` 黄铜线，长度取 `--brass-overlay-gap`，跨过缝隙连上触发器。
 
@@ -48,6 +48,6 @@
 ## 5. 动效个性
 
 - 时长 `dur .26s / -slow .5s`；缓动 `ease (0.32, 0.72, 0.2, 1)`——干脆的机械落定感；`ease-detent (0.5, 1.4, 0.5, 1)` 带一点微过冲，给指针和阀门的落位。
-- 微动：进度条流动；徽章上的点是琥珀灯的 pulse；旋钮、阀门交互时带一记 detent 回弹；Hero 表盘的指针摆动、齿轮咬合转，旁边飘一缕蒸汽。
-- 入场：面板、浮层滑入后带一记 detent 落定；仪表指针从零扫到读数；琥珀灯由暗渐亮。
+- 微动：填充流动；点状是琥珀灯的 pulse；旋钮、阀门交互时带一记 detent 回弹。
+- 入场：滑入后带一记 detent 落定；仪表指针从零扫到读数；琥珀灯由暗渐亮。
 
