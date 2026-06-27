@@ -283,6 +283,26 @@ export default function App() {
 function Demo() {
   const toast = useToast();
 
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    document.querySelectorAll(".bauhaus-grid").forEach((grid) => {
+      grid.classList.add("bauhaus-reveal");
+      for (const el of grid.children) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="bauhaus-app">
       <header className="bauhaus-header">
