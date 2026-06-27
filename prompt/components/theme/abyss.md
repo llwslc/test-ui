@@ -16,7 +16,7 @@
 - Switch 是一只眼睛：`.abyss-eye` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
 - Panel：角部放触手 tendril；Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；模态标题配一个图记，其中 Dialog 是自转的 sigil、Alert 按 tone。
 - Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束。
-- AlertDialog 按 `tone` 重染：danger = blood 红（默认档）、配骷髅图记，warning = gold 金，primary = glow 青。
+- AlertDialog 按 `tone` 重染：danger = blood 红（默认档）、配骷髅图记，warning = gold 金，primary = glow 青；表面顶部另按 tone 加一道径向重染。
 - NavigationMenu 的触发器栏复用 Tabs 的皮肤。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗；连接线是 1.5px 的 glow + edge 颤动滤镜。
 - 招牌微动：Checkbox／勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）；OTP 光标闪动；Drawer 开启一记钥匙转启。

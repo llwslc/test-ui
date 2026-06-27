@@ -21,5 +21,6 @@
 - Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，左缘一道黄铜光束 + 一个齿轮图记；Dialog 标题配一个齿轮 cartouche 图记。
 - Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。
 - 招牌 SVG：Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是齿轮加字母组合。
+- 招牌微动：Progress 灯丝流动；Badge 点用 `brass-breathe` 琥珀灯呼吸；Checkbox 盖印（`brass-stamp`）；OTP 输入往复 pulse；Dialog 齿轮图记 `brass-rotate` 自转；旋钮、阀门交互带 `ease-detent` 回弹。
 - 共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`。
 

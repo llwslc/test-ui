@@ -23,5 +23,6 @@
 - Panel：角部放三原形角标 + meta。Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）。Dialog 标题配一个三原形图标。
 - Drawer：只在朝屏内那一条边描一道 `stroke-heavy` 纯黑边，其余三边贴屏不描；纸面、直角同模态。
 - 招牌 SVG：Checkbox 是纸白几何对勾，Radio 是实蓝圆心点，Avatar 的兜底是 Archivo Black 字母压在实色块上、方形裁剪，占位图标是几何线形。
+- 招牌微动：Progress 条填充流动（`bauhaus-progress-slide`）；其余只有交互过渡（硬切 + 块面滑移），无持续辉光或脉动。
 - 共享配方的颜色就近覆盖：`--bauhaus-marker-color`。
 
