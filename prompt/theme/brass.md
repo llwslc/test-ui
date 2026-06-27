@@ -47,7 +47,6 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .26s / -slow .5s`；缓动 `ease (0.32, 0.72, 0.2, 1)`——干脆的机械落定感；`ease-detent (0.5, 1.4, 0.5, 1)` 带一点微过冲，给指针和阀门的落位。
-- 微动：填充流动；点状是琥珀灯的 pulse；旋钮、阀门交互时带一记 detent 回弹。
-- 入场：滑入后带一记 detent 落定；仪表指针从零扫到读数；琥珀灯由暗渐亮。
+- 时长 `dur .26s / -slow .5s`，另有 `dur-sweep 1.5s`、`dur-breath 6s`、`dur-spin 30s`；缓动 `ease (0.32, 0.72, 0.2, 1)` 干脆的机械落定，`ease-detent (0.5, 1.4, 0.5, 1)` 带微过冲、给落位回弹。
+- 共享动效（`effects.css`）：`brass-breathe` scaleX + 透明度呼吸脉动、`brass-rotate` 360° 匀速自转、`.brass-connector` 浮层连接件。
 

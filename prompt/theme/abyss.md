@@ -43,9 +43,6 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .3s / -slow .66s`；缓动 `ease (0.38, 0.1, 0.2, 1)`——沉、缓。
-- 呼吸是主旋律：`--abyss-breath 7s`，`.abyss-breathe` 是共享 class，用在状态点、sigil 符印这类小标记上。
-- inscribe（刻写）：勾选、标记按 `stroke-dashoffset` 一笔笔描画出现。
-- 旋转：符印类标记多环异速反向旋转、虹膜脉动、缓慢自转。
-- 入场：`abyss-rise` 逐行错开（stagger）、随滚动渐入。
+- 时长 `dur .3s / -slow .66s`、`dur-sweep 1.5s`；缓动 `ease (0.38, 0.1, 0.2, 1)` 沉、缓，`ease-out (0.16, 1, 0.3, 1)` 给浮层。
+- 共享动效（`effects.css`）：呼吸是主旋律——`--abyss-breath 7s` + 共享 class `.abyss-breathe` 脉动，小标记统一引用；另有 `.abyss-connector` 浮层连接件。
 
