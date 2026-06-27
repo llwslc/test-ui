@@ -25,6 +25,22 @@ hits=$(grep -nE '^#{2,6} .+ (—|--|：|:|（|\()' $FILES 2>/dev/null || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's/^/  /'; fail=1; else echo "  -> clean"; fi
 
 echo
+echo "## layer separation — components/ ⊥ demo · app/ ⊥ library · theme/(风格) ⊥ both"
+lk=0
+for f in $FILES; do
+  case "$f" in
+    */components/*) pat='演示|app\.md|App\.|外壳|侧栏'; why='components/ must not know the demo';;
+    */app/*)        pat='components\.md|components/'; why='app/ knows control NAMES + 风格 only, not components/';;
+    prompt/theme/*) pat='components/|app/|components\.md|app\.md|演示页'; why='theme/ is the 风格 root, knows neither side';;
+    *)              pat=''; why='';;
+  esac
+  [ -n "$pat" ] || continue
+  bad=$(grep -nE "$pat" "$f" 2>/dev/null || true)
+  if [ -n "$bad" ]; then printf '  LEAK  %s — %s:\n' "$f" "$why"; printf '%s\n' "$bad" | sed 's/^/    /'; lk=1; fail=1; fi
+done
+[ "$lk" = 0 ] && echo "  -> clean"
+
+echo
 echo "## REVIEW — emphasis mix in a bullet block (heuristic, never fails; eyeball each)"
 echo "   bold must mark ONE consistent thing per peer set; a block with both '- **' and"
 echo "   '- plain' leads is a CANDIDATE — most are fine (bold font/term vs plain prose);"

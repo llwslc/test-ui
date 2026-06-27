@@ -1,12 +1,12 @@
 # App —— 演示页 + 外壳 + 加载
 
-> 皮这张展示页（外壳、Hero、面板网格、氛围、loader）。只需要两样：**控件的名字**（摆哪个、归哪组——见「面板清单」）和**风格**（`theme/<kit>.md`）；控件怎么实现是 `components/` 的事，这里不碰。文案在 `app/theme/<kit>.md`。
+> 皮这张展示页（外壳、Hero、面板网格、氛围、loader）。只需要两样：**控件的名字**（摆哪个、归哪组——见「面板清单」）和**风格**（`theme/<kit>.md`）。文案在 `app/theme/<kit>.md`。
 
 ## 演示页
 
 每套一个 `App.tsx`。
 
-按「面板清单」摆出要演示的控件（库里有多少控件是 `components/` 的事，演示页只截取要展示的那些）：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
+按「面板清单」摆出要演示的控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
 
 外壳类名按独立 block 命名：`<kit>-header`（顶栏）、`<kit>-shell`（两栏网格）、`<kit>-sidebar`（索引）、`<kit>-logo`（品牌）、`<kit>-clock`（时钟），各自带 `__` 元素。
 
@@ -28,7 +28,7 @@
 
 两栏网格；组标题通栏分隔——主题标记 + 组名 + 一句副题，每组从新行起，不留半行空位。
 
-跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对；通栏跨度见 components.md §8。锚点 id 与通栏跨度怎么落地（Panel 自带 prop，或外层 section 容器）由 theme 定。`·` 分行，`|` 同行：
+跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对（通栏跨满两栏 `grid-column: 1 / -1`）。锚点 id 与通栏跨度怎么落地（Panel 自带 prop，或外层 section 容器）由 theme 定。`·` 分行，`|` 同行：
 
 同行配对按**语义亲缘**，即开关类、勾选类、单选类、选择器、数值、文本等，不按字母或随手序：
 
@@ -138,5 +138,5 @@
 ## 布局与响应式
 
 - **外壳几何，各 kit 同值**：顶栏 `height 60`、`z-index 100`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；Hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；Panel 网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
-- **唯一断点 `768px`**，组件级断点见 components.md §8：`> 768` 为 PC——左侧 sticky 索引 + 双栏 Panel 网格 + Hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与 Panel 网格转单列、隐藏顶部 NavMenu、收紧间距、Hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
+- **唯一断点 `768px`**：`> 768` 为 PC——左侧 sticky 索引 + 双栏 Panel 网格 + Hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与 Panel 网格转单列、隐藏顶部 NavMenu、收紧间距、Hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
 - 手机改写集中进单个 `@media (max-width: 768px)`；PC 专属放 `@media (min-width: 768px)` 或基样式。

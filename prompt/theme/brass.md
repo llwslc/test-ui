@@ -1,6 +1,6 @@
 # Theme · BRASS —— 黄铜引擎
 
-> 本套风格：视觉 DNA——身份、调色、字体、几何、氛围、动效语言。`components/`（控件皮）与 `app/`（演示页）都读它，它本身不认识控件、也不认识演示页。`<kit>` = `brass`。
+> 本套风格：视觉 DNA——身份、调色、字体、几何、氛围、动效语言。`<kit>` = `brass`。
 
 ## 0. 身份
 
@@ -28,7 +28,7 @@
 
 ## 3. 几何与描边
 
-- 形状用**机加工圆角**，不用 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按 components.md §3 的角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg；组件不裸写 radius。
+- 形状用**机加工圆角**，不用 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg；组件不裸写 radius。
 - 描边走双层黄铜 bezel 原语 `.brass-plate`：外层背景是 `bezel` 拉丝黄铜渐变 + radius，内缩 2px 的 `::before` 是板的填充 + 内嵌 `bevel`（上沿亮、下沿暗的金属内沿）；输入变量是 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 分三档：`bezel-dim` 给页内静止态的陈旧铜，`bezel` 是默认，`bezel-strong` 给浮层和升起态的亮铜。
 - 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给 Panel、Dialog、AlertDialog、Hero 板和招牌件用。
 - 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在 Switch 旋钮、Slider 旋钮缘、滚动条 thumb 上。
