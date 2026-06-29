@@ -13,8 +13,8 @@
   --brass-primary-deep: #876521;
   --brass-secondary: #c2683b;
   --brass-success: #56a98a;
-  --brass-warning: #f0bf3a;
-  --brass-warning-deep: #9c7418;
+  --brass-warning: #ef8a20;
+  --brass-warning-deep: #985610;
   --brass-danger: #d2503c;
   --brass-danger-deep: #7c281d;
 
@@ -39,7 +39,7 @@
 
   /* ── Per-family alpha & danger set ─────────────────── */
   --brass-success-wash: rgba(86, 169, 138, 0.12);
-  --brass-warning-wash: rgba(240, 191, 58, 0.12);
+  --brass-warning-wash: rgba(239, 138, 32, 0.12);
   --brass-danger-fill: rgba(210, 80, 60, 0.5);
   --brass-danger-wash: rgba(210, 80, 60, 0.12);
 
