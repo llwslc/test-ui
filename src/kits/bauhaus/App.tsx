@@ -569,6 +569,7 @@ function Demo() {
             <Panel id="meter" title="Meter" meta="MTR">
               <div className="bauhaus-stack">
                 <Meter label="Ink coverage" value={88} />
+                <Meter label="Registration" value={70} tone="success" />
                 <Meter label="Margin balance" value={52} tone="warning" />
                 <Meter label="Overflow" value={23} tone="danger" />
               </div>
@@ -769,18 +770,44 @@ function Demo() {
               </Dialog>
             </Panel>
             <Panel id="alert" title="Alert Dialog" meta="ALT">
-              <AlertDialog
-                tone="danger"
-                trigger={<Button variant="danger">Clear canvas</Button>}
-                title="Clear the canvas?"
-                description="This deletes every element and cannot be undone."
-                actions={
-                  <>
-                    <AlertDialogClose>Hold</AlertDialogClose>
-                    <AlertDialogClose variant="danger">Clear</AlertDialogClose>
-                  </>
-                }
-              />
+              <div className="bauhaus-row">
+                <AlertDialog
+                  tone="danger"
+                  trigger={<Button variant="ghost">Clear canvas</Button>}
+                  title="Clear the canvas?"
+                  description="This deletes every element and cannot be undone."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold</AlertDialogClose>
+                      <AlertDialogClose variant="danger">Clear</AlertDialogClose>
+                    </>
+                  }
+                />
+                <AlertDialog
+                  tone="warning"
+                  trigger={<Button variant="ghost">Reset grid</Button>}
+                  title="Reset the grid?"
+                  description="Every element snaps back to the module. Confirm to reset."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold</AlertDialogClose>
+                      <AlertDialogClose variant="primary">Reset</AlertDialogClose>
+                    </>
+                  }
+                />
+                <AlertDialog
+                  tone="primary"
+                  trigger={<Button variant="ghost">Apply layout</Button>}
+                  title="Apply this layout?"
+                  description="The new composition replaces the current one."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold</AlertDialogClose>
+                      <AlertDialogClose variant="primary">Apply</AlertDialogClose>
+                    </>
+                  }
+                />
+              </div>
             </Panel>
 
             <Panel id="drawer" title="Drawer" meta="DRW">
@@ -856,7 +883,7 @@ function Demo() {
                   <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
                   <AvatarFallback>LM</AvatarFallback>
                 </Avatar>
-                <Avatar status="busy">
+                <Avatar size="sm" status="busy">
                   <AvatarFallback>TV</AvatarFallback>
                 </Avatar>
                 <Avatar status="away">

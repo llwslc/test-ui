@@ -895,6 +895,7 @@ function Demo() {
               <Panel title="Meter" meta="MTR">
                 <div className="demo-stack">
                   <Meter label="Communion" value={88} />
+                  <Meter label="Ward" value={70} tone="success" />
                   <Meter label="Corruption" value={52} tone="warning" />
                   <Meter label="Breach" value={23} tone="danger" />
                 </div>
@@ -1136,17 +1137,44 @@ function Demo() {
 
             <div className="abyss-section" id="alert">
               <Panel title="Alert Dialog" meta="ALT">
-                <AlertDialog
-                  trigger={<Button variant="danger">Break the Seal</Button>}
-                  title="Break the Seal?"
-                  description="This looses what the seal has held since the first tide, and cannot be undone. Brace for the dark."
-                  actions={
-                    <>
-                      <AlertDialogClose>Cancel</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Break</AlertDialogClose>
-                    </>
-                  }
-                />
+                <div className="demo-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Break the Seal</Button>}
+                    title="Break the Seal?"
+                    description="This looses what the seal has held since the first tide, and cannot be undone. Brace for the dark."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Break</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Stir the Deep</Button>}
+                    title="Stir the sleeping deep?"
+                    description="The tide turns against the wards for a while. Speak the word to proceed."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Stir</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Open the Eye</Button>}
+                    title="Open the watching eye?"
+                    description="What it sees, it remembers. The rite begins on your mark."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Open</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
               </Panel>
             </div>
 
@@ -1195,7 +1223,7 @@ function Demo() {
                     />
                     <AvatarFallback>AC</AvatarFallback>
                   </Avatar>
-                  <Avatar status="busy">
+                  <Avatar size="sm" status="busy">
                     <AvatarFallback>DG</AvatarFallback>
                   </Avatar>
                   <Avatar status="away">

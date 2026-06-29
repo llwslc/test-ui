@@ -574,6 +574,7 @@ function Demo() {
             <Panel id="meter" title="Meter" meta="MTR">
               <div className="brass-stack">
                 <Meter label="Boiler pressure" value={88} />
+                <Meter label="Output yield" value={70} tone="success" />
                 <Meter label="Coolant flow" value={52} tone="warning" />
                 <Meter label="Bearing temp" value={23} tone="danger" />
               </div>
@@ -780,18 +781,44 @@ function Demo() {
               </Dialog>
             </Panel>
             <Panel id="alert" title="Alert Dialog" meta="ALT">
-              <AlertDialog
-                tone="danger"
-                trigger={<Button variant="danger">Emergency stop</Button>}
-                title="Trigger emergency stop?"
-                description="This vents all pressure and halts the engine immediately."
-                actions={
-                  <>
-                    <AlertDialogClose>Hold fast</AlertDialogClose>
-                    <AlertDialogClose variant="danger">Stop engine</AlertDialogClose>
-                  </>
-                }
-              />
+              <div className="brass-row">
+                <AlertDialog
+                  tone="danger"
+                  trigger={<Button variant="ghost">Emergency stop</Button>}
+                  title="Trigger emergency stop?"
+                  description="This vents all pressure and halts the engine immediately."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold fast</AlertDialogClose>
+                      <AlertDialogClose variant="danger">Stop engine</AlertDialogClose>
+                    </>
+                  }
+                />
+                <AlertDialog
+                  tone="warning"
+                  trigger={<Button variant="ghost">Bleed valve</Button>}
+                  title="Bleed the pressure valve?"
+                  description="Output drops while the line settles. Confirm to bleed."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold fast</AlertDialogClose>
+                      <AlertDialogClose variant="primary">Bleed</AlertDialogClose>
+                    </>
+                  }
+                />
+                <AlertDialog
+                  tone="primary"
+                  trigger={<Button variant="ghost">Engage drive</Button>}
+                  title="Engage the main drive?"
+                  description="The flywheel spins up and the gears take load."
+                  actions={
+                    <>
+                      <AlertDialogClose>Hold fast</AlertDialogClose>
+                      <AlertDialogClose variant="primary">Engage</AlertDialogClose>
+                    </>
+                  }
+                />
+              </div>
             </Panel>
 
             <Panel id="drawer" title="Drawer" meta="DRW">
@@ -867,7 +894,7 @@ function Demo() {
                   <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
                   <AvatarFallback>IB</AvatarFallback>
                 </Avatar>
-                <Avatar status="busy">
+                <Avatar size="sm" status="busy">
                   <AvatarFallback>GW</AvatarFallback>
                 </Avatar>
                 <Avatar status="away">

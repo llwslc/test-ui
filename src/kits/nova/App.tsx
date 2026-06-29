@@ -766,6 +766,7 @@ function Demo() {
               <Panel title="Meter" meta="MTR">
                 <div className="demo-stack">
                   <Meter label="Power Output" value={88} />
+                  <Meter label="Shield Integrity" value={70} tone="success" />
                   <Meter label="Coolant" value={52} tone="warning" />
                   <Meter label="Damage" value={23} tone="danger" />
                 </div>
@@ -1008,17 +1009,44 @@ function Demo() {
 
             <div className="nova-section" id="alert">
               <Panel title="Alert Dialog" meta="ALT">
-                <AlertDialog
-                  trigger={<Button variant="danger">Purge Core</Button>}
-                  title="Purge Reactor Core?"
-                  description="This vents the antimatter containment and cannot be undone. All hands brace for power loss."
-                  actions={
-                    <>
-                      <AlertDialogClose>Cancel</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Purge</AlertDialogClose>
-                    </>
-                  }
-                />
+                <div className="demo-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Purge Core</Button>}
+                    title="Purge Reactor Core?"
+                    description="This vents the antimatter containment and cannot be undone. All hands brace for power loss."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Purge</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Vent Plasma</Button>}
+                    title="Vent Plasma Manifold?"
+                    description="Pressure drops across all decks for ninety seconds. Confirm to proceed."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Vent</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Engage Jump</Button>}
+                    title="Engage Jump Drive?"
+                    description="Coordinates are locked. The jump initiates on confirmation."
+                    actions={
+                      <>
+                        <AlertDialogClose>Cancel</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Engage</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
               </Panel>
             </div>
 
@@ -1066,7 +1094,7 @@ function Demo() {
                     />
                     <AvatarFallback>OP</AvatarFallback>
                   </Avatar>
-                  <Avatar status="busy">
+                  <Avatar size="sm" status="busy">
                     <AvatarFallback>VK</AvatarFallback>
                   </Avatar>
                   <Avatar status="away">

@@ -72,7 +72,7 @@
 **Feedback**
 
 - progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
-- meter：三条 Meter —— 默认色 88、`warning` 52、`danger` 23。
+- meter：四条 Meter，覆盖全部 tone —— 默认色 88、`success` 70、`warning` 52、`danger` 23。
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
 - accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
@@ -87,13 +87,13 @@
 - navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
 - context：trigger = 文本投放区；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
-- alert：trigger = `danger` Button；内容 = 标题 + 描述 + actions 2 个 AlertDialogClose（默认、`danger`）。
+- alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog（覆盖全部 tone）；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。
 - toast：一行 4 个 Button（`sm`、`ghost`），分别触发默认、`success`、`warning`、`danger` 四种 toast。
 
 **Display**
 
-- avatar：一行 4 个 Avatar，覆盖全部 4 种 status —— ① 图片 + online；② fallback + busy；③ fallback + away；④ fallback + 放大 + offline。
+- avatar：一行 4 个 Avatar，覆盖全部 4 种 status 与 3 种尺寸 —— ① 图片 + online（md）；② fallback + busy（`sm`）；③ fallback + away（md）；④ fallback + offline（`lg`）。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
 - toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
