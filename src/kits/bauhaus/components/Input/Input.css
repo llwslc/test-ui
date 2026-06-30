@@ -55,5 +55,5 @@
   font-family: var(--bauhaus-font);
   font-size: var(--bauhaus-fs-13);
   font-weight: var(--bauhaus-fw-500);
-  color: var(--bauhaus-danger-text);
+  color: var(--bauhaus-danger);
 }

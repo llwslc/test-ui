@@ -32,7 +32,7 @@
   animation: brass-otp-pulse var(--brass-dur-slow) var(--brass-ease) infinite alternate;
 }
 .brass-otp__cell:has(.brass-otp__input[data-invalid]) {
-  --brass-plate-bezel: var(--brass-danger-deep);
+  --brass-plate-bezel: var(--brass-danger);
 }
 .brass-otp__cell:has(.brass-otp__input:disabled) {
   opacity: var(--brass-disabled-opacity);

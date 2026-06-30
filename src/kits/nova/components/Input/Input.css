@@ -29,9 +29,6 @@
 .nova-input-wrap:has([data-invalid]) {
   background: var(--nova-danger);
 }
-.nova-input-wrap:has([data-invalid]) .nova-input {
-  background: var(--nova-danger-inset);
-}
 
 .nova-input {
   flex: 1;
