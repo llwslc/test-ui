@@ -25,7 +25,7 @@
 - 字体：body 用几何无衬线 **Jost**，display（粗黑展示体）用 **Archivo Black**，数值刻度（mono）用 **DM Mono**。
 - 尺度各档：字号 `fs-11 / 13 / 15 / 18 / 22 / 44`，字距 `ls-1 0 / -2 .03em / -4 .2em`，行高 `lh-100 / 130 / 150`，字重 `fw-400 / 500 / 700`。
 - 三档标题：`h1` = display · fs-44 · lh-100 · bright 纯黑；`h2` = display · fs-22 · lh-130 · bright；`h3` = Jost · fs-13 · 大写 · ls-4 · fw-700 · dim，是几何风的小节标签；正文 `text` = Jost · fs-15 · lh-150 · dim；修饰类 `h1--accent` = primary 蓝字 + 底部一道 `stroke-heavy` 粗细的原黄横杠。
-- 字段标签 caption 有独立类 **`.bauhaus-cap`**：Jost · fs-11 · 大写 · ls-4 · fw-700 · dim 的几何标签，组件统一引用；数值就近用 mono。
+- 字段标签 caption 有独立类 **`.bauhaus-cap`**：Jost · fs-11 · 大写 · ls-4 · fw-700 · dim 的几何标签，组件统一引用。
 
 ## 3. 几何与描边
 
