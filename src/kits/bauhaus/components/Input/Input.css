@@ -13,10 +13,7 @@
   opacity: var(--bauhaus-disabled-opacity);
 }
 .bauhaus-input:has(.bauhaus-input__control[data-invalid]) {
-  --bauhaus-surface-border: var(--bauhaus-danger);
-}
-.bauhaus-input:focus-within:has(.bauhaus-input__control[data-invalid]) {
-  box-shadow: var(--bauhaus-ring-danger);
+  --bauhaus-surface-fill: var(--bauhaus-danger-wash);
 }
 .bauhaus-input__icon {
   display: inline-flex;
