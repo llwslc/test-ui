@@ -33,7 +33,7 @@
 - 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色挑：细分隔用 hair，控件和容器框用 default，大型框面用 bold，超大外框用 heavy；组件不裸写 border-width。
 - 浮层的连接件（连到触发器的那个小箭头）是一个旋转 45° 的方块、当作纸面三角的尾巴，两条边描 `ink`，尖端指向触发器，跟弹层一起淡入淡出。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量是 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接用 CSS `border`，不搞双层 `::before`、不要 bevel、不要渐变。
-- 边框轻重：页内静止框和浮层框一律 `ink` 纯黑，统一成黑网格；状态升级靠**加颜色**——焦点加蓝环、选中加实填；语义变体只改填充色，border 始终黑。
+- 边框轻重：页内静止框和浮层框一律 `ink` 纯黑，统一成黑网格；状态升级靠**加颜色**——焦点加蓝环、错误加红环、选中加实填；整块语义变体平涂实色，错误态只在黑框外加红环、不破黑。
 - 抬升：硬边偏移的实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；入场用的 clip-path 要在投影那一侧留出余量、别把影子裁掉；输入变量 `--bauhaus-overlay-shadow`，默认取 `cast-pop`、模态取 `cast-modal`、小档取 `cast-sm`；`.bauhaus-lift` 只用来定 z 层、不画别的。没有辉光层。
 - 基本形 marker 母题：圆、三角、方三种原形，用作角标、tone 图标、列表标记和招牌，靠输入变量换色。
 

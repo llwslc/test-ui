@@ -57,6 +57,7 @@
   --bauhaus-cast-modal: drop-shadow(8px 8px 0 var(--bauhaus-ink));
   --bauhaus-shadow-hard: 3px 3px 0 var(--bauhaus-ink);
   --bauhaus-ring: 0 0 0 2px var(--bauhaus-paper), 0 0 0 4px var(--bauhaus-primary);
+  --bauhaus-ring-danger: 0 0 0 2px var(--bauhaus-paper), 0 0 0 4px var(--bauhaus-danger);
 
   /* ── Geometry (sharp rect + perfect circle) ────────── */
   --bauhaus-r-frame: 0;
