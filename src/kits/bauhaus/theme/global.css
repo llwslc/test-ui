@@ -32,13 +32,3 @@ body::before {
   scrollbar-width: thin;
   scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-raised);
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
