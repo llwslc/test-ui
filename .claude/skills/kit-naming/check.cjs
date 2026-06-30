@@ -41,14 +41,49 @@ const dominantBlock = (kit, comp) => {
   return sorted.length ? sorted[0][0] : null;
 };
 
-let flagged = 0;
+const blockLines = [];
 for (const comp of shared.sort()) {
   const blocks = Object.fromEntries(kits.map((k) => [k, dominantBlock(k, comp)]));
-  const uniq = new Set(Object.values(blocks).filter(Boolean));
-  if (uniq.size > 1) {
-    flagged++;
-    console.log(`DIVERGENT  ${comp}:  ${kits.map((k) => `${k}=${blocks[k]}`).join('  ')}`);
-  }
+  if (new Set(Object.values(blocks).filter(Boolean)).size > 1)
+    blockLines.push(`  DIVERGENT  ${comp}:  ${kits.map((k) => `${k}=${blocks[k]}`).join('  ')}`);
 }
-console.log(`\nRESULT: ${flagged === 0 ? `PASS (${shared.length} shared components each use one <kit>-<block> name across all kits)` : flagged + ' component(s) with divergent block naming across kits — unify to one <kit>-<block> per component'}`);
-process.exit(flagged === 0 ? 0 : 1);
+
+const walk = (dir, acc = []) => {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) walk(p, acc);
+    else if (/\.(css|tsx)$/.test(e.name)) acc.push(p);
+  }
+  return acc;
+};
+const localByKit = {}, allLocal = new Set();
+for (const kit of kits) {
+  const set = new Set();
+  const cssSel = new RegExp(`\\.${kit}-([a-z0-9_-]+)`, 'g');
+  const tsxTok = new RegExp(`(?<![-.\\w])${kit}-([a-z0-9_]+(?:-[a-z0-9_]+)*)`, 'g');
+  for (const f of walk(path.join(ROOT, kit))) {
+    const txt = fs.readFileSync(f, 'utf8');
+    for (const m of txt.matchAll(f.endsWith('.css') ? cssSel : tsxTok)) set.add(m[1]);
+  }
+  localByKit[kit] = set;
+  for (const c of set) allLocal.add(c);
+}
+const dunder = new Set();
+for (const c of allLocal) { const m = c.match(/^([a-z0-9]+)__([a-z0-9]+)/); if (m) dunder.add(`${m[1]}__${m[2]}`); }
+const driftLines = [];
+for (const kit of kits) for (const c of localByKit[kit]) {
+  const m = c.match(/^([a-z0-9]+)-([a-z0-9]+)$/);
+  if (!m || [...localByKit[kit]].some((o) => o.startsWith(c + '__'))) continue;
+  if (dunder.has(`${m[1]}__${m[2]}`)) driftLines.push(`  ${('.' + kit + '-' + c).padEnd(34)} → .${kit}-${m[1]}__${m[2]}   (siblings use \`__\`)`);
+}
+
+console.log('## block-name consistency (each shared component uses one <kit>-<block> across kits)');
+console.log(blockLines.length ? blockLines.join('\n') : '  -> clean');
+console.log('\n## sub-part separator consistency (no `block-part` where a sibling writes `block__part`)');
+console.log(driftLines.length ? driftLines.join('\n') : '  -> clean');
+
+const fail = blockLines.length + driftLines.length;
+console.log(`\nRESULT: ${fail === 0
+  ? `PASS (${shared.length} shared components: one <kit>-<block> each + consistent sub-part separators)`
+  : `${fail} naming issue(s) — unify block names / sub-part separators across kits`}`);
+process.exit(fail ? 1 : 0);

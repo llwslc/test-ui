@@ -1,11 +1,13 @@
 ---
 name: kit-naming
-description: Cross-kit class-naming consistency. For each component shared by all kits, the dominant block class (de-kit-prefixed) should be the same across kits — catches the divergence kit-lint can't see (it checks token FORMAT within a kit, never whether names match across kits).
+description: Cross-kit class-naming consistency, two checks. (1) For each component shared by all kits, the dominant block class (de-kit-prefixed) should be the same across kits. (2) Sub-part separator consistency — a leaf written `block-part` (single dash) in one kit while a sibling writes `block__part` (folded in from the former kit-part-naming gate). Catches the divergence kit-lint can't see (it checks token FORMAT within a kit, never whether names match across kits).
 ---
 
 # kit-naming
 
-The convention is `<kit>-<component>__<part>` — so the same component should carry the same block name in every kit (only the `<kit>-` prefix differs). kit-lint checks token *format* within one kit (everything tokenized, no raw values, no dead tokens, dimension suffixes) but has **no cross-kit name check** — which is how NavigationMenu shipped as `navmenu` (nova/abyss) vs `nav` (brass/bauhaus), with a matching `--<kit>-nav-w` vs nothing, and nothing flagged it.
+The convention is `<kit>-<component>__<part>` — so the same component should carry the same block name in every kit (only the `<kit>-` prefix differs), and a given leaf part is spelled the same way (`__`, never a lone dash) across kits. kit-lint checks token *format* within one kit (everything tokenized, no raw values, no dead tokens, dimension suffixes) but has **no cross-kit name check** — which is how NavigationMenu shipped as `navmenu` (nova/abyss) vs `nav` (brass/bauhaus), with a matching `--<kit>-nav-w` vs nothing, and nothing flagged it.
+
+It runs two checks: **block-name consistency** (the dominant `<kit>-<block>` per shared component must match across kits) and **sub-part separator consistency** (no leaf `block-part` where a sibling writes `block__part` — the separator-drift check folded in from the former standalone `kit-part-naming` gate). Either failing exits non-zero.
 
 ## Run
 
