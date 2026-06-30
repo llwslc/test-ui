@@ -121,7 +121,7 @@
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed。
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起。
 - **NumberField**：结构 `Group > [减 + Input + 加]`，两个步进钮等宽、夹住输入框；到 min/max 时自己 disable 对应步进钮并置灰。
-- **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 落 `data-invalid` 后据此渲染（勿自造错误类），错误态用 `danger` 档同时给框与 `Error` 文字上色（同档同色）、不改输入区底色。
+- **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 传 `Field.Root invalid`、按 `data-invalid` 出样式，框与 `Error` 文字同取 `danger` 档，输入区底色不变。
 - **OtpField**：props `length·splitAt·mask`；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus。
 - **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
 - **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`。
