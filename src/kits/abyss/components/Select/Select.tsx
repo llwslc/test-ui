@@ -79,7 +79,7 @@ export function Select<Value extends string = string>({
                   key={it.value}
                   value={it.value}
                   disabled={it.disabled}
-                  className="abyss-option"
+                  className="abyss-list-item"
                 >
                   <BaseSelect.ItemText className="abyss-select__item-text">
                     {it.label}

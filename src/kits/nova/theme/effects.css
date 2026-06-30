@@ -302,12 +302,12 @@
   outline: none;
 }
 
-.nova-menu__item {
+.nova-list-item {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: var(--nova-space-3);
+  gap: var(--nova-space-2);
   padding: var(--nova-space-2) var(--nova-space-3);
   cursor: pointer;
   color: var(--nova-text-dim);
@@ -319,7 +319,7 @@
     background var(--nova-dur) var(--nova-ease),
     color var(--nova-dur) var(--nova-ease);
 }
-.nova-menu__item::after {
+.nova-list-item::after {
   content: "";
   position: absolute;
   left: 0;
@@ -330,6 +330,52 @@
   box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
   opacity: 0;
   transition: opacity var(--nova-dur) var(--nova-ease);
+}
+.nova-list-item[data-highlighted] {
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
+}
+.nova-list-item[data-highlighted]::after {
+  opacity: 1;
+}
+.nova-list-item[data-selected] {
+  color: var(--nova-primary);
+}
+.nova-list-item[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.nova-menu__item {
+  gap: var(--nova-space-3);
+}
+.nova-menu__item[data-popup-open] {
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
+}
+.nova-menu__item[data-popup-open]::after {
+  opacity: 1;
+}
+.nova-menu__item[data-highlighted] .nova-menu__icon {
+  color: var(--nova-primary);
+}
+.nova-menu__item[data-highlighted] .nova-menu__shortcut {
+  color: var(--nova-text-dim);
+}
+.nova-menu__item--danger,
+.nova-menu__item--danger .nova-menu__icon {
+  color: var(--nova-danger);
+}
+.nova-menu__item--danger[data-highlighted] {
+  background: var(--nova-danger-wash);
+  color: var(--nova-danger-text);
+}
+.nova-menu__item--danger[data-highlighted] .nova-menu__icon {
+  color: var(--nova-danger);
+}
+.nova-menu__item--danger::after {
+  background: var(--nova-danger);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-danger);
 }
 .nova-menu__icon {
   flex: 0 0 auto;
@@ -350,47 +396,6 @@
   letter-spacing: var(--nova-ls-10);
   color: var(--nova-text-mute);
 }
-.nova-menu__item[data-highlighted],
-.nova-menu__item[data-popup-open] {
-  background: var(--nova-highlight);
-  color: var(--nova-text-bright);
-}
-.nova-menu__item[data-highlighted]::after,
-.nova-menu__item[data-popup-open]::after {
-  opacity: 1;
-}
-.nova-menu__item[data-highlighted] .nova-menu__icon {
-  color: var(--nova-primary);
-}
-.nova-menu__item[data-highlighted] .nova-menu__shortcut {
-  color: var(--nova-text-dim);
-}
-.nova-menu__item[data-disabled] {
-  opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
-}
-.nova-menu__item--danger,
-.nova-menu__item--danger .nova-menu__icon {
-  color: var(--nova-danger);
-}
-.nova-menu__item--danger[data-highlighted] {
-  background: var(--nova-danger-wash);
-  color: var(--nova-danger-text);
-}
-.nova-menu__item--danger[data-highlighted] .nova-menu__icon {
-  color: var(--nova-danger);
-}
-.nova-menu__item--danger::after {
-  background: var(--nova-danger);
-  box-shadow: 0 0 var(--nova-glow-r) var(--nova-danger);
-}
-
-.nova-menu__separator.nova-separator {
-  position: relative;
-  z-index: 1;
-  margin: var(--nova-space-2) 0;
-}
-
 .nova-menu__arrow {
   flex: 0 0 auto;
   display: inline-flex;
@@ -404,46 +409,8 @@
   color: var(--nova-primary);
 }
 
-.nova-option {
+.nova-menu__separator.nova-separator {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: var(--nova-space-2);
-  padding: var(--nova-space-2) var(--nova-space-3);
-  cursor: pointer;
-  color: var(--nova-text-dim);
-  font-size: var(--nova-fs-14);
-  user-select: none;
-  outline: none;
-  clip-path: var(--nova-clip-7);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    color var(--nova-dur) var(--nova-ease);
-}
-.nova-option::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--nova-primary);
-  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
-  opacity: 0;
-  transition: opacity var(--nova-dur) var(--nova-ease);
-}
-.nova-option[data-highlighted] {
-  background: var(--nova-highlight);
-  color: var(--nova-text-bright);
-}
-.nova-option[data-highlighted]::after {
-  opacity: 1;
-}
-.nova-option[data-selected] {
-  color: var(--nova-primary);
-}
-.nova-option[data-disabled] {
-  opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
+  margin: var(--nova-space-2) 0;
 }

@@ -76,7 +76,7 @@ export function Select<Value extends string = string>({
                   key={it.value}
                   value={it.value}
                   disabled={it.disabled}
-                  className="nova-option"
+                  className="nova-list-item"
                 >
                   <BaseSelect.ItemText className="nova-select__item-text">
                     {it.label}

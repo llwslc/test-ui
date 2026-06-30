@@ -21,7 +21,7 @@ export function MenuItem({
 }: MenuItemProps) {
   return (
     <Menu.Item
-      className={cx("nova-menu__item", tone === "danger" && "nova-menu__item--danger", className)}
+      className={cx("nova-list-item nova-menu__item", tone === "danger" && "nova-menu__item--danger", className)}
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
@@ -49,7 +49,7 @@ export function MenuSub({
 }) {
   return (
     <Menu.SubmenuRoot>
-      <Menu.SubmenuTrigger className="nova-menu__item">
+      <Menu.SubmenuTrigger className="nova-list-item nova-menu__item">
         <span className="nova-menu__icon">{icon}</span>
         <span className="nova-menu__label">{label}</span>
         <span className="nova-menu__arrow">
