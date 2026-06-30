@@ -193,16 +193,14 @@ function ProgressGauges() {
 
 function IgnitionCodeField() {
   const [code, setCode] = useState("");
-  const valid = code.length === 6;
+  const valid = code.length >= 6;
   const touched = code.length > 0;
   return (
     <Field
       label="Ignition code"
-      placeholder="6-digit code…"
-      inputMode="numeric"
-      maxLength={6}
+      placeholder="6+ characters…"
       value={code}
-      onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+      onChange={(e) => setCode(e.target.value)}
       error={touched && !valid ? "Ignition code too short" : undefined}
     />
   );

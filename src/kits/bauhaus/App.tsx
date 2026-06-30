@@ -184,16 +184,14 @@ function ProgressBars() {
 
 function AccessKeyField() {
   const [code, setCode] = useState("");
-  const valid = code.length === 6;
+  const valid = code.length >= 6;
   const touched = code.length > 0;
   return (
     <Field
       label="Access key"
-      placeholder="6-digit key…"
-      inputMode="numeric"
-      maxLength={6}
+      placeholder="6+ characters…"
       value={code}
-      onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+      onChange={(e) => setCode(e.target.value)}
       error={touched && !valid ? "Access key too short" : undefined}
     />
   );
