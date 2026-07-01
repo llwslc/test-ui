@@ -23,7 +23,7 @@
 
 - **Yeseva One** 作 display（维多利亚展示衬线），**Domine** 作正文（工业衬线），**Space Mono** 作机械等宽刻度，也就是数值与仪表标签。
 - 尺度各档：字号 `fs-11 / 13 / 15 / 17 / 20 / 26 / 34`，字距 `ls-1 .01em / -2 .03em / -3 .08em / -4 .16em`，行高 `lh-100 / 140 / 160`，字重 `fw-400 / 600 / 700`。
-- 三档标题：`h1` = display · fs-34 · ls-1 · fw-400 · bright；`h2` = display · fs-20 · lh-140 · bright；`h3` = mono · fs-13 · 大写 · ls-4 · fw-700 · dim，是刻印式的子标签；正文 `text` = Domine · fs-15 · lh-160 · dim；修饰类 `h1--accent` = primary 字 + glow-text 辉光 + 底部一道 1px 黄铜刻线。
+- 三档标题：`h1` = display · fs-34 · ls-1 · fw-400 · bright；`h2` = display · fs-20 · lh-140 · bright；`h3` = mono · fs-13 · 大写 · ls-4 · fw-700 · dim，是刻印式的子标签；正文 `text` = Domine · fs-15 · lh-160 · dim；修饰类 `h1--accent` = primary 字 + glow-text 辉光。
 - 字段标签 caption 有独立类 **`.brass-cap`**：mono · fs-11 · 大写 · ls-3 · fw-700 · dim 的刻印仪表标签，组件统一引用。
 
 ## 3. 几何与描边

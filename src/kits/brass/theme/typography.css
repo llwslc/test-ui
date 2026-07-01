@@ -14,10 +14,6 @@
 .brass-h1--accent {
   color: var(--brass-primary);
   text-shadow: var(--brass-glow-text);
-  text-decoration-line: underline;
-  text-decoration-color: var(--brass-line-strong);
-  text-decoration-thickness: 1px;
-  text-underline-offset: var(--brass-space-1);
 }
 
 .brass-h2 {
