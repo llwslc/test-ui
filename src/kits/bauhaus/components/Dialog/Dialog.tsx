@@ -69,7 +69,7 @@ export interface DialogCloseProps
   children?: ReactNode;
 }
 
-export function DialogClose({ variant = "secondary", size = "md", className, children, ...props }: DialogCloseProps) {
+export function DialogClose({ variant = "ghost", size = "md", className, children, ...props }: DialogCloseProps) {
   return (
     <BaseDialog.Close
       render={

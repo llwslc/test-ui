@@ -26,9 +26,10 @@
   display: inline-flex;
   font-size: var(--riot-fs-18);
 }
-.riot-btn:active {
+.riot-btn:active:not(:disabled):not([data-disabled]) {
   transform: translate(4px, 5px);
   box-shadow: 1px 1px 0 var(--riot-ink);
+  transition-duration: 0s;
 }
 .riot-btn:focus-visible {
   outline: var(--riot-stroke) solid var(--riot-primary);
@@ -54,7 +55,7 @@
   color: var(--riot-text);
   box-shadow: none;
 }
-.riot-btn--ghost:active {
+.riot-btn--ghost:active:not(:disabled):not([data-disabled]) {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
@@ -72,8 +73,9 @@
   color: var(--riot-text-dim);
   box-shadow: none;
 }
-.riot-btn--icon-ghost:active {
+.riot-btn--icon-ghost:active:not(:disabled):not([data-disabled]) {
   transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .riot-btn--sm {

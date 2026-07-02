@@ -74,7 +74,7 @@ export interface DialogCloseProps
 }
 
 export function DialogClose({
-  variant = "secondary",
+  variant = "ghost",
   size = "md",
   className,
   children,

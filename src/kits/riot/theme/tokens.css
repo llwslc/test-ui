@@ -28,6 +28,9 @@
   --riot-tint: rgba(255, 77, 10, 0.2);
   --riot-danger-wash: rgba(255, 34, 0, 0.14);
   --riot-tape: rgba(224, 210, 120, 0.5);
+  --riot-tape-danger: rgba(255, 34, 0, 0.5);
+  --riot-tape-warning: rgba(255, 229, 0, 0.5);
+  --riot-tape-primary: rgba(255, 77, 10, 0.5);
   --riot-marker: rgba(255, 229, 0, 0.55);
 
   /* ── Neutrals & effect colors ──────────────────────── */

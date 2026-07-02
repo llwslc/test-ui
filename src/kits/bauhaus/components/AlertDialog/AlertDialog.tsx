@@ -34,7 +34,7 @@ export interface AlertDialogCloseProps
   children?: ReactNode;
 }
 
-export function AlertDialogClose({ variant = "secondary", size = "md", className, children, ...props }: AlertDialogCloseProps) {
+export function AlertDialogClose({ variant = "ghost", size = "md", className, children, ...props }: AlertDialogCloseProps) {
   return (
     <BaseAlertDialog.Close
       render={

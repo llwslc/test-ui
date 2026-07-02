@@ -26,7 +26,6 @@
    - `tsc --noEmit && vite build`。
    - **kit-lint** 零报告，契约组齐全（z 阶梯、containment、触屏、响应式不漏）。
    - **kit-distinct** 退出 0。FAIL 说明不知不觉照搬了某套的结构，去原生重写。
-   - **补丁史回填**——列出上一套 kit 落地后 `src/kits/` 收到的全部 `fix` 提交，逐类核对新 kit 已含同类修复；`:focus-visible` 覆盖计数对齐兄弟。
    - **kit-states** 每交互态、每浮层开态渲染正常。
    - **screenshot** 逐区人工过对比度、主题个性、招牌动效、装饰位置，迭代打磨——招牌要真做出来。
 

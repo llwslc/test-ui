@@ -21,7 +21,7 @@
 - Progress、Meter 是撕边纸轨（`track` + `ink` 框）+ 荧光 `accent-fill` 平涂指示；Meter 按 `tone` 重染，荧光黄配 `on-warning` 深刻度。
 - Tabs、NavigationMenu：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，另有 `stroke-bold` 记号笔横杠随激活项走，hover 用 `tint` wash；触发器 Anton 大写、打开转荧光、chevron 翻转。
 - Dialog 撕边纸面、顶边贴胶带。
-- AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：撕边纸面顶端一条 tone 实色撕纸、一角贴胶带，标题／描述／actions 在下面的纸面上。
+- AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角那条胶带换成 tone 半透色。
 - Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：一角贴胶带或订书钉，meta 做成盖章的三字码。
 - Toast 锚在右下角**乱堆**：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角（新的不被挡）；**tone 做成左侧一整块荧光实色色域**（是色块、不是细条），其上压一个反白的剪报母题图记，右侧是纸面正文（标题／描述／关闭）。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。

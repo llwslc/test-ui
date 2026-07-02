@@ -14,17 +14,12 @@
 .riot-alert__surface {
   position: relative;
 }
-.riot-alert__strip {
-  display: block;
-  height: var(--riot-space-2);
-  margin: calc(-1 * var(--riot-modal-pad)) calc(-1 * var(--riot-modal-pad)) var(--riot-space-5);
+.riot-alert__popup--danger .riot-tape {
+  background: var(--riot-tape-danger);
 }
-.riot-alert__popup--danger .riot-alert__strip {
-  background: var(--riot-danger);
+.riot-alert__popup--warning .riot-tape {
+  background: var(--riot-tape-warning);
 }
-.riot-alert__popup--warning .riot-alert__strip {
-  background: var(--riot-warning);
-}
-.riot-alert__popup--primary .riot-alert__strip {
-  background: var(--riot-primary);
+.riot-alert__popup--primary .riot-tape {
+  background: var(--riot-tape-primary);
 }

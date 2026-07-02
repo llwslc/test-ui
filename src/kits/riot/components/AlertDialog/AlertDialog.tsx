@@ -39,7 +39,6 @@ export function AlertDialog({
           >
             <span className="riot-tape riot-tape--tr" aria-hidden />
             <div className="riot-surface riot-surface--torn riot-modal riot-alert__surface">
-              <span className="riot-alert__strip" />
               {title != null ? (
                 <BaseAlertDialog.Title className="riot-h2 riot-modal-title">
                   {title}
