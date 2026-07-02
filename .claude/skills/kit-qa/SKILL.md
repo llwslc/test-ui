@@ -10,6 +10,19 @@ Run: `sh .claude/skills/kit-qa/check.sh [port]` (port default 5273).
 The dynamic gates drive the real page, so **the dev server must be up** on that
 port first (`npm run dev`). The runner curl-checks it and bails early if not.
 
+## Playwright (recreate after a reboot)
+
+The dynamic gates load `playwright-core` from a fixed path,
+`/tmp/pw/node_modules/playwright-core`. `/tmp` is ephemeral, so after a reboot they
+error with `Cannot find module '/tmp/pw/...'`. Recreate it from scratch:
+
+    mkdir -p /tmp/pw && cd /tmp/pw && npm init -y && npm i playwright-core
+
+They launch the system Google Chrome via `executablePath` (the `CHROME` const in
+each `check.cjs`), so `playwright-core` alone suffices — no `npx playwright install`
+browser download. Needs Chrome at
+`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`.
+
 ## Why this exists
 
 The dynamic Playwright gates are real and correct, but only `diff-hygiene` ran
