@@ -1,7 +1,6 @@
 :root {
   /* ── Backgrounds & paper ───────────────────────────── */
   --riot-base: #111010;
-  --riot-base-raised: #191716;
   --riot-paper: #e9e4d4;
   --riot-paper-raised: #d7cfba;
 
@@ -34,6 +33,7 @@
   /* ── Neutrals & effect colors ──────────────────────── */
   --riot-off: #2b2824;
   --riot-track: #d7cfba;
+  --riot-staple: #cfcfcf;
 
   /* ── Surfaces ──────────────────────────────────────── */
   --riot-surface: var(--riot-paper);
@@ -58,7 +58,6 @@
   --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary);
 
   /* ── Geometry (sharp cut paper + one round for dots) ── */
-  --riot-r-frame: 0;
   --riot-r-control: 0;
   --riot-r-round: 999px;
 
@@ -96,7 +95,6 @@
   --riot-space-5: 20px;
   --riot-space-6: 24px;
   --riot-space-7: 28px;
-  --riot-space-8: 32px;
   --riot-space-9: 36px;
 
   /* ── Typography ────────────────────────────────────── */

@@ -1,12 +1,22 @@
 .riot-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--riot-space-4);
+  justify-content: center;
+  gap: 16px;
+  background-color: #111010;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1.3px),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.3px);
+  background-size: 7px 7px, 7px 7px;
+  background-position: 0 0, 3.5px 3.5px;
 }
 .riot-loader__stack {
   display: flex;
-  gap: var(--riot-space-1);
+  gap: 6px;
 }
 .riot-loader__letter {
   display: inline-flex;
@@ -14,32 +24,36 @@
   justify-content: center;
   width: 40px;
   height: 48px;
-  border: var(--riot-stroke-bold) solid var(--riot-ink);
-  box-shadow: var(--riot-shadow-hard);
-  font-family: var(--riot-font-display);
-  font-size: var(--riot-fs-24);
-  color: var(--riot-on-fill);
+  border: 3px solid #0d0d0d;
+  box-shadow: 5px 6px 0 #0d0d0d;
+  font-size: 26px;
   animation: riot-loader-blink 0.8s steps(2, jump-none) infinite;
 }
 .riot-loader__letter--1 {
-  background: var(--riot-primary);
+  background: #ff4d0a;
+  color: #0d0d0d;
+  font-family: "Anton", "Arial Narrow", sans-serif;
   transform: rotate(-4deg);
   animation-delay: 0s;
 }
 .riot-loader__letter--2 {
-  background: var(--riot-paper);
-  color: var(--riot-ink);
+  background: #e9e4d4;
+  color: #0d0d0d;
+  font-family: "Special Elite", "Courier New", monospace;
   transform: rotate(3deg);
   animation-delay: 0.1s;
 }
 .riot-loader__letter--3 {
-  background: var(--riot-secondary);
+  background: #0d0d0d;
+  color: #e9e4d4;
+  font-family: "Archivo Black", "Anton", sans-serif;
   transform: rotate(-2deg);
   animation-delay: 0.2s;
 }
 .riot-loader__letter--4 {
-  background: var(--riot-warning);
-  color: var(--riot-on-warning);
+  background: #ff1f8f;
+  color: #0d0d0d;
+  font-family: "Bebas Neue", "Anton", sans-serif;
   transform: rotate(5deg);
   animation-delay: 0.3s;
 }
@@ -53,9 +67,9 @@
   }
 }
 .riot-loader__label {
-  font-family: var(--riot-font-display);
-  font-size: var(--riot-fs-13);
-  letter-spacing: var(--riot-ls-4);
+  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--riot-text-invert);
+  color: #e9e4d4;
 }

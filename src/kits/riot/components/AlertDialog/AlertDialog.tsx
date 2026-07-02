@@ -3,7 +3,6 @@ import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { BoltIcon } from "../icons";
 import "./AlertDialog.css";
 
 export interface AlertDialogProps {
@@ -38,13 +37,11 @@ export function AlertDialog({
           <BaseAlertDialog.Popup
             className={cx("riot-alert__popup", `riot-alert__popup--${tone}`, className)}
           >
-            <div className="riot-surface riot-modal riot-alert__surface">
+            <span className="riot-tape riot-tape--tr" aria-hidden />
+            <div className="riot-surface riot-surface--torn riot-modal riot-alert__surface">
               <span className="riot-alert__strip" />
               {title != null ? (
                 <BaseAlertDialog.Title className="riot-h2 riot-modal-title">
-                  <span className="riot-marker riot-modal__sigil">
-                    <BoltIcon />
-                  </span>
                   {title}
                 </BaseAlertDialog.Title>
               ) : null}

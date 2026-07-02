@@ -6,3 +6,6 @@
 .riot-accordion__header {
   margin: 0;
 }
+.riot-accordion .riot-collapse-marker {
+  top: 2px;
+}

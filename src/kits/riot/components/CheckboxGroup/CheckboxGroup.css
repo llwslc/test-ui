@@ -8,6 +8,11 @@
   flex-direction: column;
   gap: var(--riot-space-2);
   margin-left: var(--riot-space-3);
-  padding-left: var(--riot-space-4);
-  border-left: var(--riot-stroke-bold) solid var(--riot-ink);
+  padding-left: var(--riot-space-5);
+  background: repeating-linear-gradient(
+      180deg,
+      var(--riot-staple) 0 9px,
+      transparent 9px 22px
+    )
+    left top / var(--riot-stroke-bold) calc(100% - var(--riot-space-2)) no-repeat;
 }

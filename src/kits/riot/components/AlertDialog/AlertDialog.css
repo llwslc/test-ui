@@ -1,4 +1,5 @@
 .riot-alert__popup {
+  position: relative;
   width: var(--riot-alert-w);
   max-width: calc(100vw - 2 * var(--riot-space-5));
   transition:
@@ -26,13 +27,4 @@
 }
 .riot-alert__popup--primary .riot-alert__strip {
   background: var(--riot-primary);
-}
-.riot-alert__popup--danger .riot-modal__sigil {
-  color: var(--riot-danger);
-}
-.riot-alert__popup--warning .riot-modal__sigil {
-  color: var(--riot-text-bright);
-}
-.riot-alert__popup--primary .riot-modal__sigil {
-  color: var(--riot-primary);
 }

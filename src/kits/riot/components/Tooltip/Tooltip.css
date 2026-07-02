@@ -12,6 +12,3 @@
   font-size: var(--riot-fs-13);
   box-shadow: var(--riot-shadow-hard);
 }
-.riot-tooltip__popup .riot-connector {
-  background: var(--riot-ink);
-}

@@ -106,10 +106,13 @@ const WEIGHTS = [
   { label: "Hairline", value: "hair" },
   { label: "Regular", value: "regular" },
   { label: "Thin", value: "thin" },
+  { label: "Extra Light", value: "extralight" },
   { label: "Light", value: "light" },
   { label: "Book", value: "book" },
   { label: "Medium", value: "medium" },
+  { label: "Semibold", value: "semibold" },
   { label: "Bold", value: "bold" },
+  { label: "Extra Bold", value: "extrabold" },
   { label: "Heavy", value: "heavy" },
   { label: "Black", value: "black", disabled: true },
 ];
@@ -160,8 +163,11 @@ function HeroArt() {
       <span className="riot-hero__ransom riot-hero__ransom--i">I</span>
       <span className="riot-hero__ransom riot-hero__ransom--o">O</span>
       <span className="riot-hero__ransom riot-hero__ransom--t">T</span>
-      <span className="riot-hero__tape riot-hero__tape--1" />
-      <span className="riot-hero__tape riot-hero__tape--2" />
+      <span className="riot-tape riot-hero__tape--1" />
+      <span className="riot-tape riot-hero__tape--2" />
+      <i className="riot-staple riot-hero__staple" />
+      <span className="riot-hero__barcode" />
+      <span className="riot-hero__smudge">XEROX</span>
       <span className="riot-hero__stamp riot-jitter">NO / GODS / NO / MASTERS</span>
     </div>
   );
@@ -415,7 +421,7 @@ function Demo() {
           {/* ── Inputs ───────────────────────────────── */}
           <GroupRule id="inputs" label="Inputs" sub="controls & demands" marker={<StarFill />} />
           <div className="riot-grid">
-            <Panel id="button" title="Button" meta="BTN" wide>
+            <Panel id="button" title="Button" meta="BTN" wide tape="top">
               <div className="riot-stack">
                 <div className="riot-row">
                   <Button icon={<BoltIcon />}>Smash</Button>
@@ -451,7 +457,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="switch" title="Switch" meta="SWT">
+            <Panel id="switch" title="Switch" meta="SWT" stapled>
               <div className="riot-stack">
                 <label className="riot-row riot-row--between">
                   <span className="riot-cap">Kill switch</span>
@@ -471,7 +477,7 @@ function Demo() {
                 </label>
               </div>
             </Panel>
-            <Panel id="toggle" title="Toggle Group" meta="TGL">
+            <Panel id="toggle" title="Toggle Group" meta="TGL" tape="tr">
               <div className="riot-stack">
                 <ToggleGroup defaultValue={["left"]}>
                   <Toggle value="left">Left</Toggle>
@@ -488,7 +494,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="checkbox" title="Checkbox" meta="CHK">
+            <Panel id="checkbox" title="Checkbox" meta="CHK" tape="bl">
               <div className="riot-stack">
                 <Checkbox defaultChecked label="Paste it crooked" />
                 <Checkbox label="Show rulers" />
@@ -496,7 +502,7 @@ function Demo() {
                 <Checkbox disabled label="Hide plane" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
+            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG" stapled>
               <CheckboxGroup
                 defaultValue={["grid"]}
                 parentLabel="All guides"
@@ -508,7 +514,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="radio" title="Radio Group" meta="RDO">
+            <Panel id="radio" title="Radio Group" meta="RDO" tape="tl">
               <RadioGroup defaultValue="left">
                 <Radio value="left">Left align</Radio>
                 <Radio value="center">Center</Radio>
@@ -518,40 +524,40 @@ function Demo() {
                 </Radio>
               </RadioGroup>
             </Panel>
-            <Panel id="select" title="Select" meta="SEL">
+            <Panel id="select" title="Select" meta="SEL" tape="br">
               <div className="riot-stack">
                 <span className="riot-cap">Type weight</span>
-                <Select items={WEIGHTS} placeholder="Weight" defaultValue="bold" />
+                <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CBX">
+            <Panel id="combobox" title="Combobox" meta="CBX" stapled>
               <div className="riot-stack">
                 <span className="riot-cap">Filter the zine</span>
                 <Combobox items={FORMS} placeholder="Search…" />
               </div>
             </Panel>
-            <Panel id="autocomplete" title="Autocomplete" meta="ACP">
+            <Panel id="autocomplete" title="Autocomplete" meta="ACP" tape="tr">
               <div className="riot-stack">
                 <span className="riot-cap">Pick a pigment</span>
                 <Autocomplete items={PIGMENTS} placeholder="Pigment…" />
               </div>
             </Panel>
 
-            <Panel id="slider" title="Slider" meta="SLD">
+            <Panel id="slider" title="Slider" meta="SLD" tape="top">
               <div className="riot-stack">
                 <Slider label="Column width" defaultValue={62} />
                 <Slider label="Gutter" defaultValue={40} disabled />
               </div>
             </Panel>
-            <Panel id="number" title="Number Field" meta="NUM">
+            <Panel id="number" title="Number Field" meta="NUM" stapled>
               <div className="riot-stack">
                 <span className="riot-cap">Print run</span>
                 <NumberField defaultValue={7} min={0} max={12} step={1} />
               </div>
             </Panel>
 
-            <Panel id="input" title="Text Field" meta="TXT">
+            <Panel id="input" title="Text Field" meta="TXT" tape="tl">
               <div className="riot-stack">
                 <Field label="Headline" placeholder="NO FUTURE" defaultValue="NO FUTURE" />
                 <Input icon={<SearchIcon />} placeholder="Search clippings…" />
@@ -559,7 +565,7 @@ function Demo() {
                 <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
               </div>
             </Panel>
-            <Panel id="otp" title="OTP Field" meta="OTP">
+            <Panel id="otp" title="OTP Field" meta="OTP" tape="br">
               <div className="riot-stack">
                 <span className="riot-cap">Access code</span>
                 <OtpField length={6} splitAt={3} defaultValue="977" />
@@ -570,13 +576,13 @@ function Demo() {
           {/* ── Forms ────────────────────────────────── */}
           <GroupRule id="forms" label="Forms" sub="bound fields" marker={<Square />} />
           <div className="riot-grid">
-            <Panel id="fieldset" title="Fieldset" meta="FLD">
+            <Panel id="fieldset" title="Fieldset" meta="FLD" stapled>
               <Fieldset legend="Author">
                 <Field label="Name" defaultValue="Poly" />
                 <Field label="Cell" defaultValue="X-Ray Spex" />
               </Fieldset>
             </Panel>
-            <Panel id="form" title="Form" meta="FRM">
+            <Panel id="form" title="Form" meta="FRM" tape="tr">
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -595,10 +601,10 @@ function Demo() {
           {/* ── Feedback ─────────────────────────────── */}
           <GroupRule id="feedback" label="Feedback" sub="bars & readouts" marker={<Triangle />} />
           <div className="riot-grid">
-            <Panel id="progress" title="Progress" meta="PRG">
+            <Panel id="progress" title="Progress" meta="PRG" tape="bl">
               <ProgressBars />
             </Panel>
-            <Panel id="meter" title="Meter" meta="MTR">
+            <Panel id="meter" title="Meter" meta="MTR" stapled>
               <div className="riot-stack">
                 <Meter label="Ink coverage" value={88} />
                 <Meter label="Registration" value={70} tone="success" />
@@ -607,7 +613,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="tabs" title="Tabs" meta="TAB" wide>
+            <Panel id="tabs" title="Tabs" meta="TAB" wide tape="top">
               <Tabs
                 defaultValue="cut"
                 items={[
@@ -633,7 +639,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="accordion" title="Accordion" meta="ACC">
+            <Panel id="accordion" title="Accordion" meta="ACC" tape="tl">
               <Accordion
                 defaultValue={["cut"]}
                 items={[
@@ -643,7 +649,7 @@ function Demo() {
                 ]}
               />
             </Panel>
-            <Panel id="collapsible" title="Collapsible" meta="CLP">
+            <Panel id="collapsible" title="Collapsible" meta="CLP" stapled>
               <div className="riot-stack">
                 <Collapsible title="Liner notes" defaultOpen>
                   <p className="riot-text">Pressed in a squat with a borrowed machine. Side A only.</p>
@@ -658,7 +664,7 @@ function Demo() {
           {/* ── Overlays ─────────────────────────────── */}
           <GroupRule id="overlays" label="Overlays" sub="menus & dialogs" marker={<StarFill />} />
           <div className="riot-grid">
-            <Panel id="tooltip" title="Tooltip" meta="TIP">
+            <Panel id="tooltip" title="Tooltip" meta="TIP" tape="br">
               <div className="riot-row">
                 <Tooltip content="Cut it out" side="top">
                   <Button variant="ghost">Cut</Button>
@@ -674,13 +680,13 @@ function Demo() {
                 </Tooltip>
               </div>
             </Panel>
-            <Panel id="popover" title="Popover" meta="POP">
+            <Panel id="popover" title="Popover" meta="POP" stapled>
               <Popover trigger={<Button variant="ghost">Details</Button>} title="Issue #1">
                 Twelve clippings pasted up; three bleeding off the edge on purpose.
               </Popover>
             </Panel>
 
-            <Panel id="preview" title="Preview Card" meta="PVW" wide>
+            <Panel id="preview" title="Preview Card" meta="PVW" wide tape="top">
               <div className="riot-stack">
                 <span className="riot-cap">Hover the byline</span>
                 <p className="riot-text">
@@ -718,7 +724,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="menu" title="Menu" meta="MNU">
+            <Panel id="menu" title="Menu" meta="MNU" tape="tr">
               <Menu trigger="Actions">
                 <MenuItem icon={<CopyIcon />} shortcut="⌘D">
                   Duplicate
@@ -738,13 +744,14 @@ function Demo() {
                 <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
                 <MenuItem icon={<Grid />}>Deface</MenuItem>
                 <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<Close />} tone="danger">
                   Delete
                 </MenuItem>
               </Menu>
             </Panel>
-            <Panel id="menubar" title="Menubar" meta="MBR">
+            <Panel id="menubar" title="Menubar" meta="MBR" stapled>
               <Menubar>
                 <MenubarMenu label="Cut">
                   <MenuItem>Scissors</MenuItem>
@@ -762,6 +769,7 @@ function Demo() {
                   <MenuSub label="Run">
                     <MenuItem>Side A</MenuItem>
                     <MenuItem>Side B</MenuItem>
+                    <MenuItem>Bootleg</MenuItem>
                     <MenuSeparator />
                     <MenuItem>Reset</MenuItem>
                   </MenuSub>
@@ -769,10 +777,10 @@ function Demo() {
               </Menubar>
             </Panel>
 
-            <Panel id="navmenu" title="Navigation Menu" meta="NAV">
+            <Panel id="navmenu" title="Navigation Menu" meta="NAV" tape="bl">
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
-            <Panel id="context" title="Context Menu" meta="CTX">
+            <Panel id="context" title="Context Menu" meta="CTX" tape="tl">
               <ContextMenu trigger={<span className="riot-cap">Right-click the wall to open actions</span>}>
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘D">Duplicate</MenuItem>
@@ -781,22 +789,22 @@ function Demo() {
               </ContextMenu>
             </Panel>
 
-            <Panel id="dialog" title="Dialog" meta="DLG">
+            <Panel id="dialog" title="Dialog" meta="DLG" stapled>
               <Dialog
-                trigger={<Button>Reset the wall</Button>}
+                trigger={<Button variant="secondary">Reset the wall</Button>}
                 title="Reset the paste-up"
                 description="This tears every clipping off the wall. Continue?"
                 footer={
                   <>
-                    <DialogClose variant="secondary">Cancel</DialogClose>
-                    <DialogClose variant="primary">Reset</DialogClose>
+                    <DialogClose>Cancel</DialogClose>
+                    <DialogClose variant="secondary">Reset</DialogClose>
                   </>
                 }
               >
                 <p className="riot-text">Clippings: 12 · Off-grid: 3</p>
               </Dialog>
             </Panel>
-            <Panel id="alert" title="Alert Dialog" meta="ALT">
+            <Panel id="alert" title="Alert Dialog" meta="ALT" tape="br">
               <div className="riot-row">
                 <AlertDialog
                   tone="danger"
@@ -837,7 +845,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="drawer" title="Drawer" meta="DRW">
+            <Panel id="drawer" title="Drawer" meta="DRW" tape="tr">
               <div className="riot-row">
                 {(["top", "bottom", "left", "right"] as const).map((side) => (
                   <Drawer
@@ -861,7 +869,7 @@ function Demo() {
                 ))}
               </div>
             </Panel>
-            <Panel id="toast" title="Toast" meta="TST">
+            <Panel id="toast" title="Toast" meta="TST" stapled>
               <div className="riot-row">
                 <Button
                   size="sm"
@@ -904,7 +912,7 @@ function Demo() {
           {/* ── Display ──────────────────────────────── */}
           <GroupRule id="display" label="Display" sub="marks & fittings" marker={<Square />} />
           <div className="riot-grid">
-            <Panel id="avatar" title="Avatar" meta="AVT">
+            <Panel id="avatar" title="Avatar" meta="AVT" tape="tl">
               <div className="riot-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
@@ -921,7 +929,7 @@ function Demo() {
                 </Avatar>
               </div>
             </Panel>
-            <Panel id="badge" title="Badge" meta="BDG">
+            <Panel id="badge" title="Badge" meta="BDG" stapled>
               <div className="riot-row">
                 <Badge tone="primary" dot>
                   Primary
@@ -936,7 +944,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="toolbar" title="Toolbar" meta="TBR">
+            <Panel id="toolbar" title="Toolbar" meta="TBR" tape="br">
               <Toolbar aria-label="Tools">
                 <BaseToggleGroup className="riot-toolbar__group" defaultValue={["fill"]} aria-label="Layers">
                   <ToolbarButton render={<BaseToggle />} value="fill">
@@ -965,7 +973,7 @@ function Demo() {
                 </ToolbarLink>
               </Toolbar>
             </Panel>
-            <Panel id="scroll" title="Scroll Area" meta="SCR">
+            <Panel id="scroll" title="Scroll Area" meta="SCR" tape="top">
               <ScrollArea>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
@@ -1001,7 +1009,7 @@ function Demo() {
           {/* ── Foundations ──────────────────────────── */}
           <GroupRule id="foundations" label="Foundations" sub="type & rule" marker={<Triangle />} />
           <div className="riot-grid">
-            <Panel id="typography" title="Typography" meta="TYP" wide>
+            <Panel id="typography" title="Typography" meta="TYP" wide tape="top">
               <div className="riot-stack">
                 <h2 className="riot-h1">Cut it up, paste it crooked</h2>
                 <h3 className="riot-h2">Ransom headings</h3>
@@ -1014,7 +1022,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="separator" title="Separator" meta="SEP">
+            <Panel id="separator" title="Separator" meta="SEP" stapled>
               <div className="riot-stack">
                 <span className="riot-cap">Plain</span>
                 <Separator />
@@ -1030,12 +1038,12 @@ function Demo() {
                 </div>
               </div>
             </Panel>
-            <Panel id="panel" title="Panel" meta="PNL">
+            <Panel id="panel" title="Panel" meta="PNL" tape="tr">
               <p className="riot-text riot-panel-note">
                 The torn clipping wrapping every section — paper, a hard offset shadow and a stamped
                 code, pinned up at its own angle. Composable to any depth.
               </p>
-              <Panel title="Nested clipping" meta="SUB">
+              <Panel title="Nested clipping" meta="SUB" stapled>
                 <span className="riot-cap">A clipping within a clipping</span>
               </Panel>
             </Panel>
@@ -1043,7 +1051,7 @@ function Demo() {
 
           <GroupRule id="signature" label="Signature" sub="the print run" marker={<StarFill />} />
           <div className="riot-grid">
-            <Panel id="loader" title="Loader" meta="LDR" wide>
+            <Panel id="loader" title="Loader" meta="LDR" wide tape="top">
               <div className="demo-loader-stage">
                 <Loader />
               </div>

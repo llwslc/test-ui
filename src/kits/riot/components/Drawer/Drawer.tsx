@@ -3,7 +3,7 @@ import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { XIcon, BoltIcon } from "../icons";
+import { XIcon } from "../icons";
 import "./Drawer.css";
 
 export type DrawerSide = "left" | "right" | "top" | "bottom";
@@ -54,12 +54,7 @@ export function Drawer({
                 }
               />
               {title != null ? (
-                <BaseDrawer.Title className="riot-h2 riot-modal-title">
-                  <span className="riot-marker riot-modal__sigil">
-                    <BoltIcon />
-                  </span>
-                  {title}
-                </BaseDrawer.Title>
+                <BaseDrawer.Title className="riot-h2 riot-modal-title">{title}</BaseDrawer.Title>
               ) : null}
               {description != null ? (
                 <BaseDrawer.Description className="riot-text riot-modal-desc">

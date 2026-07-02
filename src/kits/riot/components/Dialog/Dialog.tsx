@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { XIcon, BoltIcon } from "../icons";
+import { XIcon } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -40,7 +40,8 @@ export function Dialog({
             initialFocus={popupRef}
             className={cx("riot-dialog__popup", className)}
           >
-            <div className="riot-surface riot-modal riot-dialog__surface">
+            <span className="riot-tape riot-tape--top" aria-hidden />
+            <div className="riot-surface riot-surface--torn riot-modal riot-dialog__surface">
               <BaseDialog.Close
                 render={
                   <Button variant="icon" aria-label="Close" className="riot-modal-close">
@@ -49,12 +50,7 @@ export function Dialog({
                 }
               />
               {title != null ? (
-                <BaseDialog.Title className="riot-h2 riot-modal-title">
-                  <span className="riot-marker riot-modal__sigil">
-                    <BoltIcon />
-                  </span>
-                  {title}
-                </BaseDialog.Title>
+                <BaseDialog.Title className="riot-h2 riot-modal-title">{title}</BaseDialog.Title>
               ) : null}
               {description != null ? (
                 <BaseDialog.Description className="riot-text riot-modal-desc">

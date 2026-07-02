@@ -1,8 +1,22 @@
 .riot-panel {
-  padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
+  position: relative;
+  transform: rotate(var(--riot-tilt, 0deg));
 }
 .riot-panel--wide {
   grid-column: 1 / -1;
+}
+.riot-panel__staple--l {
+  top: 5px;
+  left: 22px;
+  transform: rotate(24deg);
+}
+.riot-panel__staple--r {
+  top: 5px;
+  right: 22px;
+  transform: rotate(-17deg);
+}
+.riot-panel__sheet {
+  padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
 }
 .riot-panel__head {
   display: flex;

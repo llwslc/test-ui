@@ -13,18 +13,68 @@
   clip-path: var(--riot-surface-clip, var(--riot-clip-torn));
   filter: var(--riot-surface-shadow, var(--riot-cast-clip));
 }
-.riot-surface--taped::after {
+/* photocopy edge burn */
+.riot-surface--torn::before {
   content: "";
   position: absolute;
-  top: -13px;
-  left: 50%;
-  width: 108px;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: inset 0 0 22px rgba(13, 13, 13, 0.22);
+  mix-blend-mode: multiply;
+}
+
+/* ═══ Tape & staples — paste-up motifs (pin them OUTSIDE a torn clip) ═══ */
+.riot-tape {
+  position: absolute;
+  width: 92px;
   height: 26px;
-  margin-left: -54px;
   z-index: 4;
   background: var(--riot-tape);
-  box-shadow: inset 0 0 0 1px rgba(13, 13, 13, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(13, 13, 13, 0.08);
+}
+.riot-tape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 3px, rgba(13, 13, 13, 0.05) 3px 4px);
+}
+.riot-tape--tl {
+  top: -11px;
+  left: -16px;
+  transform: rotate(-42deg);
+}
+.riot-tape--tr {
+  top: -11px;
+  right: -16px;
+  transform: rotate(40deg);
+}
+.riot-tape--bl {
+  bottom: -11px;
+  left: -16px;
+  transform: rotate(40deg);
+}
+.riot-tape--br {
+  bottom: -11px;
+  right: -16px;
+  transform: rotate(-40deg);
+}
+.riot-tape--top {
+  top: -12px;
+  left: 50%;
+  width: 116px;
+  margin-left: -58px;
   transform: rotate(-3deg);
+}
+
+.riot-staple {
+  position: absolute;
+  width: 24px;
+  height: 11px;
+  z-index: 4;
+  border: 3px solid var(--riot-staple);
+  border-bottom: 0;
+  box-shadow: 1px 2px 3px rgba(13, 13, 13, 0.6);
 }
 
 /* ═══ Cut-out legend / feedback marker ═══ */
@@ -33,21 +83,11 @@
   color: var(--riot-marker-color, var(--riot-primary));
 }
 
-/* ═══ Segmented box — ToggleGroup / Toolbar / Menubar ═══ */
+/* ═══ Segments = a row of loose stamped chips — ToggleGroup / Toolbar / Menubar ═══ */
 .riot-seg {
   display: inline-flex;
-  gap: var(--riot-space-1);
+  gap: var(--riot-space-2);
   align-items: center;
-  padding: var(--riot-space-1);
-  border: var(--riot-stroke-bold) solid var(--riot-ink);
-  background: var(--riot-surface-inset);
-  box-shadow: var(--riot-shadow-hard);
-}
-.riot-seg .riot-seg {
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
 }
 .riot-seg__btn {
   flex: 0 0 auto;
@@ -57,15 +97,19 @@
   justify-content: center;
   height: var(--riot-seg-h);
   padding: 0 var(--riot-space-3);
-  border: 0;
-  background: none;
-  color: var(--riot-text-dim);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  background: var(--riot-paper);
+  color: var(--riot-text-bright);
   font-family: var(--riot-font-display);
   font-size: var(--riot-fs-13);
   letter-spacing: var(--riot-ls-2);
   text-transform: uppercase;
   cursor: pointer;
-  transition: color var(--riot-dur) var(--riot-ease), background var(--riot-dur) var(--riot-ease);
+  box-shadow: 3px 3px 0 var(--riot-ink);
+  transition:
+    color var(--riot-dur) var(--riot-ease),
+    background var(--riot-dur) var(--riot-ease),
+    scale var(--riot-dur) var(--riot-ease);
 }
 .riot-seg__btn :where(svg) {
   font-size: var(--riot-fs-18);
@@ -80,6 +124,7 @@
 .riot-seg__btn[data-popup-open] {
   background: var(--riot-ink);
   color: var(--riot-primary);
+  scale: 1.06;
 }
 .riot-seg__btn:focus-visible {
   outline: var(--riot-stroke) solid var(--riot-primary);
@@ -119,12 +164,15 @@
   cursor: pointer;
   user-select: none;
   outline: none;
-  transition: background var(--riot-dur) var(--riot-ease);
+  transition:
+    box-shadow var(--riot-dur) var(--riot-ease),
+    color var(--riot-dur) var(--riot-ease);
 }
 .riot-list-item:not(:disabled):not([data-disabled]):hover,
 .riot-list-item[data-highlighted],
 .riot-list-item[data-popup-open] {
-  background: var(--riot-marker);
+  box-shadow: inset 0 -0.6em 0 0 var(--riot-marker);
+  color: var(--riot-text-bright);
 }
 .riot-list-item[data-selected] {
   font-family: var(--riot-font-display);
@@ -158,26 +206,37 @@
 .riot-collapse-trigger:not(:disabled):not([data-disabled]):hover {
   color: var(--riot-text-bright);
 }
+/* hand-scrawled plus, drawn in CSS; open = slashed into an X */
 .riot-collapse-marker {
   flex: 0 0 auto;
-  display: inline-flex;
+  position: relative;
+  width: 14px;
+  height: 14px;
   color: var(--riot-primary);
   transition: transform var(--riot-dur-slow) var(--riot-ease);
+}
+.riot-collapse-marker::before,
+.riot-collapse-marker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background: currentColor;
+}
+.riot-collapse-marker::before {
+  width: 14px;
+  height: var(--riot-stroke-bold);
+}
+.riot-collapse-marker::after {
+  width: var(--riot-stroke-bold);
+  height: 14px;
 }
 .riot-collapse-trigger[data-panel-open] .riot-collapse-marker {
   transform: rotate(45deg);
 }
 .riot-collapse-title {
   flex: 1;
-}
-.riot-collapse-chevron {
-  flex: 0 0 auto;
-  color: var(--riot-text-dim);
-  transition: transform var(--riot-dur) var(--riot-ease);
-}
-.riot-collapse-trigger[data-panel-open] .riot-collapse-chevron {
-  color: var(--riot-primary);
-  transform: rotate(180deg);
 }
 .riot-collapse-panel {
   overflow: hidden;
@@ -193,21 +252,13 @@
   font-family: var(--riot-font);
 }
 
-/* ═══ Modal field — Dialog / AlertDialog / Drawer ═══ */
+/* ═══ Modal field — a torn sheet taped over the wall (Dialog / AlertDialog / Drawer) ═══ */
 .riot-modal {
   --riot-surface-fill: var(--riot-surface-modal);
-  --riot-surface-r: var(--riot-r-frame);
-  border-width: var(--riot-stroke-heavy);
+  --riot-surface-shadow: var(--riot-overlay-shadow, var(--riot-cast-modal));
   position: relative;
   max-width: 100%;
   padding: var(--riot-modal-pad);
-  filter: var(--riot-overlay-shadow, var(--riot-cast-modal));
-}
-.riot-modal__sigil {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--riot-fs-24);
 }
 .riot-modal-title {
   display: flex;
@@ -248,52 +299,48 @@
 .riot-lift--modal {
   --riot-overlay-shadow: var(--riot-cast-modal);
 }
-/* entrance = a hard block-reveal wiping down from the top edge */
+/* entrance = a stamp slamming down: oversized + skewed, hard-cut to rest */
 .riot-pop {
   filter: var(--riot-overlay-shadow, var(--riot-cast-clip));
   transition:
-    opacity var(--riot-dur) var(--riot-ease-out),
-    clip-path var(--riot-dur) var(--riot-ease-out);
-  clip-path: inset(0 -10px -10px 0);
+    opacity var(--riot-dur) var(--riot-ease),
+    scale var(--riot-dur) var(--riot-ease),
+    rotate var(--riot-dur) var(--riot-ease);
 }
 .riot-pop[data-starting-style],
 .riot-pop[data-ending-style] {
   opacity: 0;
-  clip-path: inset(0 -10px 100% 0);
+  scale: 1.08;
+  rotate: 1.5deg;
 }
-/* connector = a torn paper tab (ink-edged square, half-tucked behind the popup) */
+/* connector = the strip of tape sticking the popup to its trigger */
 .riot-connector {
-  width: var(--riot-space-3);
-  height: var(--riot-space-3);
-  background: var(--riot-surface-popup);
-  transform: rotate(45deg);
-  filter: url(#riot-torn);
+  width: 30px;
+  height: 12px;
+  background: var(--riot-tape);
+  box-shadow: inset 0 0 0 1px rgba(13, 13, 13, 0.08);
 }
 .riot-connector[data-side="top"] {
-  bottom: calc(-1 * var(--riot-space-1));
-  border-right: var(--riot-stroke-bold) solid var(--riot-ink);
-  border-bottom: var(--riot-stroke-bold) solid var(--riot-ink);
+  bottom: -6px;
+  transform: rotate(-4deg);
 }
 .riot-connector[data-side="bottom"] {
-  top: calc(-1 * var(--riot-space-1));
-  border-left: var(--riot-stroke-bold) solid var(--riot-ink);
-  border-top: var(--riot-stroke-bold) solid var(--riot-ink);
+  top: -6px;
+  transform: rotate(4deg);
 }
 .riot-connector[data-side="left"] {
-  right: calc(-1 * var(--riot-space-1));
-  border-top: var(--riot-stroke-bold) solid var(--riot-ink);
-  border-right: var(--riot-stroke-bold) solid var(--riot-ink);
+  right: -15px;
+  transform: rotate(86deg);
 }
 .riot-connector[data-side="right"] {
-  left: calc(-1 * var(--riot-space-1));
-  border-bottom: var(--riot-stroke-bold) solid var(--riot-ink);
-  border-left: var(--riot-stroke-bold) solid var(--riot-ink);
+  left: -15px;
+  transform: rotate(-86deg);
 }
 .riot-connector[data-open] {
-  animation: riot-connector-in var(--riot-dur) var(--riot-ease-out);
+  animation: riot-connector-in var(--riot-dur) var(--riot-ease) 0.03s both;
 }
 .riot-connector[data-closed] {
-  animation: riot-connector-out var(--riot-dur) var(--riot-ease-out) forwards;
+  animation: riot-connector-out var(--riot-dur) var(--riot-ease) forwards;
 }
 @keyframes riot-connector-in {
   from { opacity: 0; }

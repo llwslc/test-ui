@@ -2,3 +2,12 @@
   width: fit-content;
   max-width: 100%;
 }
+.riot-togglegroup .riot-seg__btn:nth-child(odd) {
+  rotate: -2deg;
+}
+.riot-togglegroup .riot-seg__btn:nth-child(even) {
+  rotate: 2deg;
+}
+.riot-togglegroup .riot-seg__btn[data-pressed] {
+  rotate: -3deg;
+}

@@ -1,7 +1,6 @@
 import { cx } from "../cx";
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible";
 import type { ReactNode } from "react";
-import { ChevronDownIcon, PlusIcon } from "../icons";
 import "./Collapsible.css";
 
 export interface CollapsibleProps {
@@ -29,11 +28,8 @@ export function Collapsible({
       className={cx("riot-surface riot-collapsible", className)}
     >
       <BaseCollapsible.Trigger className="riot-collapse-trigger">
-        <span className="riot-collapse-marker">
-          <PlusIcon />
-        </span>
+        <span className="riot-collapse-marker" aria-hidden />
         <span className="riot-collapse-title riot-cap">{title}</span>
-        <ChevronDownIcon className="riot-collapse-chevron" />
       </BaseCollapsible.Trigger>
       <BaseCollapsible.Panel className="riot-collapse-panel">
         <div className="riot-collapse-content">{children}</div>

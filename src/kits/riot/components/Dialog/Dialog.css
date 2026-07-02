@@ -1,4 +1,5 @@
 .riot-dialog__popup {
+  position: relative;
   width: var(--riot-dialog-w);
   max-width: calc(100vw - 2 * var(--riot-space-5));
   transition:
