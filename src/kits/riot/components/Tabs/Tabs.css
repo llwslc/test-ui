@@ -65,5 +65,6 @@
 @media (max-width: 768px) {
   .riot-tabs__list {
     overflow-x: auto;
+    overflow-y: clip;
   }
 }
