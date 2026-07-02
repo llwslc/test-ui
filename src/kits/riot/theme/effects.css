@@ -5,6 +5,7 @@
   border-radius: var(--riot-surface-r, var(--riot-r-control));
   border: var(--riot-surface-stroke, var(--riot-stroke)) solid var(--riot-surface-border, var(--riot-ink));
   background: var(--riot-surface-fill, var(--riot-surface));
+  color: var(--riot-surface-fg, var(--riot-text));
   transform: rotate(var(--riot-tilt, 0deg));
 }
 .riot-surface--torn {
