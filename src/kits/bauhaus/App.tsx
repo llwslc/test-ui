@@ -756,13 +756,13 @@ function Demo() {
 
             <Panel id="dialog" title="Dialog" meta="DLG">
               <Dialog
-                trigger={<Button>Reset grid</Button>}
+                trigger={<Button variant="secondary">Reset grid</Button>}
                 title="Reset composition"
                 description="This returns every element to the grid origin. Continue?"
                 footer={
                   <>
-                    <DialogClose variant="secondary">Cancel</DialogClose>
-                    <DialogClose variant="primary">Reset</DialogClose>
+                    <DialogClose>Cancel</DialogClose>
+                    <DialogClose variant="secondary">Reset</DialogClose>
                   </>
                 }
               >

@@ -767,13 +767,13 @@ function Demo() {
 
             <Panel id="dialog" title="Dialog" meta="DLG">
               <Dialog
-                trigger={<Button>Open hatch</Button>}
+                trigger={<Button variant="secondary">Open hatch</Button>}
                 title="Inspection hatch"
                 description="Confirm the boiler is depressurized before opening the hatch."
                 footer={
                   <>
-                    <DialogClose variant="secondary">Stand clear</DialogClose>
-                    <DialogClose variant="primary">Open hatch</DialogClose>
+                    <DialogClose>Stand clear</DialogClose>
+                    <DialogClose variant="secondary">Open hatch</DialogClose>
                   </>
                 }
               >
