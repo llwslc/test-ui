@@ -4,7 +4,7 @@
 }
 .riot-toolbar__group {
   display: inline-flex;
-  gap: var(--riot-space-1);
+  gap: var(--riot-space-2);
   align-items: center;
 }
 .riot-toolbar__link {

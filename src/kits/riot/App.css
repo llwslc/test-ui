@@ -265,7 +265,7 @@
   );
   background-color: var(--riot-paper);
   background-clip: content-box;
-  box-shadow: 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-shadow-sm);
   transform: rotate(4deg);
 }
 .riot-hero__smudge {

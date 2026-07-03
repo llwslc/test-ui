@@ -41,3 +41,6 @@
   flex-direction: column;
   gap: var(--riot-space-4);
 }
+.riot-panel__body > button {
+  align-self: flex-start;
+}

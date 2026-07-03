@@ -10,7 +10,7 @@
   height: 100%;
   border: var(--riot-stroke-bold) solid var(--riot-ink);
   background: var(--riot-primary);
-  box-shadow: 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-shadow-sm);
 }
 .riot-avatar--sm {
   width: var(--riot-avatar-sm);

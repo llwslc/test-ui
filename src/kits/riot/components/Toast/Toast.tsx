@@ -34,7 +34,7 @@ function ToastList() {
           className={`riot-toast riot-toast--${toast.type ?? "info"}`}
         >
           <div className="riot-surface riot-toast__surface">
-            <span className="riot-toast__beam" />
+            <span className="riot-tape riot-tape--tl" aria-hidden />
             <div className="riot-toast__main">
               <BaseToast.Title className="riot-toast__title" />
               <BaseToast.Description className="riot-toast__desc" />

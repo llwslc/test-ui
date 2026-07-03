@@ -6,8 +6,8 @@
   height: var(--riot-switch-h);
   padding: 0;
   border: var(--riot-stroke-bold) solid var(--riot-ink);
-  background: var(--riot-off);
-  box-shadow: var(--riot-shadow-hard);
+  background: var(--riot-track);
+  box-shadow: var(--riot-shadow-sm);
   cursor: pointer;
   transition: background var(--riot-dur) var(--riot-ease);
 }
@@ -20,8 +20,8 @@
 }
 .riot-switch__thumb {
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 1px;
+  left: 1px;
   width: var(--riot-switch-knob);
   height: var(--riot-switch-knob);
   background: var(--riot-ink);
@@ -29,7 +29,7 @@
 }
 .riot-switch[data-checked] .riot-switch__thumb {
   transform: translateX(
-    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 4px)
+    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 2px)
   );
 }
 .riot-switch:focus-visible {

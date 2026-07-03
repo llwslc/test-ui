@@ -108,7 +108,7 @@
   letter-spacing: var(--riot-ls-2);
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-shadow-sm);
   transition:
     color var(--riot-dur) var(--riot-ease),
     background var(--riot-dur) var(--riot-ease),
@@ -150,6 +150,7 @@
 .riot-popup {
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
+  padding-block: var(--riot-space-1);
 }
 .riot-menu__positioner {
   z-index: var(--riot-z-menu);

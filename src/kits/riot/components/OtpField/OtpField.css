@@ -13,7 +13,7 @@
   height: var(--riot-otp-cell-h);
   border: var(--riot-stroke-bold) solid var(--riot-ink);
   background: var(--riot-surface-inset);
-  box-shadow: 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-shadow-sm);
 }
 .riot-otp__cell:has([data-filled]) {
   background: var(--riot-paper);

@@ -49,7 +49,6 @@
   display: block;
   width: var(--riot-navmenu-col-w);
   padding: var(--riot-space-3);
-  box-shadow: var(--riot-shadow-hard);
 }
 .riot-navmenu__grid {
   display: flex;

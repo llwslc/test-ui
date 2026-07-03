@@ -19,7 +19,7 @@
   border: var(--riot-stroke-bold) solid var(--riot-ink);
   border-radius: var(--riot-r-round);
   background: var(--riot-paper);
-  box-shadow: 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-shadow-sm);
   cursor: pointer;
 }
 .riot-radio__indicator {
@@ -33,7 +33,7 @@
   display: block;
 }
 .riot-radio__control:focus-visible {
-  box-shadow: var(--riot-ring), 3px 3px 0 var(--riot-ink);
+  box-shadow: var(--riot-ring), var(--riot-shadow-sm);
 }
 .riot-radio__control:disabled,
 .riot-radio__control[data-disabled] {

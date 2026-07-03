@@ -15,9 +15,9 @@
 - 两档反色前景（压在荧光实填上的字色）：`on-fill #0d0d0d` 复印黑，压在橙、粉、绿、红这些实填上；`on-warning #17130d` 压在荧光黄上。
 - 两条复用的强调填充，都是**平涂、无渐变**：`accent-surface` = 实色 `primary`，用来点亮激活表面；`accent-fill` = 实色 `primary`，用作方向指示。
 - 各强调色的 alpha：`tint .2` 做悬停与激活的记号笔 wash；hex 带不了 alpha 的另立档。新的同色 alpha 先并进来，不另造。
-- 中性与效果色：`off #2b2824` 是关态轨道（暗钢灰）；`track #d7cfba` 是纸底未填充的轨道；胶带 `tape` 是半透的旧黄；订书钉 `staple #cfcfcf` 亮钢灰；记号笔高亮 `marker` 用荧光黄 alpha。
+- 中性与效果色：`track #d7cfba` 是未填充的纸灰轨道（含开关关态）；胶带 `tape` 是半透的旧黄，另有 danger／warning／success 三档 tone 半透胶带；订书钉 `staple #cfcfcf` 亮钢灰；记号笔高亮 `marker` 用荧光黄 alpha。
 - 表面：`surface` = `paper`；`surface-popup` 是实纸；`surface-modal` 是最白的纸 `#f2eede`；`surface-inset #d3c9b0` 是压深的凹纸底，用作嵌套箱底；`surface-zone` 是右键投放区的荧光橙淡 tint；`scrim` 是死黑 `.6` 的平涂背板，压模态时另叠 `grayscale` 让底下的拼贴褪成复印灰。
-- 描边与投影：全局描边恒为 `ink #0d0d0d` 粗黑线；投影是**硬边偏移的实影**——沿轮廓朝右下偏移的纯黑块、无模糊：`cast-clip` 8px 给剪报、`cast-modal` 12px 给模态、`cast-sm` 4px 给小件；文字强调与选中提示取荧光 `primary`。
+- 描边与投影：全局描边恒为 `ink #0d0d0d` 粗黑线；投影是**硬边偏移的实影**——沿轮廓朝右下偏移的纯黑块、无模糊，分两族：盒影 `shadow-hard` `5px 6px` 给大块（按钮、输入框、贴纸），`shadow-sm` `3px 3px` 给小件（勾选框、旋钮、chip）；随形 cast 给裁形层——`cast-clip` 8px 剪报、`cast-modal` 12px 模态、`cast-sm` 4px 小浮层。**一个元素只挂一层影**：浮层的影在 popup 层，面内 surface 不再叠盒影。文字强调与选中提示取荧光 `primary`。
 
 ## 2. 字体与排版
 

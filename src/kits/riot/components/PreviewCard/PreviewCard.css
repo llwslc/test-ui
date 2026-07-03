@@ -6,7 +6,6 @@
   width: var(--riot-preview-w);
   max-width: 100%;
   padding: var(--riot-space-5);
-  box-shadow: var(--riot-shadow-hard);
 }
 .riot-preview__body {
   display: flex;

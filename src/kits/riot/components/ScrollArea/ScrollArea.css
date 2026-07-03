@@ -16,10 +16,8 @@
 }
 .riot-scrollarea__scrollbar {
   display: flex;
-  width: var(--riot-scrollbar);
-  margin: 2px;
+  width: calc(var(--riot-scrollbar) - 4px);
   background: var(--riot-surface-inset);
-  border: var(--riot-stroke) solid var(--riot-ink);
 }
 .riot-scrollarea__thumb {
   flex: 1;

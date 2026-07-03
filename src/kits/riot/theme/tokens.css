@@ -28,13 +28,12 @@
   --riot-tint: rgba(255, 77, 10, 0.2);
   --riot-danger-wash: rgba(255, 34, 0, 0.14);
   --riot-tape: rgba(224, 210, 120, 0.5);
-  --riot-tape-danger: rgba(255, 34, 0, 0.5);
-  --riot-tape-warning: rgba(255, 229, 0, 0.5);
-  --riot-tape-primary: rgba(255, 77, 10, 0.5);
+  --riot-tape-danger: rgba(255, 34, 0, 0.65);
+  --riot-tape-warning: rgba(255, 229, 0, 0.6);
+  --riot-tape-success: rgba(143, 224, 0, 0.6);
   --riot-marker: rgba(255, 229, 0, 0.55);
 
   /* ── Neutrals & effect colors ──────────────────────── */
-  --riot-off: #2b2824;
   --riot-track: #d7cfba;
   --riot-staple: #cfcfcf;
 
@@ -58,6 +57,7 @@
   --riot-cast-sm: drop-shadow(4px 4px 0 var(--riot-ink));
   --riot-cast-modal: drop-shadow(12px 12px 0 var(--riot-ink));
   --riot-shadow-hard: 5px 6px 0 var(--riot-ink);
+  --riot-shadow-sm: 3px 3px 0 var(--riot-ink);
   --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary);
 
   /* ── Geometry (sharp cut paper + one round for dots) ── */

@@ -10,5 +10,4 @@
   color: var(--riot-text-invert);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-13);
-  box-shadow: var(--riot-shadow-hard);
 }

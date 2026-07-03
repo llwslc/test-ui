@@ -20,6 +20,3 @@
 .riot-alert__popup--warning .riot-tape {
   background: var(--riot-tape-warning);
 }
-.riot-alert__popup--primary .riot-tape {
-  background: var(--riot-tape-primary);
-}
