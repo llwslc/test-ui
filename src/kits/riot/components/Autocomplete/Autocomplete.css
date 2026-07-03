@@ -16,9 +16,3 @@
 .riot-autocomplete__empty:empty {
   padding: 0;
 }
-.riot-autocomplete__list {
-  padding: var(--riot-space-1);
-}
-.riot-autocomplete__list:empty {
-  padding: 0;
-}

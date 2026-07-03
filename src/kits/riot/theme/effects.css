@@ -152,9 +152,11 @@
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
   --riot-overlay-shadow: none;
-  padding-block: var(--riot-space-1);
   outline: none;
   transform: none;
+}
+.riot-popup .riot-list-item:last-child {
+  margin-bottom: var(--riot-space-1);
 }
 .riot-menu__positioner {
   z-index: var(--riot-z-menu);
