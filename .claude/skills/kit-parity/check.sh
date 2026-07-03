@@ -105,6 +105,28 @@ for f in $(grep -rlE '(combobox|autocomplete)__empty:empty' src/kits/*/component
 done
 [ "$AH" = 0 ] && echo "-> clean"
 
+# ── NavigationMenu morph vars wired ──────────────────────────────────────────
+# The dropdown morphs between triggers by consuming Base UI's size vars; a kit
+# that doesn't wire them gets a collapse-and-reflow flash on every switch (brass
+# AND riot both shipped this). Static presence check: positioner reads
+# --positioner-*, popup reads --popup-*, viewport clips. The flash itself is a
+# mid-transition artifact the dynamic gates can't reliably catch.
+echo
+echo "## NavigationMenu morph vars wired"
+NM=0
+for k in $KITS; do
+  [ -n "$ONLY" ] && [ "$ONLY" != "$k" ] && continue
+  f="src/kits/$k/components/NavigationMenu/NavigationMenu.css"
+  [ -f "$f" ] || continue
+  grep -q 'navmenu__positioner' "$f" || continue
+  miss=""
+  awk '/navmenu__positioner[[:space:]]*\{/{f=1} f{print} f&&/}/{f=0}' "$f" | grep -q 'var(--positioner-' || miss="$miss positioner<-var(--positioner-*)"
+  awk '/navmenu__popup[[:space:]]*\{/{f=1} f{print} f&&/}/{f=0}' "$f" | grep -q 'var(--popup-' || miss="$miss popup<-var(--popup-*)"
+  awk '/navmenu__viewport[[:space:]]*\{/{f=1} f{print} f&&/}/{f=0}' "$f" | grep -qE 'overflow:[[:space:]]*hidden' || miss="$miss viewport-overflow:hidden"
+  [ -n "$miss" ] && { echo "GAP $k navmenu not consuming morph:$miss"; NM=1; FAIL=1; }
+done
+[ "$NM" = 0 ] && echo "-> clean"
+
 echo
 if [ "$FAIL" = 0 ]; then echo "RESULT: PASS (functional coverage at parity; review any advisory gaps above)"; exit 0
 else echo "RESULT: GAPS FOUND — review each (fix, or document as an intentional exception)"; exit 1; fi
