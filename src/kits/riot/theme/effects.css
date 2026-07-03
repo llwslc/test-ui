@@ -151,6 +151,7 @@
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
   padding-block: var(--riot-space-1);
+  outline: none;
 }
 .riot-menu__positioner {
   z-index: var(--riot-z-menu);
