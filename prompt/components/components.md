@@ -162,7 +162,7 @@
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
 - 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`；NumberField 到 `min/max` 时自己给步进按钮加 `disabled` 并置灰，Base UI 只负责夹值。
 - 可聚焦的浮层 popup 加 `outline:none`。
-- **空结果提示**：Combobox、Autocomplete 的 `Empty` 是常驻挂载的 aria-live 状态区（有结果时 Base UI 清空它、无结果时填入 `emptyText`），空态收高只能用 `:empty { padding: 0 }`，不得 `display:none`／`hidden`／条件卸载；有内边距的选项 `List` 同样加 `:empty { padding: 0 }`，免得无结果时下方留白。
+- **空结果提示**：Combobox、Autocomplete 的 `Empty` 是常驻挂载的 aria-live 状态区（有结果时 Base UI 清空它、无结果时填入 `emptyText`），空态收高只能用 `:empty { padding: 0 }`，不得 `display:none`／`hidden`／`aria-hidden`／条件卸载；有内边距的选项 `List` 同样加 `:empty { padding: 0 }`，免得无结果时下方留白。
 - **触屏**：Tooltip、PreviewCard 默认只 hover（`mouseOnly`）、加 focus 打开；再用受控 `open` + `pointerType === "touch"` 给轻点补一条触摸路径，Tooltip 另设 `closeOnClick={false}`。
 
 ## 8. 布局与响应式
