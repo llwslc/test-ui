@@ -154,6 +154,7 @@
   --riot-overlay-shadow: none;
   padding-block: var(--riot-space-1);
   outline: none;
+  transform: none;
 }
 .riot-menu__positioner {
   z-index: var(--riot-z-menu);
