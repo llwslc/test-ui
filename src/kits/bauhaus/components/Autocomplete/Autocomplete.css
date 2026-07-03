@@ -42,5 +42,5 @@
   color: var(--bauhaus-text-mute);
 }
 .bauhaus-autocomplete__empty:empty {
-  display: none;
+  padding: 0;
 }

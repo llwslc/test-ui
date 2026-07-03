@@ -80,7 +80,7 @@
   font-style: italic;
 }
 .abyss-autocomplete__empty:empty {
-  display: none;
+  padding: 0;
 }
 .abyss-autocomplete__list {
   position: relative;

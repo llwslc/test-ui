@@ -21,7 +21,7 @@
   letter-spacing: var(--nova-ls-4);
 }
 .nova-autocomplete__empty:empty {
-  display: none;
+  padding: 0;
 }
 .nova-autocomplete__list {
   position: relative;

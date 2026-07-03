@@ -14,7 +14,7 @@
   color: var(--riot-text-mute);
 }
 .riot-autocomplete__empty:empty {
-  display: none;
+  padding: 0;
 }
 .riot-autocomplete__list {
   padding: var(--riot-space-1);

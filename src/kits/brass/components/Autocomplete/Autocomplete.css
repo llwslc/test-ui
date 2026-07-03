@@ -76,5 +76,5 @@
   color: var(--brass-text-mute);
 }
 .brass-autocomplete__empty:empty {
-  display: none;
+  padding: 0;
 }

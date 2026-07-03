@@ -88,6 +88,23 @@ else
   echo "-> skipped (node not found)"
 fi
 
+# ── Base UI live-region Empty must not be hidden (a11y) ───────────────────────
+# Combobox/Autocomplete .Empty is an aria-live status region — Base UI's
+# ComboboxEmpty docs say it MUST stay mounted+rendered; hiding the childless
+# element with display:none/visibility:hidden breaks the "no results" screen-
+# reader announcement. Collapse the dead band with `:empty { padding: 0 }`
+# instead. (All 5 kits shipped display:none here until a user caught it.)
+echo
+echo "## Base UI aria-live Empty not hidden"
+AH=0
+for f in $(grep -rlE '(combobox|autocomplete)__empty:empty' src/kits/*/components/*/*.css 2>/dev/null); do
+  [ -n "$ONLY" ] && [ "$ONLY" != "$(printf '%s' "$f" | sed -E 's#src/kits/([^/]+)/.*#\1#')" ] && continue
+  if grep -A2 -E '(combobox|autocomplete)__empty:empty' "$f" | grep -qE 'display:[[:space:]]*none|visibility:[[:space:]]*hidden'; then
+    echo "ANTIPATTERN ${f#src/kits/} hides the aria-live Empty (use padding:0, not display:none)"; AH=1; FAIL=1
+  fi
+done
+[ "$AH" = 0 ] && echo "-> clean"
+
 echo
 if [ "$FAIL" = 0 ]; then echo "RESULT: PASS (functional coverage at parity; review any advisory gaps above)"; exit 0
 else echo "RESULT: GAPS FOUND — review each (fix, or document as an intentional exception)"; exit 1; fi

@@ -45,7 +45,7 @@
   color: var(--riot-text-mute);
 }
 .riot-combobox__empty:empty {
-  display: none;
+  padding: 0;
 }
 .riot-combobox__list {
   padding: var(--riot-space-1);

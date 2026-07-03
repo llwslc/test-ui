@@ -76,5 +76,5 @@
   color: var(--bauhaus-text-mute);
 }
 .bauhaus-combobox__empty:empty {
-  display: none;
+  padding: 0;
 }

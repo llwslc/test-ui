@@ -135,7 +135,7 @@
   letter-spacing: var(--abyss-ls-2);
 }
 .abyss-combobox__empty:empty {
-  display: none;
+  padding: 0;
 }
 
 .abyss-combobox__list {
