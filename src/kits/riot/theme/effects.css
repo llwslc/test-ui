@@ -127,6 +127,7 @@
 .riot-seg__btn[data-popup-open] {
   background: var(--riot-ink);
   color: var(--riot-primary);
+  box-shadow: 3px 3px 0 var(--riot-primary);
   scale: 1.06;
 }
 .riot-seg__btn:focus-visible {
@@ -150,6 +151,7 @@
 .riot-popup {
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
+  --riot-overlay-shadow: none;
   padding-block: var(--riot-space-1);
   outline: none;
 }
