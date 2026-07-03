@@ -28,9 +28,14 @@
 .riot-menu__item--danger {
   color: var(--riot-danger);
 }
-.riot-list-item.riot-menu__item--danger:not([data-disabled]):hover,
-.riot-list-item.riot-menu__item--danger[data-highlighted] {
-  background: var(--riot-danger-wash);
-  color: var(--riot-danger);
+.riot-list-item.riot-menu__item[data-highlighted] {
   box-shadow: none;
+}
+.riot-menu__item[data-highlighted] .riot-menu__label {
+  text-decoration: line-through;
+  text-decoration-color: var(--riot-primary);
+  text-decoration-thickness: 3px;
+}
+.riot-list-item.riot-menu__item--danger[data-highlighted] {
+  color: var(--riot-danger);
 }
