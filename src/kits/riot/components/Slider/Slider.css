@@ -26,7 +26,7 @@
   position: relative;
   width: 100%;
   height: var(--riot-slider-track);
-  border: var(--riot-stroke) solid var(--riot-ink);
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
   background: repeating-linear-gradient(
     90deg,
     var(--riot-ink) 0 6px,

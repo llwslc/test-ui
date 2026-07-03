@@ -16,15 +16,14 @@
   flex: 0 0 auto;
   width: var(--riot-numberfield-btn);
   border: 0;
-  background: var(--riot-ink);
-  color: var(--riot-paper);
+  background: var(--riot-paper);
+  color: var(--riot-text-bright);
   font-size: var(--riot-fs-18);
   cursor: pointer;
   transition: background var(--riot-dur) var(--riot-ease);
 }
 .riot-numberfield__btn:not(:disabled):hover {
-  background: var(--riot-primary);
-  color: var(--riot-on-fill);
+  background: var(--riot-marker);
 }
 .riot-numberfield__btn:disabled {
   cursor: not-allowed;

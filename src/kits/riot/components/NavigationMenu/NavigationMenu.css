@@ -44,9 +44,21 @@
 }
 .riot-navmenu__positioner {
   z-index: var(--riot-z-menu);
+  width: var(--positioner-width);
+  height: var(--positioner-height);
+}
+.riot-navmenu__popup {
+  position: relative;
+  width: var(--popup-width);
+  height: var(--popup-height);
 }
 .riot-navmenu__viewport {
   display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.riot-navmenu__content {
   width: var(--riot-navmenu-col-w);
   padding: var(--riot-space-3);
 }

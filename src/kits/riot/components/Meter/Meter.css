@@ -17,7 +17,7 @@
   position: relative;
   overflow: hidden;
   height: var(--riot-meter-h);
-  border: var(--riot-stroke) solid var(--riot-ink);
+  clip-path: var(--riot-clip-torn);
   background: var(--riot-track);
 }
 .riot-meter__indicator {

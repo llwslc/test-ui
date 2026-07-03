@@ -31,6 +31,7 @@
   --riot-tape-danger: rgba(255, 34, 0, 0.65);
   --riot-tape-warning: rgba(255, 229, 0, 0.6);
   --riot-tape-success: rgba(143, 224, 0, 0.6);
+  --riot-tape-primary: rgba(255, 77, 10, 0.6);
   --riot-marker: rgba(255, 229, 0, 0.55);
 
   /* ── Neutrals & effect colors ──────────────────────── */
