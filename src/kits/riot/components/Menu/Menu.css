@@ -28,8 +28,9 @@
 .riot-menu__item--danger {
   color: var(--riot-danger);
 }
-.riot-menu__item--danger:not([data-disabled]):hover,
-.riot-menu__item--danger[data-highlighted] {
+.riot-list-item.riot-menu__item--danger:not([data-disabled]):hover,
+.riot-list-item.riot-menu__item--danger[data-highlighted] {
   background: var(--riot-danger-wash);
   color: var(--riot-danger);
+  box-shadow: none;
 }

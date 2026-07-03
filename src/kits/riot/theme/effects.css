@@ -155,7 +155,7 @@
   outline: none;
   transform: none;
 }
-.riot-popup .riot-list-item:last-child {
+:where(.riot-select__popup, .riot-combobox__popup, .riot-autocomplete__popup) .riot-list-item:last-child {
   margin-bottom: var(--riot-space-1);
 }
 .riot-menu__positioner {
