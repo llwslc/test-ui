@@ -1,5 +1,7 @@
 .riot-panel {
   position: relative;
+  display: flex;
+  flex-direction: column;
   transform: rotate(var(--riot-tilt, 0deg));
 }
 .riot-panel--wide {
@@ -16,6 +18,7 @@
   transform: rotate(-17deg);
 }
 .riot-panel__sheet {
+  flex: 1;
   padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
 }
 .riot-panel__head {
