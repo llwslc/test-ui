@@ -12,9 +12,11 @@
   flex: 0 0 auto;
   width: var(--riot-fs-18);
   height: var(--riot-fs-18);
+  padding: 0;
   border: 0;
   background: none;
-  color: var(--riot-text-dim);
+  color: var(--riot-text-bright);
+  font-size: var(--riot-fs-18);
   cursor: pointer;
   transition: color var(--riot-dur) var(--riot-ease);
 }

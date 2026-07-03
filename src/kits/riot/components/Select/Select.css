@@ -5,6 +5,7 @@
 .riot-select__trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--riot-space-2);
   width: 100%;
   height: var(--riot-control-h);
@@ -27,7 +28,6 @@
   opacity: var(--riot-disabled-opacity);
 }
 .riot-select__value {
-  flex: 1;
   overflow: hidden;
   text-align: left;
   white-space: nowrap;
@@ -41,7 +41,8 @@
 .riot-select__chevron {
   display: inline-flex;
   flex: 0 0 auto;
-  color: var(--riot-text-dim);
+  color: var(--riot-text-bright);
+  font-size: var(--riot-fs-18);
   transition: transform var(--riot-dur) var(--riot-ease);
 }
 .riot-select__trigger[data-popup-open] .riot-select__chevron {
