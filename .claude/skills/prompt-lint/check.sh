@@ -1,7 +1,7 @@
 #!/bin/sh
 # prompt-lint — the MECHANICAL subset of the Form axis (SKILL.md is the full read).
-# Run in place. Catches what a regex can; the content axis (rationale/layer/cryptic)
-# and the full emphasis-systematic judgment stay a READ — see SKILL.md.
+# Run in place. Catches what a regex can, incl. high-signal rationale/consequence tells
+# (因为/命不中/免得…); deeper content judgment (layer/cryptic/emphasis) stays a READ — see SKILL.md.
 #   sh .claude/skills/prompt-lint/check.sh [file ...]      default: prompt/**/*.md
 # Exit 0 = mechanical checks clean. The REVIEW block never fails (heuristic).
 set -u
@@ -61,6 +61,15 @@ for f in $FILES; do
   if [ -n "$bad" ]; then printf '  LEAK  %s — kit-specific motif (belongs in <domain>/theme/<kit>):\n' "$f"; printf '%s\n' "$bad" | sed 's/^/    /'; mk=1; fail=1; fi
 done
 [ "$mk" = 0 ] && echo "  -> clean"
+
+echo
+echo "## rationale / consequence fluff — spec states HOW, not WHY (strip the 因为/否则/命不中/等于没写/免得… tell)"
+# high-signal 'explain why / what happens if not' connectives. Curated to words with ~0
+# legitimate use in a terse HOW-spec (视觉描述词 错位/闪/会 are NOT here — they have real uses).
+# grow this list as new fluff tells surface; it would have caught the §7 [data-*] block.
+why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免'
+hits=$(grep -HnE "$why" $FILES 2>/dev/null || true)
+if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
 echo
 echo "## REVIEW — emphasis mix in a bullet block (heuristic, never fails; eyeball each)"

@@ -159,11 +159,11 @@
 
 - **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。`kit-lint` 拦截错配。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
-- **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）；漏接就每次切换塌缩重排（闪）。
+- **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
 - 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`；NumberField 到 `min/max` 时自己给步进按钮加 `disabled` 并置灰，Base UI 只负责夹值。
 - 可聚焦的浮层 popup 加 `outline:none`。
-- **空结果提示**：Combobox、Autocomplete 的 `Empty` 是常驻挂载的 aria-live 状态区（有结果时 Base UI 清空它、无结果时填入 `emptyText`），空态收高只能用 `:empty { padding: 0 }`，不得 `display:none`／`hidden`／`aria-hidden`／条件卸载；有内边距的选项 `List` 同样加 `:empty { padding: 0 }`，免得无结果时下方留白。
+- **空结果提示**：Combobox、Autocomplete 的 `Empty` 是常驻挂载的 aria-live 状态区（有结果时 Base UI 清空它、无结果时填入 `emptyText`），空态收高只能用 `:empty { padding: 0 }`，不得 `display:none`／`hidden`／`aria-hidden`／条件卸载；有内边距的选项 `List` 同样加 `:empty { padding: 0 }`。
 - **触屏**：Tooltip、PreviewCard 默认只 hover（`mouseOnly`）、加 focus 打开；再用受控 `open` + `pointerType === "touch"` 给轻点补一条触摸路径，Tooltip 另设 `closeOnClick={false}`。
 
 ## 8. 布局与响应式
