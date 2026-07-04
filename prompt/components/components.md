@@ -66,7 +66,7 @@
 - **anim-pop**——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高、各 kit 同值：dialog `460`、alert `440`、drawer `420`×`460`；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
-- **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。滚动条整体浮在框内、与弹层边框四周留出间隙，不与框贴边。
+- **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。
 - **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色，macOS 上拖动才显现）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），它跑满全高，且仅当 viewport 带 `data-has-overflow-y` 时给它 `padding-right` 让内容避开条。**条的宽度、thumb 配色由 theme 定。**
 
 ### 4.3 共享配方 class
@@ -159,6 +159,7 @@
 
 - **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。`kit-lint` 拦截错配。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
+- **几何不落小数 px**：布局与位移的 px 值一律整数；Base UI 内联写入的小数几何（ScrollArea thumb 的 `--scroll-area-thumb-height`／`-width` 与 `translate3d`）在组件层取整后落地——尺寸向下、位移向上。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
 - 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`；NumberField 到 `min/max` 时自己给步进按钮加 `disabled` 并置灰，Base UI 只负责夹值。

@@ -1,9 +1,41 @@
 import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
+import { useEffect, useRef } from "react";
 import { cx } from "../cx";
 import "./ScrollArea.css";
 
 export interface ScrollAreaProps extends React.ComponentProps<typeof BaseScrollArea.Root> {
   variant?: "panel" | "popup";
+}
+
+function IntegerThumb(props: React.ComponentProps<typeof BaseScrollArea.Thumb>) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    const bar = el?.parentElement;
+    if (!el || !bar) return;
+    const snap = () => {
+      const m = /translate3d\(\s*(-?[\d.]+)px,\s*(-?[\d.]+)px/.exec(el.style.transform);
+      if (m) {
+        const x = Math.ceil(parseFloat(m[1]));
+        const y = Math.ceil(parseFloat(m[2]));
+        if (x !== parseFloat(m[1]) || y !== parseFloat(m[2])) {
+          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        }
+      }
+      for (const dim of ["height", "width"]) {
+        const v = bar.style.getPropertyValue(`--scroll-area-thumb-${dim}`);
+        if (v.endsWith("px") && !Number.isInteger(parseFloat(v))) {
+          bar.style.setProperty(`--scroll-area-thumb-${dim}`, `${Math.floor(parseFloat(v))}px`);
+        }
+      }
+    };
+    snap();
+    const observer = new MutationObserver(snap);
+    observer.observe(el, { attributes: true, attributeFilter: ["style"] });
+    observer.observe(bar, { attributes: true, attributeFilter: ["style"] });
+    return () => observer.disconnect();
+  }, []);
+  return <BaseScrollArea.Thumb {...props} ref={ref} />;
 }
 
 export function ScrollArea({ className, variant = "panel", children, ...props }: ScrollAreaProps) {
@@ -12,7 +44,7 @@ export function ScrollArea({ className, variant = "panel", children, ...props }:
       <BaseScrollArea.Root className={cx("riot-scrollarea", "riot-scrollarea--popup", className)} {...props}>
         <BaseScrollArea.Viewport className="riot-scrollarea__viewport">{children}</BaseScrollArea.Viewport>
         <BaseScrollArea.Scrollbar className="riot-scrollarea__scrollbar">
-          <BaseScrollArea.Thumb className="riot-scrollarea__thumb" />
+          <IntegerThumb className="riot-scrollarea__thumb" />
         </BaseScrollArea.Scrollbar>
       </BaseScrollArea.Root>
     );
@@ -37,5 +69,5 @@ export function ScrollAreaScrollbar({ className, ...props }: React.ComponentProp
 }
 
 export function ScrollAreaThumb({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Thumb>) {
-  return <BaseScrollArea.Thumb className={cx("riot-scrollarea__thumb", className)} {...props} />;
+  return <IntegerThumb className={cx("riot-scrollarea__thumb", className)} {...props} />;
 }
