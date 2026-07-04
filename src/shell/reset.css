@@ -9,6 +9,11 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+:disabled,
+[data-disabled] {
+  pointer-events: none;
+}
+
 #root {
   min-height: 100vh;
 }
