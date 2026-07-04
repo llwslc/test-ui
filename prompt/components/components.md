@@ -88,7 +88,7 @@
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**
 - **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
-- **禁用**：用 `pointer-events: none` 让控件对指针**完全不响应**——不靠各处 hover／highlight 规则逐条 `:not(:disabled)` 排除（漏一条就出 bug），这条由 shell 全局兜底、所有 kit 一处；kit 只管视觉，`opacity: var(--<kit>-disabled-opacity)`，整行只 dim 一层、不叠两遍。
+- **禁用**：指针侧用 `pointer-events: none` 让控件完全不响应鼠标（全局，shell 一处，各控件 hover 不用再逐条 `:not(:disabled)`）；但列表复合件为无障碍会让禁用项**仍可键盘聚焦、并在聚焦时被 highlight**（指针管不到这条），故 list-item 的 hover／highlight 视觉一律 `:not([data-disabled])` 收口，别让禁用项被点亮／划删；视觉再降 `opacity: var(--<kit>-disabled-opacity)`，整行只 dim 一层、不叠两遍。
 
 ## 6. 组件
 

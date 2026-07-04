@@ -118,7 +118,7 @@
   font-size: var(--riot-fs-18);
 }
 .riot-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
-.riot-seg__btn[data-highlighted] {
+.riot-seg__btn[data-highlighted]:not([data-disabled]) {
   background: var(--riot-tint);
   color: var(--riot-text-bright);
 }
@@ -180,7 +180,7 @@
     color var(--riot-dur) var(--riot-ease);
 }
 .riot-list-item:not(:disabled):not([data-disabled]):hover,
-.riot-list-item[data-highlighted],
+.riot-list-item[data-highlighted]:not([data-disabled]),
 .riot-list-item[data-popup-open] {
   box-shadow: inset 0 -0.6em 0 0 var(--riot-marker);
   color: var(--riot-text-bright);

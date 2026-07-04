@@ -349,20 +349,20 @@
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
 
-.abyss-menu__item[data-highlighted],
+.abyss-menu__item[data-highlighted]:not([data-disabled]),
 .abyss-menu__item[data-popup-open] {
   background: var(--abyss-glow-soft);
   color: var(--abyss-text-bright);
 }
-.abyss-menu__item[data-highlighted]::after,
+.abyss-menu__item[data-highlighted]:not([data-disabled])::after,
 .abyss-menu__item[data-popup-open]::after {
   opacity: 1;
 }
-.abyss-menu__item[data-highlighted] .abyss-menu__icon,
+.abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__icon,
 .abyss-menu__item[data-popup-open] .abyss-menu__icon {
   color: var(--abyss-glow);
 }
-.abyss-menu__item[data-highlighted] .abyss-menu__shortcut,
+.abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__shortcut,
 .abyss-menu__item[data-popup-open] .abyss-menu__shortcut {
   color: var(--abyss-text-dim);
 }
@@ -380,11 +380,11 @@
   background: var(--abyss-blood);
   box-shadow: 0 0 7px var(--abyss-blood-a55);
 }
-.abyss-menu__item--danger[data-highlighted] {
+.abyss-menu__item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--abyss-blood-soft);
   color: var(--abyss-blood-text);
 }
-.abyss-menu__item--danger[data-highlighted] .abyss-menu__icon {
+.abyss-menu__item--danger[data-highlighted]:not([data-disabled]) .abyss-menu__icon {
   color: var(--abyss-blood);
 }
 
@@ -402,7 +402,7 @@
   color: var(--abyss-text-mute);
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-menu__item[data-highlighted] .abyss-menu__arrow,
+.abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__arrow,
 .abyss-menu__item[data-popup-open] .abyss-menu__arrow {
   color: var(--abyss-glow);
 }
@@ -438,11 +438,11 @@
   opacity: 0;
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-list-item[data-highlighted] {
+.abyss-list-item[data-highlighted]:not([data-disabled]) {
   background: var(--abyss-glow-soft);
   color: var(--abyss-text-bright);
 }
-.abyss-list-item[data-highlighted]::before {
+.abyss-list-item[data-highlighted]:not([data-disabled])::before {
   opacity: 1;
 }
 .abyss-list-item[data-selected] {

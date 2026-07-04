@@ -52,7 +52,7 @@
   font-size: var(--bauhaus-fs-18);
 }
 .bauhaus-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
-.bauhaus-seg__btn[data-highlighted] {
+.bauhaus-seg__btn[data-highlighted]:not([data-disabled]) {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-text-bright);
 }
@@ -109,7 +109,7 @@
   transition: background var(--bauhaus-dur) var(--bauhaus-ease);
 }
 .bauhaus-list-item:not(:disabled):not([data-disabled]):hover,
-.bauhaus-list-item[data-highlighted],
+.bauhaus-list-item[data-highlighted]:not([data-disabled]),
 .bauhaus-list-item[data-popup-open] {
   background: var(--bauhaus-tint-soft);
 }

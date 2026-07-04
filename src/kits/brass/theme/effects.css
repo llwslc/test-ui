@@ -88,7 +88,7 @@
     background var(--brass-dur) var(--brass-ease),
     color var(--brass-dur) var(--brass-ease);
 }
-.brass-list-item[data-highlighted],
+.brass-list-item[data-highlighted]:not([data-disabled]),
 .brass-list-item[data-popup-open],
 .brass-list-item:hover {
   background: var(--brass-tint-soft);
@@ -269,7 +269,7 @@
   font-size: var(--brass-fs-17);
 }
 .brass-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
-.brass-seg__btn[data-highlighted] {
+.brass-seg__btn[data-highlighted]:not([data-disabled]) {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);
 }

@@ -32,7 +32,7 @@
   letter-spacing: var(--bauhaus-ls-2);
   color: var(--bauhaus-text-mute);
 }
-.bauhaus-list-item[data-highlighted] .bauhaus-menu__icon,
+.bauhaus-list-item[data-highlighted]:not([data-disabled]) .bauhaus-menu__icon,
 .bauhaus-list-item:not(:disabled):not([data-disabled]):hover .bauhaus-menu__icon {
   color: var(--bauhaus-primary);
 }
@@ -49,12 +49,12 @@
 /* ── Danger item: red text across rest + highlighted, black grid intact ── */
 .bauhaus-list-item--danger,
 .bauhaus-list-item--danger .bauhaus-menu__icon,
-.bauhaus-list-item--danger[data-highlighted],
-.bauhaus-list-item--danger[data-highlighted] .bauhaus-menu__icon,
+.bauhaus-list-item--danger[data-highlighted]:not([data-disabled]),
+.bauhaus-list-item--danger[data-highlighted]:not([data-disabled]) .bauhaus-menu__icon,
 .bauhaus-list-item--danger:not(:disabled):not([data-disabled]):hover {
   color: var(--bauhaus-danger-text);
 }
-.bauhaus-list-item--danger[data-highlighted],
+.bauhaus-list-item--danger[data-highlighted]:not([data-disabled]),
 .bauhaus-list-item--danger:not(:disabled):not([data-disabled]):hover {
   background: var(--bauhaus-danger-wash);
 }
