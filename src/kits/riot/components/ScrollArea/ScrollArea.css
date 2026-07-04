@@ -26,3 +26,12 @@
   flex: 1;
   background: var(--riot-primary);
 }
+.riot-scrollarea--popup .riot-scrollarea__thumb {
+  position: relative;
+}
+.riot-scrollarea--popup .riot-scrollarea__thumb::before {
+  content: "";
+  position: absolute;
+  inset: -1px 0;
+  background: var(--riot-primary);
+}
