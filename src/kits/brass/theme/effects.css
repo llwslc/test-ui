@@ -89,8 +89,7 @@
     color var(--brass-dur) var(--brass-ease);
 }
 .brass-list-item[data-highlighted]:not([data-disabled]),
-.brass-list-item[data-popup-open],
-.brass-list-item:hover {
+.brass-list-item[data-popup-open] {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);
 }

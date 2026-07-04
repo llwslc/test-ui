@@ -29,18 +29,14 @@
 .riot-menu__item--danger .riot-menu__icon {
   color: var(--riot-danger);
 }
-.riot-list-item.riot-menu__item--danger:not(:disabled):not([data-disabled]):hover,
 .riot-list-item.riot-menu__item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--riot-danger);
   color: var(--riot-text-invert);
 }
-.riot-menu__item--danger:not([data-disabled]):hover .riot-list-item__text,
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-list-item__text {
   text-decoration: none;
 }
-.riot-menu__item--danger:not([data-disabled]):hover .riot-menu__icon,
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__icon,
-.riot-menu__item--danger:not([data-disabled]):hover .riot-menu__shortcut,
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__shortcut {
   color: var(--riot-text-invert);
 }

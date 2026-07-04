@@ -107,7 +107,6 @@
   outline: none;
   transition: background var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-list-item:not(:disabled):not([data-disabled]):hover,
 .bauhaus-list-item[data-highlighted]:not([data-disabled]),
 .bauhaus-list-item[data-popup-open] {
   background: var(--bauhaus-tint-soft);

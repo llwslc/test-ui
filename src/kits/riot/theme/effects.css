@@ -178,12 +178,10 @@
     box-shadow var(--riot-dur) var(--riot-ease),
     color var(--riot-dur) var(--riot-ease);
 }
-.riot-list-item:not(:disabled):not([data-disabled]):hover,
 .riot-list-item[data-highlighted]:not([data-disabled]),
 .riot-list-item[data-popup-open] {
   color: var(--riot-text-bright);
 }
-.riot-list-item:not(:disabled):not([data-disabled]):not([data-selected]):hover .riot-list-item__text,
 .riot-list-item[data-highlighted]:not([data-disabled]):not([data-selected]) .riot-list-item__text,
 .riot-list-item[data-popup-open] .riot-list-item__text {
   text-decoration: line-through;
