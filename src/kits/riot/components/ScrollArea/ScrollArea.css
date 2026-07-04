@@ -19,6 +19,11 @@
   width: calc(var(--riot-scrollbar) - 4px);
   background: var(--riot-surface-inset);
 }
+.riot-scrollarea--popup .riot-scrollarea__scrollbar {
+  margin-block: var(--riot-space-1);
+  translate: calc(-1 * var(--riot-space-1)) 0;
+  background: transparent;
+}
 .riot-scrollarea__thumb {
   flex: 1;
   background: var(--riot-primary);
