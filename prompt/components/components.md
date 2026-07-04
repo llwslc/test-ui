@@ -157,12 +157,7 @@
 
 ## 7. Base UI 对接
 
-- **状态样式以 Base UI 的 `[data-*]` 为准，凡 Base UI 用 data 属性接管的状态，就对 data 属性写，别用会和它分叉或干脆失效的原生伪类**：
-  - 列表／菜单活动项 → `[data-highlighted]`，不用 `:hover`（Base UI 指针悬停、键盘都设它；`:hover` 只跟物理光标，列表滚动时和它错位、两行同时高亮）。
-  - div 类项（Menu／Select／Combobox／Autocomplete 的 Item）禁用 → `[data-disabled]`，不用 `:disabled`（原生 `:disabled` 只作用于表单控件，`<div role=option>` 永不匹配，写了等于没写）。
-  - 勾选（Checkbox／Radio／Switch／菜单勾选项）→ `[data-checked]`／`[data-unchecked]`，不用 `:checked`（可见指示器是 span、不是那个隐藏 input，`:checked` 命不中）。
-  - Toggle 按下＝已切换开 → `[data-pressed]`，不用 `:active`（`:active` 是「正被按住」，两回事）；Tab 选中、NavMenu 当前项 → `[data-active]`；Slider 拖动 → `[data-dragging]`；打开 → `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。
-- **该留原生伪类的场合**：`:focus-visible` 画键盘焦点环（挂真正可聚焦的那个元素——Base UI 的 `[data-focused]` 含鼠标聚焦，不是键盘环要的那个）；`:hover` 只用在没有 `[data-highlighted]` 的元素（普通 Button、图标钮、链接）；`:active` 做按下瞬时反馈（Button、NumberField 步进钮——它们没有 `[data-pressed]`）。
+- **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。`kit-lint` 拦截错配。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）；漏接就每次切换塌缩重排（闪）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。

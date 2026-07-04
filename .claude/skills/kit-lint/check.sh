@@ -106,6 +106,10 @@ c=$(grep -rnoE "\b($SZ):[[:space:]]*[\"']?[0-9][0-9.]*(px|%|dvh|svh|lvh|vh|vw|em
 f=$(printf '%s\n%s\n%s\n' "$a" "$b" "$c" | grep .)
 run "raw pixel sizes in .tsx props / inline styles (route through a --$KIT- size token)" "$f"
 
+# 11. native CSS pseudo where Base UI owns the state via [data-*] (components.md §7)
+f=$(node .claude/skills/kit-lint/baseui-pseudo.cjs "$ROOT" 2>/dev/null)
+run "native pseudo vs Base UI [data-*] (:checked / list-item :hover|:disabled / thumb :active — components.md §7)" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL
