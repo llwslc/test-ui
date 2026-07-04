@@ -1,0 +1,66 @@
+diff --git a/node_modules/@base-ui/react/esm/scroll-area/viewport/ScrollAreaViewport.js b/node_modules/@base-ui/react/esm/scroll-area/viewport/ScrollAreaViewport.js
+index b3e951f..4f7efca 100644
+--- a/node_modules/@base-ui/react/esm/scroll-area/viewport/ScrollAreaViewport.js
++++ b/node_modules/@base-ui/react/esm/scroll-area/viewport/ScrollAreaViewport.js
+@@ -166,8 +166,8 @@ export const ScrollAreaViewport = /*#__PURE__*/React.forwardRef(function ScrollA
+     const idealNextHeight = nextHeight - scrollbarYOffset - thumbYOffset;
+     const maxNextWidth = scrollbarXEl ? Math.min(scrollbarXEl.offsetWidth - cornerWidthOffset, idealNextWidth) : idealNextWidth;
+     const maxNextHeight = scrollbarYEl ? Math.min(scrollbarYEl.offsetHeight - cornerHeightOffset, idealNextHeight) : idealNextHeight;
+-    const clampedNextWidth = Math.max(MIN_THUMB_SIZE, maxNextWidth * ratioX);
+-    const clampedNextHeight = Math.max(MIN_THUMB_SIZE, maxNextHeight * ratioY);
++    const clampedNextWidth = Math.floor(Math.max(MIN_THUMB_SIZE, maxNextWidth * ratioX));
++    const clampedNextHeight = Math.floor(Math.max(MIN_THUMB_SIZE, maxNextHeight * ratioY));
+     setThumbSize(prevSize => {
+       if (prevSize.height === clampedNextHeight && prevSize.width === clampedNextWidth) {
+         return prevSize;
+@@ -187,7 +187,7 @@ export const ScrollAreaViewport = /*#__PURE__*/React.forwardRef(function ScrollA
+       // In Safari, don't allow it to go negative or too far as `scrollTop` considers the rubber
+       // band effect.
+       const thumbOffsetY = Math.min(maxThumbOffsetY, Math.max(0, scrollRatioY * maxThumbOffsetY));
+-      thumbYEl.style.transform = `translate3d(0,${thumbOffsetY}px,0)`;
++      thumbYEl.style.transform = `translate3d(0,${Math.round(thumbOffsetY)}px,0)`;
+     }
+ 
+     // Handle X (horizontal) scroll
+@@ -199,7 +199,7 @@ export const ScrollAreaViewport = /*#__PURE__*/React.forwardRef(function ScrollA
+       // In Safari, don't allow it to go negative or too far as `scrollLeft` considers the rubber
+       // band effect.
+       const thumbOffsetX = direction === 'rtl' ? clamp(scrollRatioX * maxThumbOffsetX, -maxThumbOffsetX, 0) : clamp(scrollRatioX * maxThumbOffsetX, 0, maxThumbOffsetX);
+-      thumbXEl.style.transform = `translate3d(${thumbOffsetX}px,0,0)`;
++      thumbXEl.style.transform = `translate3d(${Math.round(thumbOffsetX)}px,0,0)`;
+     }
+     const overflowMetricsPx = [[ScrollAreaViewportCssVars.scrollAreaOverflowXStart, scrollLeftFromStart], [ScrollAreaViewportCssVars.scrollAreaOverflowXEnd, scrollLeftFromEnd], [ScrollAreaViewportCssVars.scrollAreaOverflowYStart, scrollTopFromStart], [ScrollAreaViewportCssVars.scrollAreaOverflowYEnd, scrollTopFromEnd]];
+     for (const [cssVar, value] of overflowMetricsPx) {
+diff --git a/node_modules/@base-ui/react/scroll-area/viewport/ScrollAreaViewport.js b/node_modules/@base-ui/react/scroll-area/viewport/ScrollAreaViewport.js
+index dbabb95..0ba3712 100644
+--- a/node_modules/@base-ui/react/scroll-area/viewport/ScrollAreaViewport.js
++++ b/node_modules/@base-ui/react/scroll-area/viewport/ScrollAreaViewport.js
+@@ -171,8 +171,8 @@ const ScrollAreaViewport = exports.ScrollAreaViewport = /*#__PURE__*/React.forwa
+     const idealNextHeight = nextHeight - scrollbarYOffset - thumbYOffset;
+     const maxNextWidth = scrollbarXEl ? Math.min(scrollbarXEl.offsetWidth - cornerWidthOffset, idealNextWidth) : idealNextWidth;
+     const maxNextHeight = scrollbarYEl ? Math.min(scrollbarYEl.offsetHeight - cornerHeightOffset, idealNextHeight) : idealNextHeight;
+-    const clampedNextWidth = Math.max(_constants.MIN_THUMB_SIZE, maxNextWidth * ratioX);
+-    const clampedNextHeight = Math.max(_constants.MIN_THUMB_SIZE, maxNextHeight * ratioY);
++    const clampedNextWidth = Math.floor(Math.max(_constants.MIN_THUMB_SIZE, maxNextWidth * ratioX));
++    const clampedNextHeight = Math.floor(Math.max(_constants.MIN_THUMB_SIZE, maxNextHeight * ratioY));
+     setThumbSize(prevSize => {
+       if (prevSize.height === clampedNextHeight && prevSize.width === clampedNextWidth) {
+         return prevSize;
+@@ -192,7 +192,7 @@ const ScrollAreaViewport = exports.ScrollAreaViewport = /*#__PURE__*/React.forwa
+       // In Safari, don't allow it to go negative or too far as `scrollTop` considers the rubber
+       // band effect.
+       const thumbOffsetY = Math.min(maxThumbOffsetY, Math.max(0, scrollRatioY * maxThumbOffsetY));
+-      thumbYEl.style.transform = `translate3d(0,${thumbOffsetY}px,0)`;
++      thumbYEl.style.transform = `translate3d(0,${Math.round(thumbOffsetY)}px,0)`;
+     }
+ 
+     // Handle X (horizontal) scroll
+@@ -204,7 +204,7 @@ const ScrollAreaViewport = exports.ScrollAreaViewport = /*#__PURE__*/React.forwa
+       // In Safari, don't allow it to go negative or too far as `scrollLeft` considers the rubber
+       // band effect.
+       const thumbOffsetX = direction === 'rtl' ? (0, _clamp.clamp)(scrollRatioX * maxThumbOffsetX, -maxThumbOffsetX, 0) : (0, _clamp.clamp)(scrollRatioX * maxThumbOffsetX, 0, maxThumbOffsetX);
+-      thumbXEl.style.transform = `translate3d(${thumbOffsetX}px,0,0)`;
++      thumbXEl.style.transform = `translate3d(${Math.round(thumbOffsetX)}px,0,0)`;
+     }
+     const overflowMetricsPx = [[_ScrollAreaViewportCssVars.ScrollAreaViewportCssVars.scrollAreaOverflowXStart, scrollLeftFromStart], [_ScrollAreaViewportCssVars.ScrollAreaViewportCssVars.scrollAreaOverflowXEnd, scrollLeftFromEnd], [_ScrollAreaViewportCssVars.ScrollAreaViewportCssVars.scrollAreaOverflowYStart, scrollTopFromStart], [_ScrollAreaViewportCssVars.ScrollAreaViewportCssVars.scrollAreaOverflowYEnd, scrollTopFromEnd]];
+     for (const [cssVar, value] of overflowMetricsPx) {

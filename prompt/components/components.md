@@ -159,7 +159,7 @@
 
 - **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。`kit-lint` 拦截错配。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
-- **几何不落小数 px**：布局与位移的 px 值一律整数；Base UI 内联写入的小数几何（ScrollArea thumb 的 `--scroll-area-thumb-height`／`-width` 与 `translate3d`）在组件层取整后落地——尺寸向下、位移向上。
+- **几何不落小数 px**：布局与位移的 px 值一律整数；Base UI scroll-area 内联写入的小数几何已由依赖补丁在源头取整（`patches/`），组件层不做任何修补。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
 - 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`；NumberField 到 `min/max` 时自己给步进按钮加 `disabled` 并置灰，Base UI 只负责夹值。
