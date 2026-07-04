@@ -21,7 +21,6 @@
 }
 .riot-scrollarea--popup .riot-scrollarea__scrollbar {
   background: transparent;
-  margin-block: calc(-1 * var(--riot-stroke-bold));
 }
 .riot-scrollarea__thumb {
   flex: 1;
