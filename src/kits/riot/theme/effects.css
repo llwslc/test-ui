@@ -185,15 +185,19 @@
 .riot-list-item__text {
   position: relative;
 }
-.riot-list-item[data-highlighted]:not([data-disabled]):not([data-selected]) .riot-list-item__text::before,
+.riot-list-item[data-highlighted]:not([data-disabled]) .riot-list-item__text::before,
 .riot-list-item[data-popup-open] .riot-list-item__text::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0 0 0 -12px;
+  left: -12px;
+  right: 0;
+  top: 50%;
+  height: 38px;
+  transform: translateY(-50%);
   background: var(--riot-warning);
-  -webkit-mask: var(--riot-marker-swipe) 0 56% / 76% 30px no-repeat;
-  mask: var(--riot-marker-swipe) 0 56% / 76% 30px no-repeat;
+  -webkit-mask: var(--riot-marker-swipe) 0 50% / 72% 100% no-repeat;
+  mask: var(--riot-marker-swipe) 0 50% / 72% 100% no-repeat;
 }
 .riot-list-item[data-disabled] {
   opacity: var(--riot-disabled-opacity);
