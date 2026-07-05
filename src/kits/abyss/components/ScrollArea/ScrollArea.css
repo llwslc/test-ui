@@ -58,7 +58,7 @@
   width: 12px;
   margin: var(--abyss-space-2) 3px;
   background: var(--abyss-ink-faint);
-  border-radius: var(--abyss-round-5);
+  border-radius: var(--abyss-round-6);
   opacity: 0;
   transition: opacity var(--abyss-dur-slow) var(--abyss-ease);
 }
