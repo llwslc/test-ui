@@ -19,6 +19,6 @@
 - AlertDialog 按 `tone` 重染：danger = blood 红（默认档）、配骷髅图记，warning = gold 金，primary = glow 青；表面顶部另按 tone 加一道径向重染。
 - NavigationMenu 的触发器栏复用 Tabs 的皮肤。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗；连接线是 1.5px 的 glow + edge 颤动滤镜。
-- ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停才显、popup 型常显。
+- ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显。
 - 招牌微动：Checkbox／勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）；OTP 光标闪动；Drawer 开启一记钥匙转启。
 

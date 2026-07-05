@@ -20,7 +20,7 @@
 - NavigationMenu 的触发器栏复用 Tabs 皮肤：渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
 - Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，左缘一道黄铜光束 + 一个齿轮图记；Dialog 标题配一个齿轮 cartouche 图记。
 - Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。
-- ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停才显、popup 型常显。
+- ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显。
 - 招牌 SVG：Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是齿轮加字母组合。
 - 招牌微动：Progress 灯丝流动；Badge 点用 `brass-breathe` 琥珀灯呼吸；Checkbox 盖印（`brass-stamp`）；OTP 输入往复 pulse；Dialog 齿轮图记 `brass-rotate` 自转；旋钮、阀门交互带 `ease-detent` 回弹。
 - 共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`。

@@ -44,8 +44,8 @@
 - **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色至少分四类——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几档、每档多少，全由 theme 定。**
 - **层级阶梯**：浮层堆叠顺序、各 kit 同值——`dropdown 1200 < menu 1250 < tooltip 1300 < backdrop 1400 < overlay 1401 < toast 1500`。
 - **动效与度量**：时长 `dur / -slow`、缓动 `ease / -out`、控件高度、禁用透明度、模态内边距。
-- **间距（4px 网格）**：`space-1…N`，即 `4 / 8 / 12 …`。组件的 padding、margin、gap（含 `row-gap` 等）一律走这套阶梯；只有不足一格的小值（如 `::before` 1px 内缩、细轨道高度）和 `>28px` 的一次性结构留白，才写立即数。
-- **组件尺寸 footprint（强制 token 化）**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，如 `header-h`、`dialog-w`），例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`；都集中在 `tokens.css`，组件**绝不**裸写尺寸数字，换皮时按名补齐。只有不足一格的小值（边框、细轨道、`≤8px` 的小圆点）和上下文式的值（`clamp`、`calc`、`%`、`dvh`、Base UI 的锚定变量）才就近写立即数。
+- **间距（4px 网格）**：`space-1…N`，即 `4 / 8 / 12 …`。组件的 padding、margin、gap（含 `row-gap` 等）一律走这套阶梯；不足一格的小值（如 `::before` 1px 内缩、细轨道高度）和 `>28px` 的一次性结构留白，写立即数。
+- **组件尺寸 footprint（强制 token 化）**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，如 `header-h`、`dialog-w`），例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`；都集中在 `tokens.css`，组件**绝不**裸写尺寸数字，换皮时按名补齐。不足一格的小值（边框、细轨道、`≤8px` 的小圆点）和上下文式的值（`clamp`、`calc`、`%`、`dvh`、Base UI 的锚定变量）就近写立即数。
 - **排版尺度**：字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组「按名挑」；字体族 `font / -display / -mono`。组件里字号、字距、行高、字重一律走 token、不裸写，上下文式的除外（`clamp()`、`calc()`、`em`）。
 
 ## 4. 核心技术
@@ -67,7 +67,7 @@
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高、各 kit 同值：dialog `460`、alert `440`、drawer `420`×`460`；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。
-- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），viewport 有纵向溢出（`data-has-overflow-y`）时才加 `padding-right`。**条宽、thumb 皮肤（形状／配色／轨道／显隐／离框）由各 theme 定。**
+- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right`。**条宽、thumb 皮肤（形状／配色／轨道／显隐／离框）由各 theme 定。**
 
 ### 4.3 共享配方 class
 
@@ -172,7 +172,7 @@
 - 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea、Accordion 这类输入控件。
 - **唯一断点 `768px`**，不另设别的断点。`≤768` 时组件走手机态——Tabs、NavMenu **横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
-- **滚动容器里：固定的装饰挂容器、随动的装饰挂内容**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上；只有真要随内容走的（如选中指示）才放进滚动内容里。
+- **滚动容器里，固定装饰挂容器自身的盒子**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上。
 
 ## 9. 验收门
 

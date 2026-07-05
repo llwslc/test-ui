@@ -17,7 +17,7 @@
 - AlertDialog 按 `tone` 整体重染，tone 取 danger、warning、primary：扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。
 - Switch：关态的 thumb 用 `thumb-idle` 金属渐变，选中后轨道转 `accent-surface`、thumb 转 `surface-deep`。
 - Drawer：只在朝屏内那一条边描一道 `line-strong` 细线，内沿再叠一道霓虹光边（`primary` 渐变 + 辉光）。
-- ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停才显、popup 型常显。
+- ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显。
 - 招牌微动：Button 高光斜扫（移动 `background-position`）；Progress 条纹流动 + 不定态扫掠；Badge 点 pulse；Tabs 切换内容淡入。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
 

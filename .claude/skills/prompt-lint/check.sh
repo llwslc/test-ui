@@ -1,7 +1,8 @@
 #!/bin/sh
 # prompt-lint — the MECHANICAL subset of the Form axis (SKILL.md is the full read).
 # Run in place. Catches what a regex can, incl. high-signal rationale/consequence tells
-# (因为/命不中/免得…); deeper content judgment (layer/cryptic/emphasis) stays a READ — see SKILL.md.
+# (因为/命不中/免得…) and exclusive conditionals (仅当/…才…, say 当X做Y directly);
+# deeper content judgment (layer/cryptic/emphasis) stays a READ — see SKILL.md.
 #   sh .claude/skills/prompt-lint/check.sh [file ...]      default: prompt/**/*.md
 # Exit 0 = mechanical checks clean. The REVIEW block never fails (heuristic).
 set -u
@@ -69,6 +70,14 @@ echo "## rationale / consequence fluff — spec states HOW, not WHY (strip the �
 # grow this list as new fluff tells surface; it would have caught the §7 [data-*] block.
 why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免'
 hits=$(grep -HnE "$why" $FILES 2>/dev/null || true)
+if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
+
+echo
+echo "## exclusive-conditional — state 「当X，做Y」 directly, not 「仅当X才Y / 只有X才Y / X时才Y」"
+# the objectionable form is 「…才 <动作>」 and 「只有…才」. skips 才是(强调)/刚才/方才/才能,
+# and 只在…描(空间范围，无 才) is left alone. curated 动词 list — grow as new ones surface.
+verb='加|给|显|写|放|动|用|走|留|做|描|挂|贴|填|升|转|亮|染|就近|放进|生效|收口|收边|落位|铺|收'
+hits=$(grep -HnE "仅当|只有当|只当|只有[^。；;、]*才|才($verb)" $FILES 2>/dev/null | grep -vE '刚才|方才' || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
 echo
