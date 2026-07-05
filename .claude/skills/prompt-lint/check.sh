@@ -65,10 +65,12 @@ done
 
 echo
 echo "## rationale / consequence fluff — spec states HOW, not WHY (strip the 因为/否则/命不中/等于没写/免得… tell)"
-# high-signal 'explain why / what happens if not' connectives. Curated to words with ~0
-# legitimate use in a terse HOW-spec (视觉描述词 错位/闪/会 are NOT here — they have real uses).
+# high-signal 'explain why / what happens if not / what it's NOT for' connectives (末者
+# 即「不写不为了什么」: 不是为了…/并非为了…). Curated to words with ~0 legitimate use in a
+# terse HOW-spec (视觉描述词 错位/闪/会 are NOT here — they have real uses; 否定 DIRECTIVES
+# 别/绝不/不得 are NOT here either — they pair with a positive rule, a READ call not a regex).
 # grow this list as new fluff tells surface; it would have caught the §7 [data-*] block.
-why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免'
+why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免|不是为了|并非为了'
 hits=$(grep -HnE "$why" $FILES 2>/dev/null || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
