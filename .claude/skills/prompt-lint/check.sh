@@ -96,6 +96,17 @@ for f in $FILES; do
   ' "$f"
 done
 
+echo
+echo "## REVIEW — negation audit (heuristic, never fails; eyeball each 不/无/非)"
+echo "   KEEP if it states THIS thing's own nature (无渐变 / 无圆角 / 不变 / 不用太长)."
+echo "   DELETE if it disclaims a DIFFERENT treatment a from-scratch reader can't know —"
+echo "   cruft that contrasts against another rule (不走实填 / 全列表无划线 / 替掉X)."
+for f in $FILES; do
+  hits=$(grep -noE "[无非勿没][一-龥]{1,4}|不[一-龥]{1,4}|替掉[一-龥]{1,4}" "$f" 2>/dev/null \
+    | grep -vE ':(不同|不少|不止|不过|不仅|不但|不锈)' || true)
+  [ -n "$hits" ] && printf '%s\n' "$hits" | sed "s|^|  $f:|"
+done
+
 case " $FILES " in
   *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;
 esac
