@@ -172,9 +172,6 @@
   cursor: pointer;
   user-select: none;
   outline: none;
-  transition:
-    box-shadow var(--riot-dur) var(--riot-ease),
-    color var(--riot-dur) var(--riot-ease);
 }
 .riot-list-item[data-popup-open] {
   color: var(--riot-text-bright);
