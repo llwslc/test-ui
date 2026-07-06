@@ -29,14 +29,11 @@
 .riot-menu__item--danger .riot-menu__icon {
   color: var(--riot-danger);
 }
-.riot-list-item.riot-menu__item--danger[data-highlighted]:not([data-disabled]) {
-  background: var(--riot-danger);
-  color: var(--riot-text-invert);
-}
-.riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-list-item__text {
-  text-decoration: none;
+.riot-menu__item--danger[data-highlighted]:not([data-disabled]) {
+  --riot-marker-color: var(--riot-danger);
+  color: var(--riot-text-bright);
 }
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__icon,
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__shortcut {
-  color: var(--riot-text-invert);
+  color: var(--riot-text-bright);
 }

@@ -26,7 +26,7 @@
 - Toast 锚在右下角**乱堆**：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角（新的不被挡）；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
 - ScrollArea 自绘条：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽），常显不做悬停隐藏；panel 型坐在 `surface-inset` 纸灰可见轨上，popup 型轨道透明、整条离框 `space-1`。
-- 列表记号笔：Select、Combobox、Autocomplete、Menu 列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行。半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和、带高于行；可见实色约半、其后提笔渐隐。选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。换色走 `--riot-marker-color`。
+- 列表记号笔：Select、Combobox、Autocomplete、Menu 列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行。半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和、带高于行；可见实色约半、其后提笔渐隐。选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。换色走 `--riot-marker-color`：危险菜单项高亮时记号笔转 `danger` 红、字与图标转黑（不走实填）。
 - 招牌 SVG：Checkbox 是手画叉，Radio 是荧光实心点，Avatar 的兜底是 Anton 字母压在荧光块上、方形硬裁，占位图标是粗糙的手绘线形；剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。
 - 招牌微动：标记与招牌就近挂 `.riot-jitter` 微抖；Progress 条填充流动；其余只有交互过渡（`steps` 硬切），无持续辉光或脉动。
 - 共享配方的颜色就近覆盖：`--riot-marker-color`。
