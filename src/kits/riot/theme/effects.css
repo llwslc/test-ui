@@ -201,11 +201,11 @@
   background: var(--riot-marker-color, var(--riot-warning));
   -webkit-mask:
     var(--riot-marker-swipe) 0 50% / 100% 100% no-repeat,
-    linear-gradient(90deg, #000 0 calc(100% - 24px), transparent) no-repeat;
+    linear-gradient(90deg, #000 0 45%, transparent) no-repeat;
   -webkit-mask-composite: source-in;
   mask:
     var(--riot-marker-swipe) 0 50% / 100% 100% no-repeat,
-    linear-gradient(90deg, #000 0 calc(100% - 24px), transparent) no-repeat;
+    linear-gradient(90deg, #000 0 45%, transparent) no-repeat;
   mask-composite: intersect;
 }
 .riot-list-item[data-disabled] {
