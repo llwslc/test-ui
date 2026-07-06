@@ -180,7 +180,6 @@
 }
 .riot-list-item[data-selected] {
   font-family: var(--riot-font-display);
-  text-transform: uppercase;
   color: var(--riot-primary);
 }
 .riot-list-item .riot-list-item__text {
