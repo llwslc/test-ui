@@ -29,7 +29,7 @@
 ## 3. 几何与描边
 
 - 造型 = **锐利切角**，用 `clip-path` 的多边形来实现（把矩形的角斜切掉）。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` 外加一个 `clip-tick`，按角色挑。
-- 描边走双层 frame 原语 `.nova-surface`：外层背景填边框色 + 切角，里头一层 `::before` 内缩 1px 填表面色，于是边缘留出一圈描边。输入变量：`--nova-surface-clip` 默认取 clip-9，`-fill` 默认取 surface-popup，`-border` 默认取 line-strong。
+- 描边走双层 frame 原语 `.nova-surface`：外层背景填边框色 + 切角，里头一层 `::before` 内缩 1px 填表面色。输入变量：`--nova-surface-clip` 默认取 clip-9，`-fill` 默认取 surface-popup，`-border` 默认取 line-strong。
 - 辉光用 `filter: drop-shadow()` 沿着切角的轮廓发光，挂在一个不切角的外层 `.nova-elevation` 上；它的输入变量 `--nova-overlay-shadow / -glow` 默认取 shadow-popup、glow-popup。
 - 边框层级：页内静止态 = `line`；浮层 = `line-strong`；状态升级则升到 `line-strong`、再到 `primary`；错误态 frame 取 `danger`、`Error` 文字同走 `danger`。
 - 浮层的连接件（连到触发器的那条短线）= 1px 的 `line-strong` 青线 + 一点微辉光，长度取 `--nova-overlay-gap`，跨过缝隙连到触发器。

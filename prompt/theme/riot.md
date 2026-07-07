@@ -30,7 +30,7 @@
 
 - 造型 = **撕纸剪报 + 微旋转**，不用圆角、不用 clip-path 斜切。半径两档：`r-control` 为 `0`（纸是硬边的），`r-round 999px` 给正圆件（圆框、状态点）；每块剪报另挂一个各不相同的小旋转角（`--riot-tilt`，约 ±2°–6°），由组件就近给，做出散钉的错落。组件不裸写 radius 与角度。
 - 尺度感靠**粗黑描边**体现。粗细阶梯：默认 `stroke 2.5px`，加档 `stroke-hair 1.5px · stroke-bold 3px · stroke-heavy 4px`，按角色挑：细分隔用 hair，控件与容器框用默认档，招牌板用 bold，超大外框用 heavy；组件不裸写 border-width。
-- 描边走 frame 原语 `.riot-surface`：`paper` 实填 + `ink` 粗黑 border + 硬偏移实影 + `--riot-tilt` 旋转，是盖戳盒；输入变量 `--riot-surface-fill / -border / -stroke / -tilt`。`--torn` 变体＝**撕边** `clip-path`（沿边锯齿多边形、去 border，由撕口 + 偏移影定形），给剪报与面板用，另叠一层复印烧边内影。胶带 `.riot-tape`（四角与顶位）与订书钉 `.riot-staple` 是独立母题件，钉在剪报、模态与招牌上——撕边元素会被 `clip-path` 裁切，母题件贴在未裁切的外框上。
+- 描边走 frame 原语 `.riot-surface`：`paper` 实填 + `ink` 粗黑 border + 硬偏移实影 + `--riot-tilt` 旋转，是盖戳盒；输入变量 `--riot-surface-fill / -border / -stroke / -tilt`。`--torn` 变体＝**撕边** `clip-path`（沿边锯齿多边形、去 border，由撕口 + 偏移影定形），给剪报与面板用，另叠一层复印烧边内影。胶带 `.riot-tape`（四角与顶位）与订书钉 `.riot-staple` 是独立母题件，钉在剪报、模态与招牌上，贴在未裁切的外框上。
 - `#riot-torn`：内联一个 SVG 滤镜（feTurbulence + feDisplacementMap），给撕边、分隔线、连接件挂上，让边缘呈现手撕的不规则毛刺。
 - 抬升：硬偏移实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；输入变量 `--riot-overlay-shadow`，默认取 `cast-clip`、模态取 `cast-modal`、小档取 `cast-sm`；`.riot-lift` 只定 z 层、不画别的。没有辉光。
 - 浮层的连接件（连到触发器的那截）是一条撕开的纸舌 + 一段胶带，尖端指向触发器，跟弹层一起淡入。

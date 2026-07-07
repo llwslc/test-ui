@@ -35,12 +35,12 @@
 
 必须提供的分组：
 
-- **色板**：背景档；强调色**至少要覆盖组件 API 用到的语义档**——`primary`、`success`、`warning`、`danger`，可另加主题色——强调色**按需**配 `-deep` 暗档（加深、填充打底用）；文本档 `text / -bright / -dim / -mute`；以及主色填充上用的反色前景档。
-- **强调填充**：激活／选中态复用的填充**按需**立槽，「点亮」激活表面、选中／方向指示各一槽；**立不立槽、填充长什么样，由 theme 定**——不立槽时直接覆盖 frame 输入变量点亮。
+- **色板**：背景档；强调色**至少要覆盖组件 API 用到的语义档**——`primary`、`success`、`warning`、`danger`——**按需**配 `-deep` 暗档（加深、填充打底用）；文本档 `text / -bright / -dim / -mute`；以及主色填充上用的反色前景档。
+- **强调填充**：激活／选中态复用的填充**按需**立槽，「点亮」激活表面、选中／方向指示各一槽；**填充长什么样，由 theme 定**；不立槽时直接覆盖 frame 输入变量点亮。
 - **alpha 阶梯**：**每个强调色家族**的半透明值都走「按透明度命名」的档；hex 带不了 alpha 的颜色另立档。新的同色 alpha 先并入最近的现有档，不随手新造。
 - **中性、效果色**：关态轨道、未填充轨道、ghost 按钮的 hover 底、扫光、关态旋钮的金属渐变等。
 - **表面**：面板、浮层、模态、内嵌表面，外加背板 scrim。
-- **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——投影分两套，一套是随形状轮廓的 drop-shadow、一套是矩形 shadow；**具体效果由 theme 定**。随形状轮廓的辉光与 `clip-path` 分属两层：辉光挂不裁形的外层包裹、裁形留内层框，同元素会把外发光裁掉。
+- **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——投影分两套，一套是随形状轮廓的 drop-shadow、一套是矩形 shadow；**具体效果由 theme 定**。随形状轮廓的辉光与 `clip-path` 分属两层：辉光挂不裁形的外层包裹、裁形留内层框。
 - **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色划分参考——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几类几档、每档多少，全由 theme 定。**
 - **圆角套圆角要同心**：内层圆角形状嵌进外层圆角框、需贴合时（轨道里的 thumb、框内填充、盒内勾标），四边**均匀内缩**，内层半径取外径减内缩量；缺哪档半径就给 theme 补一档 token。贴边的指示条／刻度／点例外，锚一边即可。
 - **层级阶梯**：浮层堆叠顺序、各 kit 同值——`dropdown 1200 < menu 1250 < tooltip 1300 < backdrop 1400 < overlay 1401 < toast 1500`。
@@ -103,7 +103,7 @@
 
 > 组件名对应 Base UI 基元，API、语义、用法都用 Base UI 的；本骨架只记 Base UI 管不到的**结构决定**：
 
-- **Badge、Panel** 是纯样式件，**不是** Base UI 组件（Base UI 没有这两个）。
+- **Badge、Panel** 是纯样式件，**不是** Base UI 组件。
 - **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，通过 context 注入底层 primitive。
 - **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套箱体与文字语言：一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体），里面排紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**箱体和文字的具体档值由 theme 定**；悬停、激活态走 §5 的「分段」档。
 - **AlertDialog** 与 Dialog 同一基底，按 `tone` 重染边框、标题、图标；**怎么重染、tone 强调放在哪、长什么样，全由 theme 定。**
@@ -139,7 +139,7 @@
 **浮层**
 
 - **通则**（承 §4.2）：结构 `Trigger + Portal > Positioner(挂 elevation 阴影) > Popup(挂 anim-pop + surface 形状，或内嵌一个 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或子层，绝不挂在同一个元素上**；项、链接的状态 +highlighted。
-- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；`mouseOnly` + focus 时打开 + `pointerType==="touch"` 时轻点补触摸路径；`closeOnClick=false`。
+- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；触屏与 focus 的打开路径见 §7「触屏」。
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
@@ -162,7 +162,7 @@
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
-- 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`；NumberField 到 `min/max` 时自己给步进按钮加 `disabled` 并置灰，Base UI 只负责夹值。
+- 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`。
 - 可聚焦的浮层 popup 加 `outline:none`。
 - **空结果提示**：Combobox、Autocomplete 的 `Empty` 是常驻挂载的 aria-live 状态区（有结果时 Base UI 清空它、无结果时填入 `emptyText`），空态收高只能用 `:empty { padding: 0 }`，不得 `display:none`／`hidden`／`aria-hidden`／条件卸载；有内边距的选项 `List` 同样加 `:empty { padding: 0 }`。
 - **触屏**：Tooltip、PreviewCard 默认只 hover（`mouseOnly`）、加 focus 打开；再用受控 `open` + `pointerType === "touch"` 给轻点补一条触摸路径，Tooltip 另设 `closeOnClick={false}`。
