@@ -2,7 +2,7 @@
 
 > 评审日期：2026-07-07。范围：`prompt/`（提示词/spec 层）、`src/`（代码层）、`.claude/skills/`（20 个 skill/门禁），并实跑了一遍 kit-qa 门禁套件取客观证据。四路并行深查 + 交叉验证。
 >
-> **处置状态（2026-07-07）**：P1–P13、P15 已修（P7 终解：PC 一律基样式、不开 `min-width` 块，代码侧把 nova/abyss 仅剩的 hero padding-right 并进基样式随代码批）；P14 按指示不改；S0–S19 全修 + P15 防复发机制入 prompt-lint（提交 d31dfcf、8c50092）。修后套件 16 门 PASS，如实红 = kit-api（8 条 = C1/C3/C5）与 kit-visual（riot 148 待裁决）。**挂起**：C1–C14、riot 148 逐条裁决（豁免机制已备）、删 `src/_riot`+`riot.html`、S6 的 settings.json 钩子注册（脚本已就位）。
+> **处置状态（2026-07-07）**：P1–P13、P15 已修（P7 终解：PC 一律基样式、不开 `min-width` 块，nova/abyss 代码已同步，src 零 `min-width`）；P14 按指示不改；S0–S19 全修 + P15 防复发机制入 prompt-lint（提交 d31dfcf、8c50092）。修后套件 16 门 PASS，如实红 = kit-api（8 条 = C1/C3/C5）与 kit-visual（riot 148 待裁决）。**挂起**：C1–C14、riot 148 逐条裁决（豁免机制已备）、删 `src/_riot`+`riot.html`、S6 的 settings.json 钩子注册（脚本已就位）。
 
 ## 总评
 
