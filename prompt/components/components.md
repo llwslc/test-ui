@@ -86,7 +86,7 @@
 
 - **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 用「文字强调选中」——只换文字色、不填充；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样由 theme 定**。
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
-- **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
+- **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**
 - **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
 - **禁用**：shell 全局一条 `pointer-events: none`；hover／highlight 态一律 `:not([data-disabled])` 收口；`opacity: var(--<kit>-disabled-opacity)`，整行只 dim 一层、不叠两遍。
@@ -125,8 +125,8 @@
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`。
 - **OtpField**：props `length·splitAt·mask`（`length` 默认 6）；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus。
 - **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
-- **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`。
-- **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron。
+- **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
+- **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建，`items` 直传 Root。
 - **Fieldset**（props `legend`）、**Form**：竖排，由 Base UI 直接管。
 
 **反馈**

@@ -7,7 +7,7 @@
 - 「点亮表面」用于 Button primary、Switch、Checkbox = `accent-surface` 拉丝黄铜渐变填充 + `bevel`，前景（含箭头、占位符、数值）转 `on-primary`，再叠一层 `glow-active`。
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary` + 内嵌 `bevel`，呈一枚按下去的黄铜键。
 - 「文字强调选中」用于列表、Tab、NavMenu，只把文字转 `primary`；Tab、NavMenu 另配一条底部的黄铜灯丝下划线。
-- 悬停：分段控件和触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent → tint-soft` 渐变 + 下划线；图标和动作按钮的文字转 `primary`，菜单触发器、列表项转 bright。
+- 悬停：分段控件和触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent → tint-soft` 渐变 + 下划线；图标和动作按钮的文字转 `primary`，菜单触发器、列表项转 bright；按钮 bezel 升亮铜、文字转 bright，primary 实填另加 `glow-active`、danger 加 blood 灯晕。
 - 焦点：布尔开关（Checkbox、Switch、Radio）用 `ring-focus` 黄铜描边环，其中 Switch、Radio 叠一层 bevel、用 `-recessed`；分段控件和触发条用 `inset 0 0 0 1px primary`；输入框聚焦时整框升到 `bezel-strong` + `glow-focus`。
 - 危险态走 danger 家族：`-fill / -wash / -text / -inset`，bezel 转 danger。
 

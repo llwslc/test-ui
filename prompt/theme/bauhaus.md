@@ -18,7 +18,7 @@
 - 另立的 alpha 家族：`ink-faint .06` 给 ghost 按钮的 hover 墨 wash；danger 的 `-wash .12 / -text #7c1209`。
 - 中性与效果色：`off #ddd5c0` 是关态轨道（浅暖灰）；`track #e2dbc9` 是未填充的轨道。
 - 表面：`surface` = `paper`；`surface-popup` 是实纸；`surface-modal` 是纯纸 `#fbf8ef`；`surface-inset #e8e1ce` 是凹陷的浅纸底；`surface-zone` 是右键投放区的浅蓝 tint；`scrim` 是墨色 `.5` 的平涂背板。
-- 描边与投影：全局描边恒为 `ink #141414` 纯黑；投影用**硬边偏移的实影**——不是模糊阴影，是沿形状轮廓、朝一侧偏移的纯色块：沿轮廓的 drop-shadow 有 `cast-pop` 5px、`cast-modal` 8px、`cast-sm` 3px，都是 `Npx Npx 0 ink`、无模糊无辉光；矩形硬影 `shadow-hard` 给按钮的静止态；焦点环 `ring` = 一圈纸白间隙 + 一圈蓝色外环；文字强调和选中提示都取 `primary` 蓝。
+- 描边与投影：全局描边恒为 `ink #141414` 纯黑；投影用**硬边偏移的实影**——不是模糊阴影，是沿形状轮廓、朝一侧偏移的纯色块：沿轮廓的 drop-shadow 有 `cast-pop` 5px、`cast-modal` 8px、`cast-sm` 3px，都是 `Npx Npx 0 ink`、无模糊无辉光；矩形硬影 `shadow-hard` 给按钮的悬停态；焦点环 `ring` = 一圈纸白间隙 + 一圈蓝色外环；文字强调和选中提示都取 `primary` 蓝。
 
 ## 2. 字体与排版
 
