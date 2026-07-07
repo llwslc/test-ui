@@ -380,7 +380,6 @@ function Demo() {
             </div>
           </section>
 
-          {/* ── Inputs ───────────────────────────────── */}
           <GroupRule id="inputs" label="Inputs" sub="controls & primaries" marker={<CircleFill />} />
           <div className="bauhaus-grid">
             <Panel id="button" title="Button" meta="BTN" wide>
@@ -535,7 +534,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Forms ────────────────────────────────── */}
           <GroupRule id="forms" label="Forms" sub="bound fields" marker={<SquareFill />} />
           <div className="bauhaus-grid">
             <Panel id="fieldset" title="Fieldset" meta="FLD">
@@ -560,7 +558,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Feedback ─────────────────────────────── */}
           <GroupRule id="feedback" label="Feedback" sub="bars & readouts" marker={<TriangleFill />} />
           <div className="bauhaus-grid">
             <Panel id="progress" title="Progress" meta="PRG">
@@ -612,7 +609,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Overlays ─────────────────────────────── */}
           <GroupRule id="overlays" label="Overlays" sub="menus & dialogs" marker={<CircleFill />} />
           <div className="bauhaus-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP">
@@ -874,7 +870,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Display ──────────────────────────────── */}
           <GroupRule id="display" label="Display" sub="marks & fittings" marker={<SquareFill />} />
           <div className="bauhaus-grid">
             <Panel id="avatar" title="Avatar" meta="AVT">
@@ -975,7 +970,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Foundations ──────────────────────────── */}
           <GroupRule id="foundations" label="Foundations" sub="type & rule" marker={<TriangleFill />} />
           <div className="bauhaus-grid">
             <Panel id="typography" title="Typography" meta="TYP" wide>

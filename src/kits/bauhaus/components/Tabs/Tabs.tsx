@@ -6,7 +6,6 @@ import "./Tabs.css";
 export interface TabItem {
   label: ReactNode;
   value: string;
-  icon?: ReactNode;
   content: ReactNode;
   disabled?: boolean;
 }
@@ -30,7 +29,6 @@ export function Tabs({ items, defaultValue, value, onValueChange, className }: T
       <BaseTabs.List className="bauhaus-tabs__list">
         {items.map((it) => (
           <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-tabs__tab">
-            {it.icon ? <span className="bauhaus-tabs__tab-icon">{it.icon}</span> : null}
             {it.label}
           </BaseTabs.Tab>
         ))}

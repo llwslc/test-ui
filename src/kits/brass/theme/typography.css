@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Yeseva+One&family=Domine:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
 
-/* BRASS — typography classes, decoupled from semantic tags. */
-
 .brass-h1 {
   margin: 0;
   font-family: var(--brass-font-display);

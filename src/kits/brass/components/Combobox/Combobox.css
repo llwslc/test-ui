@@ -85,7 +85,6 @@
   opacity: var(--brass-disabled-opacity);
 }
 
-/* ── Popup geometry ──────────────────────────────────── */
 .brass-combobox__popup {
   min-width: var(--anchor-width);
 }

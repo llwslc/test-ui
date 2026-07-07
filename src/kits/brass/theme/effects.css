@@ -1,6 +1,3 @@
-/* BRASS — shared visual primitives & recipes. Components compose these; colors via input vars. */
-
-/* ── Frame: double-layer brass bezel ──────────────────── */
 .brass-plate {
   position: relative;
   isolation: isolate;
@@ -18,7 +15,6 @@
   box-shadow: var(--brass-plate-bevel, var(--brass-bevel));
 }
 
-/* ── Rivets: four corner studs (signature ornament) ───── */
 .brass-rivets::after {
   content: "";
   position: absolute;
@@ -31,14 +27,12 @@
   background-position: top left, top right, bottom left, bottom right;
 }
 
-/* ── Knurled brass knob (Switch / Slider thumbs) ──────── */
 .brass-knob {
   border-radius: var(--brass-round-pill);
   background-image: var(--brass-knurl), linear-gradient(180deg, var(--brass-thumb-top), var(--brass-thumb-bottom));
   box-shadow: var(--brass-shadow-thumb), var(--brass-bevel);
 }
 
-/* ── Elevation: shadow + warm glow, no shape clip ─────── */
 .brass-lift {
   z-index: var(--brass-z-dropdown);
   filter: var(--brass-overlay-shadow, var(--brass-shadow-popup)) var(--brass-overlay-glow, var(--brass-glow-popup));
@@ -52,7 +46,6 @@
   --brass-overlay-glow: var(--brass-glow-modal);
 }
 
-/* ── Popup surface + option list (Select/Menu/Combobox/Nav) ── */
 .brass-popup {
   --brass-plate-fill: var(--brass-surface-popup);
   --brass-plate-bezel: var(--brass-bezel-strong);
@@ -122,7 +115,6 @@
   background: var(--brass-line);
 }
 
-/* ── Anchored popup open/close ────────────────────────── */
 .brass-pop {
   transform-origin: var(--transform-origin);
   transition:
@@ -135,7 +127,6 @@
   transform: translateY(-6px) scale(0.97);
 }
 
-/* ── Connector: 1px brass pipe stub (Base UI Arrow) ───── */
 .brass-connector {
   z-index: 2;
   width: 16px;
@@ -190,7 +181,6 @@
   }
 }
 
-/* ── Modal viewport & backdrop (Dialog / AlertDialog) ─── */
 .brass-viewport {
   position: fixed;
   top: 0;
@@ -231,7 +221,6 @@
   }
 }
 
-/* ── Segmented family (ToggleGroup / Toolbar / Menubar) ── */
 .brass-seg {
   display: inline-flex;
   align-items: center;
@@ -297,7 +286,6 @@
   }
 }
 
-/* ── Feedback / legend marker (gear-stud) ─────────────── */
 .brass-marker {
   display: inline-flex;
   align-items: center;
@@ -311,7 +299,6 @@
   }
 }
 
-/* ── Modal popup base (Dialog / AlertDialog / Drawer); set width per component ── */
 .brass-modal {
   --brass-plate-fill: var(--brass-surface-modal);
   --brass-plate-bezel: var(--brass-bezel-strong);
@@ -324,7 +311,6 @@
   font-size: var(--brass-fs-20);
 }
 
-/* ── Tab skin (Tabs) ──────────────────────────────────── */
 .brass-tabs__rail {
   border-bottom: 1px solid var(--brass-line);
 }
@@ -384,7 +370,6 @@
     width var(--brass-dur) var(--brass-ease);
 }
 
-/* ── Shared modal text parts (Dialog / AlertDialog / Drawer); compose .brass-h2 / .brass-text ── */
 .brass-modal-title {
   display: flex;
   align-items: center;
@@ -413,7 +398,6 @@
   right: var(--brass-space-4);
 }
 
-/* ── Collapse family (Accordion / Collapsible) ────────── */
 .brass-collapse-trigger {
   display: flex;
   align-items: center;

@@ -1,17 +1,14 @@
 :root {
-  /* ── Backgrounds & paper ───────────────────────────── */
   --riot-base: #111010;
   --riot-paper: #e9e4d4;
   --riot-paper-raised: #d7cfba;
 
-  /* ── Accent families (fluorescent marker), flat ────── */
   --riot-primary: #ff4d0a;
   --riot-secondary: #ff1f8f;
   --riot-success: #8fe000;
   --riot-warning: #ffe500;
   --riot-danger: #ff2200;
 
-  /* ── Text & reverse foreground ─────────────────────── */
   --riot-text: #17130d;
   --riot-text-bright: #000000;
   --riot-text-dim: #4c473b;
@@ -20,11 +17,9 @@
   --riot-on-fill: #0d0d0d;
   --riot-on-warning: #17130d;
 
-  /* ── Reusable accent fills (flat solid, no gradient) ── */
   --riot-accent-surface: var(--riot-primary);
   --riot-accent-fill: var(--riot-primary);
 
-  /* ── Primary alpha & tints ─────────────────────────── */
   --riot-tint: rgba(255, 77, 10, 0.2);
   --riot-tape: rgba(224, 210, 120, 0.5);
   --riot-tape-danger: rgba(255, 34, 0, 0.65);
@@ -34,11 +29,9 @@
   --riot-marker: rgba(255, 229, 0, 0.55);
   --riot-marker-swipe: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20240%2040'%20preserveAspectRatio%3D'none'%3E%3Cdefs%3E%3ClinearGradient%20id%3D'a'%20x1%3D'0'%20x2%3D'1'%3E%3Cstop%20offset%3D'0'%20stop-color%3D'%23fff'%20stop-opacity%3D'.86'%2F%3E%3Cstop%20offset%3D'.5'%20stop-color%3D'%23fff'%20stop-opacity%3D'.84'%2F%3E%3Cstop%20offset%3D'.66'%20stop-color%3D'%23fff'%20stop-opacity%3D'.6'%2F%3E%3Cstop%20offset%3D'1'%20stop-color%3D'%23fff'%20stop-opacity%3D'0'%2F%3E%3C%2FlinearGradient%3E%3Cfilter%20id%3D'f'%20x%3D'-4%25'%20y%3D'-45%25'%20width%3D'114%25'%20height%3D'190%25'%3E%3CfeGaussianBlur%20in%3D'SourceGraphic'%20stdDeviation%3D'1.25'%20result%3D's'%2F%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.016%200.42'%20numOctaves%3D'2'%20seed%3D'8'%20result%3D'n'%2F%3E%3CfeColorMatrix%20in%3D'n'%20type%3D'matrix'%20values%3D'0%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.4%200.62'%20result%3D'g'%2F%3E%3CfeComposite%20in%3D's'%20in2%3D'g'%20operator%3D'arithmetic'%20k1%3D'1'%20k2%3D'0'%20k3%3D'0'%20k4%3D'0'%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Crect%20x%3D'0'%20y%3D'8'%20width%3D'217'%20height%3D'25'%20rx%3D'12'%20fill%3D'url(%23a)'%20filter%3D'url(%23f)'%2F%3E%3C%2Fsvg%3E");
 
-  /* ── Neutrals & effect colors ──────────────────────── */
   --riot-track: #d7cfba;
   --riot-staple: #cfcfcf;
 
-  /* ── Surfaces ──────────────────────────────────────── */
   --riot-surface: var(--riot-paper);
   --riot-surface-popup: var(--riot-paper);
   --riot-surface-modal: #f2eede;
@@ -46,14 +39,12 @@
   --riot-surface-zone: rgba(255, 77, 10, 0.07);
   --riot-scrim: rgba(10, 10, 10, 0.6);
 
-  /* ── Stroke (thick black cut edge), by role ────────── */
   --riot-ink: #0d0d0d;
   --riot-stroke-hair: 1.5px;
   --riot-stroke: 2.5px;
   --riot-stroke-bold: 3px;
   --riot-stroke-heavy: 4px;
 
-  /* ── Depth: hard-offset solid casts (no blur, no glow) ── */
   --riot-cast-clip: drop-shadow(8px 8px 0 var(--riot-ink));
   --riot-cast-sm: drop-shadow(4px 4px 0 var(--riot-ink));
   --riot-cast-modal: drop-shadow(12px 12px 0 var(--riot-ink));
@@ -61,11 +52,9 @@
   --riot-shadow-sm: 3px 3px 0 var(--riot-ink);
   --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary);
 
-  /* ── Geometry (sharp cut paper + one round for dots) ── */
   --riot-r-control: 0;
   --riot-r-round: 999px;
 
-  /* ── Torn-edge clip (jagged paper outline) ─────────── */
   --riot-clip-torn: polygon(
     0% 6%, 8% 1%, 17% 5%, 30% 0%, 44% 4%, 58% 0%, 71% 5%, 84% 1%, 94% 5%, 100% 2%,
     99% 18%, 100% 38%, 98% 58%, 100% 78%, 99% 94%,
@@ -73,7 +62,6 @@
     1% 84%, 0% 62%, 2% 40%, 0% 20%
   );
 
-  /* ── Z-layer ladder ────────────────────────────────── */
   --riot-z-dropdown: 1200;
   --riot-z-menu: 1250;
   --riot-z-tooltip: 1300;
@@ -81,7 +69,6 @@
   --riot-z-overlay: 1401;
   --riot-z-toast: 1500;
 
-  /* ── Motion & metrics ──────────────────────────────── */
   --riot-dur: 0.1s;
   --riot-dur-slow: 0.26s;
   --riot-dur-sweep: 1.2s;
@@ -91,7 +78,6 @@
   --riot-disabled-opacity: 0.4;
   --riot-modal-pad: 26px;
 
-  /* ── Spacing (4px grid) ────────────────────────────── */
   --riot-space-1: 4px;
   --riot-space-2: 8px;
   --riot-space-3: 12px;
@@ -101,7 +87,6 @@
   --riot-space-7: 28px;
   --riot-space-9: 36px;
 
-  /* ── Typography ────────────────────────────────────── */
   --riot-font: "Special Elite", "Courier New", monospace;
   --riot-font-display: "Anton", "Arial Narrow", sans-serif;
   --riot-font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -119,7 +104,6 @@
   --riot-lh-150: 1.5;
   --riot-fw-400: 400;
 
-  /* ── Component footprints ──────────────────────────── */
   --riot-button-h-sm: 34px;
   --riot-button-h-lg: 50px;
   --riot-button-icon: 42px;

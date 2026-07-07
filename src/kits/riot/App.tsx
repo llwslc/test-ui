@@ -418,7 +418,6 @@ function Demo() {
             </div>
           </section>
 
-          {/* ── Inputs ───────────────────────────────── */}
           <GroupRule id="inputs" label="Inputs" sub="controls & demands" marker={<StarFill />} />
           <div className="riot-grid">
             <Panel id="button" title="Button" meta="BTN" wide tape="top">
@@ -573,7 +572,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Forms ────────────────────────────────── */}
           <GroupRule id="forms" label="Forms" sub="bound fields" marker={<Square />} />
           <div className="riot-grid">
             <Panel id="fieldset" title="Fieldset" meta="FLD" stapled>
@@ -598,7 +596,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Feedback ─────────────────────────────── */}
           <GroupRule id="feedback" label="Feedback" sub="bars & readouts" marker={<Triangle />} />
           <div className="riot-grid">
             <Panel id="progress" title="Progress" meta="PRG" tape="bl">
@@ -661,7 +658,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Overlays ─────────────────────────────── */}
           <GroupRule id="overlays" label="Overlays" sub="menus & dialogs" marker={<StarFill />} />
           <div className="riot-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP" tape="br">
@@ -909,7 +905,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Display ──────────────────────────────── */}
           <GroupRule id="display" label="Display" sub="marks & fittings" marker={<Square />} />
           <div className="riot-grid">
             <Panel id="avatar" title="Avatar" meta="AVT" tape="tl">
@@ -1006,7 +1001,6 @@ function Demo() {
             </Panel>
           </div>
 
-          {/* ── Foundations ──────────────────────────── */}
           <GroupRule id="foundations" label="Foundations" sub="type & rule" marker={<Triangle />} />
           <div className="riot-grid">
             <Panel id="typography" title="Typography" meta="TYP" wide tape="top">

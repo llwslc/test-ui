@@ -51,8 +51,6 @@ export const Grid = (p: IconProps) =>
 export const Bell = (p: IconProps) =>
   base({ ...p, children: <><path d="M6 17V11a6 6 0 0 1 12 0v6l2 3H4z" /><path d="M10 21h4" /></> });
 
-/* ── Bauhaus signature: the three basic forms ───────────── */
-
 export const Circle = (p: IconProps) => base({ ...p, children: <circle cx="12" cy="12" r="8.5" /> });
 
 export const CircleFill = (p: IconProps) =>

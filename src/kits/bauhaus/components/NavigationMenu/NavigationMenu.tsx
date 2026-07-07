@@ -7,11 +7,10 @@ export interface NavMenuLink {
   label: ReactNode;
   href?: string;
   description?: ReactNode;
-  icon?: ReactNode;
 }
 
 export interface NavMenuItem {
-  label: ReactNode;
+  label: string;
   href?: string;
   links?: NavMenuLink[];
 }
@@ -43,7 +42,6 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                       className="bauhaus-navmenu__link"
                       onClick={onLinkClick}
                     >
-                      {link.icon}
                       <span className="bauhaus-navmenu__link-label">{link.label}</span>
                       {link.description != null && (
                         <span className="bauhaus-navmenu__link-desc">{link.description}</span>

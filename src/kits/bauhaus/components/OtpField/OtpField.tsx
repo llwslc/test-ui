@@ -3,7 +3,7 @@ import { Fragment, useId } from "react";
 import "./OtpField.css";
 
 export interface OtpFieldProps {
-  length: number;
+  length?: number;
   name?: string;
   defaultValue?: string;
   value?: string;
@@ -14,7 +14,7 @@ export interface OtpFieldProps {
 }
 
 export function OtpField({
-  length,
+  length = 6,
   name,
   defaultValue,
   value,

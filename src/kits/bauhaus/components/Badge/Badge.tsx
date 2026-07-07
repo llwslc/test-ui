@@ -11,13 +11,13 @@ export type BadgeTone =
   | "neutral";
 
 export interface BadgeProps {
-  tone: BadgeTone;
+  tone?: BadgeTone;
   dot?: boolean;
   children: ReactNode;
   className?: string;
 }
 
-export function Badge({ tone, dot, className, children }: BadgeProps) {
+export function Badge({ tone = "primary", dot, className, children }: BadgeProps) {
   return (
     <span className={cx("bauhaus-badge", `bauhaus-badge--${tone}`, className)}>
       {dot ? <span className="bauhaus-badge__dot" aria-hidden="true" /> : null}

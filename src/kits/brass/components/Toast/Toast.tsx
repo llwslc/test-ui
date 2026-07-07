@@ -4,7 +4,9 @@ import { Button } from "../Button";
 import { Bolt, Check, Close, Gauge, Gear } from "../icons";
 import "./Toast.css";
 
-export const useToast = BaseToast.useToastManager;
+export function useToast() {
+  return BaseToast.useToastManager();
+}
 
 export type ToastTone = "info" | "success" | "warning" | "danger";
 
@@ -54,7 +56,7 @@ function ToastList() {
 }
 
 export interface ToastProviderProps {
-  children?: ReactNode;
+  children: ReactNode;
   timeout?: number;
   limit?: number;
 }

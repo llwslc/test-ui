@@ -36,11 +36,6 @@
   cursor: pointer;
   transition: color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-tabs__tab-icon {
-  display: inline-flex;
-  align-items: center;
-  font-size: var(--bauhaus-fs-18);
-}
 .bauhaus-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--bauhaus-text-bright);
 }

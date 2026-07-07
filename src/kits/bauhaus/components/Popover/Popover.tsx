@@ -12,7 +12,7 @@ export interface PopoverProps {
   align?: "start" | "center" | "end";
   sideOffset?: number;
   className?: string;
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 export function Popover({

@@ -96,6 +96,11 @@
   color: var(--nova-text-dim);
 }
 
+.nova-toast__action {
+  margin-top: var(--nova-space-2);
+  align-self: flex-start;
+}
+
 .nova-toast__close {
   flex: 0 0 auto;
   display: grid;

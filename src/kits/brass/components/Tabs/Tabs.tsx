@@ -6,7 +6,6 @@ import "./Tabs.css";
 export interface TabItem {
   value: string;
   label: ReactNode;
-  icon?: ReactNode;
   content: ReactNode;
   disabled?: boolean;
 }
@@ -41,7 +40,6 @@ export function Tabs({
         <BaseTabs.List className="brass-tabs__list">
           {items.map((it) => (
             <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="brass-tab">
-              {it.icon}
               {it.label}
             </BaseTabs.Tab>
           ))}

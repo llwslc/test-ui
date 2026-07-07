@@ -10,7 +10,6 @@ button {
   border: 0;
 }
 
-/* large flat primary forms + one diagonal bar — no blur, no noise */
 body::before {
   content: "";
   position: fixed;

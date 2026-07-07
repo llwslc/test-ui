@@ -67,6 +67,7 @@
 }
 .brass-toast__action {
   margin-top: var(--brass-space-3);
+  align-self: flex-start;
 }
 .brass-toast__close {
   flex: 0 0 auto;

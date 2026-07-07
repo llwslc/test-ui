@@ -1,4 +1,3 @@
-/* BRASS Fieldset — a grouped form section in a bordered brass enclosure. */
 .brass-fieldset {
   display: flex;
   flex-direction: column;

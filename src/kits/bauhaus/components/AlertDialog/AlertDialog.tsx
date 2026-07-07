@@ -1,12 +1,11 @@
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
-import { Button, type ButtonProps } from "../Button";
+import { Button, type ButtonSize, type ButtonVariant } from "../Button";
 import { CircleFill, TriangleFill, SquareFill } from "../icons";
 import "./AlertDialog.css";
 
 type Tone = "danger" | "warning" | "primary";
-type ButtonVariant = ButtonProps["variant"];
 
 const TONE_MARKER: Record<Tone, ReactNode> = {
   primary: <CircleFill />,
@@ -29,9 +28,8 @@ export interface AlertDialogProps {
 export interface AlertDialogCloseProps
   extends Omit<ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>, "className" | "render"> {
   variant?: ButtonVariant;
-  size?: ButtonProps["size"];
+  size?: ButtonSize;
   className?: string;
-  children?: ReactNode;
 }
 
 export function AlertDialogClose({ variant = "ghost", size = "md", className, children, ...props }: AlertDialogCloseProps) {

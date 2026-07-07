@@ -122,6 +122,11 @@
   color: var(--abyss-text-dim);
 }
 
+.abyss-toast__action {
+  margin-top: var(--abyss-space-2);
+  align-self: flex-start;
+}
+
 .abyss-toast__close {
   flex: 0 0 auto;
   display: grid;

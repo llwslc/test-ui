@@ -1,6 +1,6 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import { ScrollArea } from "../ScrollArea";
-import { useId, useMemo, useState } from "react";
+import { useId } from "react";
 import "./Autocomplete.css";
 
 export interface AutocompleteProps {
@@ -19,19 +19,8 @@ export function Autocomplete({
   label,
 }: AutocompleteProps) {
   const inputId = useId();
-  const filter = BaseAutocomplete.useFilter({ sensitivity: "base" });
-  const [query, setQuery] = useState(defaultValue ?? "");
-  const matches = useMemo(
-    () => items.filter((item) => filter.contains(item, query)),
-    [items, query, filter],
-  );
-
   return (
-    <BaseAutocomplete.Root
-      items={matches}
-      defaultValue={defaultValue}
-      onValueChange={setQuery}
-    >
+    <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
       <BaseAutocomplete.InputGroup className="bauhaus-surface bauhaus-autocomplete">
         <BaseAutocomplete.Input
           id={inputId}

@@ -1,6 +1,6 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 import { ScrollArea } from "../ScrollArea";
-import { useId, useMemo, useState } from "react";
+import { useId } from "react";
 import { Check, ChevronDown, Close } from "../icons";
 import "./Combobox.css";
 
@@ -22,20 +22,8 @@ export function Combobox({
   name,
 }: ComboboxProps) {
   const inputId = useId();
-  const filter = BaseCombobox.useFilter({ sensitivity: "base" });
-  const [query, setQuery] = useState("");
-  const matches = useMemo(
-    () => items.filter((item) => filter.contains(item, query)),
-    [items, query, filter],
-  );
-
   return (
-    <BaseCombobox.Root
-      items={matches}
-      defaultValue={defaultValue}
-      onInputValueChange={setQuery}
-      name={name}
-    >
+    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
       <BaseCombobox.InputGroup className="bauhaus-surface bauhaus-combobox">
         <BaseCombobox.Input
           id={inputId}

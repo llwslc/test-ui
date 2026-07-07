@@ -19,7 +19,7 @@ function toneOf(type: string | undefined): ToastTone {
 }
 
 export interface ToastProviderProps {
-  children?: ReactNode;
+  children: ReactNode;
   timeout?: number;
   limit?: number;
 }
@@ -56,6 +56,12 @@ function ToastList() {
             <div className="bauhaus-toast__body">
               <BaseToast.Title className="bauhaus-toast__title" />
               <BaseToast.Description className="bauhaus-text bauhaus-toast__desc" />
+              {toast.actionProps && (
+                <BaseToast.Action
+                  className="bauhaus-toast__action"
+                  render={<Button variant="ghost" size="sm" />}
+                />
+              )}
             </div>
             <BaseToast.Close
               className="bauhaus-toast__close"

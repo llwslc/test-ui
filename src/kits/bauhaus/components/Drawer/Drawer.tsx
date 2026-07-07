@@ -1,12 +1,9 @@
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
-import { Button, type ButtonProps } from "../Button";
+import { Button, type ButtonSize, type ButtonVariant } from "../Button";
 import { SquareFill, Close } from "../icons";
 import "./Drawer.css";
-
-type ButtonVariant = NonNullable<ButtonProps["variant"]>;
-type ButtonSize = NonNullable<ButtonProps["size"]>;
 
 export type DrawerSide = "left" | "right" | "top" | "bottom";
 
@@ -84,7 +81,6 @@ export interface DrawerCloseProps
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
-  children?: ReactNode;
 }
 
 export function DrawerClose({ variant = "ghost", size = "md", className, children, ...props }: DrawerCloseProps) {

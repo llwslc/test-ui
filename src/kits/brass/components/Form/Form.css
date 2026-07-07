@@ -1,4 +1,3 @@
-/* BRASS Form — clean vertical layout wrapper around Base UI's form. */
 .brass-form {
   display: flex;
   flex-direction: column;

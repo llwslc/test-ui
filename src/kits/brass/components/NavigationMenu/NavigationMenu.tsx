@@ -7,11 +7,10 @@ export interface NavMenuLink {
   label: ReactNode;
   href?: string;
   description?: ReactNode;
-  icon?: ReactNode;
 }
 
 export interface NavMenuItem {
-  label: ReactNode;
+  label: string;
   href?: string;
   links?: NavMenuLink[];
 }
@@ -42,7 +41,6 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                     href={link.href ?? "#"}
                     onClick={onLinkClick}
                   >
-                    {link.icon && <span className="brass-list-item__check">{link.icon}</span>}
                     <span className="brass-navmenu__link-body">
                       <span className="brass-list-item__text">{link.label}</span>
                       {link.description && (

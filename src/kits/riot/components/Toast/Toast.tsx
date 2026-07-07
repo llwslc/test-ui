@@ -1,5 +1,6 @@
 import { Toast as BaseToast } from "@base-ui/react/toast";
 import type { ReactNode } from "react";
+import { Button } from "../Button";
 import { XIcon } from "../icons";
 import "./Toast.css";
 
@@ -15,9 +16,11 @@ export function ToastProvider({ children, timeout = 5000, limit = 4 }: ToastProv
   return (
     <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
-      <BaseToast.Viewport className="riot-toast__viewport">
-        <ToastList />
-      </BaseToast.Viewport>
+      <BaseToast.Portal>
+        <BaseToast.Viewport className="riot-toast__viewport">
+          <ToastList />
+        </BaseToast.Viewport>
+      </BaseToast.Portal>
     </BaseToast.Provider>
   );
 }
@@ -38,6 +41,12 @@ function ToastList() {
             <div className="riot-toast__main">
               <BaseToast.Title className="riot-toast__title" />
               <BaseToast.Description className="riot-toast__desc" />
+              {toast.actionProps && (
+                <BaseToast.Action
+                  className="riot-toast__action"
+                  render={<Button variant="ghost" size="sm" />}
+                />
+              )}
             </div>
             <BaseToast.Close className="riot-toast__close" aria-label="Dismiss">
               <XIcon />

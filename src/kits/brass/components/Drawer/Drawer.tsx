@@ -1,12 +1,9 @@
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
 import { cx } from "../cx";
-import { Button, type ButtonProps } from "../Button";
+import { Button, type ButtonSize, type ButtonVariant } from "../Button";
 import { Close } from "../icons";
 import "./Drawer.css";
-
-type ButtonVariant = NonNullable<ButtonProps["variant"]>;
-type ButtonSize = NonNullable<ButtonProps["size"]>;
 
 export type DrawerSide = "left" | "right" | "top" | "bottom";
 

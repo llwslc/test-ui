@@ -1,5 +1,3 @@
-/* BRASS — atmosphere: engine-room lamp glow, steam, brushed metal, grain. */
-
 body {
   margin: 0;
   background: var(--brass-base);
@@ -8,7 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* lamp glow + base gradient */
 body::before {
   content: "";
   position: fixed;
@@ -22,7 +19,6 @@ body::before {
     linear-gradient(180deg, var(--brass-base), var(--brass-base-raised));
 }
 
-/* rivet grid + drifting steam, masked to fade downward */
 body::after {
   content: "";
   position: fixed;
@@ -45,7 +41,6 @@ body::after {
   }
 }
 
-/* brushed-metal vertical streaks */
 :root::before {
   content: "";
   position: fixed;
@@ -56,7 +51,6 @@ body::after {
   mix-blend-mode: overlay;
 }
 
-/* aged-metal grain */
 :root::after {
   content: "";
   position: fixed;

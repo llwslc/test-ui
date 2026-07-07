@@ -45,8 +45,6 @@ export const Copy = (p: IconProps) =>
 export const Clock = (p: IconProps) =>
   base({ ...p, children: <><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></> });
 
-/* ── Steampunk signature glyphs ─────────────────────────── */
-
 export const Gear = (p: IconProps) =>
   base({
     ...p,

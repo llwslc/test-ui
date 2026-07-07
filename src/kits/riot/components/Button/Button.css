@@ -26,6 +26,10 @@
   display: inline-flex;
   font-size: var(--riot-fs-18);
 }
+.riot-btn:hover:not(:disabled):not([data-disabled]) {
+  transform: translate(-1px, -2px);
+  box-shadow: 7px 8px 0 var(--riot-ink);
+}
 .riot-btn:active:not(:disabled):not([data-disabled]) {
   transform: translate(4px, 5px);
   box-shadow: 1px 1px 0 var(--riot-ink);
@@ -54,6 +58,12 @@
   color: var(--riot-text);
   box-shadow: none;
 }
+.riot-btn--ghost:hover:not(:disabled):not([data-disabled]) {
+  transform: none;
+  box-shadow: none;
+  background: var(--riot-tint);
+  color: var(--riot-text-bright);
+}
 .riot-btn--ghost:active:not(:disabled):not([data-disabled]) {
   transform: translate(2px, 2px);
   box-shadow: none;
@@ -71,6 +81,11 @@
   background: transparent;
   color: var(--riot-text-dim);
   box-shadow: none;
+}
+.riot-btn--icon-ghost:hover:not(:disabled):not([data-disabled]) {
+  transform: none;
+  box-shadow: none;
+  color: var(--riot-primary);
 }
 .riot-btn--icon-ghost:active:not(:disabled):not([data-disabled]) {
   transform: translate(2px, 2px);

@@ -1,4 +1,3 @@
-/* ── Toast: bottom-right, stacks upward (newest on top), solid tone block + reversed marker ── */
 .bauhaus-toast__viewport {
   position: fixed;
   right: var(--bauhaus-space-5);
@@ -96,6 +95,10 @@
 }
 .bauhaus-toast__desc:empty {
   display: none;
+}
+.bauhaus-toast__action {
+  margin-top: var(--bauhaus-space-2);
+  align-self: flex-start;
 }
 .bauhaus-toast__close {
   flex: 0 0 auto;

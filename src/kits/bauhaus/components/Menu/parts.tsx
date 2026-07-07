@@ -7,7 +7,7 @@ import { ChevronRight } from "../icons";
 export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
   icon?: ReactNode;
   shortcut?: ReactNode;
-  tone?: "danger";
+  tone?: "default" | "danger";
 }
 
 export function MenuItem({ icon, shortcut, tone, className, children, ...props }: MenuItemProps) {

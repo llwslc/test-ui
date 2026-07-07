@@ -1,4 +1,3 @@
-/* BRASS Panel — the signature riveted instrument plate. */
 .brass-panel {
   --brass-plate-round: var(--brass-round-lg);
   --brass-plate-fill: var(--brass-plate-grad);
@@ -6,12 +5,10 @@
   flex-direction: column;
 }
 
-/* App grid spans this full-width; grid-column lives in App, not here. */
 .brass-panel--wide {
   width: 100%;
 }
 
-/* ── Header row: marker + mono title + meta code ── */
 .brass-panel__head {
   display: flex;
   align-items: center;

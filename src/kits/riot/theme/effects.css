@@ -1,4 +1,3 @@
-/* ═══ Frame: a cut clipping — thick ink stamp, or a torn edge ═══ */
 .riot-surface {
   position: relative;
   isolation: isolate;
@@ -13,7 +12,7 @@
   clip-path: var(--riot-surface-clip, var(--riot-clip-torn));
   filter: var(--riot-surface-shadow, var(--riot-cast-clip));
 }
-/* photocopy edge burn */
+
 .riot-surface--torn::before {
   content: "";
   position: absolute;
@@ -24,7 +23,6 @@
   mix-blend-mode: multiply;
 }
 
-/* ═══ Tape & staples — paste-up motifs (pin them OUTSIDE a torn clip) ═══ */
 .riot-tape {
   position: absolute;
   width: 92px;
@@ -79,13 +77,11 @@
   box-shadow: 1px 2px 3px rgba(13, 13, 13, 0.6);
 }
 
-/* ═══ Cut-out legend / feedback marker ═══ */
 .riot-marker {
   display: inline-flex;
   color: var(--riot-marker-color, var(--riot-primary));
 }
 
-/* ═══ Segments = a row of loose stamped chips — ToggleGroup / Toolbar / Menubar ═══ */
 .riot-seg {
   display: inline-flex;
   gap: var(--riot-space-2);
@@ -146,7 +142,6 @@
   }
 }
 
-/* ═══ Dropdown surface + option rows ═══ */
 .riot-popup {
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
@@ -203,7 +198,6 @@
   filter: url(#riot-torn);
 }
 
-/* ═══ Collapse — Accordion / Collapsible ═══ */
 .riot-collapse-trigger {
   display: flex;
   gap: var(--riot-space-3);
@@ -224,7 +218,7 @@
   outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: calc(-1 * var(--riot-stroke));
 }
-/* hand-scrawled plus, drawn in CSS; open = slashed into an X */
+
 .riot-collapse-marker {
   flex: 0 0 auto;
   position: relative;
@@ -270,7 +264,6 @@
   font-family: var(--riot-font);
 }
 
-/* ═══ Modal field — a torn sheet taped over the wall (Dialog / AlertDialog / Drawer) ═══ */
 .riot-modal {
   --riot-surface-fill: var(--riot-surface-modal);
   --riot-surface-shadow: var(--riot-overlay-shadow, var(--riot-cast-modal));
@@ -306,7 +299,6 @@
   right: var(--riot-space-4);
 }
 
-/* ═══ Overlay mechanics ═══ */
 .riot-lift {
   z-index: var(--riot-z-dropdown);
 }
@@ -317,7 +309,7 @@
 .riot-lift--modal {
   --riot-overlay-shadow: var(--riot-cast-modal);
 }
-/* entrance = a stamp slamming down: oversized + skewed, hard-cut to rest */
+
 .riot-pop {
   filter: var(--riot-overlay-shadow, var(--riot-cast-clip));
   transition:
@@ -331,7 +323,7 @@
   scale: 1.08;
   rotate: 1.5deg;
 }
-/* connector = the strip of tape sticking the popup to its trigger */
+
 .riot-connector {
   width: 30px;
   height: 12px;
@@ -366,7 +358,7 @@
 @keyframes riot-connector-out {
   to { opacity: 0; }
 }
-/* micro-jitter for markers & signature bits */
+
 @keyframes riot-jitter {
   0% { transform: translate(0, 0) rotate(0deg); }
   25% { transform: translate(-0.5px, 0.5px) rotate(-0.6deg); }
@@ -377,7 +369,7 @@
 .riot-jitter {
   animation: riot-jitter var(--riot-dur-sweep) steps(4, jump-none) infinite;
 }
-/* modal scaffold */
+
 .riot-viewport {
   position: fixed;
   inset: 0 0 auto;
@@ -403,7 +395,6 @@
   opacity: 0;
 }
 
-/* ═══ Field + input control — Input / Combobox / Autocomplete ═══ */
 .riot-field {
   display: flex;
   flex-direction: column;

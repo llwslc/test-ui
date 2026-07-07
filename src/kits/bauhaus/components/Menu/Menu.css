@@ -1,4 +1,3 @@
-/* ── Standalone Menu trigger: ghost Button + rotating chevron ── */
 .bauhaus-menu__trigger {
   gap: var(--bauhaus-space-2);
 }
@@ -17,7 +16,6 @@
   color: var(--bauhaus-primary);
 }
 
-/* ── Item parts: icon, shortcut, submenu chevron ── */
 .bauhaus-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
@@ -36,7 +34,6 @@
   color: var(--bauhaus-primary);
 }
 
-/* ── Submenu trigger keeps its chevron lit while its popup is open ── */
 .bauhaus-menu__sub[data-popup-open] {
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-text-bright);
@@ -45,7 +42,6 @@
   color: var(--bauhaus-primary);
 }
 
-/* ── Danger item: red text across rest + highlighted, black grid intact ── */
 .bauhaus-list-item--danger,
 .bauhaus-list-item--danger .bauhaus-menu__icon,
 .bauhaus-list-item--danger[data-highlighted]:not([data-disabled]),

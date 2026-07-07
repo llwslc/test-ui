@@ -3,7 +3,7 @@ import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { cx } from "../cx";
 import { Button } from "../Button";
-import type { ButtonProps } from "../Button";
+import type { ButtonSize, ButtonVariant } from "../Button";
 import { CircleFill, Close } from "../icons";
 import "./Dialog.css";
 
@@ -59,14 +59,13 @@ export function Dialog({ trigger, title, description, children, footer, open, on
   );
 }
 
-export type DialogCloseVariant = NonNullable<ButtonProps["variant"]>;
+export type DialogCloseVariant = ButtonVariant;
 
 export interface DialogCloseProps
   extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
-  variant?: DialogCloseVariant;
-  size?: ButtonProps["size"];
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
-  children?: ReactNode;
 }
 
 export function DialogClose({ variant = "ghost", size = "md", className, children, ...props }: DialogCloseProps) {

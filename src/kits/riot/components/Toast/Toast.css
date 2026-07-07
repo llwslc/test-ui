@@ -73,6 +73,10 @@
   font-size: var(--riot-fs-13);
   color: var(--riot-text);
 }
+.riot-toast__action {
+  margin-top: var(--riot-space-2);
+  align-self: flex-start;
+}
 .riot-toast__close {
   flex: 0 0 auto;
   display: inline-flex;

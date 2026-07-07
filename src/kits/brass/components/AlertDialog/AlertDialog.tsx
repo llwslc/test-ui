@@ -1,12 +1,11 @@
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
-import { Button, type ButtonProps } from "../Button";
+import { Button, type ButtonSize, type ButtonVariant } from "../Button";
 import { cx } from "../cx";
 import { Bolt, Gauge, Gear } from "../icons";
 import "./AlertDialog.css";
 
 type Tone = "danger" | "warning" | "primary";
-type ButtonVariant = ButtonProps["variant"];
 
 export interface AlertDialogProps {
   trigger: ReactElement;
@@ -23,9 +22,8 @@ export interface AlertDialogProps {
 export interface AlertDialogCloseProps
   extends Omit<ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>, "className" | "render"> {
   variant?: ButtonVariant;
-  size?: ButtonProps["size"];
+  size?: ButtonSize;
   className?: string;
-  children?: ReactNode;
 }
 
 const toneMarker = {
@@ -34,7 +32,7 @@ const toneMarker = {
   danger: <Bolt />,
 } as const;
 
-export function AlertDialogClose({ variant = "ghost", size, className, children, ...props }: AlertDialogCloseProps) {
+export function AlertDialogClose({ variant = "ghost", size = "md", className, children, ...props }: AlertDialogCloseProps) {
   return (
     <BaseAlertDialog.Close render={<Button variant={variant} size={size} className={className}>{children}</Button>} {...props} />
   );
