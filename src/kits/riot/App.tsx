@@ -527,6 +527,8 @@ function Demo() {
               <div className="riot-stack">
                 <span className="riot-cap">Type weight</span>
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
+                <span className="riot-cap">Masthead cut</span>
+                <Select items={WEIGHTS} placeholder="Cut" />
               </div>
             </Panel>
 
@@ -547,6 +549,7 @@ function Demo() {
               <div className="riot-stack">
                 <Slider label="Column width" defaultValue={62} />
                 <Slider label="Gutter" defaultValue={40} disabled />
+                <Slider label="Ink bleed" defaultValue={75} showValue={false} />
               </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM" stapled>
@@ -558,7 +561,12 @@ function Demo() {
 
             <Panel id="input" title="Text Field" meta="TXT" tape="tl">
               <div className="riot-stack">
-                <Field label="Headline" placeholder="NO FUTURE" defaultValue="NO FUTURE" />
+                <Field
+                  label="Headline"
+                  placeholder="NO FUTURE"
+                  defaultValue="NO FUTURE"
+                  description="Shout it in cut-out caps."
+                />
                 <Input icon={<SearchIcon />} placeholder="Search clippings…" />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
@@ -568,6 +576,8 @@ function Demo() {
               <div className="riot-stack">
                 <span className="riot-cap">Access code</span>
                 <OtpField length={6} splitAt={3} defaultValue="977" />
+                <span className="riot-cap">Dead drop</span>
+                <OtpField length={6} splitAt={3} defaultValue="977" mask />
               </div>
             </Panel>
           </div>
@@ -638,6 +648,7 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC" tape="tl">
               <Accordion
+                openMultiple
                 defaultValue={["cut"]}
                 items={[
                   { value: "cut", title: "Cut", content: "Scissors, a razor, whatever's sharp." },
@@ -878,7 +889,12 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Pasted", description: "All clippings on the wall.", type: "success" })
+                    toast.add({
+                      title: "Pasted",
+                      description: "All clippings on the wall.",
+                      type: "success",
+                      actionProps: { children: "RIP IT" },
+                    })
                   }
                 >
                   Confirm
@@ -957,7 +973,7 @@ function Demo() {
                   <ToolbarButton aria-label="Square">
                     <Square />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Circle">
+                  <ToolbarButton aria-label="Circle" disabled>
                     <Circle />
                   </ToolbarButton>
                 </ToolbarGroup>

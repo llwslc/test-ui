@@ -56,13 +56,13 @@
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
 - checkbox-group：一个带父级全选的 CheckboxGroup，3 项均可选、默认勾 1，父级呈 indeterminate；禁用态见 checkbox 面板。
 - radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
-- select：「caption + Select」，12 项、末项 `disabled`，默认选第 2。
+- select：两行「caption + Select」——① 12 项、末项 `disabled`、默认选第 2；② 同列表、无默认值、显 `placeholder`。
 - combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
 - autocomplete：「caption + Autocomplete」，建议列表 12 项，无默认值。
-- slider：两个 Slider —— 其一 label + 默认值 62，其二 `disabled`、值 40。
+- slider：三个 Slider —— ① label + 默认值 62；② `disabled`、值 40；③ `showValue={false}`、值 75。
 - number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
-- input：四个字段 —— ① label + 默认值 + placeholder；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
-- otp：「caption + OtpField」，`length` 6、`splitAt` 3、预填 3 位。
+- input：四个字段 —— ① label + 默认值 + placeholder + `description` 辅助行；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
+- otp：两行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位；② 同构造加 `mask`。
 
 **Forms**
 
@@ -74,7 +74,7 @@
 - progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
 - meter：四条 Meter —— `primary` 88、`success` 70、`warning` 52、`danger` 23。
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
-- accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
+- accordion：3 项，`openMultiple`，默认展开第 1，每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
 
 **Overlays**
@@ -89,13 +89,13 @@
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。
-- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` 四种 toast。
+- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` 四种 toast；`success` 那条带 `actionProps` 动作按钮（文案随 theme）。
 
 **Display**
 
 - avatar：一行 4 个 Avatar，4 种 status 与 3 种尺寸 —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
-- toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接，图标 + 文字）；2 分隔。
+- toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮、第 2 枚 `disabled`）+ 分隔 + ToolbarLink（末尾状态链接，图标 + 文字）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
 
 **Foundations**

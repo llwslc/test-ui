@@ -493,6 +493,8 @@ function Demo() {
               <div className="brass-stack">
                 <span className="brass-cap">Boiler pressure</span>
                 <Select items={PRESSURE} placeholder="Pressure band" defaultValue="nominal" />
+                <span className="brass-cap">Standby boiler</span>
+                <Select items={PRESSURE} placeholder="Awaiting steam…" />
               </div>
             </Panel>
 
@@ -513,6 +515,7 @@ function Demo() {
               <div className="brass-stack">
                 <Slider label="Throttle" defaultValue={62} />
                 <Slider label="Damper" defaultValue={40} disabled />
+                <Slider label="Blower" defaultValue={75} showValue={false} />
               </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
@@ -524,7 +527,12 @@ function Demo() {
 
             <Panel id="input" title="Text Field" meta="TXT">
               <div className="brass-stack">
-                <Field label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
+                <Field
+                  label="Vessel name"
+                  placeholder="HMS Aurora"
+                  defaultValue="HMS Aurora"
+                  description="As stamped on the maker's plate."
+                />
                 <Input icon={<Search />} placeholder="Search registry…" />
                 <IgnitionCodeField />
                 <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
@@ -534,6 +542,8 @@ function Demo() {
               <div className="brass-stack">
                 <span className="brass-cap">Ignition code</span>
                 <OtpField length={6} splitAt={3} defaultValue="427" />
+                <span className="brass-cap">Sealed cipher</span>
+                <OtpField length={6} splitAt={3} defaultValue="427" mask />
               </div>
             </Panel>
           </div>
@@ -589,6 +599,7 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC">
               <Accordion
+                openMultiple
                 defaultValue={["valves"]}
                 items={[
                   { value: "valves", title: "Valves", content: "Safety, throttle and bypass valves serviced." },
@@ -853,7 +864,12 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Pressure nominal", description: "Boiler holding at 180 PSI.", type: "success" })
+                    toast.add({
+                      title: "Pressure nominal",
+                      description: "Boiler holding at 180 PSI.",
+                      type: "success",
+                      actionProps: { children: "Full ahead" },
+                    })
                   }
                 >
                   Confirm
@@ -936,7 +952,7 @@ function Demo() {
                   <ToolbarButton aria-label="Adjust gear">
                     <Gear />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Read gauge">
+                  <ToolbarButton disabled aria-label="Read gauge">
                     <Gauge />
                   </ToolbarButton>
                 </ToolbarGroup>

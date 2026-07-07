@@ -380,7 +380,7 @@ function ToolbarDemo() {
         <ToolbarButton aria-label="Sound">
           <SearchIcon />
         </ToolbarButton>
-        <ToolbarButton aria-label="Mark">
+        <ToolbarButton disabled aria-label="Mark">
           <KeyIcon />
         </ToolbarButton>
       </ToolbarGroup>
@@ -438,6 +438,7 @@ function ToastDemo() {
             title: "Surfaced",
             description: "Returned from Y'ha-nthlei with the tide.",
             type: "success",
+            actionProps: { children: "Descend" },
           })
         }
       >
@@ -800,6 +801,8 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="abyss-cap">Bearing</span>
                   <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
+                  <span className="abyss-cap">Uncharted</span>
+                  <Select items={SELECT_ITEMS} placeholder="Unsounded…" />
                 </div>
               </Panel>
             </div>
@@ -827,6 +830,7 @@ function Demo() {
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
                   <Slider label="Resonance" defaultValue={40} disabled />
+                  <Slider label="Undertow" defaultValue={75} showValue={false} />
                 </div>
               </Panel>
             </div>
@@ -849,6 +853,7 @@ function Demo() {
                     label="Sea-name"
                     defaultValue="Drowned Lark"
                     placeholder="Speak your name"
+                    description="The name the tide answers to."
                   />
                   <Input icon={<SearchIcon />} placeholder="Search the codex…" />
                   <AccessCodeField />
@@ -862,6 +867,8 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="abyss-cap">Litany code</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" />
+                  <span className="abyss-cap">Veiled litany</span>
+                  <OtpField length={6} splitAt={3} defaultValue="427" mask />
                 </div>
               </Panel>
             </div>
@@ -910,7 +917,7 @@ function Demo() {
 
             <div className="abyss-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
-                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} openMultiple />
               </Panel>
             </div>
 

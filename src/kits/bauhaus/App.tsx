@@ -489,6 +489,8 @@ function Demo() {
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Type weight</span>
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
+                <span className="bauhaus-cap">Display weight</span>
+                <Select items={WEIGHTS} placeholder="Grade" />
               </div>
             </Panel>
 
@@ -508,6 +510,7 @@ function Demo() {
             <Panel id="slider" title="Slider" meta="SLD">
               <div className="bauhaus-stack">
                 <Slider label="Column width" defaultValue={62} />
+                <Slider label="Ink density" defaultValue={75} showValue={false} />
                 <Slider label="Gutter" defaultValue={40} disabled />
               </div>
             </Panel>
@@ -520,7 +523,12 @@ function Demo() {
 
             <Panel id="input" title="Text Field" meta="TXT">
               <div className="bauhaus-stack">
-                <Field label="Composition name" placeholder="Red Blue Yellow" defaultValue="Red Blue Yellow" />
+                <Field
+                  label="Composition name"
+                  placeholder="Red Blue Yellow"
+                  defaultValue="Red Blue Yellow"
+                  description="Printed on the catalogue plate."
+                />
                 <Input icon={<Search />} placeholder="Search elements…" />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
@@ -530,6 +538,8 @@ function Demo() {
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Access code</span>
                 <OtpField length={6} splitAt={3} defaultValue="919" />
+                <span className="bauhaus-cap">Sealed code</span>
+                <OtpField length={6} splitAt={3} defaultValue="919" mask />
               </div>
             </Panel>
           </div>
@@ -585,6 +595,7 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC">
               <Accordion
+                openMultiple
                 defaultValue={["grid"]}
                 items={[
                   { value: "grid", title: "Grid", content: "A modular hard grid governs every margin and column." },
@@ -843,7 +854,12 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Aligned", description: "All elements on the grid.", type: "success" })
+                    toast.add({
+                      title: "Aligned",
+                      description: "All elements on the grid.",
+                      type: "success",
+                      actionProps: { children: "Revert" },
+                    })
                   }
                 >
                   Confirm
@@ -926,7 +942,7 @@ function Demo() {
                   <ToolbarButton aria-label="Square">
                     <Square />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Circle">
+                  <ToolbarButton disabled aria-label="Circle">
                     <Circle />
                   </ToolbarButton>
                 </ToolbarGroup>

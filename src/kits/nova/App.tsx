@@ -326,7 +326,7 @@ function ToolbarDemo() {
         <ToolbarButton aria-label="Scan">
           <SearchIcon />
         </ToolbarButton>
-        <ToolbarButton aria-label="Charge">
+        <ToolbarButton disabled aria-label="Charge">
           <BoltIcon />
         </ToolbarButton>
       </ToolbarGroup>
@@ -402,6 +402,7 @@ function ToastDemo() {
             title: "Jump Complete",
             description: "Arrived at Proxima Centauri without incident.",
             type: "success",
+            actionProps: { children: "Replot" },
           })
         }
       >
@@ -670,6 +671,8 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="nova-cap">Destination</span>
                   <Select items={SELECT_ITEMS} defaultValue="proxima" />
+                  <span className="nova-cap">Fallback Route</span>
+                  <Select items={SELECT_ITEMS} placeholder="Awaiting lock…" />
                 </div>
               </Panel>
             </div>
@@ -700,6 +703,7 @@ function Demo() {
                 <div className="demo-stack">
                   <Slider label="Thrust" defaultValue={62} />
                   <Slider label="Frequency" defaultValue={40} disabled />
+                  <Slider label="Aux Power" defaultValue={75} showValue={false} />
                 </div>
               </Panel>
             </div>
@@ -722,6 +726,7 @@ function Demo() {
                     label="Callsign"
                     defaultValue="Nightingale"
                     placeholder="Enter callsign"
+                    description="Broadcast on all fleet channels."
                   />
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
                   <AccessCodeField />
@@ -735,6 +740,8 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="nova-cap">Authorization code</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" />
+                  <span className="nova-cap">Cipher key</span>
+                  <OtpField length={6} splitAt={3} defaultValue="427" mask />
                 </div>
               </Panel>
             </div>
@@ -781,7 +788,7 @@ function Demo() {
 
             <div className="nova-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
-                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} openMultiple />
               </Panel>
             </div>
 
