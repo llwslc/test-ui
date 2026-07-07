@@ -2,7 +2,7 @@
 
 > 评审日期：2026-07-07。范围：`prompt/`（提示词/spec 层）、`src/`（代码层）、`.claude/skills/`（20 个 skill/门禁），并实跑了一遍 kit-qa 门禁套件取客观证据。四路并行深查 + 交叉验证。
 >
-> **处置状态（2026-07-07）**：P1–P13、P15 已修（P7 终解：PC 一律基样式、不开 `min-width` 块，nova/abyss 代码已同步，src 零 `min-width`）；P14 按指示不改；S0–S19 全修 + P15 防复发机制入 prompt-lint（提交 d31dfcf、8c50092）。修后套件 16 门 PASS，如实红 = kit-api（8 条 = C1/C3/C5）与 kit-visual（riot 148 待裁决）。代码批处置（同日）：C1、C3–C9、C13 已修（含 spec 缺口回填：Badge/OtpField 默认值、MenuItem tone、Toast Portal+Action 结构），kit-api 清零；C2 用户裁定保留；C5 的 Panel `id?/wide?` 按 app.md「由 theme 定」维持自由；C10、C11 暂放；C12 实测非现行 bug（riot @390 = 350px 与 brass/bauhaus 同，calc 是把视口 padding 复制进 max-width 的耦合拼写，数值今日相等）；C14 = `no-explicit-any` 重开、`no-empty-object-type` 有据豁免（35 处空接口约定是 kit-api 的比对面）。**仍挂起**：riot 148 裁决、C10、C11、S6 钩子注册。
+> **处置状态（2026-07-07）**：P1–P13、P15 已修（P7 终解：PC 一律基样式、不开 `min-width` 块，nova/abyss 代码已同步，src 零 `min-width`）；P14 按指示不改；S0–S19 全修 + P15 防复发机制入 prompt-lint（提交 d31dfcf、8c50092）。修后套件 16 门 PASS，如实红 = kit-api（8 条 = C1/C3/C5）与 kit-visual（riot 148 待裁决）。代码批处置（同日）：C1、C3–C9、C13 已修（含 spec 缺口回填：Badge/OtpField 默认值、MenuItem tone、Toast Portal+Action 结构），kit-api 清零；C2 用户裁定保留；C5 的 Panel `id?/wide?` 按 app.md「由 theme 定」维持自由；C10、C11 暂放；C12 实测非现行 bug（calc 是把视口 padding 复制进 max-width 的耦合拼写）；顺藤摸出同值清单漏项——模态 viewport padding 原为 16/18/20 三种，已钉 `space-5`（20）入同值，五套 @390 齐 350px；C14 = `no-explicit-any` 重开、`no-empty-object-type` 有据豁免（35 处空接口约定是 kit-api 的比对面）。**仍挂起**：riot 148 裁决、C10、C11、S6 钩子注册。
 
 ## 总评
 
