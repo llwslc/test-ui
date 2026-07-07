@@ -55,6 +55,7 @@
   z-index: 2;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   width: 12px;
   margin: var(--abyss-space-2) 3px;
   background: var(--abyss-ink-faint);

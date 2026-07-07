@@ -105,7 +105,7 @@
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件。
 - **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，通过 context 注入底层 primitive。
-- **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套箱体与文字语言：一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体），里面排紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**箱体和文字的具体档值由 theme 定**；悬停、激活态走 §5 的「分段」档。
+- **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套 chip 与文字语言：紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**外箱体画不画、怎么画由 theme 定**——画箱体的走「一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体）」；悬停、激活态走 §5 的「分段」档。
 - **AlertDialog** 与 Dialog 同一基底，按 `tone` 重染边框、标题、图标；**怎么重染、tone 强调放在哪、长什么样，全由 theme 定。**
 
 ## 6.1 逐组件结构

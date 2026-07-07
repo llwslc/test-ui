@@ -29,7 +29,7 @@
     transparent 6px 12px
   );
   animation: riot-progress-flow var(--riot-dur-sweep) linear infinite;
-  transition: width var(--riot-dur-slow) var(--riot-ease);
+  transition: width var(--riot-dur-slow) var(--riot-ease-out);
 }
 @keyframes riot-progress-flow {
   to {

@@ -36,6 +36,7 @@
   z-index: 2;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   width: 11px;
   margin: 1px;
   background: var(--nova-tint-faint);

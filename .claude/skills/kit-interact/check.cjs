@@ -166,6 +166,30 @@ const setKit = async (page, kit) => {
       } catch (e) { out.push(`WARN  ${kit}  ${id}: title-spacing check errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     }
     try {
+      // a popup list filtered to EMPTY must not leave a stray scrollbar thumb painting
+      // outside its collapsed bar (Base UI freezes scrollbar state at scrollHeight 0)
+      await setKit(d, kit);
+      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+      const inp = d.locator('#combobox input').first();
+      await inp.scrollIntoViewIfNeeded();
+      await inp.click();
+      await inp.pressSequentially('zzz111', { delay: 40 });
+      await d.waitForTimeout(500);
+      const stray = await d.evaluate(() => {
+        const pop = document.querySelector('body > div [class*="combobox__popup"]');
+        const vp = pop && pop.querySelector('[class*="viewport"]');
+        if (!vp || vp.scrollHeight > 0) return false;
+        for (const part of pop.querySelectorAll('[class*="__thumb"], [class*="__bar"], [class*="__scrollbar"]')) {
+          const r = part.getBoundingClientRect();
+          if (r.height < 3 || r.width < 1) continue;
+          const pts = [[r.left + r.width / 2, r.top + 2], [r.left + r.width / 2, r.top + r.height / 2]];
+          for (const [x, y] of pts) if (document.elementsFromPoint(x, y).includes(part)) return true;
+        }
+        return false;
+      });
+      if (stray) out.push(`HIGH  ${kit}  combobox: a scrollbar part still paints after the list filters to EMPTY (frozen scrollbar state)`);
+    } catch (e) { out.push(`WARN  ${kit}  combobox-empty: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    try {
       await setKit(d, kit);
       await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
       const sig = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color, c.boxShadow, c.borderTopColor, c.borderTopWidth, c.opacity, c.filter].join('|'); };

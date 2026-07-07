@@ -27,6 +27,7 @@
 
 .brass-scrollarea__bar {
   display: flex;
+  overflow: hidden;
   padding: var(--brass-space-1);
   background: var(--brass-track);
   box-shadow: var(--brass-bevel-inset);

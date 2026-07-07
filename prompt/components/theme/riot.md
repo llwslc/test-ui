@@ -19,6 +19,7 @@
 - Radio 是 `ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条 + `ink` 框，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Progress、Meter 是撕边纸条轨 + 荧光 `accent-fill` 平涂指示；Meter 按 `tone` 重染，荧光黄配 `on-warning` 深刻度。
+- 分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Tabs、NavigationMenu：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，另有 `stroke-bold` 记号笔横杠随激活项走，hover 用 `tint` wash；触发器 Anton 大写、打开转荧光、chevron 翻转。
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。

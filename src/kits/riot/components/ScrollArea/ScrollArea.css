@@ -16,6 +16,7 @@
 }
 .riot-scrollarea__scrollbar {
   display: flex;
+  overflow: hidden;
   width: calc(var(--riot-scrollbar) - 4px);
   background: var(--riot-surface-inset);
 }

@@ -1,6 +1,7 @@
 import { cx } from "../cx";
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion";
 import type { ReactNode } from "react";
+import { ChevronDownIcon } from "../icons";
 import "./Accordion.css";
 
 export interface AccordionItem {
@@ -35,6 +36,7 @@ export function Accordion({ items, openMultiple = false, defaultValue, className
             <BaseAccordion.Trigger className="riot-collapse-trigger">
               <span className="riot-collapse-marker" aria-hidden />
               <span className="riot-collapse-title riot-cap">{it.title}</span>
+              <ChevronDownIcon className="riot-collapse-chevron" />
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>
           <BaseAccordion.Panel className="riot-collapse-panel">

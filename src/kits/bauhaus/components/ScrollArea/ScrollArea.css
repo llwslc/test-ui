@@ -9,6 +9,7 @@
 .bauhaus-scrollarea__bar {
   display: flex;
   justify-content: center;
+  overflow: hidden;
   width: var(--bauhaus-scrollbar);
   padding: 0;
   background: var(--bauhaus-track);

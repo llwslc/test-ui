@@ -251,6 +251,17 @@
 .riot-collapse-title {
   flex: 1;
 }
+.riot-collapse-chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text-dim);
+  transition: transform var(--riot-dur) var(--riot-ease);
+}
+.riot-collapse-trigger[data-panel-open] .riot-collapse-chevron {
+  transform: rotate(180deg);
+  color: var(--riot-primary);
+}
 .riot-collapse-panel {
   overflow: hidden;
   height: var(--collapsible-panel-height, var(--accordion-panel-height));
