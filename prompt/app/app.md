@@ -141,4 +141,4 @@
 
 - **外壳几何，各 kit 同值**：顶栏 `height 60`、`z-index 100`、padding `0 22px`（手机 `0 14px`）、item gap `space-5`；三槽依次为品牌、主导航、状态，bar 用 `justify-content: space-between`，主导航另可 `margin-inline:auto` 居中；shell `max-width 1320`、侧栏列 `232px`、gap `26`、padding `26px 22px 28px`，手机为 `16px 13px 20px`；hero padding `30px 28px`，手机为 `20px 16px`，margin-bottom `26`；面板网格 gap `18`；sticky 侧栏 `top = 头部高 + 26`、区块 `scroll-margin-top = 头部高 + 20`。
 - **唯一断点 `768px`**：`> 768` 为 PC——左侧 sticky 索引 + 双栏面板网格 + hero 右侧装饰与 padding；`≤ 768` 为手机——收起侧栏、外壳与面板网格转单列、隐藏顶部 NavMenu、收紧间距、hero 收 padding 去装饰、隐藏 logo 副标题与时钟、OTP 单元收缩。
-- 手机改写集中进单个 `@media (max-width: 768px)`；PC 专属放 `@media (min-width: 769px)` 或基样式。
+- 手机改写集中进单个 `@media (max-width: 768px)`；PC 样式一律写在基样式，不另开 `min-width` 块。
