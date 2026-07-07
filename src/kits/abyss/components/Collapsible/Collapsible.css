@@ -40,4 +40,22 @@
   filter: var(--abyss-aura-mark);
 }
 
+.abyss-collapsible__chevron {
+  flex: 0 0 auto;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-collapsible__trigger:hover .abyss-collapsible__chevron {
+  color: var(--abyss-text);
+}
+.abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__chevron {
+  transform: rotate(180deg);
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura-mark);
+}
+
 

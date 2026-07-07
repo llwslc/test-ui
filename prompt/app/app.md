@@ -67,7 +67,7 @@
 **Forms**
 
 - fieldset：Fieldset + legend + 2 个字段，各 label + 默认值。
-- form：Form（提交触发 `success` toast）+ 2 字段（第 2 为密码 placeholder）+ 一行提交 Button（`type="submit"`）。
+- form：Form（提交触发 `success` toast）+ 2 字段（第 2 为密码 placeholder）+ 一行提交 Button（`type="submit"`，右对齐、内容宽）。
 
 **Feedback**
 
@@ -133,7 +133,7 @@
 
 每套一个 `<kit>/Loader.tsx`，自包含 CSS。
 
-- 自包含：在主题 CSS 加载前显示，不引 theme token，自带暗底 + 动画 + 硬编码本套色。
+- 自包含：在主题 CSS 加载前显示，不引 theme token，自带本套底色 + 动画，色值全部硬编码。
 - 经 Suspense 两层兜底：外层中性兜底，内层本套 loader。
 - 视觉走 theme 的几何、辉光、动效语言。
 

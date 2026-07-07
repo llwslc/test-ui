@@ -510,8 +510,8 @@ function Demo() {
             <Panel id="slider" title="Slider" meta="SLD">
               <div className="bauhaus-stack">
                 <Slider label="Column width" defaultValue={62} />
-                <Slider label="Ink density" defaultValue={75} showValue={false} />
                 <Slider label="Gutter" defaultValue={40} disabled />
+                <Slider label="Ink density" defaultValue={75} showValue={false} />
               </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">

@@ -4,5 +4,5 @@
   gap: var(--bauhaus-space-4);
 }
 .bauhaus-form > button {
-  align-self: flex-start;
+  align-self: flex-end;
 }

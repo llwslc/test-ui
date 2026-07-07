@@ -1,7 +1,7 @@
 import { cx } from "../cx";
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible";
 import type { ReactNode } from "react";
-import { SigilIcon } from "../icons";
+import { ChevronDownIcon, SigilIcon } from "../icons";
 import "./Collapsible.css";
 
 export interface CollapsibleProps {
@@ -33,6 +33,7 @@ export function Collapsible({
           <SigilIcon />
         </span>
         <span className="abyss-disclosure__title">{title}</span>
+        <ChevronDownIcon className="abyss-collapsible__chevron" />
       </BaseCollapsible.Trigger>
       <BaseCollapsible.Panel className="abyss-disclosure__panel">
         <div className="abyss-disclosure__content abyss-text">{children}</div>
