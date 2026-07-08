@@ -50,6 +50,33 @@ const AUDIT = ({ vw, exempt }) => {
   const overlapExempt = (el) => el.tagName === 'INPUT' ||
     el.closest('[class*="-loader"]') !== null ||
     /__(status|dot|badge-dot|notch|thumb|track|indicator|segments|range|fill|progress|moon|tendril|corner|mark|glyph|scan|sheen|glow|rivet|tick)\b/.test(el.getAttribute('class') || '');
+  // AABB says the boxes cross — but a rotated/tilted element's bbox overstates it
+  // (empty corners), so confirm with real hit-testing: sample the intersection and
+  // ask the browser which elements actually occupy each point (hit regions follow
+  // the TRUE transformed quad / inline line boxes). Only a point hitting BOTH is a
+  // real painted overlap. pointer-events is forced on for the probe and restored.
+  const hitBoth = (a, b) => {
+    const zone = () => {
+      const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      return { L: Math.max(ra.left, rb.left), R: Math.min(ra.right, rb.right),
+               T: Math.max(ra.top, rb.top), B: Math.min(ra.bottom, rb.bottom) };
+    };
+    let z = zone();
+    window.scrollTo(window.scrollX, window.scrollY + (z.T + z.B) / 2 - window.innerHeight / 2);
+    z = zone();
+    if (z.R - z.L < 1 || z.B - z.T < 1) return false;
+    const prev = [a, b].map((el) => el.style.pointerEvents);
+    [a, b].forEach((el) => { el.style.pointerEvents = 'auto'; });
+    let hit = false;
+    const nx = Math.min(24, Math.max(3, Math.ceil((z.R - z.L) / 2)));
+    const ny = Math.min(24, Math.max(3, Math.ceil((z.B - z.T) / 2)));
+    outer: for (let i = 0; i <= nx; i++) for (let j = 0; j <= ny; j++) {
+      const s = document.elementsFromPoint(z.L + ((z.R - z.L) * i) / nx, z.T + ((z.B - z.T) * j) / ny);
+      if (s.includes(a) && s.includes(b)) { hit = true; break outer; }
+    }
+    [a, b].forEach((el, i) => { el.style.pointerEvents = prev[i]; });
+    return hit;
+  };
   const desc = (el) => {
     const cls = (el.getAttribute('class') || '').split(/\s+/).filter(Boolean).slice(0, 2).join('.');
     const txt = (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 16);
@@ -142,7 +169,7 @@ const AUDIT = ({ vw, exempt }) => {
           const da = desc(a), db = desc(b);
           const waived = exempt.some((e) => e.p === id &&
             ((da.includes(e.a) && db.includes(e.b)) || (da.includes(e.b) && db.includes(e.a))));
-          if (!waived) out.push(`REVIEW ${id}  overlap: ${da}  ∩  ${db}  = ${Math.round(ox)}x${Math.round(oy)}px`);
+          if (!waived && hitBoth(a, b)) out.push(`REVIEW ${id}  overlap: ${da}  ∩  ${db}  = ${Math.round(ox)}x${Math.round(oy)}px`);
         }
       }
     }

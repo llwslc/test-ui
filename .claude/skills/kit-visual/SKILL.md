@@ -38,8 +38,13 @@ Exit 1 if any finding.
   unbounded (the height cap landed on the Root, not the Viewport) so it shows all
   content and never scrolls.
 - **OVERLAP (REVIEW)** — two non-nested leaf boxes (content, or a painted leaf
-  decoration) overlapping by ≥9px². REVIEW (not HIGH) because a hollow bordered
-  decoration *overstates* its bbox — confirm with a 4× corner crop before fixing.
+  decoration) overlapping by ≥9px². An AABB candidate is confirmed by real
+  hit-testing (an `elementsFromPoint` grid over the intersection) before it
+  reports, so a rotated/tilted element's inflated bbox can't lie — a tilted
+  sheet's siblings, or a ±40° tape's empty bbox corners, no longer fire (that
+  false class was 37 of riot's 62). What still fires is a TRUE painted/line-box
+  overlap. REVIEW (not HIGH) because line boxes overstate ink and the overlap
+  may be design language — confirm with a 4× corner crop before fixing.
   Adjudicated-intentional overlaps go in `exempt.txt` (one per line,
   `kit|panel-id|needleA|needleB` — needles substring-match the two element
   descriptions, either order). Add a line ONLY after a corner crop confirms the

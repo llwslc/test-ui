@@ -1,0 +1,13 @@
+# kit|panel-id|needleA|needleB — adjudicated-intentional overlaps (corner-crop confirmed 2026-07-08)
+# riot collage language: translucent tape / staple stuck across the sheet corner grazes the
+# header title/meta (text stays legible); adjacent tabs fuse borders by -stroke margin.
+riot|toggle|riot-tape--tr|riot-panel__meta
+riot|autocomplete|riot-tape--tr|riot-panel__meta
+riot|panel|riot-tape--tr|riot-panel__meta
+riot|radio|riot-tape--tl|riot-panel__title
+riot|input|riot-tape--tl|riot-panel__title
+riot|accordion|riot-tape--tl|riot-panel__title
+riot|context|riot-tape--tl|riot-panel__title
+riot|combobox|riot-panel__staple|riot-panel__title
+riot|dialog|riot-panel__staple|riot-panel__title
+riot|tabs|riot-tabs__tab|riot-tabs__tab
