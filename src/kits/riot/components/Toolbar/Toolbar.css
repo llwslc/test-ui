@@ -15,6 +15,7 @@
   height: 20px;
   margin: 0 var(--riot-space-1);
   background: var(--riot-ink);
+  filter: url(#riot-torn);
 }
 .riot-toolbar .riot-seg__btn.is-active {
   background: var(--riot-ink);

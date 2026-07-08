@@ -21,7 +21,8 @@
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Progress 是右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示；Meter 同轨同平涂，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - 分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
-- Tabs、NavigationMenu：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，另有 `stroke-bold` 记号笔横杠随激活项走，hover 用 `tint` wash；Tabs 的底轨是过 `#riot-torn` 的 `ink` 手撕条（与分隔线同族），横杠同过撕纹、并随激活 chip 同角微旋贴其斜底边；触发器 Anton 大写、打开转荧光、chevron 翻转。
+- Tabs：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，hover 用 `tint` wash；底轨是过 `#riot-torn` 的 `ink` 手撕条，`stroke-bold` 记号笔横杠随激活项走——同过撕纹、随激活 chip 同角微旋贴其斜底边。
+- NavigationMenu：触发器 Anton 大写、hover 与打开转荧光 `primary`、chevron 随开合翻转。
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。

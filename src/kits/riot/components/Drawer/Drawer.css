@@ -61,17 +61,28 @@
   border: 0;
   filter: none;
 }
-.riot-drawer--right .riot-drawer__surface {
-  border-left: var(--riot-stroke-heavy) solid var(--riot-ink);
+.riot-drawer__surface::after {
+  content: "";
+  position: absolute;
+  background: var(--riot-ink);
+  filter: url(#riot-torn);
+  pointer-events: none;
 }
-.riot-drawer--left .riot-drawer__surface {
-  border-right: var(--riot-stroke-heavy) solid var(--riot-ink);
+.riot-drawer--right .riot-drawer__surface::after {
+  inset: 0 auto 0 0;
+  width: var(--riot-stroke-heavy);
 }
-.riot-drawer--top .riot-drawer__surface {
-  border-bottom: var(--riot-stroke-heavy) solid var(--riot-ink);
+.riot-drawer--left .riot-drawer__surface::after {
+  inset: 0 0 0 auto;
+  width: var(--riot-stroke-heavy);
 }
-.riot-drawer--bottom .riot-drawer__surface {
-  border-top: var(--riot-stroke-heavy) solid var(--riot-ink);
+.riot-drawer--top .riot-drawer__surface::after {
+  inset: auto 0 0 0;
+  height: var(--riot-stroke-heavy);
+}
+.riot-drawer--bottom .riot-drawer__surface::after {
+  inset: 0 0 auto 0;
+  height: var(--riot-stroke-heavy);
 }
 .riot-drawer__body {
   flex: 1;
