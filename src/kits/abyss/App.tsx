@@ -930,8 +930,12 @@ function Demo() {
 
             <div className="abyss-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
-                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
-                <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
+                <div className="demo-stack">
+                  <span className="abyss-cap">One at a time</span>
+                  <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+                  <span className="abyss-cap">Open together</span>
+                  <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
+                </div>
               </Panel>
             </div>
 

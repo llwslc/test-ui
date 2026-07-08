@@ -261,10 +261,6 @@
   flex-direction: column;
   gap: var(--bauhaus-space-3);
 }
-
-#accordion .bauhaus-accordion + .bauhaus-accordion {
-  margin-top: var(--bauhaus-space-6);
-}
 .bauhaus-link {
   color: var(--bauhaus-primary);
   text-decoration: none;

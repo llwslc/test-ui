@@ -594,22 +594,26 @@ function Demo() {
             </Panel>
 
             <Panel id="accordion" title="Accordion" meta="ACC">
-              <Accordion
-                defaultValue={["grid"]}
-                items={[
-                  { value: "grid", title: "Grid", content: "A modular hard grid governs every margin and column." },
-                  { value: "color", title: "Color", content: "Three primaries plus black on warm paper — no tints, no gradients." },
-                  { value: "type", title: "Type", content: "Geometric sans throughout, heavy display for the headline." },
-                ]}
-              />
-              <Accordion
-                openMultiple
-                defaultValue={["paper", "ratio"]}
-                items={[
-                  { value: "paper", title: "Paper", content: "Warm stock, uncoated — ink sits matte and honest." },
-                  { value: "ratio", title: "Ratio", content: "Golden-section plates anchor the poster diagonals." },
-                ]}
-              />
+              <div className="bauhaus-stack">
+                <span className="bauhaus-cap">One at a time</span>
+                <Accordion
+                  defaultValue={["grid"]}
+                  items={[
+                    { value: "grid", title: "Grid", content: "A modular hard grid governs every margin and column." },
+                    { value: "color", title: "Color", content: "Three primaries plus black on warm paper — no tints, no gradients." },
+                    { value: "type", title: "Type", content: "Geometric sans throughout, heavy display for the headline." },
+                  ]}
+                />
+                <span className="bauhaus-cap">Open together</span>
+                <Accordion
+                  openMultiple
+                  defaultValue={["paper", "ratio"]}
+                  items={[
+                    { value: "paper", title: "Paper", content: "Warm stock, uncoated — ink sits matte and honest." },
+                    { value: "ratio", title: "Ratio", content: "Golden-section plates anchor the poster diagonals." },
+                  ]}
+                />
+              </div>
             </Panel>
             <Panel id="collapsible" title="Collapsible" meta="CLP">
               <div className="bauhaus-stack">

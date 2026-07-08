@@ -286,10 +286,6 @@
   flex-direction: column;
   gap: 12px;
 }
-
-#accordion .nova-accordion + .nova-accordion {
-  margin-top: var(--nova-space-6);
-}
 .demo-loader-stage {
   position: relative;
   transform: translateZ(0);

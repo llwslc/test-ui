@@ -361,10 +361,6 @@
   flex-direction: column;
   gap: var(--abyss-space-4);
 }
-
-#accordion .abyss-accordion + .abyss-accordion {
-  margin-top: var(--abyss-space-6);
-}
 .demo-loader-stage {
   position: relative;
   transform: translateZ(0);

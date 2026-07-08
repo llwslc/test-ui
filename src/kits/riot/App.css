@@ -349,10 +349,6 @@
   flex-direction: column;
   gap: var(--riot-space-3);
 }
-
-#accordion .riot-accordion + .riot-accordion {
-  margin-top: var(--riot-space-6);
-}
 .riot-link {
   color: var(--riot-primary);
   text-decoration: none;

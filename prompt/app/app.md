@@ -74,7 +74,7 @@
 - progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
 - meter：四条 Meter —— `primary` 88、`success` 70、`warning` 52、`danger` 23。
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
-- accordion：两组——① 3 项单开、默认展开第 1；② 2 项 `openMultiple`、默认全开；每项 = 标题 + 一段正文，两组之间拉开一档大间距。
+- accordion：两组，各带一行 cap 小标点明开合语义（如 One at a time / Open together）——① 3 项单开、默认展开第 1；② 2 项 `openMultiple`、默认全开；每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
 
 **Overlays**

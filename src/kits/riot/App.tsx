@@ -647,22 +647,26 @@ function Demo() {
             </Panel>
 
             <Panel id="accordion" title="Accordion" meta="ACC" tape="tl">
-              <Accordion
-                defaultValue={["cut"]}
-                items={[
-                  { value: "cut", title: "Cut", content: "Scissors, a razor, whatever's sharp." },
-                  { value: "paste", title: "Paste", content: "Glue stick, tape, spit if you must." },
-                  { value: "print", title: "Print", content: "One xerox machine, stolen after hours." },
-                ]}
-              />
-              <Accordion
-                openMultiple
-                defaultValue={["staple", "fold"]}
-                items={[
-                  { value: "staple", title: "Staple", content: "Two rusty staples straight through the spine." },
-                  { value: "fold", title: "Fold", content: "Fold twice, crease it with a thumbnail." },
-                ]}
-              />
+              <div className="riot-stack">
+                <span className="riot-cap">One at a time</span>
+                <Accordion
+                  defaultValue={["cut"]}
+                  items={[
+                    { value: "cut", title: "Cut", content: "Scissors, a razor, whatever's sharp." },
+                    { value: "paste", title: "Paste", content: "Glue stick, tape, spit if you must." },
+                    { value: "print", title: "Print", content: "One xerox machine, stolen after hours." },
+                  ]}
+                />
+                <span className="riot-cap">Open together</span>
+                <Accordion
+                  openMultiple
+                  defaultValue={["staple", "fold"]}
+                  items={[
+                    { value: "staple", title: "Staple", content: "Two rusty staples straight through the spine." },
+                    { value: "fold", title: "Fold", content: "Fold twice, crease it with a thumbnail." },
+                  ]}
+                />
+              </div>
             </Panel>
             <Panel id="collapsible" title="Collapsible" meta="CLP" stapled>
               <div className="riot-stack">

@@ -598,22 +598,26 @@ function Demo() {
             </Panel>
 
             <Panel id="accordion" title="Accordion" meta="ACC">
-              <Accordion
-                defaultValue={["valves"]}
-                items={[
-                  { value: "valves", title: "Valves", content: "Safety, throttle and bypass valves serviced." },
-                  { value: "bearings", title: "Bearings", content: "White-metal bearings re-poured and shimmed." },
-                  { value: "linkage", title: "Linkage", content: "Walschaerts gear adjusted to spec." },
-                ]}
-              />
-              <Accordion
-                openMultiple
-                defaultValue={["gauges", "lamps"]}
-                items={[
-                  { value: "gauges", title: "Gauges", content: "Boiler pressure needles swapped and re-zeroed." },
-                  { value: "lamps", title: "Lamps", content: "Oil lamps trimmed, lenses polished for the night run." },
-                ]}
-              />
+              <div className="brass-stack">
+                <span className="brass-cap">One at a time</span>
+                <Accordion
+                  defaultValue={["valves"]}
+                  items={[
+                    { value: "valves", title: "Valves", content: "Safety, throttle and bypass valves serviced." },
+                    { value: "bearings", title: "Bearings", content: "White-metal bearings re-poured and shimmed." },
+                    { value: "linkage", title: "Linkage", content: "Walschaerts gear adjusted to spec." },
+                  ]}
+                />
+                <span className="brass-cap">Open together</span>
+                <Accordion
+                  openMultiple
+                  defaultValue={["gauges", "lamps"]}
+                  items={[
+                    { value: "gauges", title: "Gauges", content: "Boiler pressure needles swapped and re-zeroed." },
+                    { value: "lamps", title: "Lamps", content: "Oil lamps trimmed, lenses polished for the night run." },
+                  ]}
+                />
+              </div>
             </Panel>
             <Panel id="collapsible" title="Collapsible" meta="CLP">
               <div className="brass-stack">

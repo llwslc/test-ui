@@ -271,10 +271,6 @@
   flex-direction: column;
   gap: var(--brass-space-3);
 }
-
-#accordion .brass-accordion + .brass-accordion {
-  margin-top: var(--brass-space-6);
-}
 .demo-loader-stage {
   position: relative;
   transform: translateZ(0);
