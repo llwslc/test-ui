@@ -685,21 +685,21 @@ function Demo() {
             <Panel id="tooltip" title="Tooltip" meta="TIP" tape="br">
               <div className="riot-row">
                 <Tooltip content="Cut it out" side="top">
-                  <Button variant="ghost">Cut</Button>
+                  <Button variant="ghost" className="riot-btn--anchor">Cut</Button>
                 </Tooltip>
                 <Tooltip content="Paste it crooked" side="bottom">
-                  <Button variant="ghost">Paste</Button>
+                  <Button variant="ghost" className="riot-btn--anchor">Paste</Button>
                 </Tooltip>
                 <Tooltip content="Staple the wound" side="left">
-                  <Button variant="ghost">Staple</Button>
+                  <Button variant="ghost" className="riot-btn--anchor">Staple</Button>
                 </Tooltip>
                 <Tooltip content="Run the press" side="right">
-                  <Button variant="ghost">Press</Button>
+                  <Button variant="ghost" className="riot-btn--anchor">Press</Button>
                 </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP" stapled>
-              <Popover trigger={<Button variant="ghost">Details</Button>} title="Issue #1">
+              <Popover trigger={<Button variant="ghost" className="riot-btn--anchor">Details</Button>} title="Issue #1">
                 Twelve clippings pasted up; three bleeding off the edge on purpose.
               </Popover>
             </Panel>

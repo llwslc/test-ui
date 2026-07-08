@@ -108,6 +108,15 @@
   font-size: var(--riot-fs-24);
 }
 
-.riot-btn[data-popup-open]:active:not(:disabled):not([data-disabled]) {
-  transform: rotate(-4deg);
+.riot-btn--anchor {
+  transform: none;
+}
+.riot-btn--anchor:hover:not(:disabled):not([data-disabled]) {
+  transform: none;
+}
+.riot-btn--anchor:active:not(:disabled):not([data-disabled]) {
+  transform: none;
+  background: var(--riot-ink);
+  color: var(--riot-primary);
+  box-shadow: none;
 }
