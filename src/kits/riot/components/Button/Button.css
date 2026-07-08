@@ -112,11 +112,9 @@
   transform: none;
 }
 .riot-btn--upright:hover:not(:disabled):not([data-disabled]) {
-  transform: none;
+  transform: translate(-1px, -2px);
 }
-.riot-btn--upright:active:not(:disabled):not([data-disabled]) {
+.riot-btn--ghost.riot-btn--upright:hover:not(:disabled):not([data-disabled]),
+.riot-btn--icon-ghost.riot-btn--upright:hover:not(:disabled):not([data-disabled]) {
   transform: none;
-  background: var(--riot-ink);
-  color: var(--riot-primary);
-  box-shadow: none;
 }

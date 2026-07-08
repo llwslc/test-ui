@@ -17,16 +17,17 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: ReactNode;
+  upright?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", size = "md", icon, className, children, ...props },
+  { variant = "primary", size = "md", icon, upright, className, children, ...props },
   ref,
 ) {
   return (
     <BaseButton
       ref={ref}
-      className={cx("riot-btn", `riot-btn--${variant}`, `riot-btn--${size}`, className)}
+      className={cx("riot-btn", `riot-btn--${variant}`, `riot-btn--${size}`, upright ? "riot-btn--upright" : "", className)}
       {...props}
     >
       <span className="riot-btn__label">
