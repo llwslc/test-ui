@@ -108,13 +108,13 @@
   font-size: var(--riot-fs-24);
 }
 
-.riot-btn--anchor {
+.riot-btn--upright {
   transform: none;
 }
-.riot-btn--anchor:hover:not(:disabled):not([data-disabled]) {
+.riot-btn--upright:hover:not(:disabled):not([data-disabled]) {
   transform: none;
 }
-.riot-btn--anchor:active:not(:disabled):not([data-disabled]) {
+.riot-btn--upright:active:not(:disabled):not([data-disabled]) {
   transform: none;
   background: var(--riot-ink);
   color: var(--riot-primary);

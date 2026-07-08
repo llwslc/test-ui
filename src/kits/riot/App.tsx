@@ -430,10 +430,10 @@ function Demo() {
                   <Button disabled>Locked</Button>
                 </div>
                 <Separator />
-                <div className="riot-row riot-row--upright">
-                  <Button size="sm">Cut</Button>
-                  <Button size="md">Paste</Button>
-                  <Button size="lg">Riot</Button>
+                <div className="riot-row">
+                  <Button size="sm" className="riot-btn--upright">Cut</Button>
+                  <Button size="md" className="riot-btn--upright">Paste</Button>
+                  <Button size="lg" className="riot-btn--upright">Riot</Button>
                 </div>
                 <Separator />
                 <div className="riot-row">
@@ -685,21 +685,21 @@ function Demo() {
             <Panel id="tooltip" title="Tooltip" meta="TIP" tape="br">
               <div className="riot-row">
                 <Tooltip content="Cut it out" side="top">
-                  <Button variant="ghost" className="riot-btn--anchor">Cut</Button>
+                  <Button variant="ghost" className="riot-btn--upright">Cut</Button>
                 </Tooltip>
                 <Tooltip content="Paste it crooked" side="bottom">
-                  <Button variant="ghost" className="riot-btn--anchor">Paste</Button>
+                  <Button variant="ghost" className="riot-btn--upright">Paste</Button>
                 </Tooltip>
                 <Tooltip content="Staple the wound" side="left">
-                  <Button variant="ghost" className="riot-btn--anchor">Staple</Button>
+                  <Button variant="ghost" className="riot-btn--upright">Staple</Button>
                 </Tooltip>
                 <Tooltip content="Run the press" side="right">
-                  <Button variant="ghost" className="riot-btn--anchor">Press</Button>
+                  <Button variant="ghost" className="riot-btn--upright">Press</Button>
                 </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP" stapled>
-              <Popover trigger={<Button variant="ghost" className="riot-btn--anchor">Details</Button>} title="Issue #1">
+              <Popover trigger={<Button variant="ghost" className="riot-btn--upright">Details</Button>} title="Issue #1">
                 Twelve clippings pasted up; three bleeding off the edge on purpose.
               </Popover>
             </Panel>

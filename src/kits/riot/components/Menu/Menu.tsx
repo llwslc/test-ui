@@ -15,7 +15,7 @@ export function Menu({ trigger, children }: MenuProps) {
     <BaseMenu.Root>
       <BaseMenu.Trigger
         render={
-          <Button variant="ghost" className="riot-btn--anchor riot-menu__trigger">
+          <Button variant="ghost" className="riot-btn--upright riot-menu__trigger">
             {trigger} <ChevronDownIcon className="riot-menu__trigger-chevron" />
           </Button>
         }

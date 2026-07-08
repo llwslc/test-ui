@@ -20,7 +20,7 @@
 - Checkbox、Radio、Switch 行的标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
 - Button secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字。
 - Button 默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落。
-- 锚定弹层的触发钮用摆正版（`--anchor`）：不旋转、全程不位移，摁下改打墨戳（`ink` 底 + 荧光 `primary` 字）。
+- 摆正版（`--upright`）：不旋转、全程不位移，摁下改打墨戳（`ink` 底 + 荧光 `primary` 字）；锚定弹层的触发钮一律用它。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Progress 是右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示；Meter 同轨，指示是轨内一道记号笔涂划（`marker-cap` + `marker-body` 双层 mask，笔头定宽不随值缩放），按 `tone` 重染，荧光黄配 `on-warning` 深刻度。
 - 分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
