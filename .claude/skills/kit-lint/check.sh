@@ -115,6 +115,12 @@ run "raw pixel sizes in .tsx props / inline styles (route through a --$KIT- size
 f=$(node .claude/skills/kit-lint/baseui-pseudo.cjs "$ROOT" 2>/dev/null)
 run "native pseudo vs Base UI [data-*] (:checked / list-item :hover|:disabled / thumb :active — components.md §7)" "$f"
 
+# 12. absolute full-width pseudo hosted BY a horizontal scroll container — it spans
+#   clientWidth at the scroll origin, so the decoration scrolls away once content
+#   overflows (the recurring tab-rail class; components.md scroll-container rule)
+f=$(node .claude/skills/kit-lint/scroll-strip.cjs "$ROOT" 2>/dev/null)
+run "full-width ::before/::after on a scroll container (line scrolls away on overflow)" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL

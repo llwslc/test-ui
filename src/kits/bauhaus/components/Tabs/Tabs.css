@@ -7,16 +7,7 @@
   position: relative;
   display: flex;
   gap: var(--bauhaus-space-1);
-  padding-bottom: var(--bauhaus-stroke-bold);
-}
-.bauhaus-tabs__list::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--bauhaus-stroke-bold);
-  background: var(--bauhaus-ink);
+  border-bottom: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
 }
 .bauhaus-tabs__tab {
   position: relative;
@@ -53,7 +44,7 @@
 .bauhaus-tabs__indicator {
   position: absolute;
   z-index: 1;
-  bottom: 0;
+  bottom: calc(-1 * var(--bauhaus-stroke-bold));
   left: var(--active-tab-left);
   width: var(--active-tab-width);
   height: var(--bauhaus-stroke-bold);
@@ -67,10 +58,15 @@
 }
 
 @media (max-width: 768px) {
-  .bauhaus-tabs__list {
+  .bauhaus-tabs__rail {
     overflow-x: auto;
-    flex-wrap: nowrap;
+    overflow-y: clip;
     scrollbar-width: none;
+  }
+  .bauhaus-tabs__list {
+    width: max-content;
+    min-width: 100%;
+    flex-wrap: nowrap;
   }
   .bauhaus-tabs__tab {
     flex: 0 0 auto;

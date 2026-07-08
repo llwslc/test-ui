@@ -26,14 +26,16 @@ export function Tabs({ items, defaultValue, value, onValueChange, className }: T
       value={value}
       onValueChange={onValueChange}
     >
-      <BaseTabs.List className="bauhaus-tabs__list">
-        {items.map((it) => (
-          <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-tabs__tab">
-            {it.label}
-          </BaseTabs.Tab>
-        ))}
-        <BaseTabs.Indicator className="bauhaus-tabs__indicator" />
-      </BaseTabs.List>
+      <div className="bauhaus-tabs__rail">
+        <BaseTabs.List className="bauhaus-tabs__list">
+          {items.map((it) => (
+            <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-tabs__tab">
+              {it.label}
+            </BaseTabs.Tab>
+          ))}
+          <BaseTabs.Indicator className="bauhaus-tabs__indicator" />
+        </BaseTabs.List>
+      </div>
       {items.map((it) => (
         <BaseTabs.Panel key={it.value} value={it.value} className="bauhaus-tabs__panel">
           {it.content}
