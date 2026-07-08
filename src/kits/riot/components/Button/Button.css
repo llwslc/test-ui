@@ -37,6 +37,11 @@
   box-shadow: 1px 1px 0 var(--riot-ink);
   transition-duration: 0s;
 }
+.riot-btn:active:not(:disabled):not([data-disabled])::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+}
 .riot-btn:focus-visible {
   outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 3px;

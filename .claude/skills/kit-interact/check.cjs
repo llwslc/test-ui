@@ -249,6 +249,49 @@ const setKit = async (page, kit) => {
       await cdp.detach().catch(() => {});
       if (drift.length) out.push(`HIGH  ${kit}  ${drift.length} selected control(s) change look on hover — selected/open fill loses to :hover; wrap the hover disabled-guard in :where() so it can't out-specify [data-pressed]: ${[...new Set(drift)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  selected-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    for (const corner of ['tl', 'tr', 'bl', 'br']) {
+      try {
+        // press-displacement: a press transform that MOVES the button (un-tilt slam,
+        // scale shrink) must not pull the hit box out from under the pointer — a press
+        // SOLIDLY on the button at rest (≥3px inside every painted edge; 1px edge
+        // slivers are below press precision) must still deliver the click
+        // (the "press animates but the dialog never opens" class); an :active hit
+        // halo (transparent ::after) is the expected cover
+        await setKit(d, kit);
+        await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+        const t = d.locator('#dialog button').first();
+        await t.scrollIntoViewIfNeeded();
+        await d.waitForTimeout(150);
+        const pt = await d.evaluate((c) => {
+          const b = document.querySelector('#dialog button');
+          const r = b.getBoundingClientRect();
+          const hit = (dx, dy) => {
+            const el = document.elementFromPoint(r.left + dx, r.top + dy);
+            return !!(el && b.contains(el));
+          };
+          const on = [];
+          for (let dy = 3; dy < r.height - 2; dy += 3)
+            for (let dx = 3; dx < r.width - 2; dx += 3)
+              if (hit(dx, dy) && hit(dx - 3, dy) && hit(dx + 3, dy) && hit(dx, dy - 3) && hit(dx, dy + 3)) on.push([dx, dy]);
+          if (!on.length) return null;
+          const W = r.width, H = r.height;
+          const key = { tl: (p) => p[0] + p[1], tr: (p) => (W - p[0]) + p[1], bl: (p) => p[0] + (H - p[1]), br: (p) => (W - p[0]) + (H - p[1]) }[c];
+          on.sort((a, b2) => key(a) - key(b2));
+          return { x: r.left + on[0][0], y: r.top + on[0][1] };
+        }, corner);
+        if (!pt) continue;
+        const before = await d.evaluate(countPortal, PORTAL_POPUP);
+        await d.mouse.move(pt.x, pt.y);
+        await d.mouse.down();
+        await d.waitForTimeout(60);
+        await d.mouse.up();
+        await d.waitForTimeout(500);
+        const after = await d.evaluate(countPortal, PORTAL_POPUP);
+        if (after <= before) out.push(`HIGH  ${kit}  dialog: ${corner}-corner press lost the click — the press transform moves the hit box off the pointer; cover it with an :active hit halo`);
+        await d.keyboard.press('Escape');
+        await d.waitForTimeout(200);
+      } catch (e) { out.push(`WARN  ${kit}  press-displacement(${corner}): errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    }
     try {
       // broken anchors only — the cross-kit sidebar/manifest comparison is
       // kit-equality's (spec-anchored, stronger than a first-kit reference)

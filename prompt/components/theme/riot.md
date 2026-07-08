@@ -17,7 +17,7 @@
 - Checkbox 是 `ink` 粗黑方框 + 硬偏移影；勾选 = 荧光 `secondary` 粉的手画叉 `✗`，indeterminate = 一道粗横杠；勾上的标签盖一道荧光橙删除线。
 - Radio 是 `ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章。
 - Checkbox、Radio、Switch 行的标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
-- Button 默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
+- Button 默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落，`:active` 挂透明 `::after`（`inset -16px`）兜住位移后的命中；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Progress 是右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示；Meter 同轨同平涂，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - 分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。

@@ -87,7 +87,7 @@
 - **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 用「文字强调选中」——只换文字色、不填充；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样由 theme 定**。
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
-- **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**
+- **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**形变带位移时，`:active` 同时挂透明伪元素光环兜住命中盒——实按在钮上的点不因位移丢 click，**光环尺寸盖过自家位移、由 theme 定**。
 - **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
 - **禁用**：shell 全局一条 `pointer-events: none`；hover／highlight 态一律 `:not([data-disabled])` 收口；`opacity: var(--<kit>-disabled-opacity)`，整行只 dim 一层、不叠两遍。
 

@@ -29,6 +29,11 @@
   transform: scale(0.92) translateY(1px);
   transition-duration: 0s;
 }
+.abyss-btn:active::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
 .abyss-btn__label {
   position: relative;
   z-index: 1;

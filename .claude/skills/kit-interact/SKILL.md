@@ -1,6 +1,6 @@
 ---
 name: kit-interact
-description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, a mobile shell header that bunches logo+status to one side once the nav hides, a sidebar link that resolves to no panel, an overlay title/desc cramped against the body (no padding), a disabled control that visibly restyles on hover (its `:hover` not guarded against the disabled state), and a selected/open segmented control (toggle, toolbar button) whose fill loses to `:hover` — the committed state must out-rank hover, checked by forcing `:hover` via CDP. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
+description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, a mobile shell header that bunches logo+status to one side once the nav hides, a sidebar link that resolves to no panel, an overlay title/desc cramped against the body (no padding), a disabled control that visibly restyles on hover (its `:hover` not guarded against the disabled state), a selected/open segmented control (toggle, toolbar button) whose fill loses to `:hover` — the committed state must out-rank hover, checked by forcing `:hover` via CDP — and a press transform (un-tilt slam, scale shrink) that pulls the button out from under the pointer so a corner press animates but never delivers the click (presses each dialog trigger at its four solidly-on-button extremes; the cover is an `:active` transparent `::after` hit halo sized past the displacement). Run when accepting or QAing a kit, alongside kit-visual + kit-states.
 ---
 
 # kit-interact
@@ -59,6 +59,13 @@ next one. ~1–2 min per run. Exit 1 on any HIGH fault.
   pressed/active segmented control; its look (own + `::before`/`::after` paint —
   frame primitives paint on pseudo layers) must not change. Wrap the hover
   disabled-guard in `:where()` so it can't out-specify `[data-pressed]`.
+- **PRESS keeps the hit box (HIGH)** — press the dialog trigger at its four
+  solidly-on-button extremes (≥3px inside every painted edge; 1px edge slivers
+  are below press precision) with real mouse down/up; the dialog must open.
+  A press transform with displacement (riot's un-tilt slam, abyss's scale)
+  otherwise slides the button off the pointer — mouseup lands outside, the
+  press animates but the click never fires. Cover = a transparent `::after`
+  hit halo on `:active`, sized past the displacement (components.md §5 按压).
 
 Pair with kit-visual (rendered geometry) + kit-states (rendered states):
 those photograph, this one *operates* the components.
