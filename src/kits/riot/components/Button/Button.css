@@ -64,7 +64,7 @@
   box-shadow: none;
 }
 .riot-btn--ghost:hover:not(:disabled):not([data-disabled]) {
-  transform: none;
+  transform: rotate(-4deg);
   box-shadow: none;
   background: var(--riot-tint);
   color: var(--riot-text-bright);
@@ -88,7 +88,7 @@
   box-shadow: none;
 }
 .riot-btn--icon-ghost:hover:not(:disabled):not([data-disabled]) {
-  transform: none;
+  transform: rotate(-4deg);
   box-shadow: none;
   color: var(--riot-primary);
 }
