@@ -7,7 +7,7 @@
   --riot-secondary: #ff1f8f;
   --riot-success: #8fe000;
   --riot-warning: #ffe500;
-  --riot-danger: #ff2200;
+  --riot-danger: #e5002b;
 
   --riot-text: #17130d;
   --riot-text-bright: #000000;
@@ -22,7 +22,7 @@
 
   --riot-tint: rgba(255, 77, 10, 0.2);
   --riot-tape: rgba(224, 210, 120, 0.5);
-  --riot-tape-danger: rgba(255, 34, 0, 0.65);
+  --riot-tape-danger: rgba(229, 0, 43, 0.68);
   --riot-tape-warning: rgba(255, 229, 0, 0.6);
   --riot-tape-success: rgba(143, 224, 0, 0.6);
   --riot-tape-primary: rgba(255, 77, 10, 0.6);
@@ -96,6 +96,7 @@
   --riot-font: "Special Elite", "Courier New", monospace;
   --riot-font-display: "Anton", "Arial Narrow", sans-serif;
   --riot-font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --riot-font-tag: "Bebas Neue", "Arial Narrow", sans-serif;
   --riot-fs-11: 11px;
   --riot-fs-13: 13px;
   --riot-fs-15: 15px;

@@ -40,5 +40,8 @@
   opacity: var(--riot-disabled-opacity);
 }
 .riot-radio__label {
+  font-family: var(--riot-font-tag);
+  font-size: var(--riot-fs-18);
+  letter-spacing: var(--riot-ls-2);
   color: var(--riot-text-bright);
 }

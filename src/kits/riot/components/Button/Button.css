@@ -48,6 +48,10 @@
   background: var(--riot-accent-surface);
   color: var(--riot-on-fill);
 }
+.riot-btn--secondary {
+  background: var(--riot-secondary);
+  color: var(--riot-on-fill);
+}
 .riot-btn--danger {
   background: var(--riot-danger);
   color: var(--riot-on-fill);

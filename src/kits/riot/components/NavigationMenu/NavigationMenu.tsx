@@ -69,6 +69,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       <BaseNav.Portal>
         <BaseNav.Positioner
           className="riot-lift riot-navmenu__positioner"
+          align="start"
           sideOffset={10}
           collisionPadding={16}
         >

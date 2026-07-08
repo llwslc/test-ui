@@ -73,6 +73,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       <BaseNav.Portal>
         <BaseNav.Positioner
           className="nova-elevation nova-navmenu__positioner"
+          align="start"
           sideOffset={10}
           collisionPadding={16}
         >

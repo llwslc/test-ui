@@ -7,16 +7,7 @@
   position: relative;
   display: flex;
   padding-top: var(--riot-space-1);
-  padding-bottom: var(--riot-stroke-bold);
-}
-.riot-tabs__list::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--riot-stroke-bold);
-  background: var(--riot-ink);
+  border-bottom: var(--riot-stroke-bold) solid var(--riot-ink);
 }
 .riot-tabs__tab {
   position: relative;

@@ -1,13 +1,22 @@
 .riot-tooltip__positioner {
   z-index: var(--riot-z-tooltip);
 }
+.riot-tooltip__popup {
+  position: relative;
+}
 .riot-tooltip__surface {
   display: block;
   max-width: var(--riot-tooltip-w);
   padding: var(--riot-space-2) var(--riot-space-3);
-  --riot-surface-fill: var(--riot-ink);
-  --riot-surface-border: var(--riot-ink);
-  color: var(--riot-text-invert);
+  color: var(--riot-text);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-13);
+}
+.riot-tooltip__tape {
+  top: -8px;
+  left: 50%;
+  width: 54px;
+  height: 16px;
+  margin-left: -27px;
+  transform: rotate(-3deg);
 }

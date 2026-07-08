@@ -1,6 +1,7 @@
 .riot-separator {
   border: 0;
   background: var(--riot-ink);
+  filter: url(#riot-torn);
 }
 .riot-separator--horizontal {
   width: 100%;
@@ -19,6 +20,7 @@
   flex: 1;
   height: var(--riot-stroke);
   background: var(--riot-ink);
+  filter: url(#riot-torn);
 }
 .riot-separator-labeled__text {
   font-family: var(--riot-font-display);

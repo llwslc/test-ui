@@ -59,7 +59,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--riot-space-1);
   padding: var(--riot-space-3) 0 var(--riot-space-3) var(--riot-space-4);
 }
 .riot-toast__title {

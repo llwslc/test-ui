@@ -40,7 +40,7 @@ export function Tooltip({ content, children, side = "top", sideOffset = 10, dela
           >
             <BaseTooltip.Popup className="riot-pop riot-tooltip__popup">
               <span className="riot-surface riot-tooltip__surface">{content}</span>
-              <BaseTooltip.Arrow className="riot-connector" />
+              <span className="riot-tape riot-tooltip__tape" aria-hidden />
             </BaseTooltip.Popup>
           </BaseTooltip.Positioner>
         </BaseTooltip.Portal>

@@ -10,7 +10,7 @@
 
 - 背景：`base #111010` 是复印台的死黑底。
 - 纸面：`paper #e9e4d4` 是复印灰白的剪报纸，`paper-raised #d7cfba` 是更旧一点的纸，都是面板与浮层的实色纸底。
-- 五个强调色家族，都是记号笔荧光色，平涂无渐变：primary 荧光橙 `#ff4d0a`，secondary 荧光粉 `#ff1f8f`，success 荧光绿 `#8fe000`，warning 荧光黄 `#ffe500`，danger 血红 `#ff2200`。
+- 五个强调色家族，都是记号笔荧光色，平涂无渐变：primary 荧光橙 `#ff4d0a`，secondary 荧光粉 `#ff1f8f`，success 荧光绿 `#8fe000`，warning 荧光黄 `#ffe500`，danger 血红 `#e5002b`。
 - 文本是复印黑：`text #17130d`、`-bright #000000`（纯黑、最狠）、`-dim #4c473b`、`-mute #7d7666`；死黑底上翻成纸色 `text-invert #e9e4d4`。
 - 两档反色前景（压在荧光实填上的字色）：`on-fill #0d0d0d` 复印黑，压在橙、粉、绿、红这些实填上；`on-warning #17130d` 压在荧光黄上。
 - 两条复用的强调填充，都是**平涂、无渐变**：`accent-surface` = 实色 `primary`，用来点亮激活表面；`accent-fill` = 实色 `primary`，用作方向指示。
@@ -21,7 +21,7 @@
 
 ## 2. 字体与排版
 
-- 字体：display（粗黑标题）用 **Anton**，正文用打字机体 **Special Elite**，数值刻度（mono）用 **DM Mono**；勒索信拼贴逐字混排 **Archivo Black** 与 **Bebas Neue**，涂划手写用 **Rock Salt**。
+- 字体：display（粗黑标题）用 **Anton**，正文用打字机体 **Special Elite**，数值刻度（mono）用 **DM Mono**，控件标签注记体（`font-tag`）用 **Bebas Neue**；勒索信拼贴逐字混排 **Archivo Black** 与 **Bebas Neue**，涂划手写用 **Rock Salt**。
 - 尺度各档：字号 `fs-11 / 13 / 15 / 18 / 24 / 44`，字距 `ls-1 .01em / -2 .04em / -4 .12em`，行高 `lh-100 / 130 / 150`，字重 `fw-400`。
 - 三档标题：`h1` = display · fs-44 · lh-100 · bright；`h2` = display · fs-24 · lh-130 · bright；`h3` = display · fs-13 · 大写 · ls-4 · bright，是剪报小标；正文 `text` = Special Elite · fs-15 · lh-150 · text；修饰类 `h1--accent` = 勒索信剪贴的强调词：整词套一个荧光实填方框、微旋转、带硬偏移投影。
 - 字段标签 caption 有独立类 **`.riot-cap`**：Anton · fs-11 · 大写 · ls-4 · bright 的剪报小标，组件统一引用。
