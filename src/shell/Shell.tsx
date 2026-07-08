@@ -15,17 +15,12 @@ export function Shell() {
 
   useEffect(() => {
     const sync = () => {
-      const modalOpen = !!document.querySelector('[class*="backdrop"][data-open]');
+      const modalOpen = document.body.style.overflow === "hidden";
       setOverlay(modalOpen);
       if (modalOpen) setOpen(false);
     };
     const mo = new MutationObserver(sync);
-    mo.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["data-open", "class"],
-    });
+    mo.observe(document.body, { attributes: true, attributeFilter: ["style"] });
     sync();
     return () => mo.disconnect();
   }, []);
