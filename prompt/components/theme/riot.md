@@ -10,7 +10,6 @@
 - 悬停：分段控件和触发条用 `tint` 荧光 wash 纯底；带硬影的按钮整块上浮一步、硬影随之加深（press 的反向），ghost 按钮盖 `tint` wash、文字转 `bright`；图标和动作按钮的文字转荧光 `primary`，菜单触发器转 `bright` 纯黑；列表项盖一道荧光记号笔涂划。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2.5px primary`；输入框聚焦时整框 border 升荧光 + 加 `ring`。
 - 危险态：`danger` 血红实填、前景反白，border 仍黑；静止态红字红图标。
-- 荧光黄实填的特例：其上前景转 `on-warning` 深色，即 warning 的 Badge 与 Panel 的 meta 章。
 
 ## 2. 组件皮肤决定
 
@@ -25,7 +24,7 @@
 - Tabs、NavigationMenu：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，另有 `stroke-bold` 记号笔横杠随激活项走，hover 用 `tint` wash；触发器 Anton 大写、打开转荧光、chevron 翻转。
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
-- Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成盖章的三字码。
+- Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
 - Toast 锚在右下角**乱堆**：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
 - Tooltip、Popover、PreviewCard 一族是平贴的纸片小剪条：纸面 + `ink` 框，胶带连接件（`.riot-connector`）钉向触发器，正文打字机体。

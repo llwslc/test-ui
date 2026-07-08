@@ -10,7 +10,6 @@
 - 悬停：分段控件和触发条用 `tint-soft` 蓝 wash 纯底；图标和动作按钮的文字转 `primary`，菜单触发器、列表项转 `bright`；按钮浮出 `shadow-hard` 硬影，ghost 盖 `ink-faint`、文字转 `bright`。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 蓝外环）；分段控件和触发条用 `inset 0 0 0 2px primary`；输入框聚焦时整框 border 升蓝 + 加 `ring`。
 - 危险态走 danger 家族：实填朱红 + `-wash` + `-text`，border 仍黑、前景反白。
-- 黄色填充的特例：`warning` 实填上的前景转 `on-warning` 墨黑，即 warning 的 Toast 和 Badge。
 
 ## 2. 组件皮肤决定
 
