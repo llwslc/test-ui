@@ -62,7 +62,7 @@
 - slider：三个 Slider —— ① label + 默认值 62；② `disabled`、值 40；③ `showValue={false}`、值 75。
 - number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
 - input：四个字段 —— ① label + 默认值 + placeholder + `description` 辅助行；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
-- otp：两行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位，值随 theme 换、连出处落盘在 `app/theme/<kit>.md`；② 同构造加 `mask`。
+- otp：两行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位（值随 theme 换）；② 同构造加 `mask`。
 
 **Forms**
 
