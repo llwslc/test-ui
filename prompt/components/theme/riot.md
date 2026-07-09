@@ -26,7 +26,7 @@
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
-- Toast 锚在右下角**乱堆**（手机横向撑满，边距 `space-4`）：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）。
+- Toast 锚在右下角**乱堆**：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
 - Tooltip、Popover、PreviewCard 一族是平贴的纸片小剪条：纸面 + `ink` 框，胶带连接件（`.riot-connector`）钉向触发器，正文打字机体。
 - ScrollArea 自绘条：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽），常显不做悬停隐藏；panel 型坐在 `surface-inset` 纸灰可见轨上，popup 型轨道透明、整条离框 `space-1`。

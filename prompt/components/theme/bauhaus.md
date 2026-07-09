@@ -19,7 +19,7 @@
 - Progress、Meter 是锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示；Meter 按 `tone` 重染填充。
 - Tabs、NavigationMenu：一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动，hover 用 `tint-soft`；触发器是 Jost 大写、打开时转 `primary`、chevron 翻转。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：border 仍黑；顶部压一条 tone 实色细线，标题带一个 tone 三原形图记，和描述、body、actions 一起在下面的纸面上。
-- Panel：角部放三原形角标 + meta。Toast：锚在右下角、向上堆叠（手机横向撑满，边距 `space-3`），新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）。Dialog 标题配一个三原形图标。
+- Panel：角部放三原形角标 + meta。Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-3`。Dialog 标题配一个三原形图标。
 - Drawer：只在朝屏内那一条边描一道 `stroke-heavy` 纯黑边，其余三边贴屏不描；纸面、直角同模态。
 - ScrollArea 自绘条：thumb 是实色 `primary` 蓝、圆角、填满条宽；轨 `track` 浅纸；panel 型悬停显、popup 型常显。
 - 招牌 SVG：Checkbox 是纸白几何对勾，Radio 是实蓝圆心点，Avatar 的兜底是 Archivo Black 字母压在实色块上、方形裁剪，占位图标是几何线形。
