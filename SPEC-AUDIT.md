@@ -1,0 +1,585 @@
+# SPEC-AUDIT —— prompt/ 与 src/kits/ 全主题核对
+
+审计日期 2026-07-09。范围：5 套 kit（nova / abyss / brass / bauhaus[PRISM] / riot）× 3 层 spec
+（`theme/<kit>.md` 视觉 DNA、`components/theme/<kit>.md` 控件皮、`app/theme/<kit>.md` 文案招牌），
+外加 `components.md` 骨架契约与 `app.md` 演示页契约。审计只读，未改任何源文件。
+
+## 怎么读
+
+每条给出 **spec 出处 → spec 原文 → 代码实际 → 判定**。判定分四类，改的方向不同：
+
+| 类 | 含义 | 改哪边 |
+|---|---|---|
+| **A** | spec 是对的，代码没做到 | 改代码 |
+| **B** | 五套 kit 一致地偏离 spec，说明 spec 写错了 | 改 spec |
+| **C** | 设计在代码里改过，spec 没回写 | 回写 spec |
+| **D** | 两份 spec 自己打架，代码只能选一边 | 先裁决，再改一边 |
+| **E** | 低优先 / 需渲染确认 | 逐条定夺 |
+
+证据等级：
+
+- ✅ 我亲自验证（grep / 读码 / 真实浏览器实测）
+- ⚠️ 子 agent 报告，我未复核，采信前建议自查
+
+## 机械层结论：全绿
+
+以下门禁全部 PASS，说明 **token 名值、37 个组件的 props 类型集、DOM 骨架接线、类名规则、跨 kit 隔离、死代码** 都没有漂移：
+
+`prompt-lint` · `theme-doc-sync` · `kit-api` · `kit-structure` · `kit-naming` · `kit-deadcode` · `kit-lint`(×5) · `kit-parity`
+
+**所有问题都在门禁看不见的语义层。** 这本身是个信号：现有门禁覆盖的是「跨 kit 是否一致」，而不是「是否符合 spec」——五套一起偏离时它们全绿（见 B 类）。
+
+## 摘要
+
+| 类 | 条数 | 集中在 |
+|---|---|---|
+| A 改代码 | 18 | riot 9 条、brass 3 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
+| B 改 spec | 4 | 全部 5 套一致 |
+| C 回写 spec | 16 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 1 条 |
+| D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
+| E 低优先 | 7 | — |
+
+**4 条硬契约违反全部集中在 RIOT**（A1–A4），另外四套在这些点上都做对了。
+
+---
+
+# A. 改代码 —— spec 是对的，代码没做到
+
+## A1. RIOT 的 NavigationMenu 桌面下拉是单列 ✅
+
+- **严重度**：契约违反（跨 kit 同值）
+- **位置**：`src/kits/riot/components/NavigationMenu/NavigationMenu.css:61,65`
+- **spec**：`prompt/components/components.md:146` ——「桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`」
+- **代码**：`.riot-navmenu__content { width: var(--riot-navmenu-col-w) }` + `.riot-navmenu__grid { display: flex; flex-direction: column }` —— 列宽值取对了，**列数是 1 不是 2**
+- **对照**：nova `:119`、abyss `:126`、brass `:99`、bauhaus `:93` 四套全部 `repeat(2, minmax(…, 1fr))`
+- **影响**：riot 的导航下拉比其余四套窄一半、长一倍
+
+- [ ] 已修
+
+## A2. RIOT 的锚定弹层滚动高度缺 `--available-height` 夹取 ✅
+
+- **严重度**：契约违反（功能性）
+- **位置**：`src/kits/riot/components/ScrollArea/ScrollArea.css:5`
+- **spec**：`components.md §4.2` ——「高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上」
+- **代码**：`max-height: var(--riot-popup-h)` —— 全仓 `--available-height` 命中 4 次，riot **0 次**
+- **对照**：nova `:79`、abyss `:115`、brass `:73`、bauhaus `:30` 都写了 `min(var(--available-height), …)`
+- **影响**：Select / Menu / Menubar / ContextMenu 的弹层靠近视口底边时会撑出屏幕，而不是收高转滚动
+
+- [ ] 已修
+
+## A3. RIOT 的 NavMenu 手机态换行、没有横向滚动 ✅
+
+- **严重度**：契约违反（响应式）
+- **位置**：`src/kits/riot/components/NavigationMenu/NavigationMenu.css:115`
+- **spec**：`components.md §8` ——「`≤768` 时组件走手机态——Tabs、NavMenu **横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚」
+- **代码**：`flex-wrap: wrap`
+- **对照**：其余四套均为 `overflow-x: auto` + `flex-wrap: nowrap`
+- **备注**：同一条 spec 里 Toolbar 才是换行，riot 把两者搞反了
+
+- [ ] 已修
+
+## A4. RIOT 的 Drawer body 没有 padding，焦点提示会被裁掉 ✅
+
+- **严重度**：契约违反（可访问性）
+- **位置**：`src/kits/riot/components/Drawer/Drawer.css:87`
+- **spec**：`components.md §4.2` ——「drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量」
+- **代码**：`.riot-drawer__body` 只有 `flex: 1` + `overflow-y: auto`，无 padding、无负 margin
+- **影响**：drawer 里的 Switch / Slider 拿到键盘焦点时，riot 的 `--riot-ring` 双环会被 `overflow-y: auto` 裁掉
+- **备注**：spec 要求的「padding + 等量负 margin」只有 bauhaus 完整实现；nova / abyss 有 padding 无负 margin（见 C 类讨论）。riot 是唯一两样都没有的
+
+- [ ] 已修
+
+## A5. `ToolbarButton` 的 `active` prop 在 brass 和 bauhaus 里是死的 ✅
+
+- **严重度**：功能缺陷（prop 无效果）
+- **位置**：`src/kits/brass/components/Toolbar/Toolbar.css`、`src/kits/bauhaus/components/Toolbar/Toolbar.css`
+- **spec**：`components.md §6.1` ——「`ToolbarButton` props `active·disabled`」
+- **代码**：两套的 `.tsx` 都在 `active` 为真时挂上 `is-active` 类，但 `.css` 里**没有任何规则消费它**
+
+| kit | tsx 挂类 | css 规则 |
+|---|---|---|
+| nova | ✓ | 2 条 |
+| abyss | ✓ | 1 条 |
+| brass | ✓ | **0 条** |
+| bauhaus | ✓ | **0 条** |
+| riot | ✓ | 1 条 |
+
+- **为什么门禁没抓到**：`kit-api` 只检查 prop 存在与类型一致（两套都有 `active`）；`kit-deadcode` 只查「CSS 定义了但没用」，反方向「用了但没定义」没人管
+- **备注**：演示页从不触发它（toolbar 面板走 `render={<Toggle/>}` → `data-pressed`，那条是有样式的），所以肉眼永远看不出来
+
+- [ ] 已修
+
+## A6. PRISM 的 NavMenu 打开态被 hover 压过 ✅
+
+- **严重度**：功能缺陷（视觉可见）
+- **位置**：`src/kits/bauhaus/components/NavigationMenu/NavigationMenu.css:33`
+- **spec**：`components.md §5` ——「选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）」
+- **代码**：
+
+```css
+.bauhaus-navmenu__trigger:not(:disabled):not([data-disabled]):hover {   /* 权重 (0,4,0) */
+  background: var(--bauhaus-tint-soft);
+  color: var(--bauhaus-text-bright);      /* 近黑 */
+}
+.bauhaus-navmenu__trigger[data-popup-open] {                            /* 权重 (0,2,0) */
+  color: var(--bauhaus-primary);          /* 蓝 */
+}
+```
+
+- **影响**：悬停一个**已展开**的导航项，它的蓝色会掉回近黑色。权重差决定胜负，与源码顺序无关
+- **解法**：spec 自己给了——把禁用守卫包进 `:where()`。同一套的 `Tabs.css:30` 已经这么写了
+- **为什么门禁没抓到**：`kit-interact` 有这条检查，但只覆盖分段控件（ToggleGroup / Toolbar），够不到 navmenu 触发器
+
+- [ ] 已修
+
+## A7. ABYSS 的 ghost 触发钮打开态被 hover 压过 ✅
+
+- **严重度**：功能缺陷（视觉可见）
+- **位置**：`src/kits/abyss/components/Button/Button.css:85` vs `:91`
+- **spec**：同 A6
+- **代码**：hover 规则 (0,6,0) 把 `--abyss-frame-ink` 设成 `glow-a55`；`[data-popup-open]` 规则 (0,2,0) 想设成 `glow-a70`
+- **影响**：悬停一个已打开的菜单/弹层触发钮，边框从 a70 掉到 a55，明显变弱
+- **备注**：nova 把这两个选择器写在**同一条规则**里（`Button.css:123-126`，逗号并列），所以没有这个问题——是个可以照抄的正例
+
+- [ ] 已修
+
+## A8. RIOT 的 `--riot-tilt` 继承泄漏，面内字段旋转两次 ✅（真实浏览器实测）
+
+- **严重度**：功能缺陷（视觉可见）
+- **位置**：`src/kits/riot/theme/effects.css:8` + `src/kits/riot/App.css:325-334`
+- **spec**：`prompt/theme/riot.md:31` ——「每块剪报另挂一个各不相同的小旋转角（`--riot-tilt`，约 ±2°–6°），**由组件就近给**」
+- **机制**：`--riot-tilt` 是自定义属性，**会向下继承**；`.riot-surface` 无条件 `transform: rotate(var(--riot-tilt, 0deg))`。`App.css` 把 tilt 设在面板外壳上，面板内的 Input / Select trigger / Combobox 也都是 `.riot-surface`，于是再转一次
+- **实测**（1440×950，Chrome，沿祖先链累乘 transform 矩阵）：
+
+| 面板 | 元素 | 自身旋转 | 屏幕累积 |
+|---|---|---|---|
+| input | 纸面 sheet | 1.3° | 1.3° |
+| input | caption 标签 | 0° | 1.3° |
+| input | **Input 框** | 1.3° | **2.6°** |
+| select | 纸面 sheet | −0.5° | −0.5° |
+| select | **Select trigger** | −0.5° | **−1.0°** |
+
+- **影响**：输入框比它正上方的 caption 标签多歪 1.3°，比所在纸面多歪一倍
+- **佐证是 bug 而非有意**：`effects.css:151` 有 `.riot-popup { transform: none }`，`App.css:501,514` 另有两处 `transform: none` —— 作者知道存在泄漏，但只补了弹层和模态，没补面内字段
+
+- [ ] 已修
+
+## A9. RIOT 输入框聚焦没有 ring ✅
+
+- **严重度**：皮肤决定未实现
+- **位置**：`src/kits/riot/theme/effects.css:424`
+- **spec**：`prompt/components/theme/riot.md:11` ——「输入框聚焦时整框 border 升荧光 + **加 ring**」
+- **代码**：`.riot-input:focus-within { --riot-surface-border: var(--riot-primary); }` —— 只升 border，无 `box-shadow: var(--riot-ring)`
+- **对照**：同套 Checkbox / Radio / Switch 都有 `--riot-ring`
+- **影响**：Input / Field / Combobox / Autocomplete（共用 `.riot-input`）
+
+- [ ] 已修
+
+## A10. RIOT 的 Toolbar / Menubar chip 没有微旋 ✅
+
+- **严重度**：皮肤决定未实现
+- **位置**：`src/kits/riot/components/Toolbar/Toolbar.css`、`Menubar/Menubar.css`
+- **spec**：`components/theme/riot.md:23` ——「分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip **散钉**，各自带 `ink` 框 + 硬偏移影 + **微旋转**」
+- **代码**：`rotate` 命中数 —— ToggleGroup 3 处（nth-child ∓2/−3deg），Toolbar **0**，Menubar **0**
+- **影响**：三件套里只有 ToggleGroup 是散钉的，另两件是正的
+
+- [ ] 已修
+
+## A11. RIOT 的 Tabs hover 用错 token ✅
+
+- **严重度**：皮肤决定不符
+- **位置**：`src/kits/riot/components/Tabs/Tabs.css:45`
+- **spec**：`components/theme/riot.md:24` ——「Tabs：… hover 用 `tint` wash」
+- **代码**：`background: var(--riot-marker)`
+- **值差**：`--riot-tint` = `rgba(255,77,10,.2)` 荧光橙 wash；`--riot-marker` = `rgba(255,229,0,.55)` 荧光黄记号笔
+- **备注**：不是同色深浅，是**换了颜色**（橙 → 黄）。需裁决是代码用错还是 spec 该改成 marker
+
+- [ ] 已修
+
+## A12. BRASS 的 Toast 没有左缘黄铜光束 ✅
+
+- **严重度**：皮肤决定未实现
+- **位置**：`src/kits/brass/components/Toast/`
+- **spec**：`components/theme/brass.md:21` ——「Toast：锚在右下角、向上堆叠，**左缘一道黄铜光束** + 一个齿轮图记」
+- **代码**：齿轮图记有，光束**没有**——`.brass-toast` 无 `__beam` 元素、无 `::before`/`::after` 光条，走的是 `.brass-plate` 对称四边框
+- **对照**：nova `Toast.tsx:44` + `Toast.css:69` 有 `nova-toast__beam`；abyss `Toast.tsx:56` + `Toast.css:75` 有 `abyss-toast__beam`
+
+- [ ] 已修
+
+## A13. BRASS 的 Avatar 兜底没有齿轮 ✅
+
+- **严重度**：皮肤决定未实现
+- **位置**：`src/kits/brass/components/Avatar/Avatar.tsx:39`
+- **spec**：`components/theme/brass.md:24` ——「Avatar 的兜底是**齿轮加字母组合**」
+- **代码**：`AvatarFallback` 原样透传 children，演示页只传字母（`IB` / `GW` / `RS` / `TC`）。`Avatar.css:51` 有 `:where(svg)` 的齿轮样式，但**永远拿不到齿轮**
+
+- [ ] 已修
+
+## A14. BRASS 承诺的三个共享配方覆盖变量一个都不存在 ✅
+
+- **严重度**：皮肤决定未实现
+- **位置**：整个 `src/kits/brass/`
+- **spec**：`components/theme/brass.md:26` ——「共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`」
+- **代码**：三个变量全仓 **0 次命中**。AlertDialog 直接写死规则重染标题（`AlertDialog.css:37`），没走变量
+- **对照**：nova 的 `--nova-scan-color / -tick-color / -title-color` 8 次命中；riot 的 `--riot-marker-color` 4 次；bauhaus 的 `--bauhaus-marker-color` 1 次
+
+- [ ] 已修
+
+## A15. PRISM 的 Tabs hover 缺 `tint-soft` 底 ✅
+
+- **严重度**：皮肤决定不符
+- **位置**：`src/kits/bauhaus/components/Tabs/Tabs.css:30`
+- **spec**：`components/theme/bauhaus.md:20` ——「Tabs、NavigationMenu：… hover 用 `tint-soft`」
+- **代码**：Tab 的 hover 只设 `color: text-bright`，没有背景 wash
+- **对照**：同套 `NavigationMenu.css:33` 确实设了 `background: var(--bauhaus-tint-soft)` —— 一对本该同皮的兄弟分了叉
+
+- [ ] 已修
+
+## A16. RIOT 的竖向 Separator 缺 `flex: 0 0` ✅
+
+- **严重度**：布局脆弱
+- **位置**：`src/kits/riot/components/Separator/Separator.css:10`
+- **spec**：`components.md §6.1 / §8` ——「放在会收缩的 flex 里要加 `flex: 0 0`」
+- **代码**：`.riot-separator--vertical { width: var(--riot-stroke); align-self: stretch; }` —— 无 `flex: 0 0`
+- **影响**：演示页把竖向 separator 摆在 `.riot-row`（flex）里，窄容器下会被压扁
+
+- [ ] 已修
+
+## A17. RIOT 把 `.riot-input__icon` 定义在 theme 层，并让别的组件借用 ✅
+
+- **严重度**：架构违反
+- **位置**：`src/kits/riot/theme/effects.css:433`；借用方 `Combobox.tsx:29`、`Autocomplete.tsx:27`
+- **spec**：`components.md §6` / kit-structure §6 ——「组件只用自己的类 + 主题原语」；`§4.3` 列的共享配方清单里**没有**输入框图标
+- **代码**：`.riot-input__icon`（一个组件块名）定义在 `theme/effects.css`，被 Combobox 和 Autocomplete 直接复用
+
+| kit | `input__icon` 定义在 | Combobox/Autocomplete 用什么 |
+|---|---|---|
+| nova / abyss / bauhaus | `Input.css` | 自己的类 |
+| brass | `Input.css` | `brass-autocomplete__icon` |
+| riot | **`theme/effects.css`** | **`riot-input__icon`** |
+
+- **为什么门禁没抓到**：`kit-structure §6` 把 `theme/effects.css` 整体当作主题层白名单，不看里面定义的是不是组件块名
+
+- [ ] 已修
+
+## A18. ABYSS 输入框聚焦档位低于 spec ✅
+
+- **严重度**：皮肤决定不符（轻）
+- **位置**：`src/kits/abyss/components/Input/Input.css:18`
+- **spec**：`components/theme/abyss.md:13` ——「焦点：把 `frame-ink` 直接点到实色 `glow` + `aura`；Switch 没有框，作为例外改用 `aura-strong`；**输入框同此处理**」
+- **代码**：`--abyss-frame-ink: var(--abyss-glow-a55)` + `filter: var(--abyss-glow-focus)` —— 不是实色 `glow`，也不是 `aura`
+- **对照**：同套 Button / Checkbox / Radio 确实是实色 `glow` + `aura`
+- **备注**：「输入框同此处理」指代不明（同前一分句还是同 Switch 例外？），裁决前先把这句话说清楚
+
+- [ ] 已修
+
+---
+
+# B. 改 spec —— 五套 kit 一致地偏离，说明 spec 写错了
+
+> 这四条 `kit-api` 横向 diff 永远绿，因为五套口径完全一致。按既定原则「已验收 kit 的未实现 spec 从句 = 文档 bug」，都该改 spec。
+
+## B1. AlertDialog 的 props 是 `actions`，不是 `footer` ✅
+
+- **位置**：`prompt/components/components.md:147`
+- **spec**：「**Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`」
+- **代码**：Dialog 和 Drawer 确实是 `footer`；**AlertDialog 五套全部叫 `actions`**
+- **佐证**：同一条 spec 自己的结构描述里就写着「actions 右对齐」
+- **建议**：spec 拆开写——Dialog / Drawer 用 `footer`，AlertDialog 用 `actions`
+
+- [ ] 已改
+
+## B2. Toast 没有 `swipeDirection` prop ✅
+
+- **位置**：`prompt/components/components.md:148`
+- **spec**：「**Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）」
+- **代码**：五套的 `ToastProviderProps` 都只有 `timeout·limit`；`swipeDirection="right"` **硬编码在 `Toast.Root` 上**
+- **建议**：要么从 spec 删掉这个 prop 并注明「滑动方向固定 right」，要么五套一起补上。前者成本低
+
+- [ ] 已改
+
+## B3. AlertDialog 没有右上角 Close ✅
+
+- **位置**：`prompt/components/components.md:147`
+- **spec**：三件套共用结构「`Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`」
+- **代码**：Dialog 和 Drawer 有右上角关闭钮；**AlertDialog 五套都没有**
+- **判断**：代码是对的——alert 的语义就是强制二选一，不该给用户一个「点叉逃走」的出口
+- **建议**：把 Close 从共用结构行里拆出去，只挂 Dialog / Drawer
+
+- [ ] 已改
+
+## B4. Input 的图标不是「绝对定位」 ✅
+
+- **位置**：`prompt/components/components.md:125`
+- **spec**：「结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，**图标在左侧绝对定位**、Control `flex:1`」
+- **代码**：只有 nova 是 `position: absolute`（`Input.css:63`）；abyss / brass / bauhaus / riot 四套都是 flex 子项
+- **判断**：图标怎么定位是**内部机制**，不是可观察 API，按「observable→unify，internal→theme freedom」该留给 theme
+- **建议**：spec 删掉「绝对定位」四个字，保留「图标在左侧」和「Control `flex:1`」
+
+- [ ] 已改
+
+---
+
+# C. 回写 spec —— 设计在代码里改过，spec 陈旧
+
+## C1 + C2. NOVA / ABYSS 的 `surface-popup` 已改成不透明 ✅
+
+- **位置**：`src/kits/nova/theme/tokens.css:5`、`src/kits/abyss/theme/tokens.css:8`
+- **spec**：`prompt/theme/nova.md:19` ——「`surface-popup .97` 是**几乎不透**的浮层底」；`prompt/theme/abyss.md:16` 同构
+- **代码**：`--nova-surface-popup: #070e18`、`--abyss-surface-popup: #09110f` —— 完全不透明，alpha = 1.0
+- **来历**：修浮层透底 bug 时把两套一起改实的，两份 theme 文档都没回写
+- **风险**：照 spec 从零重建会**复现已修的 bug**。这正是「设计活在代码里、spec 陈旧」的典型
+- **备注**：`theme-doc-sync` 门禁没抓到，因为它只核 `` `name #hex` `` 这种带完整名字的引用，`.97` 这种 alpha 描述不在它的检查面上
+
+- [ ] 已回写（nova）
+- [ ] 已回写（abyss）
+
+## C3. BRASS 的 `fw-600` 槽不存在 ✅
+
+- **位置**：`src/kits/brass/theme/tokens.css:129-130`
+- **spec**：`prompt/theme/brass.md:25` ——「字重 `fw-400 / 600 / 700`」
+- **代码**：只有 `--brass-fw-400` 和 `--brass-fw-700`，**无 `fw-600`**，也无任何消费者
+- **附带**：`typography.css:1` 的 `@import` 仍在拉 `Domine:wght@400;500;600;700` —— 500 和 600 两档字重白下载
+
+- [ ] 已回写
+
+## C4. BRASS 有第三条强调渐变，spec 只记了两条 ⚠️
+
+- **位置**：`src/kits/brass/theme/tokens.css:25`
+- **spec**：`prompt/theme/brass.md:15` ——「**两条**复用的强调渐变」（`accent-surface`、`accent-fill`）
+- **代码**：另有 `--brass-secondary-surface`（`180deg #7d6531→#5a461f→#382a13`），被 `Button.css:98` 的 secondary 变体消费
+
+- [ ] 已回写
+
+## C5. BRASS 的 `surface-raised` 用途记错 ⚠️
+
+- **位置**：`src/kits/brass/theme/tokens.css:50`
+- **spec**：`prompt/theme/brass.md:18` ——「**步进钮**的底部渐变取 `surface-raised`」
+- **代码**：NumberField 步进钮是 `background: transparent`（`NumberField.css:59`）；`surface-raised` 实际是 base/ghost Button（`Button.css:3,108`）与 Select（`Select.css:3`）的 plate-fill
+
+- [ ] 已回写
+
+## C6. BRASS 的拉丝竖纹混合模式不是 multiply ⚠️
+
+- **位置**：`src/kits/brass/theme/global.css:51`
+- **spec**：`prompt/theme/brass.md:45` ——「走 multiply 混合」
+- **代码**：根 `::before` 是 `mix-blend-mode: overlay`（`::after` 才是 overlay）
+
+- [ ] 已回写
+
+## C7. BRASS 的 `plate` 并不兼作页底渐变末端色 ⚠️
+
+- **位置**：`prompt/theme/brass.md:12`
+- **spec**：「`plate` 同时兼作整页页底渐变的末端色」
+- **代码**：整页竖直渐变是 `base → base-raised`，末端是 `base-raised`（`global.css:19`，且与同文件 `brass.md:43` 自相矛盾）；`plate` 只作面板渐变末端
+
+- [ ] 已回写
+
+## C8. BRASS 的 `.brass-plate` 有第 5 个输入变量 ⚠️
+
+- **位置**：`src/kits/brass/theme/effects.css:11`
+- **spec**：`prompt/theme/brass.md:32` 只列 4 个（`fill / bezel / round / bevel`），且把内缩钉死为 `2px`
+- **代码**：另有 `--brass-plate-edge`，被 `Checkbox.css:6` 覆盖为 `1px`
+
+- [ ] 已回写
+
+## C9. ABYSS 的 frame 原语有第 5 个输入变量 + 第 2 个滤镜 ⚠️
+
+- **位置**：`src/kits/abyss/theme/effects.css:20`、`src/kits/abyss/App.tsx:157`
+- **spec**：`prompt/theme/abyss.md:30` 逐字列了 4 个输入变量（`-fill / -ink / -round / -bevel`）；`:31` 只提 `#abyss-edge` 一个滤镜
+- **代码**：另有 `--abyss-frame-etch`（默认 `url(#abyss-edge)`，被 `Button.css:126` 覆盖）与 `#abyss-edge-soft` 滤镜（scale 2 vs 3.4 的柔化档）
+
+- [ ] 已回写
+
+## C10. ABYSS 的 `.abyss-eye` 类不存在 ✅
+
+- **位置**：`prompt/components/theme/abyss.md:16`
+- **spec**：「Switch 是一只眼睛：`.abyss-eye` 里含 sclera、iris、pupil、lid 几个 SVG」
+- **代码**：眼睛和四个部件**全部实现了**，但挂在 `.abyss-switch__thumb` 上，子部件是 `.abyss-switch__sclera / __iris / __pupil / __lid`。**`.abyss-eye` 全仓不存在**
+- **判定**：只是 spec 引了个错名字，实现没问题
+
+- [ ] 已回写
+
+## C11. RIOT 的 `--riot-surface-tilt` 不存在 ✅
+
+- **位置**：`prompt/theme/riot.md:33`
+- **spec**：「输入变量 `--riot-surface-fill / -border / -stroke / -tilt`」
+- **代码**：前三个都有 `surface-` 前缀；第四个 `.riot-surface` 读的是**没有前缀的** `--riot-tilt`（`effects.css:8`）
+- **备注**：这个命名不一致正是 A8 那条泄漏的成因——带前缀的变量不会被子孙的 `.riot-surface` 误读
+
+- [ ] 已回写
+
+## C12. RIOT 的 Toast 用的是 `--riot-toast-tilt` ✅
+
+- **位置**：`prompt/components/theme/riot.md:32`
+- **spec**：「Toast 锚在右下角乱堆：每条按各自 `--riot-tilt` 歪一个不同角度」
+- **代码**：`Toast.css:19-34` 用的是 `--riot-toast-tilt`（−3 / 2.5 / −1.5 / 3.5deg），不是 `--riot-tilt`
+
+- [ ] 已回写
+
+## C13. RIOT 的 tilt 实际幅度远小于 spec 声称 ✅
+
+- **位置**：`src/kits/riot/App.css:325-334`
+- **spec**：`prompt/theme/riot.md:31` ——「约 **±2°–6°**」
+- **代码**：全仓仅 4 处 `--riot-tilt` 赋值，全在面板网格：`−1.2° / 0.9° / −0.5° / 1.3°` —— 最大 1.3°，**全部小于 2°**
+- **备注**：Toast 的 `−3 / 2.5 / −1.5 / 3.5deg` 落在区间内，但那是另一个变量（见 C12）
+
+- [ ] 已回写
+
+## C14. RIOT 的半调网点不在 `body::before`、不走 screen 混合 ⚠️
+
+- **位置**：`src/kits/riot/theme/global.css:6-9`
+- **spec**：`prompt/theme/riot.md:43` ——「`body::before`：一层复印半调网点，叠一层 feTurbulence 噪粒做复印颗粒，混合 `screen`」
+- **代码**：网点（两层 radial-gradient）在 `body` 自身 background 上、无 screen 混合；`body::before`（`:18-27`）只有 feTurbulence 噪粒
+- **判定**：效果都在，层位与混合模式与描述不符
+
+- [ ] 已回写
+
+## C15. RIOT 的弹层其实没有投影 ✅
+
+- **位置**：`src/kits/riot/theme/effects.css:148`
+- **spec**：`prompt/theme/riot.md:35` ——「硬偏移实影 drop-shadow 挂在浮层自己身上（弹层、模态）…`--riot-overlay-shadow`，**默认取 `cast-clip`**」
+- **代码**：`.riot-popup { --riot-overlay-shadow: none }` 把默认值关掉了；Tooltip `:14`、Popover `:30`、PreviewCard `:17` 也各自置 `none`
+- **实际有影的**：Dialog / AlertDialog（`cast-modal`）、Select（`shadow-hard`）、Toast（`shadow-hard`）
+- **实际无影的**：Menu / Menubar / ContextMenu / Combobox / Autocomplete / Tooltip / Popover / PreviewCard —— 只有粗黑边
+
+- [ ] 已回写
+
+## C16. PRISM 与 RIOT 的 `::selection` 字色是 `on-warning` 不是 `ink` ✅
+
+- **位置**：`src/kits/bauhaus/theme/global.css:27`、`src/kits/riot/theme/global.css:40`
+- **spec**：两份 theme 文档（`bauhaus.md:45`、`riot.md:45`）都写「`warning` 黄底 + **`ink`** 字」
+- **代码**：两套都用 `--<kit>-on-warning`
+- **判定**：**代码是对的**——`on-warning` 正是为「压在荧光黄实填上」定义的反色前景档。两处值都与 `ink` 极接近（bauhaus `#16140f` vs `#141414`；riot `#17130d` vs `#0d0d0d`），所以肉眼看不出来。该改的是文档
+
+- [ ] 已回写（bauhaus）
+- [ ] 已回写（riot）
+
+---
+
+# D. spec 内部打架 —— 先裁决，再改一边
+
+## D1. RIOT 危险态「前景反白」与 DNA 的 `on-fill` 冲突 ✅
+
+- **两处 spec**：
+  - `prompt/theme/riot.md:15`：「反色前景：`on-fill #0d0d0d` **复印黑，压在橙、粉、绿、红这些实填上**」
+  - `prompt/components/theme/riot.md:12`：「危险态：`danger` 血红实填、**前景反白**」
+- **代码**：`Button.css:64` → `color: var(--riot-on-fill)`（复印黑），跟的是 DNA
+- **裁决点**：「反白」是指字面的白，还是泛指「反色前景（knockout）」？如果是前者，DNA 那行就得为 danger 单开一档；如果是后者，控件皮那句该改成「前景取 `on-fill`」
+- **备注**：其余四套各自有 danger 专属前景（nova `on-danger`、abyss `blood-text`、brass `text-bright`），只有 riot 复用通用 `on-fill`。所以这条**不是**代码 bug，但确实是五套里唯一没给 danger 单开前景档的
+
+- [ ] 已裁决
+
+## D2. PRISM 的 ScrollArea thumb「圆角」与 DNA 的 `r-control: 0` 冲突 ⚠️
+
+- **两处 spec**：
+  - `prompt/theme/bauhaus.md`（几何 DNA）：`r-control` 为 `0`，锐角矩形，不用圆角
+  - `prompt/components/theme/bauhaus.md:24`：「ScrollArea 自绘条：thumb 是实色 `primary` 蓝、**圆角**、填满条宽」
+- **代码**：`ScrollArea.css:26` → `border-radius: var(--bauhaus-r-control)` = `0`，跟的是 DNA
+- **判定**：代码没错，控件皮文档那个「圆角」是笔误
+
+- [ ] 已裁决
+
+---
+
+# E. 低优先 / 需渲染确认
+
+## E1. RIOT 组件里 8 处裸写旋转角度 ✅
+
+- **spec**：`prompt/theme/riot.md:31` ——「组件不裸写 radius 与角度」
+- **代码**：`Panel.css:12,17,39`、`Toast.css:39`、`Slider.css:18,54`、`Dialog.css:11`、`AlertDialog.css:11`
+- **可争论**：胶带 / 订书钉 / 图钉属于「母题装饰」，角度或可豁免；但 `Slider.css:54` 的 thumb（−6°）和 `Panel.css:39` 的 meta（2.5°）是控件部件，不是装饰。spec 没写豁免条款
+
+- [ ] 已处理
+
+## E2. RIOT 折叠内容缩进 40px，公式算出 42px ⚠️
+
+- **spec**：`components.md §6.1` ——「缩进量 = trigger 左内距 + marker 宽 + gap」= 16 + 14 + 12 = 42px
+- **代码**：`effects.css:275` → `calc(space-4 + space-6)` = 40px（把 marker + gap = 26 近似成了 `space-6` = 24）
+
+- [ ] 已处理
+
+## E3. BRASS 演示层裸写字号字重 ⚠️
+
+- **位置**：`src/kits/brass/App.css:26,168` —— `font-size: 20px`、`font-weight: 700`，而 `--brass-fs-20` / `--brass-fw-700` 都存在
+- **备注**：demo 层非强制 token 化，所以只是整洁性问题
+
+- [ ] 已处理
+
+## E4. PRISM 列表项 hover 不转 `bright` ⚠️
+
+- **spec**：`components/theme/bauhaus.md:10` ——「菜单触发器、列表项转 `bright`」
+- **代码**：`effects.css:106` 的 `.bauhaus-list-item[data-highlighted]` 只设 `background: tint-soft`，文字色不动
+- **备注**：`text` 与 `text-bright` 都是近黑，肉眼差别极小
+
+- [ ] 已处理
+
+## E5. PRISM 的 Progress / Meter 轨道没用 `track` token ⚠️
+
+- **spec**：`prompt/theme/bauhaus.md:19` ——「Progress、Meter 是锐角轨道（`track` 浅纸 + `ink` border）」
+- **代码**：两者经 `.bauhaus-surface` 填 `--bauhaus-surface`（`#f7f3e8`），不是 `--bauhaus-track`（`#e2dbc9`）。全套只有 ScrollArea 用 `track`
+- **置信度低**：两者都是浅纸色，可能是有意为之
+
+- [ ] 已处理
+
+## E6. PRISM 的 success toast 标记不是三原形 ⚠️
+
+- **spec**：`prompt/components/theme/bauhaus.md:22` ——「压一个反白的三原形 tone 图记」
+- **代码**：info→圆、warning→三角、danger→方，都是三原形；**success→对勾**，不是
+- **备注**：4 个 tone 只有 3 个三原形，可能是不得已的妥协
+
+- [ ] 已处理
+
+## E7. `kit-parity` 的 7 条 advisory gap ⚠️
+
+门禁 PASS 但列出的「某个 part 的结构性 reset 属性别的 kit 有、这套没有」：
+
+| part | 属性 | 有的 kit | 缺的 kit |
+|---|---|---|---|
+| `combobox__clear` | `flex` | abyss bauhaus nova riot | **brass** |
+| `drawer__body` | `padding` | abyss bauhaus nova | **riot** |
+| `navmenu__list` | `overflow-x` | abyss bauhaus brass nova | **riot** |
+| `numberfield__btn` | `flex` | abyss bauhaus brass riot | **nova** |
+| `panel__meta` | `flex` | bauhaus brass riot | **abyss** |
+| `radio__control` | `flex` | abyss bauhaus brass riot | **nova** |
+| `radio__control` | `padding` | abyss bauhaus brass nova | **riot** |
+
+其中 `drawer__body / padding` 已单列为 A4，`navmenu__list / overflow-x` 已单列为 A3。其余 5 条需逐条判是活 bug 还是合理分歧。
+
+- [ ] 已逐条判
+
+---
+
+# F. 门禁盲区 —— 建议补规则
+
+这次审计暴露的三类问题，现有 13 个门禁一个都抓不到。按「同一类 bug 不该犯第二次」的原则值得补：
+
+## F1. 「用了但没定义」的类 —— 对应 A5
+
+`kit-deadcode` 查的是「CSS 定义了但没人用」。反方向没人管：`.tsx` 挂上一个类，`.css` 里没有任何规则消费它，prop 就是死的。
+**检查**：抽出各组件 `.tsx` 里出现的所有 `<kit>-*` 与 `is-*` 类名，逐个确认至少有一条 CSS 规则匹配。
+
+## F2. hover 权重压过 open/selected —— 对应 A6、A7
+
+`kit-interact` 已有这条检查，但只覆盖分段控件（ToggleGroup / Toolbar）。
+**扩面**：所有同时存在 `:hover` 规则和 `[data-popup-open]` / `[data-active]` / `[data-checked]` / `[data-selected]` 规则的元素，静态比对两者特异度；hover 更高且两条规则声明了**相同属性**即 FAIL。这是纯 CSS 级联事实，不需要浏览器。
+
+## F3. 自定义属性继承导致 transform 二次叠加 —— 对应 A8
+
+一个原语类无条件读某个会继承的自定义属性来做 `transform`，嵌套时必然叠加。
+**检查**：沿祖先链累乘 transform 矩阵，断言同一面板内「控件」与「其 caption 标签」的屏幕累积角度一致。riot 现在是 2.6° vs 1.3°。
+
+## F4. 五套一致偏离 spec 的 prop —— 对应 B1、B2
+
+`kit-api` 做的是**跨 kit 横向 diff**，五套一起偏离 spec 时它恒绿。
+**补法**：把 `components.md §6.1` 的 props 清单机器可读化（每个组件一行），与各 kit 的 `interface` 逐字对拍。这条能同时守住 B 类和未来的 spec 漂移。
+
+---
+
+## 附：本次审计的执行方式
+
+- 10 个并行子 agent：5 套 kit × 2 层（主题视觉层 / 控件皮 + 演示页），每个 agent 拿到该层全部 spec 条目做双向核对
+- 8 个静态门禁全量跑通
+- 关键结论均由我复核：grep 定位字面量、读规则体判语义、A8 用 playwright-core 在 1440×950 的真实 Chrome 里沿祖先链累乘 transform 矩阵实测
+- 复核推翻了 agent 的 1 条误报（riot danger 按钮前景，实为两份 spec 打架，见 D1），修正了 1 条定级
+- 全程只读，`git status` 干净
