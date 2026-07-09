@@ -18,7 +18,7 @@
 - Progress 是黄铜灯丝填充 + 刻度记；不定态的滑块走 `left` 位移。
 - AlertDialog 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone 变；表面顶部加一道 tone 的径向光 20%，几何同 Dialog。
 - NavigationMenu 的触发器栏复用 Tabs 皮肤：渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
-- Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，左缘一道黄铜光束 + 一个齿轮图记；手机端横向撑满，边距 `space-3`；Dialog 标题配一个齿轮 cartouche 图记。
+- Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，tone 承载在 `--brass-toast-tone` 上，齿轮图记随之换色；手机端横向撑满，边距 `space-3`；Dialog 标题配一个齿轮 cartouche 图记。
 - Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。
 - ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显。
 - 招牌 SVG：Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是齿轮加字母组合。

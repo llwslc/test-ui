@@ -273,15 +273,25 @@
 
 - [x] 已修 —— `--riot-marker` → `--riot-tint`。`riot.md` 两处都说 tint（§1 分段控件与触发条、§2 Tabs），且 `.riot-seg__btn:hover` 本就用 tint；git log 显示是初版写错、非后来的有意调整
 
-## A12. BRASS 的 Toast 没有左缘黄铜光束 ✅
+## A12. ~~BRASS 的 Toast 没有左缘黄铜光束~~ —— **代码为准，删 spec 从句** ✅
 
-- **严重度**：皮肤决定未实现
-- **位置**：`src/kits/brass/components/Toast/`
-- **spec**：`components/theme/brass.md:21` ——「Toast：锚在右下角、向上堆叠，**左缘一道黄铜光束** + 一个齿轮图记」
-- **代码**：齿轮图记有，光束**没有**——`.brass-toast` 无 `__beam` 元素、无 `::before`/`::after` 光条，走的是 `.brass-plate` 对称四边框
-- **对照**：nova `Toast.tsx:44` + `Toast.css:69` 有 `nova-toast__beam`；abyss `Toast.tsx:56` + `Toast.css:75` 有 `abyss-toast__beam`
+- **spec（旧）**：`components/theme/brass.md:21`「Toast：…，左缘一道黄铜光束 + 一个齿轮图记」
+- **`git log -S` 查证**（用户提问「是不是之前左侧删了」）——**是被删的，不是从未做过**：
 
-- [ ] 已修
+| 日期 | commit | 事件 |
+|---|---|---|
+| 06-08 | — | nova / abyss 加入 `__beam`（`<span>`，3px 左缘条 + 辉光） |
+| 06-15 | `aaf9571` | brass 皮肤**设计稿**先行写入「左缘一道黄铜光束 + 齿轮图记」 |
+| — | `621798f` | brass kit 落地，实现为 `.brass-toast::after`：2px、`--brass-toast-tone` 着色 + `glow-text` |
+| 06-18 | `0c75a1a` | **删掉它**，spec 未同步 |
+
+- **删除时给的两条理由，一真一假**：
+  1. **真** ——「clashed with the plate's beveled rounded corners」。渲染复原确认：nova 的框只有 1px 切角线，光束跳得出来；brass 的 2px 条紧贴厚黄铜 bevel 边内侧，局促。
+  2. **假** ——「nova/abyss have no such bar」。两套早在 06-08 就有 beam，比这次删除早十天。作者只搜了 `::after` 形态，没发现兄弟们的 beam 是 `<span class="__beam">` 元素。（审计初稿里我犯了同一个错，反向漏搜 `::after`。）
+- **spec 自己也从没对上过**：文中写「**黄铜**光束」，实现用的是 `--brass-toast-tone`（红/黄/绿语义色）。按字面渲染「黄铜色光束贴黄铜 bevel 边」——几乎完全看不见，等于没做。
+
+- [x] 已删（用户裁决：代码为准）—— `brass.md:21` 去掉「左缘一道黄铜光束 +」。同时**回写**被删后从未记录的事实：`--brass-toast-tone` 的唯一消费者是齿轮图记的颜色，即齿轮独自承载 tone（nova 写了这条，brass 一直没写）
+- **代价（已知并接受）**：brass 从此在「左缘光束」这条语汇上与 nova / abyss 分家
 
 ## A13. BRASS 的 Avatar 兜底没有齿轮 ✅
 
