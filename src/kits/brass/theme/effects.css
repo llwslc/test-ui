@@ -66,6 +66,7 @@
   display: none;
 }
 .brass-list-item {
+  min-height: var(--brass-list-item-h);
   display: flex;
   align-items: center;
   gap: var(--brass-space-2);

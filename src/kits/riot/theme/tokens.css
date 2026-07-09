@@ -135,7 +135,8 @@
   --riot-scrollbar: 12px;
   --riot-scrollarea-h: 200px;
   --riot-popup-w: 232px;
-  --riot-popup-h: calc(var(--riot-control-h) * 7);
+  --riot-list-item-h: 31px;
+  --riot-popup-h: calc(var(--riot-list-item-h) * 7);
   --riot-tooltip-w: 240px;
   --riot-popover-w: 288px;
   --riot-preview-w: 320px;

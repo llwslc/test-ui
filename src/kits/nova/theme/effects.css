@@ -300,6 +300,7 @@
 }
 
 .nova-list-item {
+  min-height: var(--nova-list-item-h);
   position: relative;
   z-index: 1;
   display: flex;

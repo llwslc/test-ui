@@ -94,6 +94,7 @@
   min-width: var(--bauhaus-popup-w);
 }
 .bauhaus-list-item {
+  min-height: var(--bauhaus-list-item-h);
   display: flex;
   gap: var(--bauhaus-space-2);
   align-items: center;

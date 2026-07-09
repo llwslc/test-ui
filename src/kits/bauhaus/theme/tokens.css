@@ -124,7 +124,8 @@
   --bauhaus-scrollbar: 12px;
   --bauhaus-scrollarea-h: 200px;
   --bauhaus-popup-w: 224px;
-  --bauhaus-popup-h: calc(var(--bauhaus-control-h) * 7);
+  --bauhaus-list-item-h: 38px;
+  --bauhaus-popup-h: calc(var(--bauhaus-list-item-h) * 7);
   --bauhaus-tooltip-w: 240px;
   --bauhaus-popover-w: 288px;
   --bauhaus-preview-w: 320px;

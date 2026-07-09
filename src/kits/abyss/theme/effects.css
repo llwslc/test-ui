@@ -404,6 +404,7 @@
 }
 
 .abyss-list-item {
+  min-height: var(--abyss-list-item-h);
   position: relative;
   display: flex;
   align-items: center;

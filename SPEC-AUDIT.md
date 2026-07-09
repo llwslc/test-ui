@@ -717,6 +717,17 @@
 
 - [ ] 已处理
 
+## E10. `popup-h = control-h × 7` 是拿不相干的 token 当代理 ✅（追问 A2 的值时发现）—— 已修
+
+- **spec（旧）**：`§4.2`「`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`」
+- **问题**：`control-h` 是**控件高**（Button / Input / NumberField / Select 触发器消费），跟列表行高毫无关系。列表行高 = `padding: space-2 space-3` + 行高，没有 token。公式假定「一行 = 一个控件高」，**只有 nova 蒙对**
+- **实测（修前）**：滚动前可见行数 nova 6.93 / abyss 7.27 / brass 8.06 / bauhaus 7.37 / **riot 9.48**
+- **判定**：像素值不该钉死（行高各异，钉 280px 只会让行数更乱：7.37 / 8.48 / 9.03）。**该钉的是可见行数 7**。`×7` 是一个共享**机制**伪装成一致性 —— 正是「不要拿机制宣称一致，要 diff 渲染像素」那条规矩说的情形
+
+- [x] 已修 —— 五套各加 footprint token `--<kit>-list-item-h`（实测行高：nova 39 / abyss 39 / brass 33 / bauhaus 38 / riot 31），`popup-h` 改 `calc(var(--<kit>-list-item-h) * 7)`，并把行高锁在 `.<kit>-list-item` 的 `min-height` 上。`§4.2` 同步改写
+- **一个坑**：nova 的自然行高是 **38.391px**（`line-height: 22.4px` + 16 padding），`min-height` 是**地板**压不住它，token 取 38 时仍是 6.93 行；改取 39 才咬住。其余四套自然行高恰好等于 token
+- **新增门禁**：`kit-equality` 第三项检查 —— 打开 Select，用「解析后的 `popup-h` ÷ 渲染行高」断言 `== 7`（容差 0.02）。已做 fail-on-broken 反证：把 riot 的 `popup-h` 改回旧公式，门禁 exit=1 且只点名 riot（`shows 9.484 rows`）
+
 ## E9. 弹层的框厚没被算进 `available-height` 夹取 ✅（修 A2 时发现）
 
 - **spec**：`components.md §4.2` 只说「高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上」

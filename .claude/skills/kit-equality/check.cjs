@@ -50,11 +50,30 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   await page.goto(URL, { waitUntil: 'networkidle' });
   const kits = await G.kitsOf(page);
 
-  const data = {}, sigs = {};
+  const data = {}, sigs = {}, rowsByKit = {};
   for (const kit of kits) {
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForTimeout(250);
+
+    await page.evaluate(() => document.getElementById('select').scrollIntoView({ block: 'center' }));
+    await page.waitForTimeout(200);
+    await page.click(`#select .${kit}-select__trigger`);
+    await page.waitForTimeout(400);
+    rowsByKit[kit] = await page.evaluate((k) => {
+      const it = [...document.querySelectorAll(`.${k}-list-item`)].filter((e) => e.offsetHeight > 0);
+      if (it.length < 2) return null;
+      const rowH = it[1].getBoundingClientRect().top - it[0].getBoundingClientRect().top;
+      const probe = document.createElement('div');
+      probe.style.cssText = `position:absolute;visibility:hidden;height:var(--${k}-popup-h)`;
+      document.body.appendChild(probe);
+      const popupH = probe.getBoundingClientRect().height;
+      probe.remove();
+      return rowH > 0 ? +(popupH / rowH).toFixed(3) : null;
+    }, kit);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(200);
+
     const r = await page.evaluate(({ kit, TOKEN_DIMS, GEO }) => {
       const out = {};
       const root = getComputedStyle(document.documentElement);
@@ -91,8 +110,17 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   }
   console.log(pLines.length ? pLines.join('\n') : '  -> clean');
 
+  console.log('\n## 弹层滚动前露出 7 行 (components.md §4.2: popup-h = list-item-h × 7)');
+  const rLines = [];
+  for (const kit of kits) {
+    const rows = rowsByKit[kit];
+    if (rows == null) { fail = 1; rLines.push(`  FAIL ${kit} — could not measure (select popup did not open, or <2 list items)`); continue; }
+    if (Math.abs(rows - 7) > 0.02) { fail = 1; rLines.push(`  FAIL ${kit} shows ${rows} rows, not 7 — popup-h must be calc(var(--${kit}-list-item-h) * 7) and .${kit}-list-item must honour that min-height`); }
+  }
+  console.log(rLines.length ? rLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${rowsByKit[k]}`).join(' ')})`);
+
   console.log(`\nRESULT: ${fail
-    ? 'FAIL — a pinned cross-kit value diverged (各 kit 同值 in components.md/app.md, or the 面板清单). Write the same literal / manifest in every kit.'
-    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单)'}`);
+    ? 'FAIL — a pinned cross-kit value diverged (各 kit 同值 in components.md/app.md, the 面板清单, or the 7-row popup height). Write the same literal / manifest in every kit.'
+    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单 + every popup shows 7 rows)'}`);
   process.exit(fail);
 })();

@@ -1,6 +1,6 @@
 ---
 name: kit-equality
-description: Cross-kit pinned-value conformance, one browser pass, two checks — (1) the 各 kit 同值 numbers (z-layer ladder, modal/drawer widths + viewport caps, NavigationMenu column, shell-frame geometry from app.md) are IDENTICAL across all kits, and (2) every kit's rendered sidebar matches the canonical 面板清单 pinned in prompt/app/app.md. There is no src/shared — each kit writes its own literals — so this gate is what keeps them from drifting. Run after accepting or QAing a kit. (Merges the former kit-shell-tokens + kit-panels gates.)
+description: Cross-kit pinned-value conformance, one browser pass, three checks — (1) the 各 kit 同值 numbers (z-layer ladder, modal/drawer widths + viewport caps, NavigationMenu column, shell-frame geometry from app.md) are IDENTICAL across all kits, (2) every kit's rendered sidebar matches the canonical 面板清单 pinned in prompt/app/app.md, and (3) every kit's anchored-popup list shows exactly 7 rows before scrolling — the invariant is the ROW COUNT, not the pixel height, so the gate opens a Select and divides the resolved popup-h by the rendered row height (a kit whose list-item-h drifts from its real row height silently shows 8 or 9 rows and every static gate stays green). There is no src/shared — each kit writes its own literals — so this gate is what keeps them from drifting. Run after accepting or QAing a kit. (Merges the former kit-shell-tokens + kit-panels gates.)
 ---
 
 # kit-equality

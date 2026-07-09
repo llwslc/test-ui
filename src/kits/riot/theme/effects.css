@@ -160,6 +160,7 @@
   min-width: var(--riot-popup-w);
 }
 .riot-list-item {
+  min-height: var(--riot-list-item-h);
   display: flex;
   gap: var(--riot-space-2);
   align-items: center;

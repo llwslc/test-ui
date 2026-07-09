@@ -152,7 +152,8 @@
   --brass-scrollbar: 11px;
   --brass-scrollarea-h: 200px;
   --brass-popup-w: 220px;
-  --brass-popup-h: calc(var(--brass-control-h) * 7);
+  --brass-list-item-h: 33px;
+  --brass-popup-h: calc(var(--brass-list-item-h) * 7);
   --brass-tooltip-w: 240px;
   --brass-overlay-gap: 8px;
   --brass-popover-w: 284px;
