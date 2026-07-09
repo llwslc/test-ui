@@ -33,13 +33,13 @@
 
 | 类 | 条数 | 集中在 |
 |---|---|---|
-| A 改代码 | 18 | riot 9 条、brass 3 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
+| A 改代码 | 19 | riot 9 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
-| C 回写 spec | 16 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 1 条 |
+| C 回写 spec | 17 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 2 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
 | E 低优先 | 7 | — |
 
-**4 条硬契约违反全部集中在 RIOT**（A1–A4），另外四套在这些点上都做对了。
+**契约级违反**：riot 占 4 条（A1–A4，另外四套在这些点上都做对了），brass 1 条（A19 骨架少一层）。
 
 ---
 
@@ -49,10 +49,34 @@
 
 - **严重度**：契约违反（跨 kit 同值）
 - **位置**：`src/kits/riot/components/NavigationMenu/NavigationMenu.css:61,65`
-- **spec**：`prompt/components/components.md:146` ——「桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`」
+- **spec**：`prompt/components/components.md:146` ——「**桌面**下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`」
 - **代码**：`.riot-navmenu__content { width: var(--riot-navmenu-col-w) }` + `.riot-navmenu__grid { display: flex; flex-direction: column }` —— 列宽值取对了，**列数是 1 不是 2**
 - **对照**：nova `:119`、abyss `:126`、brass `:99`、bauhaus `:93` 四套全部 `repeat(2, minmax(…, 1fr))`
 - **影响**：riot 的导航下拉比其余四套窄一半、长一倍
+
+**关于手机态**（易混，先说清楚）：
+
+- spec 这句只钉了**桌面**。手机态的下拉网格 spec 里没写 —— 见 C17。
+- `components.md:174`（§8）那条「NavMenu **横向滚动**不换行」管的是**触发器那一排 `__list`**，不是下拉里的链接网格 `__grid`。同一个组件的两个不同元素，别混。riot 在 `__list` 上的违反单列为 A3。
+- riot 是**所有宽度**下都单列，桌面也是。它的 `@media (max-width: 768px)` 段里只有 `.riot-navmenu__list { flex-wrap: wrap }`，对下拉网格**一条规则都没有** —— 因为本来就是单列，不需要收。所以 A1 与手机态无关，成立。
+
+- [ ] 已修
+
+## A19. BRASS 的 NavigationMenu 少了 `__grid` 这一层 ✅
+
+- **严重度**：骨架违反（跨 kit 必须一致的四项之一）
+- **位置**：`src/kits/brass/components/NavigationMenu/NavigationMenu.tsx:36`
+- **spec**：`components.md:146` ——「结构 `List > Item[Trigger(chevron 打开转 180°) + Content > **grid** > Link]`」；`:163` 另要求「`__content` 用**定宽**（列宽 token）」，即 `__content` 管宽度、`__grid` 管网格
+- **代码**：brass 没有 `__grid` 元素，链接是 `__content` 的直接子节点；两职责合并挂在 `__content` 上（`NavigationMenu.css:97` 同时有 `display: grid` 和 `width: var(--brass-navmenu-w)`）
+
+| kit | Content 下的网格层 | 桌面 2 列挂在 |
+|---|---|---|
+| nova / abyss / riot | `<ul class="__grid">` | `__grid` |
+| bauhaus | `<div class="__grid">` | `__grid` |
+| brass | **无** | **`__content`** |
+
+- **影响**：渲染等价，无可见缺陷。但 `§6.1` 把「骨架」列为跨 kit 必须逐字一致的四项之一，且 `:163` 的 morph 要求 `__content` 定宽 —— brass 让同一个元素既定宽又当网格容器
+- **为什么门禁没抓到**：`kit-naming` 只核**块类**跨 kit 一致，`kit-structure §5` 只核 Base UI 接线；子部件层级缺失没人管
 
 - [ ] 已修
 
@@ -455,6 +479,26 @@
 - [ ] 已回写（bauhaus）
 - [ ] 已回写（riot）
 
+## C17. NavigationMenu 下拉的**手机态**在 spec 里完全没定义 ✅
+
+- **位置**：`prompt/components/components.md:146`
+- **spec**：只有一句「**桌面**下拉是两列网格…」。`≤768` 时下拉网格怎么办，`components.md` 和 `app.md` 都**只字未提**
+- **注意别混**：`components.md:174`（§8）的「NavMenu 横向滚动不换行」管的是**触发器那一排 `__list`**；`app.md:143` 的「隐藏顶部 NavMenu」管的是**顶栏主导航**。下拉里的链接网格 `__grid` 不在任何一条里
+- **代码**：四套 kit 一致地在 `@media (max-width: 768px)` 里把下拉收成单列 —— 这是**约定俗成，spec 无据**
+
+| kit | 手机态下拉规则 |
+|---|---|
+| nova `:184` | `.nova-navmenu__grid { grid-template-columns: 1fr }` |
+| abyss `:203` | `.abyss-navmenu__grid { grid-template-columns: 1fr }` |
+| bauhaus `:139` | `.bauhaus-navmenu__grid { grid-template-columns: 1fr }` |
+| brass `:154` | `.brass-navmenu__content { grid-template-columns: 1fr; width: min(--brass-navmenu-w, calc(100vw - space-8)) }` |
+| riot | **无规则**（桌面就已是单列，见 A1） |
+
+- **风险**：照 spec 从零建一套新 kit，手机态下拉会保持两列 —— 390px 宽屏上塞两个 210px 列必然溢出
+- **建议**：在 `:146` 补一句「`≤768` 收成单列」；brass 那条额外的 `width: min(…, calc(100vw - …))` 视口夹取是否要一起钉成同值，需裁决
+
+- [ ] 已回写
+
 ---
 
 # D. spec 内部打架 —— 先裁决，再改一边
@@ -573,6 +617,16 @@
 
 `kit-api` 做的是**跨 kit 横向 diff**，五套一起偏离 spec 时它恒绿。
 **补法**：把 `components.md §6.1` 的 props 清单机器可读化（每个组件一行），与各 kit 的 `interface` 逐字对拍。这条能同时守住 B 类和未来的 spec 漂移。
+
+## F5. 子部件层级缺失 —— 对应 A19
+
+`kit-naming` 核的是**块类**跨 kit 一致（`navmenu` 在五套里都叫 `navmenu`），`kit-structure §5` 核的是 Base UI 接线。**中间那层 `__part` 骨架有没有少一层，没人管**——brass 的 `__grid` 整层不存在，五个门禁一个都没响。
+**检查**：对 `components.md §6.1` 里写出骨架的组件，把骨架里点名的 `__part` 抽成清单，断言每套 kit 的 `.tsx` 都渲染出这些层。
+
+## F6. spec 只钉桌面、不钉手机 —— 对应 C17
+
+`components.md` 有多处只描述了 `>768` 的形态（如 NavMenu 下拉两列），手机态靠各 kit 自觉。四套碰巧一致，是运气不是契约。
+**检查**：凡 spec 里出现「桌面」「PC」限定词的条目，都要求配一条 `≤768` 的说明；缺则 lint 报警。这条属于 `prompt-lint` 的范畴，不是 kit 门禁。
 
 ---
 
