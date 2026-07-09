@@ -122,9 +122,22 @@
 - **spec**：`components.md §4.2` ——「高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上」
 - **代码**：`max-height: var(--riot-popup-h)` —— 全仓 `--available-height` 命中 4 次，riot **0 次**
 - **对照**：nova `:79`、abyss `:115`、brass `:73`、bauhaus `:30` 都写了 `min(var(--available-height), …)`
-- **影响**：Select / Menu / Menubar / ContextMenu 的弹层靠近视口底边时会撑出屏幕，而不是收高转滚动
+- **影响**：Select / Menu / Menubar / ContextMenu / Combobox / Autocomplete 的弹层不看屏幕还剩多少，一律撑到 `popup-h`（riot = `42 × 7 = 294px`）
 
-- [ ] 已修
+**复现**（1280 宽、窗高逐档压矮，滚到 `#select` 面板点开第一个 Select）：
+
+| 窗高 | kit | `--available-height` | viewport `max-height` | 弹层顶 | 首项被切 |
+|---|---|---|---|---|---|
+| 340 | nova | 290 | 266（`popup-h` 咬合） | +22 | 否 |
+| 340 | **riot** | 279 | **294（写死）** | **−23** | **是，整条切掉** |
+| 300 | riot | 239 | 294 | −63 | 是 |
+| 260 | riot | 199 | 294 | −103 | 是 |
+| 220 | riot | 159 | 294 | −143 | 是 |
+
+`--available-height` 是 Base UI 挂在 Positioner 上的变量——触发器到视口边缘还剩多少空间。riot 无视它，弹层被 Base UI 往上顶，**顶部越出屏幕**；列表虽然在 294px 的盒子里能滚，但盒子本身有一截在屏幕上方，**那截内容永远滚不到**。窗高 340 时首项 `Hairline` 只剩半截。
+
+- [x] 已修 —— `ScrollArea.css:5` 一行：`max-height: var(--riot-popup-h)` → `min(var(--available-height), var(--riot-popup-h))`。同条件复测：viewport `max-height` 随 `available-height` 收成 278.7 / 238.7 / 198.7 / 158.7，首项 `Hairline` 完整可见
+- **残留（非 A2，见 E9）**：修后 riot 首项仍被切 1px。这是弹层自身框厚（`space-1` 内衬 + `stroke-bold` 3px 边 = 7px）没被算进夹取，五套共有，程度随框厚递增
 
 ## A3. RIOT 的 NavMenu 手机态换行、没有横向滚动 ✅
 
@@ -703,6 +716,23 @@
 - **备注**：4 个 tone 只有 3 个三原形，可能是不得已的妥协
 
 - [ ] 已处理
+
+## E9. 弹层的框厚没被算进 `available-height` 夹取 ✅（修 A2 时发现）
+
+- **spec**：`components.md §4.2` 只说「高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上」
+- **代码**：五套照做。但 `--available-height` 是留给**整个弹层**的空间，夹取却只作用在**内层 viewport** 上；弹层自己的内衬 + 边框（框厚）没被扣除，于是弹层总高 = 夹取值 + 2×框厚 > 可用空间，被 Base UI 往上顶
+- **实测**（窗高 260，`#select` 打开）：
+
+| kit | 框厚 | 弹层顶 | 首项顶 | 首项被切 |
+|---|---|---|---|---|
+| nova / abyss | 4px | −2 | +2 | 否 |
+| brass / bauhaus | 6px | −6 | 0 | 否 |
+| riot | **7px** | −8 | **−1** | **1px** |
+
+- **判定**：五套共有，程度随框厚递增。框最厚的 riot 恰好越线，首项被切 1px（是项的盒边，不是文字）。四套的弹层顶边框同样在屏幕外，只是没切到内容
+- **可选修法**：夹取改为 `min(calc(var(--available-height) - 2 * <框厚>), popup-h)`——但这要改 `§4.2` 的公式并让五套同步，属 spec 级改动，不该只动 riot（那会让它往另一个方向偏）
+
+- [ ] 已裁决
 
 ## E8. NOVA / ABYSS 的 Menubar、ToggleGroup 没有手机横滚兜底 ✅（修 A20 时发现）
 

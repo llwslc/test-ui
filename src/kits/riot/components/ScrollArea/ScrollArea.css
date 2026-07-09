@@ -2,7 +2,7 @@
   position: relative;
 }
 .riot-scrollarea--popup .riot-scrollarea__viewport {
-  max-height: var(--riot-popup-h);
+  max-height: min(var(--available-height), var(--riot-popup-h));
   overscroll-behavior: contain;
 }
 .riot-scrollarea__viewport {
