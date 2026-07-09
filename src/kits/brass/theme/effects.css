@@ -281,6 +281,10 @@
     overflow-x: auto;
     flex-wrap: nowrap;
   }
+  .brass-seg--wrap {
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
   .brass-seg__btn {
     flex: 0 0 auto;
   }

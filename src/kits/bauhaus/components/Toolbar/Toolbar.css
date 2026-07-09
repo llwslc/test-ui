@@ -37,9 +37,3 @@
   outline: none;
   color: var(--bauhaus-primary);
 }
-
-@media (max-width: 768px) {
-  .bauhaus-toolbar__sep {
-    display: none;
-  }
-}

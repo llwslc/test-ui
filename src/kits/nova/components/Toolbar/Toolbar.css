@@ -93,9 +93,3 @@
   height: auto;
   margin: 3px var(--nova-space-1);
 }
-
-@media (max-width: 768px) {
-  .nova-toolbar__sep {
-    display: none;
-  }
-}

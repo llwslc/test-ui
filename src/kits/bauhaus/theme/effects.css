@@ -72,6 +72,9 @@
     max-width: 100%;
     overflow-x: auto;
   }
+  .bauhaus-seg--wrap {
+    overflow-x: visible;
+  }
 }
 
 .bauhaus-popup {

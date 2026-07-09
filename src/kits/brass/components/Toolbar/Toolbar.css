@@ -36,13 +36,3 @@
   outline: none;
   color: var(--brass-primary);
 }
-
-@media (max-width: 768px) {
-  .brass-seg.brass-toolbar {
-    flex-wrap: wrap;
-    overflow-x: visible;
-  }
-  .brass-toolbar__sep {
-    display: none;
-  }
-}

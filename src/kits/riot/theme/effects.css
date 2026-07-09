@@ -140,6 +140,9 @@
     overflow-x: auto;
     overflow-y: clip;
   }
+  .riot-seg--wrap {
+    overflow: visible;
+  }
 }
 
 .riot-popup {

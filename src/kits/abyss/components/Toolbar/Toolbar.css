@@ -70,9 +70,3 @@
   min-height: var(--abyss-toolbar-sep-min-h);
   margin: 4px var(--abyss-space-1);
 }
-
-@media (max-width: 768px) {
-  .abyss-toolbar__sep {
-    display: none;
-  }
-}

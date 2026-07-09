@@ -143,9 +143,9 @@
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
-- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`；下拉与触发器左对齐（Positioner `align="start"`）。
+- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`，`≤768` 收成单列；下拉与触发器左对齐（Positioner `align="start"`）。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位，body 留出焦点提示的余量；Drawer 的 body 弹性撑满并自行滚动，actions 常驻底边。
-- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Portal > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Action? + Close]`，`add({ actionProps })` 传入动作时渲染 `Action`、复用本套 Button。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样，由 theme 定。**
+- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Portal > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Action? + Close]`，`add({ actionProps })` 传入动作时渲染 `Action`、复用本套 Button；Viewport 在 `≤768` 横向撑满。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样，由 theme 定。**
 
 **展示**
 
@@ -171,6 +171,6 @@
 
 - inline-flex 的分段控件 ToggleGroup 加 `width: fit-content`；1px 的细分隔条放在会收缩的 flex 容器里要加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；`<fieldset>` 也要加 `min-width: 0`；跨列的子项用 `grid-column: 1 / -1`、不用定值 `span N`。
 - 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea、Accordion 这类输入控件。
-- **唯一断点 `768px`**，不另设别的断点。`≤768` 时组件走手机态——Tabs、NavMenu **横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。
+- **唯一断点 `768px`**，不另设别的断点。`≤768` 时组件走手机态——Tabs、NavMenu 的触发器排**横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
 - **滚动容器里，固定装饰挂容器自身的盒子**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上。随动装饰要**覆盖**这条固定装饰的（如选中指示压在底轨上换色），改双盒：滚动容器内放 `width: max-content; min-width: 100%` 的内层盒，线挂内层盒的 `border`，指示条同层压线上。

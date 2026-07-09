@@ -21,9 +21,3 @@
   background: var(--riot-ink);
   color: var(--riot-primary);
 }
-@media (max-width: 768px) {
-  .riot-toolbar {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-}

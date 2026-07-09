@@ -49,18 +49,21 @@
 其余 32 个控件没有 `@media`，也**不需要**——它们靠 `min(值, 100%)`、`--anchor-width`、`width: 100%`、`flex-wrap` 这类内在响应式。
 已实测确认：`kit-visual`（含 390px 手机宽度）与 `kit-interact`（触屏打开、弹层超宽、横向滚动）在五套上**全部 PASS，无几何缺陷**。所以这 32 个「没有手机 spec」不是缺失。
 
-| 控件 | 手机行为 | spec 出处 | 五套实现 | 问题 |
-|---|---|---|---|---|
-| **Tabs** | 横滚不换行 | `components.md:136` `:174` | 5/5 ✅ | — |
-| **NavigationMenu**（触发器排 `__list`） | 横滚不换行 | `components.md:174` | 4/5 | riot `flex-wrap: wrap` → **A3** |
-| **NavigationMenu**（下拉网格 `__grid`） | 收成单列 | **无** | 4/5 一致 | spec 缺口 → **C17** |
-| **Toolbar**（换行） | 换行不横滚 | `components.md:154` `:174` | 5/5 基样式 ✅ | riot 另加 `overflow-x:auto` → **A20** |
-| **Toolbar**（分隔条） | 隐藏 | **无** | 4/5 | spec 缺口 + riot 分歧 → **C19** |
-| **OtpField** | 单元收缩 | `app.md:143` | 5/5 ✅ | — |
-| **Toast** | 横向撑满 | 仅 `components/theme/nova.md:21` | 5/5 | spec 缺口（其余 4 套无据）→ **C18** |
-| 其余 31 个控件 | 无需适配 | — | 无 `@media` | 实测无缺陷 |
+| 控件 | 手机行为 | spec 出处 | 修前 | 问题 | 现状 |
+|---|---|---|---|---|---|
+| **Tabs** | 横滚不换行 | `components.md:136` `:174` | 5/5 ✅ | — | ✅ |
+| **NavigationMenu**（触发器排 `__list`） | 横滚不换行 | `components.md:174` | 4/5 | riot `flex-wrap: wrap` → **A3** | ✅ 已修 |
+| **NavigationMenu**（下拉网格 `__grid`） | 收成单列 | 无 → 已补 `:146` | 4/5 一致 | spec 缺口 → **C17** | ✅ 已回写 |
+| **Toolbar**（换行） | 换行不横滚 | `components.md:154` `:174` | 3/5 计算值为 `auto` | `.seg` 共享配方漏进 Toolbar → **A20** | ✅ 已修 |
+| **Toolbar**（分隔条） | 保留 | 无（沉默即正确） | 4 藏 / riot 不藏 | 跨 kit 不一致 → **C19** | ✅ 已统一为保留 |
+| **OtpField** | 单元收缩 | `app.md:143` | 5/5 ✅ | — | ✅ |
+| **Toast** | 横向撑满 | 仅 nova 皮文档 → 已上提 `:148` | 5/5 | spec 缺口 → **C18** | ✅ 已回写 |
+| **Menubar / ToggleGroup** | 横滚兜底 | **无** | 3/5 有 | 跨 kit 能力差 → **E8** | ⬜ 未处理 |
+| 其余 29 个控件 | 无需适配 | — | 无 `@media` | 实测无缺陷 | ✅ |
 
 外壳层（顶栏 / 侧栏 / 面板网格 / hero / logo 副标 / 时钟）的手机态由 `app.md:143` 统一钉死，五套都实现了，不在此表。
+
+**修复后 390px 实测**（真实 Chrome，`offsetTop` 布局值计行数以避开 riot 的 `--riot-tilt` 旋转干扰）：五套 NavMenu 触发器排均单行 + `overflow-x: auto` + 滚动条隐藏；五套 Toolbar 均 `overflow: visible`、换行 2–3 行、无横滚；五套分隔条 `2/2` 可见。探针已做 fail-on-broken 反证（反向编辑 riot 后能且仅能点名 riot）。
 
 ---
 
@@ -103,7 +106,7 @@
 - **对照**：其余四套均为 `overflow-x: auto` + `flex-wrap: nowrap`
 - **备注**：同一条 spec 里 Toolbar 才是换行，riot 把两者搞反了
 
-- [ ] 已修
+- [x] 已修 —— `NavigationMenu.css` 手机段改为 `overflow-x: auto` + `flex-wrap: nowrap` + `scrollbar-width: none`，子项 `flex: 0 0 auto`。390px 实测：单行、可横滚、滚动条隐藏
 
 ## A4. RIOT 的 Drawer body 没有 padding，焦点提示会被裁掉 ✅
 
@@ -318,16 +321,27 @@
 
 - [ ] 已修
 
-## A20. RIOT 的 Toolbar 手机态横滚，spec 明写不许 ✅
+## A20. Toolbar 手机态横滚，spec 明写不许 —— 根因在共享的 `.<kit>-seg` ✅
 
 - **严重度**：契约违反（响应式）
-- **位置**：`src/kits/riot/components/Toolbar/Toolbar.css` 的 `@media (max-width: 768px)`
 - **spec**：`components.md:154` ——「Toolbar：… 手机端**换行**」；`components.md:174` ——「Tabs、NavMenu **横向滚动**不换行；Toolbar **换行**不横滚」
-- **代码**：`.riot-toolbar { max-width: 100%; overflow-x: auto; }`
-- **对照**：五套基样式都有 `flex-wrap: wrap`（这部分都对）；brass 的手机态还特地写了 `overflow-x: visible` 把 `.brass-seg` 继承来的横滚关掉。**只有 riot 反向加了 `overflow-x: auto`**
-- **影响**：基样式的 `wrap` 已阻止横向溢出，所以实际不产生滚动条（`kit-visual` 的游离滚动条检查因此放过）。但它与 spec 直接冲突，且 `overflow-x: auto` 会把 `overflow-y` 静默提升为 `auto` —— 是颗埋着的雷
 
-- [ ] 已修
+**初判（错的）**：以为只是 `riot/components/Toolbar/Toolbar.css` 自己写了 `overflow-x: auto`。
+
+**实测后的真相**：`.<kit>-seg` 是分段条家族（Toolbar、Menubar、ToggleGroup）的共享类。brass / bauhaus / riot 都在 `theme/effects.css` 的手机段给 `.seg` 加了 `overflow-x: auto` —— 这对 Menubar、ToggleGroup 是合理兜底，**漏进 Toolbar 就违反 spec**。
+
+| kit | Toolbar Root 带 `.seg` | 手机态 `overflow-x` 计算值（修前） | 状态 |
+|---|---|---|---|
+| nova | 否 | `visible` | 本就正确 |
+| abyss | 否 | `visible` | 本就正确 |
+| brass | 是 | `visible` | 靠 Toolbar.css 里一条 `overflow-x: visible` **手动抵消** |
+| bauhaus | 是 | **`auto`** | **同类缺陷，此前从未被发现** |
+| riot | 是 | **`auto`** | 本条原始发现 |
+
+- **影响**：基样式的 `flex-wrap: wrap` 已阻止横向溢出，所以三套实际都不产生滚动条（`kit-visual` 的游离滚动条检查因此放过）。但 `overflow-x: auto` 会把 `overflow-y` 静默提升为 `auto`，是颗埋着的雷；riot 的 `.riot-seg` 还叠了 `overflow-y: clip`，会裁掉 chip 的硬偏移影
+- **过程教训**：我一度把 brass 那条 `overflow-x: visible` 判为「冗余」并删掉 —— 那是条**承重规则**，删掉即回归。是 390px 实测（而非门禁）把它抓了回来
+
+- [x] 已修 —— 不给 Toolbar 打补丁，改在共享配方里用 base + modifier 表达策略：`theme/effects.css` 的手机段加 `.<kit>-seg--wrap`（`overflow: visible`，brass 另带 `flex-wrap: wrap`），Toolbar Root 挂上该修饰符。三套 `Toolbar.css` 的 `@media` 全部删除 —— 于是**五套 Toolbar 都不再有 `@media`**，`kit-parity` 的 responsive parity 自然干净。390px 实测：五套 `overflow-x`/`overflow-y` 均为 `visible`、均换行（2–3 行）、均无横滚
 
 ---
 
@@ -527,9 +541,9 @@
 | riot | **无规则**（桌面就已是单列，见 A1） |
 
 - **风险**：照 spec 从零建一套新 kit，手机态下拉会保持两列 —— 390px 宽屏上塞两个 210px 列必然溢出
-- **建议**：在 `:146` 补一句「`≤768` 收成单列」；brass 那条额外的 `width: min(…, calc(100vw - …))` 视口夹取是否要一起钉成同值，需裁决
 
-- [ ] 已回写
+- [x] 已回写 —— `components.md:146` 的网格子句后补 `，≤768 收成单列`。另把 `:174`（§8）里歧义的「NavMenu **横向滚动**」改写为「NavMenu **的触发器排**横向滚动」：那句管的是触发器排 `__list`，不是下拉网格 `__grid`，正是这处歧义让人误以为下拉的手机态有据
+- **仍未决**：brass 那条额外的 `width: min(--brass-navmenu-w, calc(100vw - space-8))` 视口夹取，是否要钉成各 kit 同值
 
 ## C18. Toast 的手机态只写在 nova 一套的皮文档里 ✅
 
@@ -545,10 +559,10 @@
 | bauhaus | `left/right/bottom: space-3; width: auto; max-width: none` |
 | riot | `right/bottom: space-4; width: calc(100vw - 2 * space-4)` |
 
-- **判定**：这是**所有 kit 共有的行为**，不该只躺在一套的皮文档里。按「不要把所有 kit 共有的选择下放到单个 theme」的原则，该上提到 `components.md §6.1` 的 Toast 条目
-- **附带**：riot 用 `100vw`（含滚动条宽度）而非 `left/right`，与其余四套的做法不同；边距也用了 `space-4` 而非 `space-3`。边距属主题自由，`100vw` 的用法值得单独裁一下
+- **判定**：这是**所有 kit 共有的行为**，且新 kit **被迫**做同样选择（420px 宽的 toast 放不进 390px 视口），不是主题自由。该上提到 `components.md §6.1` 的 Toast 条目
+- **订正**：我一度写「riot 用 `100vw` 与其余四套不同，值得单独裁」——**这是错的**。`calc(100vw - …)` 是五套 Toast viewport 基样式 `max-width` 的通用惯用法（nova/abyss `100vw - 44px`、brass `100vw - space-8`、riot `100vw - 2*space-5`），riot 并不特殊。边距取 `space-3` 还是 `space-4` 属主题自由
 
-- [ ] 已回写
+- [x] 已回写 —— `components.md:148` 的 Toast 条目加「Viewport 在 `≤768` 横向撑满」；`components/theme/nova.md:21` 删掉「（手机横向撑满）」，避免共有规则重复躺在单套皮文档里
 
 ## C19. Toolbar 手机态隐藏分隔条 —— spec 没写，且 riot 没做 ✅
 
@@ -565,9 +579,10 @@
 | riot | **不隐藏**（`.riot-toolbar__sep` 存在，手机段未提及） |
 
 - **影响**：`app.md:98` 钉了 toolbar 演示有 2 条分隔。换行后分隔条会跟着换到行首/行尾，四套选择藏掉，riot 留着 —— 这是**可见的跨 kit 不一致**，但两边都不算违反 spec，因为 spec 没写
-- **判定**：先裁决「手机态该不该藏」，写进 `components.md:154`，再让另一边跟上
+- **裁决标准**：一套全新的 kit 会不会**被迫**做同样的选择？撑满（C18）、收单列（C17）是宽度溢出逼出来的，隐藏分隔条不是 —— 它是审美判断
 
-- [ ] 已回写
+- [x] 已裁决并统一 —— 选择「**riot 保留分隔，四套改为不隐藏**」。nova / abyss / brass / bauhaus 的 `Toolbar.css` 删掉 `__sep { display: none }`。因为五套行为已一致且非强制，**spec 无需新增条款，沉默即正确**。390px 实测：五套均 `2/2` 条分隔可见
+- **已知取舍**：换行后行首可能出现孤立竖线，这是采纳该选项时明确接受的代价
 
 ---
 
@@ -641,6 +656,22 @@
 - **spec**：`prompt/components/theme/bauhaus.md:22` ——「压一个反白的三原形 tone 图记」
 - **代码**：info→圆、warning→三角、danger→方，都是三原形；**success→对勾**，不是
 - **备注**：4 个 tone 只有 3 个三原形，可能是不得已的妥协
+
+- [ ] 已处理
+
+## E8. NOVA / ABYSS 的 Menubar、ToggleGroup 没有手机横滚兜底 ✅（修 A20 时发现）
+
+- **spec**：§8 只规定 Tabs、NavMenu、Toolbar 的手机态，Menubar 与 ToggleGroup **无据**
+- **代码**：两种架构
+
+| kit | Menubar / ToggleGroup 的手机溢出兜底 |
+|---|---|
+| brass / bauhaus / riot | 共享 `.<kit>-seg` 手机段 `overflow-x: auto`（超宽即横滚） |
+| nova / abyss | **只有 `max-width: 100%`**，无 `overflow-x`、无 `flex-wrap` |
+
+- **影响**：390px 下当前 demo 均不溢出（实测 180–228px），所以看不出问题。但按「组件是生产件、不是演示件」的原则，nova / abyss 的 Menubar 一旦菜单变多，会撑出面板、把页面顶出横向滚动
+- **判定**：不是本次 spec 缺口的一部分（§8 从未规定这两个控件），但是**真实的跨 kit 能力差**。要么把横滚兜底补进 nova / abyss，要么在 §8 里明确「Menubar、ToggleGroup 手机态横滚」
+- **备注**：本条纯属修 A20 时顺带发现，未列入原 52 条
 
 - [ ] 已处理
 

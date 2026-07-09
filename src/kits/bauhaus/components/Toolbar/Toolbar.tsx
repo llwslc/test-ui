@@ -7,7 +7,10 @@ export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolba
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
-    <BaseToolbar.Root className={cx("bauhaus-seg", "bauhaus-toolbar", className)} {...props}>
+    <BaseToolbar.Root
+      className={cx("bauhaus-seg", "bauhaus-seg--wrap", "bauhaus-toolbar", className)}
+      {...props}
+    >
       {children}
     </BaseToolbar.Root>
   );

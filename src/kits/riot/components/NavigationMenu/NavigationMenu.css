@@ -112,6 +112,11 @@
 }
 @media (max-width: 768px) {
   .riot-navmenu__list {
-    flex-wrap: wrap;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .riot-navmenu__list > * {
+    flex: 0 0 auto;
   }
 }

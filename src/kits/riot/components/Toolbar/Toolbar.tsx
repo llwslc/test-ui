@@ -7,7 +7,7 @@ export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolba
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
-    <BaseToolbar.Root className={cx("riot-seg riot-toolbar", className)} {...props}>
+    <BaseToolbar.Root className={cx("riot-seg riot-seg--wrap riot-toolbar", className)} {...props}>
       {children}
     </BaseToolbar.Root>
   );
