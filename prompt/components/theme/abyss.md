@@ -14,13 +14,17 @@
 ## 2. 组件皮肤决定
 
 - Switch 是一只眼睛：`.abyss-eye` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
-- Panel：角部放触手 tendril；Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；手机端横向撑满，边距 `space-3`；模态标题配一个图记，其中 Dialog 是自转的 sigil、Alert 按 tone。
-- Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束。
-- AlertDialog 按 `tone` 重染：danger = blood 红（默认档）、配骷髅图记，warning = gold 金，primary = glow 青；表面顶部另按 tone 加一道径向重染。
+- Panel：角部放触手 tendril。
+- Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；手机端横向撑满，边距 `space-3`。
+- Dialog：标题配一个自转的 sigil 图记。
+- Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束；开启一记钥匙转启。
+- AlertDialog 按 `tone` 重染：danger = blood 红（默认档），warning = gold 金，primary = glow 青；标题配骷髅图记、随 tone 重染；表面顶部另按 tone 加一道径向重染。
 - NavigationMenu 的触发器栏复用 Tabs 的皮肤。
-- 背板 scrim 额外加 `brightness(.8)` 把背后压暗；连接线是 1.5px 的 glow + edge 颤动滤镜。
+- 背板 scrim 额外加 `brightness(.8)` 把背后压暗。
+- 连接线是 1.5px 的 glow + edge 颤动滤镜。
 - ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显。
 - Avatar 的兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`。
-- 招牌微动：Checkbox／勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）；OTP 光标闪动；Drawer 开启一记钥匙转启。
+- Checkbox／勾记：按 `stroke-dashoffset` 一笔笔描出（inscribe）。
+- OtpField：光标闪动。
 - 共享配方的颜色就近覆盖：`--abyss-title-color`。
 

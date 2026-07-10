@@ -35,7 +35,7 @@
 |---|---|---|
 | A 改代码 | 21 | riot 10 条、brass 5 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
-| C 回写 spec | 22（21 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、nova 1 条、bauhaus 1 条、跨 kit 3 条 |
+| C 回写 spec | 23（22 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、bauhaus 2 条、nova 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
 | E 低优先 | 10 | — |
 
@@ -712,6 +712,16 @@
 - **代码**：`--abyss-title-color` 是货真价实的共享配方覆盖变量——`theme/effects.css:255,257` 模态标题配方读它（fallback `glow`），AlertDialog 按三个 tone 覆盖（blood-text / gold / glow）
 
 - [x] 已回写 —— §2 末尾补「共享配方的颜色就近覆盖：`--abyss-title-color`」，与四套同构；受 theme-doc-sync 新检查保护
+
+---
+
+## C23. BAUHAUS 的「招牌 SVG」行说 Radio 是「实蓝圆心点」，与 Radio 行、代码双双矛盾 ✅（版式归一去重时掀出）
+
+- **位置**：`components/theme/bauhaus.md` 旧「招牌 SVG」合并行
+- **矛盾**：同文档 Radio 行写「选中 = 实色 `primary` 填充 + **纸白**圆心点」；代码 `.bauhaus-radio__dot { background: var(--bauhaus-on-fill) }` —— 纸白。合并行的「**实蓝**圆心点」是陈句（蓝底上画蓝点，画了等于没画）
+- **成因**：同一事实写了两处（控件行 + 「招牌 SVG」汇总行），汇总行漂了没人看——正是「一控件一行」要消灭的病
+
+- [x] 已修 —— 随皮肤文档版式归一（用户裁决：一控件一行；共用的先定义一个、后一个写同 X）一并去重，错误的汇总行从句删除，Radio 行（正确）为唯一出处。五份皮文档全部重排：合并句拆开、「招牌 SVG／招牌微动」两个汇总行按控件归位、nova/brass 的 Tabs↔NavMenu 定义反转（先定义 Tabs、NavMenu 写复用）；token 与控件名保真核查零丢失；`prompt-lint` 新增「one control per line」硬检查（组件名从 `components.md §6` 现取，不硬编码），fail-on-broken 已反证
 
 ---
 

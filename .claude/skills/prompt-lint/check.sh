@@ -87,6 +87,17 @@ hits=$(grep -HnE "仅当|只有当|只当|只有[^。；;、]*才|才($verb)" $F
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
 echo
+echo "## one control per line — a skin-doc bullet must not introduce a SECOND component mid-line (。X：/；X 是…)"
+# components/theme/<kit>.md: each control gets its own bullet; shared skin = define one,
+# the next line says 同/复用 X. Component names derived from components.md §6, not hardcoded.
+COMPS=$(awk '/^## 6\. 组件/{f=1} /^## 6\.1/{f=0} f' prompt/components/components.md 2>/dev/null \
+  | grep -oE '[A-Z][A-Za-z]+' | sort -u | grep -vE '^(Base|UI)$' | paste -sd'|' -)
+if [ -n "$COMPS" ]; then
+  hits=$(grep -HnE "[。；](${COMPS})(：| 标题| 是| 的兜底)" prompt/components/theme/*.md 2>/dev/null || true)
+  if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
+else echo "  -> skip (components.md §6 not found)"; fi
+
+echo
 echo "## REVIEW — emphasis mix in a bullet block (heuristic, never fails; eyeball each)"
 echo "   bold must mark ONE consistent thing per peer set; a block with both '- **' and"
 echo "   '- plain' leads is a CANDIDATE — most are fine (bold font/term vs plain prose);"

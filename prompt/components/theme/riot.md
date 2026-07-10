@@ -19,7 +19,8 @@
 - Checkbox、Radio、Switch 行的标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
 - Button 默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落，`:active` 挂透明 `::after`（`inset -16px`）兜住位移后的命中；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
-- Progress 是右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示；Meter 同轨同平涂，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
+- Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。
+- Meter：轨与平涂同 Progress，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - 分段条家族（ToggleGroup、Toolbar、Menubar）不画外箱体：chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Tabs：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，hover 用 `tint` wash；底轨是过 `#riot-torn` 的 `ink` 手撕条，`stroke-bold` 记号笔横杠随激活项走——同过撕纹、随激活 chip 同角微旋贴其斜底边。
 - NavigationMenu：触发器 Anton 大写、hover 与打开转荧光 `primary`、chevron 随开合翻转。
@@ -31,6 +32,9 @@
 - Tooltip、Popover、PreviewCard 一族是平贴的纸片小剪条：纸面 + `ink` 框，胶带连接件（`.riot-connector`）钉向触发器，正文打字机体。
 - ScrollArea 自绘条：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽），常显不做悬停隐藏；panel 型坐在 `surface-inset` 纸灰可见轨上，popup 型轨道透明、整条离框 `space-1`。
 - 列表记号笔：Select、Combobox、Autocomplete、Menu 列表项与 NavigationMenu 下拉链接悬停或键盘高亮 = 一道荧光记号笔涂过整行。半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐。选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。换色走 `--riot-marker-color`：危险菜单项高亮时记号笔转 `danger` 红、字与图标转黑。
-- 招牌 SVG：Checkbox 是手画叉，Radio 是荧光实心点，Avatar 的兜底是 Anton 字母压在荧光块上、方形硬裁，占位图标是粗糙的手绘线形；剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。
-- 招牌微动：标记与招牌就近挂 `.riot-jitter` 微抖；Progress 条填充流动；其余只有交互过渡（`steps` 硬切），无持续辉光或脉动。
+- Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
+- 占位图标是粗糙的手绘线形。
+- 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。
+- 标记与招牌就近挂 `.riot-jitter` 微抖。
+- 动效：除 Progress 条流动外只有交互过渡（`steps` 硬切），无持续辉光或脉动。
 - 共享配方的颜色就近覆盖：`--riot-marker-color`。

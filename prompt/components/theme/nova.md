@@ -13,14 +13,19 @@
 
 ## 2. 组件皮肤决定
 
-- NavigationMenu 的触发器栏复用 Tabs 的皮肤：大写 Orbitron、渐变 hover、辉光下划线、打开时转 primary、chevron 翻转。
+- Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。
+- NavigationMenu：触发器栏复用 Tabs 的皮肤；打开时转 primary、chevron 翻转。
 - AlertDialog 按 `tone` 整体重染，tone 取 danger、warning、primary：扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。
 - Switch：关态的 thumb 用 `thumb-idle` 金属渐变，选中后轨道转 `accent-surface`、thumb 转 `surface-deep`。
 - Drawer：只在朝屏内那一条边描一道 `line-strong` 细线，内沿再叠一道霓虹光边（`primary` 渐变 + 辉光）。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
 - Toast：锚在**右上角**、向下堆叠；左缘一道光束；tone 承载在 accent 输入变量（`--nova-toast-accent`）上，光束、边框、辉光、标题随之换色；手机端横向撑满，边距 `space-3`。
 - ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显。
-- 招牌 SVG：Checkbox 勾选是几何对勾、indeterminate 是横杠（共享 icons）；Radio 选中是发辉光的 `primary` 圆点弹出；Avatar 兜底是深表面渐变底 + `primary` 字。
-- 招牌微动：Button 高光斜扫（移动 `background-position`）；Progress 条纹流动 + 不定态扫掠；Badge 点 pulse；Tabs 切换内容淡入。
+- Checkbox：勾选是几何对勾、indeterminate 是横杠（共享 icons）。
+- Radio：选中是发辉光的 `primary` 圆点弹出。
+- Avatar：兜底是深表面渐变底 + `primary` 字。
+- Button：高光斜扫（移动 `background-position`）。
+- Progress：条纹流动 + 不定态扫掠。
+- Badge：点 pulse。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
 

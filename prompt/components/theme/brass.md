@@ -15,13 +15,20 @@
 
 - Switch 是一根黄铜阀杆：关态 = 开槽的发蓝钢轨 `off` + 滚花黄铜旋钮（`thumb` 渐变）；选中后轨道转 `accent-surface`、旋钮滑到右、加 `glow-active`，用 `ease-detent` 落位。
 - Meter 是压力表：横轨分成 success → warning → danger 三个色区，填充走 `accent-fill`，端部带刻度记。
-- Progress 是黄铜灯丝填充 + 刻度记；不定态的滑块走 `left` 位移。
+- Progress 是黄铜灯丝填充 + 刻度记，灯丝流动；不定态的滑块走 `left` 位移。
 - AlertDialog 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone 变；表面顶部加一道 tone 的径向光 20%，几何同 Dialog。
-- NavigationMenu 的触发器栏复用 Tabs 皮肤：渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
-- Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，tone 承载在 `--brass-toast-tone` 上，齿轮图记随之换色；手机端横向撑满，边距 `space-3`；Dialog 标题配一个齿轮 cartouche 图记。
+- Tabs：渐变 hover、黄铜下划线。
+- NavigationMenu：触发器栏复用 Tabs 的皮肤；开启态转 primary、chevron 翻转。
+- Panel：角部放铆钉。
+- Toast：锚在右下角、向上堆叠，tone 承载在 `--brass-toast-tone` 上，齿轮图记随之换色；手机端横向撑满，边距 `space-3`。
+- Dialog：标题配一个齿轮 cartouche 图记，`brass-rotate` 自转。
 - Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。
 - ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显。
-- 招牌 SVG：Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪。
-- 招牌微动：Progress 灯丝流动；Badge 点用 `brass-breathe` 琥珀灯呼吸；Checkbox 盖印（`brass-stamp`）；OTP 输入往复 pulse；Dialog 齿轮图记 `brass-rotate` 自转；旋钮、阀门交互带 `ease-detent` 回弹。
+- Checkbox：黄铜板上刻印的对勾，勾选盖印（`brass-stamp`）。
+- Radio：凹陷的黄铜孔眼、选中时亮起琥珀芯。
+- Avatar：兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪。
+- Badge：点用 `brass-breathe` 琥珀灯呼吸。
+- OtpField：输入往复 pulse。
+- 旋钮、阀门交互带 `ease-detent` 回弹。
 - 共享配方的颜色就近覆盖：`--brass-marker-color / -title-color`。
 
