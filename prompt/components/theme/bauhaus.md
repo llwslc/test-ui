@@ -17,7 +17,8 @@
 - Checkbox 是锐角方框 + `ink` border；勾选 = 实色 `primary` 填充 + 纸白几何对勾，indeterminate = 实填 + 纸白横杠；取「方」原形。
 - Radio 是正圆 + `ink` border；选中 = 实色 `primary` 填充 + 纸白圆心点；取「圆」原形。
 - Progress、Meter 是锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示；Meter 按 `tone` 重染填充。
-- Tabs、NavigationMenu：一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动，hover 用 `tint-soft`；触发器是 Jost 大写、打开时转 `primary`、chevron 翻转。
+- Tabs：Jost 大写；hover 只转 `bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动。
+- NavigationMenu：触发器 Jost 大写，hover 用 `tint-soft`；打开时转 `primary`、chevron 翻转、底部一条 `stroke-bold` 蓝线从左展开。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：border 仍黑；顶部压一条 tone 实色细线，标题带一个 tone 三原形图记，和描述、body、actions 一起在下面的纸面上。
 - Panel：角部放三原形角标 + meta。Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-3`。Dialog 标题配一个三原形图标。
 - Drawer：只在朝屏内那一条边描一道 `stroke-heavy` 纯黑边，其余三边贴屏不描；纸面、直角同模态。

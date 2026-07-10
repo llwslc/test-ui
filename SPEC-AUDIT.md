@@ -328,15 +328,14 @@
   2. abyss 补行（见 C22）；
   3. `theme-doc-sync` 加第三项检查：皮文档里引用的 `--<kit>-*-color`（含 `-tick-color` 式斜杠缩写的展开）必须存在于 `src/kits/<kit>` 任意文件。fail-on-broken 已反证：把 brass 旧行放回，门禁 exit=1 且逐个点名三个幽灵变量；恢复后 PASS。**「索引是漂移磁铁」这一删除理由自此失效——索引烂了会响**
 
-## A15. PRISM 的 Tabs hover 缺 `tint-soft` 底 ✅
+## A15. ~~PRISM 的 Tabs hover 缺 `tint-soft` 底~~ —— **改文拆句，代码为准** ✅
 
-- **严重度**：皮肤决定不符
-- **位置**：`src/kits/bauhaus/components/Tabs/Tabs.css:30`
-- **spec**：`components/theme/bauhaus.md:20` ——「Tabs、NavigationMenu：… hover 用 `tint-soft`」
-- **代码**：Tab 的 hover 只设 `color: text-bright`，没有背景 wash
-- **对照**：同套 `NavigationMenu.css:33` 确实设了 `background: var(--bauhaus-tint-soft)` —— 一对本该同皮的兄弟分了叉
+- **spec（旧）**：`components/theme/bauhaus.md:20`「**Tabs、NavigationMenu**：一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动，hover 用 `tint-soft`；触发器是 Jost 大写、打开时转 `primary`、chevron 翻转」——一行绑两个控件
+- **代码事实**：合并句的**各半各真**——「下划线随激活项滑动」只属于 Tabs（`__indicator` 跟 `--active-tab-*`）；「hover 用 tint-soft」「打开转 primary」「chevron 翻转」只属于 NavMenu；NavMenu 也有 `stroke-bold` 蓝下划线但行为不同（`::after` 开态 `scaleX(0→1)` 从左展开，不滑动）。Tabs hover 只转 `bright`，**从未**有过 tint-soft（`git log -S` 零命中）
+- **横向**：nova / brass 双双铺底（成对 ✓）；riot 分岔但 **spec 明写了分岔**（Tabs 用 tint、NavMenu 转 primary）✓；abyss 双双不铺（spec 也没承诺）✓——bauhaus 是唯一「spec 绑一起、代码分了岔」的
+- **裁决（用户）**：改文拆开。背景：Tabs / NavMenu 共用一套特效是最初做 nova 时**做不出两个好特效的无奈之举**，后面各套沿用「纯属偷懒加抄袭」——这个绑定本身是历史包袱，不是设计意图，分岔是欢迎的方向（已记 memory，不再当不变量 enforce）
 
-- [ ] 已修
+- [x] 已改（文）—— `bauhaus.md` 拆成两行、逐项照代码写：「Tabs：Jost 大写；hover 只转 `bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动」＋「NavigationMenu：触发器 Jost 大写，hover 用 `tint-soft`；打开时转 `primary`、chevron 翻转、底部一条 `stroke-bold` 蓝线从左展开」。代码零改动，像素零变化
 
 ## A16. RIOT 的竖向 Separator 缺 `flex: 0 0` ✅
 
