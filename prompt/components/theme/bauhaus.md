@@ -25,7 +25,7 @@
 - Drawer：只在朝屏内那一条边描一道 `stroke-heavy` 纯黑边，其余三边贴屏不描；纸面、直角同模态。
 - Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的三原形 tone 图记（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是 Archivo Black 字母压在实色块上、方形裁剪。
-- ScrollArea 自绘条：thumb 是实色 `primary` 蓝、圆角、填满条宽；轨 `track` 浅纸；panel 型悬停显、popup 型常显。
+- ScrollArea 自绘条：thumb 是实色 `primary` 蓝、圆角、填满条宽；轨 `track` 浅纸；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放三原形角标 + meta。
 - 占位图标是几何线形。
 - 动效：除 Progress 条流动外只有交互过渡（硬切 + 块面滑移），无持续辉光或脉动。

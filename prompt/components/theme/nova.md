@@ -25,6 +25,6 @@
 - Toast：锚在**右上角**、向下堆叠；左缘一道光束；tone 承载在 accent 输入变量（`--nova-toast-accent`）上，光束、边框、辉光、标题随之换色；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是深表面渐变底 + `primary` 字。
 - Badge：点 pulse。
-- ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显。
+- ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。

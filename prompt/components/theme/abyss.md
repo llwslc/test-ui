@@ -22,7 +22,7 @@
 - Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束；开启一记钥匙转启。
 - Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；手机端横向撑满，边距 `space-3`。
 - Avatar 的兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`。
-- ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显。
+- ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放触手 tendril。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗。
 - 连接线是 1.5px 的 glow + edge 颤动滤镜。

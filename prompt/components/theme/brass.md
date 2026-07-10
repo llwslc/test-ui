@@ -27,7 +27,7 @@
 - Toast：锚在右下角、向上堆叠，tone 承载在 `--brass-toast-tone` 上，齿轮图记随之换色；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪。
 - Badge：点用 `brass-breathe` 琥珀灯呼吸。
-- ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显。
+- ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放铆钉。
 - 旋钮、阀门交互带 `ease-detent` 回弹。
 - 共享配方的颜色就近覆盖：`--brass-marker-color / -title-color`。
