@@ -69,7 +69,7 @@
 - **浮层与触发器的缝**：由 `sideOffset` 控制——offset 各 kit 自调（框厚不同则值不同），但**渲染出的视觉缝跨 kit 一致**。
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板。模态 viewport 的 padding 取 `space-5`（`20`）。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-list-item-h) * 7)`，滚动前露出 **7 行、各 kit 同值**；行高 `list-item-h` 由 theme 定，同时锁在 `.<kit>-list-item` 的 `min-height` 上），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。列表 Popup 带内衬、行不贴框，**衬多少由 theme 定**。
-- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right`。**条宽、thumb 皮肤（形状／配色／轨道／显隐／离框）由各 theme 定。**
+- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）。弹层列表藏掉原生条（viewport `scrollbar-width: none`），**溢出提示必须常驻**——有纵向溢出时，不悬停、不滚动也看得出下面还有内容；**提示取什么形，由 theme 定**，且不得盖住行文本——用条的皮，viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right` 给条让位。条宽、thumb 皮肤（形状／配色／轨道／离框）由各 theme 定。
 
 ### 4.3 共享配方 class
 
