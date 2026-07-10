@@ -33,7 +33,7 @@
 
 | 类 | 条数 | 集中在 |
 |---|---|---|
-| A 改代码 | 21 | riot 10 条、brass 5 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
+| A 改代码 | 22 | riot 10 条、brass 5 条、bauhaus 4 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
 | C 回写 spec | 23（22 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、bauhaus 2 条、nova 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
@@ -430,6 +430,24 @@
 - **修法里的一个雷**：brass 标题挂着 `.brass-h2`（typography 层，声明 `color: text-bright`），且 typography 在 effects **之后**加载——给配方裸加 (0,1,0) 的 color 会打顺序仗。nova 没这个问题是因为它的标题**不挂** h2、配方自含全套字型。解法：把 var 读点放进 effects.css **已有的** `.brass-h2.brass-modal-title` 复合规则（0,2,0），fallback 取 `text-bright`（= h2 原色），顺序无关且静止态像素恒等
 
 - [x] 已修 —— ① `effects.css` 的 `.brass-h2.brass-modal-title` 加 `color: var(--brass-title-color, var(--brass-text-bright))`；② `.brass-alert` 根上设 `--brass-title-color: var(--brass-tone)`，删掉后代直染规则；③ `brass.md` 索引行随之长真的一项：`--brass-marker-color / -title-color`（theme-doc-sync 新检查顺带锻炼了斜杠缩写展开）。实测五场景标题色全部命中：alert danger/warning/primary = 各自 tone 解析值，dialog / drawer = `text-bright` 不变
+
+---
+
+## A22. BAUHAUS 的 Tooltip 悬停延迟 600ms，四套兄弟 200ms ✅（追问 nova Tooltip 推导链时发现）
+
+- **成因**：`bauhaus/Tooltip.tsx` 解构 `delay` 没写默认值 → `undefined` 一路传到 Base UI 1.5.0 的兜底 `OPEN_DELAY = 600`（`tooltip/utils/constants.js`）；`git log -S` 证明从未写过（漏写，非删除）
+- **spec**：`§6.1` 只列了「props …·delay」**没钉默认值**——又一个「四套一致、spec 无据」（C17/C18 同款形状）；`kit-api` 的结构性盲区：只对 prop 名，对不了默认值
+- **实测**（真实 Chrome，pointer-move 序列 + 40ms 轮询，悬停到弹出）：
+
+| kit | 修前 | 修后 |
+|---|---|---|
+| nova（参照） | ~368ms | ~369ms |
+| bauhaus | **~778ms** | **~365ms** |
+
+  差值 ≈ 410ms，正是 600 − 200。慢三倍是能觉出来的手感分岔，悬停延迟是交互不是皮肤，observable → unify
+- **探针教训**：第一版探针连 nova 都钓不出（playwright 单跳 `mouse.move` 触不动 Base UI 的 hover 侦测，要真实的多步 move 序列）；第二版 bauhaus 全 -1，原因是我猜错了它的 popup 类名（`bauhaus-tooltip`，无 `__popup`）——负结果先查探针再查代码
+
+- [x] 已修 —— ① `bauhaus/Tooltip.tsx` 解构补 `delay = 200`；② `§6.1` Tooltip 条目钉上「`delay`（默认 200）」。`sideOffset` 不钉（10/10/8/8/10，按各套框厚调，同 MenuSub sideOffset 的既定理由）。tsc / kit-api / prompt-lint / kit-interact 全绿
 
 ---
 

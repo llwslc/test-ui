@@ -141,7 +141,7 @@
 **浮层**
 
 - **通则**（承 §4.2）：结构 `Trigger + Portal > Positioner(挂 elevation 阴影) > Popup(挂 anim-pop + surface 形状，或内嵌一个 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或子层，绝不挂在同一个元素上**；项、链接的状态 +highlighted。
-- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；触屏与 focus 的打开路径见 §7「触屏」。
+- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`（默认 200）；触屏与 focus 的打开路径见 §7「触屏」。
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
