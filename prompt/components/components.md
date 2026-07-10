@@ -66,8 +66,8 @@
 - **surface**——带框的表面（见 4.1），尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop**（角色名；每套一个共享类，类名由 theme 定、列在 `theme/<kit>.md` §动效个性）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
-- **浮层与触发器的缝**：由 `sideOffset` 控制——offset 各 kit 自调（框厚不同则值不同），但**渲染出的视觉缝跨 kit 一致**：Tooltip、Popover、PreviewCard、NavigationMenu 的下拉开在 `10px` 处；Select、Combobox、Autocomplete、Menu、Menubar 开在 `6px` 处；ContextMenu 开在右键指针上、不留缝；Menu 的子菜单见 §6.1。
-- **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高、各 kit 同值：dialog `460`、alert `440`、drawer `420`×`460`；模态 viewport 的 padding 取 `space-5`（`20`）；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
+- **浮层与触发器的缝**：由 `sideOffset` 控制——offset 各 kit 自调（框厚不同则值不同），但**渲染出的视觉缝跨 kit 一致**。
+- **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板。模态 viewport 的 padding 取 `space-5`（`20`）。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-list-item-h) * 7)`，滚动前露出 **7 行、各 kit 同值**；行高 `list-item-h` 由 theme 定，同时锁在 `.<kit>-list-item` 的 `min-height` 上），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。列表 Popup 带内衬、行不贴框，**衬多少由 theme 定**。
 - **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）；弹层列表那条常驻条，就是上面 ScrollArea「popup」型自绘的 DOM 条（viewport 用 `scrollbar-width: none` 藏掉原生条），viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right`。**条宽、thumb 皮肤（形状／配色／轨道／显隐／离框）由各 theme 定。**
 
@@ -125,9 +125,9 @@
 - **NumberField**：结构 `Group > [减 + Input + 加]`，两个步进钮等宽、夹住输入框；到 min/max 时自己 disable 对应步进钮并置灰。
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`。
 - **OtpField**：props `length·splitAt·mask`（`length` 默认 6）；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
-- **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
-- **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
-- **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建，`items` 直传 Root。
+- **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
+- **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
+- **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建，`items` 直传 Root。
 - **Fieldset**：props `legend`；竖排，由 Base UI 直接管。
 - **Form**：竖排，由 Base UI 直接管。
 
@@ -142,12 +142,12 @@
 **浮层**
 
 - **通则**（承 §4.2）：结构 `Trigger + Portal > Positioner(挂 elevation 阴影) > Popup(挂 anim-pop + surface 形状，或内嵌一个 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或子层，绝不挂在同一个元素上**；项、链接的状态 +highlighted。
-- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`（默认 200）；触屏与 focus 的打开路径见 §7「触屏」。
-- **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
-- **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
-- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
-- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`；下拉与触发器左对齐（Positioner `align="start"`）；手机端触发器排横向滚动不换行、滚动条隐藏，下拉网格收成单列。
-- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位，body 留出焦点提示的余量；Drawer 的 body 弹性撑满并自行滚动，actions 常驻底边。
+- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`（默认 200）；弹层开在离触发器 `10px` 处；触屏与 focus 的打开路径见 §7「触屏」。
+- **PreviewCard**：props `side·align·sideOffset`；弹层开在 `10px` 处；触摸路径同 Tooltip。
+- **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`；弹层开在 `10px` 处。
+- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。菜单开在离触发器 `6px` 处，ContextMenu 开在右键指针上、不留缝。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
+- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`；下拉与触发器左对齐（Positioner `align="start"`）、开在 `10px` 处；手机端触发器排横向滚动不换行、滚动条隐藏，下拉网格收成单列。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；宽高、各 kit 同值——Dialog `460`、AlertDialog `440`、Drawer `420`×`460`，Popup 宽取 `min(该值, 100%)`；Drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下），左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`。结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位；Drawer 的 body 弹性撑满并自行滚动（用 padding + 等量负 margin 给控件的焦点提示留出余量），actions 常驻底边。
 - **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Portal > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Action? + Close]`，`add({ actionProps })` 传入动作时渲染 `Action`、复用本套 Button。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样、手机端视口怎么形变，全由 theme 定。**
 
 **展示**
