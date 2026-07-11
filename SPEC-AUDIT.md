@@ -563,7 +563,7 @@
 - **判断**：图标怎么定位是**内部机制**，不是可观察 API，按「observable→unify，internal→theme freedom」该留给 theme
 - **建议**：spec 删掉「绝对定位」四个字，保留「图标在左侧」和「Control `flex:1`」
 
-- [ ] 已改
+- [x] 已改（文，两轮裁决）——首判「主题全部统一 flex」，nova 转换做完（表面漆下沉 wrap `::before`＋icon 流内化，几何探针逐字段全同）后**用户改判：代码回退、只改提示词**——回到审计原判「定位是内部机制，observable→unify、internal→theme freedom」。nova 的 absolute 有结构原因（双层框：wrap 背景当边框＋input 自绘表面，图标叠在表面上）。spec 从「图标在左侧绝对定位」改为「图标在左、Control `flex:1`」——只说位置与弹性，不钉机制。代码零改动。
 
 ---
 

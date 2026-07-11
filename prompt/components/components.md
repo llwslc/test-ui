@@ -123,7 +123,7 @@
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed。
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起。
 - **NumberField**：结构 `Group > [减 + Input + 加]`，两个步进钮等宽、夹住输入框；到 min/max 时自己 disable 对应步进钮并置灰。
-- **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`。
+- **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`。
 - **OtpField**：props `length·splitAt·mask`（`length` 默认 6）；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
 - **Select**：props `items·placeholder·side`（默认 bottom）`·align`（默认 center）；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
 - **Combobox**：props `items·placeholder·emptyText·label·side`（默认 bottom）`·align`（默认 center）；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
