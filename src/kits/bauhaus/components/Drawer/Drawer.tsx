@@ -19,7 +19,7 @@ export interface DrawerProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   side?: DrawerSide;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -31,7 +31,7 @@ export function Drawer({
   title,
   description,
   children,
-  footer,
+  actions,
   side = "right",
   open,
   onOpenChange,
@@ -65,7 +65,7 @@ export function Drawer({
                 <BaseDrawer.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseDrawer.Description>
               ) : null}
               {children != null ? <div className="bauhaus-modal-body bauhaus-drawer__body">{children}</div> : null}
-              {footer != null ? <div className="bauhaus-modal-actions">{footer}</div> : null}
+              {actions != null ? <div className="bauhaus-modal-actions">{actions}</div> : null}
             </BaseDrawer.Content>
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>

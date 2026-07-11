@@ -787,7 +787,7 @@ function Demo() {
                 trigger={<Button variant="secondary">Open hatch</Button>}
                 title="Inspection hatch"
                 description="Confirm the boiler is depressurized before opening the hatch."
-                footer={
+                actions={
                   <>
                     <DialogClose>Stand clear</DialogClose>
                     <DialogClose variant="secondary">Open hatch</DialogClose>
@@ -847,7 +847,7 @@ function Demo() {
                     trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
                     title="Watch settings"
                     description="Adjust the standing orders for this watch."
-                    footer={<DrawerClose variant="secondary">Close log</DrawerClose>}
+                    actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
                   >
                     <label className="brass-row brass-row--between">
                       <span className="brass-cap">Auto-stoke</span>

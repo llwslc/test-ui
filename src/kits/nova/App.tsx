@@ -1017,7 +1017,7 @@ function Demo() {
                   trigger={<Button variant="secondary">Launch Sequence</Button>}
                   title="Confirm Jump"
                   description="Plotting a hyperspace jump to Proxima Centauri. This action cannot be aborted once initiated."
-                  footer={
+                  actions={
                     <>
                       <DialogClose>Cancel</DialogClose>
                       <DialogClose variant="secondary">Engage</DialogClose>
@@ -1085,7 +1085,7 @@ function Demo() {
                       trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
                       title="Systems Config"
                       description="An edge-anchored console sliding in from the screen edge."
-                      footer={<DrawerClose variant="secondary">Apply</DrawerClose>}
+                      actions={<DrawerClose variant="secondary">Apply</DrawerClose>}
                     >
                       <div className="demo-spread">
                         <span className="nova-cap">Auto-Pilot</span>

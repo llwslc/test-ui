@@ -777,7 +777,7 @@ function Demo() {
                 trigger={<Button variant="secondary">Reset grid</Button>}
                 title="Reset composition"
                 description="This returns every element to the grid origin. Continue?"
-                footer={
+                actions={
                   <>
                     <DialogClose>Cancel</DialogClose>
                     <DialogClose variant="secondary">Reset</DialogClose>
@@ -837,7 +837,7 @@ function Demo() {
                     trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
                     title="Layer settings"
                     description="Adjust how this layer sits on the grid."
-                    footer={<DrawerClose variant="secondary">Close</DrawerClose>}
+                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
                     <label className="bauhaus-row bauhaus-row--between">
                       <span className="bauhaus-cap">Snap to grid</span>

@@ -19,7 +19,7 @@ export interface DrawerProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   side?: DrawerSide;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -31,7 +31,7 @@ export function Drawer({
   title,
   description,
   children,
-  footer,
+  actions,
   side = "right",
   open,
   onOpenChange,
@@ -69,7 +69,7 @@ export function Drawer({
                 </BaseDrawer.Description>
               ) : null}
               {children != null ? <div className="brass-modal-body">{children}</div> : null}
-              {footer != null ? <div className="brass-modal-actions">{footer}</div> : null}
+              {actions != null ? <div className="brass-modal-actions">{actions}</div> : null}
             </BaseDrawer.Content>
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>

@@ -20,7 +20,7 @@ export interface DrawerProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   side?: DrawerSide;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -32,7 +32,7 @@ export function Drawer({
   title,
   description,
   children,
-  footer,
+  actions,
   side = "right",
   open,
   onOpenChange,
@@ -82,8 +82,8 @@ export function Drawer({
               {children != null ? (
                 <div className="nova-drawer__body">{children}</div>
               ) : null}
-              {footer != null ? (
-                <div className="nova-drawer__footer">{footer}</div>
+              {actions != null ? (
+                <div className="nova-drawer__actions">{actions}</div>
               ) : null}
             </BaseDrawer.Content>
           </BaseDrawer.Popup>

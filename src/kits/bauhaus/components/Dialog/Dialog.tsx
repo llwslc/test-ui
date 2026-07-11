@@ -12,13 +12,13 @@ export interface DialogProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   className?: string;
 }
 
-export function Dialog({ trigger, title, description, children, footer, open, onOpenChange, className }: DialogProps) {
+export function Dialog({ trigger, title, description, children, actions, open, onOpenChange, className }: DialogProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -51,7 +51,7 @@ export function Dialog({ trigger, title, description, children, footer, open, on
               <BaseDialog.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseDialog.Description>
             ) : null}
             {children != null ? <div className="bauhaus-modal-body">{children}</div> : null}
-            {footer != null ? <div className="bauhaus-modal-actions">{footer}</div> : null}
+            {actions != null ? <div className="bauhaus-modal-actions">{actions}</div> : null}
           </BaseDialog.Popup>
         </BaseDialog.Viewport>
       </BaseDialog.Portal>

@@ -1146,7 +1146,7 @@ function Demo() {
                   trigger={<Button variant="secondary">Begin the Rite</Button>}
                   title="Descend?"
                   description="Once the tide takes you there is no surfacing. Speak the word and the way opens."
-                  footer={
+                  actions={
                     <>
                       <DialogClose>Recoil</DialogClose>
                       <DialogClose variant="secondary">Descend</DialogClose>
@@ -1213,7 +1213,7 @@ function Demo() {
                       trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
                       title="Ward Settings"
                       description="An edge-anchored tablet sliding in from the deep."
-                      footer={<DrawerClose variant="secondary">Bind</DrawerClose>}
+                      actions={<DrawerClose variant="secondary">Bind</DrawerClose>}
                     >
                       <div className="demo-spread">
                         <span className="abyss-cap">Ward Sigil</span>

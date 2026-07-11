@@ -12,7 +12,7 @@ export interface DialogProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   className?: string;
@@ -23,7 +23,7 @@ export function Dialog({
   title,
   description,
   children,
-  footer,
+  actions,
   open,
   onOpenChange,
   className,
@@ -66,8 +66,8 @@ export function Dialog({
               {children != null ? (
                 <div className="abyss-modal-body">{children}</div>
               ) : null}
-              {footer != null ? (
-                <div className="abyss-modal-actions">{footer}</div>
+              {actions != null ? (
+                <div className="abyss-modal-actions">{actions}</div>
               ) : null}
             </div>
           </BaseDialog.Popup>

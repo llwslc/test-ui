@@ -146,7 +146,7 @@
   margin: calc(var(--nova-space-3) * -1) calc(var(--nova-space-4) * -1);
 }
 
-.nova-drawer__footer {
+.nova-drawer__actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--nova-space-3);
@@ -154,7 +154,7 @@
   padding-top: var(--nova-space-5);
   position: relative;
 }
-.nova-drawer__footer::before {
+.nova-drawer__actions::before {
   content: "";
   position: absolute;
   top: 0;

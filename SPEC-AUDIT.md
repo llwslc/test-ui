@@ -495,7 +495,7 @@
 - **佐证**：同一条 spec 自己的结构描述里就写着「actions 右对齐」
 - **建议**：spec 拆开写——Dialog / Drawer 用 `footer`，AlertDialog 用 `actions`
 
-- [ ] 已改
+- [x] 已改（码＋文，用户裁决与建议相反）——「我看官方例子都叫 actions，全改 actions」：不拆开，统一到 Base UI 官方词。五套 Dialog/Drawer 的 prop `footer`→`actions`（10 组件文件＋10 处 demo 调用点）；nova/abyss/riot 的 `drawer__footer` 类名一并改 `__actions`（其余两套本走 `modal-actions` 配方）；spec 三件套 props 行改 `trigger·title·description·actions`，与结构描述「actions 右对齐」自洽。页脚 `<footer>`、PreviewCard 的 `preview__footer`、Panel 结构 footer 是别的东西，不动。tsc、kit-api、kit-deadcode 过。
 
 ## B2. Toast 没有 `swipeDirection` prop ✅
 

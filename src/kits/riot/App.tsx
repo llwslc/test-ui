@@ -812,7 +812,7 @@ function Demo() {
                 trigger={<Button variant="secondary">Reset the wall</Button>}
                 title="Reset the paste-up"
                 description="This tears every clipping off the wall. Continue?"
-                footer={
+                actions={
                   <>
                     <DialogClose>Cancel</DialogClose>
                     <DialogClose variant="secondary">Reset</DialogClose>
@@ -872,7 +872,7 @@ function Demo() {
                     trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
                     title="Layer settings"
                     description="Adjust how this clipping sits on the wall."
-                    footer={<DrawerClose variant="secondary">Close</DrawerClose>}
+                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
                     <label className="riot-row riot-row--between">
                       <span className="riot-cap">Snap to grid</span>

@@ -12,13 +12,13 @@ export interface DialogProps {
   title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
-  footer?: ReactNode;
+  actions?: ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   className?: string;
 }
 
-export function Dialog({ trigger, title, description, children, footer, open, onOpenChange, className }: DialogProps) {
+export function Dialog({ trigger, title, description, children, actions, open, onOpenChange, className }: DialogProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -45,8 +45,8 @@ export function Dialog({ trigger, title, description, children, footer, open, on
               </BaseDialog.Description>
             )}
             {children && <div className="brass-modal-body">{children}</div>}
-            {footer != null && (
-              <div className="brass-modal-actions brass-dialog__actions">{footer}</div>
+            {actions != null && (
+              <div className="brass-modal-actions brass-dialog__actions">{actions}</div>
             )}
             <BaseDialog.Close
               className="brass-modal-close"

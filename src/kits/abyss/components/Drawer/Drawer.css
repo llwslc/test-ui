@@ -130,7 +130,7 @@
   margin: calc(var(--abyss-space-3) * -1) calc(var(--abyss-space-4) * -1);
 }
 
-.abyss-drawer__footer {
+.abyss-drawer__actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--abyss-space-3);
@@ -138,7 +138,7 @@
   padding-top: var(--abyss-space-5);
   position: relative;
 }
-.abyss-drawer__footer::before {
+.abyss-drawer__actions::before {
   content: "";
   position: absolute;
   top: 0;
