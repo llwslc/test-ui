@@ -364,6 +364,17 @@
 
 - [x] 已修（码，两轮）—— 首版把配方复制进 Combobox/Autocomplete 各一份，**被用户打回：「同一份代码到处复制?」**——A17 的病在**名字**（共享配方顶着组件块名 `riot-input` 住 theme 层），不在共享本身；§4.3 本来就要求重复块抽 effects.css，nova 的 `field__control/lead/input` 就是正确示范。终版照 nova：配方一份进 `effects.css` 挂非组件名 `riot-field__control/lead/input`，Input/Combobox/Autocomplete 三家复合；Input 专属状态（`:has(:disabled)`/`:has([data-invalid])`）留在 `Input.css` 挂自己的 `riot-input` 钩子类；Combobox 保留 `__control` 挂 `[data-popup-open]` 变体，Autocomplete 连自有 control 类都不再需要。像素回归：三个输入场对 A17 手术前原始基线 computed+rect 零 diff，旧类零残留。门禁补上本条的盲区：kit-structure §6 新增「theme 层禁定义/引用组件块名类」检查，`theme-block-exempt.txt` 冻结存量 36 条（四套 menu 族＝§6.1 钦定共享、nova/abyss separator、abyss switch、brass tabs——待逐案裁决，名单只准划掉不准新增），修前红（riot-input）修后绿。
 
+### A17 全类清扫（2026-07-11，用户指令「其他的主题都看一下 a17 问题」）
+
+豁免名单 36 条逐案裁决，**全部清零**，五套像素零 diff（名字无关探针：`[role=menu]` 系定位，menu 弹层/条目/分隔、toolbar 分隔、独立分隔、abyss 眼睛、brass 轨逐项 computed 对比）：
+
+- **menu 族 popup/positioner（四套）**：三组件 TSX 都写、内容真实（z-menu 层级；nova/abyss 另有皮与衬）——「谁都不专属」⇒ 照 `menu-sep` 先例改名成非组件名原语 `menu-tier`/`menu-pane`，规则留 theme 层。bauhaus 的 `menu__popup` 与自挂的 `popup-list` 声明重复（同一个 `min-width: popup-w`），整个删除；brass 本就全走现成原语（`lift`+`plate/pop/popup/popup-list`），是参照系——顺手摘掉它 `Menu.tsx` 里用而未定义的死类串 `brass-menu__popup`（F1 类型）。
+- **menu 条目级规则（nova/abyss ×17/±20 条）**：只有 `Menu/parts.tsx` 写 ⇒ Menu 自己的类，从 effects.css 搬回 `Menu.css`（Menubar/ContextMenu 经 `<MenuItem>` 组件复用，非类借用）。
+- **nova/abyss separator**：Menu/Toolbar 两处按类借用 ⇒ 借方自立（`menu__separator`/`toolbar__sep` 各自吸收 base+modifier+compound 三层声明并成一条），`{k}-separator` 本体规则搬回 `Separator.css`。
+- **abyss switch 眼睛（6 条）、brass tabs 轨（2 条）**：只有本组件写 ⇒ 纯搬家回 `Switch.css`/`Tabs.css`。
+
+`theme-block-exempt.txt` 清零（只准减不准加），kit-structure 空豁免直接绿。z 分层房型澄清：`lift` 原语兜 `z-dropdown`，要更高层的在自己 positioner 类上覆盖（menu-tier 即家族版）——brass 的菜单没挂 z-menu（全家唯一），潜在层级分歧、未动，另行裁决。
+
 ## A18. ABYSS 输入框聚焦档位低于 spec ✅
 
 - **严重度**：皮肤决定不符（轻）

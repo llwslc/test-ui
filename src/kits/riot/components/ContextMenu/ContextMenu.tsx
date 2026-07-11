@@ -17,8 +17,8 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
-        <BaseContextMenu.Positioner className="riot-lift riot-menu__positioner">
-          <BaseContextMenu.Popup className="riot-surface riot-popup riot-pop riot-menu__popup">
+        <BaseContextMenu.Positioner className="riot-lift riot-menu-tier">
+          <BaseContextMenu.Popup className="riot-surface riot-popup riot-pop riot-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>

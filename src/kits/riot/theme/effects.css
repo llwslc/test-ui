@@ -168,10 +168,10 @@
   outline: none;
   transform: none;
 }
-.riot-menu__positioner {
+.riot-menu-tier {
   z-index: var(--riot-z-menu);
 }
-.riot-menu__popup {
+.riot-menu-pane {
   min-width: var(--riot-popup-w);
 }
 .riot-list-item {

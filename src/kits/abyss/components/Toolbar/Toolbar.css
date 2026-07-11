@@ -65,8 +65,14 @@
   color: var(--abyss-glow);
 }
 
-.abyss-toolbar__sep.abyss-separator {
+.abyss-toolbar__sep {
+  border: 0;
+  flex: 0 0 1px;
   align-self: stretch;
+  width: 1px;
   height: auto;
+  min-height: 1em;
   margin: 4px var(--abyss-space-1);
+  background: linear-gradient(180deg, transparent, var(--abyss-ink-strong), transparent);
+  filter: url(#abyss-edge);
 }

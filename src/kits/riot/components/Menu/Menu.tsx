@@ -22,12 +22,12 @@ export function Menu({ trigger, children }: MenuProps) {
       />
       <BaseMenu.Portal>
         <BaseMenu.Positioner
-          className="riot-lift riot-menu__positioner"
+          className="riot-lift riot-menu-tier"
           side="bottom"
           align="start"
           sideOffset={6}
         >
-          <BaseMenu.Popup className="riot-surface riot-popup riot-pop riot-menu__popup">
+          <BaseMenu.Popup className="riot-surface riot-popup riot-pop riot-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

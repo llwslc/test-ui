@@ -22,12 +22,12 @@ export function Menu({ trigger, children }: MenuProps) {
       />
       <BaseMenu.Portal>
         <BaseMenu.Positioner
-          className="nova-elevation nova-menu__positioner"
+          className="nova-elevation nova-menu-tier"
           side="bottom"
           align="start"
           sideOffset={6}
         >
-          <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
+          <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

@@ -89,8 +89,13 @@
   opacity: var(--nova-disabled-opacity);
 }
 
-.nova-toolbar__sep.nova-separator {
+.nova-toolbar__sep {
+  border: 0;
+  flex: 0 0 1px;
   align-self: stretch;
+  width: 1px;
   height: auto;
+  min-height: 1em;
   margin: 3px var(--nova-space-1);
+  background: linear-gradient(180deg, transparent, var(--nova-line-strong), transparent);
 }

@@ -34,7 +34,7 @@ export function MenuItem({
 
 export function MenuSeparator() {
   return (
-    <Menu.Separator className="nova-separator nova-separator--horizontal nova-menu__separator" />
+    <Menu.Separator className="nova-menu__separator" />
   );
 }
 
@@ -58,12 +58,12 @@ export function MenuSub({
       </Menu.SubmenuTrigger>
       <Menu.Portal>
         <Menu.Positioner
-          className="nova-elevation nova-menu__positioner"
+          className="nova-elevation nova-menu-tier"
           side="right"
           align="start"
           sideOffset={10}
         >
-          <Menu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
+          <Menu.Popup className="nova-surface nova-anim-pop nova-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>

@@ -60,12 +60,12 @@ export function MenuSub({
       </Menu.SubmenuTrigger>
       <Menu.Portal>
         <Menu.Positioner
-          className="riot-lift riot-menu__positioner"
+          className="riot-lift riot-menu-tier"
           side="right"
           align="start"
           sideOffset={10}
         >
-          <Menu.Popup className="riot-surface riot-popup riot-pop riot-menu__popup">
+          <Menu.Popup className="riot-surface riot-popup riot-pop riot-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>

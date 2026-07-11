@@ -45,7 +45,7 @@ export function ToolbarLink({
 
 export function ToolbarSeparator() {
   return (
-    <BaseToolbar.Separator className="nova-separator nova-separator--vertical nova-toolbar__sep" />
+    <BaseToolbar.Separator className="nova-toolbar__sep" />
   );
 }
 

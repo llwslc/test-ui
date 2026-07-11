@@ -317,14 +317,6 @@
   font-size: var(--brass-fs-20);
 }
 
-.brass-tabs__rail {
-  border-bottom: 1px solid var(--brass-line);
-}
-.brass-tabs__list {
-  position: relative;
-  display: flex;
-  gap: var(--brass-space-1);
-}
 .brass-tab {
   position: relative;
   display: inline-flex;

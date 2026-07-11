@@ -17,8 +17,8 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
-        <BaseContextMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner">
-          <BaseContextMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-menu__popup">
+        <BaseContextMenu.Positioner className="bauhaus-lift bauhaus-menu-tier">
+          <BaseContextMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>

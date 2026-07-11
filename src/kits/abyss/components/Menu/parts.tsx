@@ -33,7 +33,7 @@ export function MenuItem({
 }
 
 export function MenuSeparator() {
-  return <Menu.Separator className="abyss-separator abyss-menu__separator" />;
+  return <Menu.Separator className="abyss-menu__separator" />;
 }
 
 export function MenuSub({
@@ -56,12 +56,12 @@ export function MenuSub({
       </Menu.SubmenuTrigger>
       <Menu.Portal>
         <Menu.Positioner
-          className="abyss-elevation abyss-menu__positioner"
+          className="abyss-elevation abyss-menu-tier"
           side="right"
           align="start"
           sideOffset={14}
         >
-          <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
+          <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>

@@ -25,12 +25,12 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
       </span>
       <BaseMenu.Portal>
         <BaseMenu.Positioner
-          className="abyss-elevation abyss-menu__positioner"
+          className="abyss-elevation abyss-menu-tier"
           side="bottom"
           align="start"
           sideOffset={6}
         >
-          <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
+          <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

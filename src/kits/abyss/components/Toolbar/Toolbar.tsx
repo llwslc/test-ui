@@ -45,7 +45,7 @@ export function ToolbarLink({
 
 export function ToolbarSeparator() {
   return (
-    <BaseToolbar.Separator className="abyss-separator abyss-separator--vertical abyss-toolbar__sep" />
+    <BaseToolbar.Separator className="abyss-toolbar__sep" />
   );
 }
 

@@ -88,11 +88,8 @@
   padding: var(--bauhaus-space-1);
   outline: none;
 }
-.bauhaus-menu__positioner {
+.bauhaus-menu-tier {
   z-index: var(--bauhaus-z-menu);
-}
-.bauhaus-menu__popup {
-  min-width: var(--bauhaus-popup-w);
 }
 .bauhaus-list-item {
   min-height: var(--bauhaus-list-item-h);
