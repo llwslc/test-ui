@@ -495,7 +495,7 @@
 - **佐证**：同一条 spec 自己的结构描述里就写着「actions 右对齐」
 - **建议**：spec 拆开写——Dialog / Drawer 用 `footer`，AlertDialog 用 `actions`
 
-- [x] 已改（码＋文，用户裁决与建议相反）——「我看官方例子都叫 actions，全改 actions」：不拆开，统一到 Base UI 官方词。五套 Dialog/Drawer 的 prop `footer`→`actions`（10 组件文件＋10 处 demo 调用点）；nova/abyss/riot 的 `drawer__footer` 类名一并改 `__actions`（其余两套本走 `modal-actions` 配方）；spec 三件套 props 行改 `trigger·title·description·actions`，与结构描述「actions 右对齐」自洽。页脚 `<footer>`、PreviewCard 的 `preview__footer`、Panel 结构 footer 是别的东西，不动。tsc、kit-api、kit-deadcode 过。
+- [x] 已改（码＋文，用户裁决与建议相反）——「我看官方例子都叫 actions，全改 actions」：不拆开，统一到 Base UI 官方词。五套 Dialog/Drawer 的 prop `footer`→`actions`（10 组件文件＋10 处 demo 调用点）；nova/abyss/riot 的 `drawer__footer` 类名一并改 `__actions`（其余两套本走 `modal-actions` 配方）；spec 三件套 props 行改 `trigger·title·description·actions`，与结构描述「actions 右对齐」自洽（**该句在 d4930de 实际漏改**——首轮脚本死在断言、排在后面的 spec 段没执行，续修只补了代码步骤，报账时未 grep 验证；用户抓出后补于后续提交）。页脚 `<footer>`、PreviewCard 的 `preview__footer`、Panel 结构 footer 是别的东西，不动。tsc、kit-api、kit-deadcode 过。
 
 ## B2. Toast 没有 `swipeDirection` prop ✅
 
@@ -503,6 +503,8 @@
 - **spec**：「**Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）」
 - **代码**：五套的 `ToastProviderProps` 都只有 `timeout·limit`；`swipeDirection="right"` **硬编码在 `Toast.Root` 上**
 - **建议**：要么从 spec 删掉这个 prop 并注明「滑动方向固定 right」，要么五套一起补上。前者成本低
+
+- [x] 已改（码，用户裁决走后者）——「改源码，透穿这个值」：五套 `ToastProviderProps` 补 `swipeDirection?: SwipeDirection | SwipeDirection[]`（类型照抄 Base UI 联合型：单值或方向数组，数组＝列出的方向都能划走；库默认本是 `['down','right']`），包装层缺省 `"right"` 保持原行为、两跳透传 Provider→ToastList→Root。demo 五套统一传 `['up','down','left','right']` 四向全开，值钉进 `app.md`（根包 ToastProvider 从句）；components.md 的 props 括号补「单值或方向数组、默认 right」。末端验收：真拖拽向上划（改前禁用方向）toast 被划走。tsc、kit-api、prompt-lint 过。
 
 - [ ] 已改
 
