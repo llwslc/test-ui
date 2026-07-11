@@ -6,7 +6,7 @@
 
 每套一个 `App.tsx`。
 
-按「面板清单」摆出要演示的控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏面板网格——版式见下表，根包 `ToastProvider`、`swipeDirection` 传 `['up', 'down', 'left', 'right']` 四向全开，整页挂 theme 氛围层。
+按「面板清单」摆出要演示的控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按清单分组，锚点平滑跳转，接 hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏面板网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
 
 外壳类名按独立 block 命名：`<kit>-header`（顶栏）、`<kit>-shell`（两栏网格）、`<kit>-sidebar`（索引）、`<kit>-logo`（品牌）、`<kit>-clock`（时钟），各自带 `__` 元素。
 

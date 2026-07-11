@@ -302,7 +302,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
 
 export default function App() {
   return (
-    <ToastProvider swipeDirection={["up", "down", "left", "right"]}>
+    <ToastProvider>
       <Demo />
     </ToastProvider>
   );

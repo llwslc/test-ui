@@ -1377,7 +1377,7 @@ function Demo() {
 
 export default function App() {
   return (
-    <ToastProvider swipeDirection={["up", "down", "left", "right"]}>
+    <ToastProvider>
       <Demo />
     </ToastProvider>
   );
