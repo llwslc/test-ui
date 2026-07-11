@@ -28,6 +28,7 @@
   filter: var(--abyss-aura);
 }
 .abyss-panel__meta {
+  flex: 0 0 auto;
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);

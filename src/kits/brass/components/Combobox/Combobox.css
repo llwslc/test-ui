@@ -55,6 +55,7 @@
     transform var(--brass-dur) var(--brass-ease);
 }
 .brass-combobox__clear {
+  flex: 0 0 auto;
   font-size: var(--brass-fs-15);
 }
 .brass-combobox__trigger {

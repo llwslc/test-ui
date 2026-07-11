@@ -71,6 +71,7 @@
   color: var(--nova-primary);
 }
 .nova-panel__meta {
+  flex: 0 0 auto;
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);
   letter-spacing: var(--nova-ls-10);

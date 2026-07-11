@@ -13,6 +13,7 @@
 }
 
 .nova-radio__control {
+  flex: 0 0 auto;
   position: relative;
   display: grid;
   place-items: center;

@@ -854,7 +854,9 @@
 - **spec**：`components.md §6.1` ——「缩进量 = trigger 左内距 + marker 宽 + gap」= 16 + 14 + 12 = 42px
 - **代码**：`effects.css:275` → `calc(space-4 + space-6)` = 40px（把 marker + gap = 26 近似成了 `space-6` = 24）
 
-- [ ] 已处理
+- **五套渲染实测（2026-07-12，量「title 距行首」vs「内容左衬」）**：nova 35/35 差 0 ✓、abyss 47/47 差 0 ✓、brass 41.33/40 差 −1.33、bauhaus 41.33/40 差 −1.33、riot 42.26/40 差 −2.26——审计原只抓到 riot 的源码近似，实为**三套同病**（.33 的零头来自 em 制标记宽）；nova/abyss 精确对齐。测量陷阱备案：Base UI 面板的首个子元素是全出血 DIV，量它会把五套全冤枉，要量 `content.left + paddingLeft` vs `title.left`
+
+- [ ] 已处理（brass/bauhaus/riot 内容衬对齐 title 起点——待用户裁修码方向）
 
 ## E3. BRASS 演示层裸写字号字重 ⚠️
 
@@ -869,7 +871,7 @@
 - **代码**：`effects.css:106` 的 `.bauhaus-list-item[data-highlighted]` 只设 `background: tint-soft`，文字色不动
 - **备注**：`text` 与 `text-bright` 都是近黑，肉眼差别极小
 
-- [ ] 已处理
+- [x] 已处理（文，用户裁决）—— 「菜单触发器、列表项转 `bright`」摘掉列表项（触发器实转 `bright` ✓ 留）；列表项只加 `tint-soft` 底、字色不动
 
 ## E5. PRISM 的 Progress / Meter 轨道没用 `track` token ⚠️
 
@@ -877,7 +879,7 @@
 - **代码**：两者经 `.bauhaus-surface` 填 `--bauhaus-surface`（`#f7f3e8`），不是 `--bauhaus-track`（`#e2dbc9`）。全套只有 ScrollArea 用 `track`
 - **置信度低**：两者都是浅纸色，可能是有意为之
 
-- [ ] 已处理
+- [x] 已处理（码，用户裁决）—— Progress/Meter 轨道按 recolor-via-input-var 就近覆盖 `--bauhaus-surface-fill: var(--bauhaus-track)`；指纹红名单恰为 bauhaus #progress/#meter ×双宽（意图范围零外溢），基线已刷
 
 ## E6. PRISM 的 success toast 标记不是三原形 ⚠️
 
@@ -947,7 +949,7 @@
 
 其中 `drawer__body / padding` 已单列为 A4，`navmenu__list / overflow-x` 已单列为 A3。其余 5 条需逐条判是活 bug 还是合理分歧。
 
-- [ ] 已逐条判
+- [x] 已逐条判（对拍照片呈用户）—— **活 bug 实锤并修**：nova `radio__control` 缺 flex，长标签挤压 22→11px（四套稳住），补 `flex: 0 0 auto` 后复测 22→22 ✓；同族同修 nova `numberfield__btn`、nova/abyss `panel__meta`、brass `combobox__clear`（多数派声明为基线，静息零像素变化、指纹无痕）。**判合理分歧不动**：riot `radio__control` 的 padding——五套计算值全 0，纯声明在场性、永无渲染差。备案：Combobox 的 Clear 只在**选中值**时挂载（输入过滤文本不算），对拍要先真选一项
 
 ---
 

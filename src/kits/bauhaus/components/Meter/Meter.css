@@ -22,6 +22,7 @@
   color: var(--bauhaus-text);
 }
 .bauhaus-meter__track {
+  --bauhaus-surface-fill: var(--bauhaus-track);
   width: 100%;
   height: var(--bauhaus-meter-h);
   overflow: hidden;

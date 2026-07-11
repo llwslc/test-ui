@@ -23,6 +23,7 @@
 }
 
 .nova-numberfield__btn {
+  flex: 0 0 auto;
   --nova-numberfield-btn-bg: var(--nova-surface-raised);
   position: relative;
   z-index: 1;
