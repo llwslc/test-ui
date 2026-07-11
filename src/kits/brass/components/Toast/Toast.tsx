@@ -17,7 +17,7 @@ function toneIcon(tone: ToastTone) {
   return <Gear />;
 }
 
-function ToastList() {
+function ToastList({ swipeDirection }: { swipeDirection: SwipeDirection | SwipeDirection[] }) {
   const { toasts } = BaseToast.useToastManager();
   return (
     <>
@@ -25,7 +25,7 @@ function ToastList() {
         <BaseToast.Root
           key={toast.id}
           toast={toast}
-          swipeDirection="right"
+          swipeDirection={swipeDirection}
           className="brass-plate brass-pop brass-toast"
         >
           <span className="brass-marker brass-toast__marker">
@@ -55,19 +55,22 @@ function ToastList() {
   );
 }
 
+type SwipeDirection = "up" | "down" | "left" | "right";
+
 export interface ToastProviderProps {
   children: ReactNode;
   timeout?: number;
   limit?: number;
+  swipeDirection?: SwipeDirection | SwipeDirection[];
 }
 
-export function ToastProvider({ children, timeout = 5000, limit = 4 }: ToastProviderProps) {
+export function ToastProvider({ children, timeout = 5000, limit = 4, swipeDirection = "right" }: ToastProviderProps) {
   return (
     <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
       <BaseToast.Portal>
         <BaseToast.Viewport className="brass-toast__viewport">
-          <ToastList />
+          <ToastList swipeDirection={swipeDirection} />
         </BaseToast.Viewport>
       </BaseToast.Portal>
     </BaseToast.Provider>

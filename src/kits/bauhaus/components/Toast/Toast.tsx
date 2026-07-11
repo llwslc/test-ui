@@ -18,26 +18,29 @@ function toneOf(type: string | undefined): ToastTone {
   return type === "success" || type === "warning" || type === "danger" ? type : "info";
 }
 
+type SwipeDirection = "up" | "down" | "left" | "right";
+
 export interface ToastProviderProps {
   children: ReactNode;
   timeout?: number;
   limit?: number;
+  swipeDirection?: SwipeDirection | SwipeDirection[];
 }
 
-export function ToastProvider({ children, timeout = 5000, limit = 4 }: ToastProviderProps) {
+export function ToastProvider({ children, timeout = 5000, limit = 4, swipeDirection = "right" }: ToastProviderProps) {
   return (
     <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
       <BaseToast.Portal>
         <BaseToast.Viewport className="bauhaus-toast__viewport">
-          <ToastList />
+          <ToastList swipeDirection={swipeDirection} />
         </BaseToast.Viewport>
       </BaseToast.Portal>
     </BaseToast.Provider>
   );
 }
 
-function ToastList() {
+function ToastList({ swipeDirection }: { swipeDirection: SwipeDirection | SwipeDirection[] }) {
   const { toasts } = BaseToast.useToastManager();
   return (
     <>
@@ -47,7 +50,7 @@ function ToastList() {
           <BaseToast.Root
             key={toast.id}
             toast={toast}
-            swipeDirection="right"
+            swipeDirection={swipeDirection}
             className={cx("bauhaus-surface", "bauhaus-toast")}
           >
             <span className="bauhaus-toast__marker" aria-hidden="true">
