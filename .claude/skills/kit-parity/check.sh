@@ -49,6 +49,7 @@ for comp in $COMPS; do
   for k in $KITS; do
     case " $rhaves " in *" $k "*) ;; *)
       [ -n "$ONLY" ] && [ "$ONLY" != "$k" ] && continue
+      grep -q "^$comp:$k$" "$(dirname "$0")/responsive-exempt.txt" 2>/dev/null && continue
       echo "GAP  $comp — $k missing responsive @media(max-width) (present in:$rhaves)"; RFAIL=1; FAIL=1;;
     esac
   done

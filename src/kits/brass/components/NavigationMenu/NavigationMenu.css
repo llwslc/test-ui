@@ -151,7 +151,7 @@
     flex-wrap: nowrap;
     scrollbar-width: none;
   }
-  .brass-navmenu__item {
+  .brass-navmenu__list > * {
     flex: 0 0 auto;
   }
   .brass-navmenu__content {

@@ -1,0 +1,8 @@
+# 手机适配住在共享 .seg 原语的 @media(theme/effects.css),per-component 检查看不见;
+# 行为对等已实测(E8)。只准减不准加。
+Menubar:brass
+Menubar:bauhaus
+Menubar:riot
+ToggleGroup:brass
+ToggleGroup:bauhaus
+ToggleGroup:riot
