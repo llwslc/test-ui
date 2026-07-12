@@ -405,7 +405,7 @@
 - [x] 已修 —— `NavigationMenu.tsx` 在 `Content` 与 `Link` 之间补一层 `<div class="brass-navmenu__grid">`（取 bauhaus 的形状，`Content > grid > Link` 逐字对上 `§6.1` 骨架，不引入多余的 `ul/li`）；CSS 里 `__content` 只留定宽 `--brass-navmenu-w` + padding + morph 的 `transition`，网格三行迁进 `__grid`；手机段的 `1fr` 也随之挂到 `__grid`
 - **五套现状**：`__grid` 层全部存在，`__content` 全部不再带 `grid-template-columns`
 
-- [ ] 补门禁 F5（子部件层级缺失检查）
+- [x] 门禁 F5 已建（`kit-skeleton`，2026-07-12）
 
 ## A20. Toolbar 手机态横滚，spec 明写不许 —— 根因在共享的 `.<kit>-seg` ✅
 
@@ -960,26 +960,31 @@
 `kit-deadcode` 查的是「CSS 定义了但没人用」。反方向没人管：`.tsx` 挂上一个类，`.css` 里没有任何规则消费它，prop 就是死的。
 **检查**：抽出各组件 `.tsx` 里出现的所有 `<kit>-*` 与 `is-*` 类名，逐个确认至少有一条 CSS 规则匹配。
 
+- [x] **已建（2026-07-12）**：织入 `kit-deadcode`（死代码之家：死类／死 keyframe／死间接层／用而未定义，四查合一）。首扫 51 处，分诊出**真 bug 一条**——riot 的 `.riot-menu__trigger` 在 CSS 里从不存在，导致「打开转 chevron」的规则没有宿主，独立 Menu 的 chevron 从来不转（违反 §6.1）；其余 50 处是零规则死钩子（样式来自兄弟类或父元素），全部从 tsx 摘除。像素证据：不含类名的几何＋计算样式对拍（stash 前后双跑）5/5 全同。
 ## F2. hover 权重压过 open/selected —— 对应 A6、A7
 
 `kit-interact` 已有这条检查，但只覆盖分段控件（ToggleGroup / Toolbar）。
 **扩面**：所有同时存在 `:hover` 规则和 `[data-popup-open]` / `[data-active]` / `[data-checked]` / `[data-selected]` 规则的元素，静态比对两者特异度；hover 更高且两条规则声明了**相同属性**即 FAIL。这是纯 CSS 级联事实，不需要浏览器。
 
+- [x] 已在 `kit-interact`（CDP forcePseudoState 驱动真 hover，覆盖分段控件与选中/开启态）。
 ## F3. 自定义属性继承导致 transform 二次叠加 —— 对应 A8
 
 一个原语类无条件读某个会继承的自定义属性来做 `transform`，嵌套时必然叠加。
 **检查**：沿祖先链累乘 transform 矩阵，断言同一面板内「控件」与「其 caption 标签」的屏幕累积角度一致。riot 现在是 2.6° vs 1.3°。
 
+- [x] **已建（2026-07-12）**：`kit-lint` 规则 13——transform 里消费、由组件赋值、又会继承的自定义属性即红（要么 `:root` 常量，要么 `@property{inherits:false}`）。扫出两处裸奔：`--riot-btn-tilt`、`--riot-toast-tilt`，照 `--riot-surface-tilt` 既有房型补守卫；toast 的 `initial-value` 取 `-2deg` 保住原 fallback（否则第 5 条起 −2°→0°＝像素回归）。
 ## F4. 五套一致偏离 spec 的 prop —— 对应 B1、B2
 
 `kit-api` 做的是**跨 kit 横向 diff**，五套一起偏离 spec 时它恒绿。
 **补法**：把 `components.md §6.1` 的 props 清单机器可读化（每个组件一行），与各 kit 的 `interface` 逐字对拍。这条能同时守住 B 类和未来的 spec 漂移。
 
+- [x] **已建（2026-07-12）**：新门 `kit-spec-props`——解析 §6.1 各条目 props 清单，与五套 `<Comp>Props` 显式字段双向对拍。建门当场抓到真漏洞：**PreviewCard 的 `trigger` prop 从未入 spec**，已补。
 ## F5. 子部件层级缺失 —— 对应 A19
 
 `kit-naming` 核的是**块类**跨 kit 一致（`navmenu` 在五套里都叫 `navmenu`），`kit-structure §5` 核的是 Base UI 接线。**中间那层 `__part` 骨架有没有少一层，没人管**——brass 的 `__grid` 整层不存在，五个门禁一个都没响。
 **检查**：对 `components.md §6.1` 里写出骨架的组件，把骨架里点名的 `__part` 抽成清单，断言每套 kit 的 `.tsx` 都渲染出这些层。
 
+- [x] **已建（2026-07-12）**：新门 `kit-skeleton`——§6.1 骨架里用 `>` 串起的结构层（grid/list/head/section/header/frame），五套必须真渲染（类名含该词 或 同名 JSX 标签）。**两版弯路存证**：①「骨架词元全覆盖」46 假阳性（骨架混着 HTML 标签与图标名）；②「跨 kit 子部件在场性」18 命中、逐条分诊全是命名差异或 spec 可选件——只有 `>` 链是硬信号。fail-on-broken：抽掉 brass 的 `__grid`（重演 A19）当场红。
 ## F6. spec 只钉桌面、不钉手机 —— 对应 C17
 
 `components.md` 有多处只描述了 `>768` 的形态（如 NavMenu 下拉两列），手机态靠各 kit 自觉。四套碰巧一致，是运气不是契约。
@@ -987,6 +992,7 @@
 
 ---
 
+- [x] 已在 `kit-parity`（逐控件手机适配检查）＋ 手机态条款归口（§8 只留断点，逐控件形变回 §6.1 各自条目）。
 ## 附：本次审计的执行方式
 
 - 10 个并行子 agent：5 套 kit × 2 层（主题视觉层 / 控件皮 + 演示页），每个 agent 拿到该层全部 spec 条目做双向核对
