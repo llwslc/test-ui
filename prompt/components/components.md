@@ -143,7 +143,7 @@
 
 - **通则**（承 §4.2）：结构 `Trigger + Portal > Positioner(挂 elevation 阴影) > Popup(挂 anim-pop + surface 形状，或内嵌一个 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或子层，绝不挂在同一个元素上**；项、链接的状态 +highlighted。
 - **Tooltip**：props `content·side`（默认 top）`·align`（默认 center）`·sideOffset·delay`（默认 200）；弹层开在离触发器 `10px` 处；触屏与 focus 的打开路径见 §7「触屏」。
-- **PreviewCard**：props `side`（默认 top）`·align`（默认 center）`·sideOffset`；弹层开在 `10px` 处；触摸路径同 Tooltip。
+- **PreviewCard**：props `trigger·side`（默认 top）`·align`（默认 center）`·sideOffset`；弹层开在 `10px` 处；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side`（默认 bottom）`·align`（默认 center）`·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`；弹层开在 `10px` 处。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`），Menu、Menubar 另带 `side`（默认 bottom）`·align`（默认 start）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。菜单开在离触发器 `6px` 处，ContextMenu 开在右键指针上、不留缝。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron；Menubar 手机端横向滚动不换行。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
 - **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`；下拉与触发器左对齐（Positioner `align="start"`）、开在 `10px` 处，碰撞边距 `collisionPadding` 取 `16`、各 kit 同值；手机端触发器排横向滚动不换行、滚动条隐藏，下拉网格收成单列。
