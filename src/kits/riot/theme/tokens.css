@@ -75,6 +75,20 @@
   --riot-z-overlay: 1401;
   --riot-z-toast: 1500;
 
+  --riot-rot-1-2: 1.2deg;
+  --riot-rot-1-5: 1.5deg;
+  --riot-rot-2: 2deg;
+  --riot-rot-2-5: 2.5deg;
+  --riot-rot-3: 3deg;
+  --riot-rot-3-5: 3.5deg;
+  --riot-rot-4: 4deg;
+  --riot-rot-6: 6deg;
+  --riot-rot-8: 8deg;
+  --riot-rot-17: 17deg;
+  --riot-rot-24: 24deg;
+  --riot-rot-40: 40deg;
+  --riot-rot-42: 42deg;
+
   --riot-dur: 0.1s;
   --riot-dur-slow: 0.26s;
   --riot-dur-sweep: 1.2s;

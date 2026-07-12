@@ -47,29 +47,29 @@
 .riot-tape--tl {
   top: -11px;
   left: -16px;
-  transform: rotate(-42deg);
+  transform: rotate(calc(-1 * var(--riot-rot-42)));
 }
 .riot-tape--tr {
   top: -11px;
   right: -16px;
-  transform: rotate(40deg);
+  transform: rotate(var(--riot-rot-40));
 }
 .riot-tape--bl {
   bottom: -11px;
   left: -16px;
-  transform: rotate(40deg);
+  transform: rotate(var(--riot-rot-40));
 }
 .riot-tape--br {
   bottom: -11px;
   right: -16px;
-  transform: rotate(-40deg);
+  transform: rotate(calc(-1 * var(--riot-rot-40)));
 }
 .riot-tape--top {
   top: -12px;
   left: 50%;
   width: 116px;
   margin-left: -58px;
-  transform: rotate(-3deg);
+  transform: rotate(calc(-1 * var(--riot-rot-3)));
 }
 
 .riot-staple {

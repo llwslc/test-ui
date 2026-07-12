@@ -9,12 +9,12 @@
 .riot-panel__staple--l {
   top: 5px;
   left: 22px;
-  transform: rotate(24deg);
+  transform: rotate(var(--riot-rot-24));
 }
 .riot-panel__staple--r {
   top: 5px;
   right: 22px;
-  transform: rotate(-17deg);
+  transform: rotate(calc(-1 * var(--riot-rot-17)));
 }
 .riot-panel__sheet {
   --riot-surface-tilt: var(--riot-tilt, 0deg);
@@ -37,7 +37,7 @@
   font-family: var(--riot-font-mono);
   font-size: var(--riot-fs-11);
   letter-spacing: var(--riot-ls-2);
-  transform: rotate(2.5deg);
+  transform: rotate(var(--riot-rot-2-5));
 }
 .riot-panel__body {
   display: flex;

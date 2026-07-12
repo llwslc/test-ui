@@ -13,7 +13,7 @@
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: var(--riot-shadow-hard);
-  --riot-btn-tilt: -4deg;
+  --riot-btn-tilt: calc(-1 * var(--riot-rot-4));
   transform: rotate(var(--riot-btn-tilt));
   transition:
     transform var(--riot-dur) var(--riot-ease),

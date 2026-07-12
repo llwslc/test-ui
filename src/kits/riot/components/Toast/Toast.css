@@ -22,21 +22,21 @@
     opacity var(--riot-dur) var(--riot-ease-out);
 }
 .riot-toast:nth-child(4n + 1) {
-  --riot-toast-tilt: -3deg;
+  --riot-toast-tilt: calc(-1 * var(--riot-rot-3));
 }
 .riot-toast:nth-child(4n + 2) {
-  --riot-toast-tilt: 2.5deg;
+  --riot-toast-tilt: var(--riot-rot-2-5);
 }
 .riot-toast:nth-child(4n + 3) {
-  --riot-toast-tilt: -1.5deg;
+  --riot-toast-tilt: calc(-1 * var(--riot-rot-1-5));
 }
 .riot-toast:nth-child(4n) {
-  --riot-toast-tilt: 3.5deg;
+  --riot-toast-tilt: var(--riot-rot-3-5);
 }
 .riot-toast[data-starting-style],
 .riot-toast[data-ending-style] {
   opacity: 0;
-  transform: translateX(60px) rotate(8deg);
+  transform: translateX(60px) rotate(var(--riot-rot-8));
 }
 .riot-toast__surface {
   display: flex;

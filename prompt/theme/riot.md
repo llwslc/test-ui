@@ -22,13 +22,13 @@
 ## 2. 字体与排版
 
 - 字体：display（粗黑标题）用 **Anton**，正文用打字机体 **Special Elite**，数值刻度（mono）用 **DM Mono**，控件标签注记体（`font-tag`）用 **Bebas Neue**；勒索信拼贴逐字混排 **Archivo Black** 与 **Bebas Neue**，涂划手写用 **Rock Salt**。
-- 尺度各档：字号 `fs-11 / 13 / 15 / 18 / 24 / 44`，字距 `ls-1 .01em / -2 .04em / -4 .12em`，行高 `lh-100 / 130 / 150`，字重 `fw-400`。
+- 尺度各档：字号 `fs-11 / 13 / 15 / 18 / 24 / 44`，字距 `ls-1 .01em / -2 .04em / -4 .12em`，行高 `lh-100 / 130 / 150`，字重 `fw-400`；旋转角 `rot-1-2 / 1-5 / 2 / 2-5 / 3 / 3-5 / 4 / 6 / 8 / 17 / 24 / 40 / 42`。
 - 三档标题：`h1` = display · fs-44 · lh-100 · bright；`h2` = display · fs-24 · lh-130 · bright；`h3` = display · fs-13 · 大写 · ls-4 · bright，是剪报小标；正文 `text` = Special Elite · fs-15 · lh-150 · text；修饰类 `h1--accent` = 勒索信剪贴的强调词：整词套一个荧光实填方框、微旋转、带硬偏移投影。
 - 字段标签 caption 有独立类 **`.riot-cap`**：Anton · fs-11 · 大写 · ls-4 · bright 的剪报小标，组件统一引用。
 
 ## 3. 几何与描边
 
-- 造型 = **撕纸剪报 + 微旋转**，不用圆角、不用 clip-path 斜切。半径两档：`r-control` 为 `0`（纸是硬边的），`r-round 999px` 给正圆件（圆框、状态点）；每块剪报另挂一个各不相同的小旋转角（`--riot-tilt`，±0.5°–1.3°），由组件就近给，做出散钉的错落。组件不裸写 radius；母题件与部件的姿态角、进出场的角是一次性值，就近写立即数。
+- 造型 = **撕纸剪报 + 微旋转**，不用圆角、不用 clip-path 斜切。半径两档：`r-control` 为 `0`（纸是硬边的），`r-round 999px` 给正圆件（圆框、状态点）；每块剪报另挂一个各不相同的小旋转角（`--riot-tilt`，±0.5°–1.3°），由组件就近给，做出散钉的错落。组件不裸写 radius 与角度：radius 走 `r-*` 档；散钉与母题的姿态角走 `rot-*` 度数阶梯（方向符号在用处给）；剪报 tilt 走 `--riot-tilt`；构造角（chevron 翻转、connector 指向、部件划线）与动效帧角就近写。
 - 尺度感靠**粗黑描边**体现。粗细阶梯：默认 `stroke 2.5px`，加档 `stroke-hair 1.5px · stroke-bold 3px · stroke-heavy 4px`，按角色挑：细分隔用 hair，控件与容器框用默认档，招牌板用 bold，超大外框用 heavy；组件不裸写 border-width。
 - 描边走 frame 原语 `.riot-surface`：`paper` 实填 + `ink` 粗黑 border + 硬偏移实影 + `--riot-tilt` 旋转，是盖戳盒；输入变量 `--riot-surface-fill / -border / -stroke / -tilt`。`--torn` 变体＝**撕边** `clip-path`（沿边锯齿多边形、去 border，由撕口 + 偏移影定形），给剪报与面板用，另叠一层复印烧边内影；细条轨改用 `clip-strip`——左、上、下直边，只在右端撕口。胶带 `.riot-tape`（四角与顶位）与订书钉 `.riot-staple` 是独立母题件，钉在剪报、模态与招牌上，贴在未裁切的外框上。
 - `#riot-torn`：内联一个 SVG 滤镜（feTurbulence + feDisplacementMap），给撕边、分隔线、连接件挂上，让边缘呈现手撕的不规则毛刺。

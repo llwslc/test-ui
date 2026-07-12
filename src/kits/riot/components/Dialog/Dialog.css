@@ -8,7 +8,7 @@
 .riot-dialog__popup[data-starting-style],
 .riot-dialog__popup[data-ending-style] {
   opacity: 0;
-  transform: translateY(-14px) rotate(-1.2deg);
+  transform: translateY(-14px) rotate(calc(-1 * var(--riot-rot-1-2)));
 }
 .riot-dialog__surface {
   position: relative;
