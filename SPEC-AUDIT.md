@@ -507,8 +507,6 @@
 - [x] 已改（码，用户裁决走后者）——「改源码，透穿这个值」：五套 `ToastProviderProps` 补 `swipeDirection?: SwipeDirection | SwipeDirection[]`（类型照抄 Base UI 联合型：单值或方向数组，数组＝列出的方向都能划走；库默认本是 `['down','right']`），包装层缺省 `"right"` 保持原行为、两跳透传 Provider→ToastList→Root。demo 五套统一传 `['up','down','left','right']` 四向全开，值钉进 `app.md`（根包 ToastProvider 从句）；components.md 的 props 括号补「单值或方向数组、默认 right」。末端验收：真拖拽向上划（改前禁用方向）toast 被划走。tsc、kit-api、prompt-lint 过。
 - **2026-07-12 追改（用户裁决）**：demo 特调撤回——app.md 的 swipeDirection 从句删除、五套 demo 回默认 right；组件 prop 与默认保持。同笔立规：**透传参数的值域不复述进 spec**（side/align 六处与 swipeDirection 的枚举列表删除，值域是 Base UI 的类型、复述＝框架复述），要列值域的是自有 API 枚举（variant/tone/size/Drawer side/ScrollArea variant）。
 
-- [ ] 已改
-
 ### B 类追加：包装层硬编码／收窄全量清点（2026-07-11，用户问「还有哪些值是控件写了默认值、或参数小于 Base UI」）
 
 扫描器过五套全部 TSX 的 Base 原语字面量属性＋逐控件核 props 面。**输入系全部 `extends` Base UI 完整 props＋`{...props}` 全量转发，无收窄**；spec 已钉的硬编码（Tooltip `closeOnClick=false`、Select `alignItemWithTrigger=false`、sideOffset 族、菜单/NavMenu 的 `side/align`）全部对上。存量四条：
