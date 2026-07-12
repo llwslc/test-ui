@@ -30,7 +30,7 @@ export function Checkbox({ label, className, ...props }: CheckboxProps) {
         />
       </BaseCheckbox.Root>
       {label != null ? (
-        <span className="bauhaus-cap bauhaus-checkbox__label">{label}</span>
+        <span className="bauhaus-cap">{label}</span>
       ) : null}
     </label>
   );

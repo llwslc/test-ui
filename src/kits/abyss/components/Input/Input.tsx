@@ -15,7 +15,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
     <span
       className={cx(
         "abyss-input-wrap abyss-frame",
-        icon && "abyss-input-wrap--icon",
+        icon && "",
         className,
       )}
     >
@@ -56,7 +56,7 @@ export function Field({
       <span
         className={cx(
           "abyss-input-wrap abyss-frame",
-          icon && "abyss-input-wrap--icon",
+          icon && "",
         )}
       >
         {icon ? <span className="abyss-input__icon">{icon}</span> : null}

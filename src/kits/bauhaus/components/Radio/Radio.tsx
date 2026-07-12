@@ -21,7 +21,7 @@ export function Radio({ children, className, ...props }: RadioProps) {
         <BaseRadio.Indicator className="bauhaus-radio__dot" />
       </BaseRadio.Root>
       {children != null ? (
-        <span className="bauhaus-cap bauhaus-radio__label">{children}</span>
+        <span className="bauhaus-cap">{children}</span>
       ) : null}
     </label>
   );

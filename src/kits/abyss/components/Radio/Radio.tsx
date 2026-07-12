@@ -27,7 +27,7 @@ export function Radio({ className, children, ...props }: RadioProps) {
           <path d="M14 5 L15.7 12.3 L23 14 L15.7 15.7 L14 23 L12.3 15.7 L5 14 L12.3 12.3 Z" />
         </svg>
       </BaseRadio.Root>
-      {children != null ? <span className="abyss-cap abyss-radio__label">{children}</span> : null}
+      {children != null ? <span className="abyss-cap">{children}</span> : null}
     </label>
   );
 }

@@ -88,5 +88,39 @@ for (const kit of kits) {
   if (ceremony) total += ceremony; else console.log('  dead-indirection: clean');
 }
 
+// noise class — a class in .tsx that NO kit styles, NO gate locates by, and that is not a
+// BEM base of a defined modifier. NOT the same as "undefined in THIS kit": a part class the
+// siblings skin is the cross-kit naming CONTRACT (§3) and the gates anchor on it — deleting
+// those blinded kit-submenu-gap once (brass-select__trigger). This flags only the classes
+// that convey nothing anywhere.
+{
+  const kitsAll = fs.readdirSync('src/kits').filter((d) => fs.statSync(`src/kits/${d}`).isDirectory());
+  const gates = cp.execSync("cat .claude/skills/*/*.cjs .claude/skills/*/*.sh 2>/dev/null || true").toString();
+  const cssOf = {};
+  for (const kit of kitsAll)
+    cssOf[kit] = cp.execSync(`find src/kits/${kit} -name '*.css'`).toString().trim().split('\n')
+      .map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+  const esc = (x) => x.replace(/[-]/g, '\\-');
+  const skinnedAnywhere = (part) => kitsAll.some((k) => new RegExp(`\\.${k}-${esc(part)}(?![a-z0-9_-])`).test(cssOf[k]));
+  const hasModifier = (part) => kitsAll.some((k) => new RegExp(`\\.${k}-${esc(part)}--[a-z]`).test(cssOf[k]));
+  let noise = 0;
+  for (const kit of kitsAll)
+    for (const f of cp.execSync(`find src/kits/${kit}/components -name '*.tsx'`).toString().trim().split('\n')) {
+      const t = fs.readFileSync(f, 'utf8');
+      const seen = new Set();
+      for (const m of t.matchAll(/["'`]([^"'`\n]*)["'`]/g))
+        for (const cls of m[1].split(/\s+/)) {
+          const mm = cls.match(new RegExp(`^${kit}-([a-z0-9_-]+)$`));
+          if (!mm || seen.has(cls)) continue;
+          const part = mm[1];
+          if (skinnedAnywhere(part) || hasModifier(part) || gates.includes(part)) continue;
+          seen.add(cls);
+          console.log(`  FAIL ${kit}: .${cls} in ${f.split('components/')[1]} — no kit styles this part, no gate anchors on it, no modifier hangs off it: it conveys nothing, drop it`);
+          noise++;
+        }
+    }
+  if (noise) total += noise; else console.log('  noise-class: clean');
+}
+
 console.log(`\nRESULT: ${total === 0 ? 'PASS (no dead code)' : total + ' finding(s)'}`);
 process.exit(total === 0 ? 0 : 1);

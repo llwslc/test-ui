@@ -47,7 +47,7 @@ export function MenuSub({
 }) {
   return (
     <Menu.SubmenuRoot>
-      <Menu.SubmenuTrigger className="abyss-menu__item abyss-menu__item--sub">
+      <Menu.SubmenuTrigger className="abyss-menu__item">
         <span className="abyss-menu__icon">{icon}</span>
         <span className="abyss-menu__label">{label}</span>
         <span className="abyss-menu__arrow">

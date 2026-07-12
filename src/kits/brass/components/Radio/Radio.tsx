@@ -20,7 +20,7 @@ export function Radio({ children, className, ...props }: RadioProps) {
       <BaseRadio.Root className={cx("brass-radio__control", className)} {...props}>
         <BaseRadio.Indicator className="brass-radio__indicator" keepMounted />
       </BaseRadio.Root>
-      {children && <span className="brass-radio__label">{children}</span>}
+      {children && <span>{children}</span>}
     </label>
   );
 }
