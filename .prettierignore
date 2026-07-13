@@ -1,2 +1,6 @@
 dist
 node_modules
+
+# docs answer to prompt-lint, not prettier — prettier escapes globs in prose
+# (*.ts(x) -> \*.ts(x)), which is exactly the copy-paste damage the doc rules exist to prevent.
+*.md
