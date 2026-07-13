@@ -10,6 +10,10 @@ ROOT=$(cd "$(dirname "$0")/../../.." && pwd) || exit 2
 cd "$ROOT" || exit 2
 FILES="$*"
 [ -n "$FILES" ] || FILES=$(find prompt -name '*.md' | sort)
+# hard-wrap is a repo-wide convention, not a prompt/ one — README.md and the SKILL.md docs
+# answer to it too. Every other check below is 中文 spec-specific and stays on $FILES.
+MD_FILES="$*"
+[ -n "$MD_FILES" ] || MD_FILES=$(git ls-files '*.md' 2>/dev/null | sort)
 fail=0
 
 echo "## mixed punctuation register — ASCII ,:;() touching 汉字 outside code spans"
@@ -24,6 +28,56 @@ echo
 echo "## heading carrying a trailing qualifier (the title should stand alone)"
 hits=$(grep -nE '^#{2,6} .+ (—|--|：|:|（|\()' $FILES 2>/dev/null || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's/^/  /'; fail=1; else echo "  -> clean"; fi
+
+echo
+echo "## hard-wrapped prose — one paragraph is ONE line (repo-wide; let the editor soft-wrap)"
+# A hit = ANY line that continues the previous line's paragraph — same rule the fixer applies,
+# so green here means nothing is left to unwrap. Hard wraps break copy-paste and make a one-word
+# edit reflow the whole paragraph in the diff. Fix: python3 .claude/skills/prompt-lint/unwrap.py <file>.
+hits=$(python3 - $MD_FILES <<'PYEOF'
+import pathlib, re, sys
+
+TICK = chr(96)                                              # ` — a literal one breaks the $() parse
+FENCES = (TICK * 3, "~~~")
+ORDERED = re.compile(r"\d+[.)]\s")
+LINKDEF = re.compile(r"\[[^\]]+\]:")
+
+
+def opens_block(s):                                         # a NEW block — never a continuation.
+    if s[0] in "#|><=":                                     # a LONE backtick is an inline code
+        return True                                         # span (fences match above) and * only
+    if s[:3] in ("---", "***", "___"):                      # bullets with a space after it —
+        return True                                         # calling either a block leaves the
+    if s[0] in "-*+" and len(s) > 1 and s[1] in " \t":      # paragraph split and this gate green.
+        return True
+    return bool(ORDERED.match(s) or LINKDEF.match(s))
+
+
+out = []
+for f in sys.argv[1:]:
+    lines = pathlib.Path(f).read_text(encoding="utf-8").splitlines()
+    start = 0
+    if lines and lines[0].strip() == "---":                 # YAML frontmatter
+        for i, ln in enumerate(lines[1:], 2):
+            if ln.strip() == "---":
+                start = i
+                break
+    fence, prev = False, ""
+    for i, ln in enumerate(lines[start:], start + 1):
+        s = ln.strip()
+        if s.startswith(FENCES):
+            fence, prev = not fence, ""
+            continue
+        if fence or not s:
+            prev = ""
+            continue
+        if prev and not opens_block(s):
+            out.append(f"  {f}:{i - 1}: {prev}")
+        prev = s
+print("\n".join(out))
+PYEOF
+)
+if [ -n "$hits" ]; then printf '%s\n' "$hits"; fail=1; else echo "  -> clean"; fi
 
 echo
 echo "## layer separation — components/ ⊥ demo · app/ ⊥ library · theme/(风格) ⊥ both"

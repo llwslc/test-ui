@@ -7,49 +7,31 @@ description: One command that runs the whole theme-kit gate suite (every .claude
 
 Run: `sh .claude/skills/kit-qa/check.sh [port]` (port default 5273).
 
-The dynamic gates drive the real page, so **the dev server must be up** on that
-port first (`npm run dev`). The runner curl-checks it and bails early if not.
+The dynamic gates drive the real page, so **the dev server must be up** on that port first (`npm run dev`). The runner curl-checks it and bails early if not.
 
 ## Playwright
 
-The dynamic gates load `playwright-core` from a fixed path,
-`/tmp/pw/node_modules/playwright-core`. `/tmp` is ephemeral, so after a reboot they
-error with `Cannot find module '/tmp/pw/...'`. Recreate it from scratch:
+The dynamic gates load `playwright-core` from a fixed path, `/tmp/pw/node_modules/playwright-core`. `/tmp` is ephemeral, so after a reboot they error with `Cannot find module '/tmp/pw/...'`. Recreate it from scratch:
 
     mkdir -p /tmp/pw && cd /tmp/pw && npm init -y && npm i playwright-core
 
-They launch the system Google Chrome via `executablePath` (the `CHROME` const in
-each `check.cjs`), so `playwright-core` alone suffices — no `npx playwright install`
-browser download. Needs Chrome at
-`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`.
+They launch the system Google Chrome via `executablePath` (the `CHROME` const in each `check.cjs`), so `playwright-core` alone suffices — no `npx playwright install` browser download. Needs Chrome at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`.
 
 ## Why this exists
 
-The dynamic Playwright gates are real and correct, but only `diff-hygiene` ran
-before every commit — so a targeted CSS edit shipped a regression (kit-visual's
-stray-scrollbar check catches it, but it wasn't run). This chains the lot into one step. After any kit
-CSS/component change, run `kit-qa` instead of trying to remember which gate covers
-overflow vs geometry vs animation vs interaction.
+The dynamic Playwright gates are real and correct, but only `diff-hygiene` ran before every commit — so a targeted CSS edit shipped a regression (kit-visual's stray-scrollbar check catches it, but it wasn't run). This chains the lot into one step. After any kit CSS/component change, run `kit-qa` instead of trying to remember which gate covers overflow vs geometry vs animation vs interaction.
 
 ## What it runs
 
-It **discovers** gates — every `.claude/skills/kit-*/` with a `check.cjs` or
-`check.sh`, plus `theme-doc-sync` — so new gates are picked up automatically; the
-gate list and the kit list are never hardcoded (kits come from `src/kits/*`).
+It **discovers** gates — every `.claude/skills/kit-*/` with a `check.cjs` or `check.sh`, plus `theme-doc-sync` — so new gates are picked up automatically; the gate list and the kit list are never hardcoded (kits come from `src/kits/*`).
 
-- Most gates sweep all kits when run bare → run bare. The `[port]` reaches them
-  via the `GATE_PORT` env var (positional args stay gate-specific — several take
-  `[kit]`, not `[port]`).
+- Most gates sweep all kits when run bare → run bare. The `[port]` reaches them via the `GATE_PORT` env var (positional args stay gate-specific — several take `[kit]`, not `[port]`).
 - `kit-lint` and `kit-distinct` need a `<kit-id>` → looped over every kit.
-- Skipped: `kit-states` (manual screenshot capture — run and review by hand) and
-  `kit-qa` itself (the runner must never recurse into its own folder).
+- Skipped: `kit-states` (manual screenshot capture — run and review by hand) and `kit-qa` itself (the runner must never recurse into its own folder).
 
-`diff-hygiene` and `prompt-lint` are commit-time/doc gates, not kit QA — run them
-separately before committing.
+`diff-hygiene` and `prompt-lint` are commit-time/doc gates, not kit QA — run them separately before committing.
 
-Each gate prints `PASS`/`FAIL` with its RESULT line; failures also dump the first
-offending lines. A non-zero exit means at least one gate failed — fix it, or, for a
-deliberate skin exception, document it (see audit-respect-intentional-exceptions).
+Each gate prints `PASS`/`FAIL` with its RESULT line; failures also dump the first offending lines. A non-zero exit means at least one gate failed — fix it, or, for a deliberate skin exception, document it (see audit-respect-intentional-exceptions).
 
 ## quick 模式（按改动挑门）
 
