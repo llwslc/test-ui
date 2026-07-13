@@ -39,18 +39,21 @@ import pathlib, re, sys
 
 TICK = chr(96)                                              # ` — a literal one breaks the $() parse
 FENCES = (TICK * 3, "~~~")
+# CommonMark, not first-character guesswork: `#` heads a heading only when a space follows.
+# A wrapped inline code span leaves lines like `#101b16` `` — prose, not an h1. Reading those
+# as blocks left the paragraph split AND this gate green. Keep in step with unwrap.py.
+HEADING = re.compile(r"#{1,6}(\s|$)")
+BREAK = re.compile(r"(-{3,}|\*{3,}|_{3,}|={3,})\s*$")
+BULLET = re.compile(r"[-*+]\s")
 ORDERED = re.compile(r"\d+[.)]\s")
 LINKDEF = re.compile(r"\[[^\]]+\]:")
 
 
-def opens_block(s):                                         # a NEW block — never a continuation.
-    if s[0] in "#|><=":                                     # a LONE backtick is an inline code
-        return True                                         # span (fences match above) and * only
-    if s[:3] in ("---", "***", "___"):                      # bullets with a space after it —
-        return True                                         # calling either a block leaves the
-    if s[0] in "-*+" and len(s) > 1 and s[1] in " \t":      # paragraph split and this gate green.
-        return True
-    return bool(ORDERED.match(s) or LINKDEF.match(s))
+def opens_block(s):                                         # a NEW block — never a continuation
+    return bool(
+        s.startswith(FENCES) or s[0] in "|>" or HEADING.match(s) or BREAK.match(s)
+        or BULLET.match(s) or ORDERED.match(s) or LINKDEF.match(s)
+    )
 
 
 out = []
@@ -77,7 +80,44 @@ for f in sys.argv[1:]:
 print("\n".join(out))
 PYEOF
 )
-if [ -n "$hits" ]; then printf '%s\n' "$hits"; fail=1; else echo "  -> clean"; fi
+rc=$?
+# A crashed checker prints nothing on stdout, which reads exactly like "clean". Never let a
+# non-zero exit pass as green — that is a gate auditing nothing while flying a PASS flag.
+if [ "$rc" != 0 ]; then echo "  ERR checker failed (rc=$rc) — not clean, BROKEN"; fail=1
+elif [ -n "$hits" ]; then printf '%s\n' "$hits"; fail=1
+else echo "  -> clean"; fi
+
+echo
+echo "## fence integrity — a closing fence carries nothing after it (or the code block never ends)"
+# CommonMark lets an OPENING fence carry an info string (```bash) but a CLOSING one must be bare.
+# A tool that merges the closing fence with the prose under it leaves ``` Exit 0 = … — no longer a
+# terminator, so the block swallows the rest of the page, and a whitespace-only diff looks innocent.
+hits=$(python3 - $MD_FILES <<'PYEOF'
+import pathlib, sys
+
+FENCES = (chr(96) * 3, "~~~")
+out = []
+for f in sys.argv[1:]:
+    fence = False
+    for i, ln in enumerate(pathlib.Path(f).read_text(encoding="utf-8").splitlines(), 1):
+        s = ln.strip()
+        if not s.startswith(FENCES):
+            continue
+        if not fence:                                       # opening — an info string is legal
+            fence = True
+            continue
+        if s[3:].strip():
+            out.append(f"  {f}:{i}: {ln[:88]}")
+        fence = False
+    if fence:
+        out.append(f"  {f}: unterminated code fence")
+print("\n".join(out))
+PYEOF
+)
+rc=$?
+if [ "$rc" != 0 ]; then echo "  ERR checker failed (rc=$rc) — not clean, BROKEN"; fail=1
+elif [ -n "$hits" ]; then printf '%s\n' "$hits"; fail=1
+else echo "  -> clean"; fi
 
 echo
 echo "## layer separation — components/ ⊥ demo · app/ ⊥ library · theme/(风格) ⊥ both"

@@ -5,13 +5,11 @@ description: Drift gate between the theme catalog (prompt/theme/<kit>.md) and th
 
 # theme-doc-sync
 
-`prompt/theme/<kit>.md` is the per-theme palette catalog — it lists concrete tokens as `` `<name> #<hex>` `` (e.g. `` `base #050a12` ``, `` `stone-raised
-#101b16` ``). Nothing links that prose to the code, so a token renamed or revalued in `src/kits/<kit>/theme/tokens.css` leaves the doc stale and no gate notices. This gate cross-checks the two.
+`prompt/theme/<kit>.md` is the per-theme palette catalog — it lists concrete tokens as `` `<name> #<hex>` `` (e.g. `` `base #050a12` ``, `` `stone-raised #101b16` ``). Nothing links that prose to the code, so a token renamed or revalued in `src/kits/<kit>/theme/tokens.css` leaves the doc stale and no gate notices. This gate cross-checks the two.
 
 ## What it asserts
 
-Every kit under `src/kits/*/theme/tokens.css` MUST have a `prompt/theme/<kit>.md` — a missing catalog doc is a FAIL, not a silent skip. Then each `` `<name>
-#<hex>` `` citation in the doc must have `--<kit>-<name>: …#<hex>…` in that kit's `tokens.css`. Failure modes:
+Every kit under `src/kits/*/theme/tokens.css` MUST have a `prompt/theme/<kit>.md` — a missing catalog doc is a FAIL, not a silent skip. Then each `` `<name> #<hex>` `` citation in the doc must have `--<kit>-<name>: …#<hex>…` in that kit's `tokens.css`. Failure modes:
 
 - **undocumented kit** — a kit shipped without its catalog doc.
 - **stale name** — `cited `bg #050a12` — no --nova-bg in tokens.css` (the token was renamed in code; the doc still uses the old name).

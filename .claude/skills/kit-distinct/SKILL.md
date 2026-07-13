@@ -11,7 +11,8 @@ One principle: **a new kit must be a native design, not a sibling recolored.** k
 
 ```
 bash .claude/skills/kit-distinct/check.sh <kit-id>
-``` Exit 0 = distinct, exit 1 = likely reskin. The kit list is read from the `src/kits/` folders — no hardcoded names.
+```
+Exit 0 = distinct, exit 1 = likely reskin. The kit list is read from the `src/kits/` folders — no hardcoded names.
 
 ## How it works
 

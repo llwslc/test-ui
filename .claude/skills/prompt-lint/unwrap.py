@@ -12,24 +12,50 @@ import re
 import sys
 
 FENCES = (chr(96) * 3, "~~~")
+# CommonMark, not first-character guesswork: `#` heads a heading only when a space follows —
+# a wrapped inline code span can leave a line starting `#101b16`, which is prose, not an h1.
+HEADING = re.compile(r"#{1,6}(\s|$)")
+BREAK = re.compile(r"(-{3,}|\*{3,}|_{3,}|={3,})\s*$")       # thematic break · setext underline
+BULLET = re.compile(r"[-*+]\s")
 ORDERED = re.compile(r"\d+[.)]\s")
 LINKDEF = re.compile(r"\[[^\]]+\]:")
 
 
-def opens_block(s):
-    """True if s starts a NEW markdown block — i.e. it cannot be a paragraph continuation.
-
-    A lone backtick opens an inline code span, not a fence (fences are matched separately),
-    and `*` only opens a bullet when a space follows — **bold** leads a line all the time.
-    Treating either as a block leaves the paragraph split and the gate falsely green.
+def stands_alone(s):
+    """A structural line: emitted VERBATIM, and it may never seed a paragraph and swallow the
+    line below it. A bullet is NOT one (its indented continuation belongs to it); a fence,
+    heading, table row, blockquote or break is. Missing this is how a closing fence merged with
+    the prose under it and silently un-terminated a code block.
     """
-    if s[0] in "#|><=":                                     # heading · table · quote · html · setext
-        return True
-    if s[:3] in ("---", "***", "___"):                      # thematic break
-        return True
-    if s[0] in "-*+" and len(s) > 1 and s[1] in " \t":      # bullet
-        return True
-    return bool(ORDERED.match(s) or LINKDEF.match(s))
+    return bool(
+        s.startswith(FENCES) or s[0] in "|>" or HEADING.match(s) or BREAK.match(s)
+    )
+
+
+def opens_block(s):
+    """True if s starts a NEW block — it cannot CONTINUE the previous paragraph. Adds the list
+    forms to stands_alone: a bullet may follow a paragraph, but never joins it.
+    """
+    return bool(
+        stands_alone(s) or BULLET.match(s) or ORDERED.match(s) or LINKDEF.match(s)
+    )
+
+
+def skeleton(text):
+    """Every line that must survive an unwrap byte-for-byte: fences, fenced content, and each
+    structural line. Paragraph prose is excluded — that is the only thing unwrap may rewrite.
+    Comparing this before/after catches a merge that ate a structural line; a whitespace-only
+    diff cannot, because eating a newline IS whitespace-only.
+    """
+    keep, fence = [], False
+    for ln in text.splitlines():
+        s = ln.strip()
+        if s.startswith(FENCES):
+            fence = not fence
+            keep.append(ln)
+        elif fence or (s and stands_alone(s)):
+            keep.append(ln)
+    return keep
 
 
 def unwrap(text):
@@ -49,7 +75,10 @@ def unwrap(text):
         s = ln.strip()
         if s.startswith(FENCES):
             fence = not fence
-        if fence or not s:
+            out.append(ln)
+            i += 1
+            continue
+        if fence or not s or stands_alone(s):
             out.append(ln)
             i += 1
             continue
@@ -79,6 +108,8 @@ for arg in sys.argv[1:]:
         continue
     if re.sub(r"\s+", " ", src) != re.sub(r"\s+", " ", dst):
         sys.exit(f"ABORT {arg}: unwrap altered more than whitespace")
+    if skeleton(src) != skeleton(dst):
+        sys.exit(f"ABORT {arg}: unwrap altered the markdown skeleton (a fence/heading/table line)")
     p.write_text(dst, encoding="utf-8")
     print(f"  unwrapped  {arg}")
     changed += 1
