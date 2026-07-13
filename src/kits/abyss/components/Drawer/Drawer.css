@@ -164,7 +164,8 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
   transform-origin: 8px 8px;
-  animation: abyss-drawer-key var(--abyss-dur-slow) var(--abyss-ease-out) var(--abyss-dur) both;
+  animation: abyss-drawer-key var(--abyss-dur-slow) var(--abyss-ease-out) var(--abyss-dur)
+    both;
 }
 @keyframes abyss-drawer-key {
   0% {

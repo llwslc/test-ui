@@ -18,7 +18,16 @@ export interface DialogProps {
   className?: string;
 }
 
-export function Dialog({ trigger, title, description, children, actions, open, onOpenChange, className }: DialogProps) {
+export function Dialog({
+  trigger,
+  title,
+  description,
+  children,
+  actions,
+  open,
+  onOpenChange,
+  className,
+}: DialogProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -29,7 +38,10 @@ export function Dialog({ trigger, title, description, children, actions, open, o
           <BaseDialog.Popup
             ref={popupRef}
             initialFocus={popupRef}
-            className={cx("bauhaus-surface bauhaus-lift bauhaus-lift--modal bauhaus-modal bauhaus-dialog", className)}
+            className={cx(
+              "bauhaus-surface bauhaus-lift bauhaus-lift--modal bauhaus-modal bauhaus-dialog",
+              className,
+            )}
           >
             <BaseDialog.Close
               className="bauhaus-modal-close"
@@ -48,10 +60,16 @@ export function Dialog({ trigger, title, description, children, actions, open, o
               </BaseDialog.Title>
             ) : null}
             {description != null ? (
-              <BaseDialog.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseDialog.Description>
+              <BaseDialog.Description className="bauhaus-text bauhaus-modal-desc">
+                {description}
+              </BaseDialog.Description>
             ) : null}
-            {children != null ? <div className="bauhaus-modal-body">{children}</div> : null}
-            {actions != null ? <div className="bauhaus-modal-actions">{actions}</div> : null}
+            {children != null ? (
+              <div className="bauhaus-modal-body">{children}</div>
+            ) : null}
+            {actions != null ? (
+              <div className="bauhaus-modal-actions">{actions}</div>
+            ) : null}
           </BaseDialog.Popup>
         </BaseDialog.Viewport>
       </BaseDialog.Portal>
@@ -61,14 +79,22 @@ export function Dialog({ trigger, title, description, children, actions, open, o
 
 export type DialogCloseVariant = ButtonVariant;
 
-export interface DialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
+export interface DialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
 }
 
-export function DialogClose({ variant = "ghost", size = "md", className, children, ...props }: DialogCloseProps) {
+export function DialogClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: DialogCloseProps) {
   return (
     <BaseDialog.Close
       render={

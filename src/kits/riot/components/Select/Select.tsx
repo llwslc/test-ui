@@ -50,7 +50,10 @@ export function Select<Value extends string = string>({
       name={name ?? autoId}
     >
       <span className={cx("riot-select__field", className)}>
-        <BaseSelect.Trigger id={id ?? autoId} className="riot-surface riot-select__trigger">
+        <BaseSelect.Trigger
+          id={id ?? autoId}
+          className="riot-surface riot-select__trigger"
+        >
           <BaseSelect.Value>
             {(val) => {
               const item = items.find((i) => i.value === val);
@@ -72,7 +75,9 @@ export function Select<Value extends string = string>({
           className="riot-lift riot-select__positioner"
           sideOffset={6}
           alignItemWithTrigger={false}
-         side={side} align={align}>
+          side={side}
+          align={align}
+        >
           <BaseSelect.Popup className="riot-surface riot-popup riot-pop riot-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (

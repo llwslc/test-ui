@@ -4,7 +4,9 @@ import { Radio as BaseRadio } from "@base-ui/react/radio";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Radio.css";
 
-export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof BaseRadioGroup> {}
+export interface RadioGroupProps extends ComponentPropsWithoutRef<
+  typeof BaseRadioGroup
+> {}
 
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
   return <BaseRadioGroup className={cx("riot-radiogroup", className)} {...props} />;

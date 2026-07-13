@@ -2,7 +2,8 @@
   position: relative;
   isolation: isolate;
   border-radius: var(--bauhaus-surface-r, var(--bauhaus-r-control));
-  border: var(--bauhaus-surface-stroke, var(--bauhaus-stroke)) solid var(--bauhaus-surface-border, var(--bauhaus-ink));
+  border: var(--bauhaus-surface-stroke, var(--bauhaus-stroke)) solid
+    var(--bauhaus-surface-border, var(--bauhaus-ink));
   background: var(--bauhaus-surface-fill, var(--bauhaus-surface));
 }
 
@@ -185,7 +186,8 @@
   height: 0;
 }
 .bauhaus-collapse-content {
-  padding: 0 var(--bauhaus-space-4) var(--bauhaus-space-4) calc(var(--bauhaus-space-4) + 14px + var(--bauhaus-space-3));
+  padding: 0 var(--bauhaus-space-4) var(--bauhaus-space-4)
+    calc(var(--bauhaus-space-4) + 14px + var(--bauhaus-space-3));
 }
 
 .bauhaus-modal {

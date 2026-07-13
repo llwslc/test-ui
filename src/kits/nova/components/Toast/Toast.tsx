@@ -33,7 +33,11 @@ export function ToastProvider({
   );
 }
 
-function ToastList({ swipeDirection }: { swipeDirection: SwipeDirection | SwipeDirection[] }) {
+function ToastList({
+  swipeDirection,
+}: {
+  swipeDirection: SwipeDirection | SwipeDirection[];
+}) {
   const { toasts } = BaseToast.useToastManager();
   return (
     <>

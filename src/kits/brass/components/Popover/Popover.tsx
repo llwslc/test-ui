@@ -15,15 +15,35 @@ export interface PopoverProps {
   className?: string;
 }
 
-export function Popover({ trigger, title, children, side = "bottom", align = "center", sideOffset = 10, className }: PopoverProps) {
+export function Popover({
+  trigger,
+  title,
+  children,
+  side = "bottom",
+  align = "center",
+  sideOffset = 10,
+  className,
+}: PopoverProps) {
   return (
     <BasePopover.Root>
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
-        <BasePopover.Positioner className="brass-lift" side={side} align={align} sideOffset={sideOffset}>
-          <BasePopover.Popup className={cx("brass-plate brass-pop brass-popup brass-popover brass-popover__popup", className)}>
+        <BasePopover.Positioner
+          className="brass-lift"
+          side={side}
+          align={align}
+          sideOffset={sideOffset}
+        >
+          <BasePopover.Popup
+            className={cx(
+              "brass-plate brass-pop brass-popup brass-popover brass-popover__popup",
+              className,
+            )}
+          >
             {title != null ? (
-              <BasePopover.Title className="brass-h3 brass-popover__title">{title}</BasePopover.Title>
+              <BasePopover.Title className="brass-h3 brass-popover__title">
+                {title}
+              </BasePopover.Title>
             ) : null}
             <div className="brass-popover__body">{children}</div>
             <BasePopover.Close

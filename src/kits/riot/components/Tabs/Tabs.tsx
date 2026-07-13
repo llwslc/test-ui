@@ -18,14 +18,22 @@ export interface TabsProps {
   className?: string;
 }
 
-export function Tabs({ items, defaultValue, value, onValueChange, className }: TabsProps) {
+export function Tabs({
+  items,
+  defaultValue,
+  value,
+  onValueChange,
+  className,
+}: TabsProps) {
   return (
     <BaseTabs.Root
       className={cx("riot-tabs", className)}
       defaultValue={defaultValue ?? items[0]?.value}
       value={value}
       onValueChange={
-        onValueChange ? (v: unknown) => onValueChange(v == null ? "" : String(v)) : undefined
+        onValueChange
+          ? (v: unknown) => onValueChange(v == null ? "" : String(v))
+          : undefined
       }
     >
       <div className="riot-tabs__rail">

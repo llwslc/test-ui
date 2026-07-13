@@ -7,18 +7,28 @@ export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolba
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
-    <BaseToolbar.Root className={cx("riot-seg riot-seg--wrap riot-toolbar", className)} {...props}>
+    <BaseToolbar.Root
+      className={cx("riot-seg riot-seg--wrap riot-toolbar", className)}
+      {...props}
+    >
       {children}
     </BaseToolbar.Root>
   );
 }
 
-export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
+  typeof BaseToolbar.Button
+> {
   active?: boolean;
   value?: string;
 }
 
-export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({
+  className,
+  active,
+  children,
+  ...props
+}: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
       className={cx("riot-seg__btn", className, active ? "is-active" : "")}
@@ -35,16 +45,17 @@ export function ToolbarLink({
   ...props
 }: ComponentPropsWithoutRef<typeof BaseToolbar.Link>) {
   return (
-    <BaseToolbar.Link className={cx("riot-seg__btn", "riot-toolbar__link", className)} {...props}>
+    <BaseToolbar.Link
+      className={cx("riot-seg__btn", "riot-toolbar__link", className)}
+      {...props}
+    >
       {children}
     </BaseToolbar.Link>
   );
 }
 
 export function ToolbarSeparator() {
-  return (
-    <BaseToolbar.Separator className="riot-toolbar__sep" />
-  );
+  return <BaseToolbar.Separator className="riot-toolbar__sep" />;
 }
 
 export function ToolbarGroup({

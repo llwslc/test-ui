@@ -5,14 +5,20 @@ import { cx } from "../cx";
 import { Check, Minus } from "../icons";
 import "./Checkbox.css";
 
-export interface CheckboxProps extends ComponentPropsWithoutRef<typeof BaseCheckbox.Root> {
+export interface CheckboxProps extends ComponentPropsWithoutRef<
+  typeof BaseCheckbox.Root
+> {
   label?: ReactNode;
 }
 
 export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const autoId = useId();
   const box = (
-    <BaseCheckbox.Root id={id ?? autoId} className={cx("brass-plate", "brass-checkbox", className)} {...props}>
+    <BaseCheckbox.Root
+      id={id ?? autoId}
+      className={cx("brass-plate", "brass-checkbox", className)}
+      {...props}
+    >
       <BaseCheckbox.Indicator
         className="brass-checkbox__indicator"
         render={(renderProps, state) => (

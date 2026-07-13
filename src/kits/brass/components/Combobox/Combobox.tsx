@@ -50,9 +50,16 @@ export function Combobox({
         </span>
       </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="brass-lift" sideOffset={6} side={side} align={align}>
+        <BaseCombobox.Positioner
+          className="brass-lift"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseCombobox.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-combobox__popup">
-            <BaseCombobox.Empty className="brass-text brass-combobox__empty">{emptyText}</BaseCombobox.Empty>
+            <BaseCombobox.Empty className="brass-text brass-combobox__empty">
+              {emptyText}
+            </BaseCombobox.Empty>
             <ScrollArea variant="popup">
               <BaseCombobox.List>
                 {(item: string) => (

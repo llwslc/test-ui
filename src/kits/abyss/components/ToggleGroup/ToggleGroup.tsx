@@ -22,7 +22,10 @@ export interface ToggleProps extends ComponentPropsWithoutRef<typeof BaseToggle>
 export function Toggle({ className, ...props }: ToggleProps) {
   return (
     <span className="abyss-togglegroup__item">
-      <BaseToggle className={cx("abyss-seg__btn abyss-togglegroup__btn abyss-frame", className)} {...props} />
+      <BaseToggle
+        className={cx("abyss-seg__btn abyss-togglegroup__btn abyss-frame", className)}
+        {...props}
+      />
     </span>
   );
 }

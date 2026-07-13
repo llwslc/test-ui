@@ -44,7 +44,9 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                     >
                       <span className="bauhaus-navmenu__link-label">{link.label}</span>
                       {link.description != null && (
-                        <span className="bauhaus-navmenu__link-desc">{link.description}</span>
+                        <span className="bauhaus-navmenu__link-desc">
+                          {link.description}
+                        </span>
                       )}
                     </BaseNav.Link>
                   ))}
@@ -65,7 +67,12 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
         )}
       </BaseNav.List>
       <BaseNav.Portal>
-        <BaseNav.Positioner className="bauhaus-lift bauhaus-navmenu__positioner" align="start" sideOffset={10} collisionPadding={16}>
+        <BaseNav.Positioner
+          className="bauhaus-lift bauhaus-navmenu__positioner"
+          align="start"
+          sideOffset={10}
+          collisionPadding={16}
+        >
           <BaseNav.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-navmenu__popup">
             <BaseNav.Viewport className="bauhaus-navmenu__viewport" />
           </BaseNav.Popup>

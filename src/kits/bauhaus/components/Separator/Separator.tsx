@@ -9,11 +9,19 @@ export interface SeparatorProps {
   className?: string;
 }
 
-export function Separator({ orientation = "horizontal", label, className }: SeparatorProps) {
+export function Separator({
+  orientation = "horizontal",
+  label,
+  className,
+}: SeparatorProps) {
   if (label != null) {
     return (
       <div
-        className={cx("bauhaus-separator-labeled", `bauhaus-separator-labeled--${orientation}`, className)}
+        className={cx(
+          "bauhaus-separator-labeled",
+          `bauhaus-separator-labeled--${orientation}`,
+          className,
+        )}
         role="separator"
         aria-orientation={orientation}
       >

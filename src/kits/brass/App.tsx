@@ -63,7 +63,17 @@ import {
   Tooltip,
   useToast,
 } from "./components";
-import { Bolt, Clock as ClockIcon, Close, Copy, Gauge, Gear, Pipe, Search, Valve } from "./components/icons";
+import {
+  Bolt,
+  Clock as ClockIcon,
+  Close,
+  Copy,
+  Gauge,
+  Gear,
+  Pipe,
+  Search,
+  Valve,
+} from "./components/icons";
 
 const NAV = [
   {
@@ -155,7 +165,9 @@ function GaugeDial() {
         return (
           <line
             key={i}
-            className={i >= 8 ? "brass-gauge__tick brass-gauge__tick--hot" : "brass-gauge__tick"}
+            className={
+              i >= 8 ? "brass-gauge__tick brass-gauge__tick--hot" : "brass-gauge__tick"
+            }
             x1={100 + r1 * Math.cos(a)}
             y1={100 + r1 * Math.sin(a)}
             x2={100 + r2 * Math.cos(a)}
@@ -352,15 +364,17 @@ function Demo() {
         <main className="brass-shell__main">
           <section className="brass-hero" id="hero">
             <div className="brass-hero__text">
-              <span className="brass-cap brass-hero__eyebrow">Pressure Console · 37 Instruments</span>
+              <span className="brass-cap brass-hero__eyebrow">
+                Pressure Console · 37 Instruments
+              </span>
               <h1 className="brass-h1 brass-hero__title">
                 A <span className="brass-h1--accent">clockwork</span> interface kit
                 <br />
                 machined from brass
               </h1>
               <p className="brass-text brass-hero__desc">
-                Brushed-brass bezels, riveted plates, gauge instruments and steam-lit motion —
-                a Victorian pressure console rendered in Base UI.
+                Brushed-brass bezels, riveted plates, gauge instruments and steam-lit
+                motion — a Victorian pressure console rendered in Base UI.
               </p>
               <p className="brass-text brass-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -493,7 +507,11 @@ function Demo() {
             <Panel id="select" title="Select" meta="SEL">
               <div className="brass-stack">
                 <span className="brass-cap">Boiler pressure</span>
-                <Select items={PRESSURE} placeholder="Pressure band" defaultValue="nominal" />
+                <Select
+                  items={PRESSURE}
+                  placeholder="Pressure band"
+                  defaultValue="nominal"
+                />
                 <span className="brass-cap">Standby boiler</span>
                 <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" />
               </div>
@@ -561,7 +579,11 @@ function Demo() {
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  toast.add({ title: "Logged", description: "Manifest submitted.", type: "success" });
+                  toast.add({
+                    title: "Logged",
+                    description: "Manifest submitted.",
+                    type: "success",
+                  });
                 }}
               >
                 <Field label="Manifest" placeholder="Cargo…" />
@@ -591,9 +613,34 @@ function Demo() {
               <Tabs
                 defaultValue="steam"
                 items={[
-                  { value: "steam", label: "Steam", content: <p className="brass-text">Saturated at 180 PSI, superheater online.</p> },
-                  { value: "water", label: "Water", content: <p className="brass-text">Feedwater tank at 74%, injectors primed.</p> },
-                  { value: "fire", label: "Firebox", content: <p className="brass-text">Grate clean, draught nominal, ash bin clear.</p>, disabled: true },
+                  {
+                    value: "steam",
+                    label: "Steam",
+                    content: (
+                      <p className="brass-text">
+                        Saturated at 180 PSI, superheater online.
+                      </p>
+                    ),
+                  },
+                  {
+                    value: "water",
+                    label: "Water",
+                    content: (
+                      <p className="brass-text">
+                        Feedwater tank at 74%, injectors primed.
+                      </p>
+                    ),
+                  },
+                  {
+                    value: "fire",
+                    label: "Firebox",
+                    content: (
+                      <p className="brass-text">
+                        Grate clean, draught nominal, ash bin clear.
+                      </p>
+                    ),
+                    disabled: true,
+                  },
                 ]}
               />
             </Panel>
@@ -604,9 +651,21 @@ function Demo() {
                 <Accordion
                   defaultValue={["valves"]}
                   items={[
-                    { value: "valves", title: "Valves", content: "Safety, throttle and bypass valves serviced." },
-                    { value: "bearings", title: "Bearings", content: "White-metal bearings re-poured and shimmed." },
-                    { value: "linkage", title: "Linkage", content: "Walschaerts gear adjusted to spec." },
+                    {
+                      value: "valves",
+                      title: "Valves",
+                      content: "Safety, throttle and bypass valves serviced.",
+                    },
+                    {
+                      value: "bearings",
+                      title: "Bearings",
+                      content: "White-metal bearings re-poured and shimmed.",
+                    },
+                    {
+                      value: "linkage",
+                      title: "Linkage",
+                      content: "Walschaerts gear adjusted to spec.",
+                    },
                   ]}
                 />
                 <span className="brass-cap">Open together</span>
@@ -614,8 +673,16 @@ function Demo() {
                   openMultiple
                   defaultValue={["gauges", "lamps"]}
                   items={[
-                    { value: "gauges", title: "Gauges", content: "Boiler pressure needles swapped and re-zeroed." },
-                    { value: "lamps", title: "Lamps", content: "Oil lamps trimmed, lenses polished for the night run." },
+                    {
+                      value: "gauges",
+                      title: "Gauges",
+                      content: "Boiler pressure needles swapped and re-zeroed.",
+                    },
+                    {
+                      value: "lamps",
+                      title: "Lamps",
+                      content: "Oil lamps trimmed, lenses polished for the night run.",
+                    },
                   ]}
                 />
               </div>
@@ -629,7 +696,8 @@ function Demo() {
                 </Collapsible>
                 <Collapsible title="Spares inventory">
                   <p className="brass-text">
-                    Two spare injectors, one gauge glass, half a ton of firebricks in the tender.
+                    Two spare injectors, one gauge glass, half a ton of firebricks in the
+                    tender.
                   </p>
                 </Collapsible>
               </div>
@@ -655,7 +723,10 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
-              <Popover trigger={<Button variant="ghost">Readout</Button>} title="Manifold A">
+              <Popover
+                trigger={<Button variant="ghost">Readout</Button>}
+                title="Manifold A"
+              >
                 Three cylinders nominal; one flagged for inspection on the next watch.
               </Popover>
             </Panel>
@@ -664,40 +735,42 @@ function Demo() {
               <div className="brass-stack">
                 <span className="brass-cap">Hover the engineer</span>
                 <p className="brass-text">
-                Chief engineer{" "}
-                <PreviewCard
-                  trigger={
-                    <a
-                      href="#preview"
-                      className="brass-link"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      @brunel
-                    </a>
-                  }
-                >
-                  <div className="brass-preview__head">
-                    <Avatar status="online">
-                      <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
-                      <AvatarFallback>IB</AvatarFallback>
-                    </Avatar>
-                    <span className="brass-preview__ident">
-                      <span className="brass-h3 brass-preview__title">I. K. Brunel</span>
-                      <span className="brass-preview__handle">@brunel</span>
-                    </span>
-                  </div>
-                  <p className="brass-text brass-preview__desc">
-                    Chief engineer, Great Western works. Forty years on the footplate, last man
-                    off the boiler at night.
-                  </p>
-                  <div className="brass-preview__footer">
-                    <Badge tone="primary" dot>
-                      Engineer
-                    </Badge>
-                    <Badge tone="neutral">Off watch</Badge>
-                  </div>
-                </PreviewCard>{" "}
-                signed off the last overhaul.
+                  Chief engineer{" "}
+                  <PreviewCard
+                    trigger={
+                      <a
+                        href="#preview"
+                        className="brass-link"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        @brunel
+                      </a>
+                    }
+                  >
+                    <div className="brass-preview__head">
+                      <Avatar status="online">
+                        <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
+                        <AvatarFallback>IB</AvatarFallback>
+                      </Avatar>
+                      <span className="brass-preview__ident">
+                        <span className="brass-h3 brass-preview__title">
+                          I. K. Brunel
+                        </span>
+                        <span className="brass-preview__handle">@brunel</span>
+                      </span>
+                    </div>
+                    <p className="brass-text brass-preview__desc">
+                      Chief engineer, Great Western works. Forty years on the footplate,
+                      last man off the boiler at night.
+                    </p>
+                    <div className="brass-preview__footer">
+                      <Badge tone="primary" dot>
+                        Engineer
+                      </Badge>
+                      <Badge tone="neutral">Off watch</Badge>
+                    </div>
+                  </PreviewCard>{" "}
+                  signed off the last overhaul.
                 </p>
               </div>
             </Panel>
@@ -716,27 +789,13 @@ function Demo() {
                 <MenuItem icon={<Gear />} disabled>
                   Calibrate
                 </MenuItem>
-                <MenuItem icon={<Pipe />}>
-                  Prime pump
-                </MenuItem>
-                <MenuItem icon={<Valve />}>
-                  Tighten valve
-                </MenuItem>
-                <MenuItem icon={<Gauge />}>
-                  Bleed line
-                </MenuItem>
-                <MenuItem icon={<Bolt />}>
-                  Oil bearings
-                </MenuItem>
-                <MenuItem icon={<Pipe />}>
-                  Vent steam
-                </MenuItem>
-                <MenuItem icon={<Gauge />}>
-                  Log pressure
-                </MenuItem>
-                <MenuItem icon={<Copy />}>
-                  Duplicate run
-                </MenuItem>
+                <MenuItem icon={<Pipe />}>Prime pump</MenuItem>
+                <MenuItem icon={<Valve />}>Tighten valve</MenuItem>
+                <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
+                <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
+                <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
+                <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
+                <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<Close />} tone="danger">
                   Shut down
@@ -774,7 +833,11 @@ function Demo() {
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
               <ContextMenu
-                trigger={<span className="brass-cap">Right-click the plate to open the works</span>}
+                trigger={
+                  <span className="brass-cap">
+                    Right-click the plate to open the works
+                  </span>
+                }
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘L">Lubricate</MenuItem>
@@ -845,7 +908,11 @@ function Demo() {
                   <Drawer
                     key={side}
                     side={side}
-                    trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                    trigger={
+                      <Button variant="ghost">
+                        {side[0].toUpperCase() + side.slice(1)}
+                      </Button>
+                    }
                     title="Watch settings"
                     description="Adjust the standing orders for this watch."
                     actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
@@ -868,7 +935,9 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => toast.add({ title: "Valve opened", description: "Bypass engaged." })}
+                  onClick={() =>
+                    toast.add({ title: "Valve opened", description: "Bypass engaged." })
+                  }
                 >
                   Notify
                 </Button>
@@ -890,7 +959,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Watch gauge", description: "Coolant flow dropping.", type: "warning" })
+                    toast.add({
+                      title: "Watch gauge",
+                      description: "Coolant flow dropping.",
+                      type: "warning",
+                    })
                   }
                 >
                   Warn
@@ -899,7 +972,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Over-pressure", description: "Boiler at 240 PSI.", type: "danger" })
+                    toast.add({
+                      title: "Over-pressure",
+                      description: "Boiler at 240 PSI.",
+                      type: "danger",
+                    })
                   }
                 >
                   Alarm
@@ -970,9 +1047,9 @@ function Demo() {
                 </ToolbarGroup>
                 <ToolbarSeparator />
                 <ToolbarLink href="#">
-                    <Bolt />
-                    Live
-                  </ToolbarLink>
+                  <Bolt />
+                  Live
+                </ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
@@ -1016,8 +1093,8 @@ function Demo() {
                 <h3 className="brass-h2">Pressure console headings</h3>
                 <span className="brass-h3">Instrument sub-label</span>
                 <p className="brass-text">
-                  Body copy is set in a sturdy industrial serif, with mechanical monospace numerals
-                  for every gauge reading and instrument label.
+                  Body copy is set in a sturdy industrial serif, with mechanical monospace
+                  numerals for every gauge reading and instrument label.
                 </p>
                 <span className="brass-cap">Field caption · 0–250 PSI</span>
               </div>
@@ -1041,8 +1118,8 @@ function Demo() {
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL">
               <p className="brass-text" style={{ margin: "0 0 16px" }}>
-                The riveted instrument plate wrapping every section — brushed bezel, machined corner
-                brackets and a steam sheen. Composable to any depth.
+                The riveted instrument plate wrapping every section — brushed bezel,
+                machined corner brackets and a steam sheen. Composable to any depth.
               </p>
               <Panel title="Nested plate" meta="SUB">
                 <span className="brass-cap">A plate within a plate</span>

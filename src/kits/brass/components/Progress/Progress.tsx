@@ -10,7 +10,12 @@ export interface ProgressProps extends ComponentPropsWithoutRef<
   showValue?: boolean;
 }
 
-export function Progress({ label, showValue = true, className, ...props }: ProgressProps) {
+export function Progress({
+  label,
+  showValue = true,
+  className,
+  ...props
+}: ProgressProps) {
   return (
     <BaseProgress.Root className={cx("brass-progress", className)} {...props}>
       {(label != null || showValue) && (

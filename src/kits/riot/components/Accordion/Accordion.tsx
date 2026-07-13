@@ -18,7 +18,12 @@ export interface AccordionProps {
   className?: string;
 }
 
-export function Accordion({ items, openMultiple = false, defaultValue, className }: AccordionProps) {
+export function Accordion({
+  items,
+  openMultiple = false,
+  defaultValue,
+  className,
+}: AccordionProps) {
   return (
     <BaseAccordion.Root
       className={cx("riot-accordion", className)}

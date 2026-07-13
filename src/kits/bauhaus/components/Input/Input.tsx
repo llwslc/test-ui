@@ -37,7 +37,10 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("bauhaus-field", rootClassName)} invalid={error != null}>
+    <BaseField.Root
+      className={cx("bauhaus-field", rootClassName)}
+      invalid={error != null}
+    >
       {label != null ? (
         <BaseField.Label className="bauhaus-cap bauhaus-field__label">
           {label}
@@ -45,7 +48,10 @@ export function Field({
       ) : null}
       <div className="bauhaus-surface bauhaus-input">
         {icon ? <span className="bauhaus-input__icon">{icon}</span> : null}
-        <BaseField.Control className={cx("bauhaus-input__control", className)} {...control} />
+        <BaseField.Control
+          className={cx("bauhaus-input__control", className)}
+          {...control}
+        />
       </div>
       {description != null ? (
         <BaseField.Description className="bauhaus-text bauhaus-field__desc">

@@ -3,7 +3,9 @@ import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Fieldset.css";
 
-export interface FieldsetProps extends ComponentPropsWithoutRef<typeof BaseFieldset.Root> {
+export interface FieldsetProps extends ComponentPropsWithoutRef<
+  typeof BaseFieldset.Root
+> {
   legend?: ReactNode;
 }
 

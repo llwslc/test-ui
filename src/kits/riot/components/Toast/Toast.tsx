@@ -15,7 +15,12 @@ export interface ToastProviderProps {
   swipeDirection?: SwipeDirection | SwipeDirection[];
 }
 
-export function ToastProvider({ children, timeout = 5000, limit = 4, swipeDirection = "right" }: ToastProviderProps) {
+export function ToastProvider({
+  children,
+  timeout = 5000,
+  limit = 4,
+  swipeDirection = "right",
+}: ToastProviderProps) {
   return (
     <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
@@ -28,7 +33,11 @@ export function ToastProvider({ children, timeout = 5000, limit = 4, swipeDirect
   );
 }
 
-function ToastList({ swipeDirection }: { swipeDirection: SwipeDirection | SwipeDirection[] }) {
+function ToastList({
+  swipeDirection,
+}: {
+  swipeDirection: SwipeDirection | SwipeDirection[];
+}) {
   const { toasts } = BaseToast.useToastManager();
   return (
     <>

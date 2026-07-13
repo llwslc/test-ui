@@ -12,7 +12,14 @@ export interface TooltipProps {
   align?: "start" | "center" | "end";
 }
 
-export function Tooltip({ content, children, side = "top", sideOffset = 10, delay = 200, align = "center" }: TooltipProps) {
+export function Tooltip({
+  content,
+  children,
+  side = "top",
+  sideOffset = 10,
+  delay = 200,
+  align = "center",
+}: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
   const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
@@ -32,13 +39,18 @@ export function Tooltip({ content, children, side = "top", sideOffset = 10, dela
           setOpen(next);
         }}
       >
-        <BaseTooltip.Trigger render={children} closeOnClick={false} onPointerDown={onTouchToggle} />
+        <BaseTooltip.Trigger
+          render={children}
+          closeOnClick={false}
+          onPointerDown={onTouchToggle}
+        />
         <BaseTooltip.Portal>
           <BaseTooltip.Positioner
             className="riot-lift riot-lift--sm riot-tooltip__positioner"
             side={side}
             sideOffset={sideOffset}
-           align={align}>
+            align={align}
+          >
             <BaseTooltip.Popup className="riot-pop riot-tooltip__popup">
               <span className="riot-surface riot-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="riot-connector" />

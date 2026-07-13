@@ -62,9 +62,7 @@
 }
 .abyss-autocomplete__popup {
   --abyss-frame-bevel: var(--abyss-bevel);
-  --abyss-frame-fill:
-    var(--abyss-stone-grain),
-    var(--abyss-surface-popup);
+  --abyss-frame-fill: var(--abyss-stone-grain), var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);

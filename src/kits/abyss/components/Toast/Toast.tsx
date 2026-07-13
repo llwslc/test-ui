@@ -40,7 +40,11 @@ function ToneSigil({ tone }: { tone: ToastTone }) {
   return <ConchIcon />;
 }
 
-function ToastList({ swipeDirection }: { swipeDirection: SwipeDirection | SwipeDirection[] }) {
+function ToastList({
+  swipeDirection,
+}: {
+  swipeDirection: SwipeDirection | SwipeDirection[];
+}) {
   const { toasts } = BaseToast.useToastManager();
   return (
     <>

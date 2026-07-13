@@ -6,15 +6,27 @@
   gap: var(--brass-space-3);
 }
 .brass-meter--success {
-  --brass-meter-fill: linear-gradient(90deg, var(--brass-success), var(--brass-success) 62%);
+  --brass-meter-fill: linear-gradient(
+    90deg,
+    var(--brass-success),
+    var(--brass-success) 62%
+  );
   --brass-meter-tint: var(--brass-success);
 }
 .brass-meter--warning {
-  --brass-meter-fill: linear-gradient(90deg, var(--brass-warning-deep), var(--brass-warning) 62%);
+  --brass-meter-fill: linear-gradient(
+    90deg,
+    var(--brass-warning-deep),
+    var(--brass-warning) 62%
+  );
   --brass-meter-tint: var(--brass-warning);
 }
 .brass-meter--danger {
-  --brass-meter-fill: linear-gradient(90deg, var(--brass-danger-deep), var(--brass-danger) 62%);
+  --brass-meter-fill: linear-gradient(
+    90deg,
+    var(--brass-danger-deep),
+    var(--brass-danger) 62%
+  );
   --brass-meter-tint: var(--brass-danger);
 }
 .brass-meter__head {

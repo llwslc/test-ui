@@ -27,7 +27,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <BaseButton
       ref={ref}
-      className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, upright ? "nova-btn--upright" : "", className)}
+      className={cx(
+        "nova-btn",
+        `nova-btn--${variant}`,
+        `nova-btn--${size}`,
+        upright ? "nova-btn--upright" : "",
+        className,
+      )}
       {...props}
     >
       <span className="nova-btn__label">

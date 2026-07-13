@@ -28,7 +28,12 @@ export function PreviewCard({
     <BasePreviewCard.Root open={open} onOpenChange={setOpen}>
       <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
-        <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} align={align} sideOffset={sideOffset}>
+        <BasePreviewCard.Positioner
+          className="brass-lift brass-lift--sm"
+          side={side}
+          align={align}
+          sideOffset={sideOffset}
+        >
           <BasePreviewCard.Popup className="brass-plate brass-pop brass-popup brass-preview">
             <div className="brass-preview__body">{children}</div>
             <BasePreviewCard.Arrow className="brass-connector" />

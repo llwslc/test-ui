@@ -38,12 +38,18 @@ export function Drawer({
   className,
 }: DrawerProps) {
   return (
-    <BaseDrawer.Root open={open} onOpenChange={onOpenChange} swipeDirection={SWIPE_DIRECTION[side]}>
+    <BaseDrawer.Root
+      open={open}
+      onOpenChange={onOpenChange}
+      swipeDirection={SWIPE_DIRECTION[side]}
+    >
       <BaseDrawer.Trigger render={trigger} />
       <BaseDrawer.Portal>
         <BaseDrawer.Backdrop className="bauhaus-backdrop bauhaus-drawer__backdrop" />
         <BaseDrawer.Viewport className="bauhaus-drawer__viewport">
-          <BaseDrawer.Popup className={cx("bauhaus-drawer", `bauhaus-drawer--${side}`, className)}>
+          <BaseDrawer.Popup
+            className={cx("bauhaus-drawer", `bauhaus-drawer--${side}`, className)}
+          >
             <BaseDrawer.Content className="bauhaus-surface bauhaus-drawer__sheet">
               <BaseDrawer.Close
                 className="bauhaus-modal-close"
@@ -62,10 +68,16 @@ export function Drawer({
                 </BaseDrawer.Title>
               ) : null}
               {description != null ? (
-                <BaseDrawer.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseDrawer.Description>
+                <BaseDrawer.Description className="bauhaus-text bauhaus-modal-desc">
+                  {description}
+                </BaseDrawer.Description>
               ) : null}
-              {children != null ? <div className="bauhaus-modal-body bauhaus-drawer__body">{children}</div> : null}
-              {actions != null ? <div className="bauhaus-modal-actions">{actions}</div> : null}
+              {children != null ? (
+                <div className="bauhaus-modal-body bauhaus-drawer__body">{children}</div>
+              ) : null}
+              {actions != null ? (
+                <div className="bauhaus-modal-actions">{actions}</div>
+              ) : null}
             </BaseDrawer.Content>
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>
@@ -76,14 +88,22 @@ export function Drawer({
 
 export type DrawerCloseVariant = ButtonVariant;
 
-export interface DrawerCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDrawer.Close>, "className" | "render"> {
+export interface DrawerCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDrawer.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
 }
 
-export function DrawerClose({ variant = "ghost", size = "md", className, children, ...props }: DrawerCloseProps) {
+export function DrawerClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: DrawerCloseProps) {
   return (
     <BaseDrawer.Close
       render={

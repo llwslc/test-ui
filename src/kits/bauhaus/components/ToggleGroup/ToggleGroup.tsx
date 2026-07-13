@@ -9,7 +9,12 @@ export interface ToggleGroupProps extends ComponentPropsWithoutRef<
 > {}
 
 export function ToggleGroup({ className, ...props }: ToggleGroupProps) {
-  return <BaseToggleGroup className={cx("bauhaus-seg", "bauhaus-togglegroup", className)} {...props} />;
+  return (
+    <BaseToggleGroup
+      className={cx("bauhaus-seg", "bauhaus-togglegroup", className)}
+      {...props}
+    />
+  );
 }
 
 export interface ToggleProps extends ComponentPropsWithoutRef<typeof BaseToggle> {}

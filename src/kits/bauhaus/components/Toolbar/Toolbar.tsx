@@ -16,12 +16,19 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
+  typeof BaseToolbar.Button
+> {
   active?: boolean;
   value?: string;
 }
 
-export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({
+  className,
+  active,
+  children,
+  ...props
+}: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
       className={cx("bauhaus-seg__btn", className, active ? "is-active" : "")}

@@ -13,12 +13,19 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
+  typeof BaseToolbar.Button
+> {
   active?: boolean;
   value?: string;
 }
 
-export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({
+  className,
+  active,
+  children,
+  ...props
+}: ToolbarButtonProps) {
   return (
     <span className="nova-toolbar__btnwrap">
       <BaseToolbar.Button
@@ -44,9 +51,7 @@ export function ToolbarLink({
 }
 
 export function ToolbarSeparator() {
-  return (
-    <BaseToolbar.Separator className="nova-toolbar__sep" />
-  );
+  return <BaseToolbar.Separator className="nova-toolbar__sep" />;
 }
 
 export function ToolbarGroup({

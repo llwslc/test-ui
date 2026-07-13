@@ -39,7 +39,12 @@ export function Tabs({
       <div className="brass-tabs__rail">
         <BaseTabs.List className="brass-tabs__list">
           {items.map((it) => (
-            <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="brass-tab">
+            <BaseTabs.Tab
+              key={it.value}
+              value={it.value}
+              disabled={it.disabled}
+              className="brass-tab"
+            >
               {it.label}
             </BaseTabs.Tab>
           ))}

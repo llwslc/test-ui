@@ -11,8 +11,12 @@
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1.3px),
     radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.3px);
-  background-size: 7px 7px, 7px 7px;
-  background-position: 0 0, 3.5px 3.5px;
+  background-size:
+    7px 7px,
+    7px 7px;
+  background-position:
+    0 0,
+    3.5px 3.5px;
 }
 .riot-loader__stack {
   display: flex;

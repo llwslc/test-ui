@@ -49,7 +49,11 @@ export function Drawer({
         <BaseDrawer.Backdrop className="abyss-scrim abyss-drawer__backdrop" />
         <BaseDrawer.Viewport className="abyss-drawer__viewport">
           <BaseDrawer.Popup
-            className={cx("abyss-elevation abyss-drawer", `abyss-drawer--${side}`, className)}
+            className={cx(
+              "abyss-elevation abyss-drawer",
+              `abyss-drawer--${side}`,
+              className,
+            )}
           >
             <BaseDrawer.Content className="abyss-frame abyss-drawer__tablet">
               <span className="abyss-drawer__seam abyss-breathe" aria-hidden />

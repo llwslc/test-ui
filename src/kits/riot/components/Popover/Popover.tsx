@@ -37,12 +37,18 @@ export function Popover({
           <BasePopover.Popup className={cx("riot-pop riot-popover__popup", className)}>
             <span className="riot-surface riot-popover__surface">
               {title != null ? (
-                <BasePopover.Title className="riot-popover__title">{title}</BasePopover.Title>
+                <BasePopover.Title className="riot-popover__title">
+                  {title}
+                </BasePopover.Title>
               ) : null}
               <div className="riot-popover__body">{children}</div>
               <BasePopover.Close
                 render={
-                  <Button variant="icon-ghost" aria-label="Close" className="riot-popover__x">
+                  <Button
+                    variant="icon-ghost"
+                    aria-label="Close"
+                    className="riot-popover__x"
+                  >
                     <XIcon />
                   </Button>
                 }

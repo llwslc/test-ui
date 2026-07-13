@@ -42,7 +42,12 @@ export function Autocomplete({
         </BaseAutocomplete.Clear>
       </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="brass-lift" sideOffset={6} side={side} align={align}>
+        <BaseAutocomplete.Positioner
+          className="brass-lift"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseAutocomplete.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-autocomplete__popup">
             <BaseAutocomplete.Empty className="brass-text brass-autocomplete__empty">
               {emptyText}
@@ -50,7 +55,11 @@ export function Autocomplete({
             <ScrollArea variant="popup">
               <BaseAutocomplete.List>
                 {(item: string) => (
-                  <BaseAutocomplete.Item key={item} value={item} className="brass-list-item">
+                  <BaseAutocomplete.Item
+                    key={item}
+                    value={item}
+                    className="brass-list-item"
+                  >
                     <span className="brass-list-item__text">{item}</span>
                   </BaseAutocomplete.Item>
                 )}

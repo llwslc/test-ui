@@ -36,9 +36,7 @@ export function PreviewCard({
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePreviewCard.Popup
-            className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-preview"
-          >
+          <BasePreviewCard.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-preview">
             {children}
           </BasePreviewCard.Popup>
           <BasePreviewCard.Arrow className="bauhaus-connector" />

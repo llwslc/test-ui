@@ -40,17 +40,11 @@ export function NumberField({
       {...props}
     >
       <BaseNumberField.Group className="brass-plate brass-numberfield__group">
-        <BaseNumberField.Decrement
-          className="brass-numberfield__btn"
-          disabled={atMin}
-        >
+        <BaseNumberField.Decrement className="brass-numberfield__btn" disabled={atMin}>
           <Minus />
         </BaseNumberField.Decrement>
         <BaseNumberField.Input id={id ?? autoId} className="brass-numberfield__input" />
-        <BaseNumberField.Increment
-          className="brass-numberfield__btn"
-          disabled={atMax}
-        >
+        <BaseNumberField.Increment className="brass-numberfield__btn" disabled={atMax}>
           <Plus />
         </BaseNumberField.Increment>
       </BaseNumberField.Group>

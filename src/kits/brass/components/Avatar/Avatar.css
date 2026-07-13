@@ -76,7 +76,11 @@
   border-width: var(--brass-round-sm);
 }
 .brass-avatar__status--online {
-  background: radial-gradient(circle at 38% 34%, var(--brass-sheen), var(--brass-success) 58%);
+  background: radial-gradient(
+    circle at 38% 34%,
+    var(--brass-sheen),
+    var(--brass-success) 58%
+  );
 }
 .brass-avatar__status--busy {
   background: var(--brass-danger);

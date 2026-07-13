@@ -27,7 +27,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <BaseButton
       ref={ref}
-      className={cx("riot-btn", `riot-btn--${variant}`, `riot-btn--${size}`, upright ? "riot-btn--upright" : "", className)}
+      className={cx(
+        "riot-btn",
+        `riot-btn--${variant}`,
+        `riot-btn--${size}`,
+        upright ? "riot-btn--upright" : "",
+        className,
+      )}
       {...props}
     >
       <span className="riot-btn__label">

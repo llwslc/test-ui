@@ -12,13 +12,7 @@ export interface InputProps extends ComponentPropsWithoutRef<typeof BaseInput> {
 export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
-    <span
-      className={cx(
-        "abyss-input-wrap abyss-frame",
-        icon && "",
-        className,
-      )}
-    >
+    <span className={cx("abyss-input-wrap abyss-frame", icon && "", className)}>
       {icon ? <span className="abyss-input__icon">{icon}</span> : null}
       <BaseInput
         id={id ?? autoId}
@@ -53,12 +47,7 @@ export function Field({
           {label}
         </BaseField.Label>
       ) : null}
-      <span
-        className={cx(
-          "abyss-input-wrap abyss-frame",
-          icon && "",
-        )}
-      >
+      <span className={cx("abyss-input-wrap abyss-frame", icon && "")}>
         {icon ? <span className="abyss-input__icon">{icon}</span> : null}
         <BaseField.Control
           className={cx("abyss-input", icon && "abyss-input--has-icon", className)}

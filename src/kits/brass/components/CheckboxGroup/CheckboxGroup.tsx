@@ -10,8 +10,10 @@ export interface CheckboxGroupOption {
   disabled?: boolean;
 }
 
-export interface CheckboxGroupProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseCheckboxGroup>, "children"> {
+export interface CheckboxGroupProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseCheckboxGroup>,
+  "children"
+> {
   items: CheckboxGroupOption[];
   parentLabel?: ReactNode;
 }
@@ -33,7 +35,12 @@ export function CheckboxGroup({
       {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
       <div className="brass-checkboxgroup__items">
         {items.map((item) => (
-          <Checkbox key={item.value} name={item.value} disabled={item.disabled} label={item.label} />
+          <Checkbox
+            key={item.value}
+            name={item.value}
+            disabled={item.disabled}
+            label={item.label}
+          />
         ))}
       </div>
     </BaseCheckboxGroup>

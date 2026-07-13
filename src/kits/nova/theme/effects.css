@@ -124,7 +124,6 @@
   clip-path: var(--nova-clip-tick);
 }
 
-
 .nova-overlay-viewport {
   position: fixed;
   top: 0;
@@ -267,7 +266,8 @@
   height: 0;
 }
 .nova-disclosure__content {
-  padding: 0 var(--nova-space-4) var(--nova-space-4) calc(var(--nova-space-4) + 7px + var(--nova-space-3));
+  padding: 0 var(--nova-space-4) var(--nova-space-4)
+    calc(var(--nova-space-4) + 7px + var(--nova-space-3));
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
@@ -327,7 +327,6 @@
 .nova-list-item[data-disabled] {
   opacity: var(--nova-disabled-opacity);
 }
-
 
 .nova-field {
   display: block;

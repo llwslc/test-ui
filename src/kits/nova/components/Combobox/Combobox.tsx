@@ -61,11 +61,7 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="nova-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item
-                    key={item}
-                    value={item}
-                    className="nova-list-item"
-                  >
+                  <BaseCombobox.Item key={item} value={item} className="nova-list-item">
                     <span className="nova-combobox__item-text">{item}</span>
                     <span className="nova-combobox__indicator">
                       <BaseCombobox.ItemIndicator>

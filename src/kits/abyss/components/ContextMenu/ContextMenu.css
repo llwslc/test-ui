@@ -27,7 +27,11 @@
   inset: 0;
   z-index: -1;
   border-radius: inherit;
-  background: radial-gradient(ellipse 64% 54% at 50% 50%, var(--abyss-glow-soft), transparent 72%);
+  background: radial-gradient(
+    ellipse 64% 54% at 50% 50%,
+    var(--abyss-glow-soft),
+    transparent 72%
+  );
   opacity: 0.5;
   pointer-events: none;
   transition: opacity var(--abyss-dur) var(--abyss-ease);

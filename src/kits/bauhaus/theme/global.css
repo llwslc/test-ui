@@ -18,8 +18,14 @@ body::before {
   pointer-events: none;
   background:
     radial-gradient(circle at 4% 98%, rgba(26, 79, 214, 0.07) 0 23vw, transparent 23vw),
-    linear-gradient(rgba(245, 182, 18, 0.09), rgba(245, 182, 18, 0.09)) top 9vh right -4vw / 18vw 18vw no-repeat,
-    linear-gradient(118deg, transparent calc(62% - 1px), rgba(226, 49, 33, 0.07) 62% 63%, transparent calc(63% + 1px));
+    linear-gradient(rgba(245, 182, 18, 0.09), rgba(245, 182, 18, 0.09)) top 9vh
+      right -4vw / 18vw 18vw no-repeat,
+    linear-gradient(
+      118deg,
+      transparent calc(62% - 1px),
+      rgba(226, 49, 33, 0.07) 62% 63%,
+      transparent calc(63% + 1px)
+    );
 }
 
 ::selection {

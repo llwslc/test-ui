@@ -67,7 +67,9 @@ export function Dialog({
               {children != null ? (
                 <div className="nova-modal-body">{children}</div>
               ) : null}
-              {actions != null ? <div className="nova-modal-actions">{actions}</div> : null}
+              {actions != null ? (
+                <div className="nova-modal-actions">{actions}</div>
+              ) : null}
             </div>
           </BaseDialog.Popup>
         </BaseDialog.Viewport>

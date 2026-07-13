@@ -45,7 +45,9 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                       <span className="brass-navmenu__link-body">
                         <span className="brass-list-item__text">{link.label}</span>
                         {link.description && (
-                          <span className="brass-navmenu__link-desc">{link.description}</span>
+                          <span className="brass-navmenu__link-desc">
+                            {link.description}
+                          </span>
                         )}
                       </span>
                     </BaseNav.Link>
@@ -55,7 +57,11 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
             </BaseNav.Item>
           ) : (
             <BaseNav.Item key={i} className="brass-navmenu__item">
-              <BaseNav.Link className="brass-navmenu__trigger" href={item.href ?? "#"} onClick={onLinkClick}>
+              <BaseNav.Link
+                className="brass-navmenu__trigger"
+                href={item.href ?? "#"}
+                onClick={onLinkClick}
+              >
                 {item.label}
               </BaseNav.Link>
             </BaseNav.Item>
@@ -64,7 +70,12 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       </BaseNav.List>
 
       <BaseNav.Portal>
-        <BaseNav.Positioner className="brass-lift brass-navmenu__positioner" align="start" sideOffset={10} collisionPadding={16}>
+        <BaseNav.Positioner
+          className="brass-lift brass-navmenu__positioner"
+          align="start"
+          sideOffset={10}
+          collisionPadding={16}
+        >
           <BaseNav.Popup className="brass-plate brass-pop brass-popup brass-navmenu__popup">
             <BaseNav.Viewport className="brass-navmenu__viewport" />
           </BaseNav.Popup>

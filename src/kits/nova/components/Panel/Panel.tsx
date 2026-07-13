@@ -15,7 +15,13 @@ export function Panel({ title, meta, children, scan, className }: PanelProps) {
     <div className="nova-panel-frame">
       <i className="nova-panel__corner nova-panel__corner--tr" aria-hidden />
       <i className="nova-panel__corner nova-panel__corner--bl" aria-hidden />
-      <section className={cx("nova-surface nova-panel", scan ? "nova-panel--scan" : "", className)}>
+      <section
+        className={cx(
+          "nova-surface nova-panel",
+          scan ? "nova-panel--scan" : "",
+          className,
+        )}
+      >
         {(title != null || meta != null) && (
           <header className="nova-panel__head">
             {title != null ? (

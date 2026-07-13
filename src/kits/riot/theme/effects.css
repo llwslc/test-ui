@@ -18,7 +18,8 @@
   position: relative;
   isolation: isolate;
   border-radius: var(--riot-surface-r, var(--riot-r-control));
-  border: var(--riot-surface-stroke, var(--riot-stroke)) solid var(--riot-surface-border, var(--riot-ink));
+  border: var(--riot-surface-stroke, var(--riot-stroke)) solid
+    var(--riot-surface-border, var(--riot-ink));
   background: var(--riot-surface-fill, var(--riot-surface));
   color: var(--riot-surface-fg, var(--riot-text));
   transform: rotate(var(--riot-surface-tilt));
@@ -52,7 +53,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 3px, rgba(13, 13, 13, 0.05) 3px 4px);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 3px,
+    rgba(13, 13, 13, 0.05) 3px 4px
+  );
 }
 .riot-tape--tl {
   top: -11px;
@@ -298,7 +303,8 @@
   height: 0;
 }
 .riot-collapse-content {
-  padding: 0 var(--riot-space-4) var(--riot-space-4) calc(var(--riot-space-4) + 14px + var(--riot-space-3));
+  padding: 0 var(--riot-space-4) var(--riot-space-4)
+    calc(var(--riot-space-4) + 14px + var(--riot-space-3));
   font-family: var(--riot-font);
 }
 
@@ -395,18 +401,32 @@
   animation: riot-connector-out var(--riot-dur) var(--riot-ease) forwards;
 }
 @keyframes riot-connector-in {
-  from { opacity: 0; }
+  from {
+    opacity: 0;
+  }
 }
 @keyframes riot-connector-out {
-  to { opacity: 0; }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes riot-jitter {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-0.5px, 0.5px) rotate(-0.6deg); }
-  50% { transform: translate(0.5px, -0.5px) rotate(0.5deg); }
-  75% { transform: translate(-0.5px, -0.5px) rotate(-0.4deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-0.5px, 0.5px) rotate(-0.6deg);
+  }
+  50% {
+    transform: translate(0.5px, -0.5px) rotate(0.5deg);
+  }
+  75% {
+    transform: translate(-0.5px, -0.5px) rotate(-0.4deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 }
 .riot-jitter {
   animation: riot-jitter var(--riot-dur-sweep) steps(4, jump-none) infinite;

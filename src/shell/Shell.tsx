@@ -41,7 +41,11 @@ export function Shell() {
           <Active />
         </Suspense>
       </Suspense>
-      <div className="shell-switch" data-open={open || undefined} data-overlay={overlay || undefined}>
+      <div
+        className="shell-switch"
+        data-open={open || undefined}
+        data-overlay={overlay || undefined}
+      >
         <button
           type="button"
           className="shell-switch__scrim"
@@ -73,7 +77,9 @@ export function Shell() {
           onClick={() => setOpen((o) => !o)}
         >
           <span className="shell-switch__label">{active.label}</span>
-          <span className="shell-switch__chev" aria-hidden="true">▴</span>
+          <span className="shell-switch__chev" aria-hidden="true">
+            ▴
+          </span>
         </button>
       </div>
     </>

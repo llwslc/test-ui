@@ -24,7 +24,12 @@ export function Menu({ trigger, children, side = "bottom", align = "start" }: Me
         }
       />
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="brass-lift brass-menu-tier" sideOffset={6} side={side} align={align}>
+        <BaseMenu.Positioner
+          className="brass-lift brass-menu-tier"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

@@ -149,7 +149,6 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
 ];
 
-
 const SELECT_ITEMS = [
   { label: "Sol — Sector 001", value: "sol" },
   { label: "Proxima Centauri", value: "proxima" },
@@ -232,18 +231,30 @@ const TAB_ITEMS = [
   {
     value: "telemetry",
     label: "Telemetry",
-    content: <p className="nova-text">Reactor online, navigation locked to Proxima, coolant holding at 52%.</p>,
+    content: (
+      <p className="nova-text">
+        Reactor online, navigation locked to Proxima, coolant holding at 52%.
+      </p>
+    ),
   },
   {
     value: "crew",
     label: "Crew",
-    content: <p className="nova-text">Four officers on the bridge, every station reporting nominal.</p>,
+    content: (
+      <p className="nova-text">
+        Four officers on the bridge, every station reporting nominal.
+      </p>
+    ),
   },
   {
     value: "logs",
     label: "Logs",
     disabled: true,
-    content: <p className="nova-text">Jump drive spooled to 99.4% — telemetry nominal across all decks.</p>,
+    content: (
+      <p className="nova-text">
+        Jump drive spooled to 99.4% — telemetry nominal across all decks.
+      </p>
+    ),
   },
 ];
 
@@ -330,7 +341,12 @@ function ToolbarDemo() {
         aria-label="Overlays"
       >
         {(["grid", "scan", "axes"] as const).map((v) => (
-          <ToolbarButton key={v} render={<BaseToggle />} value={v} aria-label={`${v} overlay`}>
+          <ToolbarButton
+            key={v}
+            render={<BaseToggle />}
+            value={v}
+            aria-label={`${v} overlay`}
+          >
             <span className="demo-toolbar__label">{v.toUpperCase()}</span>
           </ToolbarButton>
         ))}
@@ -806,7 +822,11 @@ function Demo() {
                   <span className="nova-cap">One at a time</span>
                   <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
                   <span className="nova-cap">Open together</span>
-                  <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
+                  <Accordion
+                    items={ACCORDION_MULTI}
+                    openMultiple
+                    defaultValue={["m1", "m2"]}
+                  />
                 </div>
               </Panel>
             </div>
@@ -921,27 +941,13 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />} disabled>
                     Hail Vessel
                   </MenuItem>
-                  <MenuItem icon={<BoltIcon />}>
-                    Calibrate Array
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />}>
-                    Sync Beacon
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />}>
-                    Mirror Telemetry
-                  </MenuItem>
-                  <MenuItem icon={<SearchIcon />}>
-                    Sweep Debris
-                  </MenuItem>
-                  <MenuItem icon={<BoltIcon />}>
-                    Boost Signal
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />}>
-                    Map Nebula
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />}>
-                    Clone Manifest
-                  </MenuItem>
+                  <MenuItem icon={<BoltIcon />}>Calibrate Array</MenuItem>
+                  <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
+                  <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
+                  <MenuItem icon={<BoltIcon />}>Boost Signal</MenuItem>
+                  <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                   <MenuSeparator />
                   <MenuItem icon={<TrashIcon />} tone="danger">
                     Jettison Cargo
@@ -995,19 +1001,11 @@ function Demo() {
 
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
-                <ContextMenu
-                  trigger="Right-click anywhere in this zone"
-                >
-                  <MenuItem shortcut="⌘C">
-                    Copy Coordinates
-                  </MenuItem>
-                  <MenuItem shortcut="⌘B">
-                    Ping Beacon
-                  </MenuItem>
+                <ContextMenu trigger="Right-click anywhere in this zone">
+                  <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
+                  <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">
-                    Purge Node
-                  </MenuItem>
+                  <MenuItem tone="danger">Purge Node</MenuItem>
                 </ContextMenu>
               </Panel>
             </div>
@@ -1083,7 +1081,11 @@ function Demo() {
                     <Drawer
                       key={side}
                       side={side}
-                      trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                      trigger={
+                        <Button variant="ghost">
+                          {side[0].toUpperCase() + side.slice(1)}
+                        </Button>
+                      }
                       title="Systems Config"
                       description="An edge-anchored console sliding in from the screen edge."
                       actions={<DrawerClose variant="secondary">Apply</DrawerClose>}
@@ -1114,10 +1116,7 @@ function Demo() {
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
                   <Avatar status="online">
-                    <AvatarImage
-                      src="https://i.pravatar.cc/96?img=12"
-                      alt="Operator"
-                    />
+                    <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="Operator" />
                     <AvatarFallback>OP</AvatarFallback>
                   </Avatar>
                   <Avatar size="sm" status="busy">

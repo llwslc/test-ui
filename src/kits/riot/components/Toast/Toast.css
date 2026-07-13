@@ -13,10 +13,8 @@
   width: 100%;
   z-index: calc(1000 - var(--toast-index, 0));
   transform-origin: bottom right;
-  transform:
-    translateY(calc(var(--toast-index, 0) * -14px))
-    scale(calc(1 - var(--toast-index, 0) * 0.05))
-    rotate(var(--riot-toast-tilt, -2deg));
+  transform: translateY(calc(var(--toast-index, 0) * -14px))
+    scale(calc(1 - var(--toast-index, 0) * 0.05)) rotate(var(--riot-toast-tilt, -2deg));
   transition:
     transform var(--riot-dur-slow) var(--riot-ease-out),
     opacity var(--riot-dur) var(--riot-ease-out);

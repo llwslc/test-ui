@@ -19,7 +19,12 @@ export interface MenubarMenuProps {
   align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
+export function MenubarMenu({
+  label,
+  children,
+  side = "bottom",
+  align = "start",
+}: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <span className="nova-menubar__triggerwrap">

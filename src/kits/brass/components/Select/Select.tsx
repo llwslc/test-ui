@@ -56,7 +56,11 @@ export function Select<Value extends string = string>({
         <BaseSelect.Value className="brass-select__value">
           {(val) => {
             const found = items.find((i) => i.value === val);
-            return found ? found.label : <span className="brass-select__ph">{placeholder}</span>;
+            return found ? (
+              found.label
+            ) : (
+              <span className="brass-select__ph">{placeholder}</span>
+            );
           }}
         </BaseSelect.Value>
         <BaseSelect.Icon className="brass-select__icon">
@@ -64,12 +68,25 @@ export function Select<Value extends string = string>({
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
       <BaseSelect.Portal>
-        <BaseSelect.Positioner className="brass-lift" sideOffset={6} alignItemWithTrigger={false} side={side} align={align}>
+        <BaseSelect.Positioner
+          className="brass-lift"
+          sideOffset={6}
+          alignItemWithTrigger={false}
+          side={side}
+          align={align}
+        >
           <BaseSelect.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (
-                <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="brass-list-item">
-                  <BaseSelect.ItemText className="brass-list-item__text">{it.label}</BaseSelect.ItemText>
+                <BaseSelect.Item
+                  key={it.value}
+                  value={it.value}
+                  disabled={it.disabled}
+                  className="brass-list-item"
+                >
+                  <BaseSelect.ItemText className="brass-list-item__text">
+                    {it.label}
+                  </BaseSelect.ItemText>
                   <BaseSelect.ItemIndicator className="brass-list-item__check">
                     <Check />
                   </BaseSelect.ItemIndicator>

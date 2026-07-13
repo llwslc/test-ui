@@ -55,8 +55,7 @@
   position: absolute;
   inset: 0;
   clip-path: var(--nova-clip-4);
-  background:
-    linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary-deep));
+  background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary-deep));
   box-shadow: inset 0 0 0 1px var(--nova-base);
 }
 .nova-slider__thumb:hover {

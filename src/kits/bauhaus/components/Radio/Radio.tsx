@@ -4,7 +4,9 @@ import { cx } from "../cx";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Radio.css";
 
-export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof BaseRadioGroup> {}
+export interface RadioGroupProps extends ComponentPropsWithoutRef<
+  typeof BaseRadioGroup
+> {}
 
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
   return <BaseRadioGroup className={cx("bauhaus-radiogroup", className)} {...props} />;
@@ -20,9 +22,7 @@ export function Radio({ children, className, ...props }: RadioProps) {
       <BaseRadio.Root className="bauhaus-surface bauhaus-radio__control" {...props}>
         <BaseRadio.Indicator className="bauhaus-radio__dot" />
       </BaseRadio.Root>
-      {children != null ? (
-        <span className="bauhaus-cap">{children}</span>
-      ) : null}
+      {children != null ? <span className="bauhaus-cap">{children}</span> : null}
     </label>
   );
 }

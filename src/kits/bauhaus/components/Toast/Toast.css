@@ -62,7 +62,8 @@
   align-items: center;
   justify-content: center;
   width: var(--bauhaus-space-9);
-  margin: calc(-1 * var(--bauhaus-space-4)) 0 calc(-1 * var(--bauhaus-space-4)) calc(-1 * var(--bauhaus-space-5));
+  margin: calc(-1 * var(--bauhaus-space-4)) 0 calc(-1 * var(--bauhaus-space-4))
+    calc(-1 * var(--bauhaus-space-5));
   background: var(--bauhaus-toast-tone);
   color: var(--bauhaus-on-fill);
 }

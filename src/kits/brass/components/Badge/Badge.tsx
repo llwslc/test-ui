@@ -2,7 +2,13 @@ import { cx } from "../cx";
 import type { ReactNode } from "react";
 import "./Badge.css";
 
-export type BadgeTone = "primary" | "secondary" | "success" | "warning" | "danger" | "neutral";
+export type BadgeTone =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger"
+  | "neutral";
 
 export interface BadgeProps {
   tone?: BadgeTone;

@@ -75,7 +75,8 @@
   height: 0;
 }
 .abyss-disclosure__content {
-  padding: 0 var(--abyss-space-4) var(--abyss-space-4) calc(var(--abyss-space-4) + var(--abyss-fs-19) + var(--abyss-space-3));
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4)
+    calc(var(--abyss-space-4) + var(--abyss-fs-19) + var(--abyss-space-3));
 }
 
 @keyframes abyss-breathe {
@@ -92,7 +93,6 @@
 .abyss-breathe {
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
-
 
 .abyss-aura-pop {
   transform-origin: var(--transform-origin, center);
@@ -159,7 +159,6 @@
     opacity: 0;
   }
 }
-
 
 .abyss-scrim {
   position: fixed;
@@ -229,16 +228,13 @@
 
 .abyss-menu-pane {
   --abyss-frame-bevel: var(--abyss-bevel);
-  --abyss-frame-fill:
-    var(--abyss-stone-grain),
-    var(--abyss-surface-popup);
+  --abyss-frame-fill: var(--abyss-stone-grain), var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
   min-width: var(--abyss-menu-min-w);
   padding: var(--abyss-space-2);
   outline: none;
 }
-
 
 .abyss-list-item {
   min-height: var(--abyss-list-item-h);

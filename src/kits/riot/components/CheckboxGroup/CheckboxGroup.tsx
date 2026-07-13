@@ -35,7 +35,12 @@ export function CheckboxGroup({
       {parentLabel != null ? <Checkbox parent label={parentLabel} /> : null}
       <div className="riot-checkboxgroup__items">
         {items.map((it) => (
-          <Checkbox key={it.value} name={it.value} disabled={it.disabled} label={it.label} />
+          <Checkbox
+            key={it.value}
+            name={it.value}
+            disabled={it.disabled}
+            label={it.label}
+          />
         ))}
       </div>
     </BaseCheckboxGroup>

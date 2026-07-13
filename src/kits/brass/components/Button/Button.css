@@ -85,7 +85,11 @@
 }
 
 .brass-btn--danger {
-  --brass-plate-fill: linear-gradient(180deg, var(--brass-danger), var(--brass-danger-deep));
+  --brass-plate-fill: linear-gradient(
+    180deg,
+    var(--brass-danger),
+    var(--brass-danger-deep)
+  );
   --brass-plate-bezel: var(--brass-danger-deep);
   color: var(--brass-text-bright);
 }
@@ -115,4 +119,3 @@
   --brass-plate-bezel: var(--brass-bezel);
   color: var(--brass-text-bright);
 }
-

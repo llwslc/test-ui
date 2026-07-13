@@ -34,13 +34,24 @@ export function Autocomplete({
         />
       </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6} side={side} align={align}>
+        <BaseAutocomplete.Positioner
+          className="bauhaus-lift"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseAutocomplete.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-autocomplete__popup">
-            <BaseAutocomplete.Empty className="bauhaus-autocomplete__empty">{emptyText}</BaseAutocomplete.Empty>
+            <BaseAutocomplete.Empty className="bauhaus-autocomplete__empty">
+              {emptyText}
+            </BaseAutocomplete.Empty>
             <ScrollArea variant="popup">
               <BaseAutocomplete.List className="bauhaus-autocomplete__list">
                 {(item: string) => (
-                  <BaseAutocomplete.Item key={item} value={item} className="bauhaus-list-item">
+                  <BaseAutocomplete.Item
+                    key={item}
+                    value={item}
+                    className="bauhaus-list-item"
+                  >
                     <span className="bauhaus-list-item__text">{item}</span>
                   </BaseAutocomplete.Item>
                 )}

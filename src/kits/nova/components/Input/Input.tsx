@@ -13,9 +13,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
     <span className="nova-input-glow">
-      <span
-        className={cx("nova-input-wrap", icon ? "" : "", className)}
-      >
+      <span className={cx("nova-input-wrap", icon ? "" : "", className)}>
         {icon ? <span className="nova-input__icon">{icon}</span> : null}
         <BaseInput
           id={id ?? autoId}
@@ -50,12 +48,7 @@ export function Field({
         <BaseField.Label className="nova-cap nova-field__label">{label}</BaseField.Label>
       ) : null}
       <span className="nova-input-glow">
-        <span
-          className={cx(
-            "nova-input-wrap",
-            icon ? "" : "",
-          )}
-        >
+        <span className={cx("nova-input-wrap", icon ? "" : "")}>
           {icon ? <span className="nova-input__icon">{icon}</span> : null}
           <BaseField.Control
             className={cx("nova-input", icon ? "nova-input--has-icon" : "", className)}

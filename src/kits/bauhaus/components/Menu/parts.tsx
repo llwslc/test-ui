@@ -10,10 +10,21 @@ export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
   tone?: "default" | "danger";
 }
 
-export function MenuItem({ icon, shortcut, tone = "default", className, children, ...props }: MenuItemProps) {
+export function MenuItem({
+  icon,
+  shortcut,
+  tone = "default",
+  className,
+  children,
+  ...props
+}: MenuItemProps) {
   return (
     <BaseMenu.Item
-      className={cx("bauhaus-list-item", tone === "danger" && "bauhaus-list-item--danger", className)}
+      className={cx(
+        "bauhaus-list-item",
+        tone === "danger" && "bauhaus-list-item--danger",
+        className,
+      )}
       {...props}
     >
       {icon ? <span className="bauhaus-menu__icon">{icon}</span> : null}
@@ -46,7 +57,12 @@ export function MenuSub({
         </span>
       </BaseMenu.SubmenuTrigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift" side="right" align="start" sideOffset={12}>
+        <BaseMenu.Positioner
+          className="bauhaus-lift"
+          side="right"
+          align="start"
+          sideOffset={12}
+        >
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

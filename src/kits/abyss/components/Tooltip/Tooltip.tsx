@@ -49,7 +49,8 @@ export function Tooltip({
             className="abyss-elevation abyss-tooltip__pos"
             side={side}
             sideOffset={sideOffset}
-           align={align}>
+            align={align}
+          >
             <BaseTooltip.Popup className="abyss-aura-pop abyss-tooltip__popup">
               <span className="abyss-frame abyss-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="abyss-connector" />

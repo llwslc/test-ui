@@ -13,16 +13,27 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
+  typeof BaseToolbar.Button
+> {
   active?: boolean;
   value?: string;
 }
 
-export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({
+  className,
+  active,
+  children,
+  ...props
+}: ToolbarButtonProps) {
   return (
     <span className="abyss-toolbar__btnwrap">
       <BaseToolbar.Button
-        className={cx("abyss-seg__btn abyss-toolbar__btn abyss-frame", className, active ? "is-active" : "")}
+        className={cx(
+          "abyss-seg__btn abyss-toolbar__btn abyss-frame",
+          className,
+          active ? "is-active" : "",
+        )}
         {...props}
       >
         <span className="abyss-toolbar__label">{children}</span>
@@ -44,9 +55,7 @@ export function ToolbarLink({
 }
 
 export function ToolbarSeparator() {
-  return (
-    <BaseToolbar.Separator className="abyss-toolbar__sep" />
-  );
+  return <BaseToolbar.Separator className="abyss-toolbar__sep" />;
 }
 
 export function ToolbarGroup({

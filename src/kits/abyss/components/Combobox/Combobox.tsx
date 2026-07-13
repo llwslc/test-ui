@@ -42,13 +42,21 @@ export function Combobox({
           <BaseCombobox.Clear className="abyss-combobox__clear" aria-label="Clear">
             <XIcon />
           </BaseCombobox.Clear>
-          <BaseCombobox.Trigger className="abyss-combobox__trigger" aria-label="Open list">
+          <BaseCombobox.Trigger
+            className="abyss-combobox__trigger"
+            aria-label="Open list"
+          >
             <ChevronDownIcon />
           </BaseCombobox.Trigger>
         </BaseCombobox.InputGroup>
       </div>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={6} side={side} align={align}>
+        <BaseCombobox.Positioner
+          className="abyss-elevation abyss-combobox__positioner"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseCombobox.Popup className="abyss-aura-pop abyss-combobox__popup">
             <span className="abyss-frame abyss-combobox__tablet" aria-hidden />
             <BaseCombobox.Empty className="abyss-combobox__empty">
@@ -57,11 +65,7 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="abyss-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item
-                    key={item}
-                    value={item}
-                    className="abyss-list-item"
-                  >
+                  <BaseCombobox.Item key={item} value={item} className="abyss-list-item">
                     <span className="abyss-combobox__item-text">{item}</span>
                     <span className="abyss-combobox__indicator" aria-hidden>
                       <BaseCombobox.ItemIndicator>

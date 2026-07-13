@@ -51,12 +51,21 @@ export function Select<Value extends string = string>({
     >
       <BaseSelect.Trigger
         id={id ?? autoId}
-        className={cx("bauhaus-surface", "bauhaus-select", "bauhaus-select__trigger", className)}
+        className={cx(
+          "bauhaus-surface",
+          "bauhaus-select",
+          "bauhaus-select__trigger",
+          className,
+        )}
       >
         <BaseSelect.Value className="bauhaus-select__value">
           {(val) => {
             const found = items.find((i) => i.value === val);
-            return found ? found.label : <span className="bauhaus-select__ph">{placeholder}</span>;
+            return found ? (
+              found.label
+            ) : (
+              <span className="bauhaus-select__ph">{placeholder}</span>
+            );
           }}
         </BaseSelect.Value>
         <BaseSelect.Icon className="bauhaus-select__icon">
@@ -64,12 +73,25 @@ export function Select<Value extends string = string>({
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
       <BaseSelect.Portal>
-        <BaseSelect.Positioner className="bauhaus-lift" sideOffset={6} alignItemWithTrigger={false} side={side} align={align}>
+        <BaseSelect.Positioner
+          className="bauhaus-lift"
+          sideOffset={6}
+          alignItemWithTrigger={false}
+          side={side}
+          align={align}
+        >
           <BaseSelect.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (
-                <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-list-item">
-                  <BaseSelect.ItemText className="bauhaus-list-item__text">{it.label}</BaseSelect.ItemText>
+                <BaseSelect.Item
+                  key={it.value}
+                  value={it.value}
+                  disabled={it.disabled}
+                  className="bauhaus-list-item"
+                >
+                  <BaseSelect.ItemText className="bauhaus-list-item__text">
+                    {it.label}
+                  </BaseSelect.ItemText>
                   <BaseSelect.ItemIndicator className="bauhaus-list-item__check">
                     <Check />
                   </BaseSelect.ItemIndicator>

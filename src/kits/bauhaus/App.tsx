@@ -334,7 +334,9 @@ function Demo() {
         <aside className="bauhaus-sidebar">
           {SECTIONS.map((sec) => (
             <nav className="bauhaus-sidebar__group" key={sec.group}>
-              <span className="bauhaus-cap bauhaus-sidebar__group-title">{sec.group}</span>
+              <span className="bauhaus-cap bauhaus-sidebar__group-title">
+                {sec.group}
+              </span>
               {sec.items.map(([id, name, code]) => (
                 <a key={id} href={`#${id}`} className="bauhaus-sidebar__link">
                   <span>{name}</span>
@@ -348,15 +350,18 @@ function Demo() {
         <main className="bauhaus-shell__main">
           <section className="bauhaus-hero" id="hero">
             <div className="bauhaus-hero__text">
-              <span className="bauhaus-cap bauhaus-hero__eyebrow">Form &amp; Function · 37 Elements</span>
+              <span className="bauhaus-cap bauhaus-hero__eyebrow">
+                Form &amp; Function · 37 Elements
+              </span>
               <h1 className="bauhaus-h1 bauhaus-hero__title">
                 A <span className="bauhaus-h1--accent">constructed</span> interface kit
                 <br />
                 built from primary forms
               </h1>
               <p className="bauhaus-text bauhaus-hero__desc">
-                Flat fields of red, yellow and blue, hard black strokes, the circle-triangle-square
-                and a modular grid — a Bauhaus workshop rendered in Base UI.
+                Flat fields of red, yellow and blue, hard black strokes, the
+                circle-triangle-square and a modular grid — a Bauhaus workshop rendered in
+                Base UI.
               </p>
               <p className="bauhaus-text bauhaus-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -381,7 +386,12 @@ function Demo() {
             </div>
           </section>
 
-          <GroupRule id="inputs" label="Inputs" sub="controls & primaries" marker={<CircleFill />} />
+          <GroupRule
+            id="inputs"
+            label="Inputs"
+            sub="controls & primaries"
+            marker={<CircleFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="button" title="Button" meta="BTN" wide>
               <div className="bauhaus-stack">
@@ -545,7 +555,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="forms" label="Forms" sub="bound fields" marker={<SquareFill />} />
+          <GroupRule
+            id="forms"
+            label="Forms"
+            sub="bound fields"
+            marker={<SquareFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="fieldset" title="Fieldset" meta="FLD">
               <Fieldset legend="Designer">
@@ -557,7 +572,11 @@ function Demo() {
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  toast.add({ title: "Filed", description: "Composition filed.", type: "success" });
+                  toast.add({
+                    title: "Filed",
+                    description: "Composition filed.",
+                    type: "success",
+                  });
                 }}
               >
                 <Field label="Composition" placeholder="Title…" />
@@ -569,7 +588,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="feedback" label="Feedback" sub="bars & readouts" marker={<TriangleFill />} />
+          <GroupRule
+            id="feedback"
+            label="Feedback"
+            sub="bars & readouts"
+            marker={<TriangleFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="progress" title="Progress" meta="PRG">
               <ProgressBars />
@@ -587,9 +611,37 @@ function Demo() {
               <Tabs
                 defaultValue="form"
                 items={[
-                  { value: "form", label: "Form", content: <p className="bauhaus-text">Circle, triangle, square — the three basic forms, flat and unshaded.</p> },
-                  { value: "function", label: "Function", content: <p className="bauhaus-text">Every element earns its place on the grid; nothing decorative, nothing wasted.</p> },
-                  { value: "archive", label: "Archive", content: <p className="bauhaus-text">Dessau, 1925: the workshop catalogue, pressed in red, yellow and blue.</p>, disabled: true },
+                  {
+                    value: "form",
+                    label: "Form",
+                    content: (
+                      <p className="bauhaus-text">
+                        Circle, triangle, square — the three basic forms, flat and
+                        unshaded.
+                      </p>
+                    ),
+                  },
+                  {
+                    value: "function",
+                    label: "Function",
+                    content: (
+                      <p className="bauhaus-text">
+                        Every element earns its place on the grid; nothing decorative,
+                        nothing wasted.
+                      </p>
+                    ),
+                  },
+                  {
+                    value: "archive",
+                    label: "Archive",
+                    content: (
+                      <p className="bauhaus-text">
+                        Dessau, 1925: the workshop catalogue, pressed in red, yellow and
+                        blue.
+                      </p>
+                    ),
+                    disabled: true,
+                  },
                 ]}
               />
             </Panel>
@@ -600,9 +652,23 @@ function Demo() {
                 <Accordion
                   defaultValue={["grid"]}
                   items={[
-                    { value: "grid", title: "Grid", content: "A modular hard grid governs every margin and column." },
-                    { value: "color", title: "Color", content: "Three primaries plus black on warm paper — no tints, no gradients." },
-                    { value: "type", title: "Type", content: "Geometric sans throughout, heavy display for the headline." },
+                    {
+                      value: "grid",
+                      title: "Grid",
+                      content: "A modular hard grid governs every margin and column.",
+                    },
+                    {
+                      value: "color",
+                      title: "Color",
+                      content:
+                        "Three primaries plus black on warm paper — no tints, no gradients.",
+                    },
+                    {
+                      value: "type",
+                      title: "Type",
+                      content:
+                        "Geometric sans throughout, heavy display for the headline.",
+                    },
                   ]}
                 />
                 <span className="bauhaus-cap">Open together</span>
@@ -610,8 +676,16 @@ function Demo() {
                   openMultiple
                   defaultValue={["paper", "ratio"]}
                   items={[
-                    { value: "paper", title: "Paper", content: "Warm stock, uncoated — ink sits matte and honest." },
-                    { value: "ratio", title: "Ratio", content: "Golden-section plates anchor the poster diagonals." },
+                    {
+                      value: "paper",
+                      title: "Paper",
+                      content: "Warm stock, uncoated — ink sits matte and honest.",
+                    },
+                    {
+                      value: "ratio",
+                      title: "Ratio",
+                      content: "Golden-section plates anchor the poster diagonals.",
+                    },
                   ]}
                 />
               </div>
@@ -620,19 +694,26 @@ function Demo() {
               <div className="bauhaus-stack">
                 <Collapsible title="Build notes" defaultOpen>
                   <p className="bauhaus-text">
-                    Composition locked to the 8-column grid. Last revision aligned the baseline.
+                    Composition locked to the 8-column grid. Last revision aligned the
+                    baseline.
                   </p>
                 </Collapsible>
                 <Collapsible title="Material list">
                   <p className="bauhaus-text">
-                    Two stencils, one straightedge, three pots of primary ink and a ream of paper.
+                    Two stencils, one straightedge, three pots of primary ink and a ream
+                    of paper.
                   </p>
                 </Collapsible>
               </div>
             </Panel>
           </div>
 
-          <GroupRule id="overlays" label="Overlays" sub="menus & dialogs" marker={<CircleFill />} />
+          <GroupRule
+            id="overlays"
+            label="Overlays"
+            sub="menus & dialogs"
+            marker={<CircleFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP">
               <div className="bauhaus-row">
@@ -651,7 +732,10 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
-              <Popover trigger={<Button variant="ghost">Details</Button>} title="Module A">
+              <Popover
+                trigger={<Button variant="ghost">Details</Button>}
+                title="Module A"
+              >
                 Three planes aligned to the grid; one flagged for review on the next pass.
               </Popover>
             </Panel>
@@ -663,7 +747,11 @@ function Demo() {
                   Workshop master{" "}
                   <PreviewCard
                     trigger={
-                      <a href="#preview" className="bauhaus-link" onClick={(e) => e.preventDefault()}>
+                      <a
+                        href="#preview"
+                        className="bauhaus-link"
+                        onClick={(e) => e.preventDefault()}
+                      >
                         @laszlo
                       </a>
                     }
@@ -674,13 +762,15 @@ function Demo() {
                         <AvatarFallback>LM</AvatarFallback>
                       </Avatar>
                       <span className="bauhaus-preview__ident">
-                        <span className="bauhaus-h3 bauhaus-preview__title">László Moholy-Nagy</span>
+                        <span className="bauhaus-h3 bauhaus-preview__title">
+                          László Moholy-Nagy
+                        </span>
                         <span className="bauhaus-preview__handle">@laszlo</span>
                       </span>
                     </div>
                     <p className="bauhaus-text bauhaus-preview__desc">
-                      Master of the metal workshop. Light, photography and the conviction that form
-                      follows the grid.
+                      Master of the metal workshop. Light, photography and the conviction
+                      that form follows the grid.
                     </p>
                     <div className="bauhaus-preview__footer">
                       <Badge tone="primary" dot>
@@ -708,27 +798,13 @@ function Demo() {
                 <MenuItem icon={<Square />} disabled>
                   Rasterize
                 </MenuItem>
-                <MenuItem icon={<Grid />}>
-                  Group
-                </MenuItem>
-                <MenuItem icon={<Dot />}>
-                  Lock layer
-                </MenuItem>
-                <MenuItem icon={<Copy />}>
-                  Flip horizontal
-                </MenuItem>
-                <MenuItem icon={<Square />}>
-                  Rotate 90°
-                </MenuItem>
-                <MenuItem icon={<Grid />}>
-                  Snap to guide
-                </MenuItem>
-                <MenuItem icon={<Dot />}>
-                  Outline stroke
-                </MenuItem>
-                <MenuItem icon={<Copy />}>
-                  Merge shapes
-                </MenuItem>
+                <MenuItem icon={<Grid />}>Group</MenuItem>
+                <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
+                <MenuItem icon={<Square />}>Rotate 90°</MenuItem>
+                <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                <MenuItem icon={<Dot />}>Outline stroke</MenuItem>
+                <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<Close />} tone="danger">
                   Delete
@@ -765,7 +841,13 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
-              <ContextMenu trigger={<span className="bauhaus-cap">Right-click the plane to open actions</span>}>
+              <ContextMenu
+                trigger={
+                  <span className="bauhaus-cap">
+                    Right-click the plane to open actions
+                  </span>
+                }
+              >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘D">Duplicate</MenuItem>
                 <MenuSeparator />
@@ -835,7 +917,11 @@ function Demo() {
                   <Drawer
                     key={side}
                     side={side}
-                    trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                    trigger={
+                      <Button variant="ghost">
+                        {side[0].toUpperCase() + side.slice(1)}
+                      </Button>
+                    }
                     title="Layer settings"
                     description="Adjust how this layer sits on the grid."
                     actions={<DrawerClose variant="secondary">Close</DrawerClose>}
@@ -858,7 +944,9 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => toast.add({ title: "Saved", description: "Composition saved." })}
+                  onClick={() =>
+                    toast.add({ title: "Saved", description: "Composition saved." })
+                  }
                 >
                   Notify
                 </Button>
@@ -880,7 +968,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Off grid", description: "Three elements off the baseline.", type: "warning" })
+                    toast.add({
+                      title: "Off grid",
+                      description: "Three elements off the baseline.",
+                      type: "warning",
+                    })
                   }
                 >
                   Warn
@@ -889,7 +981,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Overflow", description: "Composition exceeds the frame.", type: "danger" })
+                    toast.add({
+                      title: "Overflow",
+                      description: "Composition exceeds the frame.",
+                      type: "danger",
+                    })
                   }
                 >
                   Alarm
@@ -898,7 +994,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="display" label="Display" sub="marks & fittings" marker={<SquareFill />} />
+          <GroupRule
+            id="display"
+            label="Display"
+            sub="marks & fittings"
+            marker={<SquareFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="avatar" title="Avatar" meta="AVT">
               <div className="bauhaus-row">
@@ -960,9 +1061,9 @@ function Demo() {
                 </ToolbarGroup>
                 <ToolbarSeparator />
                 <ToolbarLink href="#">
-                    <Dot />
-                    Saved
-                  </ToolbarLink>
+                  <Dot />
+                  Saved
+                </ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
@@ -998,7 +1099,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="foundations" label="Foundations" sub="type & rule" marker={<TriangleFill />} />
+          <GroupRule
+            id="foundations"
+            label="Foundations"
+            sub="type & rule"
+            marker={<TriangleFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="typography" title="Typography" meta="TYP" wide>
               <div className="bauhaus-stack">
@@ -1006,8 +1112,8 @@ function Demo() {
                 <h3 className="bauhaus-h2">Workshop headings</h3>
                 <span className="bauhaus-h3">Section sub-label</span>
                 <p className="bauhaus-text">
-                  Body copy is set in a geometric sans, with monospace numerals for every measurement
-                  and grid reference across the catalogue.
+                  Body copy is set in a geometric sans, with monospace numerals for every
+                  measurement and grid reference across the catalogue.
                 </p>
                 <span className="bauhaus-cap">Field caption · 8-column grid</span>
               </div>
@@ -1031,8 +1137,8 @@ function Demo() {
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL">
               <p className="bauhaus-text bauhaus-panel-note">
-                The bordered plate wrapping every section — a single flat field, a hard black rule and
-                a geometric mark. Composable to any depth.
+                The bordered plate wrapping every section — a single flat field, a hard
+                black rule and a geometric mark. Composable to any depth.
               </p>
               <Panel title="Nested plate" meta="SUB">
                 <span className="bauhaus-cap">A plate within a plate</span>
@@ -1040,7 +1146,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="signature" label="Signature" sub="the build sequence" marker={<CircleFill />} />
+          <GroupRule
+            id="signature"
+            label="Signature"
+            sub="the build sequence"
+            marker={<CircleFill />}
+          />
           <div className="bauhaus-grid">
             <Panel id="loader" title="Loader" meta="LDR" wide>
               <div className="demo-loader-stage">

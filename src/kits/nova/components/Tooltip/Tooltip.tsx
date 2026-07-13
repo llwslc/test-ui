@@ -51,7 +51,8 @@ export function Tooltip({
             className="nova-elevation nova-tooltip__positioner"
             side={side}
             sideOffset={sideOffset}
-           align={align}>
+            align={align}
+          >
             <BaseTooltip.Popup className="nova-anim-pop nova-tooltip__popup">
               <span className="nova-surface nova-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="nova-connector" />

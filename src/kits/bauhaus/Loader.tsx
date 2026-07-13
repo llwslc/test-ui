@@ -6,7 +6,11 @@ export default function Loader() {
       <div className="bauhaus-loader__forms">
         <span className="bauhaus-loader__form bauhaus-loader__form--square" />
         <span className="bauhaus-loader__form bauhaus-loader__form--circle" />
-        <svg className="bauhaus-loader__form bauhaus-loader__form--tri" viewBox="0 0 24 24" aria-hidden="true">
+        <svg
+          className="bauhaus-loader__form bauhaus-loader__form--tri"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path d="M12 3 22 21H2Z" />
         </svg>
       </div>

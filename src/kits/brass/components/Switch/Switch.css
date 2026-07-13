@@ -28,7 +28,10 @@
 }
 .brass-switch[data-checked] .brass-switch__thumb {
   background-image: var(--brass-knurl), var(--brass-accent-surface);
-  transform: translate(calc(var(--brass-switch-w) - var(--brass-switch-knob) - 6px), -50%);
+  transform: translate(
+    calc(var(--brass-switch-w) - var(--brass-switch-knob) - 6px),
+    -50%
+  );
 }
 .brass-switch:focus-visible {
   outline: none;

@@ -48,14 +48,23 @@ export function Combobox({
         </BaseCombobox.InputGroup>
       </div>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="riot-lift riot-combobox__positioner" sideOffset={6} side={side} align={align}>
+        <BaseCombobox.Positioner
+          className="riot-lift riot-combobox__positioner"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseCombobox.Popup className="riot-surface riot-popup riot-pop riot-combobox__popup">
-            <BaseCombobox.Empty className="riot-combobox__empty">{emptyText}</BaseCombobox.Empty>
+            <BaseCombobox.Empty className="riot-combobox__empty">
+              {emptyText}
+            </BaseCombobox.Empty>
             <ScrollArea variant="popup">
               <BaseCombobox.List className="riot-combobox__list">
                 {(item: string) => (
                   <BaseCombobox.Item key={item} value={item} className="riot-list-item">
-                    <span className="riot-combobox__item-text riot-list-item__text">{item}</span>
+                    <span className="riot-combobox__item-text riot-list-item__text">
+                      {item}
+                    </span>
                     <span className="riot-combobox__indicator">
                       <BaseCombobox.ItemIndicator>
                         <CheckIcon />

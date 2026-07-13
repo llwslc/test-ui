@@ -21,7 +21,11 @@ export function MenuItem({
 }: MenuItemProps) {
   return (
     <Menu.Item
-      className={cx("abyss-menu__item", tone === "danger" && "abyss-menu__item--danger", className)}
+      className={cx(
+        "abyss-menu__item",
+        tone === "danger" && "abyss-menu__item--danger",
+        className,
+      )}
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >

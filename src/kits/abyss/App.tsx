@@ -190,7 +190,6 @@ function EdgeFilter() {
   );
 }
 
-
 const SELECT_ITEMS = [
   { label: "R'lyeh — Fathom 001", value: "rlyeh" },
   { label: "Y'ha-nthlei", value: "yhanthlei" },
@@ -269,18 +268,30 @@ const TAB_ITEMS = [
   {
     value: "omens",
     label: "Omens",
-    content: <p className="abyss-text">The tide rises and the wards hold, though the seal weakens to 34%.</p>,
+    content: (
+      <p className="abyss-text">
+        The tide rises and the wards hold, though the seal weakens to 34%.
+      </p>
+    ),
   },
   {
     value: "rites",
     label: "Rites",
-    content: <p className="abyss-text">Four acolytes keep the vigil, each bound to a separate ward.</p>,
+    content: (
+      <p className="abyss-text">
+        Four acolytes keep the vigil, each bound to a separate ward.
+      </p>
+    ),
   },
   {
     value: "dives",
     label: "Dives",
     disabled: true,
-    content: <p className="abyss-text">The descent began at 0.42 fathoms and the water held its breath.</p>,
+    content: (
+      <p className="abyss-text">
+        The descent began at 0.42 fathoms and the water held its breath.
+      </p>
+    ),
   },
 ];
 
@@ -362,7 +373,10 @@ function AccessCodeField() {
 function ProgressDemo() {
   const [val, setVal] = useState(28);
   useEffect(() => {
-    const id = setInterval(() => setVal((v) => (v >= 100 ? 12 : Math.min(v + 6, 100))), 900);
+    const id = setInterval(
+      () => setVal((v) => (v >= 100 ? 12 : Math.min(v + 6, 100))),
+      900,
+    );
     return () => clearInterval(id);
   }, []);
   return (
@@ -384,7 +398,12 @@ function ToolbarDemo() {
         aria-label="Charts"
       >
         {(["chart", "reef", "deep"] as const).map((v) => (
-          <ToolbarButton key={v} render={<BaseToggle />} value={v} aria-label={`${v} chart`}>
+          <ToolbarButton
+            key={v}
+            render={<BaseToggle />}
+            value={v}
+            aria-label={`${v} chart`}
+          >
             <span className="demo-toolbar__label">{v.toUpperCase()}</span>
           </ToolbarButton>
         ))}
@@ -935,7 +954,11 @@ function Demo() {
                   <span className="abyss-cap">One at a time</span>
                   <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
                   <span className="abyss-cap">Open together</span>
-                  <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
+                  <Accordion
+                    items={ACCORDION_MULTI}
+                    openMultiple
+                    defaultValue={["m1", "m2"]}
+                  />
                 </div>
               </Panel>
             </div>
@@ -1052,27 +1075,13 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />} disabled>
                     Hail the Dark
                   </MenuItem>
-                  <MenuItem icon={<KeyIcon />}>
-                    Drop Anchor
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />}>
-                    Trace Current
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />}>
-                    Echo Sounding
-                  </MenuItem>
-                  <MenuItem icon={<SearchIcon />}>
-                    Chart Trench
-                  </MenuItem>
-                  <MenuItem icon={<KeyIcon />}>
-                    Seal Hatch
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />}>
-                    Ping Sonar
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />}>
-                    Log Bearing
-                  </MenuItem>
+                  <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
+                  <MenuItem icon={<SignalIcon />}>Trace Current</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
+                  <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
+                  <MenuItem icon={<KeyIcon />}>Seal Hatch</MenuItem>
+                  <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                   <MenuSeparator />
                   <MenuItem icon={<TrashIcon />} tone="danger">
                     Cast Overboard
@@ -1127,16 +1136,10 @@ function Demo() {
             <div className="abyss-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu trigger="Right-click anywhere in these depths">
-                  <MenuItem shortcut="⌘C">
-                    Mark Bearing
-                  </MenuItem>
-                  <MenuItem shortcut="⌘B">
-                    Sound Beacon
-                  </MenuItem>
+                  <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
+                  <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">
-                    Banish Node
-                  </MenuItem>
+                  <MenuItem tone="danger">Banish Node</MenuItem>
                 </ContextMenu>
               </Panel>
             </div>
@@ -1211,7 +1214,11 @@ function Demo() {
                     <Drawer
                       key={side}
                       side={side}
-                      trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                      trigger={
+                        <Button variant="ghost">
+                          {side[0].toUpperCase() + side.slice(1)}
+                        </Button>
+                      }
                       title="Ward Settings"
                       description="An edge-anchored tablet sliding in from the deep."
                       actions={<DrawerClose variant="secondary">Bind</DrawerClose>}
@@ -1243,10 +1250,7 @@ function Demo() {
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
                   <Avatar status="online">
-                    <AvatarImage
-                      src="https://i.pravatar.cc/96?img=12"
-                      alt="Acolyte"
-                    />
+                    <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="Acolyte" />
                     <AvatarFallback>AC</AvatarFallback>
                   </Avatar>
                   <Avatar size="sm" status="busy">

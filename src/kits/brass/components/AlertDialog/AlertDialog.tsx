@@ -19,8 +19,10 @@ export interface AlertDialogProps {
   className?: string;
 }
 
-export interface AlertDialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>, "className" | "render"> {
+export interface AlertDialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
@@ -32,9 +34,22 @@ const toneMarker = {
   danger: <Bolt />,
 } as const;
 
-export function AlertDialogClose({ variant = "ghost", size = "md", className, children, ...props }: AlertDialogCloseProps) {
+export function AlertDialogClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: AlertDialogCloseProps) {
   return (
-    <BaseAlertDialog.Close render={<Button variant={variant} size={size} className={className}>{children}</Button>} {...props} />
+    <BaseAlertDialog.Close
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
+      {...props}
+    />
   );
 }
 
@@ -56,11 +71,16 @@ export function AlertDialog({
         <BaseAlertDialog.Backdrop className="brass-backdrop" />
         <BaseAlertDialog.Viewport className="brass-viewport">
           <BaseAlertDialog.Popup
-            className={cx(`brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-alert brass-alert--${tone}`, className)}
+            className={cx(
+              `brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-alert brass-alert--${tone}`,
+              className,
+            )}
           >
             {title != null ? (
               <BaseAlertDialog.Title className="brass-h2 brass-modal-title">
-                <span className="brass-marker brass-modal__sigil">{toneMarker[tone]}</span>
+                <span className="brass-marker brass-modal__sigil">
+                  {toneMarker[tone]}
+                </span>
                 {title}
               </BaseAlertDialog.Title>
             ) : null}
@@ -70,9 +90,7 @@ export function AlertDialog({
               </BaseAlertDialog.Description>
             )}
             {children && <div className="brass-modal-body">{children}</div>}
-            {actions != null && (
-              <div className="brass-modal-actions">{actions}</div>
-            )}
+            {actions != null && <div className="brass-modal-actions">{actions}</div>}
           </BaseAlertDialog.Popup>
         </BaseAlertDialog.Viewport>
       </BaseAlertDialog.Portal>

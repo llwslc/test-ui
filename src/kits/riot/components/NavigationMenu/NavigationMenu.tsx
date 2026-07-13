@@ -44,7 +44,9 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                       >
                         <span className="riot-navmenu__link-title">{link.label}</span>
                         {link.description != null ? (
-                          <span className="riot-navmenu__link-desc">{link.description}</span>
+                          <span className="riot-navmenu__link-desc">
+                            {link.description}
+                          </span>
                         ) : null}
                       </BaseNav.Link>
                     </li>

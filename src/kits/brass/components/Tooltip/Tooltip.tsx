@@ -45,7 +45,12 @@ export function Tooltip({
           onPointerDown={onTouchToggle}
         />
         <BaseTooltip.Portal>
-          <BaseTooltip.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={sideOffset} align={align}>
+          <BaseTooltip.Positioner
+            className="brass-lift brass-lift--sm"
+            side={side}
+            sideOffset={sideOffset}
+            align={align}
+          >
             <BaseTooltip.Popup className="brass-plate brass-pop brass-popup brass-tooltip">
               {content}
               <BaseTooltip.Arrow className="brass-connector" />

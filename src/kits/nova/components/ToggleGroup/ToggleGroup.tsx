@@ -9,7 +9,12 @@ export interface ToggleGroupProps extends ComponentPropsWithoutRef<
 > {}
 
 export function ToggleGroup({ className, ...props }: ToggleGroupProps) {
-  return <BaseToggleGroup className={cx("nova-surface nova-togglegroup", className)} {...props} />;
+  return (
+    <BaseToggleGroup
+      className={cx("nova-surface nova-togglegroup", className)}
+      {...props}
+    />
+  );
 }
 
 export interface ToggleProps extends ComponentPropsWithoutRef<typeof BaseToggle> {}
@@ -17,7 +22,10 @@ export interface ToggleProps extends ComponentPropsWithoutRef<typeof BaseToggle>
 export function Toggle({ className, ...props }: ToggleProps) {
   return (
     <span className="nova-togglegroup__item">
-      <BaseToggle className={cx("nova-togglegroup__btn nova-cap", className)} {...props} />
+      <BaseToggle
+        className={cx("nova-togglegroup__btn nova-cap", className)}
+        {...props}
+      />
     </span>
   );
 }

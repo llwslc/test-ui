@@ -17,7 +17,10 @@ export function Switch({ className, ...props }: SwitchProps) {
           <circle className="abyss-switch__iris" cx="24" cy="14" r="7.2" />
           <circle className="abyss-switch__pupil" cx="24" cy="14" r="3" />
           <path className="abyss-switch__lid" d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14" />
-          <path className="abyss-switch__lid" d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14" />
+          <path
+            className="abyss-switch__lid"
+            d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14"
+          />
         </svg>
       </span>
     </BaseSwitch.Root>

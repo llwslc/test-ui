@@ -19,11 +19,18 @@ export interface MenubarMenuProps {
   align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
+export function MenubarMenu({
+  label,
+  children,
+  side = "bottom",
+  align = "start",
+}: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <span className="abyss-menubar__triggerwrap">
-        <BaseMenu.Trigger className="abyss-seg__btn abyss-frame abyss-menubar__trigger">{label}</BaseMenu.Trigger>
+        <BaseMenu.Trigger className="abyss-seg__btn abyss-frame abyss-menubar__trigger">
+          {label}
+        </BaseMenu.Trigger>
       </span>
       <BaseMenu.Portal>
         <BaseMenu.Positioner

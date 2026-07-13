@@ -3,7 +3,11 @@
   --brass-base-raised: #1d1810;
   --brass-plate: #1a150d;
   --brass-plate-raised: #241d12;
-  --brass-plate-grad: linear-gradient(180deg, var(--brass-plate-raised), var(--brass-plate));
+  --brass-plate-grad: linear-gradient(
+    180deg,
+    var(--brass-plate-raised),
+    var(--brass-plate)
+  );
 
   --brass-primary: #cf9d3a;
   --brass-primary-deep: #876521;
@@ -20,9 +24,23 @@
   --brass-text-mute: #6f6552;
   --brass-on-primary: #271a06;
 
-  --brass-accent-surface: linear-gradient(180deg, #e6c266 0%, var(--brass-primary) 46%, #9a7528 100%);
-  --brass-accent-fill: linear-gradient(90deg, var(--brass-primary-deep), var(--brass-primary) 62%);
-  --brass-secondary-surface: linear-gradient(180deg, #7d6531 0%, #5a461f 50%, #382a13 100%);
+  --brass-accent-surface: linear-gradient(
+    180deg,
+    #e6c266 0%,
+    var(--brass-primary) 46%,
+    #9a7528 100%
+  );
+  --brass-accent-fill: linear-gradient(
+    90deg,
+    var(--brass-primary-deep),
+    var(--brass-primary) 62%
+  );
+  --brass-secondary-surface: linear-gradient(
+    180deg,
+    #7d6531 0%,
+    #5a461f 50%,
+    #382a13 100%
+  );
 
   --brass-tint-soft: rgba(207, 157, 58, 0.09);
   --brass-tint: rgba(207, 157, 58, 0.14);
@@ -40,8 +58,18 @@
   --brass-sheen: rgba(255, 246, 222, 0.55);
   --brass-thumb-top: #6a5f49;
   --brass-thumb-bottom: #312a1d;
-  --brass-knurl: repeating-linear-gradient(135deg, rgba(255, 238, 196, 0.16) 0 1px, rgba(0, 0, 0, 0.18) 1px 3px);
-  --brass-rivet: radial-gradient(circle at 38% 34%, #f1d585, #b8923a 44%, #6e521f 74%, #2f2310 100%);
+  --brass-knurl: repeating-linear-gradient(
+    135deg,
+    rgba(255, 238, 196, 0.16) 0 1px,
+    rgba(0, 0, 0, 0.18) 1px 3px
+  );
+  --brass-rivet: radial-gradient(
+    circle at 38% 34%,
+    #f1d585,
+    #b8923a 44%,
+    #6e521f 74%,
+    #2f2310 100%
+  );
 
   --brass-surface: rgba(28, 23, 14, 0.82);
   --brass-surface-popup: rgba(33, 27, 16, 0.975);
@@ -51,11 +79,34 @@
   --brass-surface-zone: rgba(207, 157, 58, 0.05);
   --brass-scrim: rgba(9, 6, 3, 0.66);
 
-  --brass-bezel-dim: linear-gradient(150deg, #5f4d29, #8a7038 24%, #4a3c20 52%, #7d6531 78%, #43361d);
-  --brass-bezel: linear-gradient(150deg, #9a7c3a, #d8b65e 20%, #6f5526 48%, #c2a04c 76%, #5d4a22);
-  --brass-bezel-strong: linear-gradient(150deg, #c49a44, #f0d488 18%, #8a6a2c 46%, #e6c163 74%, #7a5d28);
-  --brass-bevel: inset 0 1px 0 rgba(255, 238, 196, 0.16), inset 0 -1px 1px rgba(0, 0, 0, 0.45);
-  --brass-bevel-inset: inset 0 2px 3px rgba(0, 0, 0, 0.55), inset 0 -1px 0 rgba(255, 238, 196, 0.05);
+  --brass-bezel-dim: linear-gradient(
+    150deg,
+    #5f4d29,
+    #8a7038 24%,
+    #4a3c20 52%,
+    #7d6531 78%,
+    #43361d
+  );
+  --brass-bezel: linear-gradient(
+    150deg,
+    #9a7c3a,
+    #d8b65e 20%,
+    #6f5526 48%,
+    #c2a04c 76%,
+    #5d4a22
+  );
+  --brass-bezel-strong: linear-gradient(
+    150deg,
+    #c49a44,
+    #f0d488 18%,
+    #8a6a2c 46%,
+    #e6c163 74%,
+    #7a5d28
+  );
+  --brass-bevel:
+    inset 0 1px 0 rgba(255, 238, 196, 0.16), inset 0 -1px 1px rgba(0, 0, 0, 0.45);
+  --brass-bevel-inset:
+    inset 0 2px 3px rgba(0, 0, 0, 0.55), inset 0 -1px 0 rgba(255, 238, 196, 0.05);
 
   --brass-glow-text: 0 0 14px rgba(240, 191, 58, 0.35);
   --brass-glow-focus: drop-shadow(0 0 6px rgba(207, 157, 58, 0.55));
@@ -68,8 +119,10 @@
   --brass-ring-focus: 0 0 0 1px var(--brass-base), 0 0 0 3px var(--brass-primary);
   --brass-ring-focus-recessed: var(--brass-bevel-inset), var(--brass-ring-focus);
 
-  --brass-shadow-popup: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 3px 7px rgba(0, 0, 0, 0.5));
-  --brass-shadow-modal: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.68)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  --brass-shadow-popup: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 3px 7px rgba(0, 0, 0, 0.5));
+  --brass-shadow-modal: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.68))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
   --brass-shadow-pop-sm: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
 
   --brass-shadow-ink: 0 2px 4px rgba(0, 0, 0, 0.5);

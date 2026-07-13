@@ -13,7 +13,9 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
     <BaseSlider.Root className={cx("bauhaus-slider", className)} {...props}>
       {(label != null || showValue) && (
         <div className="bauhaus-slider__head">
-          {label != null ? <span className="bauhaus-cap bauhaus-slider__label">{label}</span> : null}
+          {label != null ? (
+            <span className="bauhaus-cap bauhaus-slider__label">{label}</span>
+          ) : null}
           {showValue ? <BaseSlider.Value className="bauhaus-slider__value" /> : null}
         </div>
       )}

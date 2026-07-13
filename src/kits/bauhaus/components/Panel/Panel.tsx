@@ -21,7 +21,9 @@ export function Panel({ id, title, meta, marker, wide, children }: PanelProps) {
       {(title || meta || marker) && (
         <header className="bauhaus-panel__head">
           {marker !== undefined ? (
-            marker && <span className="bauhaus-marker bauhaus-panel__marker">{marker}</span>
+            marker && (
+              <span className="bauhaus-marker bauhaus-panel__marker">{marker}</span>
+            )
           ) : (
             <span className="bauhaus-marker bauhaus-panel__marker">
               <SquareFill />

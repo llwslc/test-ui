@@ -21,7 +21,11 @@ export function MenuItem({
 }: MenuItemProps) {
   return (
     <Menu.Item
-      className={cx("nova-list-item nova-menu__item", tone === "danger" && "nova-menu__item--danger", className)}
+      className={cx(
+        "nova-list-item nova-menu__item",
+        tone === "danger" && "nova-menu__item--danger",
+        className,
+      )}
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
@@ -33,9 +37,7 @@ export function MenuItem({
 }
 
 export function MenuSeparator() {
-  return (
-    <Menu.Separator className="nova-menu__separator" />
-  );
+  return <Menu.Separator className="nova-menu__separator" />;
 }
 
 export function MenuSub({

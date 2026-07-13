@@ -47,7 +47,9 @@ export function Drawer({
       <BaseDrawer.Portal>
         <BaseDrawer.Backdrop className="brass-backdrop brass-drawer__backdrop" />
         <BaseDrawer.Viewport className="brass-drawer__viewport">
-          <BaseDrawer.Popup className={cx("brass-drawer", `brass-drawer--${side}`, className)}>
+          <BaseDrawer.Popup
+            className={cx("brass-drawer", `brass-drawer--${side}`, className)}
+          >
             <BaseDrawer.Content className="brass-drawer__sheet">
               <span className="brass-drawer__handle" aria-hidden="true" />
               <BaseDrawer.Close
@@ -68,8 +70,12 @@ export function Drawer({
                   {description}
                 </BaseDrawer.Description>
               ) : null}
-              {children != null ? <div className="brass-modal-body">{children}</div> : null}
-              {actions != null ? <div className="brass-modal-actions">{actions}</div> : null}
+              {children != null ? (
+                <div className="brass-modal-body">{children}</div>
+              ) : null}
+              {actions != null ? (
+                <div className="brass-modal-actions">{actions}</div>
+              ) : null}
             </BaseDrawer.Content>
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>
@@ -80,8 +86,10 @@ export function Drawer({
 
 export type DrawerCloseVariant = ButtonVariant;
 
-export interface DrawerCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDrawer.Close>, "className" | "render"> {
+export interface DrawerCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDrawer.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

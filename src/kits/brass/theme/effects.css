@@ -21,21 +21,29 @@
   inset: 7px;
   z-index: -1;
   pointer-events: none;
-  background-image: var(--brass-rivet), var(--brass-rivet), var(--brass-rivet), var(--brass-rivet);
+  background-image:
+    var(--brass-rivet), var(--brass-rivet), var(--brass-rivet), var(--brass-rivet);
   background-size: 7px 7px;
   background-repeat: no-repeat;
-  background-position: top left, top right, bottom left, bottom right;
+  background-position:
+    top left,
+    top right,
+    bottom left,
+    bottom right;
 }
 
 .brass-knob {
   border-radius: var(--brass-round-pill);
-  background-image: var(--brass-knurl), linear-gradient(180deg, var(--brass-thumb-top), var(--brass-thumb-bottom));
+  background-image:
+    var(--brass-knurl),
+    linear-gradient(180deg, var(--brass-thumb-top), var(--brass-thumb-bottom));
   box-shadow: var(--brass-shadow-thumb), var(--brass-bevel);
 }
 
 .brass-lift {
   z-index: var(--brass-z-dropdown);
-  filter: var(--brass-overlay-shadow, var(--brass-shadow-popup)) var(--brass-overlay-glow, var(--brass-glow-popup));
+  filter: var(--brass-overlay-shadow, var(--brass-shadow-popup))
+    var(--brass-overlay-glow, var(--brass-glow-popup));
 }
 .brass-menu-tier {
   z-index: var(--brass-z-menu);
@@ -449,5 +457,6 @@
   height: 0;
 }
 .brass-collapse-content {
-  padding: 0 var(--brass-space-4) var(--brass-space-4) calc(var(--brass-space-4) + 14px + var(--brass-space-3));
+  padding: 0 var(--brass-space-4) var(--brass-space-4)
+    calc(var(--brass-space-4) + 14px + var(--brass-space-3));
 }

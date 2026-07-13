@@ -313,7 +313,12 @@ function TornFilter() {
   return (
     <svg className="riot-defs" aria-hidden="true" focusable="false">
       <filter id="riot-torn">
-        <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="2" result="n" />
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.03 0.06"
+          numOctaves="2"
+          result="n"
+        />
         <feDisplacementMap in="SourceGraphic" in2="n" scale="4" />
       </filter>
     </svg>
@@ -386,15 +391,17 @@ function Demo() {
         <main className="riot-shell__main">
           <section className="riot-hero" id="hero">
             <div className="riot-hero__text">
-              <span className="riot-cap riot-hero__eyebrow">Cut-Up System · 37 Clippings</span>
+              <span className="riot-cap riot-hero__eyebrow">
+                Cut-Up System · 37 Clippings
+              </span>
               <h1 className="riot-h1 riot-hero__title">
                 A <span className="riot-h1--accent">bootleg</span> interface kit
                 <br />
                 cut up, pasted crooked
               </h1>
               <p className="riot-text riot-hero__desc">
-                Photocopied clippings, torn edges, fluorescent marker and ransom-note type — pinned up
-                crooked and stapled to the wall.
+                Photocopied clippings, torn edges, fluorescent marker and ransom-note type
+                — pinned up crooked and stapled to the wall.
               </p>
               <p className="riot-text riot-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -419,7 +426,12 @@ function Demo() {
             </div>
           </section>
 
-          <GroupRule id="inputs" label="Inputs" sub="controls & demands" marker={<StarFill />} />
+          <GroupRule
+            id="inputs"
+            label="Inputs"
+            sub="controls & demands"
+            marker={<StarFill />}
+          />
           <div className="riot-grid">
             <Panel id="button" title="Button" meta="BTN" wide tape="top">
               <div className="riot-stack">
@@ -432,9 +444,15 @@ function Demo() {
                 </div>
                 <Separator />
                 <div className="riot-row">
-                  <Button size="sm" upright>Cut</Button>
-                  <Button size="md" upright>Paste</Button>
-                  <Button size="lg" upright>Riot</Button>
+                  <Button size="sm" upright>
+                    Cut
+                  </Button>
+                  <Button size="md" upright>
+                    Paste
+                  </Button>
+                  <Button size="lg" upright>
+                    Riot
+                  </Button>
                 </div>
                 <Separator />
                 <div className="riot-row">
@@ -595,7 +613,11 @@ function Demo() {
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  toast.add({ title: "Filed", description: "Zine filed.", type: "success" });
+                  toast.add({
+                    title: "Filed",
+                    description: "Zine filed.",
+                    type: "success",
+                  });
                 }}
               >
                 <Field label="Headline" placeholder="Title…" />
@@ -607,7 +629,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="feedback" label="Feedback" sub="bars & readouts" marker={<Triangle />} />
+          <GroupRule
+            id="feedback"
+            label="Feedback"
+            sub="bars & readouts"
+            marker={<Triangle />}
+          />
           <div className="riot-grid">
             <Panel id="progress" title="Progress" meta="PRG" tape="bl">
               <ProgressBars />
@@ -629,18 +656,28 @@ function Demo() {
                     value: "cut",
                     label: "Cut",
                     content: (
-                      <p className="riot-text">Slice the headlines out of yesterday's papers.</p>
+                      <p className="riot-text">
+                        Slice the headlines out of yesterday's papers.
+                      </p>
                     ),
                   },
                   {
                     value: "paste",
                     label: "Paste",
-                    content: <p className="riot-text">Glue them down crooked; the grid was a cage.</p>,
+                    content: (
+                      <p className="riot-text">
+                        Glue them down crooked; the grid was a cage.
+                      </p>
+                    ),
                   },
                   {
                     value: "print",
                     label: "Print",
-                    content: <p className="riot-text">Run it through the xerox till the ink bleeds.</p>,
+                    content: (
+                      <p className="riot-text">
+                        Run it through the xerox till the ink bleeds.
+                      </p>
+                    ),
                     disabled: true,
                   },
                 ]}
@@ -653,9 +690,21 @@ function Demo() {
                 <Accordion
                   defaultValue={["cut"]}
                   items={[
-                    { value: "cut", title: "Cut", content: "Scissors, a razor, whatever's sharp." },
-                    { value: "paste", title: "Paste", content: "Glue stick, tape, spit if you must." },
-                    { value: "print", title: "Print", content: "One xerox machine, stolen after hours." },
+                    {
+                      value: "cut",
+                      title: "Cut",
+                      content: "Scissors, a razor, whatever's sharp.",
+                    },
+                    {
+                      value: "paste",
+                      title: "Paste",
+                      content: "Glue stick, tape, spit if you must.",
+                    },
+                    {
+                      value: "print",
+                      title: "Print",
+                      content: "One xerox machine, stolen after hours.",
+                    },
                   ]}
                 />
                 <span className="riot-cap">Open together</span>
@@ -663,8 +712,16 @@ function Demo() {
                   openMultiple
                   defaultValue={["staple", "fold"]}
                   items={[
-                    { value: "staple", title: "Staple", content: "Two rusty staples straight through the spine." },
-                    { value: "fold", title: "Fold", content: "Fold twice, crease it with a thumbnail." },
+                    {
+                      value: "staple",
+                      title: "Staple",
+                      content: "Two rusty staples straight through the spine.",
+                    },
+                    {
+                      value: "fold",
+                      title: "Fold",
+                      content: "Fold twice, crease it with a thumbnail.",
+                    },
                   ]}
                 />
               </div>
@@ -672,35 +729,59 @@ function Demo() {
             <Panel id="collapsible" title="Collapsible" meta="CLP" stapled>
               <div className="riot-stack">
                 <Collapsible title="Liner notes" defaultOpen>
-                  <p className="riot-text">Pressed in a squat with a borrowed machine. Side A only.</p>
+                  <p className="riot-text">
+                    Pressed in a squat with a borrowed machine. Side A only.
+                  </p>
                 </Collapsible>
                 <Collapsible title="Supplies">
-                  <p className="riot-text">Two markers, a stapler, a stack of newsprint.</p>
+                  <p className="riot-text">
+                    Two markers, a stapler, a stack of newsprint.
+                  </p>
                 </Collapsible>
               </div>
             </Panel>
           </div>
 
-          <GroupRule id="overlays" label="Overlays" sub="menus & dialogs" marker={<StarFill />} />
+          <GroupRule
+            id="overlays"
+            label="Overlays"
+            sub="menus & dialogs"
+            marker={<StarFill />}
+          />
           <div className="riot-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP" tape="br">
               <div className="riot-row">
                 <Tooltip content="Cut it out" side="top">
-                  <Button variant="ghost" upright>Cut</Button>
+                  <Button variant="ghost" upright>
+                    Cut
+                  </Button>
                 </Tooltip>
                 <Tooltip content="Paste it crooked" side="bottom">
-                  <Button variant="ghost" upright>Paste</Button>
+                  <Button variant="ghost" upright>
+                    Paste
+                  </Button>
                 </Tooltip>
                 <Tooltip content="Staple the wound" side="left">
-                  <Button variant="ghost" upright>Staple</Button>
+                  <Button variant="ghost" upright>
+                    Staple
+                  </Button>
                 </Tooltip>
                 <Tooltip content="Run the press" side="right">
-                  <Button variant="ghost" upright>Press</Button>
+                  <Button variant="ghost" upright>
+                    Press
+                  </Button>
                 </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP" stapled>
-              <Popover trigger={<Button variant="ghost" upright>Details</Button>} title="Issue #1">
+              <Popover
+                trigger={
+                  <Button variant="ghost" upright>
+                    Details
+                  </Button>
+                }
+                title="Issue #1"
+              >
                 Twelve clippings pasted up; three bleeding off the edge on purpose.
               </Popover>
             </Panel>
@@ -712,7 +793,11 @@ function Demo() {
                   Cut and pasted by{" "}
                   <PreviewCard
                     trigger={
-                      <a href="#preview" className="riot-link" onClick={(e) => e.preventDefault()}>
+                      <a
+                        href="#preview"
+                        className="riot-link"
+                        onClick={(e) => e.preventDefault()}
+                      >
                         @poly
                       </a>
                     }
@@ -728,8 +813,8 @@ function Demo() {
                       </span>
                     </div>
                     <p className="riot-text riot-preview__desc">
-                      Runs the press after hours. Believes the grid was a cage and the scissors set
-                      you free.
+                      Runs the press after hours. Believes the grid was a cage and the
+                      scissors set you free.
                     </p>
                     <div className="riot-preview__footer">
                       <Badge tone="primary" dot>
@@ -800,7 +885,11 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX" tape="tl">
-              <ContextMenu trigger={<span className="riot-cap">Right-click the wall to open actions</span>}>
+              <ContextMenu
+                trigger={
+                  <span className="riot-cap">Right-click the wall to open actions</span>
+                }
+              >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘D">Duplicate</MenuItem>
                 <MenuSeparator />
@@ -870,7 +959,11 @@ function Demo() {
                   <Drawer
                     key={side}
                     side={side}
-                    trigger={<Button variant="ghost">{side[0].toUpperCase() + side.slice(1)}</Button>}
+                    trigger={
+                      <Button variant="ghost">
+                        {side[0].toUpperCase() + side.slice(1)}
+                      </Button>
+                    }
                     title="Layer settings"
                     description="Adjust how this clipping sits on the wall."
                     actions={<DrawerClose variant="secondary">Close</DrawerClose>}
@@ -893,7 +986,9 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => toast.add({ title: "Saved", description: "Issue saved." })}
+                  onClick={() =>
+                    toast.add({ title: "Saved", description: "Issue saved." })
+                  }
                 >
                   Notify
                 </Button>
@@ -915,7 +1010,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Off grid", description: "Three clippings off the baseline.", type: "warning" })
+                    toast.add({
+                      title: "Off grid",
+                      description: "Three clippings off the baseline.",
+                      type: "warning",
+                    })
                   }
                 >
                   Warn
@@ -924,7 +1023,11 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "Overflow", description: "Paste-up exceeds the frame.", type: "danger" })
+                    toast.add({
+                      title: "Overflow",
+                      description: "Paste-up exceeds the frame.",
+                      type: "danger",
+                    })
                   }
                 >
                   Alarm
@@ -933,7 +1036,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="display" label="Display" sub="marks & fittings" marker={<Square />} />
+          <GroupRule
+            id="display"
+            label="Display"
+            sub="marks & fittings"
+            marker={<Square />}
+          />
           <div className="riot-grid">
             <Panel id="avatar" title="Avatar" meta="AVT" tape="tl">
               <div className="riot-row">
@@ -969,7 +1077,11 @@ function Demo() {
 
             <Panel id="toolbar" title="Toolbar" meta="TBR" tape="br">
               <Toolbar aria-label="Tools">
-                <BaseToggleGroup className="riot-toolbar__group" defaultValue={["fill"]} aria-label="Layers">
+                <BaseToggleGroup
+                  className="riot-toolbar__group"
+                  defaultValue={["fill"]}
+                  aria-label="Layers"
+                >
                   <ToolbarButton render={<BaseToggle />} value="fill">
                     Fill
                   </ToolbarButton>
@@ -1029,7 +1141,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="foundations" label="Foundations" sub="type & rule" marker={<Triangle />} />
+          <GroupRule
+            id="foundations"
+            label="Foundations"
+            sub="type & rule"
+            marker={<Triangle />}
+          />
           <div className="riot-grid">
             <Panel id="typography" title="Typography" meta="TYP" wide tape="top">
               <div className="riot-stack">
@@ -1037,8 +1154,8 @@ function Demo() {
                 <h3 className="riot-h2">Ransom headings</h3>
                 <span className="riot-h3">Section sub-label</span>
                 <p className="riot-text">
-                  Body copy set in a battered typewriter face, with monospace numerals for every
-                  measurement across the zine.
+                  Body copy set in a battered typewriter face, with monospace numerals for
+                  every measurement across the zine.
                 </p>
                 <span className="riot-cap">Field caption · pasted crooked</span>
               </div>
@@ -1062,8 +1179,8 @@ function Demo() {
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL" tape="tr">
               <p className="riot-text riot-panel-note">
-                The torn clipping wrapping every section — paper, a hard offset shadow and a stamped
-                code, pinned up at its own angle. Composable to any depth.
+                The torn clipping wrapping every section — paper, a hard offset shadow and
+                a stamped code, pinned up at its own angle. Composable to any depth.
               </p>
               <Panel title="Nested clipping" meta="SUB" stapled>
                 <span className="riot-cap">A clipping within a clipping</span>
@@ -1071,7 +1188,12 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="signature" label="Signature" sub="the print run" marker={<StarFill />} />
+          <GroupRule
+            id="signature"
+            label="Signature"
+            sub="the print run"
+            marker={<StarFill />}
+          />
           <div className="riot-grid">
             <Panel id="loader" title="Loader" meta="LDR" wide tape="top">
               <div className="demo-loader-stage">

@@ -18,7 +18,13 @@ export interface TabsProps {
   className?: string;
 }
 
-export function Tabs({ items, defaultValue, value, onValueChange, className }: TabsProps) {
+export function Tabs({
+  items,
+  defaultValue,
+  value,
+  onValueChange,
+  className,
+}: TabsProps) {
   return (
     <BaseTabs.Root
       className={cx("bauhaus-tabs", className)}
@@ -29,7 +35,12 @@ export function Tabs({ items, defaultValue, value, onValueChange, className }: T
       <div className="bauhaus-tabs__rail">
         <BaseTabs.List className="bauhaus-tabs__list">
           {items.map((it) => (
-            <BaseTabs.Tab key={it.value} value={it.value} disabled={it.disabled} className="bauhaus-tabs__tab">
+            <BaseTabs.Tab
+              key={it.value}
+              value={it.value}
+              disabled={it.disabled}
+              className="bauhaus-tabs__tab"
+            >
               {it.label}
             </BaseTabs.Tab>
           ))}

@@ -43,13 +43,24 @@ export function Combobox({
         </BaseCombobox.Trigger>
       </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="bauhaus-lift" sideOffset={6} side={side} align={align}>
+        <BaseCombobox.Positioner
+          className="bauhaus-lift"
+          sideOffset={6}
+          side={side}
+          align={align}
+        >
           <BaseCombobox.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-combobox__popup">
-            <BaseCombobox.Empty className="bauhaus-combobox__empty">{emptyText}</BaseCombobox.Empty>
+            <BaseCombobox.Empty className="bauhaus-combobox__empty">
+              {emptyText}
+            </BaseCombobox.Empty>
             <ScrollArea variant="popup">
               <BaseCombobox.List className="bauhaus-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} className="bauhaus-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    className="bauhaus-list-item"
+                  >
                     <span className="bauhaus-list-item__text">{item}</span>
                     <BaseCombobox.ItemIndicator className="bauhaus-list-item__check">
                       <Check />

@@ -50,15 +50,21 @@ export function Dialog({
                 }
               />
               {title != null ? (
-                <BaseDialog.Title className="riot-h2 riot-modal-title">{title}</BaseDialog.Title>
+                <BaseDialog.Title className="riot-h2 riot-modal-title">
+                  {title}
+                </BaseDialog.Title>
               ) : null}
               {description != null ? (
                 <BaseDialog.Description className="riot-text riot-modal-desc">
                   {description}
                 </BaseDialog.Description>
               ) : null}
-              {children != null ? <div className="riot-modal-body">{children}</div> : null}
-              {actions != null ? <div className="riot-modal-actions">{actions}</div> : null}
+              {children != null ? (
+                <div className="riot-modal-body">{children}</div>
+              ) : null}
+              {actions != null ? (
+                <div className="riot-modal-actions">{actions}</div>
+              ) : null}
             </div>
           </BaseDialog.Popup>
         </BaseDialog.Viewport>
@@ -69,8 +75,10 @@ export function Dialog({
 
 export type DialogCloseVariant = ButtonVariant;
 
-export interface DialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
+export interface DialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

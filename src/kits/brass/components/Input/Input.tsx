@@ -14,11 +14,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   return (
     <div className={cx("brass-plate", "brass-input", className)}>
       {icon ? <span className="brass-input__icon">{icon}</span> : null}
-      <BaseInput
-        id={id ?? autoId}
-        className="brass-input__control"
-        {...props}
-      />
+      <BaseInput id={id ?? autoId} className="brass-input__control" {...props} />
     </div>
   );
 }

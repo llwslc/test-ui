@@ -11,7 +11,8 @@
     var(--brass-tone) 78%,
     var(--brass-tone-deep)
   );
-  --brass-plate-fill: radial-gradient(
+  --brass-plate-fill:
+    radial-gradient(
       120% 78% at 50% 0,
       color-mix(in srgb, var(--brass-tone) 20%, transparent),
       transparent 58%

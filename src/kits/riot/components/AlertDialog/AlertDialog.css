@@ -23,11 +23,23 @@
   background: var(--riot-tape-primary);
 }
 .riot-alert__popup--danger .riot-modal-title {
-  background: linear-gradient(transparent 16%, var(--riot-tape-danger) 16% 88%, transparent 88%);
+  background: linear-gradient(
+    transparent 16%,
+    var(--riot-tape-danger) 16% 88%,
+    transparent 88%
+  );
 }
 .riot-alert__popup--warning .riot-modal-title {
-  background: linear-gradient(transparent 16%, var(--riot-tape-warning) 16% 88%, transparent 88%);
+  background: linear-gradient(
+    transparent 16%,
+    var(--riot-tape-warning) 16% 88%,
+    transparent 88%
+  );
 }
 .riot-alert__popup--primary .riot-modal-title {
-  background: linear-gradient(transparent 16%, var(--riot-tape-primary) 16% 88%, transparent 88%);
+  background: linear-gradient(
+    transparent 16%,
+    var(--riot-tape-primary) 16% 88%,
+    transparent 88%
+  );
 }

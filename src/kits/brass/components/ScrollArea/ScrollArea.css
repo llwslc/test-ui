@@ -49,7 +49,9 @@
 .brass-scrollarea__thumb {
   flex: 1;
   border-radius: var(--brass-round-sm);
-  background-image: var(--brass-knurl), linear-gradient(180deg, var(--brass-primary), var(--brass-primary-deep));
+  background-image:
+    var(--brass-knurl),
+    linear-gradient(180deg, var(--brass-primary), var(--brass-primary-deep));
   box-shadow: var(--brass-bevel);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
@@ -58,7 +60,9 @@
 }
 .brass-scrollarea__thumb[data-orientation="horizontal"] {
   width: var(--scroll-area-thumb-width);
-  background-image: var(--brass-knurl), linear-gradient(90deg, var(--brass-primary), var(--brass-primary-deep));
+  background-image:
+    var(--brass-knurl),
+    linear-gradient(90deg, var(--brass-primary), var(--brass-primary-deep));
 }
 .brass-scrollarea__thumb:hover {
   filter: var(--brass-glow-trigger);

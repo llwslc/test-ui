@@ -21,29 +21,61 @@ function base({ children, ...props }: IconProps) {
   );
 }
 
-export const Check = (p: IconProps) => base({ ...p, children: <path d="M4.5 12.5 9.5 18 20 6.5" /> });
+export const Check = (p: IconProps) =>
+  base({ ...p, children: <path d="M4.5 12.5 9.5 18 20 6.5" /> });
 
-export const Close = (p: IconProps) => base({ ...p, children: <path d="M6 6 18 18M18 6 6 18" /> });
+export const Close = (p: IconProps) =>
+  base({ ...p, children: <path d="M6 6 18 18M18 6 6 18" /> });
 
-export const ChevronDown = (p: IconProps) => base({ ...p, children: <path d="m6 9 6 6 6-6" /> });
+export const ChevronDown = (p: IconProps) =>
+  base({ ...p, children: <path d="m6 9 6 6 6-6" /> });
 
-export const ChevronRight = (p: IconProps) => base({ ...p, children: <path d="m9 6 6 6-6 6" /> });
+export const ChevronRight = (p: IconProps) =>
+  base({ ...p, children: <path d="m9 6 6 6-6 6" /> });
 
-export const Plus = (p: IconProps) => base({ ...p, children: <path d="M12 5v14M5 12h14" /> });
+export const Plus = (p: IconProps) =>
+  base({ ...p, children: <path d="M12 5v14M5 12h14" /> });
 
 export const Minus = (p: IconProps) => base({ ...p, children: <path d="M5 12h14" /> });
 
 export const Search = (p: IconProps) =>
-  base({ ...p, children: <><circle cx="11" cy="11" r="6.5" /><path d="m20 20-3.6-3.6" /></> });
+  base({
+    ...p,
+    children: (
+      <>
+        <circle cx="11" cy="11" r="6.5" />
+        <path d="m20 20-3.6-3.6" />
+      </>
+    ),
+  });
 
 export const Dot = (p: IconProps) =>
-  base({ ...p, children: <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" /> });
+  base({
+    ...p,
+    children: <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />,
+  });
 
 export const Copy = (p: IconProps) =>
-  base({ ...p, children: <><rect x="9" y="9" width="11" height="11" rx="1.5" /><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15" /></> });
+  base({
+    ...p,
+    children: (
+      <>
+        <rect x="9" y="9" width="11" height="11" rx="1.5" />
+        <path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15" />
+      </>
+    ),
+  });
 
 export const Clock = (p: IconProps) =>
-  base({ ...p, children: <><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></> });
+  base({
+    ...p,
+    children: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 7.5V12l3 2" />
+      </>
+    ),
+  });
 
 export const Gear = (p: IconProps) =>
   base({
@@ -84,4 +116,12 @@ export const Bolt = (p: IconProps) =>
   base({ ...p, children: <path d="M13 2.5 5 13.5h6L11 21.5l8-11h-6z" /> });
 
 export const Pipe = (p: IconProps) =>
-  base({ ...p, children: <><path d="M3 9h12a3 3 0 0 1 3 3v9" /><path d="M3 6.5v5M16.5 18h5" /></> });
+  base({
+    ...p,
+    children: (
+      <>
+        <path d="M3 9h12a3 3 0 0 1 3 3v9" />
+        <path d="M3 6.5v5M16.5 18h5" />
+      </>
+    ),
+  });

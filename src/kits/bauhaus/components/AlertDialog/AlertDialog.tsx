@@ -25,14 +25,22 @@ export interface AlertDialogProps {
   className?: string;
 }
 
-export interface AlertDialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>, "className" | "render"> {
+export interface AlertDialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
 }
 
-export function AlertDialogClose({ variant = "ghost", size = "md", className, children, ...props }: AlertDialogCloseProps) {
+export function AlertDialogClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: AlertDialogCloseProps) {
   return (
     <BaseAlertDialog.Close
       render={
@@ -63,7 +71,11 @@ export function AlertDialog({
         <BaseAlertDialog.Backdrop className="bauhaus-backdrop" />
         <BaseAlertDialog.Viewport className="bauhaus-viewport">
           <BaseAlertDialog.Popup
-            className={cx("bauhaus-surface bauhaus-lift bauhaus-lift--modal bauhaus-modal bauhaus-alert", `bauhaus-alert--${tone}`, className)}
+            className={cx(
+              "bauhaus-surface bauhaus-lift bauhaus-lift--modal bauhaus-modal bauhaus-alert",
+              `bauhaus-alert--${tone}`,
+              className,
+            )}
           >
             {title != null ? (
               <BaseAlertDialog.Title className="bauhaus-h2 bauhaus-modal-title">
@@ -74,10 +86,16 @@ export function AlertDialog({
               </BaseAlertDialog.Title>
             ) : null}
             {description != null ? (
-              <BaseAlertDialog.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseAlertDialog.Description>
+              <BaseAlertDialog.Description className="bauhaus-text bauhaus-modal-desc">
+                {description}
+              </BaseAlertDialog.Description>
             ) : null}
-            {children != null ? <div className="bauhaus-modal-body">{children}</div> : null}
-            {actions != null ? <div className="bauhaus-modal-actions">{actions}</div> : null}
+            {children != null ? (
+              <div className="bauhaus-modal-body">{children}</div>
+            ) : null}
+            {actions != null ? (
+              <div className="bauhaus-modal-actions">{actions}</div>
+            ) : null}
           </BaseAlertDialog.Popup>
         </BaseAlertDialog.Viewport>
       </BaseAlertDialog.Portal>

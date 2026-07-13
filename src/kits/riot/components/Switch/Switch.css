@@ -30,7 +30,9 @@
 }
 .riot-switch[data-checked] .riot-switch__thumb {
   transform: translate(
-    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 8px),
+    calc(
+      var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 8px
+    ),
     -50%
   );
 }

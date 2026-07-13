@@ -36,10 +36,13 @@ export function Tooltip({
           render={children}
         />
         <BaseTooltip.Portal>
-          <BaseTooltip.Positioner className="bauhaus-lift--sm" side={side} sideOffset={sideOffset} align={align}>
-            <BaseTooltip.Popup
-              className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-tooltip"
-            >
+          <BaseTooltip.Positioner
+            className="bauhaus-lift--sm"
+            side={side}
+            sideOffset={sideOffset}
+            align={align}
+          >
+            <BaseTooltip.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-tooltip">
               {content}
             </BaseTooltip.Popup>
             <BaseTooltip.Arrow className="bauhaus-connector" />

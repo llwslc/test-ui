@@ -18,7 +18,16 @@ export interface DialogProps {
   className?: string;
 }
 
-export function Dialog({ trigger, title, description, children, actions, open, onOpenChange, className }: DialogProps) {
+export function Dialog({
+  trigger,
+  title,
+  description,
+  children,
+  actions,
+  open,
+  onOpenChange,
+  className,
+}: DialogProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -29,7 +38,10 @@ export function Dialog({ trigger, title, description, children, actions, open, o
           <BaseDialog.Popup
             ref={popupRef}
             initialFocus={popupRef}
-            className={cx("brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-dialog", className)}
+            className={cx(
+              "brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-dialog",
+              className,
+            )}
           >
             {title != null ? (
               <BaseDialog.Title className="brass-h2 brass-modal-title">
@@ -65,8 +77,10 @@ export function Dialog({ trigger, title, description, children, actions, open, o
 
 export type DialogCloseVariant = ButtonVariant;
 
-export interface DialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
+export interface DialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

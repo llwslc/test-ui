@@ -26,7 +26,8 @@ body::after {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 50%, rgba(207, 157, 58, 0.05) 1px, transparent 1.6px) 0 0 / 32px 32px,
+    radial-gradient(circle at 50% 50%, rgba(207, 157, 58, 0.05) 1px, transparent 1.6px) 0
+      0 / 32px 32px,
     radial-gradient(58% 42% at 72% 82%, rgba(255, 246, 222, 0.035), transparent 62%);
   -webkit-mask-image: radial-gradient(125% 100% at 50% 0%, #000 28%, transparent 78%);
   mask-image: radial-gradient(125% 100% at 50% 0%, #000 28%, transparent 78%);
@@ -34,10 +35,14 @@ body::after {
 }
 @keyframes brass-steam {
   from {
-    background-position: 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0;
   }
   to {
-    background-position: 0 -32px, 0 -48px;
+    background-position:
+      0 -32px,
+      0 -48px;
   }
 }
 
@@ -47,7 +52,11 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: repeating-linear-gradient(90deg, rgba(255, 238, 196, 0.014) 0 2px, transparent 2px 5px);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 238, 196, 0.014) 0 2px,
+    transparent 2px 5px
+  );
   mix-blend-mode: overlay;
 }
 

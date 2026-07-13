@@ -17,9 +17,18 @@ export interface AvatarProps extends React.ComponentProps<typeof BaseAvatar.Root
   status?: Status;
 }
 
-export function Avatar({ size = "md", status, className, children, ...props }: AvatarProps) {
+export function Avatar({
+  size = "md",
+  status,
+  className,
+  children,
+  ...props
+}: AvatarProps) {
   return (
-    <BaseAvatar.Root className={cx("nova-avatar", `nova-avatar--${size}`, className)} {...props}>
+    <BaseAvatar.Root
+      className={cx("nova-avatar", `nova-avatar--${size}`, className)}
+      {...props}
+    >
       <span className="nova-avatar__frame">{children}</span>
       {status ? (
         <span
@@ -32,10 +41,18 @@ export function Avatar({ size = "md", status, className, children, ...props }: A
   );
 }
 
-export function AvatarImage({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Image>) {
+export function AvatarImage({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseAvatar.Image>) {
   return <BaseAvatar.Image className={cx("nova-avatar__img", className)} {...props} />;
 }
 
-export function AvatarFallback({ className, ...props }: React.ComponentProps<typeof BaseAvatar.Fallback>) {
-  return <BaseAvatar.Fallback className={cx("nova-avatar__fallback", className)} {...props} />;
+export function AvatarFallback({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseAvatar.Fallback>) {
+  return (
+    <BaseAvatar.Fallback className={cx("nova-avatar__fallback", className)} {...props} />
+  );
 }

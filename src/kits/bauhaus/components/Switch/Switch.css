@@ -33,5 +33,10 @@
 }
 .bauhaus-switch[data-checked] .bauhaus-switch__thumb {
   background: var(--bauhaus-on-fill);
-  transform: translateX(calc(var(--bauhaus-switch-w) - var(--bauhaus-switch-knob) - 2 * var(--bauhaus-stroke) - 2 * var(--bauhaus-space-1)));
+  transform: translateX(
+    calc(
+      var(--bauhaus-switch-w) - var(--bauhaus-switch-knob) - 2 * var(--bauhaus-stroke) -
+        2 * var(--bauhaus-space-1)
+    )
+  );
 }

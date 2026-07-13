@@ -9,13 +9,24 @@ export interface MeterProps extends ComponentPropsWithoutRef<typeof BaseMeter.Ro
   tone?: "primary" | "success" | "warning" | "danger";
 }
 
-export function Meter({ className, label, showValue = true, tone = "primary", ...props }: MeterProps) {
+export function Meter({
+  className,
+  label,
+  showValue = true,
+  tone = "primary",
+  ...props
+}: MeterProps) {
   return (
-    <BaseMeter.Root className={cx("riot-meter", `riot-meter--${tone}`, className)} {...props}>
+    <BaseMeter.Root
+      className={cx("riot-meter", `riot-meter--${tone}`, className)}
+      {...props}
+    >
       {(label != null || showValue) && (
         <div className="riot-meter__head">
           {label != null ? (
-            <BaseMeter.Label className="riot-cap riot-meter__label">{label}</BaseMeter.Label>
+            <BaseMeter.Label className="riot-cap riot-meter__label">
+              {label}
+            </BaseMeter.Label>
           ) : (
             <span />
           )}

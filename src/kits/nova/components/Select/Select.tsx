@@ -72,7 +72,9 @@ export function Select<Value extends string = string>({
           className="nova-elevation nova-select__positioner"
           sideOffset={6}
           alignItemWithTrigger={false}
-         side={side} align={align}>
+          side={side}
+          align={align}
+        >
           <BaseSelect.Popup className="nova-surface nova-anim-pop nova-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (

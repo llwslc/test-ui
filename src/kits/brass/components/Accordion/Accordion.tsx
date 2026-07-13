@@ -31,7 +31,12 @@ export function Accordion({
       defaultValue={defaultValue}
     >
       {items.map((it) => (
-        <BaseAccordion.Item key={it.value} value={it.value} disabled={it.disabled} className="brass-accordion__item">
+        <BaseAccordion.Item
+          key={it.value}
+          value={it.value}
+          disabled={it.disabled}
+          className="brass-accordion__item"
+        >
           <BaseAccordion.Header className="brass-accordion__header">
             <BaseAccordion.Trigger className="brass-collapse-trigger">
               <span className="brass-collapse-marker">

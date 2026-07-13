@@ -1,6 +1,11 @@
 dist
 node_modules
 
+# prettier owns product source (src/ + config). Not the gate layer: .claude/ is tooling
+# (diff-hygiene exempts it too) and holds render-baseline.json, which fingerprint.cjs
+# regenerates — prettier reformatting it would make the two dirty each other forever.
+.claude/
+
 # docs answer to prompt-lint, not prettier — prettier escapes globs in prose
 # (*.ts(x) -> \*.ts(x)), which is exactly the copy-paste damage the doc rules exist to prevent.
 *.md
