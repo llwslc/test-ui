@@ -127,8 +127,16 @@
 .hanabi-sidebar__link:focus-visible::after {
   content: "";
   position: absolute;
-  inset: 1px;
-  background: var(--hanabi-lockon);
+  inset: -3px 1px;
+  background:
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 7px 2px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 2px 7px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 7px 2px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 2px 7px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 7px 2px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 2px 7px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 7px 2px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 2px 7px;
   background-repeat: no-repeat;
   animation: hanabi-lock-snap 0.18s var(--hanabi-ease-out);
   pointer-events: none;

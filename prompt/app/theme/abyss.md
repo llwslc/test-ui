@@ -17,3 +17,7 @@
 ## 3. 入场
 
 - 顶栏 `abyss-drop` 下滑；hero 文案按 `abyss-rise` 分档错开；面板进视口时逐个渐入。
+
+## 4. 外壳
+
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 2px 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `glow-soft` 幽辉底、左竖轨转 `glow-a55`；键盘焦点去原生 outline、左竖轨再升 `glow`。

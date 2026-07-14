@@ -17,3 +17,7 @@
 ## 3. 入场
 
 - 顶栏下滑；hero 文案 `bauhaus-slide` 块面滑移、分档错开；面板进视口时逐块推上；`ease-out` 锐利落定、不回弹——硬挺如构成。
+
+## 4. 外壳
+
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 `stroke-bold` 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底、左竖轨转 `primary`；键盘焦点去原生 outline。

@@ -25,3 +25,7 @@
 
 - scroll 面板的 12 行列表做成战斗日志：DotGothic16 时间码 + 日语日志行。
 - button 面板第 ① 排 primary 钮演示刀光按压（`slash-flash` 属 primary 常规态，无需额外 prop）。
+
+## 5. 外壳
+
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；圆角行、无左竖轨。rest 取 `text` 墨蓝；hover 盖 `primary-wash` 底 + `primary-deep` 字；键盘焦点在 hover 底上再收拢一圈四角锁定框——复用全站焦点母题，但角标缩到 7px、框上下外扩 3px 适配矮行使四角分明，去原生 outline。

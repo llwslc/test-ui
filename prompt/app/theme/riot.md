@@ -21,3 +21,7 @@
 ## 4. 面板特例
 
 - button 面板：第 ① 排按默认斜钉；第 ② 排尺寸钮加 `upright`，对照展示两种钉法。
+
+## 5. 外壳
+
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-dim`、靠右）；左缘留一道 `stroke-bold` 透明竖轨。rest 取 `text-mute`；hover 与键盘焦点砸 `#191716` 墨底 + `text-invert` 反白、左竖轨转 `primary`；键盘焦点去原生 outline。

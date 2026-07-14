@@ -17,3 +17,7 @@
 ## 3. 入场
 
 - 顶栏 `brass-drop` 下滑、机械落定；hero 文案按 `brass-rise` 分档错开；面板进视口时逐个落定——全程用 `ease-detent` 收一记微过冲的回弹，像仪表归位。
+
+## 4. 外壳
+
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 2px 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底、左竖轨转 `primary`；键盘焦点去原生 outline。
