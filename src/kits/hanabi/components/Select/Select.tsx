@@ -80,7 +80,7 @@ export function Select<Value extends string = string>({
           side={side}
           align={align}
         >
-          <BaseSelect.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-select__popup">
+          <BaseSelect.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-popup-list hanabi-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (
                 <BaseSelect.Item

@@ -36,7 +36,7 @@ export function PreviewCard({
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePreviewCard.Popup className="hanabi-pop hanabi-popup hanabi-preview">
+          <BasePreviewCard.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-preview">
             {children}
           </BasePreviewCard.Popup>
           <BasePreviewCard.Arrow className="hanabi-connector" />

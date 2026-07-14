@@ -35,7 +35,13 @@ export function Popover({
           sideOffset={sideOffset}
         >
           <BasePopover.Popup
-            className={cx("hanabi-pop", "hanabi-popup", "hanabi-popover", className)}
+            className={cx(
+              "hanabi-surface",
+              "hanabi-pop",
+              "hanabi-popup",
+              "hanabi-popover",
+              className,
+            )}
           >
             <BasePopover.Close
               className="hanabi-popover__close"

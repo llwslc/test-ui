@@ -50,9 +50,7 @@ export function Field({
       invalid={error != null}
     >
       {label != null ? (
-        <BaseField.Label className="hanabi-cap hanabi-fieldroot__label">
-          {label}
-        </BaseField.Label>
+        <BaseField.Label className="hanabi-cap">{label}</BaseField.Label>
       ) : null}
       <div className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-input">
         {icon ? <span className="hanabi-input__icon">{icon}</span> : null}

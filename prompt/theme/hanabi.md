@@ -19,7 +19,7 @@
 - 两条复用的强调填充，都是平涂：`accent-surface` = 实色 `primary`，点亮激活表面；`accent-fill` = 实色 `primary`，方向与选中指示。
 - alpha 只给盖不了实色的三处：`scrim` = `ink` 的 `.5` 背板（另叠 primary 网点，见氛围层）；高光条 `hi` = 白 `.8`；分格刻度线 `cell-line` = `ink` 的 `.14`（要同时压在轨底与填充上）。其余悬停、tone 底一律走 `-wash` 实色档，赛璐璐拒绝半透明涂色。
 - 中性与效果色：`track #f2f7fc` 是未填充轨道底（关态轨同）；禁用底 `disabled-fill #e3eaf5`。
-- 表面：`surface-popup` 与 `surface-modal` 同取赛璐璐白；`surface-zone #eef5fb` 是投放区底，hover 升 `surface-zone-hover #e4eefa`。
+- 表面：`surface-modal` 取赛璐璐白；`surface-zone #eef5fb` 是投放区底，hover 升 `surface-zone-hover #e4eefa`。
 - 描边与投影：全局描线恒为 `ink #22304f`；投影是**硬边偏移的 tone 实影**——右下偏移、零模糊的冷紫蓝块，分档：盒影 `shadow-sm 2px 2px`（勾选框、旋钮、chip 小件）、`shadow 4px 4px`（按钮、输入框、弹层）、`shadow-lift 6px 6px`（悬停升档、面板）、`shadow-press 1px 1px`（按压收拢）、`shadow-modal 8px 8px`（模态）；随形 `cast` = `drop-shadow(6px 6px 0 tone)` 给浮层抬升层。**一个元素只挂一层影**。文字强调与选中提示取 `primary`；无辉光——赛璐璐世界的光是画上去的高光条，不是 glow。
 
 ## 2. 字体与排版
@@ -33,7 +33,7 @@
 
 - 造型 = **圆角赛璐璐 + 斜切铭牌**。半径阶梯按角色：`r-modal 18px`（模态、面板超大外框）、`r-control 12px`（默认控件框、浮层）、`r-field 8px`（按钮、输入位）、`r-chip 6px`（铭牌、章记、嵌套项、列表行）、`r-pill 999px`（chip 药丸、轨道、旋钮、状态点）。斜切统一走 `--hanabi-skew -8deg`（铭牌、图记块、章记的倾角），文字随牌同斜；组件不裸写 radius 与斜角。
 - 描线恒为 `2px` 实线 `ink`——赛璐璐线稿等宽，轻重分档用**色**不用宽：静止 chrome 档 = `ink`，hover／focus 升档转 `primary`，语义变体按 tone 换色；细分隔是 `2px dashed tone` 的虚线（缝纫线）。组件不裸写描边色宽。
-- 描边走 frame 原语 `.hanabi-surface`：`cel` 平涂自身背景 + `ink` 2px border + `border-radius`，纯圆角矩形直接 border 画、无 clip-path；输入变量 `--hanabi-surface-fill / -border / -r / -shadow`。高光条是独立配方 `.hanabi-gloss`（`::before` 左上白圆条，`hi` 色），贴在按钮、旋钮、填充上——赛璐璐的受光面。
+- 描边走 frame 原语 `.hanabi-surface`：白面平涂 + `ink` 2px border + `border-radius`，纯圆角矩形直接 border 画、无 clip-path；输入变量 `--hanabi-surface-fill / -border / -r / -shadow`；锚定弹层面统一挂它换色，模态与面内控件就近自绘同一套描线。高光条就近在各控件 `::before` 画一道左上白圆条（`hi` 色）——赛璐璐的受光面，见按钮、开关旋钮、进度填充。
 - 抬升：浮层影走 `cast`（drop-shadow 挂 elevation 层、随圆角形状），面内控件影走 `shadow-*` 盒影挂元素自己；输入变量 `--hanabi-overlay-shadow`，无 glow 槽。
 - 浮层连接件（Arrow）是一枚 `ink` 描线、`cel` 填的小三角尖，随弹层同步淡入。
 - 仪表母题：斜切铭牌（`plate`）、✦ 四芒星火花、集中线、半调网点、警戒斜纹（`gold`×`ink` 相间条）、像素注记、分格刻度，用作标题牌、tone 图记、焦点与招牌，靠输入变量换色。

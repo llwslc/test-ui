@@ -52,7 +52,7 @@ export function Combobox({
           side={side}
           align={align}
         >
-          <BaseCombobox.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-combobox__popup">
+          <BaseCombobox.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-popup-list hanabi-combobox__popup">
             <BaseCombobox.Empty className="hanabi-combobox__empty">
               {emptyText}
             </BaseCombobox.Empty>

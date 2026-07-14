@@ -44,7 +44,7 @@ export function Autocomplete({
           side={side}
           align={align}
         >
-          <BaseAutocomplete.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-autocomplete__popup">
+          <BaseAutocomplete.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-popup-list hanabi-autocomplete__popup">
             <BaseAutocomplete.Empty className="hanabi-autocomplete__empty">
               {emptyText}
             </BaseAutocomplete.Empty>

@@ -73,7 +73,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
           sideOffset={10}
           collisionPadding={16}
         >
-          <BaseNav.Popup className="hanabi-pop hanabi-popup hanabi-navmenu__popup">
+          <BaseNav.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-navmenu__popup">
             <BaseNav.Viewport className="hanabi-navmenu__viewport" />
           </BaseNav.Popup>
         </BaseNav.Positioner>
