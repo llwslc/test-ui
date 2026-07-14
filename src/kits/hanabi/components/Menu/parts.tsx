@@ -63,7 +63,7 @@ export function MenuSub({
           align="start"
           sideOffset={12}
         >
-          <BaseMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu__popup">
+          <BaseMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

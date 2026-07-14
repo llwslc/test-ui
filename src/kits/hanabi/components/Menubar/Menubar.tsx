@@ -29,7 +29,7 @@ export function MenubarMenu({
           side={side}
           align={align}
         >
-          <BaseMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu__popup">
+          <BaseMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>

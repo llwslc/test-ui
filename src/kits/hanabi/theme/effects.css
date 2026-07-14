@@ -166,6 +166,10 @@
   margin: var(--hanabi-space-1) var(--hanabi-space-2);
 }
 
+.hanabi-menu-pane {
+  min-width: var(--hanabi-menu-min-w);
+}
+
 .hanabi-modal {
   position: relative;
   isolation: isolate;
@@ -234,7 +238,7 @@
   margin-top: var(--hanabi-space-5);
 }
 
-.hanabi-modal-close {
+.hanabi-btn.hanabi-modal-close {
   position: absolute;
   top: var(--hanabi-space-3);
   right: var(--hanabi-space-3);
@@ -280,10 +284,10 @@
 
 .hanabi-collapse-chevron {
   color: var(--hanabi-primary);
-  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+  transition: transform var(--hanabi-dur) var(--hanabi-ease-snap);
 }
 .hanabi-collapse-trigger[data-panel-open] .hanabi-collapse-chevron {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .hanabi-collapse-panel {

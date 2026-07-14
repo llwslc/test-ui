@@ -7,10 +7,10 @@
   display: inline-flex;
   color: var(--hanabi-primary);
   font-size: var(--hanabi-fs-14);
-  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+  transition: transform var(--hanabi-dur) var(--hanabi-ease-snap);
 }
 .hanabi-menu__trigger[data-popup-open] .hanabi-menu__trigger-chevron {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .hanabi-menu__icon {
@@ -50,8 +50,4 @@
 }
 .hanabi-list-item--danger[data-highlighted] {
   color: var(--hanabi-danger-deep);
-}
-
-.hanabi-menu__popup {
-  min-width: var(--hanabi-menu-min-w);
 }

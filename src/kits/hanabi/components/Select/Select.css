@@ -34,10 +34,10 @@
   flex: 0 0 auto;
   color: var(--hanabi-primary);
   font-size: var(--hanabi-fs-14);
-  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+  transition: transform var(--hanabi-dur) var(--hanabi-ease-snap);
 }
 .hanabi-select__trigger[data-popup-open] .hanabi-select__icon {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .hanabi-select__popup {

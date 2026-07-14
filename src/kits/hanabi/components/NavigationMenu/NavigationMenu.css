@@ -20,10 +20,10 @@
 .hanabi-navmenu__chevron {
   display: inline-flex;
   font-size: var(--hanabi-fs-12);
-  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+  transition: transform var(--hanabi-dur) var(--hanabi-ease-snap);
 }
 .hanabi-navmenu__trigger[data-popup-open] .hanabi-navmenu__chevron {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .hanabi-navmenu__positioner {

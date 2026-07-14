@@ -54,11 +54,11 @@
 .hanabi-combobox__trigger {
   color: var(--hanabi-primary);
   transition:
-    rotate var(--hanabi-dur) var(--hanabi-ease-snap),
+    transform var(--hanabi-dur) var(--hanabi-ease-snap),
     background var(--hanabi-dur) var(--hanabi-ease-out);
 }
 .hanabi-combobox__trigger[data-popup-open] {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .hanabi-combobox__popup {

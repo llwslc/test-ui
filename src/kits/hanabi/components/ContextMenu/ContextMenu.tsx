@@ -18,7 +18,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="hanabi-lift hanabi-lift--menu">
-          <BaseContextMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu__popup">
+          <BaseContextMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list hanabi-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
