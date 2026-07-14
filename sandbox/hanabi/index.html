@@ -54,7 +54,100 @@
       </div>
     </section>
 
+    <div class="warn" aria-hidden="true">
+      <div class="warn-track">
+        <span>⚠ WARNING</span><span class="dim">深海残响接近中</span>
+        <span>⚠ WARNING</span><span class="dim">ABYSSAL ECHO APPROACHING</span>
+        <span>⚠ WARNING</span><span class="dim">深海残响接近中</span>
+        <span>⚠ WARNING</span><span class="dim">ABYSSAL ECHO APPROACHING</span>
+        <span>⚠ WARNING</span><span class="dim">深海残响接近中</span>
+        <span>⚠ WARNING</span><span class="dim">ABYSSAL ECHO APPROACHING</span>
+        <span>⚠ WARNING</span><span class="dim">深海残响接近中</span>
+        <span>⚠ WARNING</span><span class="dim">ABYSSAL ECHO APPROACHING</span>
+      </div>
+    </div>
+
     <main class="grid">
+      <section class="card wide" aria-labelledby="t-engage">
+        <h2 class="card-title plate" id="t-engage">交战实况</h2>
+        <span class="screen-code">SCREEN S-05 // ENGAGE</span>
+        <div class="engage">
+          <div>
+            <div class="foe-head">
+              <span class="badge boss">BOSS</span>
+              <span class="foe-name"
+                >深海残响<span class="en">ABYSSAL ECHO · LV.85</span></span
+              >
+              <span class="badge" style="background: var(--cyan-wash)">水属性</span>
+            </div>
+            <div class="gauge-lbl">
+              <span class="lbl" style="margin: 0"
+                >HP<span class="jp" id="hp-count">BAR 3/3</span></span
+              >
+              <span class="num" id="hp-num">3000</span>
+            </div>
+            <div class="hpbar"><div class="fill" id="hp-fill"></div></div>
+            <div class="gauge-lbl" style="margin-top: 10px">
+              <span class="lbl" style="margin: 0">韧性<span class="jp">BREAK</span></span>
+            </div>
+            <div class="brk">
+              <div class="fill" id="brk-fill"></div>
+              <span class="sp-cells" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ></span>
+            </div>
+            <div class="foe-arena" id="arena">
+              <svg class="foe" viewBox="0 0 120 100" aria-hidden="true">
+                <path
+                  d="M60 12 C90 12 102 34 102 54 C102 64 96 68 96 78 L89 70 82 82 74 72 66 84 60 74 54 84 46 72 38 82 31 70 24 78 C24 68 18 64 18 54 C18 34 30 12 60 12 Z"
+                  fill="#22304f"
+                />
+                <circle cx="45" cy="46" r="5.5" fill="#ff4d8d" />
+                <circle cx="75" cy="46" r="5.5" fill="#ff4d8d" />
+                <circle cx="46.8" cy="44.2" r="1.7" fill="#fff" />
+                <circle cx="76.8" cy="44.2" r="1.7" fill="#fff" />
+              </svg>
+            </div>
+            <div class="row" style="margin-top: 12px">
+              <span class="badge r4">灼烧</span>
+              <span class="badge r3">破甲</span>
+              <span class="step-hint">BOSS 减益 · 韧性归零伤害翻倍</span>
+            </div>
+          </div>
+          <div>
+            <span class="lbl">技能<span class="jp">SKILLS</span></span>
+            <div class="skills">
+              <button class="skill" data-skill="0">
+                <b>斬</b><small>斩击</small><span class="cds">1.6s</span
+                ><span class="veil"></span>
+              </button>
+              <button class="skill" data-skill="1">
+                <b>連</b><small>连射</small><span class="cds">3.2s</span
+                ><span class="veil"></span>
+              </button>
+              <button class="skill" data-skill="2">
+                <b>華</b><small>花火弹</small><span class="cds">5.2s</span
+                ><span class="veil"></span>
+              </button>
+              <button class="skill" data-skill="3">
+                <b>援</b><small>应援</small><span class="cds">4.2s</span
+                ><span class="veil"></span>
+              </button>
+            </div>
+            <button class="ult" id="ult" disabled>
+              <span>必殺・花火大輪</span>
+              <span class="pct" id="ult-pct">SP 0%</span>
+            </button>
+            <span class="lbl" style="margin-top: 18px"
+              >战斗日志<span class="jp">LOG</span></span
+            >
+            <div class="blog" id="blog">
+              <div>进入交战空域——「深海残响」现身</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="card" aria-labelledby="t-sortie">
         <h2 class="card-title plate" id="t-sortie">作战部署</h2>
         <span class="screen-code">SCREEN S-01 // SORTIE</span>
@@ -402,6 +495,8 @@
 
     <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
+    <div class="cutin" id="cutin" aria-hidden="true"><span>必殺・花火大輪！</span></div>
+
     <script>
       const $ = (s, r = document) => r.querySelector(s);
       const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -554,6 +649,169 @@
           $("#sp-fill").style.setProperty("--v", "60%");
         }),
       );
+
+      const SKILLS = [
+        { name: "斩击", who: "小凛", cd: 1600, dmg: [260, 420], hits: 1 },
+        { name: "连射", who: "结衣", cd: 3200, dmg: [140, 220], hits: 3 },
+        { name: "花火弹", who: "花梨", cd: 5200, dmg: [620, 900], hits: 1 },
+        { name: "应援", who: "结衣", cd: 4200, sp: 30, hits: 0 },
+      ];
+      const HP_MAX = 3000,
+        BRK_MAX = 8;
+      let foeBars = 3,
+        foeHp = HP_MAX,
+        brk = BRK_MAX,
+        brkOpen = false,
+        ultSp = 0,
+        foeDown = false;
+      const arena = $("#arena"),
+        blog = $("#blog"),
+        ult = $("#ult");
+      const rand = (a, b) => Math.round(a + Math.random() * (b - a));
+
+      function logLine(txt, cls = "") {
+        const d = document.createElement("div");
+        if (cls) d.className = cls;
+        d.textContent = txt;
+        blog.prepend(d);
+        while (blog.children.length > 6) blog.lastElementChild.remove();
+      }
+      function paintFoe() {
+        $("#hp-fill").style.width = (100 * foeHp) / HP_MAX + "%";
+        $("#hp-num").textContent = Math.max(0, foeHp);
+        $("#hp-count").textContent = `BAR ${foeBars}/3`;
+        $("#brk-fill").style.width = (100 * brk) / BRK_MAX + "%";
+      }
+      function dmgPop(txt, cls = "") {
+        const d = document.createElement("span");
+        d.className = "dmg " + cls;
+        d.textContent = txt;
+        d.style.left = rand(22, 58) + "%";
+        d.style.top = rand(28, 55) + "%";
+        arena.append(d);
+        setTimeout(() => d.remove(), 1000);
+      }
+      function flashArena() {
+        arena.classList.remove("flash");
+        void arena.offsetWidth;
+        arena.classList.add("flash");
+      }
+      function gainSp(n) {
+        ultSp = Math.min(100, ultSp + n);
+        ult.style.setProperty("--v", ultSp + "%");
+        $("#ult-pct").textContent = `SP ${ultSp}%`;
+        if (ultSp >= 100) {
+          ult.disabled = false;
+          ult.classList.add("ready");
+        }
+      }
+      function tickBreak() {
+        if (brkOpen) return;
+        brk -= 1;
+        if (brk <= 0) {
+          brkOpen = true;
+          brk = 0;
+          dmgPop("BREAK!", "brk-pop");
+          logLine("韧性击碎——伤害 ×2！", "gold");
+          flashArena();
+          setTimeout(() => {
+            brkOpen = false;
+            brk = BRK_MAX;
+            paintFoe();
+            logLine("「深海残响」韧性恢复");
+          }, 4000);
+        }
+      }
+      function applyDamage(v) {
+        foeHp -= v;
+        if (foeHp <= 0) {
+          foeBars -= 1;
+          if (foeBars > 0) {
+            foeHp = HP_MAX;
+            flashArena();
+            logLine(`第 ${3 - foeBars} 条 HP 破碎`, "hot");
+          } else {
+            foeHp = 0;
+            victory();
+          }
+        }
+        paintFoe();
+      }
+      function victory() {
+        foeDown = true;
+        logLine("「深海残响」被击破——战斗胜利！", "gold");
+        toast("战斗胜利！", "掉落结算中 · ★4 模块 ×2", "pink", "★");
+        comboHit(5, true);
+        setTimeout(() => {
+          foeBars = 3;
+          foeHp = HP_MAX;
+          brk = BRK_MAX;
+          brkOpen = false;
+          foeDown = false;
+          paintFoe();
+          logLine("新的敌影浮上——交战继续");
+        }, 2000);
+      }
+      function strike(cfg) {
+        let v = rand(cfg.dmg[0], cfg.dmg[1]);
+        const crit = Math.random() < 0.22;
+        if (crit) v *= 2;
+        if (brkOpen) v *= 2;
+        v = Math.round(v);
+        dmgPop(v, crit || brkOpen ? "crit" : "");
+        logLine(
+          `${crit ? "暴击！" : ""}「${cfg.who}」${cfg.name} → ${v} 伤害`,
+          crit ? "hot" : "",
+        );
+        tickBreak();
+        applyDamage(v);
+      }
+      $$(".skill").forEach((el) => {
+        const cfg = SKILLS[+el.dataset.skill];
+        const veil = $(".veil", el);
+        el.addEventListener("click", () => {
+          if (el.classList.contains("cooling") || foeDown) return;
+          el.classList.add("cooling");
+          veil.style.transition = "none";
+          veil.style.transform = "scaleY(1)";
+          void veil.offsetWidth;
+          veil.style.transition = `transform ${cfg.cd}ms linear`;
+          veil.style.transform = "scaleY(0)";
+          setTimeout(() => el.classList.remove("cooling"), cfg.cd);
+          if (cfg.sp) {
+            gainSp(cfg.sp);
+            logLine(`「${cfg.who}」应援展开 → SP +${cfg.sp}`);
+            return;
+          }
+          gainSp(12);
+          for (let i = 0; i < cfg.hits; i++)
+            setTimeout(() => !foeDown && strike(cfg), i * 150);
+        });
+      });
+      ult.addEventListener("click", () => {
+        if (ult.disabled || foeDown) return;
+        ult.disabled = true;
+        ult.classList.remove("ready");
+        ultSp = 0;
+        ult.style.setProperty("--v", "0%");
+        $("#ult-pct").textContent = "SP 0%";
+        const cut = $("#cutin");
+        cut.classList.add("on");
+        $("span", cut).addEventListener(
+          "animationend",
+          () => cut.classList.remove("on"),
+          { once: true },
+        );
+        setTimeout(() => {
+          if (foeDown) return;
+          dmgPop(9999, "crit");
+          logLine("必殺・花火大輪！ → 9999 伤害", "gold");
+          flashArena();
+          applyDamage(9999);
+          comboHit(10, true);
+        }, 480);
+      });
+      paintFoe();
     </script>
   </body>
 </html>
