@@ -1,0 +1,109 @@
+.hanabi-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-1);
+  width: 100%;
+}
+
+.hanabi-slider__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--hanabi-space-3);
+}
+
+.hanabi-slider__value {
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-13);
+  color: var(--hanabi-primary-deep);
+}
+
+.hanabi-slider__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--hanabi-slider-control-h);
+  cursor: pointer;
+}
+
+.hanabi-slider__track {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background: var(--hanabi-track);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+}
+
+.hanabi-slider__indicator {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  background: var(--hanabi-accent-fill);
+  border-radius: var(--hanabi-r-pill) 3px 3px var(--hanabi-r-pill);
+}
+
+.hanabi-slider__thumb {
+  position: absolute;
+  width: var(--hanabi-slider-thumb);
+  height: var(--hanabi-slider-thumb);
+  background-color: var(--hanabi-surface);
+  background-image:
+    radial-gradient(circle, var(--hanabi-primary) 0 3.2px, transparent 3.8px),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink));
+  background-size:
+    100% 100%,
+    2px 4px,
+    2px 4px,
+    4px 2px,
+    4px 2px;
+  background-position:
+    center,
+    center top 2px,
+    center bottom 2px,
+    left 2px center,
+    right 2px center;
+  background-repeat: no-repeat;
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+  transition: scale var(--hanabi-dur) var(--hanabi-ease-out);
+}
+
+.hanabi-slider__thumb:hover,
+.hanabi-slider__thumb[data-dragging] {
+  scale: 1.12;
+}
+
+.hanabi-slider__thumb:focus-visible {
+  outline: var(--hanabi-line-w) solid var(--hanabi-primary);
+  outline-offset: 2px;
+}
+
+.hanabi-slider[data-disabled] {
+  cursor: not-allowed;
+}
+.hanabi-slider[data-disabled] .hanabi-slider__control {
+  cursor: not-allowed;
+}
+.hanabi-slider[data-disabled] .hanabi-slider__indicator {
+  background: var(--hanabi-tone-deep);
+}
+.hanabi-slider[data-disabled] .hanabi-slider__thumb {
+  background-image:
+    radial-gradient(circle, var(--hanabi-tone-deep) 0 3.2px, transparent 3.8px),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
+    linear-gradient(var(--hanabi-ink), var(--hanabi-ink));
+  box-shadow: none;
+  scale: none;
+}
+.hanabi-slider[data-disabled] .hanabi-slider__head,
+.hanabi-slider[data-disabled] .hanabi-slider__track {
+  opacity: var(--hanabi-disabled-opacity);
+}

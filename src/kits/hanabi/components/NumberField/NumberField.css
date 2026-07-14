@@ -1,0 +1,61 @@
+.hanabi-numberfield {
+  display: inline-flex;
+}
+
+.hanabi-numberfield__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+}
+
+.hanabi-numberfield__btn {
+  display: grid;
+  place-items: center;
+  width: var(--hanabi-number-field-stepper);
+  height: var(--hanabi-number-field-stepper);
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-field);
+  box-shadow: var(--hanabi-shadow-sm);
+  color: var(--hanabi-text);
+  font-size: var(--hanabi-fs-14);
+  cursor: pointer;
+  transition:
+    translate var(--hanabi-dur) var(--hanabi-ease-out),
+    box-shadow var(--hanabi-dur) var(--hanabi-ease-out),
+    background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-numberfield__btn:where(:not(:disabled)):hover {
+  background: var(--hanabi-primary-wash);
+  translate: -1px -1px;
+  box-shadow: 3px 3px 0 var(--hanabi-tone);
+}
+.hanabi-numberfield__btn:where(:not(:disabled)):active {
+  translate: 2px 2px;
+  box-shadow: none;
+  transition-duration: 0s;
+}
+.hanabi-numberfield__btn:disabled {
+  background: var(--hanabi-disabled-fill);
+  color: var(--hanabi-text-mute);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.hanabi-numberfield__input {
+  width: var(--hanabi-number-field-w);
+  height: var(--hanabi-number-field-stepper);
+  text-align: center;
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-field);
+  box-shadow: inset 2px 2px 0 rgba(195, 210, 237, 0.55);
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-16);
+  color: var(--hanabi-text);
+  outline: none;
+  transition: border-color var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-numberfield__input:focus {
+  border-color: var(--hanabi-primary);
+}
