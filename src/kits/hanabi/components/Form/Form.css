@@ -1,0 +1,6 @@
+.hanabi-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-4);
+  min-width: 0;
+}

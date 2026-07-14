@@ -1,0 +1,71 @@
+.hanabi-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-1);
+  width: 100%;
+  --hanabi-meter-stripe: var(--hanabi-primary);
+  --hanabi-meter-stripe-2: #ff8ab4;
+}
+
+.hanabi-meter--success {
+  --hanabi-meter-stripe: var(--hanabi-success);
+  --hanabi-meter-stripe-2: #6fd7a0;
+}
+.hanabi-meter--warning {
+  --hanabi-meter-stripe: var(--hanabi-warning);
+  --hanabi-meter-stripe-2: #ffd97a;
+}
+.hanabi-meter--danger {
+  --hanabi-meter-stripe: var(--hanabi-danger);
+  --hanabi-meter-stripe-2: #f07a7a;
+}
+
+.hanabi-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--hanabi-space-3);
+}
+
+.hanabi-meter__value {
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-13);
+  color: var(--hanabi-text-dim);
+}
+
+.hanabi-meter__track {
+  position: relative;
+  height: var(--hanabi-gauge-h);
+  background: var(--hanabi-track);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+  overflow: hidden;
+}
+
+.hanabi-meter__track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(10% - 2px),
+    rgba(34, 48, 79, 0.14) calc(10% - 2px) 10%
+  );
+  pointer-events: none;
+}
+
+.hanabi-meter__indicator {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: var(--hanabi-r-pill) 3px 3px var(--hanabi-r-pill);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--hanabi-meter-stripe) 0 9px,
+    var(--hanabi-meter-stripe-2) 9px 18px
+  );
+  background-size: 200% 100%;
+  animation: hanabi-stripe-flow var(--hanabi-dur-stripe) linear infinite;
+  transition: width var(--hanabi-dur-slow) var(--hanabi-ease-out);
+}

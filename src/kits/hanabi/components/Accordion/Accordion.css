@@ -1,0 +1,11 @@
+.hanabi-accordion {
+  width: 100%;
+}
+
+.hanabi-accordion__item + .hanabi-accordion__item {
+  border-top: var(--hanabi-line-w) dashed var(--hanabi-tone);
+}
+
+.hanabi-accordion__header {
+  margin: 0;
+}

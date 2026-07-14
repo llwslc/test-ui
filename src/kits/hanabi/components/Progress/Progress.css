@@ -1,0 +1,80 @@
+.hanabi-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-1);
+  width: 100%;
+}
+
+.hanabi-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--hanabi-space-3);
+}
+
+.hanabi-progress__value {
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-13);
+  color: var(--hanabi-primary-deep);
+}
+
+.hanabi-progress__track {
+  position: relative;
+  height: var(--hanabi-gauge-h);
+  background: var(--hanabi-track);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+  overflow: hidden;
+}
+
+.hanabi-progress__track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(10% - 2px),
+    rgba(34, 48, 79, 0.14) calc(10% - 2px) 10%
+  );
+  pointer-events: none;
+}
+
+.hanabi-progress__indicator {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  background: var(--hanabi-accent-fill);
+  border-radius: var(--hanabi-r-pill) 3px 3px var(--hanabi-r-pill);
+  transition: width var(--hanabi-dur-slow) var(--hanabi-ease-out);
+}
+
+.hanabi-progress__indicator::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  right: 10%;
+  height: 2px;
+  border-radius: var(--hanabi-r-pill);
+  background: var(--hanabi-hi);
+}
+
+.hanabi-progress__indicator::after {
+  content: "✦";
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 8px;
+  line-height: var(--hanabi-lh-100);
+  color: var(--hanabi-on-fill);
+}
+
+.hanabi-progress[data-indeterminate] .hanabi-progress__indicator {
+  width: 32%;
+  animation: hanabi-gauge-scan 1.8s var(--hanabi-ease-out) infinite;
+}
+.hanabi-progress[data-indeterminate] .hanabi-progress__indicator::after {
+  content: none;
+}

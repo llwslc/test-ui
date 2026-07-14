@@ -1,0 +1,8 @@
+.hanabi-collapsible {
+  width: 100%;
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-control);
+  box-shadow: var(--hanabi-shadow-sm);
+  padding: var(--hanabi-space-1);
+}

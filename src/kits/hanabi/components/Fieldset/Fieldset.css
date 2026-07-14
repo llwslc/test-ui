@@ -1,0 +1,22 @@
+.hanabi-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-4);
+  min-width: 0;
+  margin: 0;
+  padding: var(--hanabi-space-4);
+  border: var(--hanabi-line-w) dashed var(--hanabi-tone);
+  border-radius: var(--hanabi-r-control);
+}
+
+.hanabi-fieldset__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--hanabi-space-2);
+  margin-left: calc(-1 * var(--hanabi-space-1));
+}
+.hanabi-fieldset__legend .hanabi-marker {
+  font-size: 10px;
+  line-height: var(--hanabi-lh-100);
+}
