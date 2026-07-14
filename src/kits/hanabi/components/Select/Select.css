@@ -1,0 +1,45 @@
+.hanabi-select__trigger {
+  min-width: var(--hanabi-select-min-w);
+  width: 100%;
+  height: var(--hanabi-control-h);
+  padding: 0 var(--hanabi-space-3);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  color: var(--hanabi-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.hanabi-select__trigger[data-disabled] {
+  background: var(--hanabi-disabled-fill);
+  box-shadow: none;
+  opacity: var(--hanabi-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.hanabi-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hanabi-select__ph {
+  color: var(--hanabi-text-mute);
+}
+
+.hanabi-select__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--hanabi-primary);
+  font-size: var(--hanabi-fs-14);
+  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+}
+.hanabi-select__trigger[data-popup-open] .hanabi-select__icon {
+  rotate: 180deg;
+}
+
+.hanabi-select__popup {
+  min-width: var(--anchor-width);
+}

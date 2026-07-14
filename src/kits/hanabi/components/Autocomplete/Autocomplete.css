@@ -1,0 +1,46 @@
+.hanabi-autocomplete {
+  min-width: var(--hanabi-autocomplete-min-w);
+  width: 100%;
+  height: var(--hanabi-control-h);
+  padding: 0 var(--hanabi-space-3);
+}
+
+.hanabi-autocomplete__glyph {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--hanabi-text-dim);
+  font-size: var(--hanabi-fs-14);
+}
+
+.hanabi-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: calc(var(--hanabi-control-h) - var(--hanabi-line-w) * 2);
+  background: none;
+  border: 0;
+  outline: none;
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  color: var(--hanabi-text);
+}
+.hanabi-autocomplete__input::placeholder {
+  color: var(--hanabi-text-mute);
+}
+
+.hanabi-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+
+.hanabi-autocomplete__empty {
+  padding: var(--hanabi-space-2) var(--hanabi-space-3);
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-13);
+  color: var(--hanabi-text-dim);
+}
+.hanabi-autocomplete__empty:empty {
+  padding: 0;
+}
+
+.hanabi-autocomplete__list:empty {
+  padding: 0;
+}

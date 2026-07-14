@@ -138,6 +138,26 @@
   opacity: var(--hanabi-disabled-opacity);
   cursor: not-allowed;
 }
+.hanabi-list-item[data-selected] {
+  color: var(--hanabi-primary-deep);
+  font-weight: var(--hanabi-fw-700);
+}
+
+.hanabi-list-item__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hanabi-list-item__check {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--hanabi-warning);
+  font-size: 11px;
+  line-height: var(--hanabi-lh-100);
+}
 
 .hanabi-menu-sep {
   height: 0;
