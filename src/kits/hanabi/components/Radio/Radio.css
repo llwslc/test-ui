@@ -52,7 +52,11 @@
   width: 12px;
   height: 12px;
   border-radius: var(--hanabi-r-pill);
-  background: radial-gradient(circle at 32% 30%, #fff 0 2.2px, var(--hanabi-primary) 3px);
+  background: radial-gradient(
+    circle at 32% 30%,
+    var(--hanabi-on-fill) 0 2.2px,
+    var(--hanabi-primary) 3px
+  );
   animation: hanabi-box-pop 0.25s var(--hanabi-ease);
 }
 

@@ -1,12 +1,19 @@
 .hanabi-panel {
   position: relative;
   isolation: isolate;
+  padding: 42px var(--hanabi-space-5) var(--hanabi-space-5);
+  min-width: 0;
+}
+
+.hanabi-panel::before {
+  content: "";
+  position: absolute;
+  inset: 14px 0 0;
+  z-index: -1;
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-modal);
   box-shadow: var(--hanabi-shadow-lift);
-  padding: var(--hanabi-space-7) var(--hanabi-space-5) var(--hanabi-space-5);
-  min-width: 0;
 }
 
 .hanabi-panel--wide {
@@ -19,7 +26,7 @@
 
 .hanabi-panel__title {
   position: absolute;
-  top: -14px;
+  top: 0;
   left: 16px;
   z-index: 1;
   margin: 0;
@@ -36,7 +43,7 @@
 
 .hanabi-panel__meta {
   position: absolute;
-  top: 10px;
+  top: 24px;
   right: 14px;
   color: var(--hanabi-text-mute);
 }
@@ -48,7 +55,7 @@
   min-width: 0;
 }
 
-.hanabi-panel .hanabi-panel {
+.hanabi-panel .hanabi-panel::before {
   border-radius: var(--hanabi-r-control);
   box-shadow: var(--hanabi-shadow-sm);
 }

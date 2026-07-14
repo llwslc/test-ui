@@ -6,7 +6,7 @@
   background: var(--hanabi-track);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
-  box-shadow: inset 2px 2px 0 rgba(195, 210, 237, 0.55);
+  box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   cursor: pointer;
   padding: 0;
   transition: background var(--hanabi-dur) var(--hanabi-ease-out);

@@ -4,20 +4,20 @@
   gap: var(--hanabi-space-1);
   width: 100%;
   --hanabi-meter-stripe: var(--hanabi-primary);
-  --hanabi-meter-stripe-2: #ff8ab4;
+  --hanabi-meter-stripe-2: var(--hanabi-primary-light);
 }
 
 .hanabi-meter--success {
   --hanabi-meter-stripe: var(--hanabi-success);
-  --hanabi-meter-stripe-2: #6fd7a0;
+  --hanabi-meter-stripe-2: var(--hanabi-success-light);
 }
 .hanabi-meter--warning {
   --hanabi-meter-stripe: var(--hanabi-warning);
-  --hanabi-meter-stripe-2: #ffd97a;
+  --hanabi-meter-stripe-2: var(--hanabi-warning-light);
 }
 .hanabi-meter--danger {
   --hanabi-meter-stripe: var(--hanabi-danger);
-  --hanabi-meter-stripe-2: #f07a7a;
+  --hanabi-meter-stripe-2: var(--hanabi-danger-light);
 }
 
 .hanabi-meter__head {
@@ -50,7 +50,7 @@
   background: repeating-linear-gradient(
     90deg,
     transparent 0 calc(10% - 2px),
-    rgba(34, 48, 79, 0.14) calc(10% - 2px) 10%
+    var(--hanabi-cell-line) calc(10% - 2px) 10%
   );
   pointer-events: none;
 }

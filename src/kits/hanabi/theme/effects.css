@@ -365,7 +365,7 @@
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-field);
-  box-shadow: inset 2px 2px 0 rgba(195, 210, 237, 0.55);
+  box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   transition:
     border-color var(--hanabi-dur) var(--hanabi-ease-out),
     box-shadow var(--hanabi-dur) var(--hanabi-ease-out);

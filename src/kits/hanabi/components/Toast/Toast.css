@@ -114,6 +114,8 @@
 
 .hanabi-toast__close {
   flex: 0 0 auto;
+  width: var(--hanabi-toast-close);
+  height: var(--hanabi-toast-close);
 }
 
 @media (max-width: 768px) {

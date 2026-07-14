@@ -42,7 +42,7 @@ export function Tooltip({
             sideOffset={sideOffset}
             align={align}
           >
-            <BaseTooltip.Popup className="hanabi-pop hanabi-tooltip">
+            <BaseTooltip.Popup className="hanabi-pop hanabi-popup hanabi-tooltip">
               {content}
             </BaseTooltip.Popup>
             <BaseTooltip.Arrow className="hanabi-connector hanabi-tooltip__arrow" />

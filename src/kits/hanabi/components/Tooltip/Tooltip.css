@@ -2,6 +2,7 @@
   max-width: var(--hanabi-tooltip-w);
   padding: 6px var(--hanabi-space-3);
   background: var(--hanabi-ink);
+  border: 0;
   border-radius: var(--hanabi-r-field);
   font-family: var(--hanabi-font);
   font-size: var(--hanabi-fs-13);

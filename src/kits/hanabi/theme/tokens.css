@@ -15,18 +15,21 @@
   --hanabi-primary: #ff4d8d;
   --hanabi-primary-deep: #e82f73;
   --hanabi-primary-wash: #ffe3ee;
+  --hanabi-primary-light: #ff8ab4;
   --hanabi-secondary: #2fc0e8;
   --hanabi-secondary-deep: #1a9fc4;
   --hanabi-secondary-wash: #dff6fc;
   --hanabi-success: #2fbf71;
   --hanabi-success-deep: #1f9d57;
   --hanabi-success-wash: #def7e8;
+  --hanabi-success-light: #6fd7a0;
   --hanabi-warning: #ffc53d;
   --hanabi-warning-deep: #e3a81f;
-  --hanabi-warning-wash: #fff3d6;
+  --hanabi-warning-light: #ffd97a;
   --hanabi-danger: #e83b3b;
   --hanabi-danger-deep: #c42a2a;
   --hanabi-danger-wash: #ffe1e1;
+  --hanabi-danger-light: #f07a7a;
 
   --hanabi-accent-surface: var(--hanabi-primary);
   --hanabi-accent-fill: var(--hanabi-primary);
@@ -42,6 +45,8 @@
   --hanabi-track: #f2f7fc;
   --hanabi-disabled-fill: #e3eaf5;
   --hanabi-hi: rgba(255, 255, 255, 0.8);
+  --hanabi-tone-soft: #dbe4f4;
+  --hanabi-cell-line: var(--hanabi-cell-line);
 
   --hanabi-line-w: 2px;
 
@@ -67,6 +72,7 @@
   --hanabi-font-display: "Dela Gothic One", "Noto Sans JP", sans-serif;
   --hanabi-font-mono: "DotGothic16", "Noto Sans JP", monospace;
 
+  --hanabi-fs-10: 10px;
   --hanabi-fs-12: 12px;
   --hanabi-fs-13: 13px;
   --hanabi-fs-14: 14px;
@@ -76,7 +82,6 @@
 
   --hanabi-ls-1: 0.02em;
   --hanabi-ls-2: 0.08em;
-  --hanabi-ls-3: 0.16em;
 
   --hanabi-lh-100: 1;
   --hanabi-lh-135: 1.35;
@@ -124,7 +129,6 @@
   --hanabi-popover-w: 300px;
   --hanabi-preview-w: 286px;
   --hanabi-tooltip-w: 240px;
-  --hanabi-overlay-gap: 10px;
   --hanabi-toast-w: 360px;
   --hanabi-list-item-h: 36px;
   --hanabi-popup-h: calc(var(--hanabi-list-item-h) * 7);

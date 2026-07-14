@@ -39,11 +39,11 @@
 .hanabi-separator-labeled__text {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--hanabi-space-2);
   white-space: nowrap;
 }
 .hanabi-separator-labeled__text::before {
   content: "✦";
   color: var(--hanabi-primary);
-  font-size: 10px;
+  font-size: var(--hanabi-fs-10);
 }

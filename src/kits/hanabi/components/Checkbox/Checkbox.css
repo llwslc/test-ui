@@ -26,7 +26,12 @@
   content: "";
   position: absolute;
   inset: -4px;
-  background: linear-gradient(45deg, transparent 38%, #fff 48%, transparent 58%);
+  background: linear-gradient(
+    45deg,
+    transparent 38%,
+    var(--hanabi-on-fill) 48%,
+    transparent 58%
+  );
   opacity: 0;
   pointer-events: none;
 }

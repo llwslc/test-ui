@@ -51,3 +51,7 @@
 .hanabi-list-item--danger[data-highlighted] {
   color: var(--hanabi-danger-deep);
 }
+
+.hanabi-menu__popup {
+  min-width: var(--hanabi-menu-min-w);
+}

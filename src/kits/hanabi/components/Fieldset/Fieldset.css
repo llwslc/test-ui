@@ -12,11 +12,11 @@
 .hanabi-fieldset__legend {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--hanabi-space-2);
   padding: 0 var(--hanabi-space-2);
   margin-left: calc(-1 * var(--hanabi-space-1));
 }
 .hanabi-fieldset__legend .hanabi-marker {
-  font-size: 10px;
+  font-size: var(--hanabi-fs-10);
   line-height: var(--hanabi-lh-100);
 }
