@@ -394,7 +394,7 @@
 .hanabi-lockon--within:focus-within::after {
   animation: none;
 }
-.hanabi-lockon--within[data-popup-open]::after {
+.hanabi-lockon[data-popup-open]::after {
   content: "";
   position: absolute;
   inset: -7px;

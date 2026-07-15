@@ -53,7 +53,7 @@ export function Select<Value extends string = string>({
         id={id ?? autoId}
         className={cx(
           "hanabi-field",
-          "hanabi-lockon hanabi-lockon--within",
+          "hanabi-lockon",
           "hanabi-select__trigger",
           className,
         )}
