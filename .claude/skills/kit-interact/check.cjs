@@ -312,17 +312,17 @@ const setKit = async (page, kit) => {
                                  ['combobox', `.${kit}-combobox__trigger`], ['navmenu', `.${kit}-navmenu__trigger`]]) {
       try {
         const sel = `#${panel} ${trig}`;
-        await page.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
-        await page.waitForTimeout(150);
+        await d.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
+        await d.waitForTimeout(150);
         const snap = (s) => { const t = document.querySelector(s); return t ? [t, ...t.querySelectorAll('*')].map((e) => getComputedStyle(e).transform).join('|') : null; };
-        const before = await page.evaluate(snap, sel);
+        const before = await d.evaluate(snap, sel);
         if (before === null) continue;
-        await page.click(sel);
-        await page.waitForTimeout(450);
-        const after = await page.evaluate(snap, sel);
+        await d.click(sel);
+        await d.waitForTimeout(450);
+        const after = await d.evaluate(snap, sel);
         if (before === after) out.push(`HIGH  ${kit}  ${panel}: the trigger's chevron does not rotate on open (§6.1) — no transform anywhere in the trigger subtree changed; the [data-popup-open] rule is missing or its host class has no rule`);
-        await page.keyboard.press('Escape');
-        await page.waitForTimeout(200);
+        await d.keyboard.press('Escape');
+        await d.waitForTimeout(200);
       } catch (e) { out.push(`WARN  ${kit}  ${panel}-chevron: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     }
 
