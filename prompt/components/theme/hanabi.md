@@ -13,7 +13,7 @@
 
 ## 2. 组件皮肤决定
 
-- Button：赛璐璐块——`cel` 底 + `ink` 框 + `shadow` 硬影 + 左上高光条；primary = `primary` 填白字，按下瞬间一道 `115deg` 白刀光扫过（`slash-flash`，只给 primary）；secondary = `cel` 白底墨字；danger = `danger` 填白字；ghost = 无框无影透明底，hover 盖 wash；icon 钮方形等宽高；`upright` 无效果（本主题按钮无默认姿态）；锚定弹层的触发钮照常。
+- Button：赛璐璐块——`cel` 底 + `ink` 框 + `shadow` 硬影 + 左上高光条；primary = `primary` 填白字，按下瞬间一道 `115deg` 白刀光扫过（`slash-flash`，只给 primary）；secondary = `cel` 白底墨字；danger = `danger` 填白字；ghost = 无框无影透明底，hover 盖 wash；icon 钮方形等宽高。
 - Switch：药丸电门——关态 `track` 白轨 + `ink` 框 + inset `tone` 阶影，旋钮白圆 + 高光点靠左；开态轨道转 `primary`／`primary-deep` 相间斜纹并以 `stripe-flow` 流动，旋钮 `ease-snap` 滑到右端。
 - Checkbox：`r-chip` 圆角方框 + `shadow-sm`；勾选 = `primary` 填 + 白勾描线动画（stroke-dashoffset 画出）+ `box-pop` 果冻弹 + 一道 45° 斩击白闪掠过（`check-slash`）；indeterminate = 白粗横杠；hover 盖 wash。
 - CheckboxGroup：父子竖排，items 左缩进，引导线是 `2px dashed tone` 缝纫虚线。
@@ -27,7 +27,7 @@
 - Combobox：列表项皮肤复用 Select；InputGroup 左图标 `dim`，clear 钮 icon-ghost。
 - Autocomplete：列表项皮肤复用 Select（无勾选指示）。
 - Fieldset：legend 走 `.hanabi-cap` + 前缀 `primary` ✦，框是 `2px dashed tone` 虚线圆角箱。
-- Form：竖排间距 `space-4`，无附加皮。
+- Form：竖排间距 `space-4`。
 - Progress：血条解剖——`r-pill` 轨 + `ink` 框 + `shadow-sm`，indicator `primary` 平涂 + 顶部白高光线 + 推进端一枚白 ✦ 压条；轨上叠十等分 `ink` 分格刻度（alpha 极低）；不定态 = 斜纹段左右巡游。
 - Meter：轨与分格同 Progress，填充改 tone／tone-deep 相间**斜纹**并以 `stripe-flow` 流动，按 `tone` 重染。
 - Tabs：斜切折页 chip（`skew`、上圆角、border-bottom 无）一排，选中 chip `primary` 填白字并落座（translate 归零），未选 `base` 底；选中指示 = `4px` 圆头 `accent-fill` 粉条贴 List 底缘，随 `--active-tab-*` 移动；不画全宽底轨。
