@@ -30,7 +30,7 @@
 - Avatar：兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪。
 - Badge：点用 `brass-breathe` 琥珀灯呼吸。
 - Toolbar：箱体同 ToggleGroup。
-- ScrollArea：自绘条——thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- ScrollArea：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放铆钉。
 - 旋钮、阀门交互带 `ease-detent` 回弹。
 - 弹层列表的内衬取 `space-1`。

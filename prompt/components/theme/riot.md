@@ -37,7 +37,7 @@
 - Toast：锚在右下角**乱堆**，条子带 `shadow-hard` 盒影——每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
 - Toolbar：chip 同 ToggleGroup。
-- ScrollArea：自绘条——thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
+- ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Panel：一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）——斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
 - 占位图标是粗糙的手绘线形。
 - 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。

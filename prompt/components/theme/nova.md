@@ -28,7 +28,7 @@
 - Avatar：兜底是深表面渐变底 + `primary` 字。
 - Badge：点 pulse。
 - Toolbar：箱体同 ToggleGroup。
-- ScrollArea：自绘条——thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- ScrollArea：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
