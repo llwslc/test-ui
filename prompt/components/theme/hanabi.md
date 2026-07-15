@@ -47,7 +47,7 @@
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + `shadow-sm`）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`primary-deep` 字 + 悬停下划线。
-- ScrollArea：thumb 是 `tone-deep` 圆条；panel 型悬停显、坐在 `surface-inset` 药丸轨上（thumb 内缩 1px），popup 型常显——thumb 换 `primary`、宽 4px、轨透明、整条离框 `space-1`，充当弹层列表的溢出提示，`data-has-overflow-y` 时列表 `padding-right` 让位。
+- ScrollArea：thumb 是 `tone-deep` 圆条；panel 型悬停显、坐在 `surface-inset` 药丸轨上（thumb 内缩 1px），popup 型常显——thumb 换 `primary`、宽 4px、轨透明、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Separator：`2px dashed tone` 缝纫虚线；带 label 版 = 线 + `.hanabi-cap` 文字（前缀 ✦）+ 线；竖向为实线 `tone`。
 - Panel：赛璐璐卡——`cel` 面 + `ink` 框 + `shadow-lift` + `r-modal`；title 做成骑顶缘左侧的 `primary` 斜切铭牌（display 体白字、`shadow-sm`），meta 是右上角 DotGothic16 `mute` 的 `// XXX` 屏幕码；嵌套 Panel 降为 `r-control` + `shadow-sm`、题牌换 `secondary` 水色。
 - 占位图标是 2px 圆头描线的简笔线形（`icons.tsx` 统一 `1em`、`currentColor`）。

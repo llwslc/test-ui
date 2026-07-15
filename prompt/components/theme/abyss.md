@@ -6,7 +6,7 @@
 
 - 选中、激活：覆盖 frame 的输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡淡的 glow 渐变，文字转 `glow`，再叠 `aura / aura-strong` 辉光。
 - Button 各变体同构换色：primary = `glow-wash` 渐变 + glow 文字 + aura，hover 时换成 `glow-wash-strong`、文字转 bright、辉光升 aura-strong；secondary = ichor 紫；danger = blood 红；ghost 透明、hover 时点亮 ink。摁下整体缩 `0.92` 沉 1px，`:active` 挂透明 `::after`（`inset -8px`）兜住位移后的命中。
-- 文字强调选中，用于列表、Tab、NavMenu，把文字转 `glow` + `text-aura`；其中 Tab、NavMenu 另配一条辉光下划线。
+- 「文字强调选中」用于列表、Tab、NavMenu，把文字转 `glow` + `text-aura`；其中 Tab、NavMenu 另配一条辉光下划线。
 - 悬停：表面给一层 `glow-soft` 底；图标和动作按钮转 glow + aura。
 - 焦点：把 `frame-ink` 直接点到实色 `glow` + `aura`；Switch 没有框，作为例外改用 `aura-strong`；场形控件（Input、NumberField、Select、Combobox、Autocomplete）安静一档——辉光走 `glow-focus`、描框至多 `glow-a55` 不上实色，OTP 格是同档的 `glow-soft` 变体。
 - 选中辉光统一用 `aura-mark`：像 Switch 眼、Checkbox 盒、Radio 圈这类选择控件，选中时是整件向外发光，内部的标记不单独再打光；弹层里的勾记、指示条也用同一档；条状物和数值文字用 `text-aura`。
