@@ -30,6 +30,14 @@
     transform var(--hanabi-dur-slow) var(--hanabi-ease),
     opacity var(--hanabi-dur-slow) var(--hanabi-ease);
 }
+.hanabi-toast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: calc(var(--hanabi-space-2) + 2px);
+}
 .hanabi-toast[data-expanded] {
   transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-2))) scale(1);
 }

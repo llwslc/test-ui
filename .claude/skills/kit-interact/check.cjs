@@ -160,6 +160,31 @@ const setKit = async (page, kit) => {
           return +c.opacity > 0.1 && c.visibility !== 'hidden' && c.display !== 'none';
         }).length);
         if (ghosts) out.push(`HIGH  ${kit}  toast: ${ghosts} over-limit toast(s) stay visible ([data-limited] is inert = an uncloseable ghost) — hide with opacity 0 until a slot frees`);
+        // the seam between two expanded toasts belongs to NO element — without a
+        // transparent bridge (::after strip on each toast) the pointer entering it
+        // fires viewport mouseleave → collapse → re-hover → expand: a flicker loop
+        const seam = await d.evaluate(() => {
+          const rs = [...document.querySelectorAll('[class*="toast"]')]
+            .filter((el) => el.style.getPropertyValue('--toast-index').trim() !== '' && !el.hasAttribute('data-limited') && !el.hasAttribute('data-ending-style'))
+            .map((t) => t.getBoundingClientRect()).sort((p, q) => p.top - q.top);
+          let best = null;
+          for (let i = 0; i + 1 < rs.length; i++) {
+            const gap = rs[i + 1].top - rs[i].bottom;
+            if (gap > 0 && (!best || gap > best.gap)) best = { gap, x: rs[i].left + rs[i].width / 2, y: (rs[i].bottom + rs[i + 1].top) / 2 };
+          }
+          return best;   // null = flush column, no seam to cross
+        });
+        if (seam) {
+          await d.mouse.move(seam.x, seam.y, { steps: 3 });
+          let held = true;
+          for (let t = 0; t < 12 && held; t++) {
+            await d.waitForTimeout(100);
+            held = await d.evaluate(() => [...document.querySelectorAll('[class*="toast"]')]
+              .filter((el) => el.style.getPropertyValue('--toast-index').trim() !== '' && !el.hasAttribute('data-limited'))
+              .every((t2) => t2.hasAttribute('data-expanded')));
+          }
+          if (!held) out.push(`HIGH  ${kit}  toast: pointer in the seam between two expanded toasts collapses the stack (flicker loop) — bridge each toast's gap side with a transparent ::after strip`);
+        }
       }
       await d.mouse.move(5, 5);
       await d.waitForTimeout(300);

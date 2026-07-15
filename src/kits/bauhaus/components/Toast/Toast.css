@@ -30,6 +30,14 @@
     transform var(--bauhaus-dur-slow) var(--bauhaus-ease),
     opacity var(--bauhaus-dur-slow) var(--bauhaus-ease);
 }
+.bauhaus-toast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: calc(var(--bauhaus-space-2) + 2px);
+}
 .bauhaus-toast[data-expanded] {
   transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--bauhaus-space-2))) scale(1);
 }
