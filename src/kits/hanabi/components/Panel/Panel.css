@@ -13,7 +13,7 @@
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-modal);
-  box-shadow: var(--hanabi-shadow-lift);
+  box-shadow: var(--hanabi-shadow-lg);
 }
 
 .hanabi-panel--wide {
@@ -62,4 +62,5 @@
 }
 .hanabi-panel .hanabi-panel .hanabi-panel__title {
   --hanabi-plate-fill: var(--hanabi-secondary);
+  --hanabi-plate-shade: var(--hanabi-secondary-shade);
 }

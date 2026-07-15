@@ -30,6 +30,12 @@
   --hanabi-danger-wash: #ffe1e1;
   --hanabi-danger-light: #f07a7a;
 
+  --hanabi-primary-shade: #c9265f;
+  --hanabi-secondary-shade: #147fa0;
+  --hanabi-success-shade: #17824a;
+  --hanabi-warning-shade: #c28d12;
+  --hanabi-danger-shade: #a32222;
+
   --hanabi-accent-surface: var(--hanabi-primary);
   --hanabi-accent-fill: var(--hanabi-primary);
 
@@ -59,13 +65,9 @@
     linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 13px 3px,
     linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 3px 13px;
 
-  --hanabi-shadow-sm: 2px 2px 0 var(--hanabi-tone);
-  --hanabi-shadow: 4px 4px 0 var(--hanabi-tone);
-  --hanabi-shadow-lift: 6px 6px 0 var(--hanabi-tone);
-  --hanabi-shadow-press: 1px 1px 0 var(--hanabi-tone);
-  --hanabi-shadow-modal: 8px 8px 0 var(--hanabi-tone);
-  --hanabi-cast: drop-shadow(6px 6px 0 var(--hanabi-tone));
-  --hanabi-cast-modal: drop-shadow(8px 8px 0 var(--hanabi-tone));
+  --hanabi-shadow-sm: inset 0 -3px 0 var(--hanabi-tone);
+  --hanabi-shadow: inset 0 -4px 0 var(--hanabi-tone);
+  --hanabi-shadow-lg: inset 0 -6px 0 var(--hanabi-tone);
 
   --hanabi-font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
   --hanabi-font-display: "Dela Gothic One", "Noto Sans JP", sans-serif;

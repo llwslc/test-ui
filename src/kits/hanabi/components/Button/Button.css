@@ -18,9 +18,10 @@
   user-select: none;
   white-space: nowrap;
   transition:
-    translate var(--hanabi-dur) var(--hanabi-ease-out),
+    scale var(--hanabi-dur) var(--hanabi-ease-out),
     box-shadow var(--hanabi-dur) var(--hanabi-ease-out),
-    background var(--hanabi-dur) var(--hanabi-ease-out);
+    background var(--hanabi-dur) var(--hanabi-ease-out),
+    border-color var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
 .hanabi-btn::before {
@@ -33,6 +34,7 @@
   border-radius: var(--hanabi-r-pill);
   background: var(--hanabi-hi);
   pointer-events: none;
+  transition: width var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
 .hanabi-btn::after {
@@ -43,13 +45,15 @@
 }
 
 .hanabi-btn:where(:not(:disabled)):hover {
-  translate: -1px -1px;
-  box-shadow: var(--hanabi-shadow-lift);
+  border-color: var(--hanabi-primary);
+}
+.hanabi-btn:where(:not(:disabled)):hover::before {
+  width: min(48px, 42%);
 }
 
 .hanabi-btn:where(:not(:disabled)):active {
-  translate: 3px 3px;
-  box-shadow: var(--hanabi-shadow-press);
+  scale: 0.97;
+  box-shadow: inset 0 -2px 0 var(--hanabi-tone);
   transition-duration: 0s;
 }
 
@@ -81,9 +85,11 @@
 .hanabi-btn--primary {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
+  box-shadow: inset 0 -4px 0 var(--hanabi-primary-shade);
 }
 .hanabi-btn--primary:where(:not(:disabled)):hover {
   background: var(--hanabi-primary-deep);
+  border-color: var(--hanabi-ink);
 }
 .hanabi-btn--primary:where(:not(:disabled)):active {
   background-image: linear-gradient(
@@ -94,15 +100,21 @@
   );
   background-size: 240% 100%;
   background-repeat: no-repeat;
+  box-shadow: inset 0 -2px 0 var(--hanabi-primary-shade);
   animation: hanabi-slash-flash 0.32s var(--hanabi-ease-out);
 }
 
 .hanabi-btn--danger {
   background: var(--hanabi-danger);
   color: var(--hanabi-on-fill);
+  box-shadow: inset 0 -4px 0 var(--hanabi-danger-shade);
 }
 .hanabi-btn--danger:where(:not(:disabled)):hover {
   background: var(--hanabi-danger-deep);
+  border-color: var(--hanabi-ink);
+}
+.hanabi-btn--danger:where(:not(:disabled)):active {
+  box-shadow: inset 0 -2px 0 var(--hanabi-danger-shade);
 }
 
 .hanabi-btn--ghost {
@@ -116,11 +128,10 @@
 .hanabi-btn--ghost:where(:not(:disabled)):hover {
   background: var(--hanabi-primary-wash);
   color: var(--hanabi-text-bright);
-  translate: none;
+  border-color: transparent;
   box-shadow: none;
 }
 .hanabi-btn--ghost:where(:not(:disabled)):active {
-  translate: 1px 1px;
   box-shadow: none;
 }
 
@@ -151,11 +162,10 @@
 .hanabi-btn--icon-ghost:where(:not(:disabled)):hover {
   background: var(--hanabi-primary-wash);
   color: var(--hanabi-primary-deep);
-  translate: none;
+  border-color: transparent;
   box-shadow: none;
 }
 .hanabi-btn--icon-ghost:where(:not(:disabled)):active {
-  translate: 1px 1px;
   box-shadow: none;
 }
 

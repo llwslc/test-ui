@@ -13,12 +13,14 @@
 .hanabi-alert--danger {
   --hanabi-hazard-tone: var(--hanabi-danger);
   --hanabi-plate-fill: var(--hanabi-danger);
+  --hanabi-plate-shade: var(--hanabi-danger-shade);
 }
 
 .hanabi-alert--warning {
   --hanabi-hazard-tone: var(--hanabi-warning);
   --hanabi-plate-fill: var(--hanabi-warning);
   --hanabi-plate-color: var(--hanabi-on-warning);
+  --hanabi-plate-shade: var(--hanabi-warning-shade);
 }
 
 .hanabi-alert--primary {

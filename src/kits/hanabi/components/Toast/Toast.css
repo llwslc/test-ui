@@ -10,6 +10,7 @@
 
 .hanabi-toast {
   --hanabi-toast-tone: var(--hanabi-secondary);
+  --hanabi-toast-shade: var(--hanabi-secondary-shade);
   position: absolute;
   z-index: calc(99 - var(--toast-index));
   right: 0;
@@ -57,12 +58,15 @@
 
 .hanabi-toast[data-type="success"] {
   --hanabi-toast-tone: var(--hanabi-success);
+  --hanabi-toast-shade: var(--hanabi-success-shade);
 }
 .hanabi-toast[data-type="warning"] {
   --hanabi-toast-tone: var(--hanabi-warning);
+  --hanabi-toast-shade: var(--hanabi-warning-shade);
 }
 .hanabi-toast[data-type="danger"] {
   --hanabi-toast-tone: var(--hanabi-danger);
+  --hanabi-toast-shade: var(--hanabi-danger-shade);
 }
 
 .hanabi-toast__marker {
@@ -72,6 +76,7 @@
   justify-content: center;
   width: 34px;
   height: 34px;
+  box-shadow: inset 0 -2px 0 var(--hanabi-toast-shade);
   transform: skew(var(--hanabi-skew));
   background: var(--hanabi-toast-tone);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);

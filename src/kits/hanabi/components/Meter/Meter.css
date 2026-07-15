@@ -39,7 +39,7 @@
   background: var(--hanabi-track);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   overflow: hidden;
 }
 

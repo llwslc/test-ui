@@ -16,7 +16,7 @@
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-chip);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 0 -2px 0 var(--hanabi-tone);
   padding: 0;
   cursor: pointer;
   transition: background var(--hanabi-dur) var(--hanabi-ease-out);

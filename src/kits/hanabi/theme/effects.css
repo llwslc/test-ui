@@ -4,13 +4,13 @@
   background: var(--hanabi-surface-fill, var(--hanabi-surface));
   border: var(--hanabi-line-w) solid var(--hanabi-surface-border, var(--hanabi-ink));
   border-radius: var(--hanabi-surface-r, var(--hanabi-r-control));
-  box-shadow: var(--hanabi-surface-shadow, none);
+  box-shadow: var(--hanabi-surface-shadow, var(--hanabi-shadow));
 }
 
 .hanabi-lift {
   position: relative;
   z-index: var(--hanabi-z-dropdown);
-  filter: var(--hanabi-overlay-shadow, var(--hanabi-cast));
+  filter: var(--hanabi-overlay-shadow, none);
 }
 .hanabi-lift--sm {
   z-index: var(--hanabi-z-tooltip);
@@ -19,7 +19,7 @@
   z-index: var(--hanabi-z-menu);
 }
 .hanabi-lift--modal {
-  filter: var(--hanabi-cast-modal);
+  filter: none;
 }
 
 .hanabi-pop {
@@ -162,7 +162,7 @@
   background: var(--hanabi-surface-modal);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-modal);
-  box-shadow: var(--hanabi-shadow-modal);
+  box-shadow: var(--hanabi-shadow-lg);
 }
 
 .hanabi-hazard {
@@ -187,7 +187,7 @@
   color: var(--hanabi-plate-color, var(--hanabi-on-fill));
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-chip);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 0 -3px 0 var(--hanabi-plate-shade, var(--hanabi-primary-shade));
   font-family: var(--hanabi-font-display);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-13);
@@ -333,6 +333,7 @@
 .hanabi-seg__btn[data-popup-open] {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
+  box-shadow: inset 0 -3px 0 var(--hanabi-primary-shade);
 }
 .hanabi-seg__btn[data-pressed]::before,
 .hanabi-seg__btn.is-active::before,

@@ -33,7 +33,7 @@
   background: var(--hanabi-track);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
 }
 
 .hanabi-slider__indicator {
@@ -70,7 +70,7 @@
   background-repeat: no-repeat;
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 0 -2px 0 var(--hanabi-tone);
   transition: scale var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
