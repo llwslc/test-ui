@@ -23,9 +23,7 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-control);
   box-shadow: var(--hanabi-shadow);
-  transform-origin: bottom right;
-  transform: translateY(calc(min(var(--toast-index), 3) * -1 * var(--hanabi-space-3)))
-    scale(calc(1 - 0.04 * min(var(--toast-index), 3)));
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-3)));
   transition:
     transform var(--hanabi-dur-slow) var(--hanabi-ease),
     opacity var(--hanabi-dur-slow) var(--hanabi-ease);
@@ -36,10 +34,7 @@
   left: 0;
   right: 0;
   bottom: 100%;
-  height: calc(var(--hanabi-space-2) + 2px);
-}
-.hanabi-toast[data-expanded] {
-  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-2))) scale(1);
+  height: calc(var(--hanabi-space-3) + 2px);
 }
 .hanabi-toast[data-limited] {
   opacity: 0;
