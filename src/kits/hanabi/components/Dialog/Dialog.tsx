@@ -40,7 +40,6 @@ export function Dialog({
             initialFocus={popupRef}
             className={cx("hanabi-pop", "hanabi-modal", "hanabi-dialog", className)}
           >
-            <span className="hanabi-hazard" aria-hidden="true" />
             <BaseDialog.Close
               className="hanabi-modal-close"
               render={

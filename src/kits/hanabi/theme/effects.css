@@ -34,10 +34,14 @@
 }
 
 .hanabi-connector {
-  width: 16px;
-  height: 9px;
+  width: 18px;
+  height: 11px;
   background: var(--hanabi-ink);
-  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+.hanabi-connector::before {
+  content: "";
+  position: absolute;
+  background: var(--hanabi-connector-fill, var(--hanabi-surface));
 }
 .hanabi-connector[data-open] {
   animation: hanabi-connector-in var(--hanabi-dur-pop) var(--hanabi-ease-out) both;
@@ -45,27 +49,42 @@
 .hanabi-connector[data-closed] {
   animation: hanabi-connector-out var(--hanabi-dur-pop) var(--hanabi-ease-out) both;
 }
-.hanabi-connector::before {
-  content: "";
-  position: absolute;
-  inset: 0 3px 3.5px;
-  background: var(--hanabi-connector-fill, var(--hanabi-surface));
+
+.hanabi-connector[data-side="top"] {
+  bottom: -9px;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
-.hanabi-connector[data-side="top"] {
-  bottom: -6px;
+.hanabi-connector[data-side="top"]::before {
+  inset: -3px 3px 2px;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 .hanabi-connector[data-side="bottom"] {
-  top: -6px;
-  rotate: 180deg;
+  top: -9px;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+.hanabi-connector[data-side="bottom"]::before {
+  inset: 2px 3px -3px;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
 }
 .hanabi-connector[data-side="left"] {
-  right: -10px;
-  rotate: -90deg;
+  width: 11px;
+  height: 18px;
+  right: -9px;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+.hanabi-connector[data-side="left"]::before {
+  inset: 3px 2px 3px -3px;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
 }
 .hanabi-connector[data-side="right"] {
-  left: -10px;
-  rotate: 90deg;
+  width: 11px;
+  height: 18px;
+  left: -9px;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+.hanabi-connector[data-side="right"]::before {
+  inset: 3px -3px 3px 2px;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
 }
 .hanabi-popup {
   outline: none;
@@ -163,21 +182,6 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-modal);
   box-shadow: var(--hanabi-shadow-lg);
-}
-
-.hanabi-hazard {
-  position: absolute;
-  top: 0;
-  left: 12px;
-  right: 12px;
-  height: 6px;
-  border-radius: 0 0 4px 4px;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--hanabi-hazard-tone, var(--hanabi-warning)) 0 9px,
-    var(--hanabi-ink) 9px 18px
-  );
-  pointer-events: none;
 }
 
 .hanabi-plate::selection,
@@ -472,13 +476,10 @@
 }
 
 @keyframes hanabi-gauge-scan {
-  0% {
-    left: 0;
+  from {
+    left: -34%;
   }
-  50% {
-    left: calc(100% - 32%);
-  }
-  100% {
-    left: 0;
+  to {
+    left: 100%;
   }
 }

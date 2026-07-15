@@ -49,7 +49,6 @@ export function AlertDialog({
               className,
             )}
           >
-            <span className="hanabi-hazard" aria-hidden="true" />
             {title != null ? (
               <BaseAlertDialog.Title className="hanabi-plate hanabi-modal-title">
                 <span className="hanabi-alert__sigil" aria-hidden="true">

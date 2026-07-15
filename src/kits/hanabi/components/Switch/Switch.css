@@ -35,7 +35,8 @@
   opacity: var(--hanabi-disabled-opacity);
 }
 .hanabi-switch[data-disabled][data-checked] {
-  background: var(--hanabi-primary-wash);
+  background: var(--hanabi-primary);
+  animation: none;
 }
 
 .hanabi-switch__thumb {

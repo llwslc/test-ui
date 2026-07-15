@@ -74,15 +74,15 @@
   position: absolute;
   right: 3px;
   top: 50%;
-  translate: 0 -50%;
+  translate: 0 calc(-50% - 1px);
   font-size: var(--hanabi-fs-10);
   line-height: var(--hanabi-lh-100);
   color: var(--hanabi-on-fill);
 }
 
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator {
-  width: 32%;
-  animation: hanabi-gauge-scan 1.8s var(--hanabi-ease-out) infinite;
+  width: 34%;
+  animation: hanabi-gauge-scan 1.5s linear infinite;
 }
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator::after {
   content: none;

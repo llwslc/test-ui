@@ -2,14 +2,11 @@
   max-width: 100%;
 }
 
-.hanabi-menubar__trigger::before {
-  content: "✦";
-  font-size: var(--hanabi-fs-10);
-  color: transparent;
-}
-
 .hanabi-menubar__trigger {
   height: var(--hanabi-menubar-trigger-h);
+}
+.hanabi-menubar__trigger[data-popup-open]::before {
+  content: none;
 }
 
 @media (max-width: 768px) {

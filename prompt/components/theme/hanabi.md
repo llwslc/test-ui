@@ -40,9 +40,9 @@
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
 - NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
 - ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
-- Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；顶缘内侧一条 6px `warning`×`ink` 警戒斜纹带（左右各让 12px）；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）；backdrop = `scrim` + `primary` 半调网点。
-- AlertDialog：Dialog 基底按 `tone` 重染——警戒带、题牌、确认钮同取 tone（danger 红×墨纹带、warning 金×墨、primary 粉×墨），题牌白字（warning 取 `on-warning`）。
-- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题牌与警戒带同 Dialog，上、下向省略警戒带；body 自滚动、行距 `space-4`。
+- Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）、body 顶部让位；backdrop = `scrim` + `primary` 半调网点。
+- AlertDialog：Dialog 基底按 `tone` 重染——题牌与确认钮同取 tone（danger 红、warning 金、primary 粉），题牌白字（warning 取 `on-warning`）、题牌前缀一枚 tone 图记 ⚠。
+- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题牌同 Dialog；body 自滚动、行距 `space-4`。
 - Toast：锚右下角、竖排整列常显、条间距 `space-3`；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + 微阶影带）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。

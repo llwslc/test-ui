@@ -51,7 +51,6 @@ export function Drawer({
             className={cx("hanabi-drawer", `hanabi-drawer--${side}`, className)}
           >
             <BaseDrawer.Content className="hanabi-drawer__sheet">
-              <span className="hanabi-hazard" aria-hidden="true" />
               <BaseDrawer.Close
                 className="hanabi-modal-close"
                 render={

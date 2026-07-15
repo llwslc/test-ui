@@ -91,11 +91,6 @@
   margin: 0 0 var(--hanabi-space-3);
 }
 
-.hanabi-drawer--top .hanabi-hazard,
-.hanabi-drawer--bottom .hanabi-hazard {
-  display: none;
-}
-
 .hanabi-drawer__body {
   display: flex;
   flex-direction: column;
