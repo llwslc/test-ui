@@ -409,7 +409,7 @@ function FormDemo() {
 }
 
 function ToastDemo() {
-  const { add } = useToast();
+  const { add, close } = useToast();
   return (
     <div className="demo-row">
       <Button
@@ -427,14 +427,14 @@ function ToastDemo() {
       <Button
         size="sm"
         variant="ghost"
-        onClick={() =>
-          add({
+        onClick={() => {
+          const id = add({
             title: "Jump Complete",
             description: "Arrived at Proxima Centauri without incident.",
             type: "success",
-            actionProps: { children: "Replot" },
-          })
-        }
+            actionProps: { children: "Replot", onClick: () => close(id) },
+          });
+        }}
       >
         Success
       </Button>

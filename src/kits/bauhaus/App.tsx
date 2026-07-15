@@ -953,14 +953,14 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    toast.add({
+                  onClick={() => {
+                    const id = toast.add({
                       title: "Aligned",
                       description: "All elements on the grid.",
                       type: "success",
-                      actionProps: { children: "Revert" },
-                    })
-                  }
+                      actionProps: { children: "Revert", onClick: () => toast.close(id) },
+                    });
+                  }}
                 >
                   Confirm
                 </Button>

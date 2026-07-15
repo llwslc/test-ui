@@ -448,7 +448,7 @@ function FormDemo() {
 }
 
 function ToastDemo() {
-  const { add } = useToast();
+  const { add, close } = useToast();
   return (
     <div className="demo-row">
       <Button
@@ -466,14 +466,14 @@ function ToastDemo() {
       <Button
         size="sm"
         variant="ghost"
-        onClick={() =>
-          add({
+        onClick={() => {
+          const id = add({
             title: "Surfaced",
             description: "Returned from Y'ha-nthlei with the tide.",
             type: "success",
-            actionProps: { children: "Descend" },
-          })
-        }
+            actionProps: { children: "Descend", onClick: () => close(id) },
+          });
+        }}
       >
         Surface
       </Button>

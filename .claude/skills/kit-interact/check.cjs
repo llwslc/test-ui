@@ -190,6 +190,27 @@ const setKit = async (page, kit) => {
       await d.waitForTimeout(300);
     } catch (e) { out.push(`WARN  ${kit}  toast-expand: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
+    // toast action: the success toast carries an actionProps button — clicking it
+    // must have a visible effect (close the toast). Base UI's ToastAction merges
+    // NO behavior of its own; the demo must wire actionProps.onClick.
+    try {
+      await setKit(d, kit);
+      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+      const sb = d.locator('#toast button').nth(1);   // spec order: info, success, warning, danger
+      await sb.scrollIntoViewIfNeeded();
+      await sb.click();
+      await d.waitForTimeout(600);
+      const act = d.locator('[class*="toast__action"]').first();
+      if (await act.count()) {
+        const live = () => d.evaluate(() => [...document.querySelectorAll('[class*="toast"]')]
+          .filter((el) => el.style.getPropertyValue('--toast-index').trim() !== '' && !el.hasAttribute('data-ending-style')).length);
+        const before = await live();
+        await act.click();
+        await d.waitForTimeout(800);
+        if ((await live()) >= before) out.push(`HIGH  ${kit}  toast: clicking the action button does nothing — ToastAction has NO built-in behavior; wire actionProps.onClick to close the toast`);
+      }
+    } catch (e) { out.push(`WARN  ${kit}  toast-action: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+
     // no-jump: clicking an overlay trigger that is an <a> must not scroll-jump
     for (const [id, trig] of [['preview', '#preview a'], ['tooltip', '#tooltip a']]) {
       try {

@@ -995,14 +995,14 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    toast.add({
+                  onClick={() => {
+                    const id = toast.add({
                       title: "Pasted",
                       description: "All clippings on the wall.",
                       type: "success",
-                      actionProps: { children: "RIP IT" },
-                    })
-                  }
+                      actionProps: { children: "RIP IT", onClick: () => toast.close(id) },
+                    });
+                  }}
                 >
                   Confirm
                 </Button>

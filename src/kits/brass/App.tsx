@@ -944,14 +944,14 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    toast.add({
+                  onClick={() => {
+                    const id = toast.add({
                       title: "Pressure nominal",
                       description: "Boiler holding at 180 PSI.",
                       type: "success",
-                      actionProps: { children: "Full ahead" },
-                    })
-                  }
+                      actionProps: { children: "Full ahead", onClick: () => toast.close(id) },
+                    });
+                  }}
                 >
                   Confirm
                 </Button>

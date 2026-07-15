@@ -91,7 +91,7 @@
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。
-- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` 四种 toast；`success` 那条带 `actionProps` 动作按钮（文案随 theme）。
+- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` 四种 toast；`success` 那条带 `actionProps` 动作按钮（文案随 theme），点击关闭该条。
 
 **Display**
 

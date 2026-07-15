@@ -974,14 +974,14 @@ function Demo() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    toast.add({
+                  onClick={() => {
+                    const id = toast.add({
                       title: "整列完了",
                       description: "全機、配置に付きました。",
                       type: "success",
-                      actionProps: { children: "受け取る" },
-                    })
-                  }
+                      actionProps: { children: "受け取る", onClick: () => toast.close(id) },
+                    });
+                  }}
                 >
                   確認
                 </Button>
