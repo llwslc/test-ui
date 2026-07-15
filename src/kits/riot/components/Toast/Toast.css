@@ -37,11 +37,10 @@
   left: 0;
   right: 0;
   bottom: 100%;
-  height: calc(var(--riot-space-3) + 6px);
+  height: calc(var(--riot-space-3) + 12px);
 }
 .riot-toast[data-expanded] {
-  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--riot-space-3)))
-    rotate(var(--riot-toast-tilt, -2deg));
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--riot-space-3))) rotate(0deg);
 }
 .riot-toast[data-limited] {
   opacity: 0;

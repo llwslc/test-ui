@@ -185,6 +185,32 @@ const setKit = async (page, kit) => {
           }
           if (!held) out.push(`HIGH  ${kit}  toast: pointer in the seam between two expanded toasts collapses the stack (flicker loop) — bridge each toast's gap side with a transparent ::after strip`);
         }
+        // hull scan: the hover hull between adjacent expanded toasts must be gapless
+        // EVERYWHERE, not just at the bbox-gap center — tilted cards (riot) open a
+        // WEDGE at the card ends that a center probe never sees; any hit-test hole
+        // in the seam band is a spot where the pointer escapes and the stack flickers
+        const holes = await d.evaluate(() => {
+          const vp = document.querySelector('[class*="toast__viewport"]');
+          const roots = [...document.querySelectorAll('[class*="toast"]')]
+            .filter((el) => el.style.getPropertyValue('--toast-index').trim() !== '' && !el.hasAttribute('data-limited') && !el.hasAttribute('data-ending-style'));
+          const rs = roots.map((t) => t.getBoundingClientRect()).sort((p, q) => p.top - q.top);
+          const bad = [];
+          for (let i = 0; i + 1 < rs.length; i++) {
+            const a = rs[i], b = rs[i + 1];
+            const y0 = Math.min(a.bottom, b.top) - 6, y1 = Math.max(a.bottom, b.top) + 6;
+            for (let fx = 0.08; fx <= 0.92; fx += 0.12) {
+              const x = a.left + a.width * fx;
+              for (let y = y0; y <= y1; y += 4) {
+                const el = document.elementFromPoint(x, y);
+                if (el && (vp.contains(el) || roots.some((r) => r === el || r.contains(el)))) continue;
+                bad.push(`${Math.round(x)},${Math.round(y)}`);
+                break;   // one hole per column of this pair is enough
+              }
+            }
+          }
+          return bad.slice(0, 6);
+        });
+        if (holes.length) out.push(`HIGH  ${kit}  toast: hover hull has hole(s) in the seam between expanded toasts at ${holes.join(' ')} — the pointer escapes there and the stack flickers; the bridge strip must cover the seam at every x (tilted cards open a wedge at the ends)`);
       }
       await d.mouse.move(5, 5);
       await d.waitForTimeout(300);
