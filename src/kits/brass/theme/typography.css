@@ -44,6 +44,7 @@
 }
 
 .brass-cap {
+  margin: 0;
   font-family: var(--brass-font-mono);
   font-weight: var(--brass-fw-700);
   font-size: var(--brass-fs-11);

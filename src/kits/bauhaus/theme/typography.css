@@ -47,6 +47,7 @@
 }
 
 .bauhaus-cap {
+  margin: 0;
   font-family: var(--bauhaus-font);
   font-weight: var(--bauhaus-fw-700);
   font-size: var(--bauhaus-fs-11);

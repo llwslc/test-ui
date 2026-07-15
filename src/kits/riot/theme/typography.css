@@ -50,6 +50,7 @@
 }
 
 .riot-cap {
+  margin: 0;
   font-family: var(--riot-font-display);
   font-weight: var(--riot-fw-400);
   font-size: var(--riot-fs-11);

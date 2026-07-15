@@ -79,7 +79,7 @@
 
 定义在 `theme/typography.css`。
 
-提供一组「与语义标签解耦、可套到任意标签」的纯样式类：三档标题 `h1/h2/h3`（卡片、弹窗标题用 `h2` 字型，小节标题用 `h3` 字型）；正文 `text`；修饰类 `h1--accent`；以及**字段标签 caption 的共享类 `.<kit>-cap`**——即控件名的样式，display 体、小号、大写、dim 色，Slider、Progress、Meter、Input 的标签，以及 Checkbox、Radio、Switch 行、ToggleGroup 选项都统一引用它，不在各组件里重抄。**三档标题的字号、字距递变关系由 theme 定。**
+提供一组「与语义标签解耦、可套到任意标签」的纯样式类，每类自带 `margin: 0`（清掉宿主语义标签的 UA 边距）：三档标题 `h1/h2/h3`（卡片、弹窗标题用 `h2` 字型，小节标题用 `h3` 字型）；正文 `text`；修饰类 `h1--accent`；以及**字段标签 caption 的共享类 `.<kit>-cap`**——即控件名的样式，display 体、小号、大写、dim 色，Slider、Progress、Meter、Input 的标签，以及 Checkbox、Radio、Switch 行、ToggleGroup 选项都统一引用它，不在各组件里重抄。**三档标题的字号、字距递变关系由 theme 定。**
 
 ## 5. 交互态
 
@@ -163,6 +163,7 @@
 
 - **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`、`--toast-index`（数）、`--toast-offset-y`（px 长度，取负写 `calc(-1 * var())`）。
+- Slider、Progress、Meter 的 Indicator 带内联 `height: inherit`（吃满轨道 border-box）——带框轨的框画在轨的罩层伪元素上（`inset: 0` + 边框 + 圆角 + `pointer-events: none`、置于填充之上），不给轨自身 `border`。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
 - 表单可访问性：用 `useId()` 兜底 `id`；Select、NumberField 的隐藏表单输入用 `name`。
