@@ -31,7 +31,10 @@
     opacity var(--bauhaus-dur-slow) var(--bauhaus-ease);
 }
 .bauhaus-toast[data-expanded] {
-  transform: translateY(calc(var(--toast-offset-y) * -1px)) scale(1);
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--bauhaus-space-2))) scale(1);
+}
+.bauhaus-toast[data-limited] {
+  opacity: 0;
 }
 .bauhaus-toast[data-starting-style],
 .bauhaus-toast[data-ending-style] {

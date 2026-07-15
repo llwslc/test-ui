@@ -34,7 +34,7 @@
 - Dialog：撕边纸面、顶边贴胶带。
 - AlertDialog：按 `tone` 重染，tone 取 danger／warning／primary——贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
-- Toast：锚在右下角**乱堆**，条子带 `shadow-hard` 盒影——每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
+- Toast：锚在右下角**乱堆**，条子带 `shadow-hard` 盒影——每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角，悬停展开整列时各条保持自身歪角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。

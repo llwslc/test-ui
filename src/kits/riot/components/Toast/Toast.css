@@ -31,6 +31,13 @@
 .riot-toast:nth-child(4n) {
   --riot-toast-tilt: var(--riot-rot-3-5);
 }
+.riot-toast[data-expanded] {
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--riot-space-3)))
+    rotate(var(--riot-toast-tilt, -2deg));
+}
+.riot-toast[data-limited] {
+  opacity: 0;
+}
 .riot-toast[data-starting-style],
 .riot-toast[data-ending-style] {
   opacity: 0;

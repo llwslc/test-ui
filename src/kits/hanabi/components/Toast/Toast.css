@@ -31,7 +31,10 @@
     opacity var(--hanabi-dur-slow) var(--hanabi-ease);
 }
 .hanabi-toast[data-expanded] {
-  transform: translateY(calc(var(--toast-offset-y) * -1px)) scale(1);
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-2))) scale(1);
+}
+.hanabi-toast[data-limited] {
+  opacity: 0;
 }
 .hanabi-toast[data-starting-style] {
   opacity: 0;

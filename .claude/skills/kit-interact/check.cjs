@@ -101,9 +101,9 @@ const setKit = async (page, kit) => {
       await d.mouse.move(5, 5);
       await d.waitForTimeout(400);
       const hidden = await d.evaluate(() => {
-        const ts = [...document.querySelectorAll('[class*="toast"]')].filter((t) => getComputedStyle(t).getPropertyValue('--toast-index').trim() !== '');
+        const ts = [...document.querySelectorAll('[class*="toast"]')].filter((t) => t.style.getPropertyValue('--toast-index').trim() !== '');
         if (ts.length < 2) return false;
-        const newest = ts.find((t) => getComputedStyle(t).getPropertyValue('--toast-index').trim() === '0');
+        const newest = ts.find((t) => t.style.getPropertyValue('--toast-index').trim() === '0');
         if (!newest) return false;
         const r = newest.getBoundingClientRect();
         const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
@@ -111,6 +111,59 @@ const setKit = async (page, kit) => {
       });
       if (hidden) out.push(`HIGH  ${kit}  toast: newest is occluded by older toasts — set z-index by --toast-index`);
     } catch (e) { out.push(`WARN  ${kit}  toast: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+
+    // toast-expand: hovering the stack must spread it into a readable column — Base UI
+    // sets [data-expanded] on every root + --toast-offset-y (a px LENGTH: negate with
+    // calc(-1 * var()); `* -1px` is length×length = the whole transform voids to none
+    // and the stack piles up). A kit with no [data-expanded] rule never spreads at all.
+    // Probe each toast's mid-line via elementFromPoint (bboxes lie under riot's tilt).
+    try {
+      await setKit(d, kit);
+      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+      const btns = d.locator('#toast button');
+      await btns.first().scrollIntoViewIfNeeded();
+      // 5 > limit(4): the over-limit path ([data-limited]) must be exercised too
+      for (let i = 0; i < 5; i++) { await btns.nth(i % 4).click(); await d.waitForTimeout(250); }
+      await d.waitForTimeout(500);
+      // --toast-index sits INLINE on the Base UI root — computed style would also
+      // match every descendant (custom props inherit) and flag 2px decorations
+      // buried behind their own siblings
+      const newest = await d.evaluate(() => {
+        const t = [...document.querySelectorAll('[class*="toast"]')].find((el) => el.style.getPropertyValue('--toast-index').trim() === '0');
+        if (!t) return null;
+        const r = t.getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      });
+      if (newest) {
+        await d.mouse.move(newest.x, newest.y);
+        await d.waitForTimeout(900);
+        const buried = await d.evaluate(() => {
+          const ts = [...document.querySelectorAll('[class*="toast"]')].filter((el) =>
+            el.style.getPropertyValue('--toast-index').trim() !== ''
+            && !el.hasAttribute('data-limited') && !el.hasAttribute('data-ending-style'));
+          const bad = [];
+          for (const t of ts) {
+            const r = t.getBoundingClientRect();
+            let vis = 0;
+            for (const fx of [0.2, 0.35, 0.5, 0.65, 0.8]) {
+              const el = document.elementFromPoint(r.left + r.width * fx, r.top + r.height / 2);
+              if (el && (t === el || t.contains(el))) vis++;
+            }
+            if (vis < 3) bad.push(t.style.getPropertyValue('--toast-index').trim());
+          }
+          return bad;
+        });
+        if (buried.length) out.push(`HIGH  ${kit}  toast: hover-expand leaves toast index ${buried.join(',')} unreadable — [data-expanded] must spread the stack: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * gap))`);
+        // over-limit toasts are inert (uncloseable) — Base UI leaves hiding to CSS
+        const ghosts = await d.evaluate(() => [...document.querySelectorAll('[data-limited]')].filter((t) => {
+          const c = getComputedStyle(t);
+          return +c.opacity > 0.1 && c.visibility !== 'hidden' && c.display !== 'none';
+        }).length);
+        if (ghosts) out.push(`HIGH  ${kit}  toast: ${ghosts} over-limit toast(s) stay visible ([data-limited] is inert = an uncloseable ghost) — hide with opacity 0 until a slot frees`);
+      }
+      await d.mouse.move(5, 5);
+      await d.waitForTimeout(300);
+    } catch (e) { out.push(`WARN  ${kit}  toast-expand: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
     // no-jump: clicking an overlay trigger that is an <a> must not scroll-jump
     for (const [id, trig] of [['preview', '#preview a'], ['tooltip', '#tooltip a']]) {

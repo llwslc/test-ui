@@ -32,7 +32,10 @@
     scale(calc(1 - 0.05 * min(var(--toast-index), 3)));
 }
 .brass-toast[data-expanded] {
-  transform: translateY(calc(var(--toast-offset-y) * -1px));
+  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--brass-space-2)));
+}
+.brass-toast[data-limited] {
+  opacity: 0;
 }
 .brass-toast[data-starting-style],
 .brass-toast[data-ending-style] {

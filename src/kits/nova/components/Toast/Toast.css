@@ -55,6 +55,9 @@
   transition: transform calc(var(--nova-dur-slow) * 1.4) var(--nova-ease-soft);
 }
 
+.nova-toast[data-limited] {
+  opacity: 0;
+}
 .nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {
   opacity: 0;

@@ -43,7 +43,7 @@
 - Dialog：`cel` 面 + `ink` 框 + `shadow-modal` 影 + `r-modal`；顶缘内侧一条 6px `warning`×`ink` 警戒斜纹带（左右各让 12px）；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——警戒带、题牌、确认钮同取 tone（danger 红×墨纹带、warning 金×墨、primary 粉×墨），题牌白字（warning 取 `on-warning`）。
 - Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + 该侧 `cast` 影，其余三边贴屏不描；题牌与警戒带同 Dialog；body 自滚动。
-- Toast：锚右下角、竖排整条露全；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。
+- Toast：锚右下角，新条整条露全、旧条缩阶叠在后；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + `shadow-sm`）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`primary-deep` 字 + 悬停下划线。
