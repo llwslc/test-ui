@@ -13,6 +13,7 @@ export interface NavMenuItem {
   label: string;
   href?: string;
   links?: NavMenuLink[];
+  disabled?: boolean;
 }
 
 export interface NavigationMenuProps {
@@ -32,7 +33,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
           item.links ? (
             <BaseNav.Item key={item.label}>
               <span className="abyss-navmenu__triggerwrap">
-                <BaseNav.Trigger className="abyss-navmenu__trigger">
+                <BaseNav.Trigger className="abyss-navmenu__trigger" disabled={item.disabled} data-disabled={item.disabled || undefined}>
                   {item.label}
                   <BaseNav.Icon className="abyss-navmenu__chevron">
                     <ChevronDownIcon />

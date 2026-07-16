@@ -5,15 +5,16 @@ import type { ReactNode } from "react";
 import "./ContextMenu.css";
 
 export interface ContextMenuProps {
+  disabled?: boolean;
   trigger: ReactNode;
   children: ReactNode;
   className?: string;
 }
 
-export function ContextMenu({ trigger, children, className }: ContextMenuProps) {
+export function ContextMenu({ disabled, trigger, children, className }: ContextMenuProps) {
   return (
-    <BaseContextMenu.Root>
-      <BaseContextMenu.Trigger className={cx("riot-context__zone", className)}>
+    <BaseContextMenu.Root disabled={disabled}>
+      <BaseContextMenu.Trigger data-disabled={disabled || undefined} className={cx("riot-context__zone", className)}>
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>

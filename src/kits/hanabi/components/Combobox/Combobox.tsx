@@ -4,8 +4,13 @@ import { useId } from "react";
 import { ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
 
+export type ComboboxItem = string | { label: string; disabled?: boolean };
+
 export interface ComboboxProps {
-  items: string[];
+  items: ComboboxItem[];
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
@@ -17,6 +22,9 @@ export interface ComboboxProps {
 
 export function Combobox({
   items,
+  disabled,
+  readOnly,
+  required,
   placeholder = "Search…",
   defaultValue,
   emptyText = "No matches",
@@ -26,8 +34,12 @@ export function Combobox({
   align = "center",
 }: ComboboxProps) {
   const inputId = useId();
+  const labels = items.map((it) => (typeof it === "string" ? it : it.label));
+  const inert = new Set(
+    items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
+  );
   return (
-    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
       <BaseCombobox.InputGroup className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-combobox">
         <span className="hanabi-combobox__glyph">
           <SearchIcon />
@@ -59,7 +71,7 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="hanabi-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} className="hanabi-list-item">
+                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="hanabi-list-item">
                     <span className="hanabi-list-item__text">{item}</span>
                     <BaseCombobox.ItemIndicator className="hanabi-list-item__check">
                       ✦

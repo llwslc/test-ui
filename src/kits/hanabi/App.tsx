@@ -94,6 +94,10 @@ const NAV = [
     ],
   },
   { label: "Manual", href: "#hero" },
+  {
+    label: "機密区画", disabled: true,
+    links: [{ label: "作戦原本", href: "#display", description: "司令部の封印付き" }],
+  },
 ];
 
 const ARMAMENTS = [
@@ -124,7 +128,7 @@ const SKILLS = [
   "修復",
   "増幅",
   "狙撃",
-  "突撃",
+  { label: "突撃", disabled: true },
 ];
 
 const MEMBERS = [
@@ -139,7 +143,7 @@ const MEMBERS = [
   "夕霧",
   "朝陽",
   "琥珀",
-  "銀河",
+  { label: "銀河", disabled: true },
 ];
 
 function Clock() {
@@ -796,6 +800,9 @@ function Demo() {
                 <Tooltip content="目標をロック" side="right">
                   <Button variant="ghost">ロック</Button>
                 </Tooltip>
+                <Tooltip content="封印中は出ない" side="top" disabled>
+                  <Button variant="ghost" disabled>封印</Button>
+                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
@@ -903,17 +910,25 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
-              <ContextMenu
-                trigger={
-                  <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
-                }
-              >
-                <MenuItem shortcut="⌘I">偵察</MenuItem>
-                <MenuItem shortcut="⌘D">複製</MenuItem>
-                <MenuItem disabled>増援要請</MenuItem>
-                <MenuSeparator />
-                <MenuItem tone="danger">削除</MenuItem>
-              </ContextMenu>
+              <div className="hanabi-stack">
+                <ContextMenu
+                  trigger={
+                    <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
+                  }
+                >
+                  <MenuItem shortcut="⌘I">偵察</MenuItem>
+                  <MenuItem shortcut="⌘D">複製</MenuItem>
+                  <MenuItem disabled>増援要請</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem tone="danger">削除</MenuItem>
+                </ContextMenu>
+                <ContextMenu
+                  disabled
+                  trigger={<span className="hanabi-cap">右クリック：封鎖区画</span>}
+                >
+                  <MenuItem>使用不可</MenuItem>
+                </ContextMenu>
+              </div>
             </Panel>
 
             <Panel id="dialog" title="Dialog" meta="DLG">

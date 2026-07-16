@@ -46,3 +46,7 @@
   color: var(--abyss-glow);
   outline-color: var(--abyss-glow-a55);
 }
+
+.abyss-context__zone[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+}

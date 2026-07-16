@@ -34,3 +34,7 @@
   mask: radial-gradient(circle at 85% 85%, #000 25%, transparent 75%);
   pointer-events: none;
 }
+
+.hanabi-context__zone[data-disabled] {
+  opacity: var(--hanabi-disabled-opacity);
+}

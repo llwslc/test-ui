@@ -5,6 +5,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
 }
 .brass-navmenu__item {
   list-style: none;
@@ -34,7 +37,7 @@
 .brass-navmenu__trigger :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-navmenu__trigger:hover {
+.brass-navmenu__trigger:where(:not([data-disabled])):hover {
   background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
   color: var(--brass-text-bright);
 }

@@ -10,3 +10,7 @@
   font-size: var(--riot-fs-13);
   text-align: center;
 }
+
+.riot-context__zone[data-disabled] {
+  opacity: var(--riot-disabled-opacity);
+}

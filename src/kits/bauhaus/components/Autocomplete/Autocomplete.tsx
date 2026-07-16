@@ -3,8 +3,13 @@ import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import "./Autocomplete.css";
 
+export type AutocompleteItem = string | { label: string; disabled?: boolean };
+
 export interface AutocompleteProps {
-  items: string[];
+  items: AutocompleteItem[];
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
@@ -15,6 +20,9 @@ export interface AutocompleteProps {
 
 export function Autocomplete({
   items,
+  disabled,
+  readOnly,
+  required,
   placeholder = "Search…",
   defaultValue,
   emptyText = "No matches",
@@ -23,8 +31,12 @@ export function Autocomplete({
   align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
+  const labels = items.map((it) => (typeof it === "string" ? it : it.label));
+  const inert = new Set(
+    items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
+  );
   return (
-    <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
+    <BaseAutocomplete.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue}>
       <BaseAutocomplete.InputGroup className="bauhaus-surface bauhaus-autocomplete">
         <BaseAutocomplete.Input
           id={inputId}
@@ -49,7 +61,7 @@ export function Autocomplete({
                 {(item: string) => (
                   <BaseAutocomplete.Item
                     key={item}
-                    value={item}
+                    value={item} disabled={inert.has(item)}
                     className="bauhaus-list-item"
                   >
                     <span className="bauhaus-list-item__text">{item}</span>

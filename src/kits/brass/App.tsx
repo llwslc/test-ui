@@ -95,6 +95,10 @@ const NAV = [
     ],
   },
   { label: "Manual", href: "#hero" },
+  {
+    label: "Vault", disabled: true,
+    links: [{ label: "Sealed drawings", href: "#display", description: "Held under wax seal" }],
+  },
 ];
 
 const PRESSURE = [
@@ -125,7 +129,7 @@ const FUEL_PARTS = [
   "Naphtha",
   "Paraffin",
   "Tar",
-  "Coke breeze",
+  { label: "Coke breeze", disabled: true },
 ];
 
 const FUELS = [
@@ -140,7 +144,7 @@ const FUELS = [
   "Naphtha",
   "Paraffin",
   "Tar",
-  "Coke breeze",
+  { label: "Coke breeze", disabled: true },
 ];
 
 function Clock() {
@@ -761,6 +765,9 @@ function Demo() {
                 <Tooltip content="Blow down" side="right">
                   <Button variant="ghost">Blow down</Button>
                 </Tooltip>
+                <Tooltip content="Valve shut" side="top" disabled>
+                  <Button variant="ghost" disabled>Muffled</Button>
+                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
@@ -874,19 +881,27 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
-              <ContextMenu
-                trigger={
-                  <span className="brass-cap">
-                    Right-click the plate to open the works
-                  </span>
-                }
-              >
-                <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                <MenuItem shortcut="⌘L">Lubricate</MenuItem>
-                <MenuItem disabled>Overhaul</MenuItem>
-                <MenuSeparator />
-                <MenuItem tone="danger">Decommission</MenuItem>
-              </ContextMenu>
+              <div className="brass-stack">
+                <ContextMenu
+                  trigger={
+                    <span className="brass-cap">
+                      Right-click the plate to open the works
+                    </span>
+                  }
+                >
+                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                  <MenuItem shortcut="⌘L">Lubricate</MenuItem>
+                  <MenuItem disabled>Overhaul</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem tone="danger">Decommission</MenuItem>
+                </ContextMenu>
+                <ContextMenu
+                  disabled
+                  trigger={<span className="brass-cap">Right-click: works closed</span>}
+                >
+                  <MenuItem>Unavailable</MenuItem>
+                </ContextMenu>
+              </div>
             </Panel>
 
             <Panel id="dialog" title="Dialog" meta="DLG">

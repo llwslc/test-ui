@@ -6,6 +6,7 @@
   gap: var(--nova-space-1);
   --nova-surface-border: var(--nova-line);
   --nova-surface-clip: var(--nova-clip-9);
+  flex-wrap: wrap;
 }
 
 .nova-togglegroup__item {

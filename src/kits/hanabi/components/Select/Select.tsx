@@ -22,6 +22,8 @@ export interface SelectProps<Value extends string = string> {
   defaultValue?: Value | null;
   onValueChange?: (value: Value | null) => void;
   disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   name?: string;
   id?: string;
 }
@@ -34,6 +36,8 @@ export function Select<Value extends string = string>({
   defaultValue,
   onValueChange,
   disabled,
+  readOnly,
+  required,
   name,
   id,
   side = "bottom",
@@ -47,6 +51,8 @@ export function Select<Value extends string = string>({
       defaultValue={defaultValue}
       onValueChange={onValueChange}
       disabled={disabled}
+      readOnly={readOnly}
+      required={required}
       name={name ?? autoId}
     >
       <BaseSelect.Trigger

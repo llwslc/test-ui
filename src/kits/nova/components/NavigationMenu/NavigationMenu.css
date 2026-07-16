@@ -12,6 +12,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
 }
 
 .nova-navmenu__triggerwrap {
@@ -55,7 +58,7 @@
   opacity: 0;
   transition: opacity var(--nova-dur) var(--nova-ease);
 }
-.nova-navmenu__trigger:hover,
+.nova-navmenu__trigger:where(:not([data-disabled])):hover,
 .nova-navmenu__trigger:focus-visible,
 .nova-navmenu__toplink:hover,
 .nova-navmenu__toplink:focus-visible {
@@ -66,7 +69,7 @@
 .nova-navmenu__toplink:focus-visible {
   box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
-.nova-navmenu__trigger:hover::after,
+.nova-navmenu__trigger:where(:not([data-disabled])):hover::after,
 .nova-navmenu__trigger:focus-visible::after,
 .nova-navmenu__toplink:hover::after,
 .nova-navmenu__toplink:focus-visible::after {
@@ -184,4 +187,8 @@
   .nova-navmenu__grid {
     grid-template-columns: 1fr;
   }
+}
+
+.nova-navmenu__trigger[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
 }

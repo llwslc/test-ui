@@ -4,8 +4,13 @@ import { useId } from "react";
 import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
 
+export type ComboboxItem = string | { label: string; disabled?: boolean };
+
 export interface ComboboxProps {
-  items: string[];
+  items: ComboboxItem[];
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
@@ -17,6 +22,9 @@ export interface ComboboxProps {
 
 export function Combobox({
   items,
+  disabled,
+  readOnly,
+  required,
   placeholder = "Search…",
   defaultValue,
   emptyText = "No matching signal",
@@ -26,8 +34,12 @@ export function Combobox({
   align = "center",
 }: ComboboxProps) {
   const inputId = useId();
+  const labels = items.map((it) => (typeof it === "string" ? it : it.label));
+  const inert = new Set(
+    items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
+  );
   return (
-    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root items={labels} defaultValue={defaultValue} name={name} disabled={disabled} readOnly={readOnly} required={required}>
       <div className="nova-field nova-combobox__field">
         <BaseCombobox.InputGroup className="nova-field__control nova-combobox__control">
           <span className="nova-field__lead">
@@ -61,7 +73,7 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="nova-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} className="nova-list-item">
+                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="nova-list-item">
                     <span className="nova-combobox__item-text">{item}</span>
                     <span className="nova-combobox__indicator">
                       <BaseCombobox.ItemIndicator>

@@ -10,6 +10,8 @@ export interface OtpFieldProps {
   onValueChange?: (value: string) => void;
   mask?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
 
   splitAt?: number;
 }
@@ -22,6 +24,8 @@ export function OtpField({
   onValueChange,
   mask,
   disabled,
+  readOnly,
+  required,
   splitAt,
 }: OtpFieldProps) {
   const id = useId();
@@ -35,6 +39,8 @@ export function OtpField({
       onValueChange={onValueChange ? (v) => onValueChange(v) : undefined}
       mask={mask}
       disabled={disabled}
+      readOnly={readOnly}
+      required={required}
       className="nova-otp"
     >
       {Array.from({ length }, (_, i) => (

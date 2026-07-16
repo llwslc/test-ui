@@ -218,7 +218,7 @@ const COMBOBOX_ITEMS = [
   "The Sunless Sea",
   "Dagon's Trench",
   "The Weeping Caverns",
-  "The Lampless Fathoms",
+  { label: "The Lampless Fathoms", disabled: true },
 ];
 
 const AUTOCOMPLETE_ITEMS = [
@@ -233,7 +233,7 @@ const AUTOCOMPLETE_ITEMS = [
   "Wake the Dreamer",
   "Drown the Lantern",
   "Read the Auguries",
-  "Seal the Trench",
+  { label: "Seal the Trench", disabled: true },
 ];
 
 const CHECKGROUP_ITEMS = [
@@ -262,6 +262,10 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
     ],
   },
   { label: "Codex", href: "#navmenu" },
+  {
+    label: "The Sealed Gate", disabled: true,
+    links: [{ label: "The Reliquary", href: "#display", description: "Held under ward" }],
+  },
 ];
 
 const TAB_ITEMS = [
@@ -1034,6 +1038,9 @@ function Demo() {
                   <Tooltip content="The candle gutters" side="right">
                     <Button variant="ghost">Right</Button>
                   </Tooltip>
+                  <Tooltip content="The tide holds its tongue" side="top" disabled>
+                    <Button variant="ghost" disabled>Silenced</Button>
+                  </Tooltip>
                 </div>
               </Panel>
             </div>
@@ -1175,13 +1182,18 @@ function Demo() {
 
             <div className="abyss-section" id="context">
               <Panel title="Context Menu" meta="CTX">
-                <ContextMenu trigger="Right-click anywhere in these depths">
-                  <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
-                  <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
-                  <MenuItem disabled>Raise the Deep</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Banish Node</MenuItem>
-                </ContextMenu>
+                <div className="demo-stack">
+                  <ContextMenu trigger="Right-click anywhere in these depths">
+                    <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
+                    <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
+                    <MenuItem disabled>Raise the Deep</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Banish Node</MenuItem>
+                  </ContextMenu>
+                  <ContextMenu disabled trigger="Right-click: the depths refuse">
+                    <MenuItem>Unavailable</MenuItem>
+                  </ContextMenu>
+                </div>
               </Panel>
             </div>
 

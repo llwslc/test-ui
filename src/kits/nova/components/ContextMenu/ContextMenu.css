@@ -29,3 +29,7 @@
 .nova-context__zone[data-popup-open] {
   outline-color: var(--nova-primary);
 }
+
+.nova-context__zone[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
+}

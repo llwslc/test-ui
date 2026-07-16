@@ -4,8 +4,13 @@ import { useId } from "react";
 import { BoltIcon } from "../icons";
 import "./Autocomplete.css";
 
+export type AutocompleteItem = string | { label: string; disabled?: boolean };
+
 export interface AutocompleteProps {
-  items: string[];
+  items: AutocompleteItem[];
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
@@ -16,6 +21,9 @@ export interface AutocompleteProps {
 
 export function Autocomplete({
   items,
+  disabled,
+  readOnly,
+  required,
   placeholder = "Type a command…",
   defaultValue,
   emptyText = "No matching command",
@@ -24,8 +32,12 @@ export function Autocomplete({
   align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
+  const labels = items.map((it) => (typeof it === "string" ? it : it.label));
+  const inert = new Set(
+    items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
+  );
   return (
-    <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
+    <BaseAutocomplete.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue}>
       <div className="nova-field nova-autocomplete__field">
         <BaseAutocomplete.InputGroup className="nova-field__control">
           <span className="nova-field__lead">
@@ -55,7 +67,7 @@ export function Autocomplete({
                 {(item: string) => (
                   <BaseAutocomplete.Item
                     key={item}
-                    value={item}
+                    value={item} disabled={inert.has(item)}
                     className="nova-list-item"
                   >
                     {item}

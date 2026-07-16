@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
 export interface TooltipProps {
+  disabled?: boolean;
   content: ReactNode;
   children: ReactElement;
   side?: "top" | "bottom" | "left" | "right";
@@ -13,6 +14,7 @@ export interface TooltipProps {
 }
 
 export function Tooltip({
+  disabled,
   content,
   children,
   side = "top",
@@ -24,7 +26,7 @@ export function Tooltip({
 
   return (
     <BaseTooltip.Provider>
-      <BaseTooltip.Root open={open} onOpenChange={setOpen}>
+      <BaseTooltip.Root open={open} onOpenChange={setOpen} disabled={disabled}>
         <BaseTooltip.Trigger
           delay={delay}
           closeOnClick={false}

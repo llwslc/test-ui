@@ -4,8 +4,13 @@ import { useId } from "react";
 import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
 
+export type ComboboxItem = string | { label: string; disabled?: boolean };
+
 export interface ComboboxProps {
-  items: string[];
+  items: ComboboxItem[];
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
@@ -17,6 +22,9 @@ export interface ComboboxProps {
 
 export function Combobox({
   items,
+  disabled,
+  readOnly,
+  required,
   placeholder = "Search…",
   defaultValue,
   emptyText = "No matching omen",
@@ -26,8 +34,12 @@ export function Combobox({
   align = "center",
 }: ComboboxProps) {
   const inputId = useId();
+  const labels = items.map((it) => (typeof it === "string" ? it : it.label));
+  const inert = new Set(
+    items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
+  );
   return (
-    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
       <div className="abyss-combobox__field">
         <BaseCombobox.InputGroup className="abyss-frame abyss-combobox__control">
           <span className="abyss-combobox__lead" aria-hidden>
@@ -65,7 +77,7 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="abyss-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} className="abyss-list-item">
+                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="abyss-list-item">
                     <span className="abyss-combobox__item-text">{item}</span>
                     <span className="abyss-combobox__indicator" aria-hidden>
                       <BaseCombobox.ItemIndicator>

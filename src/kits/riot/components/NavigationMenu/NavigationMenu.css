@@ -7,6 +7,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
 }
 .riot-navmenu__trigger,
 .riot-navmenu__toplink {
@@ -24,7 +27,7 @@
   cursor: pointer;
   transition: color var(--riot-dur) var(--riot-ease);
 }
-.riot-navmenu__trigger:hover,
+.riot-navmenu__trigger:where(:not([data-disabled])):hover,
 .riot-navmenu__toplink:hover,
 .riot-navmenu__trigger[data-popup-open] {
   color: var(--riot-primary);
@@ -122,4 +125,8 @@
   .riot-navmenu__grid {
     grid-template-columns: 1fr;
   }
+}
+
+.riot-navmenu__trigger[data-disabled] {
+  opacity: var(--riot-disabled-opacity);
 }

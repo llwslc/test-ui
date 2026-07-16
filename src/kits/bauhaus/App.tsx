@@ -98,6 +98,10 @@ const NAV = [
     ],
   },
   { label: "Manual", href: "#hero" },
+  {
+    label: "Vault", disabled: true,
+    links: [{ label: "Master plates", href: "#display", description: "Locked for print" }],
+  },
 ];
 
 const WEIGHTS = [
@@ -128,7 +132,7 @@ const FORMS = [
   "Module",
   "Stencil",
   "Rule",
-  "Chevron",
+  { label: "Chevron", disabled: true },
 ];
 
 const PIGMENTS = [
@@ -143,7 +147,7 @@ const PIGMENTS = [
   "Carmine",
   "Viridian",
   "Umber",
-  "Sienna",
+  { label: "Sienna", disabled: true },
 ];
 
 function Clock() {
@@ -770,6 +774,9 @@ function Demo() {
                 <Tooltip content="Lock layer" side="right">
                   <Button variant="ghost">Lock</Button>
                 </Tooltip>
+                <Tooltip content="No annotation" side="top" disabled>
+                  <Button variant="ghost" disabled>Muted</Button>
+                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
@@ -883,19 +890,27 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
-              <ContextMenu
-                trigger={
-                  <span className="bauhaus-cap">
-                    Right-click the plane to open actions
-                  </span>
-                }
-              >
-                <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                <MenuItem shortcut="⌘D">Duplicate</MenuItem>
-                <MenuItem disabled>Detach</MenuItem>
-                <MenuSeparator />
-                <MenuItem tone="danger">Delete</MenuItem>
-              </ContextMenu>
+              <div className="bauhaus-stack">
+                <ContextMenu
+                  trigger={
+                    <span className="bauhaus-cap">
+                      Right-click the plane to open actions
+                    </span>
+                  }
+                >
+                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                  <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                  <MenuItem disabled>Detach</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem tone="danger">Delete</MenuItem>
+                </ContextMenu>
+                <ContextMenu
+                  disabled
+                  trigger={<span className="bauhaus-cap">Right-click: plane locked</span>}
+                >
+                  <MenuItem>Unavailable</MenuItem>
+                </ContextMenu>
+              </div>
             </Panel>
 
             <Panel id="dialog" title="Dialog" meta="DLG">

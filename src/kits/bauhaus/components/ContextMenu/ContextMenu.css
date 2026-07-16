@@ -14,3 +14,7 @@
 .bauhaus-context__zone[data-popup-open] {
   background: var(--bauhaus-tint);
 }
+
+.bauhaus-context__zone[data-disabled] {
+  opacity: var(--bauhaus-disabled-opacity);
+}

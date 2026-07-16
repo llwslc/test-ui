@@ -177,7 +177,7 @@ const COMBOBOX_ITEMS = [
   "Tau Ceti f",
   "Vega",
   "Altair",
-  "Betelgeuse",
+  { label: "Betelgeuse", disabled: true },
 ];
 
 const AUTOCOMPLETE_ITEMS = [
@@ -192,7 +192,7 @@ const AUTOCOMPLETE_ITEMS = [
   "Reroute Power",
   "Spool Hyperdrive",
   "Purge Coolant",
-  "Sync Beacon",
+  { label: "Sync Beacon", disabled: true },
 ];
 
 const CHECKGROUP_ITEMS = [
@@ -221,6 +221,10 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
     ],
   },
   { label: "Registry", href: "#navmenu" },
+  {
+    label: "Vault", disabled: true,
+    links: [{ label: "Black Box", href: "#display", description: "Sealed records" }],
+  },
 ];
 
 const preventDemoNavigation = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -900,6 +904,9 @@ function Demo() {
                   <Tooltip content="Points left" side="right">
                     <Button variant="ghost">Right</Button>
                   </Tooltip>
+                  <Tooltip content="Sealed channel" side="top" disabled>
+                    <Button variant="ghost" disabled>Muted</Button>
+                  </Tooltip>
                 </div>
               </Panel>
             </div>
@@ -1041,13 +1048,18 @@ function Demo() {
 
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
-                <ContextMenu trigger="Right-click anywhere in this zone">
-                  <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
-                  <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
-                  <MenuItem disabled>Decrypt</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Purge Node</MenuItem>
-                </ContextMenu>
+                <div className="demo-stack">
+                  <ContextMenu trigger="Right-click anywhere in this zone">
+                    <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
+                    <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
+                    <MenuItem disabled>Decrypt</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Purge Node</MenuItem>
+                  </ContextMenu>
+                  <ContextMenu disabled trigger="Right-click: channel sealed">
+                    <MenuItem>Unavailable</MenuItem>
+                  </ContextMenu>
+                </div>
               </Panel>
             </div>
 

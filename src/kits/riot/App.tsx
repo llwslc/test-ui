@@ -100,6 +100,10 @@ const NAV = [
     ],
   },
   { label: "Riot", href: "#hero" },
+  {
+    label: "Backroom", disabled: true,
+    links: [{ label: "Label masters", href: "#display", description: "Ask for the key" }],
+  },
 ];
 
 const WEIGHTS = [
@@ -130,7 +134,7 @@ const FORMS = [
   "Ransom",
   "Cut-Up",
   "Paste",
-  "Zine",
+  { label: "Zine", disabled: true },
 ];
 
 const PIGMENTS = [
@@ -145,7 +149,7 @@ const PIGMENTS = [
   "Tape Yellow",
   "Ink",
   "Bleach",
-  "Halftone",
+  { label: "Halftone", disabled: true },
 ];
 
 function Clock() {
@@ -812,6 +816,9 @@ function Demo() {
                     Press
                   </Button>
                 </Tooltip>
+                <Tooltip content="No comment" side="top" disabled>
+                  <Button variant="ghost" disabled>Gagged</Button>
+                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP" stapled>
@@ -927,17 +934,25 @@ function Demo() {
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX" tape="tl">
-              <ContextMenu
-                trigger={
-                  <span className="riot-cap">Right-click the wall to open actions</span>
-                }
-              >
-                <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                <MenuItem shortcut="⌘D">Duplicate</MenuItem>
-                <MenuItem disabled>Rip down</MenuItem>
-                <MenuSeparator />
-                <MenuItem tone="danger">Delete</MenuItem>
-              </ContextMenu>
+              <div className="riot-stack">
+                <ContextMenu
+                  trigger={
+                    <span className="riot-cap">Right-click the wall to open actions</span>
+                  }
+                >
+                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                  <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                  <MenuItem disabled>Rip down</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem tone="danger">Delete</MenuItem>
+                </ContextMenu>
+                <ContextMenu
+                  disabled
+                  trigger={<span className="riot-cap">Right-click: wall painted over</span>}
+                >
+                  <MenuItem>Unavailable</MenuItem>
+                </ContextMenu>
+              </div>
             </Panel>
 
             <Panel id="dialog" title="Dialog" meta="DLG" stapled>
