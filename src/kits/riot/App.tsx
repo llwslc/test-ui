@@ -816,17 +816,6 @@ function Demo() {
                     Press
                   </Button>
                 </Tooltip>
-                <Button variant="ghost" disabled>
-                  Locked
-                </Button>
-                <Tooltip content="Ask the desk for the key." side="top">
-                  <Button variant="icon-ghost" aria-label="Why locked">
-                    ?
-                  </Button>
-                </Tooltip>
-                <Tooltip content="No hints" side="top" disabled>
-                  <Button variant="ghost">No hints</Button>
-                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP" stapled>

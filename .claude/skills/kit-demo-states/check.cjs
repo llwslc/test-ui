@@ -82,6 +82,7 @@ for (const kit of KITS) {
     const wantsDisabled = /\bdisabled\?\s*:/.test(tsx);
     const wantsError = /\berror\?\s*:/.test(tsx);
     if (comp === "Menu" || comp === "ContextMenu" || comp === "Menubar") continue; // hosts rule below
+    if (comp === "Tooltip") continue; // disabled = behavioral suppression, no resting rendering — demo shows 4 sides only (app.md 2026-07-17 verdict)
     const names = exportedNames(tsx, comp).filter((n) => app.includes(`<${n}`));
     if (wantsDisabled) {
       audited.comps++;

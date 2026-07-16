@@ -765,17 +765,6 @@ function Demo() {
                 <Tooltip content="Blow down" side="right">
                   <Button variant="ghost">Blow down</Button>
                 </Tooltip>
-                <Button variant="ghost" disabled>
-                  Sealed
-                </Button>
-                <Tooltip content="Opens after the next inspection." side="top">
-                  <Button variant="icon-ghost" aria-label="Why sealed">
-                    ?
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Hints off" side="top" disabled>
-                  <Button variant="ghost">Hints off</Button>
-                </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
