@@ -69,20 +69,20 @@
   pointer-events: none;
 }
 .riot-drawer--right .riot-drawer__surface::after {
-  inset: 0 auto 0 0;
-  width: var(--riot-stroke-heavy);
+  inset: 0 auto 0 calc(-1 * var(--riot-torn-bleed));
+  width: calc(var(--riot-stroke-heavy) + var(--riot-torn-bleed));
 }
 .riot-drawer--left .riot-drawer__surface::after {
-  inset: 0 0 0 auto;
-  width: var(--riot-stroke-heavy);
+  inset: 0 calc(-1 * var(--riot-torn-bleed)) 0 auto;
+  width: calc(var(--riot-stroke-heavy) + var(--riot-torn-bleed));
 }
 .riot-drawer--top .riot-drawer__surface::after {
-  inset: auto 0 0 0;
-  height: var(--riot-stroke-heavy);
+  inset: auto 0 calc(-1 * var(--riot-torn-bleed)) 0;
+  height: calc(var(--riot-stroke-heavy) + var(--riot-torn-bleed));
 }
 .riot-drawer--bottom .riot-drawer__surface::after {
-  inset: 0 0 auto 0;
-  height: var(--riot-stroke-heavy);
+  inset: calc(-1 * var(--riot-torn-bleed)) 0 auto 0;
+  height: calc(var(--riot-stroke-heavy) + var(--riot-torn-bleed));
 }
 .riot-drawer__body {
   flex: 1;

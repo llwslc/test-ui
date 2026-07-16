@@ -474,6 +474,103 @@ const setKit = async (page, kit) => {
         await d.waitForTimeout(200);
       } catch (e) { out.push(`WARN  ${kit}  press-displacement(${corner}): errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     }
+    // boundary-bleed: a displacement-filtered opaque line riding ONE edge of an
+    // opaque surface (header rule, drawer edge) must bleed past that edge by the
+    // filter's half-scale — flush, the displacement pulls the line off the boundary
+    // and the surface's own bg leaks as a 1-2px light seam against what's behind
+    // (sub-pixel: which columns leak shifts with dpr/scroll phase). A ribbon flush
+    // on BOTH opposing edges is a channel fill (torn progress indicator) — the
+    // reveal there is the channel's own bg, by design — so only single-flush fires.
+    try {
+      await setKit(d, kit);
+      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+      const BLEED_SCAN = () => {
+        const num = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
+        const amp = (fv) => {
+          const m = /url\(["']?#([^"')]+)/.exec(fv || '');
+          if (!m) return 0;
+          const f = document.getElementById(m[1]);
+          if (!f) return 0;
+          let a = 0;
+          for (const n of f.querySelectorAll('feDisplacementMap')) a = Math.max(a, (num(n.getAttribute('scale')) || 0) / 2);
+          for (const n of f.querySelectorAll('feOffset')) a = Math.max(a, Math.abs(num(n.getAttribute('dx')) || 0), Math.abs(num(n.getAttribute('dy')) || 0));
+          for (const n of f.querySelectorAll('feMorphology')) a = Math.max(a, num(n.getAttribute('radius')) || 0);
+          return a;
+        };
+        const alpha = (color) => {
+          const m = /rgba?\(([^)]+)\)/.exec(color || '');
+          return m ? (m[1].split(',').length === 4 ? parseFloat(m[1].split(',')[3]) : 1) : 0;
+        };
+        const surfOf = (el) => {
+          for (let p = el; p && p !== document.documentElement; p = p.parentElement)
+            if (alpha(getComputedStyle(p).backgroundColor) >= 0.99) return p;
+          return null;
+        };
+        const bad = [];
+        let audited = 0;
+        const judge = (box, axis, a, surf, desc) => {
+          const sr = surf.getBoundingClientRect();
+          const sides = axis === 'h'
+            ? [['top', sr.top - box.top], ['bottom', box.bottom - sr.bottom]]
+            : [['left', sr.left - box.left], ['right', box.right - sr.right]];
+          if (sides.every(([, o]) => Math.abs(o) < 0.75) ) return;   // channel fill
+          audited++;
+          for (const [side, o] of sides)
+            if (o > -a && o < a - 0.6)
+              bad.push(`${desc} rides the ${side} edge of ${(surf.getAttribute('class') || surf.tagName).split(/\s+/)[0]} with bleed ${o.toFixed(1)}px < displacement ±${a}px`);
+        };
+        const describe = (el, ps) => ((el.getAttribute('class') || el.tagName).split(/\s+/).slice(0, 2).join('.') + (ps || '')).slice(0, 44);
+        for (const el of document.querySelectorAll('*')) {
+          const ec = getComputedStyle(el);
+          if (ec.display === 'none' || ec.visibility === 'hidden') continue;
+          const eAmp = amp(ec.filter);
+          if (eAmp && alpha(ec.backgroundColor) >= 0.99) {
+            const r = el.getBoundingClientRect();
+            const axis = r.height <= 14 ? 'h' : r.width <= 14 ? 'v' : null;
+            const surf = surfOf(el.parentElement);
+            if (axis && surf && r.width > 0 && r.height > 0) judge(r, axis, eAmp, surf, describe(el));
+          }
+          for (const ps of ['::before', '::after']) {
+            const c = getComputedStyle(el, ps);
+            if (!c || c.content === 'none' || c.position !== 'absolute') continue;
+            const pAmp = amp(c.filter);
+            if (!pAmp || alpha(c.backgroundColor) < 0.99) continue;
+            const w = num(c.width), h = num(c.height), L = num(c.left), T = num(c.top);
+            if (w === null || h === null || L === null || T === null || w <= 0 || h <= 0) continue;
+            let cb = el;
+            while (cb && cb !== document.documentElement && getComputedStyle(cb).position === 'static') cb = cb.parentElement;
+            cb = cb || document.documentElement;
+            const cbc = getComputedStyle(cb), cbr = cb.getBoundingClientRect();
+            const box = { left: cbr.left + (num(cbc.borderLeftWidth) || 0) + L, top: cbr.top + (num(cbc.borderTopWidth) || 0) + T };
+            box.right = box.left + w; box.bottom = box.top + h;
+            const axis = h <= 14 ? 'h' : w <= 14 ? 'v' : null;
+            const surf = surfOf(el);
+            if (axis && surf) judge(box, axis, pAmp, surf, describe(el, ps));
+          }
+        }
+        return { audited, bad };
+      };
+      const seen = new Set();
+      let audited = 0;
+      const collect = (res) => {
+        audited += res.audited;
+        for (const b of res.bad) if (!seen.has(b)) {
+          seen.add(b);
+          out.push(`HIGH  ${kit}  boundary-bleed: ${b} — the displacement can pull the line off the boundary and expose the surface bg as a sub-pixel seam; extend the box past the edge by the half-scale`);
+        }
+      };
+      collect(await d.evaluate(BLEED_SCAN));
+      const dbtns = d.locator('#drawer button');
+      for (let i = 0, n = await dbtns.count(); i < n && i < 6; i++) {
+        await dbtns.nth(i).scrollIntoViewIfNeeded();
+        await dbtns.nth(i).click();
+        await d.waitForTimeout(450);
+        collect(await d.evaluate(BLEED_SCAN));
+        await d.keyboard.press('Escape');
+        await d.waitForTimeout(350);
+      }
+      console.log(`  ${kit}: boundary-bleed audited ${audited} boundary line(s)`);
+    } catch (e) { out.push(`WARN  ${kit}  boundary-bleed: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
       // broken anchors only — the cross-kit sidebar/manifest comparison is
       // kit-equality's (spec-anchored, stronger than a first-kit reference)

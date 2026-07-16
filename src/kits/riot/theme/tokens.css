@@ -44,6 +44,7 @@
   --riot-stroke: 2.5px;
   --riot-stroke-bold: 3px;
   --riot-stroke-heavy: 4px;
+  --riot-torn-bleed: 2px;
 
   --riot-cast-clip: drop-shadow(8px 8px 0 var(--riot-ink));
   --riot-cast-sm: drop-shadow(4px 4px 0 var(--riot-ink));
