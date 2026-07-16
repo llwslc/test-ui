@@ -28,7 +28,11 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
         {items.map((item) =>
           item.links ? (
             <BaseNav.Item key={item.label}>
-              <BaseNav.Trigger className="riot-navmenu__trigger" disabled={item.disabled} data-disabled={item.disabled || undefined}>
+              <BaseNav.Trigger
+                className="riot-navmenu__trigger"
+                disabled={item.disabled}
+                data-disabled={item.disabled || undefined}
+              >
                 {item.label}
                 <BaseNav.Icon className="riot-navmenu__chevron">
                   <ChevronDownIcon />

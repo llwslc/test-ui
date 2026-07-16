@@ -45,12 +45,12 @@ for d in "$SKILLS"/kit-*/; do
   esac
 done
 run theme-doc-sync node "${SKILLS}/theme-doc-sync/check.cjs"
+run fingerprint node "${SKILLS}/kit-qa/fingerprint.cjs"
 
 echo
 if [ "$fail" -eq 0 ]; then
   echo "kit-qa: ALL PASS"
-  node "${SKILLS}/kit-qa/fingerprint.cjs" --update >/dev/null 2>&1 && echo "render baseline refreshed"
 else
-  echo "kit-qa: FAILURES above — fix or document each"
+  echo "kit-qa: FAILURES above — fix or document each; render drift that is INTENDED gets a manual fingerprint.cjs --update after dynamic-gate signoff"
 fi
 exit $fail

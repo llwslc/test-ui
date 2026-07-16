@@ -96,8 +96,11 @@ const NAV = [
   },
   { label: "Manual", href: "#hero" },
   {
-    label: "Vault", disabled: true,
-    links: [{ label: "Sealed drawings", href: "#display", description: "Held under wax seal" }],
+    label: "Vault",
+    disabled: true,
+    links: [
+      { label: "Sealed drawings", href: "#display", description: "Held under wax seal" },
+    ],
   },
 ];
 
@@ -378,7 +381,7 @@ function Demo() {
               </h1>
               <p className="brass-text brass-hero__desc">
                 Brushed-brass bezels, riveted plates, gauge instruments and steam-lit
-                motion — a Victorian pressure console rendered in Base UI.
+                motion — a Victorian pressure console stamped and sealed.
               </p>
               <p className="brass-text brass-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -388,7 +391,7 @@ function Demo() {
                 {[
                   ["37", "Instruments"],
                   ["1", "Token File"],
-                  ["0", "Runtime Deps"],
+                  ["0", "Extra Deps"],
                   ["A11y", "Built In"],
                 ].map(([n, l]) => (
                   <div key={l} className="brass-hero__stat">
@@ -585,7 +588,11 @@ function Demo() {
                 <Input icon={<Search />} placeholder="Search registry…" />
                 <IgnitionCodeField />
                 <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
-                <Field label="Plate number" defaultValue="BR-77½?" error="Not a valid plate stamping." />
+                <Field
+                  label="Plate number"
+                  defaultValue="BR-77½?"
+                  error="Not a valid plate stamping."
+                />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -696,7 +703,7 @@ function Demo() {
                     },
                     {
                       value: "linkage",
-      disabled: true,
+                      disabled: true,
                       title: "Linkage",
                       content: "Walschaerts gear adjusted to spec.",
                     },
@@ -1004,7 +1011,10 @@ function Demo() {
                       title: "Pressure nominal",
                       description: "Boiler holding at 180 PSI.",
                       type: "success",
-                      actionProps: { children: "Full ahead", onClick: () => toast.close(id) },
+                      actionProps: {
+                        children: "Full ahead",
+                        onClick: () => toast.close(id),
+                      },
                     });
                   }}
                 >

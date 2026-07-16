@@ -40,7 +40,9 @@
   height: calc(var(--brass-space-2) + 2px);
 }
 .brass-toast[data-expanded] {
-  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--brass-space-2)));
+  transform: translateY(
+    calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--brass-space-2))
+  );
 }
 .brass-toast[data-limited] {
   opacity: 0;

@@ -2,7 +2,7 @@
  "abyss": {
   "desktop": {
    "__header": "7b8d920174ff",
-   "__hero": "7f7262f9f510",
+   "__hero": "5c71985e6a7b",
    "__footer": "3398d3539b18",
    "button": "24323fcc0341",
    "switch": "034994768174",
@@ -46,7 +46,7 @@
   },
   "phone": {
    "__header": "ee147653c5db",
-   "__hero": "a3ec355c77b1",
+   "__hero": "a03f596fb8a1",
    "__footer": "5a487247d69c",
    "button": "7138b34e1d01",
    "switch": "97d84d958375",
@@ -92,7 +92,7 @@
  "nova": {
   "desktop": {
    "__header": "29fd972c629a",
-   "__hero": "e68560b8f00d",
+   "__hero": "ef3c2bc0af31",
    "__footer": "1de21be39229",
    "button": "632ea5e4383d",
    "switch": "c75ce2562467",
@@ -136,7 +136,7 @@
   },
   "phone": {
    "__header": "fff5a636ff76",
-   "__hero": "0356161d320e",
+   "__hero": "c50bc7524a59",
    "__footer": "3fb1153a4798",
    "button": "60b527255c27",
    "switch": "066429bdd511",
@@ -182,7 +182,7 @@
  "brass": {
   "desktop": {
    "__header": "0e2c7e56ce7d",
-   "__hero": "0f860e8fa076",
+   "__hero": "49fe942da09e",
    "__footer": "f8e498e542be",
    "button": "0da3e6ccb086",
    "switch": "8865fae46dd7",
@@ -226,7 +226,7 @@
   },
   "phone": {
    "__header": "b2bc09dbe2c0",
-   "__hero": "eadc260c2f65",
+   "__hero": "4d12f79f5134",
    "__footer": "23e295bb207e",
    "button": "ac393bd50aff",
    "switch": "1dc1184fc339",
@@ -272,7 +272,7 @@
  "bauhaus": {
   "desktop": {
    "__header": "3f8928906393",
-   "__hero": "d76a69358779",
+   "__hero": "97c928a667e0",
    "__footer": "c5432bd8cd52",
    "button": "cc4d4b951c62",
    "switch": "1dd0f7b3ad4e",
@@ -316,7 +316,7 @@
   },
   "phone": {
    "__header": "89baf5439833",
-   "__hero": "a269d4384bfc",
+   "__hero": "63ba203c1bc7",
    "__footer": "7ab2dacc1fc3",
    "button": "aefbe5e5c67c",
    "switch": "d0f142639420",
@@ -362,7 +362,7 @@
  "riot": {
   "desktop": {
    "__header": "2889daa48c14",
-   "__hero": "bee87ceb4185",
+   "__hero": "fe363c5f4d6c",
    "__footer": "688d3de50ed8",
    "button": "c826e0d54ac8",
    "switch": "592df14e958d",
@@ -406,7 +406,7 @@
   },
   "phone": {
    "__header": "a00e7399c265",
-   "__hero": "c5a7a7b0cdac",
+   "__hero": "f6e8cf7b1f66",
    "__footer": "b6f095ec0213",
    "button": "0c1a34ddbf9e",
    "switch": "f3a3d9b24ee9",
@@ -452,7 +452,7 @@
  "hanabi": {
   "desktop": {
    "__header": "dc21d44be7e0",
-   "__hero": "460515c5db48",
+   "__hero": "d370733c4798",
    "__footer": "9358b4e71cb5",
    "button": "181fdc8fba08",
    "switch": "741ccc0e40c9",
@@ -496,7 +496,7 @@
   },
   "phone": {
    "__header": "9674a34e830e",
-   "__hero": "41782439d09d",
+   "__hero": "254dddab5042",
    "__footer": "38827df27dea",
    "button": "e40ecf7dadbb",
    "switch": "745e9e28b584",

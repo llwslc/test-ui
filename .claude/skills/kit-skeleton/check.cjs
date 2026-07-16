@@ -34,5 +34,5 @@ for (const [comp, links] of Object.entries(chains)) {
   }
 }
 console.log('\n骨架链:', Object.entries(chains).map(([c, l]) => `${c}[${l.join('>')}]`).join('  '));
-console.log(bad ? `RESULT: FAIL — ${bad} 处骨架层缺失` : 'RESULT: PASS (§6.1 的 `>` 链层,五套都渲染了)');
+console.log(bad ? `RESULT: FAIL — ${bad} 处骨架层缺失` : 'RESULT: PASS (§6.1 的 `>` 链层,全体 kit 都渲染了)');
 process.exit(bad ? 1 : 0);

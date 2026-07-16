@@ -38,7 +38,13 @@ export function Autocomplete({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseAutocomplete.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue}>
+    <BaseAutocomplete.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+    >
       <BaseAutocomplete.InputGroup className={cx("brass-plate", "brass-autocomplete")}>
         <span className="brass-autocomplete__icon">
           <Search />
@@ -69,7 +75,8 @@ export function Autocomplete({
                 {(item: string) => (
                   <BaseAutocomplete.Item
                     key={item}
-                    value={item} disabled={inert.has(item)}
+                    value={item}
+                    disabled={inert.has(item)}
                     className="brass-list-item"
                   >
                     <span className="brass-list-item__text">{item}</span>

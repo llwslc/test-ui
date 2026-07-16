@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+      name={name}
+    >
       <div className="riot-field riot-combobox__field">
         <BaseCombobox.InputGroup className="riot-surface riot-field__control riot-combobox__control">
           <span className="riot-field__lead">
@@ -73,7 +80,12 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="riot-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="riot-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    disabled={inert.has(item)}
+                    className="riot-list-item"
+                  >
                     <span className="riot-combobox__item-text riot-list-item__text">
                       {item}
                     </span>

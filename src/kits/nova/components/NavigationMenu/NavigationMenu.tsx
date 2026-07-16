@@ -29,7 +29,11 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
           item.links ? (
             <BaseNav.Item key={item.label}>
               <span className="nova-navmenu__triggerwrap">
-                <BaseNav.Trigger className="nova-navmenu__trigger" disabled={item.disabled} data-disabled={item.disabled || undefined}>
+                <BaseNav.Trigger
+                  className="nova-navmenu__trigger"
+                  disabled={item.disabled}
+                  data-disabled={item.disabled || undefined}
+                >
                   {item.label}
                   <BaseNav.Icon className="nova-navmenu__chevron">
                     <ChevronDownIcon />

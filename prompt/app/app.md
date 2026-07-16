@@ -118,7 +118,7 @@
 - hero eyebrow：`<主题系统名> · 37 <主题单位>`。
 - hero 大标题：两行 `A(n) <主题形容词> interface kit / <主题动词短语>`，排版类 `h1` + `h1--accent` 强调主题形容词；hero 专属字号 `clamp(28px, 4.4vw, 46px)`，最重字重就近覆盖。
 - hero 描述：一句主题化视觉描述，再一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
-- 数据条 4 位：`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Runtime Deps`、`A11y / Built In`。
+- 数据条 4 位：`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Extra Deps`（Base UI 之外零额外运行时依赖）、`A11y / Built In`。
 - 面板 meta：三字母缩码，如 BTN、DRW；嵌套面板 `SUB`。
 - 组副题：每组一句主题化短语，随组名同行。
 - Footer：`<KIT> · built on @base-ui/react · themed via --<kit>-* tokens · <年>`，`<年>` 用 `new Date().getFullYear()` 动态年。框架署名只出现在 footer，其余文案不提框架。

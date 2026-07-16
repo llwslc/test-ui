@@ -21,7 +21,7 @@ Writes `/tmp/states/<kit>_<state>.png` and prints a per-kit line: `✓ <kit>: al
 The sweep finds controls by convention; a kit whose demo diverges has its states reported as not-captured (the `⚠` line), not silently skipped. For full coverage the demo must:
 
 - give each component panel a `#<component>` id — `#button`, `#switch`, `#input`, `#number`, `#menu`, `#select`, `#combobox`, `#dialog`, `#alert`, `#drawer`, `#popover`;
-- name parts `<kit>-<component>__<part>` — `-btn`, `-switch` (or `[role="switch"]`), `-numberfield__input`, `-select__trigger`, `-menu__popup`, `-combobox__control` / `-combobox__popup`, `-popover__popup`, and a `-dialog` / `-alert` / `-drawer` popup class.
+- name parts `<kit>-<component>__<part>` — `-btn`, `-switch` (or `[role="switch"]`), `-numberfield__input`, `-select__trigger`, menu popup 语义定位 `[role="menu"]`（Base UI Menu.Popup 自带）, `-combobox__control` / `-combobox__popup`, `-popover__popup`, and a `-dialog` / `-alert` / `-drawer` popup class.
 
 ## What it sweeps
 

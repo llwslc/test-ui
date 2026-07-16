@@ -24,7 +24,9 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-control);
   box-shadow: var(--hanabi-shadow);
-  transform: translateY(calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-3)));
+  transform: translateY(
+    calc(-1 * var(--toast-offset-y) - var(--toast-index) * var(--hanabi-space-3))
+  );
   transition:
     transform var(--hanabi-dur-slow) var(--hanabi-ease),
     opacity var(--hanabi-dur-slow) var(--hanabi-ease);

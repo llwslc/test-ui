@@ -37,7 +37,13 @@ export function Autocomplete({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseAutocomplete.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue}>
+    <BaseAutocomplete.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+    >
       <BaseAutocomplete.InputGroup className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-autocomplete">
         <span className="hanabi-autocomplete__glyph">
           <SearchIcon />
@@ -65,7 +71,8 @@ export function Autocomplete({
                 {(item: string) => (
                   <BaseAutocomplete.Item
                     key={item}
-                    value={item} disabled={inert.has(item)}
+                    value={item}
+                    disabled={inert.has(item)}
                     className="hanabi-list-item"
                   >
                     <span className="hanabi-list-item__text">{item}</span>

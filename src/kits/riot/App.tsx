@@ -101,7 +101,8 @@ const NAV = [
   },
   { label: "Riot", href: "#hero" },
   {
-    label: "Backroom", disabled: true,
+    label: "Backroom",
+    disabled: true,
     links: [{ label: "Label masters", href: "#display", description: "Ask for the key" }],
   },
 ];
@@ -415,7 +416,7 @@ function Demo() {
                 {[
                   ["37", "Clippings"],
                   ["1", "Token File"],
-                  ["0", "Runtime Deps"],
+                  ["0", "Extra Deps"],
                   ["A11y", "Built In"],
                 ].map(([n, l]) => (
                   <div key={l} className="riot-hero__stat">
@@ -736,7 +737,7 @@ function Demo() {
                     {
                       value: "print",
                       title: "Print",
-      disabled: true,
+                      disabled: true,
                       content: "One xerox machine, stolen after hours.",
                     },
                   ]}
@@ -774,14 +775,10 @@ function Demo() {
                   </p>
                 </Collapsible>
                 <Collapsible title="Locked box" disabled>
-                  <p className="riot-text">
-                    Label masters. Ask the desk for the key.
-                  </p>
+                  <p className="riot-text">Label masters. Ask the desk for the key.</p>
                 </Collapsible>
                 <Collapsible title="Editor's note" defaultOpen disabled>
-                  <p className="riot-text">
-                    Stapled to the wall. Don't touch.
-                  </p>
+                  <p className="riot-text">Stapled to the wall. Don't touch.</p>
                 </Collapsible>
               </div>
             </Panel>
@@ -945,7 +942,9 @@ function Demo() {
                 </ContextMenu>
                 <ContextMenu
                   disabled
-                  trigger={<span className="riot-cap">Right-click: wall painted over</span>}
+                  trigger={
+                    <span className="riot-cap">Right-click: wall painted over</span>
+                  }
                 >
                   <MenuItem>Unavailable</MenuItem>
                 </ContextMenu>

@@ -1,17 +1,35 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
 const APPS = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.app)]));
 const LOADERS = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.loader)]));
 
+const safeGet = (key: string) => {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+const safeSet = (key: string, value: string) => {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    return;
+  }
+};
+
 export function Shell() {
-  const kit = resolveKit(localStorage.getItem("kit"));
+  const kit = resolveKit(safeGet("kit"));
   const Active = APPS[kit];
   const KitLoader = LOADERS[kit];
   const [open, setOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const active = KITS.find((k) => k.id === kit) ?? KITS[0];
+  const menuRef = useRef<HTMLUListElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const sync = () => {
@@ -25,13 +43,52 @@ export function Shell() {
     return () => mo.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const el =
+      menuRef.current?.querySelector<HTMLButtonElement>(".is-active") ??
+      menuRef.current?.querySelector<HTMLButtonElement>("button");
+    el?.focus();
+  }, [open]);
+
   const switchKit = (id: string) => {
     if (id === kit) {
       setOpen(false);
       return;
     }
-    localStorage.setItem("kit", id);
+    safeSet("kit", id);
     location.reload();
+  };
+
+  const closeAndRefocus = () => {
+    setOpen(false);
+    triggerRef.current?.focus();
+  };
+
+  const onSwitchKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape" && open) {
+      event.preventDefault();
+      closeAndRefocus();
+    }
+  };
+
+  const onMenuKeyDown = (event: KeyboardEvent) => {
+    const options = Array.from(
+      menuRef.current?.querySelectorAll<HTMLButtonElement>('button[role="option"]') ?? [],
+    );
+    if (options.length === 0) return;
+    const index = options.indexOf(document.activeElement as HTMLButtonElement);
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      options[(index + step + options.length) % options.length].focus();
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      options[0].focus();
+    } else if (event.key === "End") {
+      event.preventDefault();
+      options[options.length - 1].focus();
+    }
   };
 
   return (
@@ -45,6 +102,7 @@ export function Shell() {
         className="shell-switch"
         data-open={open || undefined}
         data-overlay={overlay || undefined}
+        onKeyDown={onSwitchKeyDown}
       >
         <button
           type="button"
@@ -52,7 +110,13 @@ export function Shell() {
           aria-label="Close kit menu"
           onClick={() => setOpen(false)}
         />
-        <ul className="shell-switch__menu" role="listbox" aria-label="Component kit">
+        <ul
+          ref={menuRef}
+          className="shell-switch__menu"
+          role="listbox"
+          aria-label="Component kit"
+          onKeyDown={onMenuKeyDown}
+        >
           {KITS.map((k) => (
             <li key={k.id}>
               <button
@@ -70,6 +134,7 @@ export function Shell() {
           ))}
         </ul>
         <button
+          ref={triggerRef}
           type="button"
           className="shell-switch__trigger"
           aria-haspopup="listbox"

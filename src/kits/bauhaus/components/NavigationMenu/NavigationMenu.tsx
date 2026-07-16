@@ -28,7 +28,11 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
         {items.map((item, i) =>
           item.links ? (
             <BaseNav.Item key={i} value={String(i)}>
-              <BaseNav.Trigger className="bauhaus-navmenu__trigger" disabled={item.disabled} data-disabled={item.disabled || undefined}>
+              <BaseNav.Trigger
+                className="bauhaus-navmenu__trigger"
+                disabled={item.disabled}
+                data-disabled={item.disabled || undefined}
+              >
                 {item.label}
                 <span className="bauhaus-navmenu__chevron">
                   <ChevronDown />

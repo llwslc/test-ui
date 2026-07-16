@@ -2,7 +2,7 @@
 
 Re-skinnable React component kits built on [**Base UI**](https://base-ui.com) (`@base-ui/react`) — the same 37 accessible controls under radically different design languages, one kit per language. The kit roster lives in `src/kits/registry.ts`; the visual directions (built and candidate) are cataloged in `prompt/theme/README.md`.
 
-A thin shell switches between kits (floating pill, bottom-centre); each kit is lazy-loaded and its page chrome is scoped under `html[data-kit="…"]`, so the ambient worlds never collide.
+A thin shell switches between kits (floating pill, bottom-centre); each kit is lazy-loaded on demand and a switch persists the choice then does a full `location.reload()`, so only one kit's CSS is ever loaded and the ambient worlds never collide (selectors are unscoped by design).
 
 ## Run
 
@@ -13,7 +13,7 @@ npm run build     # type-check + production build
 npm run preview   # serve the production build
 ```
 
-Requires Node 18+.
+Requires Node ^18.18.0 || ^20.9.0 || >=21.1.0 (pinned in `engines`; ESLint 9 and typescript-eslint 8 set the floor).
 
 ## Stack
 
@@ -21,7 +21,7 @@ React 18 · Vite · TypeScript · plain co-located CSS (no Tailwind, no CSS-in-J
 
 ```
 src/
-  main.tsx            entry — sets html[data-kit], renders the shell
+  main.tsx            entry — renders the shell
   shell/              kit switcher + shared reset
   kits/
     registry.ts       the kit roster — the only list of kit ids

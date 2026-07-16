@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} defaultValue={defaultValue} name={name} disabled={disabled} readOnly={readOnly} required={required}>
+    <BaseCombobox.Root
+      items={labels}
+      defaultValue={defaultValue}
+      name={name}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+    >
       <div className="nova-field nova-combobox__field">
         <BaseCombobox.InputGroup className="nova-field__control nova-combobox__control">
           <span className="nova-field__lead">
@@ -73,7 +80,12 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="nova-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="nova-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    disabled={inert.has(item)}
+                    className="nova-list-item"
+                  >
                     <span className="nova-combobox__item-text">{item}</span>
                     <span className="nova-combobox__indicator">
                       <BaseCombobox.ItemIndicator>

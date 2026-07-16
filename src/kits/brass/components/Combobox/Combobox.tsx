@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+      name={name}
+    >
       <BaseCombobox.InputGroup className="brass-plate brass-combobox">
         <span className="brass-combobox__lead" aria-hidden>
           <Search />
@@ -75,7 +82,12 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List>
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="brass-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    disabled={inert.has(item)}
+                    className="brass-list-item"
+                  >
                     <span className="brass-list-item__text">{item}</span>
                     <span className="brass-list-item__check">
                       <BaseCombobox.ItemIndicator>

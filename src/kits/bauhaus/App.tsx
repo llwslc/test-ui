@@ -99,8 +99,11 @@ const NAV = [
   },
   { label: "Manual", href: "#hero" },
   {
-    label: "Vault", disabled: true,
-    links: [{ label: "Master plates", href: "#display", description: "Locked for print" }],
+    label: "Vault",
+    disabled: true,
+    links: [
+      { label: "Master plates", href: "#display", description: "Locked for print" },
+    ],
   },
 ];
 
@@ -364,8 +367,8 @@ function Demo() {
               </h1>
               <p className="bauhaus-text bauhaus-hero__desc">
                 Flat fields of red, yellow and blue, hard black strokes, the
-                circle-triangle-square and a modular grid — a Bauhaus workshop rendered in
-                Base UI.
+                circle-triangle-square and a modular grid — a Bauhaus workshop ruled to
+                the grid.
               </p>
               <p className="bauhaus-text bauhaus-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -375,7 +378,7 @@ function Demo() {
                 {[
                   ["37", "Elements"],
                   ["1", "Token File"],
-                  ["0", "Runtime Deps"],
+                  ["0", "Extra Deps"],
                   ["A11y", "Built In"],
                 ].map(([n, l]) => (
                   <div key={l} className="bauhaus-hero__stat">
@@ -573,7 +576,11 @@ function Demo() {
                 <Input icon={<Search />} placeholder="Search elements…" />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
-                <Field label="Plate code" defaultValue="BH•19??" error="Code breaks the plate grammar." />
+                <Field
+                  label="Plate code"
+                  defaultValue="BH•19??"
+                  error="Code breaks the plate grammar."
+                />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -698,7 +705,7 @@ function Demo() {
                     },
                     {
                       value: "type",
-      disabled: true,
+                      disabled: true,
                       title: "Type",
                       content:
                         "Geometric sans throughout, heavy display for the headline.",

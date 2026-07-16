@@ -131,7 +131,7 @@ const shoot = async (loc, path) => {
 
     // overlays: click trigger, shoot popup, escape
     const popups = [
-      ['menu', `#menu .${kit}-btn`, `.${kit}-menu__popup`],
+      ['menu', `#menu .${kit}-btn`, `[role="menu"]`],
       ['select', `#select .${kit}-select__trigger`, `.${kit}-select__popup`],
       ['combobox', `#combobox input, #combobox .${kit}-combobox__control`, `.${kit}-combobox__popup`],
       ['dialog', `#dialog .${kit}-btn`, `.${kit}-dialog__tablet, .${kit}-dialog__popup, .${kit}-dialog`],

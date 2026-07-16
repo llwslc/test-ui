@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+      name={name}
+    >
       <BaseCombobox.InputGroup className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-combobox">
         <span className="hanabi-combobox__glyph">
           <SearchIcon />
@@ -71,7 +78,12 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="hanabi-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="hanabi-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    disabled={inert.has(item)}
+                    className="hanabi-list-item"
+                  >
                     <span className="hanabi-list-item__text">{item}</span>
                     <BaseCombobox.ItemIndicator className="hanabi-list-item__check">
                       ✦

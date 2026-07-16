@@ -37,7 +37,13 @@ export function Autocomplete({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseAutocomplete.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue}>
+    <BaseAutocomplete.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+    >
       <div className="riot-field riot-autocomplete__field">
         <BaseAutocomplete.InputGroup className="riot-surface riot-field__control">
           <span className="riot-field__lead">
@@ -67,7 +73,8 @@ export function Autocomplete({
                 {(item: string) => (
                   <BaseAutocomplete.Item
                     key={item}
-                    value={item} disabled={inert.has(item)}
+                    value={item}
+                    disabled={inert.has(item)}
                     className="riot-list-item"
                   >
                     <span className="riot-autocomplete__item-text riot-list-item__text">

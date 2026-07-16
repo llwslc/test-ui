@@ -11,10 +11,18 @@ export interface ContextMenuProps {
   className?: string;
 }
 
-export function ContextMenu({ disabled, trigger, children, className }: ContextMenuProps) {
+export function ContextMenu({
+  disabled,
+  trigger,
+  children,
+  className,
+}: ContextMenuProps) {
   return (
     <BaseContextMenu.Root disabled={disabled}>
-      <BaseContextMenu.Trigger data-disabled={disabled || undefined} className={cx("hanabi-context__zone", className)}>
+      <BaseContextMenu.Trigger
+        data-disabled={disabled || undefined}
+        className={cx("hanabi-context__zone", className)}
+      >
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>

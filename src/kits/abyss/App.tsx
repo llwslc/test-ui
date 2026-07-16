@@ -263,7 +263,8 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
   },
   { label: "Codex", href: "#navmenu" },
   {
-    label: "The Sealed Gate", disabled: true,
+    label: "The Sealed Gate",
+    disabled: true,
     links: [{ label: "The Reliquary", href: "#display", description: "Held under ward" }],
   },
 ];
@@ -708,7 +709,7 @@ function Demo() {
               </div>
               <div className="abyss-hero__stat">
                 <b>0</b>
-                <span>Runtime Deps</span>
+                <span>Extra Deps</span>
               </div>
               <div className="abyss-hero__stat">
                 <b>A11y</b>
@@ -925,7 +926,11 @@ function Demo() {
                   <Input icon={<SearchIcon />} placeholder="Search the codex…" />
                   <AccessCodeField />
                   <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
-                  <Field label="Warded Verse" defaultValue="R'LYEH-∅" error="The verse rejects these letters." />
+                  <Field
+                    label="Warded Verse"
+                    defaultValue="R'LYEH-∅"
+                    error="The verse rejects these letters."
+                  />
                 </div>
               </Panel>
             </div>

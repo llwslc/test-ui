@@ -95,7 +95,8 @@ const NAV = [
   },
   { label: "Manual", href: "#hero" },
   {
-    label: "機密区画", disabled: true,
+    label: "機密区画",
+    disabled: true,
     links: [{ label: "作戦原本", href: "#display", description: "司令部の封印付き" }],
   },
 ];
@@ -348,7 +349,7 @@ function Demo() {
   }, []);
 
   return (
-    <div className="hanabi-app">
+    <div className="hanabi-app" lang="ja">
       <header className="hanabi-header">
         <div className="hanabi-logo">
           <SparkIcon className="hanabi-logo__mark" aria-hidden="true" />
@@ -385,7 +386,7 @@ function Demo() {
         </aside>
 
         <main className="hanabi-shell__main">
-          <section className="hanabi-hero" id="hero">
+          <section className="hanabi-hero" id="hero" lang="en">
             <span className="hanabi-hero__burst" aria-hidden="true" />
             <div className="hanabi-hero__text">
               <span className="hanabi-cap hanabi-hero__eyebrow">
@@ -394,11 +395,11 @@ function Demo() {
               <h1 className="hanabi-h1 hanabi-hero__title">
                 A <span className="hanabi-h1--accent">cel-shaded</span> interface kit
                 <br />
-                inked, flat-filled, ready to sortie
+                inked, flat-filled, ready to sortie
               </h1>
               <p className="hanabi-text hanabi-hero__desc">
                 Navy ink outlines, flat fills, cool-violet stepped shadows and one gloss
-                streak per surface — an anime armory rendered in Base UI.
+                streak per surface — an anime armory painted cel by cel.
               </p>
               <p className="hanabi-text hanabi-hero__desc">
                 Every control is its own folder, themed entirely through portable{" "}
@@ -408,7 +409,7 @@ function Demo() {
                 {[
                   ["37", "Cels"],
                   ["1", "Token File"],
-                  ["0", "Runtime Deps"],
+                  ["0", "Extra Deps"],
                   ["A11y", "Built In"],
                 ].map(([n, l]) => (
                   <div key={l} className="hanabi-hero__stat">
@@ -606,7 +607,11 @@ function Demo() {
                 <Input icon={<SearchIcon />} placeholder="装備を検索…" />
                 <AccessKeyField />
                 <Field label="ロック済み" defaultValue="HANABI-873" disabled />
-                <Field label="識別コード" defaultValue="HNB-8７3" error="使用できない文字が含まれています。" />
+                <Field
+                  label="識別コード"
+                  defaultValue="HNB-8７3"
+                  error="使用できない文字が含まれています。"
+                />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -727,7 +732,7 @@ function Demo() {
                     },
                     {
                       value: "supply",
-      disabled: true,
+                      disabled: true,
                       title: "補給",
                       content: "弾薬は多めに、撤収は素早く。甘味は士気に直結する。",
                     },
@@ -766,9 +771,7 @@ function Demo() {
                   </p>
                 </Collapsible>
                 <Collapsible title="機密資料" disabled>
-                  <p className="hanabi-text">
-                    第4章クリアで開示。司令部の封印付き。
-                  </p>
+                  <p className="hanabi-text">第4章クリアで開示。司令部の封印付き。</p>
                 </Collapsible>
                 <Collapsible title="隊規" defaultOpen disabled>
                   <p className="hanabi-text">
@@ -1034,7 +1037,10 @@ function Demo() {
                       title: "整列完了",
                       description: "全機、配置に付きました。",
                       type: "success",
-                      actionProps: { children: "受け取る", onClick: () => toast.close(id) },
+                      actionProps: {
+                        children: "受け取る",
+                        onClick: () => toast.close(id),
+                      },
                     });
                   }}
                 >

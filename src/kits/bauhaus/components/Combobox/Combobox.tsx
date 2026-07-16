@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+      name={name}
+    >
       <BaseCombobox.InputGroup className="bauhaus-surface bauhaus-combobox">
         <BaseCombobox.Input
           id={inputId}
@@ -70,7 +77,8 @@ export function Combobox({
                 {(item: string) => (
                   <BaseCombobox.Item
                     key={item}
-                    value={item} disabled={inert.has(item)}
+                    value={item}
+                    disabled={inert.has(item)}
                     className="bauhaus-list-item"
                   >
                     <span className="bauhaus-list-item__text">{item}</span>

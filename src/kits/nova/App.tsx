@@ -222,7 +222,8 @@ const NAVMENU_ITEMS: NavMenuItem[] = [
   },
   { label: "Registry", href: "#navmenu" },
   {
-    label: "Vault", disabled: true,
+    label: "Vault",
+    disabled: true,
     links: [{ label: "Black Box", href: "#display", description: "Sealed records" }],
   },
 ];
@@ -572,7 +573,7 @@ function Demo() {
               </div>
               <div className="nova-hero__stat">
                 <b>0</b>
-                <span>Runtime Deps</span>
+                <span>Extra Deps</span>
               </div>
               <div className="nova-hero__stat">
                 <b>A11y</b>
@@ -795,7 +796,11 @@ function Demo() {
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
                   <AccessCodeField />
                   <Field label="Locked Channel" defaultValue="NX-CLASSIFIED" disabled />
-                  <Field label="Beacon ID" defaultValue="NX-Ø1?" error="Unrecognized characters in the ID." />
+                  <Field
+                    label="Beacon ID"
+                    defaultValue="NX-Ø1?"
+                    error="Unrecognized characters in the ID."
+                  />
                 </div>
               </Panel>
             </div>

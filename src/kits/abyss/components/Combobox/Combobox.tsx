@@ -39,7 +39,14 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} disabled={disabled} readOnly={readOnly} required={required} defaultValue={defaultValue} name={name}>
+    <BaseCombobox.Root
+      items={labels}
+      disabled={disabled}
+      readOnly={readOnly}
+      required={required}
+      defaultValue={defaultValue}
+      name={name}
+    >
       <div className="abyss-combobox__field">
         <BaseCombobox.InputGroup className="abyss-frame abyss-combobox__control">
           <span className="abyss-combobox__lead" aria-hidden>
@@ -77,7 +84,12 @@ export function Combobox({
             <ScrollArea variant="popup">
               <BaseCombobox.List className="abyss-combobox__list">
                 {(item: string) => (
-                  <BaseCombobox.Item key={item} value={item} disabled={inert.has(item)} className="abyss-list-item">
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    disabled={inert.has(item)}
+                    className="abyss-list-item"
+                  >
                     <span className="abyss-combobox__item-text">{item}</span>
                     <span className="abyss-combobox__indicator" aria-hidden>
                       <BaseCombobox.ItemIndicator>

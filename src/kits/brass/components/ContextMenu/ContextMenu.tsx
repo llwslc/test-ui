@@ -11,10 +11,16 @@ export interface ContextMenuProps {
   className?: string;
 }
 
-export function ContextMenu({ disabled, trigger, children, className }: ContextMenuProps) {
+export function ContextMenu({
+  disabled,
+  trigger,
+  children,
+  className,
+}: ContextMenuProps) {
   return (
     <BaseContextMenu.Root disabled={disabled}>
-      <BaseContextMenu.Trigger data-disabled={disabled || undefined}
+      <BaseContextMenu.Trigger
+        data-disabled={disabled || undefined}
         className={cx("brass-plate brass-context__zone", className)}
       >
         {trigger}
