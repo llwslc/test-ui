@@ -904,8 +904,16 @@ function Demo() {
                   <Tooltip content="Points left" side="right">
                     <Button variant="ghost">Right</Button>
                   </Tooltip>
-                  <Tooltip content="Sealed channel" side="top" disabled>
-                    <Button variant="ghost" disabled>Muted</Button>
+                  <Button variant="ghost" disabled>
+                    Sealed
+                  </Button>
+                  <Tooltip content="Requires clearance level 5." side="top">
+                    <Button variant="icon-ghost" aria-label="Why sealed">
+                      ?
+                    </Button>
+                  </Tooltip>
+                  <Tooltip content="Hints off" side="top" disabled>
+                    <Button variant="ghost">Hints off</Button>
                   </Tooltip>
                 </div>
               </Panel>

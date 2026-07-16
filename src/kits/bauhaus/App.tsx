@@ -774,8 +774,16 @@ function Demo() {
                 <Tooltip content="Lock layer" side="right">
                   <Button variant="ghost">Lock</Button>
                 </Tooltip>
-                <Tooltip content="No annotation" side="top" disabled>
-                  <Button variant="ghost" disabled>Muted</Button>
+                <Button variant="ghost" disabled>
+                  Locked
+                </Button>
+                <Tooltip content="Unlocks with the master key." side="top">
+                  <Button variant="icon-ghost" aria-label="Why locked">
+                    ?
+                  </Button>
+                </Tooltip>
+                <Tooltip content="Hints off" side="top" disabled>
+                  <Button variant="ghost">Hints off</Button>
                 </Tooltip>
               </div>
             </Panel>

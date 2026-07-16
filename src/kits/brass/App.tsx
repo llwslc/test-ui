@@ -765,8 +765,16 @@ function Demo() {
                 <Tooltip content="Blow down" side="right">
                   <Button variant="ghost">Blow down</Button>
                 </Tooltip>
-                <Tooltip content="Valve shut" side="top" disabled>
-                  <Button variant="ghost" disabled>Muffled</Button>
+                <Button variant="ghost" disabled>
+                  Sealed
+                </Button>
+                <Tooltip content="Opens after the next inspection." side="top">
+                  <Button variant="icon-ghost" aria-label="Why sealed">
+                    ?
+                  </Button>
+                </Tooltip>
+                <Tooltip content="Hints off" side="top" disabled>
+                  <Button variant="ghost">Hints off</Button>
                 </Tooltip>
               </div>
             </Panel>

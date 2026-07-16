@@ -800,8 +800,16 @@ function Demo() {
                 <Tooltip content="目標をロック" side="right">
                   <Button variant="ghost">ロック</Button>
                 </Tooltip>
-                <Tooltip content="封印中は出ない" side="top" disabled>
-                  <Button variant="ghost" disabled>封印</Button>
+                <Button variant="ghost" disabled>
+                  封印
+                </Button>
+                <Tooltip content="第4章クリアで解放" side="top">
+                  <Button variant="icon-ghost" aria-label="封印の理由">
+                    ?
+                  </Button>
+                </Tooltip>
+                <Tooltip content="ヒントOFF" side="top" disabled>
+                  <Button variant="ghost">ヒントOFF</Button>
                 </Tooltip>
               </div>
             </Panel>

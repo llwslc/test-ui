@@ -1038,8 +1038,16 @@ function Demo() {
                   <Tooltip content="The candle gutters" side="right">
                     <Button variant="ghost">Right</Button>
                   </Tooltip>
-                  <Tooltip content="The tide holds its tongue" side="top" disabled>
-                    <Button variant="ghost" disabled>Silenced</Button>
+                  <Button variant="ghost" disabled>
+                    Sealed
+                  </Button>
+                  <Tooltip content="The tide has not granted passage." side="top">
+                    <Button variant="icon-ghost" aria-label="Why sealed">
+                      ?
+                    </Button>
+                  </Tooltip>
+                  <Tooltip content="No whispers" side="top" disabled>
+                    <Button variant="ghost">No whispers</Button>
                   </Tooltip>
                 </div>
               </Panel>

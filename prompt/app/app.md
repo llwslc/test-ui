@@ -81,7 +81,7 @@
 
 **Overlays**
 
-- tooltip：一行 5 个 Tooltip，各裹一个 `ghost` Button，前 4 个 side 依次 top、bottom、left、right，第 5 个 `disabled`（trigger 同置灰、悬停不出提示）。
+- tooltip：一行——前 4 个 Tooltip 各裹一个 `ghost` Button，side 依次 top、bottom、left、right；接一枚禁用 `ghost` Button + 紧随的「?」`icon-ghost` 钮，tooltip 挂在 ? 上、文案=该钮的封印说明（值随 theme 换）；末尾一个正常 `ghost` Button + tooltip `disabled`。
 - popover：一个 Popover，trigger = `ghost` Button，内容 = 标题 + 一段正文。
 - preview：「caption + 内联文本」内嵌 PreviewCard，trigger 为内联链接；卡片 = Avatar（图片、status online）+ 名 + handle + 一段简介 + 一行 2 个 Badge（`primary` 带 dot、`neutral`）。
 - menu：trigger = `ghost` Button（内联标签 + 翻转 chevron）；12 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后末项 `tone="danger"`。
