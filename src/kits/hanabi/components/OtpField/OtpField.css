@@ -11,7 +11,7 @@
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-field);
-  box-shadow: var(--hanabi-shadow-sm);
+  box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   font-family: var(--hanabi-font-mono);
   font-size: var(--hanabi-fs-16);
   color: var(--hanabi-text);
@@ -29,9 +29,7 @@
 .hanabi-otp__cell:focus {
   transition: none;
   border-color: var(--hanabi-primary);
-  box-shadow:
-    inset 2px 2px 0 var(--hanabi-primary-wash),
-    var(--hanabi-shadow-sm);
+  box-shadow: inset 2px 2px 0 var(--hanabi-primary-wash);
 }
 
 .hanabi-otp[data-disabled] .hanabi-otp__cell,

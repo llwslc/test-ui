@@ -71,7 +71,7 @@
   color: var(--abyss-text);
 }
 .abyss-checkbox-field:has(.abyss-checkbox[data-disabled]) {
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .abyss-checkbox-field:has(.abyss-checkbox[data-disabled]) .abyss-checkbox-field__label {
   opacity: var(--abyss-disabled-opacity);

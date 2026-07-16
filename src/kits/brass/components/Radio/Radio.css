@@ -41,6 +41,9 @@
 .brass-radio__control[data-disabled] {
   opacity: var(--brass-disabled-opacity);
 }
+.brass-radio:has(.brass-radio__control[data-disabled]) {
+  pointer-events: none;
+}
 .brass-radio__indicator {
   width: var(--brass-radio-dot);
   height: var(--brass-radio-dot);

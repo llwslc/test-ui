@@ -11,7 +11,7 @@
 }
 .bauhaus-radio:has(.bauhaus-radio__control[data-disabled]) {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .bauhaus-radio__control {
   flex: 0 0 auto;

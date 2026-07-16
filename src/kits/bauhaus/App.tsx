@@ -509,6 +509,7 @@ function Demo() {
 
             <Panel id="radio" title="Radio Group" meta="RDO">
               <div className="bauhaus-stack">
+                <span className="bauhaus-cap">Alignment</span>
                 <RadioGroup defaultValue="left">
                   <Radio value="left">Left align</Radio>
                   <Radio value="center">Center</Radio>
@@ -517,9 +518,10 @@ function Demo() {
                     Optical (offline)
                   </Radio>
                 </RadioGroup>
-                <RadioGroup defaultValue="metric">
+                <span className="bauhaus-cap">Kerning (locked)</span>
+                <RadioGroup disabled defaultValue="metric">
                   <Radio value="manual">Manual kerning</Radio>
-                  <Radio value="metric" disabled>
+                  <Radio value="metric">
                     Metric (locked)
                   </Radio>
                 </RadioGroup>

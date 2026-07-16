@@ -540,6 +540,7 @@ function Demo() {
 
             <Panel id="radio" title="Radio Group" meta="RDO">
               <div className="hanabi-stack">
+                <span className="hanabi-cap">出撃難度</span>
                 <RadioGroup defaultValue="drill">
                   <Radio value="drill">演習</Radio>
                   <Radio value="standard">標準</Radio>
@@ -548,9 +549,10 @@ function Demo() {
                     深淵（未開放）
                   </Radio>
                 </RadioGroup>
-                <RadioGroup defaultValue="auto">
+                <span className="hanabi-cap">照準モード（封印）</span>
+                <RadioGroup disabled defaultValue="auto">
                   <Radio value="manual">手動照準</Radio>
-                  <Radio value="auto" disabled>
+                  <Radio value="auto">
                     自動追尾（固定）
                   </Radio>
                 </RadioGroup>

@@ -517,6 +517,7 @@ function Demo() {
 
             <Panel id="radio" title="Radio Group" meta="RDO">
               <div className="brass-stack">
+                <span className="brass-cap">Draught</span>
                 <RadioGroup defaultValue="low">
                   <Radio value="low">Low draught</Radio>
                   <Radio value="nominal">Nominal</Radio>
@@ -525,9 +526,10 @@ function Demo() {
                     Sealed (offline)
                   </Radio>
                 </RadioGroup>
-                <RadioGroup defaultValue="governor">
+                <span className="brass-cap">Governor (sealed)</span>
+                <RadioGroup disabled defaultValue="governor">
                   <Radio value="hand">Hand brake</Radio>
-                  <Radio value="governor" disabled>
+                  <Radio value="governor">
                     Governor (locked)
                   </Radio>
                 </RadioGroup>

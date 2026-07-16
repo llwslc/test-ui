@@ -40,6 +40,9 @@
 .riot-checkbox[data-disabled] {
   opacity: var(--riot-disabled-opacity);
 }
+.riot-checkbox-field:has(.riot-checkbox:disabled, .riot-checkbox[data-disabled]) {
+  pointer-events: none;
+}
 
 .riot-checkbox-field {
   display: inline-flex;

@@ -44,7 +44,7 @@
 }
 
 .hanabi-radio:has(.hanabi-radio__control[data-disabled]) {
-  cursor: not-allowed;
+  pointer-events: none;
   opacity: var(--hanabi-disabled-opacity);
 }
 

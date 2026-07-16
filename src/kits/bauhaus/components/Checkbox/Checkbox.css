@@ -6,7 +6,7 @@
 }
 .bauhaus-checkbox:has(.bauhaus-checkbox__box[data-disabled]) {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .bauhaus-checkbox__box {
   flex: 0 0 auto;

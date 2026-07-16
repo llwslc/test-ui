@@ -65,7 +65,7 @@
 
 .nova-radio:has(.nova-radio__control[data-disabled]) {
   opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .nova-radio:has(.nova-radio__control[data-disabled]) .nova-radio__control[data-disabled] {
   opacity: 1;

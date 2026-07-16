@@ -37,17 +37,16 @@
   width: 18px;
   height: 11px;
   background: var(--hanabi-ink);
+  transition: opacity var(--hanabi-dur-pop) var(--hanabi-ease);
 }
 .hanabi-connector::before {
   content: "";
   position: absolute;
   background: var(--hanabi-connector-fill, var(--hanabi-surface));
 }
-.hanabi-connector[data-open] {
-  animation: hanabi-connector-in var(--hanabi-dur-pop) var(--hanabi-ease-out) both;
-}
-.hanabi-connector[data-closed] {
-  animation: hanabi-connector-out var(--hanabi-dur-pop) var(--hanabi-ease-out) both;
+.hanabi-pop[data-starting-style] ~ .hanabi-connector,
+.hanabi-pop[data-ending-style] ~ .hanabi-connector {
+  opacity: 0;
 }
 
 .hanabi-connector[data-side="top"] {
@@ -413,21 +412,6 @@
   z-index: 2;
   background: var(--hanabi-lockon);
   background-repeat: no-repeat;
-}
-
-@keyframes hanabi-connector-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hanabi-connector-out {
-  to {
-    opacity: 0;
-  }
 }
 
 @keyframes hanabi-lock-snap {

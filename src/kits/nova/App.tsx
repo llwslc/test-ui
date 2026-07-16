@@ -707,6 +707,7 @@ function Demo() {
             <div className="nova-section" id="radio">
               <Panel title="Radio Group" meta="RDO">
                 <div className="demo-stack">
+                  <span className="nova-cap">Drive mode</span>
                   <RadioGroup defaultValue="impulse">
                     <Radio value="impulse">Impulse Drive</Radio>
                     <Radio value="warp">Warp Field</Radio>
@@ -715,9 +716,10 @@ function Demo() {
                       Tow Cable (offline)
                     </Radio>
                   </RadioGroup>
-                  <RadioGroup defaultValue="auto">
+                  <span className="nova-cap">Autopilot (sealed)</span>
+                  <RadioGroup disabled defaultValue="auto">
                     <Radio value="manual">Manual override</Radio>
-                    <Radio value="auto" disabled>
+                    <Radio value="auto">
                       Autopilot (locked in)
                     </Radio>
                   </RadioGroup>

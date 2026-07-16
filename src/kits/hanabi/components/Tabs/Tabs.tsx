@@ -43,7 +43,6 @@ export function Tabs({
             {it.label}
           </BaseTabs.Tab>
         ))}
-        <BaseTabs.Indicator className="hanabi-tabs__indicator" />
       </BaseTabs.List>
       {items.map((it) => (
         <BaseTabs.Panel key={it.value} value={it.value} className="hanabi-tabs__panel">

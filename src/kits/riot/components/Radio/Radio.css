@@ -40,3 +40,6 @@
 .riot-radio__control[data-disabled] {
   opacity: var(--riot-disabled-opacity);
 }
+.riot-radio:has(.riot-radio__control:disabled, .riot-radio__control[data-disabled]) {
+  pointer-events: none;
+}

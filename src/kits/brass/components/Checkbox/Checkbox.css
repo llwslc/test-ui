@@ -45,7 +45,7 @@
   color: var(--brass-text-bright);
 }
 .brass-checkbox-field:has(.brass-checkbox[data-disabled]) {
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .brass-checkbox-field:has(.brass-checkbox[data-disabled]) .brass-checkbox-field__label {
   opacity: var(--brass-disabled-opacity);

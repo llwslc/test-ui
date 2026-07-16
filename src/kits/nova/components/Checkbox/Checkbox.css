@@ -85,7 +85,7 @@
 
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
   opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 .nova-checkbox-field .nova-checkbox[data-disabled] {
   opacity: 1;

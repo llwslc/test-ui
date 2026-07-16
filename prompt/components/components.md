@@ -85,7 +85,7 @@
 
 下面是统一约定的**行为和结构**；**所有配色留给 theme**。
 
-- **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 用「文字强调选中」——只换文字色、不填充；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样由 theme 定**。
+- **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 用「文字强调选中」——只换文字色、不填充；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样、或由选中形态自证而不设，由 theme 定**。
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**形变使命中盒移动超过 `1px` 时，`:active` 同时挂透明伪元素光环兜住命中盒——实按在钮上的点不因形变丢 click，**光环尺寸盖过自家位移、由 theme 定**。
@@ -135,7 +135,7 @@
 
 - **Progress**：props `label·showValue`；结构 `Root > head[label + Value 在右] + Track > Indicator`，Indicator 从左满宽推进。
 - **Meter**：同 Progress，加 props `tone`（`primary·success·warning·danger`），按 tone 重染。
-- **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。有一条选中指示，跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**这条指示长什么样、放哪条边，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏。
+- **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。选中指示默认一条、跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**指示长什么样、放哪条边、或由选中舌片形态自证而不设，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏。
 - **Accordion**：props `items·openMultiple`（默认 false）`·defaultValue`；用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**——缩进**公式直写** `calc(trigger 左内距 + marker 宽 + gap)`、引同一来源的值，marker 定宽（em 派生宽不进对齐链）；状态 +panel-open，指示物旋转；panel 高度过渡动画开合，时长各 kit 取自家时长档、落在 `0.15s`–`0.5s`。
 - **Collapsible**：props `title·defaultOpen`；折叠配方、缩进与状态同 Accordion。
 

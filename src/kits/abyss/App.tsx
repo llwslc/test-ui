@@ -840,6 +840,7 @@ function Demo() {
             <div className="abyss-section" id="radio">
               <Panel title="Radio Group" meta="RDO">
                 <div className="demo-stack">
+                  <span className="abyss-cap">Passage</span>
                   <RadioGroup defaultValue="tide">
                     <Radio value="tide">Walk the tide</Radio>
                     <Radio value="deep">Descend the deep</Radio>
@@ -848,9 +849,10 @@ function Demo() {
                       The sealed road
                     </Radio>
                   </RadioGroup>
-                  <RadioGroup defaultValue="current">
+                  <span className="abyss-cap">The current (sealed)</span>
+                  <RadioGroup disabled defaultValue="current">
                     <Radio value="oar">By oar</Radio>
-                    <Radio value="current" disabled>
+                    <Radio value="current">
                       The current (holds you)
                     </Radio>
                   </RadioGroup>

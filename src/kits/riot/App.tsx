@@ -553,6 +553,7 @@ function Demo() {
 
             <Panel id="radio" title="Radio Group" meta="RDO" tape="tl">
               <div className="riot-stack">
+                <span className="riot-cap">Typesetting</span>
                 <RadioGroup defaultValue="left">
                   <Radio value="left">Left align</Radio>
                   <Radio value="center">Center</Radio>
@@ -561,9 +562,10 @@ function Demo() {
                     Optical (offline)
                   </Radio>
                 </RadioGroup>
-                <RadioGroup defaultValue="xerox">
+                <span className="riot-cap">Xerox (locked)</span>
+                <RadioGroup disabled defaultValue="xerox">
                   <Radio value="hand">Hand-set</Radio>
-                  <Radio value="xerox" disabled>
+                  <Radio value="xerox">
                     Xerox (jammed on)
                   </Radio>
                 </RadioGroup>
