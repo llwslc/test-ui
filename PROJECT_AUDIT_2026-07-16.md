@@ -10,6 +10,8 @@
 
 本次没有修改业务代码。唯一新增文件是本报告。
 
+> **复核记录（2026-07-16，仓库维护会话）**：以下 13 项已逐条独立取证复核（重跑 audit／lint／prettier、通读涉事源码与门禁脚本、全仓 grep 核对），结论以「复核」引用块附于各发现末尾。总体：结论基本成立；两处事实细节修正（Q-02 类名分布、Q-06 漏计 bauhaus），一处评级对本机偏高（F-01 的 High 通告仅 Windows 宿主生效）。处置分档——立即修：F-02、Q-01、Q-02（工具侧）、Q-04、Q-05、Q-06b、Q-06c；裁量归用户：F-01、F-03（修法二选一）、Q-03（CI 与否）、Q-06a、Q-07；低优先或环境问题，暂不动：F-04、F-05、Q-08。
+
 ## 2. 立即处理事项
 
 1. 升级 Vite/esbuild 到 `npm audit` 不再报告相关通告的受支持版本，并把开发服务器默认绑定改为回环地址；需要局域网访问时再显式传 `--host`。
@@ -61,6 +63,8 @@
 - 安全复现：`npm audit --json`；检查 `vite.config.ts` 的 `host: true`。本次没有尝试利用漏洞。
 - 修复方向：升级到审计无通告的 Vite 版本并完成兼容性验证；默认省略 `host` 或写 `host: "127.0.0.1"`；需要外部访问时由开发者显式开启。
 
+> **复核：部分属实——事实成立，评级对本机偏高。**通告与 `host: true` 均核实（vite High `GHSA-fx2h-pf6j-xcff`＋moderate 两条、esbuild moderate 一条；修复线＝vite@8 breaking 升级）。但 High（`server.fs.deny` bypass）与 NTLMv2 两条仅 Windows 宿主生效，本仓 dev server 跑在 macOS，实际适用面＝两条 moderate 且仅开发期，生产依赖 0 通告。`host: true` 自 vite.config.ts 创建（7e5769e）即有，疑为真机／手机联调所需，收紧到 loopback 会断真机调试。处置：裁量——vite 8 升级另立任务验证六套构建；host 维持现状可接受（避免在不可信局域网跑 dev），或平时省略、需要时显式 `--host`。
+
 ### F-02 — Medium — 全量 QA 会覆盖渲染基线，可能把回归变成假绿
 
 - 位置：`.claude/skills/kit-qa/check.sh:34-56`、`.claude/skills/kit-qa/fingerprint.cjs:61-79`
@@ -70,6 +74,8 @@
 - 影响：本应由黄金基线拦截的回归被当前输出覆盖，CI/验收可显示 ALL PASS；这与 fingerprint 用来发现静态门禁盲区的目标相冲突。
 - 安全复现：阅读 runner 控制流；本次全量 QA 结束时实际打印了 `render baseline refreshed`。因为当前工作区起始干净且生成内容一致，最终没有产生 diff。
 - 修复方向：全量检查先执行无参数 fingerprint 比对；差异必须失败。把 `--update` 移出验收命令，仅保留为人工确认后的独立操作。CI 再加工作区必须干净的断言。
+
+> **复核：属实，采纳修复。**机制核实无误：`check.sh:18` 把 kit-qa 自身列入 SKIP → 全量从不跑 fingerprint 比对；`:52` ALL PASS 后无条件 `--update` 刷基线。补充语境：这是 kit-qa SKILL.md 写明的设计（「全量 check.sh ALL PASS 时自动刷基线」）而非事故，日常回归由 quick.sh 两个代码层必跑的 fingerprint 比对兜底；但它与 fingerprint.cjs 自身打印的合同（有意改动 → 动态门验收后手动 `--update`）相矛盾，跳过 quick 直跑全量的会话会把未复核漂移静默烙进基线。处置：修——全量把 fingerprint 比对当一门跑、红即 FAIL，`--update` 永远手动，SKILL.md 同步改。
 
 ### F-03 — Medium — 主题切换器声明为 listbox，但缺少必要键盘交互
 
@@ -81,6 +87,8 @@
 - 安全复现：打开切换器，聚焦第一个 option，依次按 ArrowDown、Escape，读取 `document.activeElement` 与 `aria-expanded`。
 - 修复方向：按 WAI-ARIA listbox/menu 模式实现键盘导航、焦点管理和关闭恢复；若不需要复合控件语义，使用普通按钮列表并移除错误角色。
 
+> **复核：属实。**Shell.tsx 通篇无键盘处理（无 onKeyDown、无 Escape 监听、无 roving focus），`role="listbox"/"option"` 承诺的方向键／Home/End／Escape／焦点管理全缺，与报告的浏览器复现一致。一处表述需校正：选项是原生 `<button>`，Tab＋Enter/Space 可正常选中，并非完全键盘不可用，缺的是 listbox 模式的合同部分。处置：修法二选一归用户——倾向补最小键盘模型（方向键循环、Escape 关闭并归焦触发器、Home/End），shell 是六套共用门面且 README 主打 accessible；退路为摘除 listbox/option 角色改普通按钮组。
+
 ### F-04 — Low — 主题选择对 `localStorage` 的访问没有降级路径
 
 - 位置：`src/shell/Shell.tsx:8-10`、`:28-35`
@@ -90,6 +98,8 @@
 - 影响：读取失败可在首屏渲染阶段抛异常并导致空白页；写入失败会使切换失效。
 - 修复方向：封装安全读写，失败时回退到默认 kit 和内存状态；不要让持久化失败阻断渲染。
 
+> **复核：属实，低优先。**`Shell.tsx:9` 渲染路径裸调 `localStorage.getItem`、`:33` 裸调 setItem，均无守护；`resolveKit` 只兜非法值、不兜访问抛错。触发面窄（沙箱 iframe／禁 Web Storage 策略下才炸）。处置：可修可缓，修＝safeGet／safeSet 数行、失败回退默认 kit。
+
 ### F-05 — Low — 发布页面依赖第三方字体和头像请求
 
 - 位置：`index.html:7-8`、`src/kits/*/theme/typography.css:1`、各 kit `App.tsx` 的 `i.pravatar.cc` 头像
@@ -98,6 +108,8 @@
 - 触发条件：部署后用户访问任一 kit。
 - 影响：访问者 IP、User-Agent 和来源信息会暴露给第三方；离线、受限网络或严格 CSP 下字体/头像退化。它也与页面展示的“0 Runtime Deps”容易形成误解。
 - 修复方向：用于正式发布时自托管字体和演示图片，增加明确 fallback 与 CSP；若只作为内部 demo，至少在 README 说明外部资源。
+
+> **复核：属实。**六套 typography.css 全部 `@import` Google Fonts、index.html preconnect、六套 App.tsx 各 2 处 pravatar，均核实。演示／评审定位下可接受；正式公网发布才是前置项（自托管字体＋本地头像＋fallback）。处置：挂发布清单，当前不动；「0 Runtime Deps」的文案张力见 Q-06 裁决。
 
 ## 5. Top 5 修复优先级
 
@@ -119,6 +131,8 @@
 - 该行 `ready to sortie` 中间是不间断空格，而规范 `prompt/app/theme/hanabi.md` 使用普通空格。
 - 构建仍通过，说明当前 release 流程没有把 lint 纳入 `build`。
 
+> **复核：属实，修码。**`App.tsx:393` 的 `to sortie` 之间是 U+00A0（hexdump `c2 a0`），spec（`prompt/app/theme/hanabi.md` hero 行）为普通空格，2d30457 手写引入、非有意排版；全仓 src 含 NBSP 的只有这一个文件，prompt 树干净。根因补充：eslint 不在任何门里（quick.sh／check.sh 均不含 lint），红灯无人看见。处置：改回普通空格；lint 是否挂进日常验收另裁。
+
 #### Q-02 — `kit-states` 与组件类名漂移，所有 kit 都漏掉菜单状态
 
 - 文档和脚本要求 `.<kit>-menu__popup`：`.claude/skills/kit-states/SKILL.md:21-24`、`states.cjs:132-140`。
@@ -126,12 +140,16 @@
 - 实测结果：6 套均只缺 `menu_open`，门禁退出 1；其余 84 张状态截图成功。
 - `kit-interact` 已验证菜单真实可打开，因此这是验收工具失效，不是菜单产品故障。
 
+> **复核：结论属实，事实细节需修正。**states.cjs:134 的 `.${kit}-menu__popup` 全仓 0 命中 → 六套齐漏 menu_open、纯工具失效，确认。但「6 套都使用 `-menu-pane`」不准：abyss／hanabi／nova／riot 用 theme 原语 `-menu-pane`（定义在各自 theme/effects.css），brass／bauhaus 的 Menu.Popup 只挂通用 popup 原语（如 `brass-plate brass-pop brass-popup brass-popup-list`）、无菜单专属类——按类名修选择器覆盖不了六套。处置：修工具——menu 行改语义定位 `[role="menu"]`（Base UI Menu.Popup 自带该角色，states.cjs 已有 `[role="switch"]` 先例，修时实测确认），kit-states SKILL.md:24 的 `-menu__popup` 表述同步改。
+
 #### Q-03 — 没有远端 CI，也没有统一只读测试入口
 
 - `package.json:7-14` 没有 `test`、`check`、`format:check` 或 `qa` 脚本；执行 `npm test` 返回 Missing script。
 - 仓库没有 `.github/workflows`。
 - 现有门禁数量很多，但远端提交不会自动执行；README 所述验收依赖维护者手工拼命令和本机 Chrome/`/tmp/pw` 状态。
 - 建议提供快速静态 CI 与可选浏览器 CI 两层，所有检查必须只读且可重复。
+
+> **复核：属实。**scripts 仅 dev/build/preview/typecheck/lint/lint:fix/format，无 test/check/format:check，无 `.github/workflows`，均核实。处置：分层裁量——本地只读一键入口（tsc＋eslint＋prettier --check＋静态门）成本低、建议加；远端 CI 归项目定位（浏览器动态门需 Chrome＋playwright-core 基建，上云成本高），由用户定。
 
 ### MINOR
 
@@ -148,10 +166,14 @@
 
 当前只有会写文件的 `npm run format`，没有只读 `format:check`。
 
+> **复核：属实，修。**六文件复现一致；逐一看过 diff，全部是 printWidth 90 的换行重排（riot Toast.css 的长 `calc` 一行、brass App.tsx 的 `actionProps` 对象等），无语义变化，皆为近期手写修复未跑 format 所留。处置：对这 6 个文件跑 scoped `prettier --write`（勿全仓跑，markdown 有既定豁免）；补只读 `format:check`，是否挂门另裁。
+
 #### Q-05 — README 对实际隔离机制和 Node 下限描述不准确
 
 - `README.md:5,24` 声称使用 `html[data-kit]` 且 `main.tsx` 会设置它；全仓库实际没有给 `html` 设置 `data-kit`。当前隔离依赖 lazy CSS 加载和切换时 `location.reload()`。
 - `README.md:16` 写 “Node 18+”；实际 ESLint `9.39.4` 和 typescript-eslint `8.60.1` 要求至少 Node `18.18.0`（或相应 20/21 版本）。`package.json` 也没有 `engines` 约束。
+
+> **复核：属实，修文。**全仓无 `data-kit`（仅 shell 按钮的 `data-kit-id` 属性），main.tsx 不设任何根属性；隔离实为懒加载＋`location.reload()`＋裸选择器（app.md 外壳段写明「各套 global.css 与演示页 helper 类用裸选择器、无作用域」）——README:5、:24 描述的是不存在的机制，属早期设计残句。Node 下限核实：eslint／typescript-eslint 引擎 `^18.18.0 || ^20.9.0 || >=21.1.0`，「Node 18+」不准。处置：README 两处据实改写；`engines` 字段可选。
 
 #### Q-06 — 规范、展示文案与依赖事实有多处轻微漂移
 
@@ -159,17 +181,23 @@
 - `prompt/app/app.md:124` 规定框架署名只在 footer；`src/kits/brass/App.tsx:375-377` 与 `src/kits/hanabi/App.tsx:395-397` 的 hero 仍写了 Base UI。
 - `.claude/skills/kit-qa/SKILL.md:44`、`kit-spec-props/SKILL.md:3` 和 `kit-skeleton/check.cjs:37` 仍写“5 kit/五套”，实际 registry 和基线已有 6 套。检查逻辑多数是动态发现，主要问题是文档和 PASS 输出误导。
 
+> **复核：三条分裁。**（a）`0 / Runtime Deps`：app.md:121 钉死的演示文案、六套一致渲染，与 3 个直接运行依赖字面相悖，本意应为「kit 自身在 Base UI 之外零额外运行时依赖」——改不改归用户，改则先改 app.md 措辞再六套同步，不算代码缺陷。（b）hero 框架署名：属实且漏计一处——除 brass:377、hanabi:397 外 bauhaus:363 同违（`a Bauhaus workshop rendered in Base UI`），3/6 违反 app.md「框架署名只出现在 footer」，nova／abyss／riot 合规；处置＝修码，三套 hero 尾句去框架名（theme 文档只钉关键词、无 Base UI 字样，动前再核 brass／bauhaus theme 原文）。（c）「5 kit／五套」：三处核实（kit-skeleton 仅 PASS 文案陈旧、枚举逻辑动态）；处置＝修文，按 prompt-lint 固定基数规则改无基数措辞（「全体 kit」），而非 5→6（下套 kit 又过期）。
+
 #### Q-07 — Hanabi 的日文内容没有语言标记
 
 - `index.html:2` 固定为 `<html lang="en">`。
 - Hanabi 的导航、表单、菜单和辅助文本大量为日文，例如 `src/kits/hanabi/App.tsx:77-84`，但页面或区域没有 `lang="ja"`。
 - 屏幕阅读器可能按英语发音。可在切换 kit 时同步根语言，或给 Hanabi 主区域加 `lang="ja"`，保留英语外壳子区域的 `lang="en"`。
 
+> **复核：属实，低优先。**index.html 固定 `lang="en"`，hanabi 章面大量日文零 lang 标注，registry 的 `KitDef` 亦无 lang 字段，均核实；且 hanabi 是日英混排（hero／数据条英文，导航／表单／菜单日文），单一根值两头都不完全对。处置：裁量——最小修＝hanabi App 根容器 `lang="ja"`＋英文大段（hero 文案块）局部 `lang="en"`，两个属性；或 registry 加 `lang` 由外壳写 `<html>`；或按演示定位豁免。
+
 #### Q-08 — `npm ls` 显示本地 `node_modules` 有多项 extraneous 包
 
 - 本次环境包含 `@yarnpkg/lockfile`、`patch-package`、`fs-extra` 等未声明包。
 - 已审查的仓库脚本没有依赖这些第三方包，构建依赖仍来自 lockfile；这更像本地安装目录污染，不是提交内容漏洞。
 - CI 应使用干净 checkout + `npm ci`，避免本机残留让检查产生不可复现结果。
+
+> **复核：属实，非仓库问题。**extraneous 皆为 patch-package 依赖簇（@yarnpkg/lockfile、find-yarn-workspace-root、fs-extra、ci-info…），应为某次 `--no-save` 安装或外部工具写入本机 node_modules；lockfile 与工作区未被波及（git 状态干净）。处置：本机 `rm -rf node_modules && npm ci` 即净，仓库零改动。
 
 ## 7. 运行结果
 
