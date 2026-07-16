@@ -55,8 +55,8 @@ export function Popover({
               </BasePopover.Title>
             ) : null}
             <div className="hanabi-popover__body">{children}</div>
-            <BasePopover.Arrow className="hanabi-connector" />
           </BasePopover.Popup>
+          <BasePopover.Arrow className="hanabi-connector" />
         </BasePopover.Positioner>
       </BasePopover.Portal>
     </BasePopover.Root>

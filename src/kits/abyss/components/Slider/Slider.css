@@ -61,8 +61,7 @@
 .abyss-slider__thumb:hover {
   transform: scale(1.12);
 }
-.abyss-slider__thumb:focus-visible {
-  outline: none;
+.abyss-slider__thumb:has(:focus-visible) {
   box-shadow:
     0 0 0 4px var(--abyss-glow-a30),
     0 0 13px var(--abyss-glow-a70);

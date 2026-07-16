@@ -49,9 +49,6 @@
   line-height: var(--hanabi-lh-100);
 }
 
-.hanabi-avatar--sm .hanabi-avatar__fallback {
-  font-size: var(--hanabi-fs-12);
-}
 .hanabi-avatar--lg .hanabi-avatar__fallback {
   font-size: var(--hanabi-fs-22);
 }

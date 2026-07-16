@@ -53,7 +53,7 @@
   box-shadow: var(--riot-shadow-sm);
   transform: rotate(calc(-1 * var(--riot-rot-6)));
 }
-.riot-slider__thumb:focus-visible {
+.riot-slider__thumb:has(:focus-visible) {
   outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 3px;
 }

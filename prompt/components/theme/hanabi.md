@@ -19,7 +19,7 @@
 - CheckboxGroup：父子竖排，items 左缩进，引导线是 `2px dashed tone` 缝纫虚线。
 - Radio：`ink` 描线正圆 + 微阶影带；选中 = `primary` 实心圆芯 + 左上白高光点，`box-pop` 弹入；行标签走 `.hanabi-cap`。
 - ToggleGroup：分段条家族——不画外箱体，chip 药丸散排（`r-pill`）、各带 `ink` 框 + `shadow-sm`，文字正文体 `fw-700`；选中态见 §1「分段选中」。
-- Slider：轨 `r-pill` `ink` 框 + inset 阶影，indicator `primary` 平涂；thumb 是**准星**——白圆 `ink` 框 + `primary` 中心点 + 上下左右四根 `ink` 刻度线，hover 放大一步，拖动中锁定框常亮；数值走 DotGothic16 `primary-deep`。
+- Slider：轨 `r-pill` `ink` 框 + inset 阶影，indicator `primary` 平涂；thumb 是**准星**——白圆 `ink` 框 + `primary` 中心点 + 上下左右四根 `ink` 刻度线，hover 放大一步，拖动与键盘焦点点亮 2px `primary` 锁定环；数值走 DotGothic16 `primary-deep`。
 - NumberField：`减·输入·加` 三连——步进钮是 `cel` 方钮（display 体符号、`shadow-sm`、hover 盖 wash），中间输入位 mono 体居中；到界的步进钮按禁用态置灰。
 - Input/Field：`cel` 底 + `ink` 框 + inset `tone` 阶影（纸下垫着的凹感）；聚焦见 §1；描述行 `dim`、错误行 `danger` 红字，错误态整框 border 转 `danger`。
 - OtpField：cell 是等宽赛璐璐方格（`r-field` + `shadow-sm`），分隔处一枚 `tone-deep` ✦；filled cell 字转 `primary-deep`，focus cell 框转 `primary`。
@@ -34,13 +34,13 @@
 - Accordion：折叠配方——trigger 行 marker 是 `primary` ✦（定宽）、title 正文体 `fw-700`、chevron `primary` ▼ 开态翻转；panel content 按缩进公式对齐 title；trigger hover 盖 wash。
 - Collapsible：复用 Accordion 折叠皮。
 - Tooltip：反色小牌——`ink` 墨蓝底 + `text-invert` 白字（fs-13）、`r-field` 圆角、无框线，connector 三角同 `ink` 填。
-- Popover：`cel` 面 + `ink` 框 + `shadow` 阶影带；title 做成骑左上角的 `primary` 斜切铭牌（display 体白字、`shadow-sm`），铭牌压 connector 之上（窄屏三角挪到左上不切牌），close 复用 icon-ghost。
+- Popover：`cel` 面 + `ink` 框 + `shadow` 阶影带；title 做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字、`shadow-sm`），铭牌压 connector 之上（窄屏三角挪到左上不切牌），close 复用 icon-ghost。
 - PreviewCard：皮同 Popover（无题牌），身份行 display 体 + `.hanabi-cap` 注记。
 - Menu：列表项皮肤复用 Select；图标 `dim` 随高亮转 `bright`；快捷键 DotGothic16 `mute` 靠右；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
 - NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉 = `cel` 面 + `ink` 框 + `shadow`，connector 三角指向激活触发器、随 morph 移动；链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
 - ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
-- Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）、body 顶部让位；backdrop = `scrim` + `primary` 半调网点。
+- Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字）、body 顶部让位；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——题牌与确认钮同取 tone（danger 红、warning 金、primary 粉），题牌白字（warning 取 `on-warning`）、题牌前缀一枚 tone 图记 ⚠。
 - Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题牌同 Dialog；body 自滚动、行距 `space-4`。
 - Toast：锚右下角、竖排整列常显、条间距 `space-3`；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。

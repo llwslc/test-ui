@@ -89,6 +89,8 @@
 .hanabi-drawer__title {
   align-self: flex-start;
   margin: 0 0 var(--hanabi-space-3);
+  font-family: var(--hanabi-font);
+  font-weight: var(--hanabi-fw-900);
 }
 
 .hanabi-drawer__body {

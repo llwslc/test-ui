@@ -43,8 +43,7 @@
 .brass-slider__thumb[data-dragging] {
   filter: var(--brass-glow-active);
 }
-.brass-slider__thumb:focus-visible {
-  outline: none;
+.brass-slider__thumb:has(:focus-visible) {
   filter: var(--brass-glow-focus);
 }
 .brass-slider[data-disabled] {

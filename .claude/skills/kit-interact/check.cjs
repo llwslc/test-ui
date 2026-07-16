@@ -374,6 +374,39 @@ const setKit = async (page, kit) => {
       await cdp.detach().catch(() => {});
       if (drift.length) out.push(`HIGH  ${kit}  ${drift.length} selected control(s) change look on hover — selected/open fill loses to :hover; wrap the hover disabled-guard in :where() so it can't out-specify [data-pressed]: ${[...new Set(drift)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  selected-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    // slider keyboard focus must LIGHT the thumb — Base UI focuses a hidden <input> INSIDE
+    // the thumb div, so a ring keyed to `.thumb:focus-visible` can never match (the div is
+    // not the focus target); key it on .thumb:has(:focus-visible). Force :focus-visible on
+    // the inner input via CDP and require a visual delta on the thumb.
+    try {
+      const cdp = await d.context().newCDPSession(d);
+      await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
+      const marked = await d.evaluate(() => {
+        const t = [...document.querySelectorAll('[class*="slider__thumb"]')].find((el) => el.querySelector('input') && !el.closest('[data-disabled]'));
+        if (!t) return false;
+        t.setAttribute('data-focchk', '1');
+        return true;
+      });
+      if (marked) {
+        const sigF = (el) => {
+          const c = getComputedStyle(el);
+          return [c.outlineStyle, c.outlineWidth, c.outlineColor, c.boxShadow, c.filter, c.scale, c.transform, c.backgroundColor, c.borderTopColor].join('|');
+        };
+        const el = await d.$('[data-focchk="1"]');
+        const before = await el.evaluate(sigF);
+        const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
+        const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: '[data-focchk="1"] input' });
+        if (nodeId) {
+          await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: ['focus', 'focus-visible'] });
+          await d.waitForTimeout(80);
+          const after = await el.evaluate(sigF);
+          await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
+          if (before === after) out.push(`HIGH  ${kit}  slider: keyboard focus shows NO visible state on the thumb — Base UI focuses the hidden <input> inside the thumb, so :focus-visible on the thumb div never matches; key the ring on .thumb:has(:focus-visible)`);
+        }
+        await d.evaluate(() => { const t = document.querySelector('[data-focchk]'); if (t) t.removeAttribute('data-focchk'); });
+      }
+      await cdp.detach().catch(() => {});
+    } catch (e) { out.push(`WARN  ${kit}  slider-focus: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     // open-state chevron: §6.1 pins the Select / NavigationMenu chevron to flip 180° on
     // open, and the standalone Menu trigger to carry a rotating chevron. A missing state
     // rule is invisible to every static gate — riot's Menu chevron never rotated because

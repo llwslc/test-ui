@@ -24,7 +24,7 @@
 
 ## 2. 字体与排版
 
-- 字体：display（海报粗黑）用 **Dela Gothic One**（日文全字形），正文用 **Noto Sans JP**，数据刻度／注记（mono 槽）用像素体 **DotGothic16**。展示体只用于字形安全的串（拉丁、假名、日文形汉字）。
+- 字体：display（海报粗黑）用 **Dela Gothic One**（日文全字形），正文用 **Noto Sans JP**，数据刻度／注记（mono 槽）用像素体 **DotGothic16**。展示体只用于字形安全的串（拉丁、假名、日文形汉字），且和文串不小于 `fs-14`——更小号的和文标签、题牌走正文 `fw-700`／`fw-900`。
 - 尺度各档：字号 `fs-10 / 12 / 13 / 14 / 16 / 22 / 40`，字距 `ls-1 .02em / ls-2 .08em`，行高 `lh-100 / 135 / 160`，字重 `fw-400 / 500 / 700 / 900`。
 - 三档标题：`h1` = display · fs-40 · lh-100 · ls-1 · bright；`h2` = display · fs-22 · lh-135 · bright；`h3` = 正文体 · fs-14 · fw-900 · ls-2 · 大写 · bright。正文 `text` = Noto Sans JP · fs-14 · lh-160 · text。修饰类 `h1--accent` = 强调词转 `primary` + `4px 4px 0 tone` 硬字影（赛璐璐大字的上色法）。
 - 字段标签 caption 有独立类 **`.hanabi-cap`**：DotGothic16 · fs-13 · 大写 · ls-2 · dim——像素注记体的仪表标签，组件统一引用。

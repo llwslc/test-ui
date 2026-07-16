@@ -39,7 +39,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 0;
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
   pointer-events: none;
@@ -89,7 +89,8 @@
   scale: 1.12;
 }
 
-.hanabi-slider__thumb:focus-visible {
+.hanabi-slider__thumb:has(:focus-visible),
+.hanabi-slider__thumb[data-dragging] {
   outline: var(--hanabi-line-w) solid var(--hanabi-primary);
   outline-offset: 2px;
 }

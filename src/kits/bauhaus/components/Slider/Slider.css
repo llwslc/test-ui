@@ -49,8 +49,7 @@
 .bauhaus-slider__thumb[data-dragging] {
   cursor: grabbing;
 }
-.bauhaus-slider__thumb:focus-visible {
-  outline: none;
+.bauhaus-slider__thumb:has(:focus-visible) {
   box-shadow: var(--bauhaus-ring);
 }
 .bauhaus-slider[data-disabled] {
