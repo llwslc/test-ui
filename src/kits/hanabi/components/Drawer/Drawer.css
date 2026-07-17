@@ -87,23 +87,15 @@
 }
 
 .hanabi-drawer__titlerow {
-  position: relative;
   display: flex;
-  margin: 0 0 var(--hanabi-space-3);
-}
-.hanabi-drawer__titlerow::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: calc(-1 * var(--hanabi-space-5));
-  left: calc(-1 * var(--hanabi-space-5));
-  height: var(--hanabi-line-w);
-  margin-top: calc(-0.5 * var(--hanabi-line-w));
-  background: var(--hanabi-ink);
+  margin: 0 calc(-1 * var(--hanabi-space-5)) var(--hanabi-space-5);
+  padding: 0 var(--hanabi-space-5);
+  border-bottom: var(--hanabi-line-w) solid var(--hanabi-ink);
 }
 
 .hanabi-drawer__title {
   margin: 0;
+  translate: 0 50%;
   font-family: var(--hanabi-font);
   font-weight: var(--hanabi-fw-900);
 }
