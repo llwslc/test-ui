@@ -2,12 +2,13 @@ import type { SVGProps, ReactNode } from "react";
 
 type IconProps = SVGProps<SVGSVGElement> & { children?: ReactNode };
 
-function base({ children, ...props }: IconProps) {
+function base(viewBox: string, { children, ...props }: IconProps) {
+  const [, , w, h] = viewBox.split(" ").map(Number);
   return (
     <svg
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
+      viewBox={viewBox}
+      width={`${w / 24}em`}
+      height={`${h / 24}em`}
       fill="none"
       stroke="currentColor"
       strokeWidth={1.7}
@@ -22,24 +23,25 @@ function base({ children, ...props }: IconProps) {
 }
 
 export const Check = (p: IconProps) =>
-  base({ ...p, children: <path d="M4.5 12.5 9.5 18 20 6.5" /> });
+  base("3.65 5.65 17.2 13.2", { ...p, children: <path d="M4.5 12.5 9.5 18 20 6.5" /> });
 
 export const Close = (p: IconProps) =>
-  base({ ...p, children: <path d="M6 6 18 18M18 6 6 18" /> });
+  base("5.15 5.15 13.7 13.7", { ...p, children: <path d="M6 6 18 18M18 6 6 18" /> });
 
 export const ChevronDown = (p: IconProps) =>
-  base({ ...p, children: <path d="m6 9 6 6 6-6" /> });
+  base("5.15 8.15 13.7 7.7", { ...p, children: <path d="m6 9 6 6 6-6" /> });
 
 export const ChevronRight = (p: IconProps) =>
-  base({ ...p, children: <path d="m9 6 6 6-6 6" /> });
+  base("8.15 5.15 7.7 13.7", { ...p, children: <path d="m9 6 6 6-6 6" /> });
 
 export const Plus = (p: IconProps) =>
-  base({ ...p, children: <path d="M12 5v14M5 12h14" /> });
+  base("4.15 4.15 15.7 15.7", { ...p, children: <path d="M12 5v14M5 12h14" /> });
 
-export const Minus = (p: IconProps) => base({ ...p, children: <path d="M5 12h14" /> });
+export const Minus = (p: IconProps) =>
+  base("4.15 11.15 15.7 1.7", { ...p, children: <path d="M5 12h14" /> });
 
 export const Search = (p: IconProps) =>
-  base({
+  base("3.65 3.65 17.2 17.2", {
     ...p,
     children: (
       <>
@@ -50,13 +52,13 @@ export const Search = (p: IconProps) =>
   });
 
 export const Dot = (p: IconProps) =>
-  base({
+  base("8 8 8 8", {
     ...p,
     children: <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />,
   });
 
 export const Copy = (p: IconProps) =>
-  base({
+  base("4.15 3.15 16.7 17.7", {
     ...p,
     children: (
       <>
@@ -67,7 +69,7 @@ export const Copy = (p: IconProps) =>
   });
 
 export const Clock = (p: IconProps) =>
-  base({
+  base("2.65 2.65 18.7 18.7", {
     ...p,
     children: (
       <>
@@ -78,7 +80,7 @@ export const Clock = (p: IconProps) =>
   });
 
 export const Gear = (p: IconProps) =>
-  base({
+  base("1.75 1.75 20.5 20.5", {
     ...p,
     children: (
       <>
@@ -89,7 +91,7 @@ export const Gear = (p: IconProps) =>
   });
 
 export const Gauge = (p: IconProps) =>
-  base({
+  base("2.65 7.65 18.7 10.75", {
     ...p,
     children: (
       <>
@@ -101,7 +103,7 @@ export const Gauge = (p: IconProps) =>
   });
 
 export const Valve = (p: IconProps) =>
-  base({
+  base("2.65 2.65 18.7 18.7", {
     ...p,
     children: (
       <>
@@ -113,10 +115,13 @@ export const Valve = (p: IconProps) =>
   });
 
 export const Bolt = (p: IconProps) =>
-  base({ ...p, children: <path d="M13 2.5 5 13.5h6L11 21.5l8-11h-6z" /> });
+  base("4.15 1.65 15.7 20.7", {
+    ...p,
+    children: <path d="M13 2.5 5 13.5h6L11 21.5l8-11h-6z" />,
+  });
 
 export const Pipe = (p: IconProps) =>
-  base({
+  base("2.15 5.65 20.2 16.2", {
     ...p,
     children: (
       <>
