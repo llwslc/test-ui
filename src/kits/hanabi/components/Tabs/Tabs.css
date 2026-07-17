@@ -33,7 +33,6 @@
   transition:
     background var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out),
-    padding-top var(--hanabi-dur) var(--hanabi-ease-out),
     translate var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
