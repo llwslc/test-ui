@@ -10,6 +10,7 @@
 .riot-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
+  justify-content: center;
   width: var(--riot-fs-18);
   color: var(--riot-text-dim);
 }

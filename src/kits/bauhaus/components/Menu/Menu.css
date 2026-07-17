@@ -19,6 +19,8 @@
 .bauhaus-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
+  justify-content: center;
+  width: var(--bauhaus-fs-18);
   font-size: var(--bauhaus-fs-18);
   color: var(--bauhaus-text-dim);
 }

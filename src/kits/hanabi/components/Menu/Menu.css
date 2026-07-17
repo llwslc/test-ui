@@ -16,6 +16,8 @@
 .hanabi-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
+  justify-content: center;
+  width: var(--hanabi-fs-14);
   color: var(--hanabi-text-dim);
   font-size: var(--hanabi-fs-14);
 }

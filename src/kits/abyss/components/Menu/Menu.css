@@ -43,6 +43,8 @@
 .abyss-menu__icon {
   flex: 0 0 auto;
   display: inline-flex;
+  justify-content: center;
+  width: var(--abyss-fs-16);
   font-size: var(--abyss-fs-16);
   color: var(--abyss-text-mute);
   transition: color var(--abyss-dur) var(--abyss-ease);

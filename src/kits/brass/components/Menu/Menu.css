@@ -17,6 +17,7 @@
 .brass-menu__icon {
   display: inline-flex;
   flex: 0 0 auto;
+  justify-content: center;
   width: var(--brass-fs-15);
   color: var(--brass-text-dim);
   transition: color var(--brass-dur) var(--brass-ease);

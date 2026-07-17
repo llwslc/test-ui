@@ -40,6 +40,8 @@
 .nova-menu__icon {
   flex: 0 0 auto;
   display: inline-flex;
+  justify-content: center;
+  width: var(--nova-fs-16);
   font-size: var(--nova-fs-16);
   color: var(--nova-text-mute);
   transition: color var(--nova-dur) var(--nova-ease);
