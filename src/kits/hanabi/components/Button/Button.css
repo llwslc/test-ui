@@ -3,7 +3,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--hanabi-space-2);
+  gap: var(--hanabi-space-1);
   height: var(--hanabi-control-h);
   padding: 0 var(--hanabi-space-4);
   background: var(--hanabi-surface);

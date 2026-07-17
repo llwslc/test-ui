@@ -39,7 +39,7 @@
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: var(--abyss-space-2);
+  gap: var(--abyss-space-1);
 }
 .abyss-btn__icon {
   display: inline-flex;

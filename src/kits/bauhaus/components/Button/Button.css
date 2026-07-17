@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--bauhaus-space-2);
+  gap: var(--bauhaus-space-1);
   height: var(--bauhaus-control-h);
   padding: 0 var(--bauhaus-space-4);
   font-family: var(--bauhaus-font);

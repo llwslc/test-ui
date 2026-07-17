@@ -59,7 +59,7 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: var(--nova-space-2);
+  gap: var(--nova-space-1);
 }
 .nova-btn__icon {
   display: inline-flex;

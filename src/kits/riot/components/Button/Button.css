@@ -22,7 +22,7 @@
 .riot-btn__label {
   display: inline-flex;
   align-items: center;
-  gap: var(--riot-space-2);
+  gap: var(--riot-space-1);
 }
 .riot-btn__icon {
   display: inline-flex;

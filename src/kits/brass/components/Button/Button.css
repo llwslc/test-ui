@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--brass-space-2);
+  gap: var(--brass-space-1);
   height: var(--brass-control-h);
   padding: 0 var(--brass-space-4);
   font-family: var(--brass-font-mono);
