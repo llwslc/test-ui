@@ -32,7 +32,7 @@ const SCAN = (rootSel) => {
     const gr = glyph.getBoundingClientRect();
     if (gr.width >= 44 || gr.height >= 52) continue;
     if (gr.left - tr.left > 26) continue;
-    const tw = document.createTreeWalker(t, NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP });
+    const tw = document.createTreeWalker(t, NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.textContent.trim() && !glyph.contains(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP });
     const tn = tw.nextNode();
     if (!tn) continue;
     const rg = document.createRange();
