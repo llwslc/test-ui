@@ -521,9 +521,7 @@ function Demo() {
                 <span className="bauhaus-cap">Kerning (locked)</span>
                 <RadioGroup disabled defaultValue="metric">
                   <Radio value="manual">Manual kerning</Radio>
-                  <Radio value="metric">
-                    Metric (locked)
-                  </Radio>
+                  <Radio value="metric">Metric (locked)</Radio>
                 </RadioGroup>
               </div>
             </Panel>

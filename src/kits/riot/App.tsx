@@ -565,9 +565,7 @@ function Demo() {
                 <span className="riot-cap">Xerox (locked)</span>
                 <RadioGroup disabled defaultValue="xerox">
                   <Radio value="hand">Hand-set</Radio>
-                  <Radio value="xerox">
-                    Xerox (jammed on)
-                  </Radio>
+                  <Radio value="xerox">Xerox (jammed on)</Radio>
                 </RadioGroup>
               </div>
             </Panel>

@@ -719,9 +719,7 @@ function Demo() {
                   <span className="nova-cap">Autopilot (sealed)</span>
                   <RadioGroup disabled defaultValue="auto">
                     <Radio value="manual">Manual override</Radio>
-                    <Radio value="auto">
-                      Autopilot (locked in)
-                    </Radio>
+                    <Radio value="auto">Autopilot (locked in)</Radio>
                   </RadioGroup>
                 </div>
               </Panel>

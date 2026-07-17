@@ -11,6 +11,7 @@ has() { echo "$FILES" | grep -Eq "$1"; }
 RUN=""; SKIP_NOTE=""
 
 has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync"
+RUN="$RUN eslint format-check"
 if has '\.tsx?$'; then
   RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states fingerprint"
 fi
@@ -25,6 +26,8 @@ fail=0
 for g in $RUN; do
   case $g in
     tsc) npx tsc --noEmit >/tmp/kq-tsc.log 2>&1; rc=$?;;
+    eslint) npm run lint >/tmp/kq-eslint.log 2>&1; rc=$?;;
+    format-check) npm run format:check >/tmp/kq-format-check.log 2>&1; rc=$?;;
     prompt-lint) bash .claude/skills/prompt-lint/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
     kit-lint) : >/tmp/kq-$g.log; for k in src/kits/*/; do k=$(basename "$k"); bash .claude/skills/kit-lint/check.sh "$k" >>/tmp/kq-$g.log 2>&1 || rc=1; done; rc=${rc:-0};;
     kit-visual) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;

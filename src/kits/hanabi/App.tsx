@@ -552,9 +552,7 @@ function Demo() {
                 <span className="hanabi-cap">照準モード（封印）</span>
                 <RadioGroup disabled defaultValue="auto">
                   <Radio value="manual">手動照準</Radio>
-                  <Radio value="auto">
-                    自動追尾（固定）
-                  </Radio>
+                  <Radio value="auto">自動追尾（固定）</Radio>
                 </RadioGroup>
               </div>
             </Panel>

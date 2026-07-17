@@ -852,9 +852,7 @@ function Demo() {
                   <span className="abyss-cap">The current (sealed)</span>
                   <RadioGroup disabled defaultValue="current">
                     <Radio value="oar">By oar</Radio>
-                    <Radio value="current">
-                      The current (holds you)
-                    </Radio>
+                    <Radio value="current">The current (holds you)</Radio>
                   </RadioGroup>
                 </div>
               </Panel>

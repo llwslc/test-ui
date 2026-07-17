@@ -12,6 +12,8 @@
 
 > **复核记录（2026-07-16，仓库维护会话）**：以下 13 项已逐条独立取证复核（重跑 audit／lint／prettier、通读涉事源码与门禁脚本、全仓 grep 核对），结论以「复核」引用块附于各发现末尾。总体：结论基本成立；两处事实细节修正（Q-02 类名分布、Q-06 漏计 bauhaus），一处评级对本机偏高（F-01 的 High 通告仅 Windows 宿主生效）。处置分档——立即修：F-02、Q-01、Q-02（工具侧）、Q-04、Q-05、Q-06b、Q-06c；裁量归用户：F-01、F-03（修法二选一）、Q-03（CI 与否）、Q-06a、Q-07；低优先或环境问题，暂不动：F-04、F-05、Q-08。
 
+> **处置记录（2026-07-17，用户指令批量清账）**：**已修 9 项**——F-02（全量 runner 指纹改比对门、`--update` 永远手动）、F-03（切换器补 listbox 最小键盘模型）、F-04（localStorage safeGet/safeSet）、Q-01（NBSP→普通空格，lint 转绿）、Q-02（kit-states menu 行改 `[role="menu"]`）、Q-04（prettier scoped 清账＋`format`/`format:check` 收窄到 src、`engines` 钉版）、Q-05（README 隔离机制与 Node 下限据实改写）、Q-06 三条（数据条改 `0 / Extra Deps`＋三处 hero 去框架署名＋「五套」改无基数）、Q-07（hanabi 根容器 `lang="ja"`＋hero 块 `lang="en"`），主体在 308e3b1。**裁量未动**——F-01（vite 8 升级另立任务；`host` 维持）、Q-03（远端 CI 未建）。**按裁决保持不动**——F-05（挂发布清单）、Q-08（本机 `npm ci` 即净，仓库零改动）。**根因加固**——Q-01/Q-04 的病根「lint/format 不在任何门里」已焊死：kit-qa quick.sh 常跑 `eslint`＋`format:check`（当日 Q-04 曾复发 6 文件，由此杜绝）。
+
 ## 2. 立即处理事项
 
 1. 升级 Vite/esbuild 到 `npm audit` 不再报告相关通告的受支持版本，并把开发服务器默认绑定改为回环地址；需要局域网访问时再显式传 `--host`。

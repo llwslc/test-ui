@@ -529,9 +529,7 @@ function Demo() {
                 <span className="brass-cap">Governor (sealed)</span>
                 <RadioGroup disabled defaultValue="governor">
                   <Radio value="hand">Hand brake</Radio>
-                  <Radio value="governor">
-                    Governor (locked)
-                  </Radio>
+                  <Radio value="governor">Governor (locked)</Radio>
                 </RadioGroup>
               </div>
             </Panel>
