@@ -39,3 +39,7 @@
   outline: 2px solid var(--hanabi-primary);
   outline-offset: 2px;
 }
+
+.hanabi-context__zone[data-disabled] {
+  opacity: var(--hanabi-disabled-opacity);
+}

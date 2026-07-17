@@ -14,15 +14,17 @@ export interface ContextMenuProps extends Omit<
 }
 
 export function ContextMenu({
+  disabled,
   trigger,
   children,
   className,
   ...props
 }: ContextMenuProps) {
   return (
-    <BaseContextMenu.Root {...props}>
+    <BaseContextMenu.Root disabled={disabled} {...props}>
       <BaseContextMenu.Trigger
-        tabIndex={0}
+        data-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => {
           if ((e.shiftKey && e.key === "F10") || e.key === "ContextMenu") {
             e.preventDefault();

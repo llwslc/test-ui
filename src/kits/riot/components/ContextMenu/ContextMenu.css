@@ -15,3 +15,7 @@
   outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: calc(-1 * var(--riot-stroke));
 }
+
+.riot-context__zone[data-disabled] {
+  opacity: var(--riot-disabled-opacity);
+}
