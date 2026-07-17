@@ -86,15 +86,8 @@
   border-radius: var(--hanabi-r-modal) var(--hanabi-r-modal) 0 0;
 }
 
-.hanabi-drawer__titlerow {
-  display: flex;
-  margin: 0 calc(-1 * var(--hanabi-space-5)) var(--hanabi-space-5);
-  padding: 0 var(--hanabi-space-5) var(--hanabi-space-2);
-  border-bottom: var(--hanabi-line-w) solid var(--hanabi-ink);
-}
-
 .hanabi-drawer__title {
-  margin: 0;
+  margin: 0 0 var(--hanabi-space-2);
   font-family: var(--hanabi-font);
   font-size: var(--hanabi-fs-22);
   font-weight: var(--hanabi-fw-900);

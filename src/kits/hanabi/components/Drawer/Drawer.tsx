@@ -60,14 +60,12 @@ export function Drawer({
                 }
               />
               {title != null ? (
-                <div className="hanabi-drawer__titlerow">
-                  <BaseDrawer.Title className="hanabi-drawer__title">
-                    <span className="hanabi-modal__sigil" aria-hidden="true">
-                      ✦
-                    </span>
-                    {title}
-                  </BaseDrawer.Title>
-                </div>
+                <BaseDrawer.Title className="hanabi-drawer__title">
+                  <span className="hanabi-modal__sigil" aria-hidden="true">
+                    ✦
+                  </span>
+                  {title}
+                </BaseDrawer.Title>
               ) : null}
               {description != null ? (
                 <BaseDrawer.Description className="hanabi-modal-desc">
