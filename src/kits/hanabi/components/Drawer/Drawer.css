@@ -89,15 +89,20 @@
 .hanabi-drawer__titlerow {
   display: flex;
   margin: 0 calc(-1 * var(--hanabi-space-5)) var(--hanabi-space-5);
-  padding: 0 var(--hanabi-space-5);
+  padding: 0 var(--hanabi-space-5) var(--hanabi-space-2);
   border-bottom: var(--hanabi-line-w) solid var(--hanabi-ink);
 }
 
 .hanabi-drawer__title {
   margin: 0;
-  translate: 0 50%;
-  font-family: var(--hanabi-font);
-  font-weight: var(--hanabi-fw-900);
+  font-family: var(--hanabi-font-display);
+  font-size: var(--hanabi-fs-16);
+  font-weight: var(--hanabi-fw-400);
+  letter-spacing: var(--hanabi-ls-1);
+  color: var(--hanabi-text-bright);
+}
+.hanabi-drawer__title .hanabi-modal__sigil {
+  color: var(--hanabi-primary);
 }
 
 .hanabi-drawer__body {

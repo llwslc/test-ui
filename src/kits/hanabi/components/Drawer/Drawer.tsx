@@ -61,7 +61,7 @@ export function Drawer({
               />
               {title != null ? (
                 <div className="hanabi-drawer__titlerow">
-                  <BaseDrawer.Title className="hanabi-plate hanabi-drawer__title">
+                  <BaseDrawer.Title className="hanabi-drawer__title">
                     <span className="hanabi-modal__sigil" aria-hidden="true">
                       ✦
                     </span>

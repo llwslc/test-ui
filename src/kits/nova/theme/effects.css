@@ -168,7 +168,7 @@
     color-mix(in srgb, var(--nova-title-color, var(--nova-primary)) 55%, transparent);
 }
 .nova-modal-desc {
-  margin: 0 0 var(--nova-space-4);
+  margin: 0 0 var(--nova-space-5);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);

@@ -222,7 +222,7 @@
 }
 
 .hanabi-modal-desc {
-  margin: 0 0 var(--hanabi-space-3);
+  margin: 0 0 var(--hanabi-space-5);
   font-size: var(--hanabi-fs-13);
   line-height: var(--hanabi-lh-160);
   color: var(--hanabi-text-dim);

@@ -204,7 +204,7 @@
     color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
 }
 .abyss-modal-desc {
-  margin: 0 0 var(--abyss-space-4);
+  margin: 0 0 var(--abyss-space-5);
   color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
