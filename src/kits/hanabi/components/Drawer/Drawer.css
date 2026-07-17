@@ -95,10 +95,10 @@
 
 .hanabi-drawer__title {
   margin: 0;
-  font-family: var(--hanabi-font-display);
-  font-size: var(--hanabi-fs-16);
-  font-weight: var(--hanabi-fw-400);
-  letter-spacing: var(--hanabi-ls-1);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  font-weight: var(--hanabi-fw-900);
+  letter-spacing: var(--hanabi-ls-2);
   color: var(--hanabi-text-bright);
 }
 .hanabi-drawer__title .hanabi-modal__sigil {

@@ -421,3 +421,7 @@
     transition: none;
   }
 }
+
+.bauhaus-stack > .bauhaus-cap {
+  margin-bottom: calc(-1 * var(--bauhaus-space-1));
+}

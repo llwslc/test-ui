@@ -579,3 +579,7 @@ kbd {
     display: none;
   }
 }
+
+.demo-stack > .abyss-cap {
+  margin-bottom: calc(-1 * var(--abyss-space-2));
+}

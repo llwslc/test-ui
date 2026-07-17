@@ -596,3 +596,7 @@ kbd {
     display: none;
   }
 }
+
+.demo-stack > .nova-cap {
+  margin-bottom: calc(-1 * var(--nova-space-1));
+}

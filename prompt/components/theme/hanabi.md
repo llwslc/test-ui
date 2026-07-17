@@ -43,7 +43,7 @@
 - ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
 - Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字）、body 顶部让位到 close 之下；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——题牌与确认钮同取 tone（danger 红、warning 金、primary 粉），题牌白字（warning 取 `on-warning`）、题牌前缀一枚 tone 图记 ⚠。
-- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题头带 = display 体 `fs-16` `bright` 标题（前缀 `primary` ✦）+ 全宽 `ink` 底线（题头与 body 的分界），不用铭牌；body 自滚动、行距 `space-4`。
+- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题头带 = 正文体 `fs-14` `fw-900` `ls-2` `bright` 标题（前缀 `primary` ✦）+ 全宽 `ink` 底线（题头与 body 的分界），不用铭牌；body 自滚动、行距 `space-4`。
 - Toast：锚右下角、竖排整列常显、条间距 `space-3`；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + 微阶影带）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。

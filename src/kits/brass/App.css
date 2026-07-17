@@ -410,3 +410,7 @@
     transition: none;
   }
 }
+
+.brass-stack > .brass-cap {
+  margin-bottom: calc(-1 * var(--brass-space-1));
+}
