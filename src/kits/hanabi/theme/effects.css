@@ -320,7 +320,8 @@
   gap: var(--hanabi-space-1);
   height: var(--hanabi-togglegroup-h);
   min-width: var(--hanabi-togglegroup-min-w);
-  padding: 0 var(--hanabi-space-3);
+  padding-inline: var(--hanabi-space-3);
+  padding-bottom: 3px;
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
@@ -359,6 +360,7 @@
 .hanabi-seg__btn:disabled {
   opacity: var(--hanabi-disabled-opacity);
   box-shadow: none;
+  padding-bottom: 0;
 }
 
 .hanabi-field {

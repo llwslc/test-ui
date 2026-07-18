@@ -17,6 +17,7 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-field);
   box-shadow: var(--hanabi-shadow-sm);
+  padding-bottom: 3px;
   color: var(--hanabi-text);
   font-size: var(--hanabi-fs-14);
   cursor: pointer;
@@ -39,6 +40,7 @@
   background: var(--hanabi-disabled-fill);
   color: var(--hanabi-text-mute);
   box-shadow: none;
+  padding-bottom: 0;
 }
 
 .hanabi-numberfield__input {

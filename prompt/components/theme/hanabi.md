@@ -11,10 +11,11 @@
 - 焦点：布尔开关（Checkbox、Switch、Radio）整控件 2px `primary` 外环（offset 2px）；其余按钮、字段、触发条、分段钮走四角锁定框（theme §3 战斗语汇），输入框聚焦时整框 border 同时转 `primary`、inset 阶影转 `primary-wash`。
 - 危险态：`danger` 红实填、前景 `on-fill` 白，描线仍 `ink`；静止态红字红图标。
 - 禁用+选中／数值填充（Switch、Checkbox、Radio、Slider）：保持 `primary` 实填，斜纹与入场动画随禁用去掉，靠 `disabled-opacity` 整体变灰。
+- 凸面底阶影带控件（Button、分段钮、Checkbox／Radio 框、NumberField 步进钮）里居中的内容对齐阶影**之上**的可见面中心：补一档等于阶影深的底 padding（阶影算底缘、不进垂直居中）；无阶影态（ghost、禁用）不补、走全高。Badge、题牌已内建同款补偿。
 
 ## 2. 组件皮肤决定
 
-- Button：赛璐璐块——`cel` 底 + `ink` 框 + `shadow` 底边阶影带 + 左上高光条；文字/图标对齐阶影带**之上**的可见面中心（底阶影算底缘、不计入垂直居中，故补一档底 padding 抵消），无阶影的 ghost／禁用态不补、走全高居中；primary = `primary` 填白字，按下瞬间一道 `115deg` 白刀光扫过（`slash-flash`，只给 primary）；secondary = `cel` 白底墨字；danger = `danger` 填白字；ghost = 无框无影透明底，hover 盖 wash；icon 钮方形等宽高。
+- Button：赛璐璐块——`cel` 底 + `ink` 框 + `shadow` 底边阶影带 + 左上高光条（内容对齐可见面中心，见 §1 末条）；primary = `primary` 填白字，按下瞬间一道 `115deg` 白刀光扫过（`slash-flash`，只给 primary）；secondary = `cel` 白底墨字；danger = `danger` 填白字；ghost = 无框无影透明底，hover 盖 wash；icon 钮方形等宽高。
 - Switch：药丸电门——关态 `track` 白轨 + `ink` 框 + inset `tone` 阶影，旋钮白圆 + 高光点靠左；开态轨道转 `primary`／`primary-deep` 相间斜纹并以 `stripe-flow` 流动，旋钮 `ease-snap` 滑到右端。
 - Checkbox：`r-chip` 圆角方框 + 微阶影带；勾选 = `primary` 填 + 白勾描线动画（stroke-dashoffset 画出）+ `box-pop` 果冻弹 + 一道 45° 斩击白闪掠过（`check-slash`）；indeterminate = 白粗横杠；hover 盖 wash。
 - CheckboxGroup：父子竖排，items 左缩进，引导线是 `2px dashed tone` 缝纫虚线。
