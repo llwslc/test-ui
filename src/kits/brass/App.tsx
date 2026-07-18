@@ -70,9 +70,13 @@ import {
   Copy,
   Gauge,
   Gear,
+  Lever,
   Pipe,
+  Piston,
+  Rivet,
   Search,
   Valve,
+  Wrench,
 } from "./components/icons";
 
 const NAV = [
@@ -411,7 +415,7 @@ function Demo() {
             <Panel id="button" title="Button" meta="BTN" wide>
               <div className="brass-stack">
                 <div className="brass-row">
-                  <Button icon={<Bolt />}>Engage</Button>
+                  <Button icon={<Lever />}>Engage</Button>
                   <Button variant="secondary">Standby</Button>
                   <Button variant="danger">Vent</Button>
                   <Button variant="ghost">Cancel</Button>
@@ -431,8 +435,8 @@ function Demo() {
                   <Button variant="icon" aria-label="Adjust gear">
                     <Gear />
                   </Button>
-                  <Button variant="icon" disabled aria-label="Valve locked">
-                    <Valve />
+                  <Button variant="icon" disabled aria-label="Riveted shut">
+                    <Rivet />
                   </Button>
                   <Button variant="icon-ghost" aria-label="Read gauge">
                     <Gauge />
@@ -886,8 +890,8 @@ function Demo() {
                 <MenuItem icon={<Gear />} disabled>
                   Calibrate
                 </MenuItem>
-                <MenuItem icon={<Pipe />}>Prime pump</MenuItem>
-                <MenuItem icon={<Valve />}>Tighten valve</MenuItem>
+                <MenuItem icon={<Piston />}>Prime pump</MenuItem>
+                <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
                 <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
                 <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
                 <MenuItem icon={<Pipe />}>Vent steam</MenuItem>

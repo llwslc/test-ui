@@ -132,3 +132,23 @@ export const SquareFill = (p: IconProps) =>
       <rect x="4" y="4" width="16" height="16" fill="currentColor" stroke="none" />
     ),
   });
+
+export const Arc = (p: IconProps) =>
+  base("3 7.5 18 9", {
+    ...p,
+    children: <path d="M3 16.5a9 9 0 0 1 18 0Z" fill="currentColor" stroke="none" />,
+  });
+
+export const Diamond = (p: IconProps) =>
+  base("1.5 1.5 21 21", { ...p, children: <path d="M12 3 21 12 12 21 3 12Z" /> });
+
+export const Concentric = (p: IconProps) =>
+  base("2 2 20 20", {
+    ...p,
+    children: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />
+      </>
+    ),
+  });

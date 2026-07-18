@@ -131,3 +131,47 @@ export const Pipe = (p: IconProps) =>
       </>
     ),
   });
+
+export const Piston = (p: IconProps) =>
+  base("7 2 9.5 19", {
+    ...p,
+    children: (
+      <>
+        <rect x="8" y="3" width="8" height="9" rx="1" />
+        <path d="M8.5 8.5h7" />
+        <path d="M12 12v4" />
+        <circle cx="12" cy="18" r="2.2" />
+      </>
+    ),
+  });
+
+export const Wrench = (p: IconProps) =>
+  base("4 3.5 16.5 16.5", {
+    ...p,
+    children: (
+      <path d="M16.5 4.5a3.6 3.6 0 0 0-4.8 4.6l-7 7 2.7 2.7 7-7a3.6 3.6 0 0 0 4.6-4.8l-2.4 2.4-2.1-2.1z" />
+    ),
+  });
+
+export const Rivet = (p: IconProps) =>
+  base("4 5.5 16 12.5", {
+    ...p,
+    children: (
+      <>
+        <path d="M8 6.5h8l3 5.5-3 5.5H8l-3-5.5z" />
+        <circle cx="12" cy="12" r="2.3" />
+      </>
+    ),
+  });
+
+export const Lever = (p: IconProps) =>
+  base("3 2 16 19", {
+    ...p,
+    children: (
+      <>
+        <circle cx="6" cy="18" r="2.4" />
+        <path d="M6 15.6 16 5" />
+        <circle cx="17" cy="4" r="1.8" fill="currentColor" stroke="none" />
+      </>
+    ),
+  });

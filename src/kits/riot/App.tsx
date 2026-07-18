@@ -65,15 +65,20 @@ import {
   useToast,
 } from "./components";
 import {
+  Anarchy,
   BoltIcon,
+  Cassette,
   Circle,
   Clock as ClockIcon,
   Close,
   CopyIcon,
   Dot,
   Grid,
+  Pin,
   Scissors,
   SearchIcon,
+  Skull,
+  SprayCan,
   Square,
   Star,
   StarFill,
@@ -468,13 +473,13 @@ function Demo() {
                     <Scissors />
                   </Button>
                   <Button variant="icon" disabled aria-label="Locked">
-                    <Square />
+                    <Pin />
                   </Button>
-                  <Button variant="icon-ghost" aria-label="Star">
-                    <Star />
+                  <Button variant="icon-ghost" aria-label="Anarchy">
+                    <Anarchy />
                   </Button>
-                  <Button variant="icon-ghost" aria-label="Bolt">
-                    <BoltIcon />
+                  <Button variant="icon-ghost" aria-label="Mixtape">
+                    <Cassette />
                   </Button>
                 </div>
               </div>
@@ -928,7 +933,7 @@ function Demo() {
                 <MenuItem icon={<Star />}>Star it</MenuItem>
                 <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
                 <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
-                <MenuItem icon={<Grid />}>Deface</MenuItem>
+                <MenuItem icon={<SprayCan />}>Deface</MenuItem>
                 <MenuItem icon={<Dot />}>Lock layer</MenuItem>
                 <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                 <MenuSeparator />
@@ -1126,7 +1131,7 @@ function Demo() {
             id="display"
             label="Display"
             sub="marks & fittings"
-            marker={<Square />}
+            marker={<Skull />}
           />
           <div className="riot-grid">
             <Panel id="avatar" title="Avatar" meta="AVT" tape="tl">

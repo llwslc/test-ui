@@ -64,12 +64,16 @@ import {
   type NavMenuItem,
 } from "./components";
 import {
+  AtomIcon,
   BoltIcon,
   CheckIcon,
   CopyIcon,
+  RadarIcon,
+  ReticleIcon,
   SearchIcon,
   SignalIcon,
   TrashIcon,
+  WaveformIcon,
   XIcon,
 } from "./components/icons";
 import "./App.css";
@@ -361,7 +365,7 @@ function ToolbarDemo() {
       <ToolbarSeparator />
       <ToolbarGroup aria-label="Actions">
         <ToolbarButton aria-label="Scan">
-          <SearchIcon />
+          <RadarIcon />
         </ToolbarButton>
         <ToolbarButton disabled aria-label="Charge">
           <BoltIcon />
@@ -593,7 +597,7 @@ function Demo() {
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
                   <div className="demo-row">
-                    <Button icon={<BoltIcon />}>Charge</Button>
+                    <Button icon={<AtomIcon />}>Charge</Button>
                     <Button variant="secondary">Override</Button>
                     <Button variant="danger">Abort</Button>
                     <Button variant="ghost">Standby</Button>
@@ -1034,11 +1038,11 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />} disabled>
                     Hail Vessel
                   </MenuItem>
-                  <MenuItem icon={<BoltIcon />}>Calibrate Array</MenuItem>
+                  <MenuItem icon={<ReticleIcon />}>Calibrate Array</MenuItem>
                   <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
                   <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
-                  <MenuItem icon={<BoltIcon />}>Boost Signal</MenuItem>
+                  <MenuItem icon={<WaveformIcon />}>Boost Signal</MenuItem>
                   <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                   <MenuSeparator />

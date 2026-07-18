@@ -63,6 +63,8 @@ import {
   type NavMenuItem,
 } from "./components";
 import {
+  CandleIcon,
+  ClawIcon,
   CopyIcon,
   EyeIcon,
   KeyIcon,
@@ -70,6 +72,7 @@ import {
   SearchIcon,
   SigilIcon,
   SignalIcon,
+  SpiralIcon,
   TentacleIcon,
   TrashIcon,
   XIcon,
@@ -726,7 +729,7 @@ function Demo() {
               <Panel title="Button" meta="BTN" breathe>
                 <div className="demo-stack">
                   <div className="demo-row">
-                    <Button icon={<KeyIcon />}>Invoke</Button>
+                    <Button icon={<CandleIcon />}>Invoke</Button>
                     <Button variant="secondary">Bind</Button>
                     <Button variant="danger">Banish</Button>
                     <Button variant="ghost">Dismiss</Button>
@@ -1172,10 +1175,10 @@ function Demo() {
                     Hail the Dark
                   </MenuItem>
                   <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
-                  <MenuItem icon={<SignalIcon />}>Trace Current</MenuItem>
+                  <MenuItem icon={<SpiralIcon />}>Trace Current</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
                   <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
-                  <MenuItem icon={<KeyIcon />}>Seal Hatch</MenuItem>
+                  <MenuItem icon={<ClawIcon />}>Seal Hatch</MenuItem>
                   <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                   <MenuSeparator />

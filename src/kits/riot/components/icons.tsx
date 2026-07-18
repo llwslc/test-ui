@@ -151,3 +151,44 @@ export const Scissors = (p: IconProps) => (
     <path d="M8 8 20 18M8 16 20 6M8.5 7 13.5 11.5" />
   </svg>
 );
+
+export const Anarchy = (p: IconProps) => (
+  <svg {...base("2.5 2.5 19 19", p)}>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M7 17.5 12 5.5 17 17.5M9 13.5h6.4" />
+  </svg>
+);
+
+export const Skull = (p: IconProps) => (
+  <svg {...base("3 1.5 18 20.5", p)}>
+    <path d="M12 3c-4.6 0-7.5 3-7.5 7 0 2.2 1 3.8 2.2 4.8V18h10.6v-3.2c1.2-1 2.2-2.6 2.2-4.8 0-4-2.9-7-7.5-7Z" />
+    <circle cx="9.3" cy="11" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="14.7" cy="11" r="1.5" fill="currentColor" stroke="none" />
+    <path d="M9.5 18v2.5M12 18v2.5M14.5 18v2.5" />
+  </svg>
+);
+
+export const SprayCan = (p: IconProps) => (
+  <svg {...base("5.5 2 16 20.5", p)}>
+    <rect x="7" y="9" width="8" height="12" rx="1" />
+    <path d="M9 9V6h4v3" />
+    <path d="M13 5h2.5" />
+    <path d="M18 3.5h.01M20 5h.01M18 6.5h.01" />
+  </svg>
+);
+
+export const Cassette = (p: IconProps) => (
+  <svg {...base("1.5 4.5 21 15", p)}>
+    <rect x="3" y="6" width="18" height="12" rx="1" />
+    <circle cx="9" cy="12" r="2" />
+    <circle cx="15" cy="12" r="2" />
+    <path d="M7.5 18 9 15h6l1.5 3" />
+  </svg>
+);
+
+export const Pin = (p: IconProps) => (
+  <svg {...base("5.5 2.5 13 19.5", p)}>
+    <path d="M9 4h6l-1 6 3 2.5V14H7v-1.5l3-2.5z" />
+    <path d="M12 14v6.5" />
+  </svg>
+);

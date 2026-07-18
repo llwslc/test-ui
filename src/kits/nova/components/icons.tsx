@@ -91,3 +91,33 @@ export const SignalIcon = (p: IconProps) => (
     <path d="M4.5 15a8 8 0 0 1 0-6M8 13a4 4 0 0 1 0-2m8 2a4 4 0 0 0 0-2m3.5 6a8 8 0 0 0 0-6M12 12h.01" />
   </svg>
 );
+
+export const RadarIcon = (p: IconProps) => (
+  <svg {...base("2 2 20.5 20.5", p)}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="4.5" />
+    <path d="M12 12 20 8" />
+    <circle cx="16.5" cy="7.5" r="1.2" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const AtomIcon = (p: IconProps) => (
+  <svg {...base("2 4.5 20 14.5", p)}>
+    <circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none" />
+    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)" />
+    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)" />
+  </svg>
+);
+
+export const WaveformIcon = (p: IconProps) => (
+  <svg {...base("1.5 4.5 19.5 15.5", p)}>
+    <path d="M2.5 12h3l2-6.5 3 13 2.5-9 2 4.5h4.5" />
+  </svg>
+);
+
+export const ReticleIcon = (p: IconProps) => (
+  <svg {...base("3 3 18.5 18.5", p)}>
+    <path d="M4 8V5.5C4 4.7 4.7 4 5.5 4H8M16 4h2.5c.8 0 1.5.7 1.5 1.5V8M20 16v2.5c0 .8-.7 1.5-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" />
+    <circle cx="12" cy="12" r="2.5" />
+  </svg>
+);
