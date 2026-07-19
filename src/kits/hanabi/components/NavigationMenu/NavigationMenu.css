@@ -84,7 +84,7 @@
   color: var(--hanabi-text);
 }
 .hanabi-navmenu__link:hover .hanabi-navmenu__link-label {
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
 }
 
 .hanabi-navmenu__link-desc {

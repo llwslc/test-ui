@@ -19,5 +19,5 @@
   font-size: var(--riot-fs-13);
   letter-spacing: var(--riot-ls-2);
   text-transform: uppercase;
-  color: var(--riot-danger);
+  color: var(--riot-danger-shade);
 }

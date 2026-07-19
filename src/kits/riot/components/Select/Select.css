@@ -20,7 +20,7 @@
   --riot-surface-border: var(--riot-primary);
 }
 .riot-select__trigger:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline: var(--riot-stroke) solid var(--riot-primary-shade);
   outline-offset: 3px;
 }
 .riot-select__trigger:disabled {
@@ -45,7 +45,7 @@
   transition: transform var(--riot-dur) var(--riot-ease);
 }
 .riot-select__trigger[data-popup-open] .riot-select__chevron {
-  color: var(--riot-primary);
+  color: var(--riot-primary-shade);
   transform: rotate(180deg);
 }
 .riot-select__positioner {
@@ -62,5 +62,5 @@
   flex: 0 0 auto;
   width: var(--riot-fs-15);
   height: var(--riot-fs-15);
-  color: var(--riot-primary);
+  color: var(--riot-primary-shade);
 }

@@ -48,7 +48,7 @@
 .hanabi-combobox__clear:hover,
 .hanabi-combobox__trigger:hover {
   background: var(--hanabi-primary-wash);
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
 }
 
 .hanabi-combobox__trigger {

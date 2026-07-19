@@ -19,7 +19,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: var(--riot-secondary);
+  color: var(--riot-secondary-shade);
 }
 .riot-checkbox__check,
 .riot-checkbox__dash {

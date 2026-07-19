@@ -11,7 +11,7 @@
 - 背景：`base #ece5d3`，暖纸画布。
 - 纸面：`paper #f7f3e8`、`paper-raised #efe9d8`，是面板和浮层用的实色纸底，比 `base` 亮一点、显得浮起来像卡片。
 - 五个强调色家族：primary 群青蓝 `#1a4fd6`，secondary 墨黑 `#1b1b1b`，success 草绿 `#2f9e44`，warning 原黄 `#f5b612`，danger 朱红 `#e23121`。
-- 文本是纸上墨色：`text #211d15`、`-bright #050505`（纯黑、高反差）、`-dim #5c5647`、`-mute #918a76`。
+- 文本是纸上墨色：`text #211d15`、`-bright #050505`（纯黑、高反差）、`-dim #5c5647`、`-mute #6c6657`。
 - 两档反色前景（压在实色填充上的字色）：`on-fill #f7f3e8` 纸白，压在蓝、红、绿、黑这些实填上；`on-warning #16140f` 墨黑，压在原黄实填上。
 - 两条复用的强调填充，都是**平涂、无渐变**：`accent-surface` = 实色 `primary`，用来点亮表面；`accent-fill` = 实色 `primary`，用作方向指示。
 - primary 的 alpha 阶梯：`tint-soft .1 · tint .16`，做悬停和激活的蓝色 wash。新的蓝色 alpha 先并进这条阶梯，不另造。

@@ -16,10 +16,8 @@
   --hanabi-primary-wash: #ffe3ee;
   --hanabi-primary-light: #ff8ab4;
   --hanabi-secondary: #2fc0e8;
-  --hanabi-secondary-deep: #1a9fc4;
   --hanabi-secondary-wash: #dff6fc;
   --hanabi-success: #2fbf71;
-  --hanabi-success-deep: #1f9d57;
   --hanabi-success-wash: #def7e8;
   --hanabi-success-light: #6fd7a0;
   --hanabi-warning: #ffc53d;
@@ -30,9 +28,9 @@
   --hanabi-danger-wash: #ffe1e1;
   --hanabi-danger-light: #f07a7a;
 
-  --hanabi-primary-shade: #c9265f;
-  --hanabi-secondary-shade: #147fa0;
-  --hanabi-success-shade: #17824a;
+  --hanabi-primary-shade: #bf245b;
+  --hanabi-secondary-shade: #127392;
+  --hanabi-success-shade: #157945;
   --hanabi-warning-shade: #c28d12;
   --hanabi-danger-shade: #a32222;
 
@@ -42,7 +40,7 @@
   --hanabi-text: #22304f;
   --hanabi-text-bright: #111d38;
   --hanabi-text-dim: #4a5878;
-  --hanabi-text-mute: #8fa6d4;
+  --hanabi-text-mute: #486db9;
   --hanabi-text-invert: #ffffff;
   --hanabi-on-fill: #ffffff;
   --hanabi-on-warning: #22304f;

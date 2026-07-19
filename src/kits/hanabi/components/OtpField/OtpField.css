@@ -23,7 +23,7 @@
 }
 
 .hanabi-otp__cell[data-filled] {
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
 }
 
 .hanabi-otp__cell:focus {

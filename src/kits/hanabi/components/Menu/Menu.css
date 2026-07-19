@@ -42,11 +42,11 @@
 }
 
 .hanabi-list-item--danger {
-  color: var(--hanabi-danger);
+  color: var(--hanabi-danger-shade);
   --hanabi-item-color: var(--hanabi-danger-wash);
 }
 .hanabi-list-item--danger .hanabi-menu__icon {
-  color: var(--hanabi-danger);
+  color: var(--hanabi-danger-shade);
 }
 .hanabi-list-item--danger[data-highlighted] .hanabi-menu__icon {
   color: var(--hanabi-danger-deep);

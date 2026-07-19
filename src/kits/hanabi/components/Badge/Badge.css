@@ -24,7 +24,7 @@
 
 .hanabi-badge--primary {
   background: var(--hanabi-primary-wash);
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
 }
 .hanabi-badge--primary .hanabi-badge__dot {
   background: var(--hanabi-primary);
@@ -32,7 +32,7 @@
 
 .hanabi-badge--secondary {
   background: var(--hanabi-secondary-wash);
-  color: var(--hanabi-secondary-deep);
+  color: var(--hanabi-secondary-shade);
 }
 .hanabi-badge--secondary .hanabi-badge__dot {
   background: var(--hanabi-secondary);
@@ -40,7 +40,7 @@
 
 .hanabi-badge--success {
   background: var(--hanabi-success-wash);
-  color: var(--hanabi-success-deep);
+  color: var(--hanabi-success-shade);
 }
 .hanabi-badge--success .hanabi-badge__dot {
   background: var(--hanabi-success);

@@ -12,7 +12,7 @@
 }
 
 .riot-context__zone:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline: var(--riot-stroke) solid var(--riot-primary-shade);
   outline-offset: calc(-1 * var(--riot-stroke));
 }
 

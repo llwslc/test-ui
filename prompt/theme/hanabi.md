@@ -11,10 +11,10 @@
 - 背景：`base #edf4fa` 是淡朝空的页面底。
 - 赛璐璐面：`surface #ffffff` 是控件与浮层的平涂白面，`surface-inset #e8f0f9` 是压深一档的嵌套底（舞台区、嵌套箱）。
 - 五个强调色家族，全部平涂、无渐变：primary 应援粉 `#ff4d8d`，secondary 水色 `#2fc0e8`，success 新芽绿 `#2fbf71`，warning 星光金 `#ffc53d`，danger 信号红 `#e83b3b`。
-- 每家族配 `-deep` 暗档（按压、加深打底）：`primary-deep #e82f73`、`secondary-deep #1a9fc4`、`success-deep #1f9d57`、`warning-deep #e3a81f`、`danger-deep #c42a2a`。
+- primary、warning、danger 配 `-deep` 暗档（按压、加深打底）：`primary-deep #e82f73`、`warning-deep #e3a81f`、`danger-deep #c42a2a`。
 - 每家族配 `-wash` 实色浅底档（悬停、tone 底），平涂不透明：`primary-wash #ffe3ee`、`secondary-wash #dff6fc`、`success-wash #def7e8`、`danger-wash #ffe1e1`；warning 本身是亮色，直接实填不设 wash 档。量表斜纹的亮相间档 `-light`：`primary-light #ff8ab4`、`success-light #6fd7a0`、`warning-light #ffd97a`、`danger-light #f07a7a`（secondary 不上量表、不设）。
-- 阶影：`tone #c3d2ed` 是赛璐璐的冷紫蓝影色——白面、cel 面上的底边阶影带和凹面 inset 阶影都用它，不用灰不用黑；`tone-deep #8fa6d4` 是更深一档的注记、辅助色；`tone-soft #dbe4f4` 是嵌进白面里的 inset 阶影色（凹面用）。实填面的阶影带换本家族 `-shade` 深档：`primary-shade #c9265f`、`secondary-shade #147fa0`、`success-shade #17824a`、`warning-shade #c28d12`、`danger-shade #a32222`。
-- 文本是墨蓝，不用纯黑：`text #22304f`（=描线色）、`-bright #111d38`、`-dim #4a5878`、`-mute #8fa6d4`；反色前景 `text-invert #ffffff`。
+- 阶影：`tone #c3d2ed` 是赛璐璐的冷紫蓝影色——白面、cel 面上的底边阶影带和凹面 inset 阶影都用它，不用灰不用黑；`tone-deep #8fa6d4` 是更深一档的注记、辅助色；`tone-soft #dbe4f4` 是嵌进白面里的 inset 阶影色（凹面用）。实填面的阶影带换本家族 `-shade` 深档：`primary-shade #bf245b`、`secondary-shade #127392`、`success-shade #157945`、`warning-shade #c28d12`、`danger-shade #a32222`。
+- 文本是墨蓝，不用纯黑：`text #22304f`（=描线色）、`-bright #111d38`、`-dim #4a5878`、`-mute #486db9`；反色前景 `text-invert #ffffff`。
 - 两档反色前景（压实填上的字色）：`on-fill #ffffff` 压 primary、secondary、success、danger 实填；`on-warning #22304f` 压星光金。
 - 两条复用的强调填充，都是平涂：`accent-surface` = 实色 `primary`，点亮激活表面；`accent-fill` = 实色 `primary`，方向与选中指示。
 - alpha 只给盖不了实色的三处：`scrim` = `ink` 的 `.5` 背板（另叠 primary 网点，见氛围层）；高光条 `hi` = 白 `.8`；分格刻度线 `cell-line` = `ink` 的 `.14`（要同时压在轨底与填充上）。其余悬停、tone 底一律走 `-wash` 实色档，赛璐璐拒绝半透明涂色。

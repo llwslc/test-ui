@@ -10,8 +10,8 @@
 
 - 背景：`void #030706` 是最深的底色，`base #070c0b` 是页底色。石板色 `stone #0c1411`、`stone-raised #101b16` 是面板用的不透明渐变的两端（从亮到暗）；其中 `stone` 同时兼作整页页底渐变的末端那一档。
 - 墨线：所有边框用一种暖灰绿色的「墨」——分三档浓淡：`ink .3`、`ink-strong .52`、`ink-faint .1`。
-- 文本是暖褐色的羊皮纸色：`text #d8ceb4`、`-bright #f3edda`（最亮）、`-dim #8d9079`（偏暗）、`-mute #565a4b`（最弱）。
-- 五个强调色家族，每个都配一个 `-soft` 浅档、再按需配一个 `-deep` 暗档：主强调是 glow 深渊青 `#46e8b8`；gold 鎏金 `#cda94a` 用于注脚和警示；ichor 灵液紫 `#9176ff` 是次强调；blood 血红 `#d24059` 表示危险；success 生苔绿 `#7ad99a` 表示成功。
+- 文本是暖褐色的羊皮纸色：`text #d8ceb4`、`-bright #f3edda`（最亮）、`-dim #8d9079`（偏暗）、`-mute #7b806b`（最弱）。
+- 五个强调色家族，每个都配一个 `-soft` 浅档、再按需配一个 `-deep` 暗档：主强调是 glow 深渊青 `#46e8b8`；gold 鎏金 `#cda94a` 用于注脚和警示；ichor 灵液紫 `#9176ff` 是次强调；blood 血红 `#d3465e` 表示危险；success 生苔绿 `#7ad99a` 表示成功。
 - alpha 透明阶梯：glow 这一族配 `-soft .12`、`-a30`、`-a55`、`-a70` 四档，外加两条点亮用的渐变 `glow-wash` / `-strong`；其余四族各配一个中强档 `gold-a50` / `ichor-a50` / `blood-a55` / `success-a50`；偏暗的两族（blood、ichor）各配一个亮化的文字档 `blood-text` / `ichor-text`——这两种深色当文字用时必须改用这个亮档。
 - 表面：`surface .84` 是半透明面底，`surface-popup #09110f` 是不透明的浮层底，`inset #06100d` 是凹陷底；`scrim .72` 是压在模态背后的半透背板；`thumb-glint` 是旋钮上的高光。石材质感的做法 = 一层颗粒噪点瓦片 `stone-grain` 叠在填充的最顶层，再加一道凿边 `bevel`——凿边就是上沿亮、下沿暗的那 1px 内边线，造出被凿过的立体感；像面板、弹层、模态这些石板面统一引用这套质感。
 - 辉光全部 token 化：`aura` 是 10px 的 a30 辉光，`aura-strong` 是 16px 的 a55 辉光，`aura-mark` 是标记专用的辉光 8px a55，另有 `aura-gold` / `-strong` 两档金色辉光；投影式辉光（drop-shadow）有 `glow-focus` / `-popup` / `-modal` 三档；文字辉光是 `text-aura`；纯矩形的投影有 `shadow-pop` / `-modal` / `-sm` 三档。

@@ -10,7 +10,7 @@
 
 - 背景：`base #050a12` 是最底的深空色，`base-raised #07101c` 比它亮一点、用来显得抬起来。
 - 五个强调色家族，每个都配一个 `-deep` 暗档：primary 电光青 `#2de2ff / #119cb8`，secondary 品红 `#ff2d75 / #c4185a`，success 草绿 `#54ffb0 / #1f9c68`，warning 琥珀黄 `#ffce54 / #b8861f`，danger 警示红 `#ff4d5e / #b3242f`。
-- 文本是冷白偏蓝的字色：`text #d7ecff`、`-bright #eafdff`（更亮、更高反差）、`-dim #7793b0`、`-mute #46617e`。
+- 文本是冷白偏蓝的字色：`text #d7ecff`、`-bright #eafdff`（更亮、更高反差）、`-dim #7793b0`、`-mute #5f82a6`。
 - 两档反色前景（压在实色填充上的字色）：`on-primary #02131a` 压在青色填充上，`on-danger #1c0406` 压在红色填充上。
 - 两条复用的强调填充，都是渐变：`accent-surface` = `180deg` 自上而下从 primary 渐到 deep，用来点亮表面；`accent-fill` = `90deg` 从 deep 渐到 primary（到 55% 处为 primary），用作方向指示条。
 - 青色的 alpha 阶梯（同一个青、不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55`。新的青色半透明值先并进这条阶梯，不另造。

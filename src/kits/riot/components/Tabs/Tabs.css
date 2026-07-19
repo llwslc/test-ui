@@ -54,7 +54,7 @@
   opacity: var(--riot-disabled-opacity);
 }
 .riot-tabs__tab:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline: var(--riot-stroke) solid var(--riot-primary-shade);
   outline-offset: calc(-1 * var(--riot-stroke));
 }
 .riot-tabs__indicator {

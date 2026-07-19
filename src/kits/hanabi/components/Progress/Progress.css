@@ -16,7 +16,7 @@
   font-family: var(--hanabi-font-mono);
   letter-spacing: var(--hanabi-ls-1);
   font-size: var(--hanabi-fs-13);
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
 }
 
 .hanabi-progress__track {

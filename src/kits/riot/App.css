@@ -111,7 +111,7 @@
   padding: var(--riot-space-2) var(--riot-space-3);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
-  color: var(--riot-text-mute);
+  color: #87806e;
   text-decoration: none;
   transition:
     color var(--riot-dur) var(--riot-ease),
@@ -132,7 +132,7 @@
 .riot-sidebar__meta {
   font-family: var(--riot-font-mono);
   font-size: var(--riot-fs-11);
-  color: var(--riot-text-dim);
+  color: #87806e;
 }
 .riot-shell__main {
   min-width: 0;
@@ -311,7 +311,7 @@
   color: var(--riot-text-invert);
 }
 .riot-grouprule__sub {
-  color: rgba(233, 228, 212, 0.5);
+  color: #87806e;
 }
 .riot-grouprule__line {
   flex: 1;
@@ -341,10 +341,10 @@
   scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .riot-grid > :nth-child(3n + 2) .riot-panel__title {
-  color: var(--riot-primary);
+  color: var(--riot-primary-shade);
 }
 .riot-grid > :nth-child(3n) .riot-panel__title {
-  color: var(--riot-secondary);
+  color: var(--riot-secondary-shade);
 }
 
 .riot-row {
@@ -362,9 +362,9 @@
   gap: var(--riot-space-3);
 }
 .riot-link {
-  color: var(--riot-primary);
+  color: var(--riot-primary-shade);
   text-decoration: none;
-  border-bottom: var(--riot-stroke) solid var(--riot-primary);
+  border-bottom: var(--riot-stroke) solid var(--riot-primary-shade);
 }
 .riot-link:hover,
 .riot-link:focus-visible {
@@ -416,7 +416,7 @@
 }
 .riot-scroll-list .riot-cap {
   margin-right: var(--riot-space-1);
-  color: var(--riot-primary);
+  color: var(--riot-primary-shade);
 }
 
 .riot-footer {
@@ -434,7 +434,7 @@
   filter: url(#riot-torn);
 }
 .riot-footer .riot-cap {
-  color: rgba(233, 228, 212, 0.5);
+  color: #87806e;
 }
 
 @media (max-width: 768px) {

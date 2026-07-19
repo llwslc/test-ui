@@ -170,7 +170,7 @@
 }
 .hanabi-btn--icon-ghost:where(:not(:disabled)):hover {
   background: var(--hanabi-primary-wash);
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
   border-color: transparent;
   box-shadow: none;
 }

@@ -10,8 +10,8 @@
 
 - 背景：`base #15110b`、`base-raised #1d1810`，是接近黑的暖铁褐色。
 - 金属板：`plate #1a150d`、`plate-raised #241d12` 是不透明面板那条渐变的两个端点。
-- 五个强调色家族，其中 primary、warning、danger 各配一个 `-deep` 暗档：primary 黄铜金 `#cf9d3a / #876521`，secondary 紫铜 `#c2683b`，success 铜绿 `#56a98a`，warning 琥珀灯 `#ef8a20 / #985610`，danger 漆红 `#d2503c / #7c281d`。
-- 文本是陈年象牙色：`text #e3dac6`、`-bright #f7f1e2`、`-dim #a99c82`、`-mute #6f6552`；反色前景（压在实色填充上的字色）`on-primary #271a06`，压在黄铜、琥珀、紫铜这些亮填充上。
+- 五个强调色家族，其中 primary、warning、danger 各配一个 `-deep` 暗档：primary 黄铜金 `#cf9d3a / #876521`，secondary 紫铜 `#c2683b`，success 铜绿 `#56a98a`，warning 琥珀灯 `#ef8a20 / #985610`，danger 漆红 `#d3523e / #7c281d`。
+- 文本是陈年象牙色：`text #e3dac6`、`-bright #f7f1e2`、`-dim #a99c82`、`-mute #8a7e66`；反色前景（压在实色填充上的字色）`on-primary #271a06`，压在黄铜、琥珀、紫铜这些亮填充上。
 - 三条复用的强调渐变：`accent-surface` = `180deg #e6c266 → primary 46% → #9a7528`，是一块拉丝黄铜质感的点亮板；`accent-fill` = `90deg deep → primary 62%`，用作方向指示条；`secondary-surface` = `180deg #7d6531 → #5a461f → #382a13`，是 secondary 按钮的暗铜板。
 - 黄铜的 alpha 阶梯：`tint-soft .09 · tint .14 · line .18 · tint-active .26 · line-strong .40`。新的黄铜 alpha 先并进这条阶梯，不另造。
 - 另立的几个 alpha 家族：success 的 `-wash .12`；warning 的 `-wash .12`；danger 的 `-fill .50 / -wash .12`。

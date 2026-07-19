@@ -142,7 +142,7 @@
   opacity: var(--hanabi-disabled-opacity);
 }
 .hanabi-list-item[data-selected] {
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
   font-weight: var(--hanabi-fw-700);
 }
 

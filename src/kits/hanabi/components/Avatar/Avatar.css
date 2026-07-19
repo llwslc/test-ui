@@ -43,7 +43,7 @@
   display: grid;
   place-items: center;
   background: var(--hanabi-primary-wash);
-  color: var(--hanabi-primary-deep);
+  color: var(--hanabi-primary-shade);
   font-family: var(--hanabi-font-display);
   font-size: var(--hanabi-fs-14);
   line-height: var(--hanabi-lh-100);

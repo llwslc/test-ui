@@ -31,7 +31,7 @@
 }
 .riot-menu__item--danger,
 .riot-menu__item--danger .riot-menu__icon {
-  color: var(--riot-danger);
+  color: var(--riot-danger-shade);
 }
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) {
   --riot-marker-color: var(--riot-danger);
