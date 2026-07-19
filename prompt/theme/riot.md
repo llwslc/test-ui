@@ -10,14 +10,15 @@
 
 - 背景：`base #111010` 是复印台的死黑底。
 - 纸面：`paper #e9e4d4` 是复印灰白的剪报纸，`paper-raised #d7cfba` 是更旧一点的纸，都是面板与浮层的实色纸底。
-- 五个强调色家族，都是记号笔荧光色，平涂无渐变：primary 荧光橙 `#ff4d0a`，secondary 荧光粉 `#ff1f8f`，success 荧光绿 `#8fe000`，warning 荧光黄 `#ffe500`，danger 血红 `#e5002b`。荧光亮档只压在实填、装饰、大标题与死黑底上；纸面上当正文字、焦点描边或状态图标时换本家族深档 `-shade`：`primary-shade #b83900`、`secondary-shade #c60063`、`danger-shade #cb0026`（success、warning 不做纸面正文，不设深档）。
-- 文本是复印黑：`text #17130d`、`-bright #000000`（纯黑、最狠）、`-dim #4c473b`、`-mute #6c6558`；死黑底上翻成纸色 `text-invert #e9e4d4`。
+- 五个强调色家族，都是记号笔荧光色，平涂无渐变：primary 荧光橙 `#ff4d0a`，secondary 荧光粉 `#ff1f8f`，success 荧光绿 `#8fe000`，warning 荧光黄 `#ffe500`，danger 血红 `#e5002b`。
+- 荧光强调色即使当纸面正文、小标、链接、值也保持原亮档、不下深档——本套以响度为立意，不为纸面强调字追 AA 正文对比（components.md §3「文字对比达标」在此整体豁免）。
+- 文本是复印黑：`text #17130d`、`-bright #000000`（纯黑、最狠）、`-dim #4c473b`、`-mute #7d7666`；死黑底上翻成纸色 `text-invert #e9e4d4`。
 - 两档反色前景（压在荧光实填上的字色）：`on-fill #0d0d0d` 复印黑，压在橙、粉、绿、红这些实填上；`on-warning #17130d` 压在荧光黄上。
 - 两条复用的强调填充，都是**平涂、无渐变**：`accent-surface` = 实色 `primary`，用来点亮激活表面；`accent-fill` = 实色 `primary`，用作方向指示。
 - primary 的 alpha：`tint .2` 做悬停与激活的记号笔 wash；hex 带不了 alpha 的另立档。新的同色 alpha 先并进来，不另造。
 - 中性与效果色：`track #d7cfba` 是未填充的纸灰轨道（含开关关态）；胶带 `tape` 是半透的旧黄，另有 `tape-primary`、`tape-danger`、`tape-warning`、`tape-success` 四档 tone 半透胶带；订书钉 `staple #cfcfcf` 亮钢灰；记号笔高亮 `marker` 用荧光黄 alpha。
 - 表面：`surface` = `paper`；`surface-popup` 是实纸；`surface-modal` 是最白的纸 `#f2eede`；`surface-inset #d3c9b0` 是压深的凹纸底，用作嵌套箱底；`surface-zone` 是右键投放区的荧光橙淡 tint；`scrim` 是死黑 `.6` 的平涂背板，压模态时另叠 `grayscale` 让底下的拼贴褪成复印灰。
-- 描边与投影：全局描边恒为 `ink #0d0d0d` 粗黑线；投影是**硬边偏移的实影**——沿轮廓朝右下偏移的纯黑块、无模糊，分两族：盒影 `shadow-hard` `5px 6px` 给大块（按钮、输入框、贴纸），`shadow-sm` `3px 3px` 给小件（勾选框、旋钮、chip）；随形 cast 给裁形层——`cast-clip` 8px 剪报、`cast-modal` 12px 模态、`cast-sm` 4px 小浮层。**一个元素只挂一层影**：浮层的影在 popup 层，面内 surface 不再叠盒影。死黑底上的激活选中提示取荧光 `primary`，纸面上的文字强调与焦点描边取深档 `-shade`。
+- 描边与投影：全局描边恒为 `ink #0d0d0d` 粗黑线；投影是**硬边偏移的实影**——沿轮廓朝右下偏移的纯黑块、无模糊，分两族：盒影 `shadow-hard` `5px 6px` 给大块（按钮、输入框、贴纸），`shadow-sm` `3px 3px` 给小件（勾选框、旋钮、chip）；随形 cast 给裁形层——`cast-clip` 8px 剪报、`cast-modal` 12px 模态、`cast-sm` 4px 小浮层。**一个元素只挂一层影**：浮层的影在 popup 层，面内 surface 不再叠盒影。文字强调与选中提示取荧光 `primary`。
 
 ## 2. 字体与排版
 

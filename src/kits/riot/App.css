@@ -111,7 +111,7 @@
   padding: var(--riot-space-2) var(--riot-space-3);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
-  color: #87806e;
+  color: var(--riot-text-mute);
   text-decoration: none;
   transition:
     color var(--riot-dur) var(--riot-ease),
@@ -132,7 +132,7 @@
 .riot-sidebar__meta {
   font-family: var(--riot-font-mono);
   font-size: var(--riot-fs-11);
-  color: #87806e;
+  color: var(--riot-text-dim);
 }
 .riot-shell__main {
   min-width: 0;
@@ -311,7 +311,7 @@
   color: var(--riot-text-invert);
 }
 .riot-grouprule__sub {
-  color: #87806e;
+  color: rgba(233, 228, 212, 0.5);
 }
 .riot-grouprule__line {
   flex: 1;
@@ -341,10 +341,10 @@
   scroll-margin-top: calc(var(--bar-h) + 20px);
 }
 .riot-grid > :nth-child(3n + 2) .riot-panel__title {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 .riot-grid > :nth-child(3n) .riot-panel__title {
-  color: var(--riot-secondary-shade);
+  color: var(--riot-secondary);
 }
 
 .riot-row {
@@ -362,9 +362,9 @@
   gap: var(--riot-space-3);
 }
 .riot-link {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
   text-decoration: none;
-  border-bottom: var(--riot-stroke) solid var(--riot-primary-shade);
+  border-bottom: var(--riot-stroke) solid var(--riot-primary);
 }
 .riot-link:hover,
 .riot-link:focus-visible {
@@ -416,7 +416,7 @@
 }
 .riot-scroll-list .riot-cap {
   margin-right: var(--riot-space-1);
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 
 .riot-footer {
@@ -434,7 +434,7 @@
   filter: url(#riot-torn);
 }
 .riot-footer .riot-cap {
-  color: #87806e;
+  color: rgba(233, 228, 212, 0.5);
 }
 
 @media (max-width: 768px) {

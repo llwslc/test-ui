@@ -30,11 +30,11 @@
 .riot-navmenu__trigger:where(:not([data-disabled])):hover,
 .riot-navmenu__toplink:hover,
 .riot-navmenu__trigger[data-popup-open] {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 .riot-navmenu__trigger:focus-visible,
 .riot-navmenu__toplink:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary-shade);
+  outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 2px;
 }
 .riot-navmenu__chevron {

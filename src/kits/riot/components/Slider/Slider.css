@@ -54,7 +54,7 @@
   transform: rotate(calc(-1 * var(--riot-rot-6)));
 }
 .riot-slider__thumb:has(:focus-visible) {
-  outline: var(--riot-stroke) solid var(--riot-primary-shade);
+  outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 3px;
 }
 .riot-slider:has([data-disabled]) {

@@ -114,7 +114,7 @@
   cursor: pointer;
 }
 .riot-toast__close:hover {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 @media (max-width: 768px) {
   .riot-toast__viewport {

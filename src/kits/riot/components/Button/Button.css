@@ -43,7 +43,7 @@
   inset: -16px;
 }
 .riot-btn:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary-shade);
+  outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 3px;
 }
 .riot-btn:disabled,
@@ -96,7 +96,7 @@
 .riot-btn--icon-ghost:hover:not(:disabled):not([data-disabled]) {
   transform: rotate(var(--riot-btn-tilt));
   box-shadow: none;
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 .riot-btn--icon-ghost:active:not(:disabled):not([data-disabled]) {
   transform: translate(2px, 2px);

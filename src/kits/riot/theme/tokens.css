@@ -4,18 +4,15 @@
   --riot-paper-raised: #d7cfba;
 
   --riot-primary: #ff4d0a;
-  --riot-primary-shade: #b83900;
   --riot-secondary: #ff1f8f;
-  --riot-secondary-shade: #c60063;
   --riot-success: #8fe000;
   --riot-warning: #ffe500;
   --riot-danger: #e5002b;
-  --riot-danger-shade: #cb0026;
 
   --riot-text: #17130d;
   --riot-text-bright: #000000;
   --riot-text-dim: #4c473b;
-  --riot-text-mute: #6c6558;
+  --riot-text-mute: #7d7666;
   --riot-text-invert: #e9e4d4;
   --riot-on-fill: #0d0d0d;
   --riot-on-warning: #17130d;
@@ -54,7 +51,7 @@
   --riot-cast-modal: drop-shadow(12px 12px 0 var(--riot-ink));
   --riot-shadow-hard: 5px 6px 0 var(--riot-ink);
   --riot-shadow-sm: 3px 3px 0 var(--riot-ink);
-  --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary-shade);
+  --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary);
 
   --riot-r-control: 0;
   --riot-r-round: 999px;

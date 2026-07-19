@@ -5,7 +5,7 @@
   --riot-surface-border: var(--riot-primary);
 }
 .riot-combobox__control[data-popup-open] .riot-combobox__trigger {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
   transform: rotate(180deg);
 }
 .riot-combobox__clear,
@@ -28,11 +28,11 @@
 }
 .riot-combobox__clear:hover,
 .riot-combobox__trigger:hover {
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 .riot-combobox__clear:focus-visible,
 .riot-combobox__trigger:focus-visible {
-  outline: var(--riot-stroke) solid var(--riot-primary-shade);
+  outline: var(--riot-stroke) solid var(--riot-primary);
   outline-offset: 2px;
 }
 .riot-combobox__clear[data-empty] {
@@ -61,5 +61,5 @@
   flex: 0 0 auto;
   width: var(--riot-fs-15);
   height: var(--riot-fs-15);
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }

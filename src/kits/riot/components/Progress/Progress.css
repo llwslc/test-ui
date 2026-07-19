@@ -11,7 +11,7 @@
 .riot-progress__value {
   font-family: var(--riot-font-mono);
   font-size: var(--riot-fs-13);
-  color: var(--riot-primary-shade);
+  color: var(--riot-primary);
 }
 .riot-progress__track {
   position: relative;
