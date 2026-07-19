@@ -1,0 +1,2826 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LIDO 07 is a standalone, interactive poolside UI kit study."
+    />
+    <title>LIDO 07 — Poolside UI Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Fugaz+One&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --tile: #f3ead7;
+        --tile-bright: #fffaf0;
+        --tile-cool: #e4f1ee;
+        --grout: #b8cbc8;
+        --grout-deep: #8da9a7;
+        --ink: #0c3545;
+        --ink-soft: #456772;
+        --water: #57d2ce;
+        --water-soft: #bdeee8;
+        --water-deep: #087b92;
+        --lane-blue: #075fc7;
+        --lane-blue-deep: #064493;
+        --safety-red: #ef4c42;
+        --safety-red-deep: #b92c2c;
+        --sun: #ffd44f;
+        --sun-deep: #9a6500;
+        --success: #13835e;
+        --foam: #fffefa;
+        --shadow: rgba(12, 53, 69, 0.16);
+        --shadow-deep: rgba(12, 53, 69, 0.28);
+        --radius-panel: 22px;
+        --radius-control: 12px;
+        --radius-chip: 8px;
+        --radius-float: 999px;
+        --stroke: 2px;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-10: 40px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --font-display: "Fugaz One", "Arial Black", sans-serif;
+        --font-body: "Atkinson Hyperlegible", Arial, sans-serif;
+        --font-mono: "Space Mono", monospace;
+        --dur: 150ms;
+        --dur-slow: 420ms;
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        overflow-x: clip;
+        color: var(--ink);
+        font-family: var(--font-body);
+        background-color: var(--tile);
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)),
+          linear-gradient(var(--grout) 2px, transparent 2px),
+          linear-gradient(90deg, var(--grout) 2px, transparent 2px);
+        background-size:
+          auto,
+          72px 72px,
+          72px 72px;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      ::selection {
+        color: var(--foam);
+        background: var(--lane-blue);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--safety-red);
+        outline-offset: 4px;
+        animation: focus-ripple 360ms var(--ease);
+      }
+
+      .skip-link {
+        position: fixed;
+        top: var(--space-3);
+        left: var(--space-3);
+        z-index: 100;
+        padding: var(--space-3) var(--space-4);
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-weight: 700;
+        background: var(--safety-red-deep);
+        border-radius: var(--radius-chip);
+        transform: translateY(-180%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .shell {
+        width: min(1440px, calc(100% - 32px));
+        margin: var(--space-4) auto;
+        overflow: hidden;
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 28px;
+        box-shadow:
+          0 8px 0 var(--grout-deep),
+          0 28px 60px var(--shadow);
+      }
+
+      .status-strip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        min-height: 36px;
+        padding: var(--space-2) var(--space-6);
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: var(--ink);
+      }
+
+      .status-live {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .status-live::before {
+        width: 9px;
+        height: 9px;
+        content: "";
+        background: var(--water);
+        border: 2px solid var(--foam);
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px rgba(87, 210, 206, 0.35);
+      }
+
+      .masthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-8);
+        padding: var(--space-5) clamp(20px, 4vw, 56px);
+        border-bottom: var(--stroke) solid var(--grout);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        position: relative;
+        display: grid;
+        width: 48px;
+        height: 48px;
+        overflow: hidden;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        place-items: center;
+        background: var(--lane-blue);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 10px;
+        box-shadow: inset 0 -6px 0 var(--lane-blue-deep);
+      }
+
+      .brand-mark::before {
+        position: absolute;
+        right: -6px;
+        bottom: 8px;
+        left: -6px;
+        height: 8px;
+        content: "";
+        background: var(--water);
+        border-top: 2px solid var(--foam);
+        transform: rotate(-5deg);
+      }
+
+      .brand-mark span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-copy {
+        display: grid;
+        gap: 1px;
+      }
+
+      .brand-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+      }
+
+      .brand-tag {
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .mast-nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .mast-nav a {
+        padding: 9px 13px;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-radius: var(--radius-float);
+      }
+
+      .mast-nav a:hover {
+        color: var(--lane-blue);
+        background: var(--water-soft);
+      }
+
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+        gap: clamp(32px, 6vw, 92px);
+        align-items: center;
+        min-height: 650px;
+        padding: clamp(52px, 7vw, 104px) clamp(20px, 6vw, 88px);
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 10% 12%, rgba(255, 212, 79, 0.34), transparent 20%),
+          linear-gradient(135deg, var(--tile-bright) 0 58%, #d8f3ef 58% 100%);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: -80px;
+        bottom: -100px;
+        width: 360px;
+        height: 180px;
+        content: "";
+        border: 38px solid rgba(7, 95, 199, 0.08);
+        border-radius: 50%;
+        transform: rotate(-14deg);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+
+      .eyebrow,
+      .depth-caption {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        margin: 0;
+        color: var(--water-deep);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before,
+      .depth-caption::before {
+        width: 22px;
+        height: 6px;
+        content: "";
+        background: repeating-linear-gradient(
+          90deg,
+          var(--lane-blue) 0 7px,
+          var(--foam) 7px 10px,
+          var(--safety-red) 10px 17px,
+          var(--foam) 17px 20px
+        );
+        border: 1px solid var(--ink);
+        border-radius: var(--radius-float);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: var(--space-5) 0 var(--space-5);
+        font-family: var(--font-display);
+        font-size: clamp(4.4rem, 9vw, 8.6rem);
+        font-weight: 400;
+        line-height: 0.82;
+        letter-spacing: -0.055em;
+        text-transform: uppercase;
+      }
+
+      h1 span {
+        display: block;
+        color: var(--lane-blue);
+        font-size: 0.54em;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-lead {
+        max-width: 540px;
+        margin-bottom: var(--space-8);
+        color: var(--ink-soft);
+        font-size: clamp(1rem, 1.8vw, 1.25rem);
+        line-height: 1.55;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        align-items: center;
+      }
+
+      .lido-button {
+        position: relative;
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        padding: 10px 18px;
+        overflow: hidden;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: var(--lane-blue);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+        box-shadow:
+          inset 0 -5px 0 var(--lane-blue-deep),
+          0 4px 0 var(--grout-deep);
+        transition:
+          transform var(--dur) var(--ease),
+          box-shadow var(--dur) var(--ease),
+          background var(--dur) var(--ease);
+      }
+
+      .lido-button::before {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        left: 10px;
+        height: 2px;
+        content: "";
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: var(--radius-float);
+        transform: scaleX(0.38);
+        transform-origin: left;
+        transition: transform var(--dur-slow) var(--ease);
+      }
+
+      .lido-button:hover:not(:disabled) {
+        background: #0c6ee0;
+        transform: translateY(-1px);
+      }
+
+      .lido-button:hover:not(:disabled)::before {
+        transform: scaleX(1);
+      }
+
+      .lido-button:active:not(:disabled) {
+        box-shadow:
+          inset 0 -2px 0 var(--lane-blue-deep),
+          0 2px 0 var(--grout-deep);
+        transform: translateY(1px);
+        transition-duration: 0s;
+      }
+
+      .lido-button--secondary {
+        color: var(--ink);
+        background: var(--tile-bright);
+        box-shadow:
+          inset 0 -5px 0 var(--tile-cool),
+          0 4px 0 var(--grout-deep);
+      }
+
+      .lido-button--secondary::before {
+        background: var(--water);
+      }
+
+      .lido-button--secondary:hover:not(:disabled) {
+        color: var(--lane-blue);
+        background: #ffffff;
+      }
+
+      .lido-button--secondary:active:not(:disabled) {
+        box-shadow:
+          inset 0 -2px 0 var(--tile-cool),
+          0 2px 0 var(--grout-deep);
+      }
+
+      .lido-button--danger {
+        background: var(--safety-red-deep);
+        box-shadow:
+          inset 0 -5px 0 #791b22,
+          0 4px 0 var(--grout-deep);
+      }
+
+      .lido-button--danger:hover:not(:disabled) {
+        background: #c52b31;
+      }
+
+      .lido-button--danger:active:not(:disabled) {
+        box-shadow:
+          inset 0 -2px 0 #791b22,
+          0 2px 0 var(--grout-deep);
+      }
+
+      .lido-button--small {
+        min-height: 36px;
+        padding: 7px 12px;
+        font-size: 0.68rem;
+        border-radius: var(--radius-chip);
+      }
+
+      .lido-button:disabled {
+        color: #6b7e82;
+        cursor: not-allowed;
+        background: #d5dfdc;
+        box-shadow:
+          inset 0 -4px 0 #bcc9c6,
+          0 3px 0 #b6c2c0;
+        opacity: 0.7;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-2);
+        margin-top: var(--space-10);
+      }
+
+      .metric {
+        min-width: 0;
+        padding: var(--space-3);
+        background: rgba(255, 250, 240, 0.76);
+        border: 1px solid var(--grout-deep);
+        border-radius: var(--radius-chip);
+      }
+
+      .metric-label {
+        display: block;
+        margin-bottom: var(--space-1);
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .metric-value {
+        display: block;
+        overflow: hidden;
+        font-family: var(--font-mono);
+        font-size: clamp(0.78rem, 1.5vw, 1rem);
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .pool-window {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        padding: clamp(14px, 2vw, 24px);
+        background: var(--tile);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 32px;
+        box-shadow:
+          inset 0 0 0 5px var(--tile-bright),
+          10px 14px 0 rgba(12, 53, 69, 0.15),
+          0 28px 50px var(--shadow);
+        transform: rotate(1.5deg);
+      }
+
+      .pool-deck {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 54px;
+        padding: 0 var(--space-4);
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background-image:
+          linear-gradient(var(--grout) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px);
+        background-size: 32px 32px;
+        border: var(--stroke) solid var(--ink);
+        border-bottom: 0;
+        border-radius: 16px 16px 0 0;
+      }
+
+      .deck-safety {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--safety-red-deep);
+      }
+
+      .deck-safety::before {
+        width: 10px;
+        height: 10px;
+        content: "";
+        background: var(--safety-red);
+        border: 1px solid var(--ink);
+        border-radius: 50%;
+      }
+
+      .pool-water {
+        position: relative;
+        height: clamp(340px, 48vw, 510px);
+        overflow: hidden;
+        background-color: var(--water);
+        background-image:
+          radial-gradient(
+            ellipse at 10% 30%,
+            rgba(255, 255, 255, 0.42) 0 2%,
+            transparent 2.5%
+          ),
+          radial-gradient(
+            ellipse at 64% 70%,
+            rgba(255, 255, 255, 0.3) 0 2%,
+            transparent 2.5%
+          ),
+          repeating-linear-gradient(
+            118deg,
+            transparent 0 34px,
+            rgba(255, 255, 255, 0.24) 36px 39px,
+            transparent 42px 70px
+          ),
+          linear-gradient(145deg, #65ddd5, #38bfc8 62%, #1695ae);
+        background-size:
+          170px 130px,
+          220px 160px,
+          190px 190px,
+          auto;
+        border: var(--stroke) solid var(--ink);
+        border-radius: 0 0 16px 16px;
+        animation: water-light 12s linear infinite;
+      }
+
+      .pool-water::after {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1),
+          transparent 20% 80%,
+          rgba(12, 53, 69, 0.08)
+        );
+      }
+
+      .lane-rope {
+        position: absolute;
+        right: -10px;
+        left: -10px;
+        z-index: 2;
+        height: 13px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--lane-blue) 0 18px,
+          var(--foam) 18px 23px,
+          var(--lane-blue) 23px 41px,
+          var(--foam) 41px 46px,
+          var(--safety-red) 46px 64px,
+          var(--foam) 64px 69px
+        );
+        border: 2px solid var(--ink);
+        border-radius: var(--radius-float);
+        box-shadow: 0 4px 4px rgba(12, 53, 69, 0.2);
+      }
+
+      .lane-rope::after {
+        position: absolute;
+        top: 2px;
+        right: 3px;
+        left: 3px;
+        height: 2px;
+        content: "";
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: var(--radius-float);
+      }
+
+      .lane-rope--one {
+        top: 29%;
+      }
+
+      .lane-rope--two {
+        top: 67%;
+      }
+
+      .lane-number {
+        position: absolute;
+        left: var(--space-4);
+        z-index: 3;
+        display: grid;
+        width: 42px;
+        height: 42px;
+        color: var(--foam);
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        background: var(--lane-blue);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 9px;
+        box-shadow: inset 0 -5px 0 var(--lane-blue-deep);
+        place-items: center;
+      }
+
+      .lane-number--one {
+        top: 12%;
+      }
+
+      .lane-number--two {
+        top: 49%;
+      }
+
+      .lane-number--three {
+        top: 82%;
+      }
+
+      .swimmer {
+        position: absolute;
+        top: 46%;
+        left: 20%;
+        z-index: 1;
+        width: 92px;
+        height: 28px;
+        animation: swim-lane 7s var(--ease) infinite alternate;
+      }
+
+      .swimmer::before {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        width: 17px;
+        height: 17px;
+        content: "";
+        background: var(--safety-red);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 50%;
+        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      .swimmer::after {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        width: 62px;
+        height: 9px;
+        content: "";
+        border-top: 3px solid rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        box-shadow: 0 7px 0 -2px rgba(255, 255, 255, 0.48);
+        transform: skewX(-24deg);
+      }
+
+      .pool-readout {
+        position: absolute;
+        right: var(--space-4);
+        bottom: var(--space-4);
+        z-index: 4;
+        display: grid;
+        gap: 2px;
+        min-width: 132px;
+        padding: 10px 12px;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        text-align: right;
+        background: rgba(12, 53, 69, 0.88);
+        border: 2px solid var(--foam);
+        border-radius: var(--radius-chip);
+        box-shadow: 0 5px 0 rgba(12, 53, 69, 0.24);
+      }
+
+      .pool-readout strong {
+        font-size: 1.25rem;
+      }
+
+      .pool-readout small {
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      main {
+        border-top: var(--stroke) solid var(--ink);
+      }
+
+      .specimen-section {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        border-bottom: var(--stroke) solid var(--ink);
+      }
+
+      .section-heading {
+        position: relative;
+        padding: clamp(32px, 5vw, 64px) clamp(20px, 3vw, 40px);
+        background: var(--tile-cool);
+        border-right: var(--stroke) solid var(--ink);
+      }
+
+      .section-heading::after {
+        position: absolute;
+        top: 0;
+        right: 18px;
+        width: 16px;
+        height: 100%;
+        content: "";
+        background: repeating-linear-gradient(
+          to bottom,
+          var(--ink) 0 2px,
+          transparent 2px 18px,
+          var(--ink-soft) 18px 20px,
+          transparent 20px 36px
+        );
+        opacity: 0.24;
+      }
+
+      .section-index {
+        display: block;
+        margin-bottom: var(--space-5);
+        color: var(--safety-red-deep);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .section-heading h2 {
+        margin-bottom: var(--space-4);
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.6rem);
+        font-weight: 400;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .section-heading p {
+        max-width: 190px;
+        margin-bottom: 0;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+
+      .section-content {
+        min-width: 0;
+        padding: clamp(32px, 5vw, 64px);
+        background: rgba(255, 250, 240, 0.92);
+      }
+
+      .component-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-5);
+      }
+
+      .spec-card {
+        position: relative;
+        min-width: 0;
+        padding: clamp(20px, 3vw, 30px);
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-panel);
+        box-shadow:
+          inset 0 0 0 4px rgba(184, 203, 200, 0.45),
+          0 5px 0 var(--grout),
+          0 18px 30px rgba(12, 53, 69, 0.07);
+      }
+
+      .spec-card--wide {
+        grid-column: 1 / -1;
+      }
+
+      .card-kicker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        margin-bottom: var(--space-5);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--grout);
+      }
+
+      .card-kicker h3 {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pool-code {
+        flex: none;
+        color: var(--water-deep);
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+      }
+
+      .control-stack {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .field {
+        display: grid;
+        gap: var(--space-2);
+      }
+
+      .field-label {
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .field-label strong {
+        margin-right: var(--space-2);
+        color: var(--safety-red-deep);
+      }
+
+      .input-frame,
+      .select-trigger {
+        display: flex;
+        min-height: 48px;
+        align-items: center;
+        gap: var(--space-3);
+        width: 100%;
+        padding: 0 var(--space-4);
+        color: var(--ink);
+        background: #e8f4f0;
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+        box-shadow:
+          inset 0 4px 0 rgba(12, 53, 69, 0.09),
+          inset 0 0 0 3px rgba(255, 255, 255, 0.56);
+      }
+
+      .input-frame:focus-within {
+        border-color: var(--safety-red-deep);
+        box-shadow:
+          inset 0 4px 0 rgba(12, 53, 69, 0.09),
+          inset 0 0 0 3px rgba(255, 255, 255, 0.56),
+          0 0 0 3px var(--tile-bright),
+          0 0 0 6px var(--safety-red);
+        animation: focus-ripple 360ms var(--ease);
+      }
+
+      .input-prefix {
+        display: inline-grid;
+        width: 29px;
+        height: 29px;
+        flex: none;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        background: var(--water-deep);
+        border: 1px solid var(--ink);
+        border-radius: 6px;
+        place-items: center;
+      }
+
+      .input-frame input {
+        min-width: 0;
+        width: 100%;
+        color: var(--ink);
+        background: transparent;
+        border: 0;
+        outline: 0;
+      }
+
+      .input-frame input::placeholder {
+        color: #68848c;
+      }
+
+      .field-note {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.8rem;
+      }
+
+      .choice-list {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .choice {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        width: fit-content;
+        min-height: 34px;
+        cursor: pointer;
+      }
+
+      .native-control {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      .check-tile,
+      .radio-target {
+        position: relative;
+        display: inline-grid;
+        width: 30px;
+        height: 30px;
+        flex: none;
+        overflow: hidden;
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        box-shadow: inset 0 0 0 3px var(--tile-cool);
+        place-items: center;
+        transition:
+          background var(--dur) var(--ease),
+          transform var(--dur) var(--ease);
+      }
+
+      .check-tile {
+        border-radius: 7px;
+      }
+
+      .check-tile::before {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 0;
+        content: "";
+        background: var(--lane-blue);
+        transition: height var(--dur-slow) var(--ease);
+      }
+
+      .check-tile::after {
+        position: relative;
+        z-index: 1;
+        width: 12px;
+        height: 7px;
+        content: "";
+        border-bottom: 3px solid var(--foam);
+        border-left: 3px solid var(--foam);
+        opacity: 0;
+        transform: translateY(-2px) rotate(-45deg) scale(0.5);
+        transition:
+          opacity var(--dur) var(--ease),
+          transform var(--dur-slow) var(--ease);
+      }
+
+      .native-control:checked + .check-tile::before {
+        height: 100%;
+      }
+
+      .native-control:checked + .check-tile::after {
+        opacity: 1;
+        transform: translateY(-2px) rotate(-45deg) scale(1);
+      }
+
+      .native-control:indeterminate + .check-tile::before {
+        height: 50%;
+      }
+
+      .native-control:indeterminate + .check-tile::after {
+        width: 15px;
+        height: 0;
+        border-bottom: 3px solid var(--foam);
+        border-left: 0;
+        opacity: 1;
+        transform: none;
+      }
+
+      .radio-target {
+        border-radius: 50%;
+        box-shadow:
+          inset 0 0 0 4px var(--tile-cool),
+          inset 0 0 0 7px var(--tile-bright);
+      }
+
+      .radio-target::after {
+        width: 12px;
+        height: 12px;
+        content: "";
+        background: var(--safety-red);
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0.35);
+        transition:
+          opacity var(--dur) var(--ease),
+          transform var(--dur-slow) var(--ease);
+      }
+
+      .native-control:checked + .radio-target::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .choice-label {
+        font-weight: 700;
+      }
+
+      .choice-label small {
+        display: block;
+        margin-top: 2px;
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        font-weight: 400;
+      }
+
+      .native-control:focus-visible + .check-tile,
+      .native-control:focus-visible + .radio-target,
+      .native-control:focus-visible + .switch-track {
+        outline: 3px solid var(--safety-red);
+        outline-offset: 4px;
+        animation: focus-ripple 360ms var(--ease);
+      }
+
+      .switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-5);
+        cursor: pointer;
+      }
+
+      .switch-copy strong {
+        display: block;
+      }
+
+      .switch-copy small {
+        color: var(--ink-soft);
+      }
+
+      .switch-track {
+        position: relative;
+        display: block;
+        width: 72px;
+        height: 34px;
+        flex: none;
+        overflow: hidden;
+        background:
+          repeating-linear-gradient(90deg, #c9d7d4 0 13px, var(--tile-bright) 13px 18px),
+          var(--tile-cool);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-float);
+        box-shadow: inset 0 3px 0 rgba(12, 53, 69, 0.12);
+      }
+
+      .switch-track::before {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 0;
+        content: "";
+        background: rgba(87, 210, 206, 0.8);
+        transition: height var(--dur-slow) var(--ease);
+      }
+
+      .switch-track::after {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 22px;
+        height: 22px;
+        content: "";
+        background: var(--safety-red-deep);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 50%;
+        box-shadow:
+          inset 0 3px 0 rgba(255, 255, 255, 0.6),
+          0 2px 2px var(--shadow-deep);
+        transition: transform 260ms var(--ease);
+      }
+
+      .native-control:checked + .switch-track::before {
+        height: 100%;
+      }
+
+      .native-control:checked + .switch-track::after {
+        transform: translateX(38px);
+      }
+
+      .select {
+        position: relative;
+      }
+
+      .select-trigger {
+        justify-content: space-between;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .select-trigger[aria-expanded="true"] {
+        border-color: var(--safety-red-deep);
+        box-shadow:
+          inset 0 4px 0 rgba(12, 53, 69, 0.09),
+          inset 0 0 0 3px rgba(255, 255, 255, 0.56),
+          0 0 0 3px var(--tile-bright),
+          0 0 0 6px var(--safety-red);
+      }
+
+      .select-chevron {
+        width: 10px;
+        height: 10px;
+        flex: none;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-3px) rotate(45deg);
+        transition: transform var(--dur) var(--ease);
+      }
+
+      .select-trigger[aria-expanded="true"] .select-chevron {
+        transform: translateY(3px) rotate(225deg);
+      }
+
+      .select-menu {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        left: 0;
+        z-index: 20;
+        display: grid;
+        gap: var(--space-1);
+        margin: 0;
+        padding: var(--space-2);
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+        box-shadow:
+          7px 8px 0 rgba(12, 53, 69, 0.18),
+          0 22px 34px var(--shadow);
+        animation: float-up 180ms var(--ease);
+      }
+
+      .select-option {
+        display: grid;
+        grid-template-columns: 34px 1fr auto;
+        gap: var(--space-3);
+        align-items: center;
+        min-height: 44px;
+        padding: var(--space-2) var(--space-3);
+        text-align: left;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        border-radius: var(--radius-chip);
+      }
+
+      .select-option:hover,
+      .select-option:focus-visible {
+        background: var(--water-soft);
+      }
+
+      .select-option[aria-selected="true"] {
+        color: var(--lane-blue-deep);
+        font-weight: 700;
+        background: #d8eff8;
+      }
+
+      .lane-chip {
+        display: grid;
+        width: 30px;
+        height: 28px;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        background: var(--lane-blue);
+        border: 1px solid var(--ink);
+        border-radius: 6px;
+        place-items: center;
+      }
+
+      .option-status {
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        text-transform: uppercase;
+      }
+
+      .range-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+      }
+
+      .range-value {
+        color: var(--lane-blue-deep);
+        font-family: var(--font-mono);
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      .lido-range {
+        width: 100%;
+        height: 34px;
+        margin: 0;
+        cursor: pointer;
+        appearance: none;
+        background: transparent;
+      }
+
+      .lido-range::-webkit-slider-runnable-track {
+        height: 14px;
+        background:
+          linear-gradient(
+            90deg,
+            transparent var(--range),
+            rgba(255, 255, 255, 0.58) var(--range)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--lane-blue) 0 16px,
+            var(--foam) 16px 21px,
+            var(--safety-red) 21px 37px,
+            var(--foam) 37px 42px
+          );
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-float);
+        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      .lido-range::-moz-range-track {
+        height: 12px;
+        background:
+          linear-gradient(
+            90deg,
+            transparent var(--range),
+            rgba(255, 255, 255, 0.58) var(--range)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--lane-blue) 0 16px,
+            var(--foam) 16px 21px,
+            var(--safety-red) 21px 37px,
+            var(--foam) 37px 42px
+          );
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-float);
+      }
+
+      .lido-range::-webkit-slider-thumb {
+        width: 27px;
+        height: 27px;
+        margin-top: -8px;
+        appearance: none;
+        background: var(--foam);
+        border: 3px solid var(--safety-red);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 4px 0 var(--shadow-deep);
+      }
+
+      .lido-range::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        background: var(--foam);
+        border: 3px solid var(--safety-red);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 4px 0 var(--shadow-deep);
+      }
+
+      .range-scale {
+        display: flex;
+        justify-content: space-between;
+        margin-top: var(--space-2);
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+      }
+
+      .lane-progress {
+        position: relative;
+        height: 18px;
+        overflow: hidden;
+        background: repeating-linear-gradient(
+          90deg,
+          #a9bebc 0 18px,
+          var(--foam) 18px 23px,
+          #c8d6d3 23px 41px,
+          var(--foam) 41px 46px
+        );
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-float);
+        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.55);
+      }
+
+      .lane-progress__fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: var(--progress);
+        background: repeating-linear-gradient(
+          90deg,
+          var(--lane-blue) 0 18px,
+          var(--foam) 18px 23px,
+          var(--safety-red) 23px 41px,
+          var(--foam) 41px 46px
+        );
+        border-right: var(--stroke) solid var(--ink);
+        transition: width 600ms var(--ease);
+      }
+
+      .progress-copy {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+      }
+
+      .progress-copy strong {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 400;
+      }
+
+      .progress-copy span {
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+      }
+
+      .meter-layout {
+        display: grid;
+        grid-template-columns: 86px 1fr;
+        gap: var(--space-6);
+        align-items: stretch;
+      }
+
+      .depth-meter {
+        position: relative;
+        min-height: 230px;
+        overflow: hidden;
+        background: #dff3ef;
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.6);
+      }
+
+      .depth-meter__fill {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: var(--level);
+        background:
+          repeating-linear-gradient(
+            115deg,
+            transparent 0 18px,
+            rgba(255, 255, 255, 0.25) 20px 23px,
+            transparent 25px 40px
+          ),
+          linear-gradient(var(--water), var(--water-deep));
+        border-top: var(--stroke) solid var(--ink);
+      }
+
+      .depth-meter__marks {
+        position: absolute;
+        inset: 12px 10px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--ink);
+        font-family: var(--font-mono);
+        font-size: 0.54rem;
+        font-weight: 700;
+      }
+
+      .depth-meter__marks span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .depth-meter__marks span::after {
+        width: 16px;
+        height: 2px;
+        content: "";
+        background: currentColor;
+      }
+
+      .meter-copy {
+        align-self: center;
+      }
+
+      .meter-copy strong {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 7vw, 4.6rem);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .meter-copy p {
+        margin-bottom: var(--space-4);
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 6px 10px;
+        color: #07513d;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: #ccefe1;
+        border: 1px solid var(--success);
+        border-radius: var(--radius-float);
+      }
+
+      .status-pill::before {
+        width: 8px;
+        height: 8px;
+        content: "";
+        background: var(--success);
+        border-radius: 50%;
+      }
+
+      .tabs {
+        min-width: 0;
+      }
+
+      .tab-list {
+        display: flex;
+        gap: var(--space-2);
+        overflow-x: auto;
+        padding: 7px 7px 0;
+        background: var(--tile-cool);
+        border: var(--stroke) solid var(--ink);
+        border-bottom: 0;
+        border-radius: var(--radius-control) var(--radius-control) 0 0;
+        scrollbar-width: thin;
+      }
+
+      .tab {
+        position: relative;
+        min-width: 112px;
+        min-height: 48px;
+        padding: 8px 12px 12px;
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: #dce9e6;
+        border: var(--stroke) solid var(--grout-deep);
+        border-bottom: 0;
+        border-radius: 8px 8px 0 0;
+        transition:
+          color var(--dur) var(--ease),
+          transform var(--dur) var(--ease),
+          background var(--dur) var(--ease);
+      }
+
+      .tab strong {
+        display: block;
+        margin-bottom: 2px;
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 400;
+      }
+
+      .tab[aria-selected="true"] {
+        z-index: 1;
+        color: var(--lane-blue-deep);
+        background: var(--tile-bright);
+        border-color: var(--ink);
+        transform: translateY(2px);
+      }
+
+      .tab[aria-selected="true"]::after {
+        position: absolute;
+        right: 10px;
+        bottom: 5px;
+        left: 10px;
+        height: 4px;
+        content: "";
+        background: var(--lane-blue);
+        border-radius: var(--radius-float);
+      }
+
+      .tab-panel {
+        min-height: 150px;
+        padding: var(--space-6);
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 0 0 var(--radius-control) var(--radius-control);
+      }
+
+      .tab-panel h3 {
+        margin-bottom: var(--space-2);
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      .tab-panel p {
+        max-width: 630px;
+        margin-bottom: 0;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+
+      .feedback-board {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .feedback-action {
+        display: grid;
+        align-content: space-between;
+        gap: var(--space-6);
+        min-height: 180px;
+        padding: var(--space-5);
+        background: var(--tile-cool);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+      }
+
+      .feedback-action strong {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+
+      .feedback-action p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .tooltip-wrap {
+        position: relative;
+        width: fit-content;
+      }
+
+      .tooltip-trigger {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-weight: 700;
+        cursor: help;
+        background: var(--water-deep);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 50%;
+        box-shadow: inset 0 -4px 0 #07596b;
+        place-items: center;
+      }
+
+      .tooltip-bubble {
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        z-index: 10;
+        width: 210px;
+        padding: 10px 12px;
+        color: var(--foam);
+        font-size: 0.78rem;
+        line-height: 1.35;
+        pointer-events: none;
+        background: var(--ink);
+        border: 2px solid var(--foam);
+        border-radius: var(--radius-chip);
+        box-shadow: 0 6px 0 rgba(12, 53, 69, 0.2);
+        opacity: 0;
+        transform: translate(-50%, 6px);
+        transition:
+          opacity var(--dur) var(--ease),
+          transform var(--dur) var(--ease);
+      }
+
+      .tooltip-bubble::after {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        content: "";
+        background: var(--ink);
+        border-right: 2px solid var(--foam);
+        border-bottom: 2px solid var(--foam);
+        transform: translate(-50%, -5px) rotate(45deg);
+      }
+
+      .tooltip-wrap:hover .tooltip-bubble,
+      .tooltip-trigger:focus-visible + .tooltip-bubble {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      .lido-dialog {
+        width: min(560px, calc(100% - 32px));
+        max-height: calc(100dvh - 40px);
+        padding: 0;
+        overflow: auto;
+        color: var(--ink);
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-panel);
+        box-shadow:
+          inset 0 0 0 5px var(--tile-cool),
+          12px 14px 0 rgba(12, 53, 69, 0.22),
+          0 35px 70px rgba(12, 53, 69, 0.32);
+      }
+
+      .lido-dialog[open] {
+        animation: float-up 220ms var(--ease);
+      }
+
+      .lido-dialog::backdrop {
+        background:
+          repeating-linear-gradient(
+            118deg,
+            transparent 0 48px,
+            rgba(255, 255, 255, 0.1) 50px 52px,
+            transparent 54px 96px
+          ),
+          rgba(8, 77, 94, 0.74);
+        animation: backdrop-in 180ms ease-out;
+      }
+
+      .dialog-topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-4) var(--space-5);
+        color: var(--foam);
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: var(--safety-red-deep);
+        border-bottom: var(--stroke) solid var(--ink);
+      }
+
+      .dialog-body {
+        padding: clamp(24px, 5vw, 42px);
+      }
+
+      .rule-number {
+        display: grid;
+        width: 58px;
+        height: 58px;
+        margin-bottom: var(--space-5);
+        color: var(--foam);
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        background: var(--lane-blue);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 10px;
+        box-shadow: inset 0 -7px 0 var(--lane-blue-deep);
+        place-items: center;
+      }
+
+      .dialog-body h2 {
+        margin-bottom: var(--space-3);
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .dialog-body p {
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+
+      .dialog-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: var(--space-3);
+        margin-top: var(--space-6);
+        padding-top: var(--space-5);
+        border-top: 1px solid var(--grout);
+      }
+
+      .toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 80;
+        display: grid;
+        grid-template-columns: 70px minmax(0, 1fr) auto;
+        gap: var(--space-4);
+        align-items: center;
+        width: min(420px, calc(100% - 32px));
+        padding: var(--space-3);
+        background: var(--tile-bright);
+        border: var(--stroke) solid var(--ink);
+        border-radius: var(--radius-control);
+        box-shadow:
+          8px 9px 0 rgba(12, 53, 69, 0.2),
+          0 26px 50px rgba(12, 53, 69, 0.24);
+        opacity: 0;
+        transform: translateY(30px) rotateX(-16deg);
+        transform-origin: bottom;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 180ms var(--ease),
+          transform 260ms var(--ease),
+          visibility 0s linear 260ms;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+
+      .toast-score {
+        display: grid;
+        height: 58px;
+        color: var(--foam);
+        font-family: var(--font-display);
+        font-size: 1.55rem;
+        background: var(--lane-blue);
+        border: var(--stroke) solid var(--ink);
+        border-radius: 8px;
+        box-shadow: inset 0 -7px 0 var(--lane-blue-deep);
+        place-items: center;
+      }
+
+      .toast-copy strong,
+      .toast-copy span {
+        display: block;
+      }
+
+      .toast-copy strong {
+        margin-bottom: 2px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+      }
+
+      .toast-copy span {
+        color: var(--ink-soft);
+        font-size: 0.82rem;
+      }
+
+      .toast-close {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        border-radius: 50%;
+        place-items: center;
+      }
+
+      .toast-close:hover {
+        background: var(--water-soft);
+      }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-6);
+        padding: var(--space-6) clamp(20px, 5vw, 64px);
+        color: var(--foam);
+        background: var(--ink);
+      }
+
+      .footer-brand {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+      }
+
+      .footer-note {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      @keyframes water-light {
+        from {
+          background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+        }
+        to {
+          background-position:
+            170px 0,
+            -220px 0,
+            190px 95px,
+            0 0;
+        }
+      }
+
+      @keyframes swim-lane {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(clamp(120px, 22vw, 280px));
+        }
+      }
+
+      @keyframes focus-ripple {
+        0% {
+          outline-offset: 10px;
+        }
+        100% {
+          outline-offset: 4px;
+        }
+      }
+
+      @keyframes float-up {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes backdrop-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .mast-nav {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .pool-window {
+          width: min(700px, 100%);
+          justify-self: center;
+        }
+
+        .specimen-section {
+          grid-template-columns: 1fr;
+        }
+
+        .section-heading {
+          border-right: 0;
+          border-bottom: var(--stroke) solid var(--ink);
+        }
+
+        .section-heading p {
+          max-width: 540px;
+        }
+
+        .section-heading::after {
+          right: 24px;
+          width: 80px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: calc(100% - 16px);
+          margin: var(--space-2) auto;
+          border-radius: 20px;
+        }
+
+        .status-strip {
+          padding-inline: var(--space-4);
+        }
+
+        .status-strip > span:last-child {
+          display: none;
+        }
+
+        .masthead {
+          padding: var(--space-4);
+        }
+
+        .hero {
+          min-height: auto;
+          padding: var(--space-12) var(--space-5);
+        }
+
+        h1 {
+          font-size: clamp(4rem, 25vw, 6.4rem);
+        }
+
+        .hero-metrics,
+        .component-grid,
+        .feedback-board {
+          grid-template-columns: 1fr;
+        }
+
+        .metric {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: var(--space-4);
+        }
+
+        .pool-window {
+          padding: var(--space-3);
+          border-radius: 22px;
+          transform: none;
+        }
+
+        .pool-water {
+          height: 390px;
+        }
+
+        .section-content {
+          padding: var(--space-6) var(--space-4) var(--space-8);
+        }
+
+        .spec-card--wide {
+          grid-column: auto;
+        }
+
+        .meter-layout {
+          grid-template-columns: 74px 1fr;
+        }
+
+        .toast {
+          right: 16px;
+          bottom: 16px;
+          grid-template-columns: 56px minmax(0, 1fr) auto;
+        }
+
+        .toast-score {
+          height: 50px;
+          font-size: 1.2rem;
+        }
+
+        footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .footer-note {
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .swimmer {
+          left: 52%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#specimens">Skip to component specimens</a>
+
+    <div class="shell">
+      <div class="status-strip">
+        <span class="status-live">Pool open · Deck clear</span>
+        <span>Monday / Summer Session 07</span>
+      </div>
+
+      <header class="masthead">
+        <a class="brand" href="#top" aria-label="LIDO 07 home">
+          <span class="brand-mark" aria-hidden="true"><span>07</span></span>
+          <span class="brand-copy">
+            <span class="brand-name">LIDO</span>
+            <span class="brand-tag">Poolside · Civic</span>
+          </span>
+        </a>
+
+        <nav class="mast-nav" aria-label="Specimen navigation">
+          <a href="#entry">Entry</a>
+          <a href="#lanes">Lanes</a>
+          <a href="#signals">Signals</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Municipal pool interface study</p>
+          <h1 id="hero-title">LIDO <span>Open swim 07</span></h1>
+          <p class="hero-lead">
+            Durable civic signage meets the motion of clear water. Every control is built
+            from pool tile, lane markers, depth scales, and one precise safety-red signal.
+          </p>
+
+          <div class="button-row">
+            <a class="lido-button" href="#specimens"
+              >Enter the pool <span aria-hidden="true">↓</span></a
+            >
+            <button
+              class="lido-button lido-button--secondary"
+              type="button"
+              data-open-dialog
+            >
+              Read pool rule 07
+            </button>
+          </div>
+
+          <div class="hero-metrics" aria-label="Current pool conditions">
+            <div class="metric">
+              <span class="metric-label">Water</span>
+              <span class="metric-value">26.0°C</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Lanes</span>
+              <span class="metric-value">6 / 8 Open</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Local time</span>
+              <span class="metric-value" id="localTime">07:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pool-window" aria-label="Overhead view of LIDO pool lanes">
+          <div class="pool-deck">
+            <span>1.20 M</span>
+            <span class="deck-safety">No running</span>
+            <span>3.80 M</span>
+          </div>
+          <div class="pool-water">
+            <span class="lane-number lane-number--one">3</span>
+            <span class="lane-number lane-number--two">4</span>
+            <span class="lane-number lane-number--three">5</span>
+            <span class="lane-rope lane-rope--one" aria-hidden="true"></span>
+            <span class="lane-rope lane-rope--two" aria-hidden="true"></span>
+            <span class="swimmer" aria-hidden="true"></span>
+            <span class="pool-readout">
+              <strong>00:48.2</strong>
+              <small>Lane 04 / 100 m</small>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <main id="specimens">
+        <section class="specimen-section" id="entry" aria-labelledby="entry-title">
+          <header class="section-heading">
+            <span class="section-index">01 / 1.20 M</span>
+            <h2 id="entry-title">Entry controls</h2>
+            <p>
+              Hard-wearing tile frames, clear states, and a red ripple when the keyboard
+              arrives.
+            </p>
+          </header>
+
+          <div class="section-content">
+            <div class="component-grid">
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Poolside buttons</h3>
+                  <span class="pool-code">GATE / 01</span>
+                </div>
+                <div class="control-stack">
+                  <div class="button-row">
+                    <button class="lido-button" type="button">Book lane</button>
+                    <button class="lido-button lido-button--secondary" type="button">
+                      View rules
+                    </button>
+                    <button class="lido-button lido-button--danger" type="button">
+                      Close lane
+                    </button>
+                  </div>
+                  <div class="button-row">
+                    <button class="lido-button lido-button--small" type="button">
+                      Small
+                    </button>
+                    <button class="lido-button lido-button--small" type="button" disabled>
+                      Unavailable
+                    </button>
+                    <div class="tooltip-wrap">
+                      <button
+                        class="tooltip-trigger"
+                        type="button"
+                        aria-describedby="lane-tip"
+                      >
+                        ?
+                      </button>
+                      <span class="tooltip-bubble" id="lane-tip" role="tooltip">
+                        Lane 04 changes to tempo swimming at 09:30.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Depth-scale field</h3>
+                  <span class="pool-code">LOCKER / 12</span>
+                </div>
+                <label class="field" for="locker-code">
+                  <span class="field-label"><strong>1.20 M</strong> Locker code</span>
+                  <span class="input-frame">
+                    <span class="input-prefix" aria-hidden="true">№</span>
+                    <input
+                      id="locker-code"
+                      autocomplete="off"
+                      placeholder="Enter four digits"
+                      inputmode="numeric"
+                    />
+                  </span>
+                  <span class="field-note"
+                    >Your code stays on this device until closing time.</span
+                  >
+                </label>
+              </article>
+
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Tile selections</h3>
+                  <span class="pool-code">ACCESS / A</span>
+                </div>
+                <div class="choice-list">
+                  <label class="choice">
+                    <input class="native-control" type="checkbox" checked />
+                    <span class="check-tile" aria-hidden="true"></span>
+                    <span class="choice-label"
+                      >Towel service <small>Checked · water fill</small></span
+                    >
+                  </label>
+                  <label class="choice">
+                    <input class="native-control" id="mixedCheck" type="checkbox" />
+                    <span class="check-tile" aria-hidden="true"></span>
+                    <span class="choice-label"
+                      >Lane group <small>Mixed · half waterline</small></span
+                    >
+                  </label>
+                  <fieldset
+                    style="
+                      display: grid;
+                      gap: 12px;
+                      margin: 4px 0 0;
+                      padding: 0;
+                      border: 0;
+                    "
+                  >
+                    <legend class="field-label" style="margin-bottom: 8px">
+                      Session pace
+                    </legend>
+                    <label class="choice">
+                      <input
+                        class="native-control"
+                        type="radio"
+                        name="pace"
+                        value="open"
+                        checked
+                      />
+                      <span class="radio-target" aria-hidden="true"></span>
+                      <span class="choice-label">Open swim</span>
+                    </label>
+                    <label class="choice">
+                      <input
+                        class="native-control"
+                        type="radio"
+                        name="pace"
+                        value="tempo"
+                      />
+                      <span class="radio-target" aria-hidden="true"></span>
+                      <span class="choice-label">Tempo lane</span>
+                    </label>
+                  </fieldset>
+                </div>
+              </article>
+
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Lane switch</h3>
+                  <span class="pool-code">FLOAT / ON</span>
+                </div>
+                <div class="control-stack">
+                  <label class="switch-row">
+                    <span class="switch-copy">
+                      <strong>Outdoor lane</strong>
+                      <small>Move the safety float into position.</small>
+                    </span>
+                    <span style="position: relative">
+                      <input
+                        class="native-control"
+                        type="checkbox"
+                        role="switch"
+                        checked
+                      />
+                      <span class="switch-track" aria-hidden="true"></span>
+                    </span>
+                  </label>
+                  <label class="switch-row">
+                    <span class="switch-copy">
+                      <strong>Quiet hour</strong>
+                      <small>Reduce deck announcements.</small>
+                    </span>
+                    <span style="position: relative">
+                      <input class="native-control" type="checkbox" role="switch" />
+                      <span class="switch-track" aria-hidden="true"></span>
+                    </span>
+                  </label>
+                </div>
+              </article>
+
+              <article class="spec-card spec-card--wide">
+                <div class="card-kicker">
+                  <h3>Lifeguard lane selector</h3>
+                  <span class="pool-code">LIST / 04</span>
+                </div>
+                <div class="select" id="laneSelect">
+                  <button
+                    class="select-trigger"
+                    id="laneSelectTrigger"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-controls="laneSelectMenu"
+                  >
+                    <span id="laneSelectValue">Lane 04 — Tempo</span>
+                    <span class="select-chevron" aria-hidden="true"></span>
+                  </button>
+                  <div
+                    class="select-menu"
+                    id="laneSelectMenu"
+                    role="listbox"
+                    aria-label="Choose a pool lane"
+                    hidden
+                  >
+                    <button
+                      class="select-option"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Lane 03 — Open swim"
+                    >
+                      <span class="lane-chip">03</span>
+                      <span>Open swim</span>
+                      <span class="option-status">Clear</span>
+                    </button>
+                    <button
+                      class="select-option"
+                      type="button"
+                      role="option"
+                      aria-selected="true"
+                      data-value="Lane 04 — Tempo"
+                    >
+                      <span class="lane-chip">04</span>
+                      <span>Tempo</span>
+                      <span class="option-status">Selected</span>
+                    </button>
+                    <button
+                      class="select-option"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Lane 05 — Training"
+                    >
+                      <span class="lane-chip">05</span>
+                      <span>Training</span>
+                      <span class="option-status">2 places</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="specimen-section" id="lanes" aria-labelledby="lanes-title">
+          <header class="section-heading">
+            <span class="section-index">02 / 2.40 M</span>
+            <h2 id="lanes-title">Lanes & levels</h2>
+            <p>
+              Movement is measured in pool lengths, float segments, and a waterline that
+              stays legible.
+            </p>
+          </header>
+
+          <div class="section-content">
+            <div class="component-grid">
+              <article class="spec-card spec-card--wide">
+                <div class="card-kicker">
+                  <h3>Lane-rope slider</h3>
+                  <span class="pool-code">PACE / 100 M</span>
+                </div>
+                <div class="range-head">
+                  <span class="depth-caption">Target pace</span>
+                  <output class="range-value" id="paceValue" for="paceRange"
+                    >48 sec</output
+                  >
+                </div>
+                <input
+                  class="lido-range"
+                  id="paceRange"
+                  type="range"
+                  min="30"
+                  max="90"
+                  value="48"
+                  aria-label="Target pace per 100 metres"
+                  style="--range: 30%"
+                />
+                <div class="range-scale" aria-hidden="true">
+                  <span>30 SEC</span><span>60 SEC</span><span>90 SEC</span>
+                </div>
+              </article>
+
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Session progress</h3>
+                  <span class="pool-code">16 / 24</span>
+                </div>
+                <div class="progress-copy">
+                  <strong>800 M</strong>
+                  <span>of 1,200 m</span>
+                </div>
+                <div
+                  class="lane-progress"
+                  role="progressbar"
+                  aria-label="Training session progress"
+                  aria-valuemin="0"
+                  aria-valuemax="1200"
+                  aria-valuenow="800"
+                >
+                  <span class="lane-progress__fill" style="--progress: 66.67%"></span>
+                </div>
+                <p class="field-note" style="margin-top: 14px">
+                  Eight pool lengths remain before cool-down.
+                </p>
+              </article>
+
+              <article class="spec-card">
+                <div class="card-kicker">
+                  <h3>Water-quality meter</h3>
+                  <span class="pool-code">CHEM / 08:00</span>
+                </div>
+                <div class="meter-layout">
+                  <div
+                    class="depth-meter"
+                    role="meter"
+                    aria-label="Water quality"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="76"
+                    aria-valuetext="76 percent, balanced"
+                  >
+                    <span class="depth-meter__fill" style="--level: 76%"></span>
+                    <span class="depth-meter__marks" aria-hidden="true">
+                      <span>100</span><span>75</span><span>50</span><span>25</span
+                      ><span>0</span>
+                    </span>
+                  </div>
+                  <div class="meter-copy">
+                    <strong>76</strong>
+                    <p>Chlorine and pH readings are inside the morning operating band.</p>
+                    <span class="status-pill">Balanced</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="spec-card spec-card--wide">
+                <div class="card-kicker">
+                  <h3>Starting-block tabs</h3>
+                  <span class="pool-code">BLOCK / A–C</span>
+                </div>
+                <div class="tabs">
+                  <div class="tab-list" role="tablist" aria-label="Pool schedule">
+                    <button
+                      class="tab"
+                      id="tab-open"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="panel-open"
+                      tabindex="0"
+                    >
+                      <strong>A</strong> Open swim
+                    </button>
+                    <button
+                      class="tab"
+                      id="tab-lessons"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="panel-lessons"
+                      tabindex="-1"
+                    >
+                      <strong>B</strong> Lessons
+                    </button>
+                    <button
+                      class="tab"
+                      id="tab-club"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="panel-club"
+                      tabindex="-1"
+                    >
+                      <strong>C</strong> Swim club
+                    </button>
+                  </div>
+                  <div
+                    class="tab-panel"
+                    id="panel-open"
+                    role="tabpanel"
+                    aria-labelledby="tab-open"
+                  >
+                    <h3>Open water, clear rhythm.</h3>
+                    <p>
+                      Six lanes are available until 09:30. Lane 01 remains reserved for
+                      accessible entry and assisted swimming.
+                    </p>
+                  </div>
+                  <div
+                    class="tab-panel"
+                    id="panel-lessons"
+                    role="tabpanel"
+                    aria-labelledby="tab-lessons"
+                    hidden
+                  >
+                    <h3>Small groups, shallow end.</h3>
+                    <p>
+                      Beginner lessons meet by the red depth marker. Please arrive ten
+                      minutes early for equipment fitting.
+                    </p>
+                  </div>
+                  <div
+                    class="tab-panel"
+                    id="panel-club"
+                    role="tabpanel"
+                    aria-labelledby="tab-club"
+                    hidden
+                  >
+                    <h3>Even splits after sunset.</h3>
+                    <p>
+                      Club training starts at 18:30 across lanes 03–06. The final twenty
+                      minutes are reserved for starts and turns.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="specimen-section" id="signals" aria-labelledby="signals-title">
+          <header class="section-heading">
+            <span class="section-index">03 / 3.80 M</span>
+            <h2 id="signals-title">Pool signals</h2>
+            <p>
+              Rules appear as enamel signs; quick feedback lands like a mechanical
+              scoreboard tile.
+            </p>
+          </header>
+
+          <div class="section-content">
+            <article class="spec-card">
+              <div class="card-kicker">
+                <h3>Feedback & overlays</h3>
+                <span class="pool-code">GUARD / ACTIVE</span>
+              </div>
+              <div class="feedback-board">
+                <div class="feedback-action">
+                  <div>
+                    <strong>Rule dialog</strong>
+                    <p>Open a stable enamel notice over a soft moving-water backdrop.</p>
+                  </div>
+                  <button class="lido-button" type="button" data-open-dialog>
+                    Open rule 07
+                  </button>
+                </div>
+                <div class="feedback-action">
+                  <div>
+                    <strong>Scoreboard toast</strong>
+                    <p>Confirm a lane booking with one crisp flip into place.</p>
+                  </div>
+                  <button
+                    class="lido-button lido-button--secondary"
+                    id="showToast"
+                    type="button"
+                  >
+                    Book lane 04
+                  </button>
+                </div>
+                <div class="feedback-action">
+                  <div>
+                    <strong>Guard tooltip</strong>
+                    <p>Hover or focus the marker for a short operational note.</p>
+                  </div>
+                  <div class="tooltip-wrap">
+                    <button
+                      class="tooltip-trigger"
+                      type="button"
+                      aria-describedby="guard-tip"
+                    >
+                      i
+                    </button>
+                    <span class="tooltip-bubble" id="guard-tip" role="tooltip"
+                      >Lifeguard rotation changes at 10:00.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span class="footer-brand">LIDO 07</span>
+        <span class="footer-note"
+          >A poolside civic interface · Designed to stay clear when the water moves</span
+        >
+      </footer>
+    </div>
+
+    <dialog class="lido-dialog" id="poolRuleDialog" aria-labelledby="rule-title">
+      <div class="dialog-topline">
+        <span>Municipal pool notice</span>
+        <span>Effective today</span>
+      </div>
+      <div class="dialog-body">
+        <span class="rule-number" aria-hidden="true">07</span>
+        <h2 id="rule-title">Share the lane.</h2>
+        <p>
+          Keep to the marked pace, leave five seconds between swimmers, and pause at the
+          left corner of the wall. If a faster swimmer reaches your feet, let them pass at
+          the next turn.
+        </p>
+        <div class="dialog-actions">
+          <button
+            class="lido-button lido-button--secondary"
+            type="button"
+            data-close-dialog
+          >
+            Not now
+          </button>
+          <button class="lido-button" type="button" data-close-dialog>
+            I understand
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <div
+      class="toast"
+      id="bookingToast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <span class="toast-score" aria-hidden="true">04</span>
+      <span class="toast-copy">
+        <strong>Lane booked</strong>
+        <span>Tempo swim · 08:30–09:00</span>
+      </span>
+      <button
+        class="toast-close"
+        id="closeToast"
+        type="button"
+        aria-label="Dismiss notification"
+      >
+        ×
+      </button>
+    </div>
+
+    <script>
+      const localTime = document.querySelector("#localTime");
+      const updateClock = () => {
+        localTime.textContent = new Intl.DateTimeFormat(undefined, {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date());
+      };
+      updateClock();
+      window.setInterval(updateClock, 60_000);
+
+      const mixedCheck = document.querySelector("#mixedCheck");
+      mixedCheck.indeterminate = true;
+
+      const range = document.querySelector("#paceRange");
+      const rangeValue = document.querySelector("#paceValue");
+      const updateRange = () => {
+        const min = Number(range.min);
+        const max = Number(range.max);
+        const value = Number(range.value);
+        const percentage = ((value - min) / (max - min)) * 100;
+        range.style.setProperty("--range", `${percentage}%`);
+        rangeValue.value = `${value} sec`;
+        range.setAttribute("aria-valuetext", `${value} seconds per 100 metres`);
+      };
+      range.addEventListener("input", updateRange);
+      updateRange();
+
+      const select = document.querySelector("#laneSelect");
+      const selectTrigger = document.querySelector("#laneSelectTrigger");
+      const selectMenu = document.querySelector("#laneSelectMenu");
+      const selectValue = document.querySelector("#laneSelectValue");
+      const selectOptions = [...selectMenu.querySelectorAll('[role="option"]')];
+
+      const setSelectOpen = (open, focusOption = false) => {
+        selectTrigger.setAttribute("aria-expanded", String(open));
+        selectMenu.hidden = !open;
+        if (open && focusOption) {
+          const selected = selectOptions.find(
+            (option) => option.getAttribute("aria-selected") === "true",
+          );
+          (selected || selectOptions[0]).focus();
+        }
+      };
+
+      selectTrigger.addEventListener("click", () => {
+        setSelectOpen(selectTrigger.getAttribute("aria-expanded") !== "true", true);
+      });
+
+      selectTrigger.addEventListener("keydown", (event) => {
+        if (["ArrowDown", "ArrowUp"].includes(event.key)) {
+          event.preventDefault();
+          setSelectOpen(true, true);
+        }
+      });
+
+      selectOptions.forEach((option, index) => {
+        option.addEventListener("click", () => {
+          selectOptions.forEach((item) =>
+            item.setAttribute("aria-selected", String(item === option)),
+          );
+          selectValue.textContent = option.dataset.value;
+          setSelectOpen(false);
+          selectTrigger.focus();
+        });
+
+        option.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            setSelectOpen(false);
+            selectTrigger.focus();
+            return;
+          }
+          if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = index;
+          if (event.key === "ArrowDown") nextIndex = (index + 1) % selectOptions.length;
+          if (event.key === "ArrowUp")
+            nextIndex = (index - 1 + selectOptions.length) % selectOptions.length;
+          if (event.key === "Home") nextIndex = 0;
+          if (event.key === "End") nextIndex = selectOptions.length - 1;
+          selectOptions[nextIndex].focus();
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!select.contains(event.target)) setSelectOpen(false);
+      });
+
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const activateTab = (tab, moveFocus = true) => {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected));
+          item.tabIndex = selected ? 0 : -1;
+          document.querySelector(`#${item.getAttribute("aria-controls")}`).hidden =
+            !selected;
+        });
+        if (moveFocus) tab.focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab, false));
+        tab.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = index;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          if (event.key === "ArrowLeft")
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === "Home") nextIndex = 0;
+          if (event.key === "End") nextIndex = tabs.length - 1;
+          activateTab(tabs[nextIndex]);
+        });
+      });
+
+      const dialog = document.querySelector("#poolRuleDialog");
+      document.querySelectorAll("[data-open-dialog]").forEach((button) => {
+        button.addEventListener("click", () => dialog.showModal());
+      });
+      document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+        button.addEventListener("click", () => dialog.close());
+      });
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      const toast = document.querySelector("#bookingToast");
+      const showToast = document.querySelector("#showToast");
+      const closeToast = document.querySelector("#closeToast");
+      let toastTimer;
+
+      const hideToast = () => {
+        toast.classList.remove("is-visible");
+        window.clearTimeout(toastTimer);
+      };
+
+      showToast.addEventListener("click", () => {
+        window.clearTimeout(toastTimer);
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(hideToast, 5000);
+      });
+      closeToast.addEventListener("click", hideToast);
+    </script>
+  </body>
+</html>
