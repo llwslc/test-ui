@@ -35,7 +35,10 @@
   border-radius: var(--hanabi-r-pill);
   background: var(--hanabi-hi);
   pointer-events: none;
-  transition: opacity var(--hanabi-dur) var(--hanabi-ease-out);
+  transition: width var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-btn:not(.hanabi-btn--primary):not(.hanabi-btn--danger)::before {
+  display: none;
 }
 
 .hanabi-btn::after {
@@ -49,7 +52,7 @@
   background: var(--hanabi-primary-wash);
 }
 .hanabi-btn:where(:not(:disabled)):hover::before {
-  opacity: 0;
+  width: min(48px, 42%);
 }
 
 .hanabi-btn:where(:not(:disabled)):active {
