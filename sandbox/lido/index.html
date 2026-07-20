@@ -5,59 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="LIDO 07 is a standalone, interactive poolside UI kit study."
+      content="LIDO 50 is an interactive municipal aquatics interface study."
     />
-    <title>LIDO 07 — Poolside UI Kit</title>
+    <title>LIDO 50 — Municipal Aquatics UI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Fugaz+One&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         color-scheme: light;
-        --tile: #f3ead7;
-        --tile-bright: #fffaf0;
-        --tile-cool: #e4f1ee;
-        --grout: #b8cbc8;
-        --grout-deep: #8da9a7;
-        --ink: #0c3545;
-        --ink-soft: #456772;
-        --water: #57d2ce;
-        --water-soft: #bdeee8;
-        --water-deep: #087b92;
-        --lane-blue: #075fc7;
-        --lane-blue-deep: #064493;
-        --safety-red: #ef4c42;
-        --safety-red-deep: #b92c2c;
-        --sun: #ffd44f;
-        --sun-deep: #9a6500;
-        --success: #13835e;
-        --foam: #fffefa;
-        --shadow: rgba(12, 53, 69, 0.16);
-        --shadow-deep: rgba(12, 53, 69, 0.28);
-        --radius-panel: 22px;
-        --radius-control: 12px;
-        --radius-chip: 8px;
-        --radius-float: 999px;
-        --stroke: 2px;
-        --space-1: 4px;
-        --space-2: 8px;
-        --space-3: 12px;
-        --space-4: 16px;
-        --space-5: 20px;
-        --space-6: 24px;
-        --space-8: 32px;
-        --space-10: 40px;
-        --space-12: 48px;
-        --space-16: 64px;
-        --font-display: "Fugaz One", "Arial Black", sans-serif;
-        --font-body: "Atkinson Hyperlegible", Arial, sans-serif;
-        --font-mono: "Space Mono", monospace;
-        --dur: 150ms;
-        --dur-slow: 420ms;
-        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --ceramic: #e5e9e3;
+        --ceramic-bright: #f6f7f1;
+        --ceramic-inset: #d5ddd9;
+        --grout: #a9b7b3;
+        --steel: #7f9290;
+        --steel-light: #c6d0cd;
+        --graphite: #26383c;
+        --graphite-soft: #5c6f72;
+        --navy: #003d58;
+        --navy-deep: #002b3d;
+        --pool: #07869a;
+        --pool-light: #77c9ce;
+        --pool-pale: #c8e3e1;
+        --pool-deep: #005b70;
+        --safety: #ed5727;
+        --safety-dark: #a93515;
+        --danger: #a52b23;
+        --success: #187158;
+        --white: #ffffff;
+        --line: 1px;
+        --tile-unit: 48px;
+        --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+        --font-body: Inter, Arial, sans-serif;
+        --font-mono: "IBM Plex Mono", monospace;
+        --fast: 120ms;
+        --normal: 220ms;
+        --slow: 520ms;
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       }
 
       *,
@@ -71,21 +58,21 @@
       }
 
       body {
-        margin: 0;
         min-width: 320px;
         min-height: 100vh;
+        margin: 0;
         overflow-x: clip;
-        color: var(--ink);
+        color: var(--graphite);
         font-family: var(--font-body);
-        background-color: var(--tile);
+        background-color: var(--ceramic);
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)),
-          linear-gradient(var(--grout) 2px, transparent 2px),
-          linear-gradient(90deg, var(--grout) 2px, transparent 2px);
+          linear-gradient(rgba(255, 255, 255, 0.26), transparent 35%),
+          linear-gradient(var(--grout) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px);
         background-size:
           auto,
-          72px 72px,
-          72px 72px;
+          var(--tile-unit) var(--tile-unit),
+          var(--tile-unit) var(--tile-unit);
       }
 
       button,
@@ -106,27 +93,29 @@
       }
 
       ::selection {
-        color: var(--foam);
-        background: var(--lane-blue);
+        color: var(--white);
+        background: var(--pool-deep);
       }
 
       :focus-visible {
-        outline: 3px solid var(--safety-red);
+        outline: 2px solid var(--safety);
         outline-offset: 4px;
-        animation: focus-ripple 360ms var(--ease);
+        box-shadow:
+          0 0 0 1px var(--ceramic-bright),
+          0 0 0 5px var(--safety);
       }
 
       .skip-link {
         position: fixed;
-        top: var(--space-3);
-        left: var(--space-3);
-        z-index: 100;
-        padding: var(--space-3) var(--space-4);
-        color: var(--foam);
+        top: 12px;
+        left: 12px;
+        z-index: 200;
+        padding: 10px 14px;
+        color: var(--white);
         font-family: var(--font-mono);
-        font-weight: 700;
-        background: var(--safety-red-deep);
-        border-radius: var(--radius-chip);
+        font-size: 0.72rem;
+        background: var(--navy-deep);
+        border-left: 5px solid var(--safety);
         transform: translateY(-180%);
       }
 
@@ -134,201 +123,188 @@
         transform: translateY(0);
       }
 
-      .shell {
-        width: min(1440px, calc(100% - 32px));
-        margin: var(--space-4) auto;
-        overflow: hidden;
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 28px;
-        box-shadow:
-          0 8px 0 var(--grout-deep),
-          0 28px 60px var(--shadow);
+      .facility {
+        width: min(1500px, calc(100% - 32px));
+        margin: 16px auto 32px;
+        background: var(--ceramic-bright);
+        border: var(--line) solid var(--graphite);
+        box-shadow: 0 24px 70px rgba(0, 43, 61, 0.16);
       }
 
-      .status-strip {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-4);
-        min-height: 36px;
-        padding: var(--space-2) var(--space-6);
-        color: var(--foam);
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        background: var(--ink);
-      }
-
-      .status-live {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-2);
-      }
-
-      .status-live::before {
-        width: 9px;
-        height: 9px;
-        content: "";
-        background: var(--water);
-        border: 2px solid var(--foam);
-        border-radius: 50%;
-        box-shadow: 0 0 0 2px rgba(87, 210, 206, 0.35);
-      }
-
-      .masthead {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-8);
-        padding: var(--space-5) clamp(20px, 4vw, 56px);
-        border-bottom: var(--stroke) solid var(--grout);
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-3);
-        text-decoration: none;
-      }
-
-      .brand-mark {
-        position: relative;
+      .utility-bar {
         display: grid;
-        width: 48px;
-        height: 48px;
-        overflow: hidden;
-        color: var(--foam);
-        font-family: var(--font-mono);
-        font-size: 0.8rem;
-        font-weight: 700;
-        place-items: center;
-        background: var(--lane-blue);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 10px;
-        box-shadow: inset 0 -6px 0 var(--lane-blue-deep);
-      }
-
-      .brand-mark::before {
-        position: absolute;
-        right: -6px;
-        bottom: 8px;
-        left: -6px;
-        height: 8px;
-        content: "";
-        background: var(--water);
-        border-top: 2px solid var(--foam);
-        transform: rotate(-5deg);
-      }
-
-      .brand-mark span {
-        position: relative;
-        z-index: 1;
-      }
-
-      .brand-copy {
-        display: grid;
-        gap: 1px;
-      }
-
-      .brand-name {
-        font-family: var(--font-display);
-        font-size: 1.2rem;
-        letter-spacing: 0.06em;
-      }
-
-      .brand-tag {
-        color: var(--ink-soft);
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        gap: 28px;
+        min-height: 34px;
+        padding: 7px clamp(16px, 3vw, 42px);
+        color: var(--white);
         font-family: var(--font-mono);
         font-size: 0.64rem;
         letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: var(--navy-deep);
+      }
+
+      .open-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .open-state::before {
+        width: 18px;
+        height: 5px;
+        content: "";
+        background: var(--safety);
+      }
+
+      .masthead {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr) auto;
+        align-items: stretch;
+        min-height: 76px;
+        border-bottom: var(--line) solid var(--graphite);
+      }
+
+      .brand {
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        align-items: stretch;
+        text-decoration: none;
+        border-right: var(--line) solid var(--graphite);
+      }
+
+      .brand-number {
+        display: grid;
+        color: var(--white);
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+        background: var(--safety);
+        place-items: center;
+      }
+
+      .brand-word {
+        display: grid;
+        align-content: center;
+        padding: 0 15px;
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        line-height: 0.8;
+        text-transform: uppercase;
+      }
+
+      .brand-word small {
+        margin-top: 8px;
+        color: var(--graphite-soft);
+        font-family: var(--font-mono);
+        font-size: 0.48rem;
+        font-weight: 500;
+        letter-spacing: 0.09em;
+      }
+
+      .facility-id {
+        display: flex;
+        align-items: center;
+        padding: 0 clamp(18px, 3vw, 40px);
+        color: var(--graphite-soft);
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.07em;
         text-transform: uppercase;
       }
 
       .mast-nav {
         display: flex;
-        align-items: center;
-        gap: var(--space-2);
+        align-items: stretch;
       }
 
       .mast-nav a {
-        padding: 9px 13px;
-        font-family: var(--font-mono);
-        font-size: 0.7rem;
+        display: grid;
+        min-width: 106px;
+        padding: 0 16px;
+        font-family: var(--font-display);
+        font-size: 0.88rem;
         font-weight: 700;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.08em;
         text-decoration: none;
         text-transform: uppercase;
-        border-radius: var(--radius-float);
+        border-left: var(--line) solid var(--grout);
+        place-items: center;
+        transition:
+          color var(--fast),
+          background var(--fast);
       }
 
       .mast-nav a:hover {
-        color: var(--lane-blue);
-        background: var(--water-soft);
+        color: var(--white);
+        background: var(--pool-deep);
       }
 
       .hero {
-        position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-        gap: clamp(32px, 6vw, 92px);
-        align-items: center;
+        grid-template-columns: minmax(380px, 0.78fr) minmax(520px, 1.22fr);
         min-height: 650px;
-        padding: clamp(52px, 7vw, 104px) clamp(20px, 6vw, 88px);
-        overflow: hidden;
-        background:
-          radial-gradient(circle at 10% 12%, rgba(255, 212, 79, 0.34), transparent 20%),
-          linear-gradient(135deg, var(--tile-bright) 0 58%, #d8f3ef 58% 100%);
-      }
-
-      .hero::after {
-        position: absolute;
-        right: -80px;
-        bottom: -100px;
-        width: 360px;
-        height: 180px;
-        content: "";
-        border: 38px solid rgba(7, 95, 199, 0.08);
-        border-radius: 50%;
-        transform: rotate(-14deg);
+        border-bottom: var(--line) solid var(--graphite);
       }
 
       .hero-copy {
         position: relative;
-        z-index: 1;
+        display: grid;
+        align-content: space-between;
         min-width: 0;
+        padding: clamp(42px, 6vw, 86px);
+        overflow: hidden;
+        background:
+          linear-gradient(
+            90deg,
+            transparent calc(100% - 1px),
+            var(--grout) calc(100% - 1px)
+          ),
+          linear-gradient(var(--grout) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic-bright);
+        background-size:
+          auto,
+          48px 48px,
+          48px 48px,
+          auto;
+        border-right: var(--line) solid var(--graphite);
       }
 
-      .eyebrow,
-      .depth-caption {
+      .hero-copy::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 9px;
+        height: 46%;
+        content: "";
+        background: var(--safety);
+      }
+
+      .system-label,
+      .depth-label {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-2);
+        gap: 10px;
         margin: 0;
-        color: var(--water-deep);
+        color: var(--pool-deep);
         font-family: var(--font-mono);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.09em;
         text-transform: uppercase;
       }
 
-      .eyebrow::before,
-      .depth-caption::before {
-        width: 22px;
-        height: 6px;
+      .system-label::before,
+      .depth-label::before {
+        width: 26px;
+        height: 2px;
         content: "";
-        background: repeating-linear-gradient(
-          90deg,
-          var(--lane-blue) 0 7px,
-          var(--foam) 7px 10px,
-          var(--safety-red) 10px 17px,
-          var(--foam) 17px 20px
-        );
-        border: 1px solid var(--ink);
-        border-radius: var(--radius-float);
+        background: var(--safety);
       }
 
       h1,
@@ -339,630 +315,568 @@
       }
 
       h1 {
-        max-width: 720px;
-        margin: var(--space-5) 0 var(--space-5);
+        margin: 36px 0 22px;
         font-family: var(--font-display);
-        font-size: clamp(4.4rem, 9vw, 8.6rem);
-        font-weight: 400;
-        line-height: 0.82;
+        font-size: clamp(6.2rem, 13vw, 12rem);
+        font-weight: 800;
+        line-height: 0.69;
         letter-spacing: -0.055em;
         text-transform: uppercase;
       }
 
       h1 span {
         display: block;
-        color: var(--lane-blue);
-        font-size: 0.54em;
-        letter-spacing: -0.02em;
+        margin-top: 0.18em;
+        color: var(--pool-deep);
+        font-size: 0.37em;
+        font-weight: 600;
+        letter-spacing: 0.02em;
       }
 
       .hero-lead {
-        max-width: 540px;
-        margin-bottom: var(--space-8);
-        color: var(--ink-soft);
-        font-size: clamp(1rem, 1.8vw, 1.25rem);
-        line-height: 1.55;
+        max-width: 490px;
+        margin-bottom: 30px;
+        color: var(--graphite-soft);
+        font-size: 1rem;
+        line-height: 1.65;
       }
 
       .button-row {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--space-3);
+        gap: 10px;
         align-items: center;
       }
 
-      .lido-button {
+      .control-button {
         position: relative;
         display: inline-flex;
-        min-height: 44px;
+        min-height: 43px;
         align-items: center;
         justify-content: center;
-        gap: var(--space-2);
-        padding: 10px 18px;
+        gap: 9px;
+        padding: 9px 17px 9px 21px;
         overflow: hidden;
-        color: var(--foam);
-        font-family: var(--font-mono);
-        font-size: 0.76rem;
+        color: var(--white);
+        font-family: var(--font-display);
+        font-size: 0.92rem;
         font-weight: 700;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.07em;
+        text-decoration: none;
         text-transform: uppercase;
         cursor: pointer;
-        background: var(--lane-blue);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
-        box-shadow:
-          inset 0 -5px 0 var(--lane-blue-deep),
-          0 4px 0 var(--grout-deep);
+        background: var(--navy);
+        border: var(--line) solid var(--navy-deep);
+        border-left: 5px solid var(--safety);
         transition:
-          transform var(--dur) var(--ease),
-          box-shadow var(--dur) var(--ease),
-          background var(--dur) var(--ease);
+          color var(--fast),
+          background var(--fast),
+          border-color var(--fast);
       }
 
-      .lido-button::before {
+      .control-button::after {
         position: absolute;
-        top: 4px;
-        right: 10px;
-        left: 10px;
-        height: 2px;
+        right: -36px;
+        bottom: 0;
+        width: 36px;
+        height: 3px;
         content: "";
-        background: rgba(255, 255, 255, 0.72);
-        border-radius: var(--radius-float);
-        transform: scaleX(0.38);
-        transform-origin: left;
-        transition: transform var(--dur-slow) var(--ease);
+        background: var(--pool-light);
+        transition: right var(--normal) var(--ease);
       }
 
-      .lido-button:hover:not(:disabled) {
-        background: #0c6ee0;
-        transform: translateY(-1px);
+      .control-button:hover:not(:disabled) {
+        background: var(--pool-deep);
       }
 
-      .lido-button:hover:not(:disabled)::before {
-        transform: scaleX(1);
+      .control-button:hover:not(:disabled)::after {
+        right: 0;
       }
 
-      .lido-button:active:not(:disabled) {
-        box-shadow:
-          inset 0 -2px 0 var(--lane-blue-deep),
-          0 2px 0 var(--grout-deep);
-        transform: translateY(1px);
+      .control-button:active:not(:disabled) {
+        color: var(--ceramic-bright);
+        background: var(--navy-deep);
         transition-duration: 0s;
       }
 
-      .lido-button--secondary {
-        color: var(--ink);
-        background: var(--tile-bright);
-        box-shadow:
-          inset 0 -5px 0 var(--tile-cool),
-          0 4px 0 var(--grout-deep);
+      .control-button--secondary {
+        color: var(--navy-deep);
+        background: var(--ceramic-bright);
+        border-color: var(--steel);
       }
 
-      .lido-button--secondary::before {
-        background: var(--water);
+      .control-button--secondary:hover:not(:disabled) {
+        color: var(--white);
+        background: var(--graphite);
       }
 
-      .lido-button--secondary:hover:not(:disabled) {
-        color: var(--lane-blue);
-        background: #ffffff;
+      .control-button--danger {
+        background: var(--danger);
+        border-color: #6f1713;
       }
 
-      .lido-button--secondary:active:not(:disabled) {
-        box-shadow:
-          inset 0 -2px 0 var(--tile-cool),
-          0 2px 0 var(--grout-deep);
+      .control-button--danger:hover:not(:disabled) {
+        background: #7d1f19;
       }
 
-      .lido-button--danger {
-        background: var(--safety-red-deep);
-        box-shadow:
-          inset 0 -5px 0 #791b22,
-          0 4px 0 var(--grout-deep);
+      .control-button--small {
+        min-height: 34px;
+        padding: 6px 11px 6px 15px;
+        font-size: 0.76rem;
       }
 
-      .lido-button--danger:hover:not(:disabled) {
-        background: #c52b31;
-      }
-
-      .lido-button--danger:active:not(:disabled) {
-        box-shadow:
-          inset 0 -2px 0 #791b22,
-          0 2px 0 var(--grout-deep);
-      }
-
-      .lido-button--small {
-        min-height: 36px;
-        padding: 7px 12px;
-        font-size: 0.68rem;
-        border-radius: var(--radius-chip);
-      }
-
-      .lido-button:disabled {
-        color: #6b7e82;
+      .control-button:disabled {
+        color: #647476;
         cursor: not-allowed;
-        background: #d5dfdc;
-        box-shadow:
-          inset 0 -4px 0 #bcc9c6,
-          0 3px 0 #b6c2c0;
-        opacity: 0.7;
+        background: #c8d0cd;
+        border-color: #9aa8a5;
+        border-left-color: #879592;
       }
 
-      .hero-metrics {
+      .hero-meta {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-2);
-        margin-top: var(--space-10);
+        margin-top: 52px;
+        border-top: var(--line) solid var(--graphite);
+        border-bottom: var(--line) solid var(--graphite);
       }
 
-      .metric {
+      .hero-metric {
         min-width: 0;
-        padding: var(--space-3);
-        background: rgba(255, 250, 240, 0.76);
-        border: 1px solid var(--grout-deep);
-        border-radius: var(--radius-chip);
+        padding: 13px 14px;
+        background: rgba(246, 247, 241, 0.74);
+        border-right: var(--line) solid var(--grout);
       }
 
-      .metric-label {
+      .hero-metric:last-child {
+        border-right: 0;
+      }
+
+      .hero-metric span {
         display: block;
-        margin-bottom: var(--space-1);
-        color: var(--ink-soft);
+      }
+
+      .hero-metric span:first-child {
+        margin-bottom: 5px;
+        color: var(--graphite-soft);
         font-family: var(--font-mono);
-        font-size: 0.58rem;
-        letter-spacing: 0.06em;
+        font-size: 0.52rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      .metric-value {
-        display: block;
+      .hero-metric span:last-child {
         overflow: hidden;
-        font-family: var(--font-mono);
-        font-size: clamp(0.78rem, 1.5vw, 1rem);
+        font-family: var(--font-display);
+        font-size: 1.1rem;
         font-weight: 700;
+        letter-spacing: 0.03em;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
 
-      .pool-window {
+      .pool-plan {
         position: relative;
-        z-index: 1;
+        display: grid;
+        grid-template-rows: 48px 1fr 48px;
         min-width: 0;
-        padding: clamp(14px, 2vw, 24px);
-        background: var(--tile);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 32px;
-        box-shadow:
-          inset 0 0 0 5px var(--tile-bright),
-          10px 14px 0 rgba(12, 53, 69, 0.15),
-          0 28px 50px var(--shadow);
-        transform: rotate(1.5deg);
+        padding: clamp(26px, 4vw, 56px);
+        overflow: hidden;
+        background:
+          linear-gradient(var(--grout) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic);
+        background-size:
+          48px 48px,
+          48px 48px,
+          auto;
       }
 
-      .pool-deck {
+      .pool-plan::before,
+      .pool-plan::after {
+        position: absolute;
+        z-index: 2;
+        width: 22px;
+        height: 90px;
+        content: "";
+        border: 5px solid var(--steel);
+        border-top: 0;
+        border-bottom: 0;
+      }
+
+      .pool-plan::before {
+        top: 27%;
+        left: 30px;
+      }
+
+      .pool-plan::after {
+        right: 30px;
+        bottom: 20%;
+      }
+
+      .deck-data {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 54px;
-        padding: 0 var(--space-4);
+        padding: 0 12px;
         font-family: var(--font-mono);
-        font-size: 0.66rem;
-        font-weight: 700;
+        font-size: 0.58rem;
+        font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        background-image:
-          linear-gradient(var(--grout) 1px, transparent 1px),
-          linear-gradient(90deg, var(--grout) 1px, transparent 1px);
-        background-size: 32px 32px;
-        border: var(--stroke) solid var(--ink);
-        border-bottom: 0;
-        border-radius: 16px 16px 0 0;
+        border: var(--line) solid var(--steel);
       }
 
-      .deck-safety {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--safety-red-deep);
+      .deck-data strong {
+        color: var(--safety-dark);
       }
 
-      .deck-safety::before {
-        width: 10px;
-        height: 10px;
-        content: "";
-        background: var(--safety-red);
-        border: 1px solid var(--ink);
-        border-radius: 50%;
-      }
-
-      .pool-water {
+      .water-basin {
         position: relative;
-        height: clamp(340px, 48vw, 510px);
+        min-height: 480px;
         overflow: hidden;
-        background-color: var(--water);
+        background-color: var(--pool);
         background-image:
-          radial-gradient(
-            ellipse at 10% 30%,
-            rgba(255, 255, 255, 0.42) 0 2%,
-            transparent 2.5%
-          ),
-          radial-gradient(
-            ellipse at 64% 70%,
-            rgba(255, 255, 255, 0.3) 0 2%,
-            transparent 2.5%
-          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
           repeating-linear-gradient(
-            118deg,
-            transparent 0 34px,
-            rgba(255, 255, 255, 0.24) 36px 39px,
-            transparent 42px 70px
+            112deg,
+            transparent 0 62px,
+            rgba(255, 255, 255, 0.15) 64px 66px,
+            transparent 68px 128px
           ),
-          linear-gradient(145deg, #65ddd5, #38bfc8 62%, #1695ae);
+          linear-gradient(135deg, var(--pool-light), var(--pool) 48%, var(--pool-deep));
         background-size:
-          170px 130px,
-          220px 160px,
-          190px 190px,
+          54px 54px,
+          54px 54px,
+          220px 220px,
           auto;
-        border: var(--stroke) solid var(--ink);
-        border-radius: 0 0 16px 16px;
-        animation: water-light 12s linear infinite;
+        border-right: var(--line) solid var(--graphite);
+        border-left: var(--line) solid var(--graphite);
+        animation: caustic-drift 18s linear infinite;
       }
 
-      .pool-water::after {
+      .basin-lane {
         position: absolute;
-        inset: 0;
-        pointer-events: none;
-        content: "";
-        background: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.1),
-          transparent 20% 80%,
-          rgba(12, 53, 69, 0.08)
-        );
-      }
-
-      .lane-rope {
-        position: absolute;
-        right: -10px;
-        left: -10px;
-        z-index: 2;
-        height: 13px;
+        right: 0;
+        left: 0;
+        height: 9px;
         background: repeating-linear-gradient(
           90deg,
-          var(--lane-blue) 0 18px,
-          var(--foam) 18px 23px,
-          var(--lane-blue) 23px 41px,
-          var(--foam) 41px 46px,
-          var(--safety-red) 46px 64px,
-          var(--foam) 64px 69px
+          var(--white) 0 13px,
+          var(--navy) 13px 36px,
+          var(--white) 36px 49px,
+          var(--safety) 49px 60px,
+          var(--white) 60px 73px,
+          var(--navy) 73px 96px
         );
-        border: 2px solid var(--ink);
-        border-radius: var(--radius-float);
-        box-shadow: 0 4px 4px rgba(12, 53, 69, 0.2);
+        box-shadow: 0 2px 3px rgba(0, 43, 61, 0.26);
       }
 
-      .lane-rope::after {
+      .basin-lane:nth-child(1) {
+        top: 25%;
+      }
+
+      .basin-lane:nth-child(2) {
+        top: 50%;
+      }
+
+      .basin-lane:nth-child(3) {
+        top: 75%;
+      }
+
+      .basin-index {
         position: absolute;
-        top: 2px;
-        right: 3px;
-        left: 3px;
-        height: 2px;
-        content: "";
-        background: rgba(255, 255, 255, 0.75);
-        border-radius: var(--radius-float);
-      }
-
-      .lane-rope--one {
-        top: 29%;
-      }
-
-      .lane-rope--two {
-        top: 67%;
-      }
-
-      .lane-number {
-        position: absolute;
-        left: var(--space-4);
-        z-index: 3;
+        left: 14px;
+        z-index: 2;
         display: grid;
-        width: 42px;
-        height: 42px;
-        color: var(--foam);
+        width: 34px;
+        height: 34px;
+        color: var(--navy-deep);
         font-family: var(--font-display);
-        font-size: 1.25rem;
-        background: var(--lane-blue);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 9px;
-        box-shadow: inset 0 -5px 0 var(--lane-blue-deep);
+        font-size: 1.2rem;
+        font-weight: 800;
+        background: var(--ceramic-bright);
+        border: var(--line) solid var(--graphite);
         place-items: center;
       }
 
-      .lane-number--one {
-        top: 12%;
+      .basin-index--3 {
+        top: 10%;
       }
 
-      .lane-number--two {
-        top: 49%;
+      .basin-index--4 {
+        top: 35%;
       }
 
-      .lane-number--three {
-        top: 82%;
+      .basin-index--5 {
+        top: 60%;
       }
 
-      .swimmer {
+      .position-marker {
         position: absolute;
-        top: 46%;
-        left: 20%;
-        z-index: 1;
-        width: 92px;
-        height: 28px;
-        animation: swim-lane 7s var(--ease) infinite alternate;
+        top: calc(37.5% - 9px);
+        left: 18%;
+        z-index: 3;
+        width: 68px;
+        height: 18px;
+        border-top: 4px solid var(--safety);
+        border-right: 9px solid var(--safety);
+        animation: lane-pass 8s linear infinite alternate;
       }
 
-      .swimmer::before {
+      .position-marker::after {
         position: absolute;
-        top: 8px;
+        top: 5px;
         right: 0;
-        width: 17px;
-        height: 17px;
+        width: 32px;
+        height: 1px;
         content: "";
-        background: var(--safety-red);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 50%;
-        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.5);
+        background: var(--white);
+        box-shadow: -16px 5px 0 rgba(255, 255, 255, 0.46);
       }
 
-      .swimmer::after {
+      .timing-block {
         position: absolute;
-        top: 12px;
         right: 18px;
-        width: 62px;
-        height: 9px;
-        content: "";
-        border-top: 3px solid rgba(255, 255, 255, 0.85);
-        border-radius: 50%;
-        box-shadow: 0 7px 0 -2px rgba(255, 255, 255, 0.48);
-        transform: skewX(-24deg);
-      }
-
-      .pool-readout {
-        position: absolute;
-        right: var(--space-4);
-        bottom: var(--space-4);
-        z-index: 4;
+        bottom: 16px;
+        z-index: 3;
         display: grid;
-        gap: 2px;
-        min-width: 132px;
+        min-width: 154px;
         padding: 10px 12px;
-        color: var(--foam);
+        color: var(--white);
         font-family: var(--font-mono);
         text-align: right;
-        background: rgba(12, 53, 69, 0.88);
-        border: 2px solid var(--foam);
-        border-radius: var(--radius-chip);
-        box-shadow: 0 5px 0 rgba(12, 53, 69, 0.24);
+        background: rgba(0, 43, 61, 0.92);
+        border-left: 5px solid var(--safety);
       }
 
-      .pool-readout strong {
-        font-size: 1.25rem;
+      .timing-block strong {
+        font-size: 1.16rem;
       }
 
-      .pool-readout small {
-        font-size: 0.6rem;
-        letter-spacing: 0.08em;
+      .timing-block small {
+        margin-top: 3px;
+        font-size: 0.54rem;
+        letter-spacing: 0.07em;
         text-transform: uppercase;
       }
 
       main {
-        border-top: var(--stroke) solid var(--ink);
+        background: var(--ceramic-bright);
       }
 
-      .specimen-section {
+      .spec-section {
         display: grid;
-        grid-template-columns: 240px minmax(0, 1fr);
-        border-bottom: var(--stroke) solid var(--ink);
+        grid-template-columns: 210px minmax(0, 1fr);
+        border-bottom: var(--line) solid var(--graphite);
       }
 
-      .section-heading {
+      .section-rail {
         position: relative;
-        padding: clamp(32px, 5vw, 64px) clamp(20px, 3vw, 40px);
-        background: var(--tile-cool);
-        border-right: var(--stroke) solid var(--ink);
+        padding: clamp(34px, 5vw, 68px) 30px;
+        background:
+          linear-gradient(var(--grout) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic);
+        background-size:
+          48px 48px,
+          48px 48px,
+          auto;
+        border-right: var(--line) solid var(--graphite);
       }
 
-      .section-heading::after {
+      .section-rail::before {
         position: absolute;
         top: 0;
-        right: 18px;
-        width: 16px;
-        height: 100%;
+        left: 0;
+        width: 8px;
+        height: 120px;
         content: "";
-        background: repeating-linear-gradient(
-          to bottom,
-          var(--ink) 0 2px,
-          transparent 2px 18px,
-          var(--ink-soft) 18px 20px,
-          transparent 20px 36px
-        );
-        opacity: 0.24;
+        background: var(--pool-deep);
       }
 
-      .section-index {
+      .section-code {
         display: block;
-        margin-bottom: var(--space-5);
-        color: var(--safety-red-deep);
+        margin-bottom: 28px;
+        color: var(--safety-dark);
         font-family: var(--font-mono);
-        font-size: 0.68rem;
-        font-weight: 700;
+        font-size: 0.58rem;
+        font-weight: 600;
         letter-spacing: 0.08em;
       }
 
-      .section-heading h2 {
-        margin-bottom: var(--space-4);
+      .section-rail h2 {
+        margin-bottom: 18px;
         font-family: var(--font-display);
-        font-size: clamp(2rem, 4vw, 3.6rem);
-        font-weight: 400;
-        line-height: 0.95;
+        font-size: clamp(2.8rem, 5vw, 4.8rem);
+        font-weight: 800;
+        line-height: 0.82;
+        letter-spacing: -0.025em;
         text-transform: uppercase;
       }
 
-      .section-heading p {
-        max-width: 190px;
+      .section-rail p {
         margin-bottom: 0;
-        color: var(--ink-soft);
-        line-height: 1.5;
+        color: var(--graphite-soft);
+        font-size: 0.83rem;
+        line-height: 1.55;
       }
 
-      .section-content {
+      .section-body {
         min-width: 0;
-        padding: clamp(32px, 5vw, 64px);
-        background: rgba(255, 250, 240, 0.92);
+        padding: clamp(34px, 5vw, 68px);
       }
 
-      .component-grid {
+      .spec-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-5);
+        gap: 18px;
       }
 
-      .spec-card {
+      .specimen {
         position: relative;
         min-width: 0;
         padding: clamp(20px, 3vw, 30px);
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-panel);
-        box-shadow:
-          inset 0 0 0 4px rgba(184, 203, 200, 0.45),
-          0 5px 0 var(--grout),
-          0 18px 30px rgba(12, 53, 69, 0.07);
+        background: var(--ceramic-bright);
+        border: var(--line) solid var(--steel);
+        box-shadow: 0 13px 28px rgba(0, 43, 61, 0.07);
       }
 
-      .spec-card--wide {
+      .specimen::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 3px;
+        content: "";
+        background: linear-gradient(90deg, var(--steel), var(--white) 50%, var(--steel));
+      }
+
+      .specimen--wide {
         grid-column: 1 / -1;
       }
 
-      .card-kicker {
+      .spec-heading {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--space-4);
-        margin-bottom: var(--space-5);
-        padding-bottom: var(--space-3);
-        border-bottom: 1px solid var(--grout);
+        gap: 18px;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: var(--line) solid var(--grout);
       }
 
-      .card-kicker h3 {
+      .spec-heading h3 {
         margin: 0;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
+        font-family: var(--font-display);
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
       }
 
-      .pool-code {
-        flex: none;
-        color: var(--water-deep);
+      .spec-code {
+        color: var(--pool-deep);
         font-family: var(--font-mono);
-        font-size: 0.62rem;
-        font-weight: 700;
+        font-size: 0.56rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
       }
 
       .control-stack {
         display: grid;
-        gap: var(--space-4);
+        gap: 17px;
       }
 
       .field {
         display: grid;
-        gap: var(--space-2);
+        gap: 8px;
       }
 
       .field-label {
-        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--graphite-soft);
         font-family: var(--font-mono);
-        font-size: 0.67rem;
-        font-weight: 700;
+        font-size: 0.61rem;
+        font-weight: 600;
         letter-spacing: 0.07em;
         text-transform: uppercase;
       }
 
       .field-label strong {
-        margin-right: var(--space-2);
-        color: var(--safety-red-deep);
-      }
-
-      .input-frame,
-      .select-trigger {
-        display: flex;
-        min-height: 48px;
-        align-items: center;
-        gap: var(--space-3);
-        width: 100%;
-        padding: 0 var(--space-4);
-        color: var(--ink);
-        background: #e8f4f0;
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
-        box-shadow:
-          inset 0 4px 0 rgba(12, 53, 69, 0.09),
-          inset 0 0 0 3px rgba(255, 255, 255, 0.56);
-      }
-
-      .input-frame:focus-within {
-        border-color: var(--safety-red-deep);
-        box-shadow:
-          inset 0 4px 0 rgba(12, 53, 69, 0.09),
-          inset 0 0 0 3px rgba(255, 255, 255, 0.56),
-          0 0 0 3px var(--tile-bright),
-          0 0 0 6px var(--safety-red);
-        animation: focus-ripple 360ms var(--ease);
-      }
-
-      .input-prefix {
         display: inline-grid;
-        width: 29px;
-        height: 29px;
-        flex: none;
-        color: var(--foam);
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
-        font-weight: 700;
-        background: var(--water-deep);
-        border: 1px solid var(--ink);
-        border-radius: 6px;
+        min-width: 49px;
+        min-height: 22px;
+        color: var(--white);
+        background: var(--pool-deep);
         place-items: center;
       }
 
-      .input-frame input {
+      .input-channel,
+      .select-trigger {
+        display: flex;
+        width: 100%;
+        min-height: 47px;
+        align-items: center;
+        gap: 12px;
+        padding: 0 14px;
+        color: var(--graphite);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 8px),
+          var(--ceramic-inset);
+        border: var(--line) solid var(--steel);
+        border-bottom: 3px solid var(--pool-deep);
+      }
+
+      .input-channel:focus-within {
+        border-color: var(--safety);
+        border-bottom-color: var(--safety);
+        box-shadow:
+          0 0 0 1px var(--ceramic-bright),
+          0 0 0 4px var(--safety);
+      }
+
+      .input-code {
+        flex: none;
+        color: var(--safety-dark);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 600;
+      }
+
+      .input-channel input {
         min-width: 0;
         width: 100%;
-        color: var(--ink);
+        color: var(--graphite);
         background: transparent;
         border: 0;
         outline: 0;
       }
 
-      .input-frame input::placeholder {
-        color: #68848c;
+      .input-channel input::placeholder {
+        color: #718184;
       }
 
       .field-note {
         margin: 0;
-        color: var(--ink-soft);
-        font-size: 0.8rem;
+        color: var(--graphite-soft);
+        font-size: 0.76rem;
+        line-height: 1.45;
       }
 
       .choice-list {
         display: grid;
-        gap: var(--space-3);
+        gap: 13px;
       }
 
       .choice {
         position: relative;
         display: flex;
         align-items: center;
-        gap: var(--space-3);
+        gap: 12px;
         width: fit-content;
-        min-height: 34px;
+        min-height: 32px;
         cursor: pointer;
       }
 
@@ -976,186 +890,185 @@
         white-space: nowrap;
       }
 
-      .check-tile,
-      .radio-target {
+      .check-mark,
+      .radio-mark {
         position: relative;
         display: inline-grid;
-        width: 30px;
-        height: 30px;
+        width: 27px;
+        height: 27px;
         flex: none;
-        overflow: hidden;
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        box-shadow: inset 0 0 0 3px var(--tile-cool);
+        background: var(--ceramic-inset);
+        border: var(--line) solid var(--graphite);
+        box-shadow: inset 0 0 0 3px var(--ceramic-bright);
         place-items: center;
-        transition:
-          background var(--dur) var(--ease),
-          transform var(--dur) var(--ease);
       }
 
-      .check-tile {
-        border-radius: 7px;
-      }
-
-      .check-tile::before {
+      .check-mark::before {
         position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        inset: auto 0 0;
         height: 0;
         content: "";
-        background: var(--lane-blue);
-        transition: height var(--dur-slow) var(--ease);
+        background: var(--pool-deep);
+        transition: height var(--normal) var(--ease);
       }
 
-      .check-tile::after {
+      .check-mark::after {
         position: relative;
         z-index: 1;
-        width: 12px;
-        height: 7px;
+        width: 11px;
+        height: 6px;
         content: "";
-        border-bottom: 3px solid var(--foam);
-        border-left: 3px solid var(--foam);
+        border-bottom: 2px solid var(--white);
+        border-left: 2px solid var(--white);
         opacity: 0;
-        transform: translateY(-2px) rotate(-45deg) scale(0.5);
-        transition:
-          opacity var(--dur) var(--ease),
-          transform var(--dur-slow) var(--ease);
+        transform: rotate(-45deg);
       }
 
-      .native-control:checked + .check-tile::before {
+      .native-control:checked + .check-mark::before {
         height: 100%;
       }
 
-      .native-control:checked + .check-tile::after {
+      .native-control:checked + .check-mark::after {
         opacity: 1;
-        transform: translateY(-2px) rotate(-45deg) scale(1);
       }
 
-      .native-control:indeterminate + .check-tile::before {
+      .native-control:indeterminate + .check-mark::before {
         height: 50%;
       }
 
-      .native-control:indeterminate + .check-tile::after {
-        width: 15px;
+      .native-control:indeterminate + .check-mark::after {
+        width: 13px;
         height: 0;
-        border-bottom: 3px solid var(--foam);
+        border-bottom: 2px solid var(--white);
         border-left: 0;
         opacity: 1;
         transform: none;
       }
 
-      .radio-target {
+      .radio-mark {
         border-radius: 50%;
         box-shadow:
-          inset 0 0 0 4px var(--tile-cool),
-          inset 0 0 0 7px var(--tile-bright);
+          inset 0 0 0 4px var(--ceramic-bright),
+          inset 0 0 0 5px var(--steel-light);
       }
 
-      .radio-target::after {
-        width: 12px;
-        height: 12px;
+      .radio-mark::after {
+        width: 9px;
+        height: 9px;
         content: "";
-        background: var(--safety-red);
-        border: 2px solid var(--ink);
-        border-radius: 50%;
+        background: var(--safety);
         opacity: 0;
-        transform: scale(0.35);
+        transform: scale(0.4);
         transition:
-          opacity var(--dur) var(--ease),
-          transform var(--dur-slow) var(--ease);
+          opacity var(--fast),
+          transform var(--normal) var(--ease);
       }
 
-      .native-control:checked + .radio-target::after {
+      .native-control:checked + .radio-mark::after {
         opacity: 1;
         transform: scale(1);
       }
 
-      .choice-label {
-        font-weight: 700;
+      .native-control:focus-visible + .check-mark,
+      .native-control:focus-visible + .radio-mark,
+      .native-control:focus-visible + .switch-slot {
+        outline: 2px solid var(--safety);
+        outline-offset: 4px;
+        box-shadow:
+          0 0 0 1px var(--ceramic-bright),
+          0 0 0 5px var(--safety);
       }
 
-      .choice-label small {
+      .choice-copy {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .choice-copy small {
         display: block;
         margin-top: 2px;
-        color: var(--ink-soft);
+        color: var(--graphite-soft);
         font-family: var(--font-mono);
-        font-size: 0.62rem;
+        font-size: 0.53rem;
         font-weight: 400;
-      }
-
-      .native-control:focus-visible + .check-tile,
-      .native-control:focus-visible + .radio-target,
-      .native-control:focus-visible + .switch-track {
-        outline: 3px solid var(--safety-red);
-        outline-offset: 4px;
-        animation: focus-ripple 360ms var(--ease);
       }
 
       .switch-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--space-5);
+        gap: 20px;
         cursor: pointer;
       }
 
-      .switch-copy strong {
+      .switch-copy strong,
+      .switch-copy small {
         display: block;
+      }
+
+      .switch-copy strong {
+        font-size: 0.9rem;
       }
 
       .switch-copy small {
-        color: var(--ink-soft);
+        margin-top: 3px;
+        color: var(--graphite-soft);
+        font-size: 0.75rem;
       }
 
-      .switch-track {
+      .switch-wrap {
         position: relative;
         display: block;
-        width: 72px;
-        height: 34px;
         flex: none;
+      }
+
+      .switch-slot {
+        position: relative;
+        display: block;
+        width: 74px;
+        height: 30px;
         overflow: hidden;
         background:
-          repeating-linear-gradient(90deg, #c9d7d4 0 13px, var(--tile-bright) 13px 18px),
-          var(--tile-cool);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-float);
-        box-shadow: inset 0 3px 0 rgba(12, 53, 69, 0.12);
+          repeating-linear-gradient(
+            90deg,
+            transparent 0 12px,
+            rgba(38, 56, 60, 0.18) 12px 13px
+          ),
+          var(--ceramic-inset);
+        border: var(--line) solid var(--graphite);
+        box-shadow: inset 0 3px 5px rgba(0, 43, 61, 0.14);
       }
 
-      .switch-track::before {
+      .switch-slot::before {
         position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 0;
+        inset: auto 0 0;
+        height: 3px;
         content: "";
-        background: rgba(87, 210, 206, 0.8);
-        transition: height var(--dur-slow) var(--ease);
+        background: var(--steel);
+        transition: background var(--fast);
       }
 
-      .switch-track::after {
+      .switch-slot::after {
         position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 22px;
+        top: 3px;
+        left: 3px;
+        width: 25px;
         height: 22px;
         content: "";
-        background: var(--safety-red-deep);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 50%;
-        box-shadow:
-          inset 0 3px 0 rgba(255, 255, 255, 0.6),
-          0 2px 2px var(--shadow-deep);
-        transition: transform 260ms var(--ease);
+        background: var(--steel);
+        border: var(--line) solid var(--graphite);
+        transition:
+          background var(--fast),
+          transform var(--normal) var(--ease);
       }
 
-      .native-control:checked + .switch-track::before {
-        height: 100%;
+      .native-control:checked + .switch-slot::before {
+        background: var(--pool);
       }
 
-      .native-control:checked + .switch-track::after {
-        transform: translateX(38px);
+      .native-control:checked + .switch-slot::after {
+        background: var(--safety);
+        transform: translateX(41px);
       }
 
       .select {
@@ -1169,22 +1082,21 @@
       }
 
       .select-trigger[aria-expanded="true"] {
-        border-color: var(--safety-red-deep);
+        border-color: var(--safety);
+        border-bottom-color: var(--safety);
         box-shadow:
-          inset 0 4px 0 rgba(12, 53, 69, 0.09),
-          inset 0 0 0 3px rgba(255, 255, 255, 0.56),
-          0 0 0 3px var(--tile-bright),
-          0 0 0 6px var(--safety-red);
+          0 0 0 1px var(--ceramic-bright),
+          0 0 0 4px var(--safety);
       }
 
       .select-chevron {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
         flex: none;
         border-right: 2px solid currentColor;
         border-bottom: 2px solid currentColor;
         transform: translateY(-3px) rotate(45deg);
-        transition: transform var(--dur) var(--ease);
+        transition: transform var(--fast);
       }
 
       .select-trigger[aria-expanded="true"] .select-chevron {
@@ -1193,80 +1105,83 @@
 
       .select-menu {
         position: absolute;
-        top: calc(100% + 12px);
+        top: calc(100% + 8px);
         right: 0;
         left: 0;
-        z-index: 20;
+        z-index: 40;
         display: grid;
-        gap: var(--space-1);
         margin: 0;
-        padding: var(--space-2);
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
-        box-shadow:
-          7px 8px 0 rgba(12, 53, 69, 0.18),
-          0 22px 34px var(--shadow);
-        animation: float-up 180ms var(--ease);
+        padding: 6px;
+        background: var(--ceramic-bright);
+        border: var(--line) solid var(--graphite);
+        border-top: 4px solid var(--safety);
+        box-shadow: 0 18px 38px rgba(0, 43, 61, 0.22);
+        animation: lift-in var(--normal) var(--ease);
       }
 
       .select-option {
         display: grid;
-        grid-template-columns: 34px 1fr auto;
-        gap: var(--space-3);
+        grid-template-columns: 36px 1fr auto;
+        gap: 12px;
         align-items: center;
-        min-height: 44px;
-        padding: var(--space-2) var(--space-3);
+        min-height: 43px;
+        padding: 7px 10px;
         text-align: left;
         cursor: pointer;
         background: transparent;
         border: 0;
-        border-radius: var(--radius-chip);
+        border-bottom: var(--line) solid var(--grout);
+      }
+
+      .select-option:last-child {
+        border-bottom: 0;
       }
 
       .select-option:hover,
       .select-option:focus-visible {
-        background: var(--water-soft);
+        background: var(--pool-pale);
       }
 
       .select-option[aria-selected="true"] {
-        color: var(--lane-blue-deep);
-        font-weight: 700;
-        background: #d8eff8;
+        color: var(--white);
+        background: var(--pool-deep);
       }
 
-      .lane-chip {
+      .lane-index {
         display: grid;
-        width: 30px;
-        height: 28px;
-        color: var(--foam);
-        font-family: var(--font-mono);
-        font-size: 0.65rem;
-        background: var(--lane-blue);
-        border: 1px solid var(--ink);
-        border-radius: 6px;
+        width: 29px;
+        height: 27px;
+        color: var(--white);
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 700;
+        background: var(--navy);
         place-items: center;
       }
 
-      .option-status {
-        color: var(--ink-soft);
+      .select-option[aria-selected="true"] .lane-index {
+        color: var(--navy-deep);
+        background: var(--white);
+      }
+
+      .option-state {
         font-family: var(--font-mono);
-        font-size: 0.58rem;
+        font-size: 0.5rem;
         text-transform: uppercase;
       }
 
-      .range-head {
+      .range-header {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: var(--space-4);
-        margin-bottom: var(--space-4);
+        gap: 20px;
+        margin-bottom: 17px;
       }
 
       .range-value {
-        color: var(--lane-blue-deep);
-        font-family: var(--font-mono);
-        font-size: 1.3rem;
+        color: var(--pool-deep);
+        font-family: var(--font-display);
+        font-size: 1.8rem;
         font-weight: 700;
       }
 
@@ -1280,184 +1195,173 @@
       }
 
       .lido-range::-webkit-slider-runnable-track {
-        height: 14px;
+        height: 8px;
         background:
           linear-gradient(
             90deg,
             transparent var(--range),
-            rgba(255, 255, 255, 0.58) var(--range)
+            rgba(246, 247, 241, 0.7) var(--range)
           ),
           repeating-linear-gradient(
             90deg,
-            var(--lane-blue) 0 16px,
-            var(--foam) 16px 21px,
-            var(--safety-red) 21px 37px,
-            var(--foam) 37px 42px
+            var(--navy) 0 17px,
+            var(--white) 17px 22px,
+            var(--safety) 22px 28px,
+            var(--white) 28px 33px
           );
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-float);
-        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.5);
+        border-top: var(--line) solid var(--graphite);
+        border-bottom: var(--line) solid var(--graphite);
       }
 
       .lido-range::-moz-range-track {
-        height: 12px;
+        height: 7px;
         background:
           linear-gradient(
             90deg,
             transparent var(--range),
-            rgba(255, 255, 255, 0.58) var(--range)
+            rgba(246, 247, 241, 0.7) var(--range)
           ),
           repeating-linear-gradient(
             90deg,
-            var(--lane-blue) 0 16px,
-            var(--foam) 16px 21px,
-            var(--safety-red) 21px 37px,
-            var(--foam) 37px 42px
+            var(--navy) 0 17px,
+            var(--white) 17px 22px,
+            var(--safety) 22px 28px,
+            var(--white) 28px 33px
           );
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-float);
+        border-top: var(--line) solid var(--graphite);
+        border-bottom: var(--line) solid var(--graphite);
       }
 
       .lido-range::-webkit-slider-thumb {
-        width: 27px;
-        height: 27px;
-        margin-top: -8px;
+        width: 10px;
+        height: 28px;
+        margin-top: -11px;
         appearance: none;
-        background: var(--foam);
-        border: 3px solid var(--safety-red);
-        border-radius: 50%;
-        box-shadow:
-          0 0 0 2px var(--ink),
-          0 4px 0 var(--shadow-deep);
+        background: var(--safety);
+        border: var(--line) solid var(--graphite);
+        box-shadow: 0 3px 7px rgba(0, 43, 61, 0.2);
       }
 
       .lido-range::-moz-range-thumb {
-        width: 24px;
-        height: 24px;
-        background: var(--foam);
-        border: 3px solid var(--safety-red);
-        border-radius: 50%;
-        box-shadow:
-          0 0 0 2px var(--ink),
-          0 4px 0 var(--shadow-deep);
+        width: 9px;
+        height: 27px;
+        background: var(--safety);
+        border: var(--line) solid var(--graphite);
+        border-radius: 0;
+        box-shadow: 0 3px 7px rgba(0, 43, 61, 0.2);
       }
 
       .range-scale {
         display: flex;
         justify-content: space-between;
-        margin-top: var(--space-2);
-        color: var(--ink-soft);
+        margin-top: 8px;
+        color: var(--graphite-soft);
         font-family: var(--font-mono);
-        font-size: 0.58rem;
-      }
-
-      .lane-progress {
-        position: relative;
-        height: 18px;
-        overflow: hidden;
-        background: repeating-linear-gradient(
-          90deg,
-          #a9bebc 0 18px,
-          var(--foam) 18px 23px,
-          #c8d6d3 23px 41px,
-          var(--foam) 41px 46px
-        );
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-float);
-        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.55);
-      }
-
-      .lane-progress__fill {
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: var(--progress);
-        background: repeating-linear-gradient(
-          90deg,
-          var(--lane-blue) 0 18px,
-          var(--foam) 18px 23px,
-          var(--safety-red) 23px 41px,
-          var(--foam) 41px 46px
-        );
-        border-right: var(--stroke) solid var(--ink);
-        transition: width 600ms var(--ease);
+        font-size: 0.52rem;
       }
 
       .progress-copy {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: var(--space-4);
-        margin-bottom: var(--space-4);
+        gap: 20px;
+        margin-bottom: 16px;
       }
 
       .progress-copy strong {
         font-family: var(--font-display);
-        font-size: 2rem;
-        font-weight: 400;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1;
       }
 
       .progress-copy span {
-        color: var(--ink-soft);
+        color: var(--graphite-soft);
         font-family: var(--font-mono);
-        font-size: 0.65rem;
+        font-size: 0.56rem;
+      }
+
+      .lane-progress {
+        position: relative;
+        height: 14px;
+        overflow: hidden;
+        background: repeating-linear-gradient(
+          90deg,
+          #a7b4b1 0 22px,
+          var(--ceramic-bright) 22px 26px
+        );
+        border-top: var(--line) solid var(--graphite);
+        border-bottom: var(--line) solid var(--graphite);
+      }
+
+      .lane-progress-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: var(--progress);
+        background: repeating-linear-gradient(
+          90deg,
+          var(--navy) 0 22px,
+          var(--white) 22px 26px,
+          var(--safety) 26px 32px,
+          var(--white) 32px 36px
+        );
+        border-right: 3px solid var(--safety);
+        transition: width var(--slow) var(--ease);
       }
 
       .meter-layout {
         display: grid;
-        grid-template-columns: 86px 1fr;
-        gap: var(--space-6);
+        grid-template-columns: 76px 1fr;
+        gap: 26px;
         align-items: stretch;
       }
 
-      .depth-meter {
+      .water-meter {
         position: relative;
         min-height: 230px;
         overflow: hidden;
-        background: #dff3ef;
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
-        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.6);
+        background:
+          linear-gradient(var(--grout) 1px, transparent 1px), var(--ceramic-inset);
+        background-size: 100% 25%;
+        border: var(--line) solid var(--graphite);
       }
 
-      .depth-meter__fill {
+      .water-meter-fill {
         position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        inset: auto 0 0;
         height: var(--level);
         background:
           repeating-linear-gradient(
-            115deg,
-            transparent 0 18px,
-            rgba(255, 255, 255, 0.25) 20px 23px,
-            transparent 25px 40px
+            112deg,
+            transparent 0 28px,
+            rgba(255, 255, 255, 0.18) 29px 31px,
+            transparent 33px 60px
           ),
-          linear-gradient(var(--water), var(--water-deep));
-        border-top: var(--stroke) solid var(--ink);
+          var(--pool);
+        border-top: 4px solid var(--safety);
       }
 
-      .depth-meter__marks {
+      .meter-marks {
         position: absolute;
-        inset: 12px 10px;
+        inset: 8px;
         z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        color: var(--ink);
         font-family: var(--font-mono);
-        font-size: 0.54rem;
-        font-weight: 700;
+        font-size: 0.48rem;
+        font-weight: 600;
       }
 
-      .depth-meter__marks span {
+      .meter-marks span {
         display: flex;
         align-items: center;
         gap: 5px;
       }
 
-      .depth-meter__marks span::after {
-        width: 16px;
-        height: 2px;
+      .meter-marks span::after {
+        width: 13px;
+        height: 1px;
         content: "";
         background: currentColor;
       }
@@ -1468,40 +1372,32 @@
 
       .meter-copy strong {
         display: block;
-        margin-bottom: var(--space-2);
+        margin-bottom: 8px;
         font-family: var(--font-display);
-        font-size: clamp(2.8rem, 7vw, 4.6rem);
-        font-weight: 400;
-        line-height: 1;
+        font-size: clamp(4rem, 8vw, 6rem);
+        font-weight: 800;
+        line-height: 0.8;
       }
 
       .meter-copy p {
-        margin-bottom: var(--space-4);
-        color: var(--ink-soft);
+        margin-bottom: 16px;
+        color: var(--graphite-soft);
+        font-size: 0.86rem;
         line-height: 1.5;
       }
 
-      .status-pill {
+      .status-badge {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-2);
+        gap: 8px;
         padding: 6px 10px;
-        color: #07513d;
+        color: #0e503f;
         font-family: var(--font-mono);
-        font-size: 0.62rem;
-        font-weight: 700;
+        font-size: 0.54rem;
+        font-weight: 600;
         text-transform: uppercase;
-        background: #ccefe1;
-        border: 1px solid var(--success);
-        border-radius: var(--radius-float);
-      }
-
-      .status-pill::before {
-        width: 8px;
-        height: 8px;
-        content: "";
-        background: var(--success);
-        border-radius: 50%;
+        background: #cee2da;
+        border-left: 4px solid var(--success);
       }
 
       .tabs {
@@ -1510,116 +1406,116 @@
 
       .tab-list {
         display: flex;
-        gap: var(--space-2);
         overflow-x: auto;
-        padding: 7px 7px 0;
-        background: var(--tile-cool);
-        border: var(--stroke) solid var(--ink);
-        border-bottom: 0;
-        border-radius: var(--radius-control) var(--radius-control) 0 0;
+        background: var(--ceramic-inset);
+        border: var(--line) solid var(--graphite);
         scrollbar-width: thin;
       }
 
       .tab {
         position: relative;
-        min-width: 112px;
-        min-height: 48px;
-        padding: 8px 12px 12px;
-        color: var(--ink-soft);
-        font-family: var(--font-mono);
-        font-size: 0.68rem;
+        min-width: 130px;
+        min-height: 58px;
+        padding: 9px 15px;
+        color: var(--graphite-soft);
+        font-family: var(--font-display);
+        font-size: 0.82rem;
         font-weight: 700;
+        letter-spacing: 0.06em;
+        text-align: left;
         text-transform: uppercase;
         cursor: pointer;
-        background: #dce9e6;
-        border: var(--stroke) solid var(--grout-deep);
-        border-bottom: 0;
-        border-radius: 8px 8px 0 0;
-        transition:
-          color var(--dur) var(--ease),
-          transform var(--dur) var(--ease),
-          background var(--dur) var(--ease);
+        background: transparent;
+        border: 0;
+        border-right: var(--line) solid var(--steel);
       }
 
       .tab strong {
         display: block;
-        margin-bottom: 2px;
-        font-family: var(--font-display);
-        font-size: 1.05rem;
-        font-weight: 400;
+        margin-bottom: 1px;
+        color: var(--navy);
+        font-size: 1.3rem;
       }
 
       .tab[aria-selected="true"] {
-        z-index: 1;
-        color: var(--lane-blue-deep);
-        background: var(--tile-bright);
-        border-color: var(--ink);
-        transform: translateY(2px);
+        color: var(--white);
+        background: var(--navy);
+      }
+
+      .tab[aria-selected="true"] strong {
+        color: var(--white);
       }
 
       .tab[aria-selected="true"]::after {
         position: absolute;
-        right: 10px;
-        bottom: 5px;
-        left: 10px;
-        height: 4px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 5px;
         content: "";
-        background: var(--lane-blue);
-        border-radius: var(--radius-float);
+        background: var(--safety);
       }
 
       .tab-panel {
-        min-height: 150px;
-        padding: var(--space-6);
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 0 0 var(--radius-control) var(--radius-control);
+        min-height: 145px;
+        padding: 26px;
+        background:
+          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic-bright);
+        background-size:
+          48px 100%,
+          auto;
+        border: var(--line) solid var(--graphite);
+        border-top: 0;
       }
 
       .tab-panel h3 {
-        margin-bottom: var(--space-2);
+        margin-bottom: 7px;
         font-family: var(--font-display);
-        font-size: 1.5rem;
-        font-weight: 400;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
       }
 
       .tab-panel p {
-        max-width: 630px;
+        max-width: 660px;
         margin-bottom: 0;
-        color: var(--ink-soft);
+        color: var(--graphite-soft);
+        font-size: 0.86rem;
         line-height: 1.55;
       }
 
-      .feedback-board {
+      .feedback-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-4);
+        gap: var(--line);
+        background: var(--steel);
+        border: var(--line) solid var(--steel);
       }
 
-      .feedback-action {
+      .feedback-cell {
         display: grid;
         align-content: space-between;
-        gap: var(--space-6);
-        min-height: 180px;
-        padding: var(--space-5);
-        background: var(--tile-cool);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
+        gap: 28px;
+        min-height: 190px;
+        padding: 22px;
+        background: var(--ceramic-bright);
       }
 
-      .feedback-action strong {
+      .feedback-cell strong {
         display: block;
-        margin-bottom: var(--space-2);
+        margin-bottom: 6px;
         font-family: var(--font-display);
-        font-size: 1.25rem;
-        font-weight: 400;
+        font-size: 1.22rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
       }
 
-      .feedback-action p {
+      .feedback-cell p {
         margin: 0;
-        color: var(--ink-soft);
-        font-size: 0.9rem;
-        line-height: 1.45;
+        color: var(--graphite-soft);
+        font-size: 0.8rem;
+        line-height: 1.5;
       }
 
       .tooltip-wrap {
@@ -1629,255 +1525,241 @@
 
       .tooltip-trigger {
         display: grid;
-        width: 38px;
-        height: 38px;
-        color: var(--foam);
+        width: 36px;
+        height: 36px;
+        color: var(--white);
         font-family: var(--font-mono);
-        font-weight: 700;
+        font-size: 0.72rem;
         cursor: help;
-        background: var(--water-deep);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 50%;
-        box-shadow: inset 0 -4px 0 #07596b;
+        background: var(--navy);
+        border: 0;
+        border-left: 5px solid var(--safety);
         place-items: center;
       }
 
-      .tooltip-bubble {
+      .tooltip {
         position: absolute;
-        bottom: calc(100% + 12px);
-        left: 50%;
-        z-index: 10;
-        width: 210px;
+        bottom: calc(100% + 10px);
+        left: 0;
+        z-index: 30;
+        width: 220px;
         padding: 10px 12px;
-        color: var(--foam);
-        font-size: 0.78rem;
-        line-height: 1.35;
+        color: var(--white);
+        font-size: 0.73rem;
+        line-height: 1.4;
         pointer-events: none;
-        background: var(--ink);
-        border: 2px solid var(--foam);
-        border-radius: var(--radius-chip);
-        box-shadow: 0 6px 0 rgba(12, 53, 69, 0.2);
+        background: var(--navy-deep);
+        border-top: 3px solid var(--safety);
+        box-shadow: 0 10px 24px rgba(0, 43, 61, 0.24);
         opacity: 0;
-        transform: translate(-50%, 6px);
+        transform: translateY(5px);
         transition:
-          opacity var(--dur) var(--ease),
-          transform var(--dur) var(--ease);
+          opacity var(--fast),
+          transform var(--fast);
       }
 
-      .tooltip-bubble::after {
+      .tooltip::after {
         position: absolute;
         top: 100%;
-        left: 50%;
-        width: 10px;
-        height: 10px;
+        left: 13px;
+        width: 0;
+        height: 0;
         content: "";
-        background: var(--ink);
-        border-right: 2px solid var(--foam);
-        border-bottom: 2px solid var(--foam);
-        transform: translate(-50%, -5px) rotate(45deg);
+        border-top: 7px solid var(--navy-deep);
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
       }
 
-      .tooltip-wrap:hover .tooltip-bubble,
-      .tooltip-trigger:focus-visible + .tooltip-bubble {
+      .tooltip-wrap:hover .tooltip,
+      .tooltip-trigger:focus-visible + .tooltip {
         opacity: 1;
-        transform: translate(-50%, 0);
+        transform: translateY(0);
       }
 
-      .lido-dialog {
-        width: min(560px, calc(100% - 32px));
+      .rule-dialog {
+        width: min(620px, calc(100% - 32px));
         max-height: calc(100dvh - 40px);
         padding: 0;
         overflow: auto;
-        color: var(--ink);
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-panel);
-        box-shadow:
-          inset 0 0 0 5px var(--tile-cool),
-          12px 14px 0 rgba(12, 53, 69, 0.22),
-          0 35px 70px rgba(12, 53, 69, 0.32);
+        color: var(--graphite);
+        background: var(--ceramic-bright);
+        border: var(--line) solid var(--graphite);
+        border-left: 10px solid var(--safety);
+        box-shadow: 0 32px 90px rgba(0, 26, 38, 0.4);
       }
 
-      .lido-dialog[open] {
-        animation: float-up 220ms var(--ease);
+      .rule-dialog[open] {
+        animation: lift-in var(--normal) var(--ease);
       }
 
-      .lido-dialog::backdrop {
+      .rule-dialog::backdrop {
         background:
-          repeating-linear-gradient(
-            118deg,
-            transparent 0 48px,
-            rgba(255, 255, 255, 0.1) 50px 52px,
-            transparent 54px 96px
-          ),
-          rgba(8, 77, 94, 0.74);
-        animation: backdrop-in 180ms ease-out;
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          rgba(0, 43, 61, 0.78);
+        background-size:
+          48px 48px,
+          48px 48px,
+          auto;
       }
 
-      .dialog-topline {
+      .dialog-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--space-4);
-        padding: var(--space-4) var(--space-5);
-        color: var(--foam);
+        gap: 20px;
+        padding: 12px 20px;
+        color: var(--white);
         font-family: var(--font-mono);
-        font-size: 0.66rem;
-        font-weight: 700;
+        font-size: 0.58rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        background: var(--safety-red-deep);
-        border-bottom: var(--stroke) solid var(--ink);
+        background: var(--navy-deep);
       }
 
-      .dialog-body {
-        padding: clamp(24px, 5vw, 42px);
+      .dialog-content {
+        display: grid;
+        grid-template-columns: 86px 1fr;
+        gap: 28px;
+        padding: clamp(28px, 5vw, 46px);
       }
 
       .rule-number {
         display: grid;
-        width: 58px;
-        height: 58px;
-        margin-bottom: var(--space-5);
-        color: var(--foam);
+        width: 70px;
+        height: 82px;
+        color: var(--white);
         font-family: var(--font-display);
-        font-size: 1.8rem;
-        background: var(--lane-blue);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 10px;
-        box-shadow: inset 0 -7px 0 var(--lane-blue-deep);
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--pool-deep);
+        border-bottom: 8px solid var(--safety);
         place-items: center;
       }
 
-      .dialog-body h2 {
-        margin-bottom: var(--space-3);
+      .dialog-copy h2 {
+        margin-bottom: 10px;
         font-family: var(--font-display);
-        font-size: clamp(2rem, 7vw, 3.5rem);
-        font-weight: 400;
-        line-height: 1;
+        font-size: clamp(2.8rem, 8vw, 5rem);
+        font-weight: 800;
+        line-height: 0.86;
         text-transform: uppercase;
       }
 
-      .dialog-body p {
-        color: var(--ink-soft);
-        line-height: 1.6;
+      .dialog-copy p {
+        color: var(--graphite-soft);
+        line-height: 1.65;
       }
 
       .dialog-actions {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: var(--space-3);
-        margin-top: var(--space-6);
-        padding-top: var(--space-5);
-        border-top: 1px solid var(--grout);
+        gap: 10px;
+        margin-top: 26px;
+        padding-top: 18px;
+        border-top: var(--line) solid var(--grout);
       }
 
       .toast {
         position: fixed;
-        right: 24px;
-        bottom: 24px;
-        z-index: 80;
+        right: 22px;
+        bottom: 22px;
+        z-index: 100;
         display: grid;
-        grid-template-columns: 70px minmax(0, 1fr) auto;
-        gap: var(--space-4);
-        align-items: center;
-        width: min(420px, calc(100% - 32px));
-        padding: var(--space-3);
-        background: var(--tile-bright);
-        border: var(--stroke) solid var(--ink);
-        border-radius: var(--radius-control);
-        box-shadow:
-          8px 9px 0 rgba(12, 53, 69, 0.2),
-          0 26px 50px rgba(12, 53, 69, 0.24);
+        grid-template-columns: 72px minmax(0, 1fr) 38px;
+        align-items: stretch;
+        width: min(430px, calc(100% - 32px));
+        color: var(--white);
+        background: var(--navy-deep);
+        border-top: 4px solid var(--safety);
+        box-shadow: 0 22px 55px rgba(0, 26, 38, 0.32);
         opacity: 0;
-        transform: translateY(30px) rotateX(-16deg);
-        transform-origin: bottom;
+        transform: translateX(calc(100% + 40px));
         visibility: hidden;
         pointer-events: none;
         transition:
-          opacity 180ms var(--ease),
-          transform 260ms var(--ease),
-          visibility 0s linear 260ms;
+          opacity var(--normal),
+          transform var(--normal) var(--ease),
+          visibility 0s linear var(--normal);
       }
 
       .toast.is-visible {
         opacity: 1;
-        transform: translateY(0) rotateX(0);
+        transform: translateX(0);
         visibility: visible;
         pointer-events: auto;
         transition-delay: 0s;
       }
 
-      .toast-score {
+      .toast-number {
         display: grid;
-        height: 58px;
-        color: var(--foam);
         font-family: var(--font-display);
-        font-size: 1.55rem;
-        background: var(--lane-blue);
-        border: var(--stroke) solid var(--ink);
-        border-radius: 8px;
-        box-shadow: inset 0 -7px 0 var(--lane-blue-deep);
+        font-size: 2rem;
+        font-weight: 800;
+        background: var(--pool-deep);
         place-items: center;
       }
 
-      .toast-copy strong,
-      .toast-copy span {
-        display: block;
+      .toast-copy {
+        display: grid;
+        align-content: center;
+        gap: 3px;
+        padding: 12px 14px;
       }
 
       .toast-copy strong {
-        margin-bottom: 2px;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
       }
 
       .toast-copy span {
-        color: var(--ink-soft);
-        font-size: 0.82rem;
+        color: var(--steel-light);
+        font-size: 0.73rem;
       }
 
       .toast-close {
-        display: grid;
-        width: 34px;
-        height: 34px;
+        color: var(--white);
         cursor: pointer;
         background: transparent;
         border: 0;
-        border-radius: 50%;
-        place-items: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.18);
       }
 
       .toast-close:hover {
-        background: var(--water-soft);
+        background: var(--safety-dark);
       }
 
       footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--space-6);
-        padding: var(--space-6) clamp(20px, 5vw, 64px);
-        color: var(--foam);
-        background: var(--ink);
+        gap: 30px;
+        min-height: 80px;
+        padding: 18px clamp(20px, 4vw, 50px);
+        color: var(--white);
+        background: var(--navy-deep);
+        border-left: 9px solid var(--safety);
       }
 
       .footer-brand {
         font-family: var(--font-display);
-        font-size: 1.25rem;
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
       }
 
       .footer-note {
         font-family: var(--font-mono);
-        font-size: 0.62rem;
-        letter-spacing: 0.05em;
+        font-size: 0.54rem;
+        letter-spacing: 0.07em;
         text-align: right;
         text-transform: uppercase;
       }
 
-      @keyframes water-light {
+      @keyframes caustic-drift {
         from {
           background-position:
             0 0,
@@ -1887,35 +1769,26 @@
         }
         to {
           background-position:
-            170px 0,
-            -220px 0,
-            190px 95px,
+            0 0,
+            0 0,
+            220px 110px,
             0 0;
         }
       }
 
-      @keyframes swim-lane {
+      @keyframes lane-pass {
         from {
           transform: translateX(0);
         }
         to {
-          transform: translateX(clamp(120px, 22vw, 280px));
+          transform: translateX(clamp(160px, 30vw, 390px));
         }
       }
 
-      @keyframes focus-ripple {
-        0% {
-          outline-offset: 10px;
-        }
-        100% {
-          outline-offset: 4px;
-        }
-      }
-
-      @keyframes float-up {
+      @keyframes lift-in {
         from {
           opacity: 0;
-          transform: translateY(8px);
+          transform: translateY(7px);
         }
         to {
           opacity: 1;
@@ -1923,16 +1796,11 @@
         }
       }
 
-      @keyframes backdrop-in {
-        from {
-          opacity: 0;
+      @media (max-width: 1050px) {
+        .masthead {
+          grid-template-columns: 210px 1fr;
         }
-        to {
-          opacity: 1;
-        }
-      }
 
-      @media (max-width: 980px) {
         .mast-nav {
           display: none;
         }
@@ -1941,102 +1809,131 @@
           grid-template-columns: 1fr;
         }
 
-        .pool-window {
-          width: min(700px, 100%);
-          justify-self: center;
+        .hero-copy {
+          border-right: 0;
+          border-bottom: var(--line) solid var(--graphite);
         }
 
-        .specimen-section {
+        .pool-plan {
+          min-height: 650px;
+        }
+
+        .spec-section {
           grid-template-columns: 1fr;
         }
 
-        .section-heading {
+        .section-rail {
           border-right: 0;
-          border-bottom: var(--stroke) solid var(--ink);
+          border-bottom: var(--line) solid var(--graphite);
         }
 
-        .section-heading p {
-          max-width: 540px;
-        }
-
-        .section-heading::after {
-          right: 24px;
-          width: 80px;
+        .section-rail p {
+          max-width: 580px;
         }
       }
 
-      @media (max-width: 720px) {
-        .shell {
+      @media (max-width: 740px) {
+        .facility {
           width: calc(100% - 16px);
-          margin: var(--space-2) auto;
-          border-radius: 20px;
+          margin: 8px auto 20px;
         }
 
-        .status-strip {
-          padding-inline: var(--space-4);
+        .utility-bar {
+          grid-template-columns: 1fr auto;
+          gap: 12px;
+          padding-inline: 14px;
         }
 
-        .status-strip > span:last-child {
+        .utility-bar span:nth-child(2) {
           display: none;
         }
 
         .masthead {
-          padding: var(--space-4);
+          grid-template-columns: 168px 1fr;
+          min-height: 66px;
         }
 
-        .hero {
-          min-height: auto;
-          padding: var(--space-12) var(--space-5);
+        .brand {
+          grid-template-columns: 46px 1fr;
+        }
+
+        .brand-word {
+          padding-inline: 10px;
+          font-size: 1.45rem;
+        }
+
+        .facility-id {
+          justify-content: flex-end;
+          padding-inline: 14px;
+          text-align: right;
+        }
+
+        .hero-copy {
+          padding: 44px 24px;
         }
 
         h1 {
-          font-size: clamp(4rem, 25vw, 6.4rem);
+          font-size: clamp(6rem, 34vw, 9rem);
         }
 
-        .hero-metrics,
-        .component-grid,
-        .feedback-board {
+        .hero-meta,
+        .spec-grid,
+        .feedback-grid {
           grid-template-columns: 1fr;
         }
 
-        .metric {
+        .hero-metric {
           display: flex;
           align-items: baseline;
           justify-content: space-between;
-          gap: var(--space-4);
+          gap: 18px;
+          border-right: 0;
+          border-bottom: var(--line) solid var(--grout);
         }
 
-        .pool-window {
-          padding: var(--space-3);
-          border-radius: 22px;
-          transform: none;
+        .hero-metric:last-child {
+          border-bottom: 0;
         }
 
-        .pool-water {
-          height: 390px;
+        .pool-plan {
+          min-height: 540px;
+          padding: 22px 16px;
         }
 
-        .section-content {
-          padding: var(--space-6) var(--space-4) var(--space-8);
+        .water-basin {
+          min-height: 400px;
         }
 
-        .spec-card--wide {
+        .pool-plan::before {
+          left: 2px;
+        }
+
+        .pool-plan::after {
+          right: 2px;
+        }
+
+        .section-body {
+          padding: 28px 14px 38px;
+        }
+
+        .specimen--wide {
           grid-column: auto;
         }
 
-        .meter-layout {
-          grid-template-columns: 74px 1fr;
+        .dialog-content {
+          grid-template-columns: 1fr;
+        }
+
+        .rule-number {
+          width: 60px;
+          height: 66px;
+          font-size: 2.4rem;
         }
 
         .toast {
           right: 16px;
           bottom: 16px;
-          grid-template-columns: 56px minmax(0, 1fr) auto;
-        }
-
-        .toast-score {
-          height: 50px;
-          font-size: 1.2rem;
+          grid-template-columns: 58px minmax(0, 1fr) 36px;
         }
 
         footer {
@@ -2057,36 +1954,33 @@
         *,
         *::before,
         *::after {
-          scroll-behavior: auto !important;
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
         }
 
-        .swimmer {
-          left: 52%;
+        .position-marker {
+          left: 56%;
         }
       }
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#specimens">Skip to component specimens</a>
+    <a class="skip-link" href="#specimens">Skip to specimens</a>
 
-    <div class="shell">
-      <div class="status-strip">
-        <span class="status-live">Pool open · Deck clear</span>
-        <span>Monday / Summer Session 07</span>
+    <div class="facility">
+      <div class="utility-bar">
+        <span class="open-state">Facility open / Deck clear</span>
+        <span>Municipal aquatics department</span>
+        <span id="localTime">07:30</span>
       </div>
 
       <header class="masthead">
-        <a class="brand" href="#top" aria-label="LIDO 07 home">
-          <span class="brand-mark" aria-hidden="true"><span>07</span></span>
-          <span class="brand-copy">
-            <span class="brand-name">LIDO</span>
-            <span class="brand-tag">Poolside · Civic</span>
-          </span>
+        <a class="brand" href="#top" aria-label="LIDO 50 home">
+          <span class="brand-number">50</span>
+          <span class="brand-word">Lido <small>Facility 07</small></span>
         </a>
-
+        <div class="facility-id">Aquatics interface / Revision 02</div>
         <nav class="mast-nav" aria-label="Specimen navigation">
           <a href="#entry">Entry</a>
           <a href="#lanes">Lanes</a>
@@ -2096,161 +1990,164 @@
 
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Municipal pool interface study</p>
-          <h1 id="hero-title">LIDO <span>Open swim 07</span></h1>
-          <p class="hero-lead">
-            Durable civic signage meets the motion of clear water. Every control is built
-            from pool tile, lane markers, depth scales, and one precise safety-red signal.
-          </p>
-
-          <div class="button-row">
-            <a class="lido-button" href="#specimens"
-              >Enter the pool <span aria-hidden="true">↓</span></a
-            >
-            <button
-              class="lido-button lido-button--secondary"
-              type="button"
-              data-open-dialog
-            >
-              Read pool rule 07
-            </button>
+          <div>
+            <p class="system-label">Civic aquatics control system</p>
+            <h1 id="hero-title">Lido <span>50 metre public basin</span></h1>
+            <p class="hero-lead">
+              An interface built like the facility itself: ceramic modules, aluminium
+              channels, depth marks, cold chlorinated water, and one safety-orange
+              instruction layer.
+            </p>
+            <div class="button-row">
+              <a class="control-button" href="#specimens"
+                >Inspect controls <span aria-hidden="true">↓</span></a
+              >
+              <button
+                class="control-button control-button--secondary"
+                type="button"
+                data-open-dialog
+              >
+                Read rule 07
+              </button>
+            </div>
           </div>
 
-          <div class="hero-metrics" aria-label="Current pool conditions">
-            <div class="metric">
-              <span class="metric-label">Water</span>
-              <span class="metric-value">26.0°C</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Lanes</span>
-              <span class="metric-value">6 / 8 Open</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Local time</span>
-              <span class="metric-value" id="localTime">07:30</span>
-            </div>
+          <div class="hero-meta" aria-label="Current pool conditions">
+            <div class="hero-metric"><span>Water</span><span>26.0°C</span></div>
+            <div class="hero-metric"><span>Available</span><span>6 / 8 lanes</span></div>
+            <div class="hero-metric"><span>Depth</span><span>1.20–3.80 m</span></div>
           </div>
         </div>
 
-        <div class="pool-window" aria-label="Overhead view of LIDO pool lanes">
-          <div class="pool-deck">
-            <span>1.20 M</span>
-            <span class="deck-safety">No running</span>
-            <span>3.80 M</span>
+        <div class="pool-plan" aria-label="Plan view of a fifty metre public pool">
+          <div class="deck-data">
+            <span>Shallow / 1.20 M</span><strong>Walk — do not run</strong
+            ><span>Deep / 3.80 M</span>
           </div>
-          <div class="pool-water">
-            <span class="lane-number lane-number--one">3</span>
-            <span class="lane-number lane-number--two">4</span>
-            <span class="lane-number lane-number--three">5</span>
-            <span class="lane-rope lane-rope--one" aria-hidden="true"></span>
-            <span class="lane-rope lane-rope--two" aria-hidden="true"></span>
-            <span class="swimmer" aria-hidden="true"></span>
-            <span class="pool-readout">
-              <strong>00:48.2</strong>
-              <small>Lane 04 / 100 m</small>
-            </span>
+          <div class="water-basin">
+            <span class="basin-lane" aria-hidden="true"></span>
+            <span class="basin-lane" aria-hidden="true"></span>
+            <span class="basin-lane" aria-hidden="true"></span>
+            <span class="basin-index basin-index--3">3</span>
+            <span class="basin-index basin-index--4">4</span>
+            <span class="basin-index basin-index--5">5</span>
+            <span class="position-marker" aria-hidden="true"></span>
+            <span class="timing-block"
+              ><strong>00:48.2</strong><small>Lane 04 / 100 m split</small></span
+            >
+          </div>
+          <div class="deck-data">
+            <span>Water 26.0°C</span><span>Turn flags / 5.00 M</span
+            ><span>Air 30.5°C</span>
           </div>
         </div>
       </section>
 
       <main id="specimens">
-        <section class="specimen-section" id="entry" aria-labelledby="entry-title">
-          <header class="section-heading">
-            <span class="section-index">01 / 1.20 M</span>
+        <section class="spec-section" id="entry" aria-labelledby="entry-title">
+          <header class="section-rail">
+            <span class="section-code">01 / DEPTH 1.20 M</span>
             <h2 id="entry-title">Entry controls</h2>
             <p>
-              Hard-wearing tile frames, clear states, and a red ripple when the keyboard
-              arrives.
+              Flat enamel instructions, recessed input channels, and square safety
+              hardware.
             </p>
           </header>
 
-          <div class="section-content">
-            <div class="component-grid">
-              <article class="spec-card">
-                <div class="card-kicker">
-                  <h3>Poolside buttons</h3>
-                  <span class="pool-code">GATE / 01</span>
+          <div class="section-body">
+            <div class="spec-grid">
+              <article class="specimen">
+                <div class="spec-heading">
+                  <h3>Instruction buttons</h3>
+                  <span class="spec-code">GATE / 01</span>
                 </div>
                 <div class="control-stack">
                   <div class="button-row">
-                    <button class="lido-button" type="button">Book lane</button>
-                    <button class="lido-button lido-button--secondary" type="button">
+                    <button class="control-button" type="button">Book lane</button>
+                    <button
+                      class="control-button control-button--secondary"
+                      type="button"
+                    >
                       View rules
                     </button>
-                    <button class="lido-button lido-button--danger" type="button">
+                    <button class="control-button control-button--danger" type="button">
                       Close lane
                     </button>
                   </div>
                   <div class="button-row">
-                    <button class="lido-button lido-button--small" type="button">
-                      Small
+                    <button class="control-button control-button--small" type="button">
+                      Compact
                     </button>
-                    <button class="lido-button lido-button--small" type="button" disabled>
+                    <button
+                      class="control-button control-button--small"
+                      type="button"
+                      disabled
+                    >
                       Unavailable
                     </button>
                     <div class="tooltip-wrap">
                       <button
                         class="tooltip-trigger"
                         type="button"
-                        aria-describedby="lane-tip"
+                        aria-describedby="laneTip"
                       >
                         ?
                       </button>
-                      <span class="tooltip-bubble" id="lane-tip" role="tooltip">
-                        Lane 04 changes to tempo swimming at 09:30.
-                      </span>
+                      <span class="tooltip" id="laneTip" role="tooltip"
+                        >Lane 04 changes to tempo swimming at 09:30.</span
+                      >
                     </div>
                   </div>
                 </div>
               </article>
 
-              <article class="spec-card">
-                <div class="card-kicker">
-                  <h3>Depth-scale field</h3>
-                  <span class="pool-code">LOCKER / 12</span>
+              <article class="specimen">
+                <div class="spec-heading">
+                  <h3>Recessed field</h3>
+                  <span class="spec-code">LOCKER / 12</span>
                 </div>
-                <label class="field" for="locker-code">
+                <label class="field" for="lockerCode">
                   <span class="field-label"><strong>1.20 M</strong> Locker code</span>
-                  <span class="input-frame">
-                    <span class="input-prefix" aria-hidden="true">№</span>
+                  <span class="input-channel">
+                    <span class="input-code" aria-hidden="true">№</span>
                     <input
-                      id="locker-code"
+                      id="lockerCode"
                       autocomplete="off"
-                      placeholder="Enter four digits"
                       inputmode="numeric"
+                      placeholder="Enter four digits"
                     />
                   </span>
                   <span class="field-note"
-                    >Your code stays on this device until closing time.</span
+                    >Stored on this device until the facility closes.</span
                   >
                 </label>
               </article>
 
-              <article class="spec-card">
-                <div class="card-kicker">
+              <article class="specimen">
+                <div class="spec-heading">
                   <h3>Tile selections</h3>
-                  <span class="pool-code">ACCESS / A</span>
+                  <span class="spec-code">ACCESS / A</span>
                 </div>
                 <div class="choice-list">
                   <label class="choice">
                     <input class="native-control" type="checkbox" checked />
-                    <span class="check-tile" aria-hidden="true"></span>
-                    <span class="choice-label"
-                      >Towel service <small>Checked · water fill</small></span
+                    <span class="check-mark" aria-hidden="true"></span>
+                    <span class="choice-copy"
+                      >Towel service <small>Checked / full water level</small></span
                     >
                   </label>
                   <label class="choice">
                     <input class="native-control" id="mixedCheck" type="checkbox" />
-                    <span class="check-tile" aria-hidden="true"></span>
-                    <span class="choice-label"
-                      >Lane group <small>Mixed · half waterline</small></span
+                    <span class="check-mark" aria-hidden="true"></span>
+                    <span class="choice-copy"
+                      >Lane group <small>Mixed / half water level</small></span
                     >
                   </label>
                   <fieldset
                     style="
                       display: grid;
                       gap: 12px;
-                      margin: 4px 0 0;
+                      margin: 5px 0 0;
                       padding: 0;
                       border: 0;
                     "
@@ -2266,8 +2163,8 @@
                         value="open"
                         checked
                       />
-                      <span class="radio-target" aria-hidden="true"></span>
-                      <span class="choice-label">Open swim</span>
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span class="choice-copy">Open swim</span>
                     </label>
                     <label class="choice">
                       <input
@@ -2276,51 +2173,51 @@
                         name="pace"
                         value="tempo"
                       />
-                      <span class="radio-target" aria-hidden="true"></span>
-                      <span class="choice-label">Tempo lane</span>
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span class="choice-copy">Tempo lane</span>
                     </label>
                   </fieldset>
                 </div>
               </article>
 
-              <article class="spec-card">
-                <div class="card-kicker">
-                  <h3>Lane switch</h3>
-                  <span class="pool-code">FLOAT / ON</span>
+              <article class="specimen">
+                <div class="spec-heading">
+                  <h3>Lane gate</h3>
+                  <span class="spec-code">CHANNEL / ON</span>
                 </div>
                 <div class="control-stack">
                   <label class="switch-row">
-                    <span class="switch-copy">
-                      <strong>Outdoor lane</strong>
-                      <small>Move the safety float into position.</small>
-                    </span>
-                    <span style="position: relative">
+                    <span class="switch-copy"
+                      ><strong>Outdoor lane</strong
+                      ><small>Move the orange carriage into position.</small></span
+                    >
+                    <span class="switch-wrap">
                       <input
                         class="native-control"
                         type="checkbox"
                         role="switch"
                         checked
                       />
-                      <span class="switch-track" aria-hidden="true"></span>
+                      <span class="switch-slot" aria-hidden="true"></span>
                     </span>
                   </label>
                   <label class="switch-row">
-                    <span class="switch-copy">
-                      <strong>Quiet hour</strong>
-                      <small>Reduce deck announcements.</small>
-                    </span>
-                    <span style="position: relative">
+                    <span class="switch-copy"
+                      ><strong>Quiet hour</strong
+                      ><small>Reduce deck announcements.</small></span
+                    >
+                    <span class="switch-wrap">
                       <input class="native-control" type="checkbox" role="switch" />
-                      <span class="switch-track" aria-hidden="true"></span>
+                      <span class="switch-slot" aria-hidden="true"></span>
                     </span>
                   </label>
                 </div>
               </article>
 
-              <article class="spec-card spec-card--wide">
-                <div class="card-kicker">
-                  <h3>Lifeguard lane selector</h3>
-                  <span class="pool-code">LIST / 04</span>
+              <article class="specimen specimen--wide">
+                <div class="spec-heading">
+                  <h3>Lane assignment</h3>
+                  <span class="spec-code">LIST / 04</span>
                 </div>
                 <div class="select" id="laneSelect">
                   <button
@@ -2348,9 +2245,8 @@
                       aria-selected="false"
                       data-value="Lane 03 — Open swim"
                     >
-                      <span class="lane-chip">03</span>
-                      <span>Open swim</span>
-                      <span class="option-status">Clear</span>
+                      <span class="lane-index">03</span><span>Open swim</span
+                      ><span class="option-state">Clear</span>
                     </button>
                     <button
                       class="select-option"
@@ -2359,9 +2255,8 @@
                       aria-selected="true"
                       data-value="Lane 04 — Tempo"
                     >
-                      <span class="lane-chip">04</span>
-                      <span>Tempo</span>
-                      <span class="option-status">Selected</span>
+                      <span class="lane-index">04</span><span>Tempo</span
+                      ><span class="option-state">Selected</span>
                     </button>
                     <button
                       class="select-option"
@@ -2370,9 +2265,8 @@
                       aria-selected="false"
                       data-value="Lane 05 — Training"
                     >
-                      <span class="lane-chip">05</span>
-                      <span>Training</span>
-                      <span class="option-status">2 places</span>
+                      <span class="lane-index">05</span><span>Training</span
+                      ><span class="option-state">2 places</span>
                     </button>
                   </div>
                 </div>
@@ -2381,27 +2275,27 @@
           </div>
         </section>
 
-        <section class="specimen-section" id="lanes" aria-labelledby="lanes-title">
-          <header class="section-heading">
-            <span class="section-index">02 / 2.40 M</span>
+        <section class="spec-section" id="lanes" aria-labelledby="lanes-title">
+          <header class="section-rail">
+            <span class="section-code">02 / DEPTH 2.40 M</span>
             <h2 id="lanes-title">Lanes & levels</h2>
             <p>
-              Movement is measured in pool lengths, float segments, and a waterline that
-              stays legible.
+              Thin lane lines, rigid timing marks, and water measured against a fixed
+              architectural grid.
             </p>
           </header>
 
-          <div class="section-content">
-            <div class="component-grid">
-              <article class="spec-card spec-card--wide">
-                <div class="card-kicker">
+          <div class="section-body">
+            <div class="spec-grid">
+              <article class="specimen specimen--wide">
+                <div class="spec-heading">
                   <h3>Lane-rope slider</h3>
-                  <span class="pool-code">PACE / 100 M</span>
+                  <span class="spec-code">PACE / 100 M</span>
                 </div>
-                <div class="range-head">
-                  <span class="depth-caption">Target pace</span>
+                <div class="range-header">
+                  <span class="depth-label">Target pace</span>
                   <output class="range-value" id="paceValue" for="paceRange"
-                    >48 sec</output
+                    >48 SEC</output
                   >
                 </div>
                 <input
@@ -2419,14 +2313,13 @@
                 </div>
               </article>
 
-              <article class="spec-card">
-                <div class="card-kicker">
+              <article class="specimen">
+                <div class="spec-heading">
                   <h3>Session progress</h3>
-                  <span class="pool-code">16 / 24</span>
+                  <span class="spec-code">16 / 24</span>
                 </div>
                 <div class="progress-copy">
-                  <strong>800 M</strong>
-                  <span>of 1,200 m</span>
+                  <strong>800 M</strong><span>of 1,200 m</span>
                 </div>
                 <div
                   class="lane-progress"
@@ -2436,21 +2329,21 @@
                   aria-valuemax="1200"
                   aria-valuenow="800"
                 >
-                  <span class="lane-progress__fill" style="--progress: 66.67%"></span>
+                  <span class="lane-progress-fill" style="--progress: 66.67%"></span>
                 </div>
                 <p class="field-note" style="margin-top: 14px">
-                  Eight pool lengths remain before cool-down.
+                  Eight lengths remain before cool-down.
                 </p>
               </article>
 
-              <article class="spec-card">
-                <div class="card-kicker">
+              <article class="specimen">
+                <div class="spec-heading">
                   <h3>Water-quality meter</h3>
-                  <span class="pool-code">CHEM / 08:00</span>
+                  <span class="spec-code">CHEM / 08:00</span>
                 </div>
                 <div class="meter-layout">
                   <div
-                    class="depth-meter"
+                    class="water-meter"
                     role="meter"
                     aria-label="Water quality"
                     aria-valuemin="0"
@@ -2458,56 +2351,56 @@
                     aria-valuenow="76"
                     aria-valuetext="76 percent, balanced"
                   >
-                    <span class="depth-meter__fill" style="--level: 76%"></span>
-                    <span class="depth-meter__marks" aria-hidden="true">
-                      <span>100</span><span>75</span><span>50</span><span>25</span
-                      ><span>0</span>
-                    </span>
+                    <span class="water-meter-fill" style="--level: 76%"></span>
+                    <span class="meter-marks" aria-hidden="true"
+                      ><span>100</span><span>75</span><span>50</span><span>25</span
+                      ><span>0</span></span
+                    >
                   </div>
                   <div class="meter-copy">
                     <strong>76</strong>
                     <p>Chlorine and pH readings are inside the morning operating band.</p>
-                    <span class="status-pill">Balanced</span>
+                    <span class="status-badge">Balanced</span>
                   </div>
                 </div>
               </article>
 
-              <article class="spec-card spec-card--wide">
-                <div class="card-kicker">
+              <article class="specimen specimen--wide">
+                <div class="spec-heading">
                   <h3>Starting-block tabs</h3>
-                  <span class="pool-code">BLOCK / A–C</span>
+                  <span class="spec-code">BLOCK / A–C</span>
                 </div>
                 <div class="tabs">
                   <div class="tab-list" role="tablist" aria-label="Pool schedule">
                     <button
                       class="tab"
-                      id="tab-open"
+                      id="tabOpen"
                       type="button"
                       role="tab"
                       aria-selected="true"
-                      aria-controls="panel-open"
+                      aria-controls="panelOpen"
                       tabindex="0"
                     >
                       <strong>A</strong> Open swim
                     </button>
                     <button
                       class="tab"
-                      id="tab-lessons"
+                      id="tabLessons"
                       type="button"
                       role="tab"
                       aria-selected="false"
-                      aria-controls="panel-lessons"
+                      aria-controls="panelLessons"
                       tabindex="-1"
                     >
                       <strong>B</strong> Lessons
                     </button>
                     <button
                       class="tab"
-                      id="tab-club"
+                      id="tabClub"
                       type="button"
                       role="tab"
                       aria-selected="false"
-                      aria-controls="panel-club"
+                      aria-controls="panelClub"
                       tabindex="-1"
                     >
                       <strong>C</strong> Swim club
@@ -2515,11 +2408,11 @@
                   </div>
                   <div
                     class="tab-panel"
-                    id="panel-open"
+                    id="panelOpen"
                     role="tabpanel"
-                    aria-labelledby="tab-open"
+                    aria-labelledby="tabOpen"
                   >
-                    <h3>Open water, clear rhythm.</h3>
+                    <h3>Open water / clear rhythm</h3>
                     <p>
                       Six lanes are available until 09:30. Lane 01 remains reserved for
                       accessible entry and assisted swimming.
@@ -2527,25 +2420,25 @@
                   </div>
                   <div
                     class="tab-panel"
-                    id="panel-lessons"
+                    id="panelLessons"
                     role="tabpanel"
-                    aria-labelledby="tab-lessons"
+                    aria-labelledby="tabLessons"
                     hidden
                   >
-                    <h3>Small groups, shallow end.</h3>
+                    <h3>Small groups / shallow end</h3>
                     <p>
-                      Beginner lessons meet by the red depth marker. Please arrive ten
-                      minutes early for equipment fitting.
+                      Beginner lessons meet at the orange depth marker. Arrive ten minutes
+                      early for equipment fitting.
                     </p>
                   </div>
                   <div
                     class="tab-panel"
-                    id="panel-club"
+                    id="panelClub"
                     role="tabpanel"
-                    aria-labelledby="tab-club"
+                    aria-labelledby="tabClub"
                     hidden
                   >
-                    <h3>Even splits after sunset.</h3>
+                    <h3>Even splits / evening session</h3>
                     <p>
                       Club training starts at 18:30 across lanes 03–06. The final twenty
                       minutes are reserved for starts and turns.
@@ -2557,59 +2450,59 @@
           </div>
         </section>
 
-        <section class="specimen-section" id="signals" aria-labelledby="signals-title">
-          <header class="section-heading">
-            <span class="section-index">03 / 3.80 M</span>
+        <section class="spec-section" id="signals" aria-labelledby="signals-title">
+          <header class="section-rail">
+            <span class="section-code">03 / DEPTH 3.80 M</span>
             <h2 id="signals-title">Pool signals</h2>
             <p>
-              Rules appear as enamel signs; quick feedback lands like a mechanical
-              scoreboard tile.
+              Overlays behave like fixed public instructions, not animated character
+              cards.
             </p>
           </header>
 
-          <div class="section-content">
-            <article class="spec-card">
-              <div class="card-kicker">
+          <div class="section-body">
+            <article class="specimen">
+              <div class="spec-heading">
                 <h3>Feedback & overlays</h3>
-                <span class="pool-code">GUARD / ACTIVE</span>
+                <span class="spec-code">GUARD / ACTIVE</span>
               </div>
-              <div class="feedback-board">
-                <div class="feedback-action">
+              <div class="feedback-grid">
+                <div class="feedback-cell">
                   <div>
                     <strong>Rule dialog</strong>
-                    <p>Open a stable enamel notice over a soft moving-water backdrop.</p>
+                    <p>A large orthogonal notice with one orange regulation rail.</p>
                   </div>
-                  <button class="lido-button" type="button" data-open-dialog>
+                  <button class="control-button" type="button" data-open-dialog>
                     Open rule 07
                   </button>
                 </div>
-                <div class="feedback-action">
+                <div class="feedback-cell">
                   <div>
-                    <strong>Scoreboard toast</strong>
-                    <p>Confirm a lane booking with one crisp flip into place.</p>
+                    <strong>Timing toast</strong>
+                    <p>A dark timing block enters from the facility edge.</p>
                   </div>
                   <button
-                    class="lido-button lido-button--secondary"
+                    class="control-button control-button--secondary"
                     id="showToast"
                     type="button"
                   >
                     Book lane 04
                   </button>
                 </div>
-                <div class="feedback-action">
+                <div class="feedback-cell">
                   <div>
                     <strong>Guard tooltip</strong>
-                    <p>Hover or focus the marker for a short operational note.</p>
+                    <p>A compact operational note connected to the marker.</p>
                   </div>
                   <div class="tooltip-wrap">
                     <button
                       class="tooltip-trigger"
                       type="button"
-                      aria-describedby="guard-tip"
+                      aria-describedby="guardTip"
                     >
                       i
                     </button>
-                    <span class="tooltip-bubble" id="guard-tip" role="tooltip"
+                    <span class="tooltip" id="guardTip" role="tooltip"
                       >Lifeguard rotation changes at 10:00.</span
                     >
                   </div>
@@ -2621,37 +2514,39 @@
       </main>
 
       <footer>
-        <span class="footer-brand">LIDO 07</span>
+        <span class="footer-brand">LIDO / FACILITY 07</span>
         <span class="footer-note"
-          >A poolside civic interface · Designed to stay clear when the water moves</span
+          >Municipal aquatics interface · Ceramic grid / aluminium channel / safety
+          instruction</span
         >
       </footer>
     </div>
 
-    <dialog class="lido-dialog" id="poolRuleDialog" aria-labelledby="rule-title">
-      <div class="dialog-topline">
-        <span>Municipal pool notice</span>
-        <span>Effective today</span>
+    <dialog class="rule-dialog" id="poolRuleDialog" aria-labelledby="ruleTitle">
+      <div class="dialog-bar">
+        <span>Municipal aquatics notice</span><span>Effective today</span>
       </div>
-      <div class="dialog-body">
+      <div class="dialog-content">
         <span class="rule-number" aria-hidden="true">07</span>
-        <h2 id="rule-title">Share the lane.</h2>
-        <p>
-          Keep to the marked pace, leave five seconds between swimmers, and pause at the
-          left corner of the wall. If a faster swimmer reaches your feet, let them pass at
-          the next turn.
-        </p>
-        <div class="dialog-actions">
-          <button
-            class="lido-button lido-button--secondary"
-            type="button"
-            data-close-dialog
-          >
-            Not now
-          </button>
-          <button class="lido-button" type="button" data-close-dialog>
-            I understand
-          </button>
+        <div class="dialog-copy">
+          <h2 id="ruleTitle">Share the lane.</h2>
+          <p>
+            Keep to the marked pace, leave five seconds between swimmers, and pause at the
+            left corner of the wall. If a faster swimmer reaches your feet, let them pass
+            at the next turn.
+          </p>
+          <div class="dialog-actions">
+            <button
+              class="control-button control-button--secondary"
+              type="button"
+              data-close-dialog
+            >
+              Not now
+            </button>
+            <button class="control-button" type="button" data-close-dialog>
+              I understand
+            </button>
+          </div>
         </div>
       </div>
     </dialog>
@@ -2663,11 +2558,10 @@
       aria-live="polite"
       aria-atomic="true"
     >
-      <span class="toast-score" aria-hidden="true">04</span>
-      <span class="toast-copy">
-        <strong>Lane booked</strong>
-        <span>Tempo swim · 08:30–09:00</span>
-      </span>
+      <span class="toast-number" aria-hidden="true">04</span>
+      <span class="toast-copy"
+        ><strong>Lane booked</strong><span>Tempo swim / 08:30–09:00</span></span
+      >
       <button
         class="toast-close"
         id="closeToast"
@@ -2690,8 +2584,7 @@
       updateClock();
       window.setInterval(updateClock, 60_000);
 
-      const mixedCheck = document.querySelector("#mixedCheck");
-      mixedCheck.indeterminate = true;
+      document.querySelector("#mixedCheck").indeterminate = true;
 
       const range = document.querySelector("#paceRange");
       const rangeValue = document.querySelector("#paceValue");
@@ -2701,7 +2594,7 @@
         const value = Number(range.value);
         const percentage = ((value - min) / (max - min)) * 100;
         range.style.setProperty("--range", `${percentage}%`);
-        rangeValue.value = `${value} sec`;
+        rangeValue.value = `${value} SEC`;
         range.setAttribute("aria-valuetext", `${value} seconds per 100 metres`);
       };
       range.addEventListener("input", updateRange);
