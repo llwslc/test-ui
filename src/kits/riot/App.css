@@ -495,14 +495,23 @@
 }
 .riot-grid.riot-reveal > * {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(24px);
   transition:
-    opacity 0.36s var(--riot-ease-out),
-    transform 0.36s var(--riot-ease-out);
+    opacity 0.2s var(--riot-ease-out),
+    transform 0.3s var(--riot-ease);
 }
 .riot-grid.riot-reveal > .is-visible {
   opacity: 1;
   transform: none;
+}
+.riot-grid.riot-reveal > *:nth-child(2) {
+  transition-delay: 0.05s;
+}
+.riot-grid.riot-reveal > *:nth-child(3) {
+  transition-delay: 0.1s;
+}
+.riot-grid.riot-reveal > *:nth-child(4) {
+  transition-delay: 0.15s;
 }
 @media (prefers-reduced-motion: reduce) {
   .riot-header,

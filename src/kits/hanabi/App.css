@@ -373,14 +373,21 @@
 
 .hanabi-reveal > * {
   opacity: 0;
-  translate: 0 6px;
+  transform: scale(0.9) translateY(6px);
+  transition:
+    opacity var(--hanabi-dur-slow) var(--hanabi-ease-out),
+    transform var(--hanabi-dur-slow) var(--hanabi-ease-snap);
 }
 .hanabi-reveal > .is-visible {
   opacity: 1;
-  translate: 0 0;
-  transition:
-    opacity var(--hanabi-dur-slow) var(--hanabi-ease-out),
-    translate var(--hanabi-dur-slow) var(--hanabi-ease);
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hanabi-reveal > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .hanabi-row {

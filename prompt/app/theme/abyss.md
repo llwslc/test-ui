@@ -16,7 +16,7 @@
 
 ## 3. 入场
 
-- 顶栏 `abyss-drop` 下滑；hero 文案按 `abyss-rise` 分档错开；面板进视口时逐个渐入。
+- 顶栏 `abyss-drop` 下滑；hero 文案按 `abyss-rise` 分档错开；面板进视口时自暗水里浮出——`blur` 由浊转清、缓缓上浮微放大，`dur-slow` 慢速、`ease` 收，错开一拍，像自渊底升起。
 
 ## 4. 外壳
 

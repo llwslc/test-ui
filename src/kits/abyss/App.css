@@ -509,26 +509,26 @@ kbd {
 
 .abyss-grid.abyss-reveal .abyss-section {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px) scale(0.99);
+  filter: blur(6px);
   transition:
-    opacity 0.6s var(--abyss-ease),
-    transform 0.6s var(--abyss-ease);
+    opacity var(--abyss-dur-slow) var(--abyss-ease),
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    filter var(--abyss-dur-slow) var(--abyss-ease);
 }
 .abyss-grid.abyss-reveal .abyss-section.is-visible {
   opacity: 1;
   transform: none;
-}
-.abyss-grid.abyss-reveal .abyss-section:nth-child(1) {
-  transition-delay: 0.02s;
+  filter: none;
 }
 .abyss-grid.abyss-reveal .abyss-section:nth-child(2) {
   transition-delay: 0.1s;
 }
 .abyss-grid.abyss-reveal .abyss-section:nth-child(3) {
-  transition-delay: 0.18s;
+  transition-delay: 0.2s;
 }
 .abyss-grid.abyss-reveal .abyss-section:nth-child(4) {
-  transition-delay: 0.26s;
+  transition-delay: 0.3s;
 }
 @media (prefers-reduced-motion: reduce) {
   .abyss-header,
@@ -541,6 +541,7 @@ kbd {
   .abyss-grid.abyss-reveal .abyss-section {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
   }
 }
