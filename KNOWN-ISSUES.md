@@ -53,3 +53,19 @@
 - **覆盖轴（新发现，是 §3 漂移的结构性根因）**：皮肤规格的标题是「组件皮肤决定」，**只收录超出默认／共享配方的决定**，所以「无条目」本身不等于失控。但各套覆盖悬殊——hanabi **50 条（37/37 全覆盖）**、riot 39、brass 29、bauhaus 28、nova 26、abyss 25。**当某套确实为某控件做了独特视觉决定、而该控件又恰好没有条目时，这个决定就无人 governed**：§3 的 Collapsible 正是此类（brass 给它整框卡片 + `surface-zone` 底，而 brass 文档里根本没有 Collapsible 条目）。把「码里有独立根框」与「无条目」交叉，同类候选还有 brass Fieldset、riot Fieldset、riot／abyss／bauhaus Badge。另：**abyss 全文没有 Progress 条目**，而其余五套都有。
 
 本趟边界：结构／尺寸／几何声明（间距、尺寸、对齐公式）与 app 层规格尚未核，留下一趟。
+
+## 7. 逐属性核·第三趟：结构／尺寸／几何轴（全 6 套）
+
+- **尺寸字面值轴：干净**。各套皮肤规格里每条带数字的声明（`12px`／`7px`／`80%`／`0.5s` 之类）逐条回码搜，全部命中，无「spec 写了、码里没有」。
+- **契约层同值：`kit-equality` 门 PASS**。跨 kit 同值数（z 阶梯、模态／抽屉宽高与视口上限、NavMenu 列宽、壳体几何）、各套侧栏面板清单、弹层滚动前 7 行、菜单 z 层——全绿。
+
+## 8. 全量对账·总结（截至本轮）
+
+已跑完的轴（每条均覆盖全 6 套）：等价声明 · token 引用 · 状态 · 动效 · 覆盖 · 尺寸几何 · 契约同值。
+
+- **已确认并修掉**：hanabi `primary-deep` 当文字色的笔误 → `primary-shade`，5 处（见 §5）。
+- **已确认、待拍板**：§3 Collapsible 容器框违反「同 Accordion」（brass + hanabi）。
+- **候选、待议**：nova `panel-scan` 有动效而 spec 未述（§6）；brass／riot Fieldset、riot／abyss／bauhaus Badge 的独立根框无条目可依（§6）；abyss 全文缺 Progress 条目（§6）。
+- **结构性根因**：皮肤规格只收「超出默认的决定」，而各套覆盖悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独特决定一旦落在没有条目的控件上就无人 governed——这是本类漂移的源头，不补覆盖还会再犯。
+
+**仍未覆盖（下一步）**：app 层规格（`prompt/app/**`）逐条回码；`components.md` 的行为／props 契约逐条回码；交互与动效的运行时一致性（部分已由动态门覆盖）。
