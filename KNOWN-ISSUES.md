@@ -50,7 +50,7 @@
 
 - **状态轴：干净，无漂移**。核「spec 说某态用某 token，码里那个态的规则是否真用它」，3 个候选逐条读后全是误报——riot `stroke-bold` 是宽度 token（3px）挂在 indicator 上、非选中态色；hanabi Menu `danger-wash` 经 `--hanabi-item-color` 间接实现（spec 自己就写明了这条间接）；hanabi Toolbar `primary-shade` 是 rest 字色、hover 是下划线，两者都对。
 - **动效轴：基本干净，一处候选**。各套 keyframe 与 spec 双向比对，「spec 未点名」的绝大多数其实**被散文描述过**（abyss「自转的 sigil」「开启一记钥匙转启」、riot「`.riot-jitter` 微抖」、hanabi「白勾描线动画」「不定态＝斜纹段左右巡游」）——命名与否不构成漂移。**唯 nova `panel-scan`**（Panel 上 6s 无限循环的纵向扫光）在 nova 的 Panel 条目里毫无描述（该条只写了「对角两枚 L 形辉光角框」），属「码有动效、spec 未述」候选。
-- **覆盖轴（新发现，是 §3 漂移的结构性根因）**：皮肤规格的标题是「组件皮肤决定」，**只收录超出默认／共享配方的决定**，所以「无条目」本身不等于失控。但各套覆盖悬殊——hanabi **50 条（37/37 全覆盖）**、riot 39、brass 29、bauhaus 28、nova 26、abyss 25。**当某套确实为某控件做了独特视觉决定、而该控件又恰好没有条目时，这个决定就无人 governed**：§3 的 Collapsible 正是此类（brass 给它整框卡片 + `surface-zone` 底，而 brass 文档里根本没有 Collapsible 条目）。把「码里有独立根框」与「无条目」交叉，同类候选还有 brass Fieldset、riot Fieldset、riot／abyss／bauhaus Badge。另：**abyss 全文没有 Progress 条目**，而其余五套都有。
+- **覆盖轴（新发现，是 §3 漂移的结构性根因）**：契约层零外观（「由 theme 定」通篇 21 处）、不存在默认皮肤；皮肤规格 §2 只收控件级独创决定，「无条目」=隐含声明「可由全局语法（theme DNA＋皮肤 §1＋共享配方）完全推导」，本身不等于失控。且此收录章程先前无处成文（playbook 只说「从自由稿回写」，未定完整性标准），现已钉进 playbook 步骤 2。但各套覆盖悬殊——hanabi **50 条（37/37 全覆盖）**、riot 39、brass 29、bauhaus 28、nova 26、abyss 25。**当某套确实为某控件做了独特视觉决定、而该控件又恰好没有条目时，这个决定就无人 governed**：§3 的 Collapsible 正是此类（brass 给它整框卡片 + `surface-zone` 底，而 brass 文档里根本没有 Collapsible 条目）。把「码里有独立根框」与「无条目」交叉，同类候选还有 brass Fieldset、riot Fieldset、riot／abyss／bauhaus Badge。另：**abyss 全文没有 Progress 条目**，而其余五套都有。
 
 本趟边界：结构／尺寸／几何声明（间距、尺寸、对齐公式）与 app 层规格尚未核，留下一趟。
 
@@ -66,7 +66,7 @@
 - **已确认并修掉**：hanabi `primary-deep` 当文字色的笔误 → `primary-shade`，5 处（见 §5）。
 - **已确认、待拍板**：§3 Collapsible 容器框违反「同 Accordion」（brass + hanabi）。
 - **候选、待议**：nova `panel-scan` 有动效而 spec 未述（§6）；brass／riot Fieldset、riot／abyss／bauhaus Badge 的独立根框无条目可依（§6）；abyss 全文缺 Progress 条目（§6）。
-- **结构性根因**：皮肤规格只收「超出默认的决定」，而各套覆盖悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独特决定一旦落在没有条目的控件上就无人 governed——这是本类漂移的源头，不补覆盖还会再犯。
+- **结构性根因**：皮肤规格 §2 只收全局语法推导不出的独创决定，而其收录章程无处成文、各套回写纪律悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独创决定一旦落在没有条目的控件上就无人 governed——这是本类漂移的源头，不补覆盖还会再犯。
 
 **仍未覆盖（下一步）**：交互与动效的运行时一致性（部分已由动态门覆盖）。app 层规格与 props 契约两轴已于第四趟补跑，见 §9。
 

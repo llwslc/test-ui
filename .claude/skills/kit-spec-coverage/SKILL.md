@@ -1,11 +1,11 @@
 ---
 name: kit-spec-coverage
-description: 皮肤规格覆盖门——组件码里带定制视觉信号（自有 @keyframes/SVG 滤镜/渐变/裸块实线框）而 theme/<kit>.md 无该组件条目时 FAIL。皮肤文档只记「超出默认的决定」，无条目=隐含声明「全走共享配方」，此门验这个声明。改组件 CSS 或皮肤文档后跑。
+description: 皮肤规格覆盖门——组件码里带定制视觉信号（自有 @keyframes/SVG 滤镜/渐变/裸块实线框）而 theme/<kit>.md 无该组件条目时 FAIL。皮肤文档 §2 只记控件级独创决定，无条目=隐含声明「该控件可由全局语法（theme DNA＋皮肤 §1＋共享配方）完全推导」，此门验这个声明。改组件 CSS 或皮肤文档后跑。
 ---
 
 # kit-spec-coverage
 
-皮肤文档（`prompt/components/theme/<kit>.md`）只收录超出默认/共享配方的决定，所以「无条目」本身合法——它是一句隐含声明：「该控件全走共享配方」。此前没有任何门验这句声明，于是码里的定制决定（abyss Progress 的整套辉光血条、brass Collapsible 的整框卡片）可以长期无人 governed。此门把这句隐含声明变成可判定的。
+皮肤文档（`prompt/components/theme/<kit>.md`）§2 只收录控件级独创决定——契约层零外观（`components.md` 通篇「由 theme 定」），不存在默认皮肤；「无条目」是一句隐含声明：「该控件的皮可由全局语法——`theme/<kit>.md` 视觉 DNA＋皮肤 §1 交互态配色＋共享配方——完全推导」。此前没有任何门验这句声明，于是码里的定制决定（abyss Progress 的整套辉光血条、brass Collapsible 的整框卡片）可以长期无人 governed。此门把这句隐含声明变成可判定的。
 
 ## Run it
 
