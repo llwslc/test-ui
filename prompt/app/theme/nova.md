@@ -20,7 +20,7 @@
 
 ## 4. 面板特例
 
-- context 面板的投放区（`context__zone`）：`-45deg` 细斜纹（`tint-faint`）叠半透暗底（`rgba(7,14,24,.5)`，hover 深至 `rgba(11,24,40,.6)`）+ `clip-9` 切角 + `1px dashed line` 内描；开菜单描线转 `primary`；字 `text-dim` 居中、`ls-4` 撑开。
+- context 面板的投放区：`-45deg` 细斜纹（`tint-faint`）叠半透暗底（`rgba(7,14,24,.5)`，hover 深至 `rgba(11,24,40,.6)`）+ `clip-9` 切角 + `1px dashed line` 内描；开菜单描线转 `primary`；字 `text-dim` 居中、`ls-4` 撑开。
 
 ## 5. 外壳
 

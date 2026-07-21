@@ -20,7 +20,7 @@
 
 ## 4. 面板特例
 
-- context 面板的投放区（`context__zone`）：`inset` 底 + `round-4` + `1px dashed ink-strong` 内描（offset −3）+ 底下一层 `glow-soft` 椭圆辉雾；hover 字转 `text`、雾满亮；开菜单字转 `glow`、描线转 `glow-a55`。
+- context 面板的投放区：`inset` 底 + `round-4` + `1px dashed ink-strong` 内描（offset −3）+ 底下一层 `glow-soft` 椭圆辉雾；hover 字转 `text`、雾满亮；开菜单字转 `glow`、描线转 `glow-a55`。
 
 ## 5. 外壳
 

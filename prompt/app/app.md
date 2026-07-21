@@ -87,7 +87,7 @@
 - menu：trigger = `ghost` Button（内联标签 + 翻转 chevron）；12 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后末项 `tone="danger"`。
 - menubar：3 个菜单 —— ① 2 项 + 1 个 `disabled` 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 3 项 + 分隔 + 1 项。
 - navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
-- context：trigger = 文本投放区——`<kit>-context__zone` 盒包提示文案，`min-height` 取 `--<kit>-contextmenu-min-h`（App.css `:root`，各 kit 同值 `132px`）；4 个 MenuItem + 1 分隔，前 2 带快捷键，第 3 项 `disabled`，分隔后末项 `danger`。
+- context：trigger = 文本投放区（`min-height` `132px`、各 kit 同值）；4 个 MenuItem + 1 分隔，前 2 带快捷键，第 3 项 `disabled`，分隔后末项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。

@@ -20,7 +20,7 @@
 
 ## 4. 面板特例
 
-- context 面板的投放区（`context__zone`）：`rgba(26,79,214,.07)` 浅蓝底 + `stroke` dashed `ink` 框 + `r-control`；开菜单底转 `rgba(26,79,214,.16)`。
+- context 面板的投放区：`rgba(26,79,214,.07)` 浅蓝底 + `stroke` dashed `ink` 框 + `r-control`；开菜单底转 `rgba(26,79,214,.16)`。
 
 ## 5. 外壳
 

@@ -20,7 +20,7 @@
 
 ## 4. 面板特例
 
-- context 面板的投放区（`context__zone`）：plate 凹面——`surface-inset` 填 + `bevel-inset` + `bezel-dim` + `round-md`；hover bezel 升 `bezel`，开菜单转 `bezel-strong` 并挂 `glow-focus`。
+- context 面板的投放区：plate 凹面——`surface-inset` 填 + `bevel-inset` + `bezel-dim` + `round-md`；hover bezel 升 `bezel`，开菜单转 `bezel-strong` 并挂 `glow-focus`。
 
 ## 5. 外壳
 

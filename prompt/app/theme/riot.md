@@ -21,7 +21,7 @@
 ## 4. 面板特例
 
 - button 面板：第 ① 排按默认斜钉；第 ② 排尺寸钮加 `upright`，对照展示两种钉法。
-- context 面板的投放区（`context__zone`）：`stroke` dashed `text-mute` 框 + `rgba(255,77,10,.07)` 荧光橙淡底，`fs-13` `text-dim` 居中。
+- context 面板的投放区：`stroke` dashed `text-mute` 框 + `rgba(255,77,10,.07)` 荧光橙淡底，`fs-13` `text-dim` 居中。
 
 ## 5. 外壳
 

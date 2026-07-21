@@ -26,7 +26,7 @@
 
 - scroll 面板的 12 行列表做成战斗日志：DotGothic16 时间码 + 日语日志行。
 - button 面板第 ① 排 primary 钮演示刀光按压（`slash-flash` 属 primary 常规态，无需额外 prop）。
-- context 面板的投放区（`context__zone`）：`2px dashed tone-deep` 虚线箱 + `#eef5fb` 底（hover 升 `#e4eefa`）+ 右下角一撮 `primary` 半调网点；mono 居中提示。
+- context 面板的投放区：`2px dashed tone-deep` 虚线箱 + `#eef5fb` 底（hover 升 `#e4eefa`）+ 右下角一撮 `primary` 半调网点；mono 居中提示。
 
 ## 5. 外壳
 
