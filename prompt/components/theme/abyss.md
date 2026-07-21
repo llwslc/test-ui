@@ -17,6 +17,7 @@
 - Checkbox：勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）。
 - ToggleGroup：外箱体走 `.abyss-frame` 横条。
 - OtpField：光标闪动。
+- Progress：头部一行标签配 mono 数值（`glow` 字 + `text-aura` 微辉）；轨 `6px`、`inset` 底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator 走 `glow-deep` 到 `glow` 的横向渐变 + `glow-a55` 外辉；不定态是一段 `40%` 宽的光带以 `creep` 自左向右爬过。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤。
 - Dialog：标题配一个自转的 sigil 图记。
@@ -24,6 +25,7 @@
 - Drawer：用 `.abyss-frame` 圆角整框（四边都描），内沿再叠一道会呼吸的青辉光束；开启一记钥匙转启。
 - Toast：锚在右下角向上堆叠，左缘一道光束 + 一个呼吸的 sigil；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`。
+- Badge：`round-2` 小牌、display 体大写 `ls-6`；按 tone 三件套换色——文字取该族主色、描边取其 `a55` 档、底取其 `-soft` 档；dot 是发光圆点、以 `breathe` 呼吸。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放触手 tendril。

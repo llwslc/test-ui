@@ -68,4 +68,12 @@
 - **候选、待议**：nova `panel-scan` 有动效而 spec 未述（§6）；brass／riot Fieldset、riot／abyss／bauhaus Badge 的独立根框无条目可依（§6）；abyss 全文缺 Progress 条目（§6）。
 - **结构性根因**：皮肤规格只收「超出默认的决定」，而各套覆盖悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独特决定一旦落在没有条目的控件上就无人 governed——这是本类漂移的源头，不补覆盖还会再犯。
 
-**仍未覆盖（下一步）**：app 层规格（`prompt/app/**`）逐条回码；`components.md` 的行为／props 契约逐条回码；交互与动效的运行时一致性（部分已由动态门覆盖）。
+**仍未覆盖（下一步）**：交互与动效的运行时一致性（部分已由动态门覆盖）。app 层规格与 props 契约两轴已于第四趟补跑，见 §9。
+
+## 9. 第四趟：补跑剩余两轴 + 回填覆盖缺口（本提交已修）
+
+- **props／行为契约轴：`kit-spec-props` 门 clean**（`components.md §6.1` props ↔ 各套 wrapper interface 对齐）。
+- **app 层规格轴：全 6 套全命中**（`prompt/app/theme/<kit>.md` 点名的 token／类逐条回码搜，无「spec 写了、码里没有」）。
+- **回填 §6 的无条目控件**（照实回写、不改设计，每条先读码再写）：abyss Progress（此前全文无条目——头部标签 + mono 数值、`6px` 轨 + edge 颤动滤镜、`glow-deep` 到 `glow` 渐变 indicator、`creep` 爬行不定态）；abyss／bauhaus／riot 各自的 Badge；brass Fieldset（`line` 描边 + `round-md` + `surface-zone` 整框）；riot Fieldset；nova Panel 补上 `scan` 变体的 `tint-soft` 横带 6s 循环扫过（§6 的动效候选就此入册）。
+- **更正一处我自己的误报**：§6 里「riot Fieldset 有独立根框」是脚本假阳性——riot Fieldset 实为 `border: 0` 无框，脚本把 legend 里的 `.riot-tick`（`12px` 方块）当成了根框。它仍补了条目（原本确实无条目），但不属「无条目的独立框」那一类。
+- 过程中 `prompt-lint` 抓到我把 Fieldset 插错位置——skin-doc §2 的条目顺序必须依 `components.md §6`，已挪正；六套现全 PASS。

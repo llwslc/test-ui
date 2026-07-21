@@ -29,7 +29,7 @@
 - Badge：点 pulse。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
-- Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
+- Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）；`scan` 变体在内沿再叠一道 `tint-soft` 横带、`6s` 匀速自上而下循环扫过。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
 - 模态体内间距三档（成对/同级/分段）= `8/20/28`。

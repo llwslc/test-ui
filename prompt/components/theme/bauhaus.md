@@ -27,6 +27,7 @@
 - Drawer：只在朝屏内那一条边描一道 `stroke-heavy` 纯黑边，其余三边贴屏不描；纸面、直角同模态。
 - Toast：锚在右下角、向上堆叠，新的在最前（最靠角）、旧的在后面露出一截；**tone 做成左侧一整块实色色域**（是色块、不是细条），其上压一个反白的 tone 图记——info 圆、warning 三角、danger 方（三原形），success 对勾（黄色块上用 `on-warning`，其余用 `on-fill`），右侧是纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是 Archivo Black 字母压在实色块上、方形裁剪。
+- Badge：`ink` 描边 + `r-chip` 小牌，`fw-700` 大写 `ls-2`；底按 tone 实填、字取 `on-fill`；dot 取 `radio-dot` 尺寸的正圆。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是实色 `primary` 蓝、填满条宽；轨 `track` 浅纸；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：角部放三原形角标 + meta。

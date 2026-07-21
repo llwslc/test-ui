@@ -22,6 +22,7 @@
 - Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
 - Combobox：列表项皮肤同 Select。
 - Autocomplete：列表项的记号笔同 Select。
+- Fieldset：不画框——legend 走 display 体大写 `text-bright`、前缀一枚 `12px` 见方的 `primary` 实心 tick（`ink` 描边）；组内纵向 `space-4` 分隔。
 - Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。
 - Meter：轨与平涂同 Progress，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - Tabs：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，hover 用 `tint` wash；底轨是过 `#riot-torn` 的 `ink` 手撕条，`stroke-bold` 记号笔横杠随激活项走——同过撕纹、随激活 chip 同角微旋贴其斜底边。
@@ -36,6 +37,7 @@
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
 - Toast：锚在右下角**乱堆**，条子带 `shadow-hard` 盒影——每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角，悬停展开整列时甩正；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
+- Badge：`ink` 粗框方牌、display 体大写 `ls-2`；底按 tone 实填、字取 `on-fill`；dot 是 `6px` 见方的 currentColor 实块，不作圆。
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Panel：一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）——斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。

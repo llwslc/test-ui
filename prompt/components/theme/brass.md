@@ -18,6 +18,7 @@
 - Radio：凹陷的黄铜孔眼、选中时亮起琥珀芯。
 - ToggleGroup：外箱体是 `surface-inset` 凹槽横条，`line` 边 + `bevel-inset`。
 - OtpField：输入往复 pulse。
+- Fieldset：整框成箱——`line` 描边 + `round-md` 圆角 + `surface-zone` 底，内衬 `space-5`；legend 走 `text-bright`。
 - Progress：黄铜灯丝填充 + 刻度记，灯丝流动；不定态的滑块走 `left` 位移。
 - Meter：压力表——横轨分成 success → warning → danger 三个色区，填充走 `accent-fill`，端部带刻度记。
 - Tabs：渐变 hover、黄铜下划线。
