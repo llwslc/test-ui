@@ -77,3 +77,11 @@
 - **回填 §6 的无条目控件**（照实回写、不改设计，每条先读码再写）：abyss Progress（此前全文无条目——头部标签 + mono 数值、`6px` 轨 + edge 颤动滤镜、`glow-deep` 到 `glow` 渐变 indicator、`creep` 爬行不定态）；abyss／bauhaus／riot 各自的 Badge；brass Fieldset（`line` 描边 + `round-md` + `surface-zone` 整框）；riot Fieldset；nova Panel 补上 `scan` 变体的 `tint-soft` 横带 6s 循环扫过（§6 的动效候选就此入册）。
 - **更正一处我自己的误报**：§6 里「riot Fieldset 有独立根框」是脚本假阳性——riot Fieldset 实为 `border: 0` 无框，脚本把 legend 里的 `.riot-tick`（`12px` 方块）当成了根框。它仍补了条目（原本确实无条目），但不属「无条目的独立框」那一类。
 - 过程中 `prompt-lint` 抓到我把 Fieldset 插错位置——skin-doc §2 的条目顺序必须依 `components.md §6`，已挪正；六套现全 PASS。
+
+## 10. 覆盖与入场两洞已上门（本提交）
+
+「怎么检查通过的」的答案：文档侧三道门全是单向——`prompt-lint` 只审写出来的条目读起来对不对（其 §2 顺序检查只排既有条目，零条目=无可排=绿）、`theme-doc-sync` 只验写出来的 token 值、码侧门不读皮肤文档；**完整性（该写没写）从没有门**。现在有了：
+
+- **`kit-spec-coverage`**：组件码带定制视觉信号（自有 `@keyframes`／SVG 滤镜／渐变／裸块实线框）而皮肤文档无该组件条目 → FAIL。fails-on-broken 已证：拿回填前（`380d89f`）docs 跑出 **17 红**——其中 11 处（abyss／nova／brass／riot 的 Separator、abyss／nova 的 Slider 与 Meter、abyss／brass／riot 的 CheckboxGroup）是 §6 人工覆盖轴**漏掉、这门抓到**的，本提交全部照码回填条目。`pending.json` 挂账 3 项降 WARN：brass:Collapsible（§3 待拍板）、abyss/nova:ContextMenu（§1 投放区拆迁后随之处理）。
+- **`kit-entrance`**：§入场 点名的 keyframe 必须存在且被消费；跨套 reveal 归一后逐字相同=FAIL（抄袭类）；App.css 必须带 reduced-motion 门。首跑即抓到真 bug：hanabi app spec 点名 `hanabi-pop`，真 keyframe 是 `hanabi-seat`——已改 spec。fails-on-broken 已证（合成 abyss=改名 nova → 同构红；剥 hanabi 守卫 → 红）。
+- 两门自动进 `kit-qa check.sh`（glob 发现），`quick.sh` 按 diff 触发（`prompt/` 或 kit CSS → coverage；`App.css` → entrance）。

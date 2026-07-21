@@ -16,6 +16,7 @@
 - Button：默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落，`:active` 挂透明 `::after`（`inset -16px`）兜住位移后的命中；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
 - Switch：一道盗改的电闸——关态 = `track` 纸灰轨 + `ink` 粗黑框 + `ink` 黑方块旋钮靠左；选中后轨道转荧光 `primary` 橙、旋钮走 `steps` 硬切滑到右；旋钮是方块；行标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
 - Checkbox：`ink` 粗黑方框 + 硬偏移影；勾选 = 荧光 `secondary` 粉的手画叉 `✗`，indeterminate = 一道粗横杠；勾上的标签盖一道荧光橙删除线；行标签同 Switch。
+- CheckboxGroup：组内条目缩进，左缘一道 `staple` 订书钉虚轨——`stroke-bold` 宽的断续条。
 - Radio：`ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章；行标签同 Switch。
 - ToggleGroup：不画外箱体——chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Slider：一条撕开的胶带——`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
@@ -40,6 +41,7 @@
 - Badge：`ink` 粗框方牌、display 体大写 `ls-2`；底按 tone 实填、字取 `on-fill`；dot 是 `6px` 见方的 currentColor 实块，不作圆。
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
+- Separator：`ink` 实条过 `#riot-torn` 撕纹滤镜（横／纵），手撕的黑胶条。
 - Panel：一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）——斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
 - 占位图标是粗糙的手绘线形。
 - 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。

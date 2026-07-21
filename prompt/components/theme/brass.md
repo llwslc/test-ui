@@ -15,6 +15,7 @@
 
 - Switch：一根黄铜阀杆——关态 = 开槽的发蓝钢轨 `off` + 滚花黄铜旋钮（`thumb` 渐变）；选中后轨道转 `accent-surface`、旋钮滑到右、加 `glow-active`，用 `ease-detent` 落位。
 - Checkbox：黄铜板上刻印的对勾，勾选盖印（`brass-stamp`）。
+- CheckboxGroup：组内条目缩进，左缘一道 `3px` 圆头纵轨（`line-strong` 到 `line` 渐变）、顶端一枚 `rivet` 铆钉。
 - Radio：凹陷的黄铜孔眼、选中时亮起琥珀芯。
 - ToggleGroup：外箱体是 `surface-inset` 凹槽横条，`line` 边 + `bevel-inset`。
 - OtpField：输入往复 pulse。
@@ -32,6 +33,7 @@
 - Badge：点用 `brass-breathe` 琥珀灯呼吸。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- Separator：`line-strong` 线——横档两端渐隐、纵档实色；labeled 档左右线各朝文字端渐隐，文字前缀一枚 `rivet` 圆点（带 `bevel`）。
 - Panel：角部放铆钉。
 - 旋钮、阀门交互带 `ease-detent` 回弹。
 - 弹层列表的内衬取 `space-1`。

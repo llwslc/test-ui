@@ -15,9 +15,12 @@
 
 - Switch：一只眼睛——`.abyss-switch__thumb` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
 - Checkbox：勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）。
+- CheckboxGroup：组内条目缩进，左缘一道 `1.5px` 纵轨——`ink-strong` 起、`ink` 收、末端渐隐的渐变，过 edge 颤动滤镜。
 - ToggleGroup：外箱体走 `.abyss-frame` 横条。
+- Slider：轨 `inset` 凹底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator `glow-deep` 到 `glow` 渐变 + 辉光；thumb 是发光潮珠——`thumb-glint` 高光点的径向渐变圆球 + `glow-soft` 外环，hover 放大一步、拖动再放大加辉。
 - OtpField：光标闪动。
 - Progress：头部一行标签配 mono 数值（`glow` 字 + `text-aura` 微辉）；轨 `6px`、`inset` 底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator 走 `glow-deep` 到 `glow` 的横向渐变 + `glow-a55` 外辉；不定态是一段 `40%` 宽的光带以 `creep` 自左向右爬过。
+- Meter：轨同 Slider 凹底；填充 `meter-fill-deep` 到 `meter-fill` 渐变 + `meter-aura` 辉光，按 tone 经 `meter-fill` 三槽输入变量重染。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤。
 - Dialog：标题配一个自转的 sigil 图记。
@@ -28,6 +31,7 @@
 - Badge：`round-2` 小牌、display 体大写 `ls-6`；按 tone 三件套换色——文字取该族主色、描边取其 `a55` 档、底取其 `-soft` 档；dot 是发光圆点、以 `breathe` 呼吸。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- Separator：`ink-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐，全部过 edge 颤动滤镜。
 - Panel：角部放触手 tendril。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗。
 - 连接线是 1.5px 的 glow + edge 颤动滤镜。

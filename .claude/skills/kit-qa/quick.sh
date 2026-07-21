@@ -10,14 +10,15 @@ echo "改动文件:"; echo "$FILES" | sed 's/^/  /'
 has() { echo "$FILES" | grep -Eq "$1"; }
 RUN=""; SKIP_NOTE=""
 
-has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync"
+has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync kit-spec-coverage kit-entrance"
 RUN="$RUN eslint format-check"
 if has '\.tsx?$'; then
   RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states fingerprint"
 fi
 has 'App\.tsx$|components/.*\.tsx$' && RUN="$RUN kit-a11y"
 if has 'src/kits/.*\.css$'; then
-  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint"
+  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint kit-spec-coverage"
+  has 'src/kits/.*App\.css$' && RUN="$RUN kit-entrance"
   SKIP_NOTE="css 改动只跑了 kit-visual 这一个动态门——弹层/动效/状态类改动请自点 kit-submenu-gap / kit-anim-sync / kit-states / kit-interact,收官跑全量 check.sh"
 fi
 RUN=$(echo "$RUN" | tr ' ' '\n' | sort -u | grep -v '^$')

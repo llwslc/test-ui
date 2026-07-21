@@ -18,7 +18,9 @@
 - Checkbox：勾选是几何对勾、indeterminate 是横杠（共享 icons）。
 - Radio：选中是发辉光的 `primary` 圆点弹出。
 - ToggleGroup：外箱体是一条 `surface` 框横条。
+- Slider：thumb 是 `clip-4` 切角晶块——`text-bright` 到 `primary-deep` 斜向渐变面 + `primary` 辉光，hover 放大一步、拖动再放大加辉。
 - Progress：条纹流动 + 不定态扫掠。
+- Meter：填充 `meter-fill-deep` 到 `meter-fill` 横向渐变 + 辉光，上层罩 `base` 色等距分格；按 tone 经 `meter-fill` 输入变量重染。
 - Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；打开时转 primary、chevron 翻转。
@@ -29,6 +31,7 @@
 - Badge：点 pulse。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- Separator：`line-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）；`scan` 变体在内沿再叠一道 `tint-soft` 横带、`6s` 匀速自上而下循环扫过。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
