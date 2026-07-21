@@ -82,7 +82,7 @@
 
 定义在 `theme/typography.css`。
 
-提供一组「与语义标签解耦、可套到任意标签」的纯样式类，每类自带 `margin: 0`（清掉宿主语义标签的 UA 边距）：三档标题 `h1/h2/h3`（卡片、弹窗标题用 `h2` 字型，小节标题用 `h3` 字型）；正文 `text`；修饰类 `h1--accent`；以及**字段标签 caption 的共享类 `.<kit>-cap`**——即控件名的样式，display 体、小号、大写、dim 色，Slider、Progress、Meter、Input 的标签，以及 Checkbox、Radio、Switch 行、ToggleGroup 选项都统一引用它，不在各组件里重抄。**三档标题的字号、字距递变关系由 theme 定。**
+提供一组「与语义标签解耦、可套到任意标签」的纯样式类，每类自带 `margin: 0`（清掉宿主语义标签的 UA 边距）：三档标题 `h1/h2/h3`（卡片、弹窗标题用 `h2` 字型，小节标题用 `h3` 字型）；正文 `text`；修饰类 `h1--accent`；以及**字段标签 caption 的共享类 `.<kit>-cap`**——即控件名的样式，display 体、小号、大写、dim 色，Slider、Progress、Meter、Input 的标签，以及 Checkbox、Radio、ToggleGroup 选项都统一引用它，不在各组件里重抄。**三档标题的字号、字距递变关系由 theme 定。**
 
 ## 5. 交互态
 
