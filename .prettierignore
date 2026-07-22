@@ -9,3 +9,7 @@ node_modules
 # docs answer to prompt-lint, not prettier — prettier escapes globs in prose
 # (*.ts(x) -> \*.ts(x)), which is exactly the copy-paste damage the doc rules exist to prevent.
 *.md
+
+# sandbox holds hand-written single-file drafts, not product source; they are the
+# frozen visual baseline a kit is written against and are deleted once it lands.
+sandbox/
