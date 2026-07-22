@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PELLETRON · ARCADE FREEPLAY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cab:#07070e;
+  --screen:#0c0c19;
+  --well:#04040a;
+  --phos:#f2f2e2;
+  --dim:#9aa2c8;
+  --yel:#ffe14d;
+  --red:#ff4747;
+  --cyn:#3ff3ff;
+  --blu:#7d9bff;
+  --maze:#2a3cff;
+  --grn:#43e05c;
+  --org:#ffa53c;
+  --brick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Crect width='24' height='24' fill='%2305050d'/%3E%3Cg fill='%232f43e0'%3E%3Crect x='0' y='1' width='22' height='9'/%3E%3Crect x='0' y='13' width='10' height='9'/%3E%3Crect x='12' y='13' width='12' height='9'/%3E%3C/g%3E%3Cg fill='%235d77ff'%3E%3Crect x='0' y='1' width='22' height='2'/%3E%3Crect x='0' y='13' width='10' height='2'/%3E%3Crect x='12' y='13' width='12' height='2'/%3E%3C/g%3E%3C/svg%3E");
+  --f-px:'Press Start 2P','VT323',monospace;
+  --f-tube:'VT323','Press Start 2P',monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--cab);color:var(--phos);font-family:var(--f-tube);font-size:20px;line-height:1.35;overflow-x:hidden}
+::selection{background:var(--yel);color:#100c00}
+:focus-visible{outline:3px solid var(--cyn);outline-offset:2px}
+body::-webkit-scrollbar{width:14px}
+body::-webkit-scrollbar-track{background:var(--well)}
+body::-webkit-scrollbar-thumb{background:var(--maze);border:3px solid var(--well)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,output{font:inherit;color:inherit}
+
+.spr{display:inline-block;position:relative;font-size:4px;flex:none}
+.spr::before,.spr::after{content:'';position:absolute;top:0;left:0;width:1em;height:1em}
+.spr-pac::after,.spr-ghost::after{visibility:hidden}
+.anim.spr-pac::before,.anim.spr-ghost::before{animation:fr-a .46s steps(1) infinite}
+.anim.spr-pac::after,.anim.spr-ghost::after{animation:fr-b .46s steps(1) infinite}
+.anim.spr-ghost::before{animation-duration:.62s}
+.anim.spr-ghost::after{animation-duration:.62s}
+@keyframes fr-a{0%,49%{visibility:visible}50%,100%{visibility:hidden}}
+@keyframes fr-b{0%,49%{visibility:hidden}50%,100%{visibility:visible}}
+.spr-coin{overflow:hidden}
+.spr-coin.anim::before{animation:coinspin .82s steps(4) infinite}
+@keyframes coinspin{to{transform:translateX(-56em)}}
+.fs3{font-size:3px}
+.fs2{font-size:2px}
+.spr-pac{width:13em;height:13em}
+.spr-pac::before,.spr-pac::after{color:var(--body,var(--phos))}
+.spr-pac::before{box-shadow:4em 0em,5em 0em,6em 0em,7em 0em,8em 0em,2em 1em,3em 1em,4em 1em,5em 1em,6em 1em,7em 1em,8em 1em,9em 1em,10em 1em,1em 2em,2em 2em,3em 2em,4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,9em 2em,10em 2em,1em 3em,2em 3em,3em 3em,4em 3em,5em 3em,6em 3em,7em 3em,8em 3em,9em 3em,0em 4em,1em 4em,2em 4em,3em 4em,4em 4em,5em 4em,6em 4em,7em 4em,8em 4em,0em 5em,1em 5em,2em 5em,3em 5em,4em 5em,5em 5em,6em 5em,0em 6em,1em 6em,2em 6em,3em 6em,4em 6em,0em 7em,1em 7em,2em 7em,3em 7em,4em 7em,5em 7em,6em 7em,0em 8em,1em 8em,2em 8em,3em 8em,4em 8em,5em 8em,6em 8em,7em 8em,8em 8em,1em 9em,2em 9em,3em 9em,4em 9em,5em 9em,6em 9em,7em 9em,8em 9em,9em 9em,1em 10em,2em 10em,3em 10em,4em 10em,5em 10em,6em 10em,7em 10em,8em 10em,9em 10em,10em 10em,2em 11em,3em 11em,4em 11em,5em 11em,6em 11em,7em 11em,8em 11em,9em 11em,10em 11em,4em 12em,5em 12em,6em 12em,7em 12em,8em 12em}
+.spr-pac::after{box-shadow:4em 0em,5em 0em,6em 0em,7em 0em,8em 0em,2em 1em,3em 1em,4em 1em,5em 1em,6em 1em,7em 1em,8em 1em,9em 1em,10em 1em,1em 2em,2em 2em,3em 2em,4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,9em 2em,10em 2em,11em 2em,1em 3em,2em 3em,3em 3em,4em 3em,5em 3em,6em 3em,7em 3em,8em 3em,9em 3em,10em 3em,11em 3em,0em 4em,1em 4em,2em 4em,3em 4em,4em 4em,5em 4em,6em 4em,7em 4em,8em 4em,9em 4em,10em 4em,11em 4em,12em 4em,0em 5em,1em 5em,2em 5em,3em 5em,4em 5em,5em 5em,6em 5em,7em 5em,8em 5em,9em 5em,10em 5em,11em 5em,12em 5em,0em 6em,1em 6em,2em 6em,3em 6em,4em 6em,5em 6em,6em 6em,7em 6em,0em 7em,1em 7em,2em 7em,3em 7em,4em 7em,5em 7em,6em 7em,7em 7em,8em 7em,9em 7em,10em 7em,11em 7em,12em 7em,0em 8em,1em 8em,2em 8em,3em 8em,4em 8em,5em 8em,6em 8em,7em 8em,8em 8em,9em 8em,10em 8em,11em 8em,12em 8em,1em 9em,2em 9em,3em 9em,4em 9em,5em 9em,6em 9em,7em 9em,8em 9em,9em 9em,10em 9em,11em 9em,1em 10em,2em 10em,3em 10em,4em 10em,5em 10em,6em 10em,7em 10em,8em 10em,9em 10em,10em 10em,11em 10em,2em 11em,3em 11em,4em 11em,5em 11em,6em 11em,7em 11em,8em 11em,9em 11em,10em 11em,4em 12em,5em 12em,6em 12em,7em 12em,8em 12em}
+.spr-ghost{width:14em;height:14em}
+.spr-ghost::before,.spr-ghost::after{color:var(--body,var(--red))}
+.spr-ghost::before{box-shadow:4em 0em,5em 0em,6em 0em,7em 0em,8em 0em,9em 0em,2em 1em,3em 1em,4em 1em,5em 1em,6em 1em,7em 1em,8em 1em,9em 1em,10em 1em,11em 1em,1em 2em,2em 2em,3em 2em,4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,9em 2em,10em 2em,11em 2em,12em 2em,1em 3em,2em 3em var(--phos),3em 3em var(--phos),4em 3em,5em 3em,6em 3em,7em 3em,8em 3em var(--phos),9em 3em var(--phos),10em 3em,11em 3em,12em 3em,0em 4em,1em 4em var(--phos),2em 4em var(--phos),3em 4em var(--phos),4em 4em var(--phos),5em 4em,6em 4em,7em 4em var(--phos),8em 4em var(--phos),9em 4em var(--phos),10em 4em var(--phos),11em 4em,12em 4em,13em 4em,0em 5em,1em 5em var(--phos),2em 5em var(--phos),3em 5em #182ae0,4em 5em #182ae0,5em 5em var(--phos),6em 5em,7em 5em var(--phos),8em 5em var(--phos),9em 5em #182ae0,10em 5em #182ae0,11em 5em var(--phos),12em 5em,13em 5em,0em 6em,1em 6em var(--phos),2em 6em var(--phos),3em 6em #182ae0,4em 6em #182ae0,5em 6em var(--phos),6em 6em,7em 6em var(--phos),8em 6em var(--phos),9em 6em #182ae0,10em 6em #182ae0,11em 6em var(--phos),12em 6em,13em 6em,0em 7em,1em 7em,2em 7em var(--phos),3em 7em var(--phos),4em 7em,5em 7em,6em 7em,7em 7em,8em 7em var(--phos),9em 7em var(--phos),10em 7em,11em 7em,12em 7em,13em 7em,0em 8em,1em 8em,2em 8em,3em 8em,4em 8em,5em 8em,6em 8em,7em 8em,8em 8em,9em 8em,10em 8em,11em 8em,12em 8em,13em 8em,0em 9em,1em 9em,2em 9em,3em 9em,4em 9em,5em 9em,6em 9em,7em 9em,8em 9em,9em 9em,10em 9em,11em 9em,12em 9em,13em 9em,0em 10em,1em 10em,2em 10em,3em 10em,4em 10em,5em 10em,6em 10em,7em 10em,8em 10em,9em 10em,10em 10em,11em 10em,12em 10em,13em 10em,0em 11em,1em 11em,2em 11em,3em 11em,4em 11em,5em 11em,6em 11em,7em 11em,8em 11em,9em 11em,10em 11em,11em 11em,12em 11em,13em 11em,0em 12em,1em 12em,2em 12em,3em 12em,4em 12em,5em 12em,6em 12em,7em 12em,8em 12em,9em 12em,10em 12em,11em 12em,12em 12em,13em 12em,0em 13em,2em 13em,3em 13em,6em 13em,7em 13em,10em 13em,11em 13em,13em 13em}
+.spr-ghost::after{box-shadow:4em 0em,5em 0em,6em 0em,7em 0em,8em 0em,9em 0em,2em 1em,3em 1em,4em 1em,5em 1em,6em 1em,7em 1em,8em 1em,9em 1em,10em 1em,11em 1em,1em 2em,2em 2em,3em 2em,4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,9em 2em,10em 2em,11em 2em,12em 2em,1em 3em,2em 3em var(--phos),3em 3em var(--phos),4em 3em,5em 3em,6em 3em,7em 3em,8em 3em var(--phos),9em 3em var(--phos),10em 3em,11em 3em,12em 3em,0em 4em,1em 4em var(--phos),2em 4em var(--phos),3em 4em var(--phos),4em 4em var(--phos),5em 4em,6em 4em,7em 4em var(--phos),8em 4em var(--phos),9em 4em var(--phos),10em 4em var(--phos),11em 4em,12em 4em,13em 4em,0em 5em,1em 5em var(--phos),2em 5em var(--phos),3em 5em #182ae0,4em 5em #182ae0,5em 5em var(--phos),6em 5em,7em 5em var(--phos),8em 5em var(--phos),9em 5em #182ae0,10em 5em #182ae0,11em 5em var(--phos),12em 5em,13em 5em,0em 6em,1em 6em var(--phos),2em 6em var(--phos),3em 6em #182ae0,4em 6em #182ae0,5em 6em var(--phos),6em 6em,7em 6em var(--phos),8em 6em var(--phos),9em 6em #182ae0,10em 6em #182ae0,11em 6em var(--phos),12em 6em,13em 6em,0em 7em,1em 7em,2em 7em var(--phos),3em 7em var(--phos),4em 7em,5em 7em,6em 7em,7em 7em,8em 7em var(--phos),9em 7em var(--phos),10em 7em,11em 7em,12em 7em,13em 7em,0em 8em,1em 8em,2em 8em,3em 8em,4em 8em,5em 8em,6em 8em,7em 8em,8em 8em,9em 8em,10em 8em,11em 8em,12em 8em,13em 8em,0em 9em,1em 9em,2em 9em,3em 9em,4em 9em,5em 9em,6em 9em,7em 9em,8em 9em,9em 9em,10em 9em,11em 9em,12em 9em,13em 9em,0em 10em,1em 10em,2em 10em,3em 10em,4em 10em,5em 10em,6em 10em,7em 10em,8em 10em,9em 10em,10em 10em,11em 10em,12em 10em,13em 10em,0em 11em,1em 11em,2em 11em,3em 11em,4em 11em,5em 11em,6em 11em,7em 11em,8em 11em,9em 11em,10em 11em,11em 11em,12em 11em,13em 11em,0em 12em,1em 12em,2em 12em,3em 12em,4em 12em,5em 12em,6em 12em,7em 12em,8em 12em,9em 12em,10em 12em,11em 12em,12em 12em,13em 12em,1em 13em,2em 13em,5em 13em,6em 13em,7em 13em,8em 13em,11em 13em,12em 13em}
+.spr-cherry{width:12em;height:11em}
+.spr-cherry::before{color:var(--red);box-shadow:9em 0em var(--grn),8em 1em var(--grn),9em 1em var(--grn),6em 2em var(--grn),7em 2em var(--grn),9em 2em var(--grn),5em 3em var(--grn),9em 3em var(--grn),4em 4em var(--grn),9em 4em var(--grn),2em 5em,3em 5em,4em 5em,9em 5em var(--grn),1em 6em,2em 6em,3em 6em,4em 6em,5em 6em,8em 6em,9em 6em,10em 6em,1em 7em,2em 7em var(--phos),3em 7em,4em 7em,5em 7em,7em 7em,8em 7em,9em 7em,10em 7em,11em 7em,1em 8em,2em 8em var(--phos),3em 8em,4em 8em,5em 8em,7em 8em,8em 8em var(--phos),9em 8em,10em 8em,11em 8em,1em 9em,2em 9em,3em 9em,4em 9em,5em 9em,7em 9em,8em 9em,9em 9em,10em 9em,11em 9em,2em 10em,3em 10em,4em 10em,8em 10em,9em 10em,10em 10em}
+.spr-coin{width:12em;height:12em}
+.spr-coin::before{color:var(--yel);width:1em;box-shadow:4em 0em #c47f16,5em 0em #c47f16,6em 0em #c47f16,7em 0em #c47f16,2em 1em #c47f16,3em 1em #c47f16,4em 1em #c47f16,5em 1em,6em 1em,7em 1em #c47f16,8em 1em #c47f16,9em 1em #c47f16,1em 2em #c47f16,2em 2em #c47f16,3em 2em,4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,9em 2em #c47f16,10em 2em #c47f16,1em 3em #c47f16,2em 3em var(--phos),3em 3em var(--phos),4em 3em,5em 3em,6em 3em,7em 3em,8em 3em,9em 3em,10em 3em #c47f16,0em 4em #c47f16,1em 4em #c47f16,2em 4em var(--phos),3em 4em var(--phos),4em 4em,5em 4em,6em 4em,7em 4em,8em 4em,9em 4em,10em 4em #c47f16,11em 4em #c47f16,0em 5em #c47f16,1em 5em,2em 5em var(--phos),3em 5em var(--phos),4em 5em,5em 5em,6em 5em,7em 5em,8em 5em,9em 5em,10em 5em,11em 5em #c47f16,0em 6em #c47f16,1em 6em,2em 6em var(--phos),3em 6em var(--phos),4em 6em,5em 6em,6em 6em,7em 6em,8em 6em,9em 6em,10em 6em,11em 6em #c47f16,0em 7em #c47f16,1em 7em #c47f16,2em 7em var(--phos),3em 7em var(--phos),4em 7em,5em 7em,6em 7em,7em 7em,8em 7em,9em 7em,10em 7em #c47f16,11em 7em #c47f16,1em 8em #c47f16,2em 8em var(--phos),3em 8em var(--phos),4em 8em,5em 8em,6em 8em,7em 8em,8em 8em,9em 8em,10em 8em #c47f16,1em 9em #c47f16,2em 9em #c47f16,3em 9em,4em 9em,5em 9em,6em 9em,7em 9em,8em 9em,9em 9em #c47f16,10em 9em #c47f16,2em 10em #c47f16,3em 10em #c47f16,4em 10em #c47f16,5em 10em,6em 10em,7em 10em #c47f16,8em 10em #c47f16,9em 10em #c47f16,4em 11em #c47f16,5em 11em #c47f16,6em 11em #c47f16,7em 11em #c47f16,18em 0em #c47f16,19em 0em #c47f16,20em 0em #c47f16,21em 0em #c47f16,17em 1em #c47f16,18em 1em #c47f16,19em 1em,20em 1em,21em 1em #c47f16,22em 1em #c47f16,17em 2em #c47f16,18em 2em,19em 2em,20em 2em,21em 2em,22em 2em #c47f16,16em 3em #c47f16,17em 3em var(--phos),18em 3em var(--phos),19em 3em,20em 3em,21em 3em,22em 3em,23em 3em #c47f16,16em 4em #c47f16,17em 4em var(--phos),18em 4em var(--phos),19em 4em,20em 4em,21em 4em,22em 4em,23em 4em #c47f16,16em 5em #c47f16,17em 5em var(--phos),18em 5em var(--phos),19em 5em,20em 5em,21em 5em,22em 5em,23em 5em #c47f16,16em 6em #c47f16,17em 6em var(--phos),18em 6em var(--phos),19em 6em,20em 6em,21em 6em,22em 6em,23em 6em #c47f16,16em 7em #c47f16,17em 7em var(--phos),18em 7em var(--phos),19em 7em,20em 7em,21em 7em,22em 7em,23em 7em #c47f16,16em 8em #c47f16,17em 8em var(--phos),18em 8em var(--phos),19em 8em,20em 8em,21em 8em,22em 8em,23em 8em #c47f16,17em 9em #c47f16,18em 9em,19em 9em,20em 9em,21em 9em,22em 9em #c47f16,17em 10em #c47f16,18em 10em #c47f16,19em 10em,20em 10em,21em 10em #c47f16,22em 10em #c47f16,18em 11em #c47f16,19em 11em #c47f16,20em 11em #c47f16,21em 11em #c47f16,33em 0em #c47f16,34em 0em #c47f16,33em 1em #c47f16,34em 1em #c47f16,32em 2em #c47f16,33em 2em #c47f16,34em 2em #c47f16,35em 2em #c47f16,32em 3em #c47f16,33em 3em #c47f16,34em 3em #c47f16,35em 3em #c47f16,32em 4em #c47f16,33em 4em #c47f16,34em 4em #c47f16,35em 4em #c47f16,32em 5em #c47f16,33em 5em #c47f16,34em 5em #c47f16,35em 5em #c47f16,32em 6em #c47f16,33em 6em #c47f16,34em 6em #c47f16,35em 6em #c47f16,32em 7em #c47f16,33em 7em #c47f16,34em 7em #c47f16,35em 7em #c47f16,32em 8em #c47f16,33em 8em #c47f16,34em 8em #c47f16,35em 8em #c47f16,32em 9em #c47f16,33em 9em #c47f16,34em 9em #c47f16,35em 9em #c47f16,33em 10em #c47f16,34em 10em #c47f16,33em 11em #c47f16,34em 11em #c47f16,47em 1em #c47f16,48em 1em #c47f16,47em 2em #c47f16,48em 2em #c47f16,47em 3em #c47f16,48em 3em #c47f16,47em 4em #c47f16,48em 4em #c47f16,47em 5em #c47f16,48em 5em #c47f16,47em 6em #c47f16,48em 6em #c47f16,47em 7em #c47f16,48em 7em #c47f16,47em 8em #c47f16,48em 8em #c47f16,47em 9em #c47f16,48em 9em #c47f16,47em 10em #c47f16,48em 10em #c47f16}
+.spr-cursor{width:5em;height:9em}
+.spr-cursor::before{color:var(--body,var(--yel));box-shadow:0em 0em,0em 1em,1em 1em,0em 2em,1em 2em,2em 2em,0em 3em,1em 3em,2em 3em,3em 3em,0em 4em,1em 4em,2em 4em,3em 4em,4em 4em,0em 5em,1em 5em,2em 5em,3em 5em,0em 6em,1em 6em,2em 6em,0em 7em,1em 7em,0em 8em}
+.spr-aru{width:7em;height:4em}
+.spr-aru::before{color:var(--phos);box-shadow:3em 0em,2em 1em,3em 1em,4em 1em,1em 2em,2em 2em,3em 2em,4em 2em,5em 2em,0em 3em,1em 3em,2em 3em,3em 3em,4em 3em,5em 3em,6em 3em}
+.spr-ard{width:7em;height:4em}
+.spr-ard::before{color:var(--phos);box-shadow:0em 0em,1em 0em,2em 0em,3em 0em,4em 0em,5em 0em,6em 0em,1em 1em,2em 1em,3em 1em,4em 1em,5em 1em,2em 2em,3em 2em,4em 2em,3em 3em}
+.spr-arl{width:4em;height:7em}
+.spr-arl::before{color:var(--phos);box-shadow:3em 0em,2em 1em,3em 1em,1em 2em,2em 2em,3em 2em,0em 3em,1em 3em,2em 3em,3em 3em,1em 4em,2em 4em,3em 4em,2em 5em,3em 5em,3em 6em}
+.spr-arr{width:4em;height:7em}
+.spr-arr::before{color:var(--phos);box-shadow:0em 0em,0em 1em,1em 1em,0em 2em,1em 2em,2em 2em,0em 3em,1em 3em,2em 3em,3em 3em,0em 4em,1em 4em,2em 4em,0em 5em,1em 5em,0em 6em}
+.spr-lever{width:12em;height:16em}
+.spr-lever::before{color:var(--red);box-shadow:3em 0em,4em 0em,5em 0em,6em 0em,2em 1em,3em 1em,4em 1em,5em 1em,6em 1em,7em 1em,1em 2em,2em 2em,3em 2em var(--phos),4em 2em,5em 2em,6em 2em,7em 2em,8em 2em,1em 3em,2em 3em,3em 3em var(--phos),4em 3em,5em 3em,6em 3em,7em 3em,8em 3em,1em 4em,2em 4em,3em 4em,4em 4em,5em 4em,6em 4em,7em 4em,8em 4em,2em 5em,3em 5em #8f1020,4em 5em #8f1020,5em 5em #8f1020,6em 5em #8f1020,7em 5em,3em 6em #8f1020,4em 6em #8f1020,5em 6em #8f1020,6em 6em #8f1020,4em 7em #7d86a8,5em 7em #7d86a8,4em 8em #7d86a8,5em 8em #7d86a8,4em 9em #7d86a8,5em 9em #4a5170,4em 10em #7d86a8,5em 10em #4a5170,4em 11em #4a5170,5em 11em #4a5170,2em 12em #20233a,3em 12em #20233a,4em 12em #20233a,5em 12em #20233a,6em 12em #20233a,7em 12em #20233a,1em 13em #20233a,2em 13em #20233a,3em 13em #20233a,4em 13em #20233a,5em 13em #20233a,6em 13em #20233a,7em 13em #20233a,8em 13em #20233a,0em 14em #20233a,1em 14em #20233a,2em 14em #20233a,3em 14em #20233a,4em 14em #20233a,5em 14em #20233a,6em 14em #20233a,7em 14em #20233a,8em 14em #20233a,9em 14em #20233a,10em 14em #20233a,11em 14em #20233a,0em 15em #20233a,1em 15em #20233a,2em 15em #20233a,3em 15em #20233a,4em 15em #20233a,5em 15em #20233a,6em 15em #20233a,7em 15em #20233a,8em 15em #20233a,9em 15em #20233a,10em 15em #20233a,11em 15em #20233a}
+
+.crt{position:fixed;inset:0;z-index:100;pointer-events:none}
+.crt::before{content:'';position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(255,70,70,.045) 0 1px,rgba(70,255,130,.04) 1px 2px,rgba(90,90,255,.05) 2px 3px),
+  repeating-linear-gradient(0deg,rgba(4,4,12,.22) 0 2px,transparent 2px 4px)}
+body.no-mask .crt::before{display:none}
+.crt::after{content:'';position:absolute;inset:0;border-radius:3.2vmin;outline:14vmin solid #020208;background:radial-gradient(ellipse 130% 105% at 50% 42%,transparent 62%,rgba(1,1,8,.42) 100%);box-shadow:inset 0 0 9vmin rgba(0,0,10,.55)}
+
+.marquee{position:sticky;top:0;z-index:40;background:var(--well);border-bottom:4px solid var(--maze);box-shadow:0 8px 0 -4px var(--maze)}
+.mq-in{max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px;font-family:var(--f-px);font-size:11px}
+.mq-item{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.mq-label{font-size:9px;letter-spacing:1px}
+.l-red{color:var(--red)}.l-cyn{color:var(--cyn)}.l-yel{color:var(--yel)}.l-blu{color:var(--blu)}
+.mq-init{color:var(--yel);font-size:9px}
+.mq-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.mq-slot{font-family:var(--f-px);font-size:9px;color:var(--cyn);border:3px solid var(--cyn);padding:7px 10px;letter-spacing:1px}
+.mq-slot:active{background:var(--cyn);color:#02181a}
+#chainVal.pulse{color:var(--yel)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.hero{text-align:center;padding:64px 0 0}
+.hero-eyebrow{font-family:var(--f-px);font-size:10px;color:var(--red);letter-spacing:2px}
+.hero h1{font-family:var(--f-px);font-size:clamp(28px,7vw,64px);color:var(--yel);text-shadow:5px 5px 0 #b1122b;margin:26px 0 14px;letter-spacing:2px}
+.hero-sub{font-family:var(--f-px);font-size:11px;color:var(--cyn);letter-spacing:3px}
+.hero-copy{max-width:640px;margin:26px auto 0;font-size:22px;color:var(--phos)}
+.press-start{font-family:var(--f-px);font-size:13px;color:var(--phos);margin-top:30px;letter-spacing:2px}
+.blink{animation:blink 1.06s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.blink-slow{animation:blink 2s steps(1) infinite}
+.hero-cta{display:flex;justify-content:center;gap:22px;margin-top:26px;flex-wrap:wrap}
+.hero-fruit{display:flex;justify-content:center;align-items:flex-end;gap:34px;margin-top:38px}
+
+.chase{position:relative;height:66px;margin-top:34px;border-top:4px solid var(--maze);border-bottom:4px solid var(--maze);overflow:hidden}
+.chase::before,.chase::after{content:'';position:absolute;left:0;right:0;height:4px;background:var(--maze);z-index:2}
+.chase::before{top:8px}
+.chase::after{bottom:8px}
+.chase .dots{position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--phos) 0 4px,transparent 4px 30px) 50% 50% / 100% 4px no-repeat}
+.chase .eaten{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--cab);z-index:1;animation:eaten 11s steps(44) infinite}
+@keyframes eaten{0%,6%{width:0}100%{width:calc(100% + 240px)}}
+.chase .train{position:absolute;top:50%;margin-top:-28px;left:-380px;display:flex;align-items:center;gap:18px;z-index:3;animation:train 11s steps(44) infinite}
+@keyframes train{to{left:100%}}
+.chase.paused *{animation-play-state:paused}
+
+.mzline{height:44px;overflow:hidden;margin:64px 0}
+.mzline svg{display:block;width:1440px;height:44px;position:relative;left:50%;margin-left:-720px}
+.mzline path{fill:none;stroke-linejoin:miter;stroke-linecap:butt}
+.mz-wall{stroke:var(--maze);stroke-width:14}
+.mz-core{stroke:var(--cab);stroke-width:8}
+.mz-dots{stroke:var(--phos);stroke-width:4;stroke-dasharray:4 20}
+
+section{margin:64px 0}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:22px}
+.sec-stage{font-family:var(--f-px);font-size:9px;color:var(--red);letter-spacing:2px;margin-bottom:8px}
+.sec-head h2{font-family:var(--f-px);font-size:16px;color:var(--phos);letter-spacing:1px}
+.sec-intro{color:var(--dim);margin:-10px 0 22px;font-size:19px}
+.panel{border:12px solid var(--maze);border-image:var(--brick) 12 round;background:var(--screen);background-clip:padding-box;padding:26px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.blk+.blk{margin-top:30px}
+.blk-title{display:flex;align-items:center;gap:12px;font-family:var(--f-px);font-size:9px;color:var(--cyn);letter-spacing:2px;margin-bottom:16px}
+.blk-title::after{content:'';flex:1;height:4px;background:repeating-linear-gradient(90deg,#23264a 0 4px,transparent 4px 12px)}
+.hint{color:var(--dim);font-size:17px;margin-top:10px}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;font-family:var(--f-px);font-size:11px;letter-spacing:1px;padding:15px 18px;border:3px solid;transition:none}
+.btn:active{transform:translateY(6px);box-shadow:none !important}
+.btn-start{background:var(--yel);color:#141000;border-color:#3a2f00;box-shadow:0 6px 0 #7c5c00}
+.btn-coin{background:var(--well);color:var(--cyn);border-color:var(--cyn);box-shadow:0 6px 0 #0e5a5e}
+.btn-danger{background:var(--red);color:#180003;border-color:#4d000c;box-shadow:0 6px 0 #7e0f1e}
+.btn-nav{background:var(--well);color:var(--blu);border-color:var(--blu);box-shadow:0 6px 0 #1e2a7a}
+.btn[disabled]{background:#191928;color:#6d7292;border-color:#2c2c46;box-shadow:none;cursor:not-allowed}
+.btn[disabled]:active{transform:none}
+.btn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px}
+.btn-cell{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.btn-cell .hint{margin-top:0}
+
+.field label{display:block;font-family:var(--f-px);font-size:9px;color:var(--blu);letter-spacing:2px;margin-bottom:12px}
+.initials-row{display:flex;gap:14px;flex-wrap:wrap}
+.initials{width:150px;background:var(--well);border:3px solid var(--blu);color:var(--yel);font-family:var(--f-px);font-size:18px;letter-spacing:14px;padding:13px 0 13px 18px;text-transform:uppercase;caret-color:var(--yel)}
+.initials::placeholder{color:#3c4066}
+
+.radio-row{display:grid;grid-template-columns:20px 38px 1fr;align-items:center;gap:12px;padding:9px 10px;cursor:pointer}
+.radio-row input{position:absolute;opacity:0;width:1px;height:1px}
+.r-cur .spr{visibility:hidden}
+.radio-row:hover .r-cur .spr{visibility:visible;opacity:.4}
+.radio-row input:checked ~ .r-cur .spr{visibility:visible;opacity:1;animation:blink 1.06s steps(1) infinite}
+.radio-row input:checked ~ .r-name{color:var(--yel)}
+.radio-row:has(input:checked){background:#10102a}
+.radio-row:has(input:focus-visible){outline:3px solid var(--cyn);outline-offset:2px}
+.r-name{font-size:20px}
+.r-name small{display:block;color:var(--dim);font-size:16px}
+
+.check-row{display:grid;grid-template-columns:22px 1fr;align-items:center;gap:14px;padding:8px 10px;cursor:pointer;position:relative}
+.check-row input{position:absolute;opacity:0;width:1px;height:1px}
+.c-box{position:relative;width:22px;height:22px;background:var(--well);border:3px solid #55598a}
+.check-row:hover .c-box{border-color:var(--phos)}
+.check-row input:checked ~ .c-box{background:var(--yel);border-color:var(--yel)}
+.c-box::after{content:'';position:absolute;left:1px;top:3px;width:2px;height:2px;color:#131000;background:transparent;box-shadow:none}
+.check-row input:checked ~ .c-box::after{background:currentColor;box-shadow:0 4px,2px 6px,4px 8px,6px 6px,8px 4px,10px 2px,12px 0}
+.check-row:has(input:focus-visible){outline:3px solid var(--cyn);outline-offset:2px}
+.check-row.dead{cursor:not-allowed}
+.check-row.dead .c-box{border-color:#2c2c46;background:#131320}
+.check-row.dead .c-lab{color:#6d7292}
+.badge{font-family:var(--f-px);font-size:8px;letter-spacing:1px;padding:5px 7px;border:2px solid;margin-left:10px;white-space:nowrap}
+.b-red{color:var(--red);border-color:var(--red)}
+.b-yel{color:var(--yel);border-color:var(--yel)}
+
+.sw-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 10px;cursor:pointer}
+.sw-row input{position:absolute;opacity:0;width:1px;height:1px}
+.sw-lab{font-size:20px}
+.sw-lab small{display:block;color:var(--dim);font-size:16px}
+.sw-slot{position:relative;flex:none;width:60px;height:28px;background:var(--well);border:3px solid #55598a}
+.sw-slot::before{content:'OFF';position:absolute;right:5px;top:6px;font-family:var(--f-px);font-size:7px;color:#6d7292}
+.sw-slot::after{content:'';position:absolute;left:3px;top:3px;width:16px;height:16px;background:#6d7292}
+.sw-row input:checked ~ .sw-slot{border-color:var(--cyn);background:#062a2c}
+.sw-row input:checked ~ .sw-slot::before{content:'ON';right:auto;left:6px;color:var(--cyn)}
+.sw-row input:checked ~ .sw-slot::after{left:auto;right:3px;background:var(--cyn)}
+.sw-row:has(input:focus-visible){outline:3px solid var(--cyn);outline-offset:2px}
+
+.sl-row{display:flex;align-items:center;gap:18px}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:26px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:14px;background:var(--well);border:3px solid #55598a;background-image:linear-gradient(90deg,#2b2f52 2px,transparent 2px);background-size:10% 100%;background-clip:padding-box}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:26px;margin-top:-9px;background:var(--yel);border:3px solid #3a2f00;box-shadow:0 4px 0 #7c5c00}
+input[type=range]::-moz-range-track{height:14px;background:var(--well);border:3px solid #55598a}
+input[type=range]::-moz-range-thumb{width:16px;height:20px;border-radius:0;background:var(--yel);border:3px solid #3a2f00;box-shadow:0 4px 0 #7c5c00}
+.sl-out{font-family:var(--f-px);font-size:12px;color:var(--yel);min-width:64px;text-align:right}
+
+.dropdown{position:relative;margin-top:8px}
+.dd-btn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;background:var(--well);border:3px solid var(--blu);padding:12px 14px;font-size:20px;text-align:left}
+.dd-btn .spr{margin-top:2px}
+.dd-pop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--well);border:3px solid var(--blu);box-shadow:8px 8px 0 #000;z-index:30;list-style:none}
+.dd-pop[hidden]{display:none}
+.dd-pop li{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer}
+.dd-pop li:focus-visible{outline-offset:-3px}
+.dd-cur{width:12px}
+.dd-cur .spr{visibility:hidden;display:block}
+.dd-pop li:hover:not(.dead){background:#10102a}
+.dd-pop li:hover:not(.dead) .dd-cur .spr{visibility:visible;opacity:.4}
+.dd-pop li[aria-selected=true] .dd-cur .spr{visibility:visible;animation:blink 1.06s steps(1) infinite}
+.dd-pop li[aria-selected=true]{color:var(--yel)}
+.dd-pop li.dead{color:#6d7292;cursor:not-allowed}
+.dd-name{flex:1}
+
+.tabs{margin-top:6px}
+.tablist{display:flex;gap:8px;flex-wrap:wrap}
+.tab{font-family:var(--f-px);font-size:10px;letter-spacing:1px;color:var(--dim);padding:12px 14px;border:3px solid #2c2f56;border-bottom:none;background:var(--well);margin-bottom:-3px;position:relative}
+.tab[aria-selected=true]{color:var(--yel);border-color:var(--maze);background:var(--screen);z-index:1}
+.tabpanel{border:3px solid var(--maze);padding:22px;background:var(--screen)}
+.tabpanel[hidden]{display:none}
+
+.pad{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.pad-grid{display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,50px);gap:8px}
+.cap{display:flex;align-items:center;justify-content:center;background:#101024;border:3px solid #2c2f56;box-shadow:0 4px 0 #000}
+.cap-dot{display:flex;align-items:center;justify-content:center}
+.cap-dot::before{content:'';width:4px;height:4px;background:#23264a}
+.cap-stick{border:none;background:none;box-shadow:none}
+.pad-btns{display:flex;gap:22px;align-items:center}
+.fire{width:52px;height:52px;font-family:var(--f-px);font-size:14px;display:inline-flex;align-items:center;justify-content:center;border:3px solid;box-shadow:0 5px 0 #000;transition:none}
+.fire:active{transform:translateY(5px);box-shadow:none}
+.fire-a{background:var(--red);color:#180003;border-color:#4d000c}
+.fire-b{background:var(--cyn);color:#02181a;border-color:#054d52}
+.pad-note{width:100%;color:var(--dim);font-size:17px}
+.kbd{display:inline-block;font-family:var(--f-px);font-size:9px;color:var(--phos);border:2px solid #55598a;padding:5px 7px;box-shadow:0 3px 0 #000;margin:0 3px}
+.map-rows{display:grid;gap:12px}
+.map-row{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px}
+.map-row b{font-family:var(--f-px);font-size:9px;color:var(--cyn);font-weight:normal;letter-spacing:1px}
+.dip-bank{display:flex;gap:18px;flex-wrap:wrap}
+.dipsw{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.dipsw input{position:absolute;opacity:0;width:1px;height:1px}
+.dip-slot{position:relative;width:20px;height:38px;background:var(--well);border:3px solid #55598a}
+.dip-slot::after{content:'';position:absolute;left:2px;bottom:2px;width:10px;height:10px;background:#6d7292}
+.dipsw input:checked ~ .dip-slot{border-color:var(--yel)}
+.dipsw input:checked ~ .dip-slot::after{bottom:auto;top:2px;background:var(--yel)}
+.dipsw:has(input:focus-visible){outline:3px solid var(--cyn);outline-offset:2px}
+.dipsw span{color:var(--dim);font-size:15px}
+
+.prog{position:relative;height:32px;background:var(--well);border:3px solid #55598a;margin-top:14px}
+.prog-dots{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#3c4066 0 4px,transparent 4px 24px) 12px 50% / 100% 4px no-repeat}
+.prog-fill{position:absolute;left:0;top:0;bottom:0;width:var(--p,0%);background:var(--yel)}
+.prog-pac{position:absolute;top:0;left:var(--p,0%);margin-left:-24px;z-index:2}
+.prog-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:12px}
+.prog-pct{font-family:var(--f-px);font-size:12px;color:var(--yel)}
+.prog-label{font-family:var(--f-px);font-size:9px;letter-spacing:2px;color:var(--dim)}
+.prog-label.run{color:var(--cyn)}
+
+.hp{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;height:26px;margin-top:14px}
+.hp i{background:var(--well);border:2px solid #2c2f56}
+.hp i.on{background:var(--yel);border-color:#7c5c00}
+.hp.low i.on{background:var(--red);border-color:#7e0f1e;animation:hardblink .5s steps(1) infinite}
+@keyframes hardblink{50%,100%{opacity:.25}}
+.hp-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.hp-val{font-family:var(--f-px);font-size:12px;color:var(--yel)}
+.hp.low ~ * .hp-val{color:var(--red)}
+.meter-btns{display:flex;gap:18px;margin-top:20px;flex-wrap:wrap}
+
+.tipchip{position:relative;font-family:var(--f-px);font-size:10px;letter-spacing:1px;color:var(--org);border:3px solid var(--org);padding:11px 13px;background:var(--well)}
+[data-tip]{position:relative}
+[data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);width:max-content;max-width:230px;background:var(--well);border:3px solid var(--yel);color:var(--phos);font-family:var(--f-tube);font-size:17px;letter-spacing:0;line-height:1.25;padding:8px 11px;visibility:hidden;z-index:35;text-align:left}
+[data-tip]::before{content:'';position:absolute;bottom:calc(100% + 5px);left:50%;margin-left:-5px;width:10px;height:10px;background:var(--yel);visibility:hidden;z-index:34}
+[data-tip]:hover::after,[data-tip]:hover::before,[data-tip]:focus-visible::after,[data-tip]:focus-visible::before{visibility:visible}
+.tip-left[data-tip]::after{left:0;transform:none}
+.chip-row{display:flex;gap:16px;flex-wrap:wrap}
+
+.toast-dock{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:12px;width:min(360px,calc(100vw - 36px))}
+.toast{display:flex;align-items:center;gap:14px;background:var(--well);border:3px solid;padding:12px 14px;animation:t-in .18s steps(3)}
+@keyframes t-in{from{transform:translateY(70px)}}
+.toast.out{animation:t-out .18s steps(3) forwards}
+@keyframes t-out{to{transform:translateY(70px);visibility:hidden}}
+.toast p{font-size:19px}
+.t-tag{font-family:var(--f-px);font-size:8px;letter-spacing:1px;padding:5px 6px;border:2px solid;flex:none}
+.t-score{border-color:var(--yel)}.t-score .t-tag{color:var(--yel);border-color:var(--yel)}
+.t-sys{border-color:var(--cyn)}.t-sys .t-tag{color:var(--cyn);border-color:var(--cyn)}
+.t-bad{border-color:var(--red)}.t-bad .t-tag{color:var(--red);border-color:var(--red)}
+
+.modal-back{position:fixed;inset:0;z-index:70;background:rgba(3,3,10,.82);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-back[hidden]{display:none}
+.modal{border:12px solid var(--maze);border-image:var(--brick) 12 round;background:var(--screen);background-clip:padding-box;padding:30px;width:min(440px,100%);text-align:center;animation:m-drop .2s steps(4)}
+@keyframes m-drop{from{transform:translateY(-46vh)}}
+.m-eyebrow{font-family:var(--f-px);font-size:9px;color:var(--dim);letter-spacing:2px}
+.modal h2{font-family:var(--f-px);font-size:22px;color:var(--red);margin:18px 0}
+.m-count{font-family:var(--f-px);font-size:46px;color:var(--yel);margin:10px 0 18px}
+.m-count.crit{color:var(--red);animation:blink .5s steps(1) infinite}
+.m-copy{color:var(--dim);font-size:19px;margin-bottom:24px}
+.m-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+footer{margin-top:80px;border-top:12px solid var(--maze);border-image:var(--brick) 12 round;background:var(--well);background-clip:padding-box;text-align:center;padding:46px 20px 90px}
+.f-over{font-family:var(--f-px);font-size:22px;color:var(--red);letter-spacing:3px}
+footer p{color:var(--dim);font-size:18px;margin-top:14px}
+footer .f-sprites{display:flex;justify-content:center;gap:26px;margin-top:26px}
+
+@media (max-width:900px){
+  .cols{grid-template-columns:1fr}
+  .panel{padding:18px}
+  .hero{padding-top:44px}
+  section{margin:48px 0}
+  .mzline{margin:48px 0}
+}
+@media (max-width:480px){
+  body{font-size:19px}
+  .wrap{padding:0 14px}
+  .mq-in{gap:8px 16px;padding:10px 14px;font-size:10px}
+  .mq-right{margin-left:0}
+  .btn{font-size:10px;padding:13px 14px}
+  .hero h1{letter-spacing:0}
+  .pad{gap:24px}
+  .toast-dock{right:10px;bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01s !important;animation-iteration-count:1 !important}
+}
+</style>
+</head>
+<body>
+
+<header class="marquee">
+  <div class="mq-in">
+    <div class="mq-item"><span class="mq-label l-red blink">1UP</span><span id="scoreVal">000000</span></div>
+    <div class="mq-item"><span class="mq-label l-cyn">HI-SCORE</span><span id="hiVal">050000</span><span class="mq-init" id="hiInit">AAA</span></div>
+    <div class="mq-item"><span class="mq-label l-yel">CHAIN</span><span id="chainVal">&times;1</span></div>
+    <div class="mq-item"><span class="mq-label l-blu">CREDIT</span><span id="credVal">00</span></div>
+    <div class="mq-right">
+      <span class="spr spr-coin anim" aria-hidden="true"></span>
+      <button class="mq-slot blink" id="slotBtn" data-act="coin">INSERT COIN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="hero-eyebrow">MIDNIGHT ARCADE &middot; EST. 198X &middot; 1 CREDIT = 1 PLAY</p>
+    <h1>PELLETRON</h1>
+    <p class="hero-sub">COIN-OP CONTROL DECK</p>
+    <p class="hero-copy">The last cabinet standing in the all-night arcade — every dial, meter and menu wired to one phosphor tube. Feed it a coin, chase the ghosts across the control deck, and burn your initials into the board.</p>
+    <p class="press-start blink" aria-hidden="true">PRESS START</p>
+    <div class="hero-cta">
+      <button class="btn btn-start" data-act="start">&#9654; PRESS START</button>
+      <button class="btn btn-coin" data-act="coin">INSERT COIN</button>
+    </div>
+    <div class="hero-fruit" aria-hidden="true">
+      <span class="spr spr-cherry"></span>
+      <span class="spr spr-coin anim"></span>
+      <span class="spr spr-cherry"></span>
+    </div>
+  </section>
+
+  <div class="chase" id="chase" aria-hidden="true">
+    <i class="dots"></i>
+    <i class="eaten"></i>
+    <div class="train">
+      <span class="spr spr-ghost anim" style="--body:#4f74ff"></span>
+      <span class="spr spr-ghost anim" style="--body:var(--red)"></span>
+      <span class="spr spr-ghost anim" style="--body:var(--yel)"></span>
+      <span class="spr spr-ghost anim" style="--body:var(--cyn)"></span>
+      <span class="spr spr-pac anim" style="margin-left:26px"></span>
+    </div>
+  </div>
+
+  <section id="s-buttons">
+    <header class="sec-head">
+      <span class="spr spr-cherry fs3" aria-hidden="true"></span>
+      <div>
+        <p class="sec-stage">STAGE 1-1</p>
+        <h2>CABINET BUTTONS</h2>
+      </div>
+    </header>
+    <p class="sec-intro">Every press lands like a tetromino — straight down, no easing, locked.</p>
+    <div class="panel">
+      <div class="btn-grid">
+        <div class="btn-cell">
+          <button class="btn btn-start" data-act="start">&#9654; PRESS START</button>
+          <p class="hint">Spends one credit. Refuses politely when the slot is empty.</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-coin" data-act="coin">INSERT COIN</button>
+          <p class="hint">+1 credit, +500 points. The house always hears a quarter drop.</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-danger" data-act="tilt">TILT / RESET</button>
+          <p class="hint">Slaps the cabinet. Breaks your chain and the staff&rsquo;s patience.</p>
+        </div>
+        <div class="btn-cell">
+          <span data-tip="Cabinet key required. Ask the attendant.">
+            <button class="btn" disabled>SERVICE MODE</button>
+          </span>
+          <p class="hint">Locked. Only the attendant carries the key.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s-entry">
+    <header class="sec-head">
+      <span class="spr spr-coin fs3" aria-hidden="true"></span>
+      <div>
+        <p class="sec-stage">STAGE 1-2</p>
+        <h2>PLAYER ENTRY</h2>
+      </div>
+    </header>
+    <p class="sec-intro">Tell the cabinet who you are. Three letters is all the fame you get.</p>
+    <div class="panel">
+      <div class="cols">
+        <div>
+          <div class="blk field">
+            <p class="blk-title">NAME ENTRY</p>
+            <label for="initialsIn">YOUR INITIALS</label>
+            <div class="initials-row">
+              <input class="initials" id="initialsIn" maxlength="3" placeholder="AAA" autocomplete="off" spellcheck="false">
+              <button class="btn btn-nav" id="initialsBtn">BURN IN</button>
+            </div>
+            <p class="hint">A to Z only. The board remembers exactly three letters, forever.</p>
+          </div>
+          <div class="blk" role="radiogroup" aria-labelledby="diffTitle">
+            <p class="blk-title" id="diffTitle">DIFFICULTY</p>
+            <label class="radio-row">
+              <input type="radio" name="diff" value="rookie">
+              <span class="r-cur"><span class="spr spr-cursor fs2"></span></span>
+              <span class="spr spr-ghost fs2" style="--body:var(--cyn)" aria-hidden="true"></span>
+              <span class="r-name">ROOKIE<small>Ghosts wander. Pellets everywhere.</small></span>
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="diff" value="arcade" checked>
+              <span class="r-cur"><span class="spr spr-cursor fs2"></span></span>
+              <span class="spr spr-ghost fs2" style="--body:#4f74ff" aria-hidden="true"></span>
+              <span class="r-name">ARCADE<small>Factory settings. The honest quarter.</small></span>
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="diff" value="nightmare">
+              <span class="r-cur"><span class="spr spr-cursor fs2"></span></span>
+              <span class="spr spr-ghost fs2" style="--body:var(--red)" aria-hidden="true"></span>
+              <span class="r-name">NIGHTMARE<small>Ghosts hunt in pairs. Exits lie.</small></span>
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="diff" value="kaizo">
+              <span class="r-cur"><span class="spr spr-cursor fs2"></span></span>
+              <span class="spr spr-ghost fs2" style="--body:var(--yel)" aria-hidden="true"></span>
+              <span class="r-name">KAIZO<small>They never blink. You will.</small></span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="blk">
+            <p class="blk-title">POWER-UPS</p>
+            <label class="check-row">
+              <input type="checkbox" checked data-pts="50">
+              <span class="c-box"></span>
+              <span class="c-lab">EXTEND — free eater at 10,000 points</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" data-pts="50">
+              <span class="c-box"></span>
+              <span class="c-lab">GHOST MAGNET — fruit pulls ghosts off you</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" data-pts="50">
+              <span class="c-box"></span>
+              <span class="c-lab">DOUBLE PELLETS — twice the dots, twice the noise</span>
+            </label>
+            <label class="check-row dead" data-tip="Restock arrives with the next board revision.">
+              <input type="checkbox" disabled>
+              <span class="c-box"></span>
+              <span class="c-lab">TILT INSURANCE<span class="badge b-red">OUT OF STOCK</span></span>
+            </label>
+          </div>
+          <div class="blk">
+            <p class="blk-title">CABINET SWITCHES</p>
+            <label class="sw-row">
+              <span class="sw-lab">SOUND FX<small>Square-wave bleeps from the deck itself.</small></span>
+              <input type="checkbox" id="swSound">
+              <span class="sw-slot"></span>
+            </label>
+            <label class="sw-row">
+              <span class="sw-lab">CRT MASK<small>Shadow-mask grille over the whole tube.</small></span>
+              <input type="checkbox" id="swCrt" checked>
+              <span class="sw-slot"></span>
+            </label>
+            <label class="sw-row">
+              <span class="sw-lab">ATTRACT MODE<small>The chase runs while nobody plays.</small></span>
+              <input type="checkbox" id="swAttract" checked>
+              <span class="sw-slot"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mzline" aria-hidden="true">
+    <svg viewBox="0 0 1440 44" shape-rendering="crispEdges">
+      <path class="mz-wall" d="M-8 22 H160 V10 H420 V34 H700 V22 H960 V8 H1180 V30 H1448"/>
+      <path class="mz-core" d="M-8 22 H160 V10 H420 V34 H700 V22 H960 V8 H1180 V30 H1448"/>
+      <path class="mz-dots" d="M-8 22 H160 V10 H420 V34 H700 V22 H960 V8 H1180 V30 H1448"/>
+    </svg>
+  </div>
+
+  <section id="s-tuning">
+    <header class="sec-head">
+      <span class="spr spr-ghost fs3" style="--body:var(--cyn)" aria-hidden="true"></span>
+      <div>
+        <p class="sec-stage">STAGE 2-1</p>
+        <h2>TUNING DECK</h2>
+      </div>
+    </header>
+    <p class="sec-intro">House tuning for lever, volume and stage order. Ask before you flip the dips.</p>
+    <div class="panel">
+      <div class="cols">
+        <div>
+          <div class="blk field">
+            <p class="blk-title">VOLUME</p>
+            <label for="vol">DECK SPEAKER</label>
+            <div class="sl-row">
+              <input type="range" id="vol" min="0" max="10" step="1" value="6">
+              <output class="sl-out" id="volOut" for="vol">06/10</output>
+            </div>
+            <p class="hint">Ten notches, no in-between. This deck does not do subtle.</p>
+          </div>
+          <div class="blk field">
+            <p class="blk-title">STAGE SELECT</p>
+            <label id="ddLabelTag" for="ddBtn">FIRST BOARD</label>
+            <div class="dropdown">
+              <button class="dd-btn" id="ddBtn" aria-haspopup="listbox" aria-expanded="false">
+                <span id="ddLabel">1-2 &middot; GHOST ALLEY</span>
+                <span class="spr spr-ard fs2" aria-hidden="true"></span>
+              </button>
+              <ul class="dd-pop" id="ddPop" role="listbox" aria-labelledby="ddLabelTag" hidden>
+                <li role="option" data-val="1-1" tabindex="-1"><span class="dd-cur"><span class="spr spr-cursor fs2"></span></span><span class="dd-name">1-1 &middot; CHERRY GARDEN</span><span class="badge b-yel">WARM-UP</span></li>
+                <li role="option" data-val="1-2" tabindex="-1" aria-selected="true"><span class="dd-cur"><span class="spr spr-cursor fs2"></span></span><span class="dd-name">1-2 &middot; GHOST ALLEY</span></li>
+                <li role="option" data-val="2-1" tabindex="-1"><span class="dd-cur"><span class="spr spr-cursor fs2"></span></span><span class="dd-name">2-1 &middot; COIN VAULT</span></li>
+                <li role="option" data-val="2-2" tabindex="-1"><span class="dd-cur"><span class="spr spr-cursor fs2"></span></span><span class="dd-name">2-2 &middot; TURBO MAZE</span></li>
+                <li role="option" class="dead" aria-disabled="true" tabindex="-1"><span class="dd-cur"><span class="spr spr-cursor fs2"></span></span><span class="dd-name">??? &middot; BONUS ROUND</span><span class="badge b-red">LOCKED</span></li>
+              </ul>
+            </div>
+            <p class="hint">Arrow keys walk the list. The bonus round stays locked until 2-2 falls.</p>
+          </div>
+        </div>
+        <div class="blk tabs">
+          <p class="blk-title">CONTROL PANEL</p>
+          <div class="tablist" role="tablist" aria-label="Control panel views">
+            <button class="tab" role="tab" id="tabJoy" aria-controls="pJoy" aria-selected="true">JOYSTICK</button>
+            <button class="tab" role="tab" id="tabMap" aria-controls="pMap" aria-selected="false" tabindex="-1">KEY MAP</button>
+            <button class="tab" role="tab" id="tabDip" aria-controls="pDip" aria-selected="false" tabindex="-1">DIP-SW</button>
+          </div>
+          <div class="tabpanel" id="pJoy" role="tabpanel" aria-labelledby="tabJoy">
+            <div class="pad">
+              <div class="pad-grid">
+                <span class="cap cap-dot" aria-hidden="true"></span>
+                <span class="cap" tabindex="0" data-tip="UP — climb, or brag to the row behind you."><span class="spr spr-aru fs2" ></span></span>
+                <span class="cap cap-dot" aria-hidden="true"></span>
+                <span class="cap" tabindex="0" data-tip="LEFT — the only direction ghosts respect."><span class="spr spr-arl fs2"></span></span>
+                <span class="cap cap-stick" aria-hidden="true"><span class="spr spr-lever fs3"></span></span>
+                <span class="cap" tabindex="0" data-tip="RIGHT — toward the fruit, always."><span class="spr spr-arr fs2"></span></span>
+                <span class="cap cap-dot" aria-hidden="true"></span>
+                <span class="cap" tabindex="0" data-tip="DOWN — duck under the marquee lights."><span class="spr spr-ard fs2"></span></span>
+                <span class="cap cap-dot" aria-hidden="true"></span>
+              </div>
+              <div class="pad-btns">
+                <button class="fire fire-a" data-pts="25" data-tip="A — jump / confirm. Mashing is a strategy.">A</button>
+                <button class="fire fire-b" data-pts="25" data-tip="B — fire / back out. Cowards also survive.">B</button>
+              </div>
+              <p class="pad-note">P1 panel: 8-way lever, two buttons. Leaf-switch clicks included free of charge.</p>
+            </div>
+          </div>
+          <div class="tabpanel" id="pMap" role="tabpanel" aria-labelledby="tabMap" hidden>
+            <div class="map-rows">
+              <div class="map-row"><b>LEVER</b><span><span class="kbd">&uarr;</span><span class="kbd">&darr;</span><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> arrow keys</span></div>
+              <div class="map-row"><b>A BUTTON</b><span><span class="kbd">Z</span> jump / confirm</span></div>
+              <div class="map-row"><b>B BUTTON</b><span><span class="kbd">X</span> fire / back</span></div>
+              <div class="map-row"><b>START</b><span><span class="kbd">ENTER</span> spend a credit</span></div>
+              <div class="map-row"><b>COIN</b><span><span class="kbd">C</span> feed the slot</span></div>
+            </div>
+          </div>
+          <div class="tabpanel" id="pDip" role="tabpanel" aria-labelledby="tabDip" hidden>
+            <div class="dip-bank">
+              <label class="dipsw" data-tip="FREE PLAY — the owner&rsquo;s birthday only.">
+                <input type="checkbox" data-pts="25" checked><span class="dip-slot"></span><span>DIP-1</span>
+              </label>
+              <label class="dipsw" data-tip="INVINCIBLE — for testing, wink.">
+                <input type="checkbox" data-pts="25"><span class="dip-slot"></span><span>DIP-2</span>
+              </label>
+              <label class="dipsw" data-tip="TURBO GHOSTS — 1.5&times; hunt speed.">
+                <input type="checkbox" data-pts="25"><span class="dip-slot"></span><span>DIP-3</span>
+              </label>
+              <label class="dipsw" data-tip="DEMO SOUND — attract mode bleeps after hours.">
+                <input type="checkbox" data-pts="25" checked><span class="dip-slot"></span><span>DIP-4</span>
+              </label>
+              <label class="dipsw" data-tip="FLIP SCREEN — for cocktail-table cabinets.">
+                <input type="checkbox" data-pts="25"><span class="dip-slot"></span><span>DIP-5</span>
+              </label>
+              <label class="dipsw" data-tip="TATE MODE — rotate the tube, void the warranty.">
+                <input type="checkbox" data-pts="25"><span class="dip-slot"></span><span>DIP-6</span>
+              </label>
+            </div>
+            <p class="hint" style="margin-top:18px">Flip with the power off, says the sticker nobody reads.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s-vitals">
+    <header class="sec-head">
+      <span class="spr spr-pac fs3" aria-hidden="true"></span>
+      <div>
+        <p class="sec-stage">STAGE 2-2</p>
+        <h2>VITALS</h2>
+      </div>
+    </header>
+    <p class="sec-intro">The tube reports. Below three segments the ghosts smell blood.</p>
+    <div class="panel">
+      <div class="cols">
+        <div class="blk">
+          <p class="blk-title">STAGE LOADER</p>
+          <div class="hp-row">
+            <span class="prog-label" id="progLabel">NOW LOADING</span>
+            <span class="prog-pct" id="progPct">0%</span>
+          </div>
+          <div class="prog" role="progressbar" aria-labelledby="progLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progBar">
+            <i class="prog-dots"></i>
+            <i class="prog-fill" id="progFill"></i>
+            <span class="spr spr-pac fs2 prog-pac" id="progPac" aria-hidden="true"></span>
+          </div>
+          <p class="hint">The eater chews through the boot pellets, ten percent a bite.</p>
+          <div class="meter-btns">
+            <button class="btn btn-nav" id="progRun">RELOAD STAGE</button>
+          </div>
+        </div>
+        <div class="blk">
+          <p class="blk-title">POWER METER</p>
+          <div class="hp-row">
+            <span class="prog-label">SEGMENTS</span>
+            <span class="hp-val" id="hpVal">07/10</span>
+          </div>
+          <div class="hp" id="hpCells" role="meter" aria-label="Power" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7"></div>
+          <p class="hint">Fruit refills one segment. A ghost bite costs two. Zero opens the continue screen.</p>
+          <div class="meter-btns">
+            <button class="btn btn-start" id="btnFruit"><span class="spr spr-cherry fs2" aria-hidden="true" style="margin-top:-6px"></span>EAT FRUIT</button>
+            <button class="btn btn-danger" id="btnHit">TAKE HIT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mzline" aria-hidden="true">
+    <svg viewBox="0 0 1440 44" shape-rendering="crispEdges">
+      <path class="mz-wall" d="M-8 30 H240 V12 H520 V32 H820 V10 H1080 V26 H1300 V14 H1448"/>
+      <path class="mz-core" d="M-8 30 H240 V12 H520 V32 H820 V10 H1080 V26 H1300 V14 H1448"/>
+      <path class="mz-dots" d="M-8 30 H240 V12 H520 V32 H820 V10 H1080 V26 H1300 V14 H1448"/>
+    </svg>
+  </div>
+
+  <section id="s-interrupts">
+    <header class="sec-head">
+      <span class="spr spr-ghost fs3" style="--body:var(--red)" aria-hidden="true"></span>
+      <div>
+        <p class="sec-stage">STAGE 3-1</p>
+        <h2>INTERRUPTS</h2>
+      </div>
+    </header>
+    <p class="sec-intro">When the cabinet interrupts, it means it. Nine seconds is nine seconds.</p>
+    <div class="panel">
+      <div class="cols">
+        <div>
+          <div class="blk">
+            <p class="blk-title">CONTINUE SCREEN</p>
+            <p class="hint" style="margin:0 0 18px">Knocks the power meter to zero and rolls the nine-second countdown.</p>
+            <button class="btn btn-danger" id="btnKO">SIMULATE KO</button>
+          </div>
+          <div class="blk">
+            <p class="blk-title">ANNOUNCEMENTS</p>
+            <p class="hint" style="margin:0 0 18px">Deck messages drop in from the bottom rail, newest closest to you.</p>
+            <div class="chip-row">
+              <button class="btn btn-start" data-toast="score">POP 1UP</button>
+              <button class="btn btn-coin" data-toast="sys">POP SYSTEM</button>
+              <button class="btn btn-nav" data-toast="bad">POP GAME OVER</button>
+            </div>
+          </div>
+        </div>
+        <div class="blk">
+          <p class="blk-title">ATTENDANT NOTES</p>
+          <p class="hint" style="margin:0 0 18px">Hover or tab onto a sticker. House rules appear in a speech box.</p>
+          <div class="chip-row">
+            <button class="tipchip tip-left" data-tip="Hold A while boarding the lift to skip the queue. Staff denies this works.">HOLD-A</button>
+            <button class="tipchip" data-tip="Shake the cabinet and TILT locks every control until an attendant sighs at you.">TILT</button>
+            <button class="tipchip" data-tip="Level 256 splits the screen in half. House rule: nobody goes past 255.">LV-256</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="f-over">GAME OVER</p>
+  <p>&copy; 198X PELLETRON AMUSEMENT CO. — NO QUARTERS REFUNDED. WINNERS DON&rsquo;T USE EASING.</p>
+  <p>CABINET SPEAKS: INSERT COIN &middot; 1UP &middot; EXTEND &middot; TILT &middot; GAME OVER</p>
+  <div class="f-sprites" aria-hidden="true">
+    <span class="spr spr-ghost fs2" style="--body:#4f74ff"></span>
+    <span class="spr spr-ghost fs2" style="--body:var(--red)"></span>
+    <span class="spr spr-ghost fs2" style="--body:var(--yel)"></span>
+    <span class="spr spr-ghost fs2" style="--body:var(--cyn)"></span>
+    <span class="spr spr-pac fs2"></span>
+  </div>
+</footer>
+
+<div class="toast-dock" id="dock" aria-live="polite"></div>
+
+<div class="modal-back" id="modalBack" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <p class="m-eyebrow">PLAYER 1 — POWER AT ZERO</p>
+    <h2 id="mTitle">CONTINUE?</h2>
+    <p class="m-count" id="mCount">9</p>
+    <p class="m-copy">The ghosts got you. Drop a credit to refill the power meter, or let the board go dark.</p>
+    <div class="m-row">
+      <button class="btn btn-start" id="mCont">INSERT COIN &middot; CONTINUE</button>
+      <button class="btn btn-danger" id="mOver">GAME OVER</button>
+    </div>
+  </div>
+</div>
+
+<div class="crt" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+var state={score:0,hi:50000,hiName:'AAA',chain:1,last:0,credits:0,power:7,hiFlag:false};
+var scoreVal=$('#scoreVal'),hiVal=$('#hiVal'),hiInit=$('#hiInit'),chainVal=$('#chainVal'),credVal=$('#credVal'),slotBtn=$('#slotBtn');
+
+function pad(n,w){n=String(n);while(n.length<w)n='0'+n;return n}
+function renderBoard(){
+  scoreVal.textContent=pad(state.score,6);
+  hiVal.textContent=pad(state.hi,6);
+  hiInit.textContent=state.hiName;
+  chainVal.textContent='×'+state.chain;
+  chainVal.classList.toggle('pulse',state.chain>1);
+  credVal.textContent=pad(state.credits,2);
+  slotBtn.classList.toggle('blink',state.credits===0);
+}
+
+var ctx=null,volume=6;
+function audio(){if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)();return ctx}
+function bleep(seq){
+  if(!$('#swSound').checked)return;
+  try{
+    var ac=audio(),t=ac.currentTime;
+    seq.forEach(function(n){
+      var o=ac.createOscillator(),g=ac.createGain();
+      o.type='square';o.frequency.value=n[0];
+      g.gain.setValueAtTime(volume*0.02,t);
+      g.gain.setValueAtTime(0,t+n[1]);
+      o.connect(g);g.connect(ac.destination);
+      o.start(t);o.stop(t+n[1]);
+      t+=n[1];
+    });
+  }catch(e){}
+}
+var SFX={
+  click:[[660,.05]],
+  coin:[[988,.07],[1319,.12]],
+  start:[[523,.08],[659,.08],[784,.08],[1046,.14]],
+  bad:[[196,.1],[147,.16]],
+  eat:[[440,.04],[587,.05]],
+  oneup:[[659,.06],[784,.06],[988,.06],[1319,.11]]
+};
+
+function addScore(base){
+  var now=Date.now();
+  state.chain=(now-state.last<2500)?Math.min(state.chain+1,8):1;
+  state.last=now;
+  state.score+=base*state.chain;
+  if(state.score>state.hi){
+    state.hi=state.score;
+    if(!state.hiFlag){state.hiFlag=true;toast('score','1UP','NEW HIGH SCORE — THE BOARD IS YOURS');bleep(SFX.oneup)}
+  }
+  renderBoard();
+}
+
+var dock=$('#dock');
+function toast(type,tag,msg){
+  var t=document.createElement('div');
+  t.className='toast t-'+type;
+  t.setAttribute('role','status');
+  var s=document.createElement('span');s.className='t-tag';s.textContent=tag;
+  var p=document.createElement('p');p.textContent=msg;
+  t.appendChild(s);t.appendChild(p);
+  dock.appendChild(t);
+  while(dock.children.length>4)dock.removeChild(dock.firstChild);
+  setTimeout(function(){
+    t.classList.add('out');
+    setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},220);
+  },3400);
+}
+
+function insertCoin(){
+  state.credits=Math.min(state.credits+1,99);
+  addScore(500);
+  bleep(SFX.coin);
+  toast('sys','CREDIT','COIN ACCEPTED — CREDIT '+pad(state.credits,2));
+  renderBoard();
+}
+function pressStart(){
+  if(state.credits<1){bleep(SFX.bad);toast('bad','ERR','NO CREDIT — INSERT COIN FIRST');return}
+  state.credits--;
+  addScore(250);
+  bleep(SFX.start);
+  toast('score','1UP','PLAYER 1 START — GOOD LUCK');
+  renderBoard();
+}
+function tilt(){
+  state.chain=1;state.last=0;
+  bleep(SFX.bad);
+  toast('bad','TILT','TILT! HANDS OFF THE CABINET — CHAIN LOST');
+  renderBoard();
+}
+$$('[data-act=coin]').forEach(function(b){b.addEventListener('click',insertCoin)});
+$$('[data-act=start]').forEach(function(b){b.addEventListener('click',pressStart)});
+$$('[data-act=tilt]').forEach(function(b){b.addEventListener('click',tilt)});
+
+$$('[data-pts]').forEach(function(el){
+  el.addEventListener(el.type==='checkbox'?'change':'click',function(){
+    addScore(parseInt(el.getAttribute('data-pts'),10));
+    bleep(SFX.click);
+  });
+});
+
+var initialsIn=$('#initialsIn');
+initialsIn.addEventListener('input',function(){
+  this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');
+});
+$('#initialsBtn').addEventListener('click',function(){
+  if(!/^[A-Z]{3}$/.test(initialsIn.value)){bleep(SFX.bad);toast('bad','ERR','THREE LETTERS — A TO Z ONLY');return}
+  state.hiName=initialsIn.value;
+  addScore(300);
+  bleep(SFX.start);
+  toast('sys','NAME','INITIALS BURNED IN: '+state.hiName);
+  renderBoard();
+});
+
+$$('input[name=diff]').forEach(function(r){
+  r.addEventListener('change',function(){
+    addScore(150);bleep(SFX.click);
+    toast('sys','MODE','DIFFICULTY SET: '+r.value.toUpperCase());
+  });
+});
+
+$('#swSound').addEventListener('change',function(){
+  if(this.checked){audio();bleep(SFX.coin);toast('sys','SND','SOUND FX ON — NEIGHBORS NOTIFIED')}
+  else toast('sys','SND','SOUND FX OFF — STEALTH RUN');
+  addScore(50);
+});
+$('#swCrt').addEventListener('change',function(){
+  document.body.classList.toggle('no-mask',!this.checked);
+  bleep(SFX.click);addScore(50);
+  toast('sys','CRT',this.checked?'SHADOW MASK ON — TUBE FEELS RIGHT':'SHADOW MASK OFF — FLAT PANEL HERESY');
+});
+$('#swAttract').addEventListener('change',function(){
+  $('#chase').classList.toggle('paused',!this.checked);
+  bleep(SFX.click);addScore(50);
+  toast('sys','DEMO',this.checked?'ATTRACT MODE ON — THE CHASE RESUMES':'ATTRACT MODE OFF — GHOSTS ON BREAK');
+});
+
+var vol=$('#vol'),volOut=$('#volOut');
+vol.addEventListener('input',function(){
+  volume=parseInt(vol.value,10);
+  volOut.textContent=pad(volume,2)+'/10';
+});
+vol.addEventListener('change',function(){addScore(10);bleep(SFX.click)});
+
+var ddBtn=$('#ddBtn'),ddPop=$('#ddPop'),ddLabel=$('#ddLabel');
+var ddItems=$$('#ddPop li');
+function ddOpen(){
+  ddPop.hidden=false;ddBtn.setAttribute('aria-expanded','true');
+  var sel=ddItems.filter(function(li){return li.getAttribute('aria-selected')==='true'})[0]||ddItems[0];
+  sel.focus();
+}
+function ddClose(refocus){
+  ddPop.hidden=true;ddBtn.setAttribute('aria-expanded','false');
+  if(refocus)ddBtn.focus();
+}
+function ddSelect(li){
+  if(li.classList.contains('dead')){bleep(SFX.bad);toast('bad','LOCK','BONUS ROUND LOCKED — CLEAR 2-2 FIRST');return}
+  ddItems.forEach(function(x){x.setAttribute('aria-selected','false')});
+  li.setAttribute('aria-selected','true');
+  ddLabel.innerHTML=li.querySelector('.dd-name').innerHTML;
+  addScore(200);bleep(SFX.eat);
+  toast('sys','MAP','FIRST BOARD SET: '+li.querySelector('.dd-name').textContent);
+  ddClose(true);
+}
+ddBtn.addEventListener('click',function(){ddPop.hidden?ddOpen():ddClose(true)});
+ddBtn.addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();ddOpen()}
+});
+ddPop.addEventListener('keydown',function(e){
+  var idx=ddItems.indexOf(document.activeElement);
+  if(e.key==='ArrowDown'){e.preventDefault();ddItems[Math.min(idx+1,ddItems.length-1)].focus()}
+  else if(e.key==='ArrowUp'){e.preventDefault();ddItems[Math.max(idx-1,0)].focus()}
+  else if(e.key==='Home'){e.preventDefault();ddItems[0].focus()}
+  else if(e.key==='End'){e.preventDefault();ddItems[ddItems.length-1].focus()}
+  else if(e.key==='Enter'||e.key===' '){e.preventDefault();if(idx>-1)ddSelect(ddItems[idx])}
+  else if(e.key==='Escape'){ddClose(true)}
+  else if(e.key==='Tab'){ddClose(false)}
+});
+ddItems.forEach(function(li){li.addEventListener('click',function(){ddSelect(li)})});
+document.addEventListener('click',function(e){
+  if(!ddPop.hidden&&!e.target.closest('.dropdown'))ddClose(false);
+});
+
+var tabs=$$('[role=tab]');
+function activateTab(tab){
+  tabs.forEach(function(t){
+    var on=t===tab;
+    t.setAttribute('aria-selected',on?'true':'false');
+    t.tabIndex=on?0:-1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+  });
+  tab.focus();
+}
+tabs.forEach(function(t){
+  t.addEventListener('click',function(){activateTab(t);addScore(50);bleep(SFX.click)});
+});
+$('.tablist').addEventListener('keydown',function(e){
+  var idx=tabs.indexOf(document.activeElement);
+  if(idx<0)return;
+  var next=null;
+  if(e.key==='ArrowRight')next=tabs[(idx+1)%tabs.length];
+  else if(e.key==='ArrowLeft')next=tabs[(idx-1+tabs.length)%tabs.length];
+  else if(e.key==='Home')next=tabs[0];
+  else if(e.key==='End')next=tabs[tabs.length-1];
+  if(next){e.preventDefault();activateTab(next);bleep(SFX.click)}
+});
+
+var progVal=0,progTimer=null;
+var progBar=$('#progBar'),progFill=$('#progFill'),progPac=$('#progPac'),progPct=$('#progPct'),progLabel=$('#progLabel'),progRun=$('#progRun');
+function progRender(){
+  progFill.style.setProperty('--p',progVal+'%');
+  progPac.style.setProperty('--p',progVal+'%');
+  progPct.textContent=progVal+'%';
+  progBar.setAttribute('aria-valuenow',progVal);
+}
+function progGo(){
+  if(progTimer)return;
+  progVal=0;progRender();
+  progRun.disabled=true;
+  progLabel.classList.add('run');
+  progLabel.classList.add('blink');
+  progPac.classList.add('anim');
+  progTimer=setInterval(function(){
+    progVal+=10;progRender();
+    bleep([[330+progVal*4,.03]]);
+    if(progVal>=100){
+      clearInterval(progTimer);progTimer=null;
+      progRun.disabled=false;
+      progLabel.classList.remove('run','blink');
+      progPac.classList.remove('anim');
+      toast('sys','LOAD','STAGE READY — PRESS START');
+    }
+  },200);
+}
+progRun.addEventListener('click',function(){progGo();addScore(25)});
+
+var hpCells=$('#hpCells'),hpVal=$('#hpVal'),lowWarned=false;
+for(var i=0;i<10;i++)hpCells.appendChild(document.createElement('i'));
+function hpRender(){
+  $$('#hpCells i').forEach(function(c,i){c.classList.toggle('on',i<state.power)});
+  hpCells.classList.toggle('low',state.power<=3&&state.power>0);
+  hpCells.setAttribute('aria-valuenow',state.power);
+  hpVal.textContent=pad(state.power,2)+'/10';
+  hpVal.style.color=state.power<=3?'var(--red)':'var(--yel)';
+}
+$('#btnFruit').addEventListener('click',function(){
+  if(state.power>=10){toast('sys','FULL','POWER FULL — SAVE THE FRUIT');bleep(SFX.click);return}
+  state.power=Math.min(10,state.power+1);
+  addScore(100);bleep(SFX.eat);
+  if(state.power>3)lowWarned=false;
+  hpRender();
+});
+$('#btnHit').addEventListener('click',function(){
+  state.power=Math.max(0,state.power-2);
+  bleep(SFX.bad);
+  hpRender();
+  if(state.power===0){openModal();return}
+  if(state.power<=3&&!lowWarned){lowWarned=true;toast('bad','WARN','POWER CRITICAL — FIND FRUIT')}
+});
+
+var modalBack=$('#modalBack'),mCount=$('#mCount'),mTimer=null,mOpener=null;
+function openModal(){
+  if(!modalBack.hidden)return;
+  mOpener=document.activeElement;
+  modalBack.hidden=false;
+  document.body.style.overflow='hidden';
+  var n=9;
+  mCount.textContent=n;mCount.classList.remove('crit');
+  $('#mCont').focus();
+  bleep(SFX.bad);
+  mTimer=setInterval(function(){
+    n--;
+    mCount.textContent=n;
+    bleep([[440-n*20,.05]]);
+    if(n<=3)mCount.classList.add('crit');
+    if(n<=0){
+      closeModal();
+      state.power=5;hpRender();
+      toast('bad','OVER','GAME OVER — INSERT COIN TO PLAY AGAIN');
+    }
+  },1000);
+}
+function closeModal(){
+  modalBack.hidden=true;
+  document.body.style.overflow='';
+  if(mTimer){clearInterval(mTimer);mTimer=null}
+  if(mOpener&&mOpener.focus)mOpener.focus();
+}
+$('#btnKO').addEventListener('click',function(){
+  state.power=0;hpRender();openModal();
+});
+$('#mCont').addEventListener('click',function(){
+  if(state.credits<1){bleep(SFX.bad);toast('bad','ERR','NO CREDIT — FEED THE SLOT FIRST');return}
+  state.credits--;state.power=10;lowWarned=false;
+  addScore(1000);bleep(SFX.start);
+  hpRender();renderBoard();
+  closeModal();
+  toast('score','1UP','CREDIT ACCEPTED — PLAYER 1 REVIVED');
+});
+$('#mOver').addEventListener('click',function(){
+  closeModal();
+  state.power=5;hpRender();
+  toast('bad','OVER','GAME OVER — HOLD YOUR QUARTER');
+});
+modalBack.addEventListener('click',function(e){if(e.target===modalBack)closeModal()});
+document.addEventListener('keydown',function(e){
+  if(modalBack.hidden)return;
+  if(e.key==='Escape'){closeModal();return}
+  if(e.key==='Tab'){
+    var f=[$('#mCont'),$('#mOver')];
+    var idx=f.indexOf(document.activeElement);
+    e.preventDefault();
+    f[(idx+(e.shiftKey?-1:1)+f.length)%f.length].focus();
+  }
+});
+
+var TOASTS={
+  score:['1UP','1UP — EXTEND AT 10,000'],
+  sys:['SYS','GHOSTS REGROUPED — WAVE 2 INCOMING'],
+  bad:['OVER','GAME OVER — HOLD YOUR QUARTER']
+};
+$$('[data-toast]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var k=b.getAttribute('data-toast');
+    toast(k,TOASTS[k][0],TOASTS[k][1]);
+    addScore(25);
+    bleep(k==='bad'?SFX.bad:SFX.click);
+  });
+});
+
+$$('.tipchip').forEach(function(c){
+  c.setAttribute('aria-label',c.textContent+' — '+c.getAttribute('data-tip'));
+  c.addEventListener('click',function(){addScore(10);bleep(SFX.click)});
+});
+
+hpRender();renderBoard();
+setTimeout(progGo,600);
+})();
+</script>
+</body>
+</html>
