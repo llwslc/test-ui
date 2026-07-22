@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>纹社 · TOTEM — 民艺图腾视觉方向稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Jost:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bone:#F3ECDC;
+  --bone-raised:#F8F2E3;
+  --bone-dim:#E7DCC3;
+  --ink:#241C14;
+  --ink-soft:#4F4132;
+  --ochre:#B4713A;
+  --ochre-deep:#8A5522;
+  --ochre-pale:#EBD8B2;
+  --ochre-lite:#D89B5F;
+  --indigo:#1E3A5F;
+  --indigo-deep:#152A46;
+  --indigo-lite:#5C7CA6;
+  --indigo-mist:#8FA9CC;
+  --cinnabar:#B03A28;
+  --cinnabar-deep:#8F2E1F;
+  --cinnabar-lite:#C74634;
+  --serif:'Noto Serif SC',serif;
+  --sans:'Jost','Noto Sans SC',sans-serif;
+  --slab:'Alfa Slab One',serif;
+  --weave:repeating-linear-gradient(0deg,rgba(36,28,20,.045) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(36,28,20,.045) 0 1px,transparent 1px 4px);
+  --wood:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.007 0.13' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.48 0 0 0 0 0.28 0 0 0 0 0.10 0 0 0 0.85 -0.28'/%3E%3C/filter%3E%3Crect width='280' height='200' filter='url(%23w)'/%3E%3C/svg%3E");
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.7;
+  color:var(--ink);
+  background:var(--bone);
+  background-image:repeating-linear-gradient(0deg,rgba(36,28,20,.028) 0 1px,transparent 1px 6px),repeating-linear-gradient(90deg,rgba(36,28,20,.028) 0 1px,transparent 1px 6px);
+}
+::selection{background:var(--indigo);color:var(--bone)}
+:focus-visible{outline:3px solid var(--cinnabar);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:900;line-height:1.25;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit}
+.latin{font-family:var(--slab);font-weight:400;letter-spacing:.06em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bone);padding:10px 18px;z-index:99}
+.skip:focus{left:12px;top:12px}
+.defs-svg{position:absolute;width:0;height:0;overflow:hidden}
+
+/* 边饰带 */
+.band{border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);overflow:hidden}
+.band svg{display:block;width:100%;height:26px}
+.band .march{animation:march 2.2s steps(2) infinite}
+@keyframes march{to{transform:translateX(-52px)}}
+.band--dia{background:var(--indigo)}
+.band--zig{background:var(--cinnabar)}
+.band--sun{background:var(--ochre)}
+
+/* HERO */
+.hero{padding:56px 0 64px;position:relative}
+.brandline{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:40px}
+.seal{
+  width:58px;height:58px;flex:none;
+  background:var(--cinnabar);color:var(--bone-raised);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  display:grid;place-items:center;
+  font-family:var(--serif);font-weight:900;font-size:30px;
+  transform:rotate(-3deg);
+}
+.plaque{
+  background:var(--ochre-pale) var(--wood);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  padding:8px 22px 10px;
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+}
+.plaque strong{font-family:var(--serif);font-weight:900;font-size:30px;letter-spacing:.12em}
+.plaque .latin{font-size:15px;color:var(--cinnabar-deep)}
+.plaque small{font-size:14px;font-weight:500;color:var(--ink-soft);letter-spacing:.08em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,440px);gap:56px;align-items:center}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-weight:600;font-size:14px;letter-spacing:.22em;color:var(--indigo);
+  text-transform:uppercase;margin-bottom:18px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";width:9px;height:9px;background:var(--cinnabar);transform:rotate(45deg)}
+.hero h1{font-size:clamp(38px,5.2vw,68px);letter-spacing:.04em}
+.hero h1 em{font-style:normal;color:var(--cinnabar)}
+.hero-copy{margin-top:26px;max-width:34em;font-size:17px;color:var(--ink-soft)}
+.hero-copy + .hero-copy{margin-top:10px}
+.hero-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
+
+.dye-wrap{position:relative;justify-self:end;width:100%;max-width:440px}
+.dye-cloth{display:block;width:100%;height:auto;border:3px solid var(--ink);box-shadow:8px 8px 0 rgba(36,28,20,.22);background:var(--indigo-deep)}
+.totem-sun{position:absolute;inset:0;margin:auto;width:60%;height:60%}
+.sun-turn{transform-box:fill-box;transform-origin:center;animation:turn 96s steps(32) infinite}
+@keyframes turn{to{transform:rotate(360deg)}}
+.dye-tag{
+  position:absolute;left:-12px;bottom:22px;
+  background:var(--bone-raised);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  padding:4px 12px;font-size:13px;font-weight:600;letter-spacing:.14em;
+}
+
+/* 织物分块网格 */
+.plates{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:26px;padding:56px 0 72px}
+.patch{position:relative;background:var(--bone-raised);background-image:var(--weave);border:3px solid var(--ink);padding:24px 24px 28px}
+.patch::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(36,28,20,.26);pointer-events:none}
+.patch > *{position:relative}
+.patch--wood{background:var(--ochre-pale) var(--wood)}
+.patch-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.patch-head h2{font-size:22px;letter-spacing:.1em;white-space:nowrap}
+.patch-head .plate{font-family:var(--slab);font-size:12px;color:var(--cinnabar);letter-spacing:.1em;white-space:nowrap}
+.patch-head .saw{flex:1;min-width:24px;height:8px}
+.patch-head .saw svg{display:block;width:100%;height:8px}
+.patch-sub{font-size:14px;color:var(--ink-soft);margin-bottom:20px}
+.p1{grid-column:span 7}
+.p2{grid-column:span 5}
+.p3{grid-column:span 4}
+.p4{grid-column:span 4}
+.p5{grid-column:span 4}
+.p6{grid-column:span 7}
+.p7{grid-column:span 5}
+
+/* 按钮 */
+.btn{
+  display:inline-block;padding:11px 22px;cursor:pointer;
+  font-weight:600;font-size:16px;letter-spacing:.1em;
+  background:var(--bone-raised);color:var(--ink);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  transition:transform .1s steps(2),box-shadow .1s steps(2);
+}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn--cinnabar{background:var(--cinnabar);color:var(--bone-raised)}
+.btn--cinnabar:focus-visible{outline-color:var(--indigo)}
+.btn--indigo{background:var(--indigo);color:var(--bone)}
+.btn--outline{background:transparent}
+.btn--quiet{border-color:transparent;box-shadow:none;background:transparent;text-decoration:underline;text-decoration-style:dashed;text-underline-offset:6px;text-decoration-color:var(--cinnabar)}
+.btn--quiet:hover{transform:none;box-shadow:none;color:var(--cinnabar-deep)}
+.btn--quiet:active{transform:translate(1px,1px)}
+.btn[disabled]{opacity:.45;border-style:dashed;box-shadow:none;cursor:not-allowed}
+.btn[disabled]:hover,.btn[disabled]:active{transform:none;box-shadow:none}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn-row + .btn-row{margin-top:16px}
+.stamp-strip{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+.stamp-strip .lbl{font-size:13px;font-weight:600;color:var(--ink-soft);letter-spacing:.14em}
+.stamp{
+  width:48px;height:48px;display:grid;place-items:center;
+  border:3px solid currentColor;box-shadow:inset 0 0 0 2px var(--ochre-pale);
+  font-family:var(--serif);font-weight:900;font-size:24px;line-height:1;
+  background:transparent;
+}
+.stamp--c{color:var(--cinnabar);transform:rotate(-3deg)}
+.stamp--i{color:var(--indigo);transform:rotate(2deg)}
+.stamp--o{color:var(--ochre-deep);transform:rotate(-1deg)}
+
+/* 字段 */
+.field{margin-bottom:20px}
+.field label,.field .field-label{display:block;font-weight:600;font-size:15px;letter-spacing:.08em;margin-bottom:8px}
+.field input[type="text"]{
+  width:100%;padding:11px 14px;font:500 16px var(--sans);color:var(--ink);
+  background:var(--bone-raised);border:3px solid var(--ink);border-radius:0;
+  box-shadow:inset 0 -4px 0 rgba(30,58,95,.14);
+}
+.field input[type="text"]::placeholder{color:#7A6A52}
+.field input[type="text"]:focus-visible{outline-offset:0;box-shadow:inset 0 -4px 0 var(--indigo)}
+.hint{font-size:13px;color:var(--ink-soft);margin-top:7px}
+
+/* 下拉 */
+.dd{position:relative}
+.dd-btn{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:11px 14px;font:500 16px var(--sans);text-align:left;cursor:pointer;
+  background:var(--bone-raised);border:3px solid var(--ink);
+  box-shadow:inset 0 -4px 0 rgba(30,58,95,.14);
+}
+.dd-btn .dd-caret{width:12px;height:12px;flex:none;background:var(--indigo);clip-path:polygon(50% 100%,0 0,100% 0);transition:transform .15s steps(2)}
+.dd-btn[aria-expanded="true"] .dd-caret{transform:rotate(180deg)}
+.dd-pop{
+  position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:40;
+  margin:0;padding:6px;list-style:none;
+  background:var(--bone-raised);border:3px solid var(--ink);box-shadow:6px 6px 0 rgba(36,28,20,.85);
+}
+.dd-pop[hidden]{display:none}
+.dd-pop li{
+  display:flex;align-items:baseline;gap:10px;
+  padding:9px 12px;cursor:pointer;font-weight:500;
+}
+.dd-pop li::before{content:"";width:8px;height:8px;flex:none;align-self:center;background:var(--bone-dim);transform:rotate(45deg)}
+.dd-pop li:hover,.dd-pop li:focus-visible{background:var(--indigo);color:var(--bone)}
+.dd-pop li:hover small,.dd-pop li:focus-visible small{color:var(--indigo-mist)}
+.dd-pop li[aria-selected="true"]::before{background:var(--cinnabar)}
+.dd-pop li small{margin-left:auto;font-size:12px;color:var(--ink-soft)}
+
+/* 单选 · 复选 */
+.choices{display:flex;flex-direction:column;gap:12px;border:0;padding:0;margin:0}
+.choices legend{font-weight:600;font-size:15px;letter-spacing:.08em;padding:0;margin-bottom:10px}
+.choice{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:500}
+.choice input{appearance:none;-webkit-appearance:none;margin:0;flex:none;cursor:pointer;background:var(--bone-raised);border:3px solid var(--ink)}
+.choice input[type="radio"]{width:20px;height:20px;transform:rotate(45deg)}
+.choice input[type="radio"]:checked{background:var(--cinnabar);box-shadow:inset 0 0 0 3px var(--bone-raised)}
+.choice input[type="checkbox"]{width:22px;height:22px;position:relative}
+.choice input[type="checkbox"]:checked{background:var(--indigo)}
+.choice input[type="checkbox"]:checked::after{
+  content:"✕";position:absolute;inset:0;display:grid;place-items:center;
+  color:var(--bone);font:700 13px var(--sans);
+}
+.swatch{width:14px;height:14px;flex:none;border:2px solid var(--ink)}
+.choice .why{margin-left:auto;font-size:12px;color:var(--ink-soft)}
+.note{
+  margin-top:18px;padding:10px 14px;font-size:14px;color:var(--ink-soft);
+  background:var(--bone);border-left:6px solid var(--indigo);
+}
+.note strong{color:var(--ink)}
+
+/* 开关 */
+.switch{display:flex;align-items:center;gap:14px;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;margin:0;position:absolute;width:1px;height:1px;opacity:0}
+.sw-track{
+  position:relative;flex:none;width:66px;height:32px;
+  background:var(--bone-raised);background-image:var(--weave);
+  border:3px solid var(--ink);transition:background-color .2s steps(2);
+}
+.sw-thumb{
+  position:absolute;top:2px;left:2px;width:28px;height:22px;
+  background:var(--ochre-lite);border:2px solid var(--ink);
+  clip-path:polygon(0 50%,22% 0,78% 0,100% 50%,78% 100%,22% 100%);
+  transition:transform .22s steps(3);
+}
+.switch input:checked + .sw-track{background-color:var(--indigo)}
+.switch input:checked + .sw-track .sw-thumb{transform:translateX(28px);background:var(--bone)}
+.switch input:focus-visible + .sw-track{outline:3px solid var(--cinnabar);outline-offset:2px}
+.sw-label{font-weight:600}
+.sw-state{font-size:13px;color:var(--ink-soft)}
+
+/* 滑杆 */
+.slider-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+.slider-row output{font-family:var(--slab);font-size:15px;color:var(--indigo)}
+input[type="range"]{
+  appearance:none;-webkit-appearance:none;width:100%;height:34px;margin:0;
+  background:transparent;cursor:pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+  height:18px;border:3px solid var(--ink);
+  background:linear-gradient(90deg,var(--indigo) var(--fill,62%),var(--bone-raised) var(--fill,62%));
+}
+input[type="range"]::-webkit-slider-thumb{
+  appearance:none;-webkit-appearance:none;width:26px;height:26px;margin-top:-7px;
+  background:var(--cinnabar);
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  filter:drop-shadow(2px 2px 0 var(--ink));
+}
+input[type="range"]::-moz-range-track{
+  height:12px;border:3px solid var(--ink);
+  background:linear-gradient(90deg,var(--indigo) var(--fill,62%),var(--bone-raised) var(--fill,62%));
+}
+input[type="range"]::-moz-range-thumb{
+  width:26px;height:26px;border:0;border-radius:0;background:var(--cinnabar);
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+}
+
+/* 量表 */
+.gauge-box{margin-top:22px}
+.gauge{display:block;width:100%;max-width:280px;height:auto;margin:0 auto}
+.gauge .seg{fill:var(--bone-dim);stroke:var(--ink);stroke-width:1.5}
+.gauge .seg.on{fill:var(--indigo)}
+.gauge .seg.on.hot{fill:var(--cinnabar)}
+.gauge-needle{transition:transform .5s steps(6)}
+.gauge text{font:600 11px var(--sans);fill:var(--ink-soft)}
+.gauge-read{text-align:center;font-size:14px;color:var(--ink-soft);margin-top:6px}
+.gauge-read strong{color:var(--indigo);letter-spacing:.06em}
+
+/* 进度 */
+.prog-block{margin-top:26px}
+.prog{height:24px;border:3px solid var(--ink);background:var(--bone-raised);background-image:var(--weave);position:relative;overflow:hidden}
+.prog-fill{
+  height:100%;background:var(--indigo);
+  background-image:repeating-linear-gradient(90deg,transparent 0 10px,rgba(243,236,220,.22) 10px 12px);
+  border-right:3px solid var(--ink);
+  transition:width .5s steps(4);
+}
+.prog-row{display:flex;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.prog-row output{font-family:var(--slab);font-size:15px;color:var(--indigo)}
+.prog-row .btn{padding:7px 16px;font-size:14px}
+
+/* 标签页 */
+.tablist{display:flex;gap:10px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding:0 10px}
+.tab{
+  position:relative;margin-bottom:-3px;padding:9px 18px 8px;cursor:pointer;
+  font-weight:600;font-size:15px;letter-spacing:.1em;
+  background:var(--bone-dim);border:3px solid var(--ink);
+}
+.tab[aria-selected="true"]{
+  background:var(--bone-raised);color:var(--cinnabar-deep);
+  border-bottom-color:var(--bone-raised);
+  box-shadow:inset 0 6px 0 var(--cinnabar);
+  padding-top:12px;margin-top:-5px;
+}
+.tabpanel{padding:20px 4px 0}
+.tabpanel[hidden]{display:none}
+.swatch-frame{border:3px solid var(--ink);background:var(--bone-raised)}
+.swatch-frame svg{display:block;width:100%;height:132px}
+.tab-lore{margin-top:14px;font-size:14px;color:var(--ink-soft)}
+.tab-lore strong{color:var(--ink)}
+.tab-use{margin-top:4px;font-size:13px;color:var(--ochre-deep);letter-spacing:.08em}
+
+/* 弹窗 */
+dialog{border:0;padding:0;background:transparent;max-width:none}
+dialog::backdrop{background:rgba(21,42,70,.6)}
+.dialog-card{
+  width:min(520px,calc(100vw - 28px));
+  background:var(--bone-raised);background-image:var(--weave);
+  border:3px solid var(--ink);box-shadow:10px 10px 0 rgba(36,28,20,.55);
+}
+.dialog-band{height:18px;border-bottom:3px solid var(--ink);background:var(--cinnabar);overflow:hidden}
+.dialog-band svg{display:block;width:100%;height:18px}
+.dialog-body{padding:26px 28px 30px}
+.dialog-body h3{font-size:26px;letter-spacing:.14em}
+.dialog-sub{font-size:14px;color:var(--ink-soft);margin:8px 0 22px}
+.dialog-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.dialog-choices{display:flex;gap:18px;flex-wrap:wrap}
+.dialog-choices .choice{gap:8px}
+
+/* toast */
+.toasts{
+  position:fixed;top:16px;right:16px;z-index:90;
+  display:flex;flex-direction:column;gap:12px;align-items:flex-end;
+  pointer-events:none;
+}
+.toast{
+  display:flex;align-items:center;gap:12px;pointer-events:auto;
+  max-width:min(340px,calc(100vw - 32px));
+  background:var(--bone-raised);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  padding:10px 16px 10px 10px;font-weight:500;font-size:15px;
+  animation:toast-in .3s steps(3);
+}
+.toast.out{animation:toast-out .25s steps(2) forwards}
+.toast-seal{
+  width:34px;height:34px;flex:none;display:grid;place-items:center;
+  border:2px solid var(--ink);color:var(--bone-raised);
+  font-family:var(--serif);font-weight:900;font-size:16px;
+}
+.toast--cinnabar .toast-seal{background:var(--cinnabar)}
+.toast--indigo .toast-seal{background:var(--indigo)}
+.toast--ochre .toast-seal{background:var(--ochre)}
+@keyframes toast-in{from{transform:translateY(-18px);opacity:0}to{transform:none;opacity:1}}
+@keyframes toast-out{to{transform:translateY(-12px);opacity:0}}
+
+/* tooltip */
+.tt{position:relative;display:inline-flex}
+.tt-pop{
+  position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  width:max-content;max-width:200px;z-index:60;
+  background:var(--ink);color:var(--bone);font-size:13px;line-height:1.5;
+  padding:8px 12px;border:2px solid var(--cinnabar);
+  opacity:0;visibility:hidden;transition:opacity .15s steps(2);
+}
+.tt-pop::after{
+  content:"";position:absolute;top:100%;left:50%;
+  width:10px;height:10px;margin:-6px 0 0 -5px;
+  background:var(--ink);border-right:2px solid var(--cinnabar);border-bottom:2px solid var(--cinnabar);
+  transform:rotate(45deg);
+}
+.tt:hover .tt-pop,.tt:focus-within .tt-pop{opacity:1;visibility:visible}
+.info-dot{
+  width:24px;height:24px;padding:0;cursor:help;
+  background:var(--indigo);color:var(--bone);border:2px solid var(--ink);
+  font:700 13px var(--sans);line-height:1;
+  display:inline-grid;place-items:center;
+}
+
+/* 页脚 */
+.colophon{background:var(--indigo-deep);color:var(--bone);padding:34px 0 42px}
+.colophon .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
+.colophon strong{font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:.18em}
+.colophon p{font-size:13px;color:var(--indigo-mist)}
+.colophon .latin{color:var(--ochre-lite);font-size:12px}
+
+.divider-sp{height:0}
+
+@media (max-width:1080px){
+  .p1,.p2,.p3,.p4,.p5,.p6,.p7{grid-column:span 6}
+  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:36px}
+}
+@media (max-width:760px){
+  .wrap{padding:0 18px}
+  .hero{padding:40px 0 48px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .dye-wrap{justify-self:center;max-width:340px}
+  .plates{grid-template-columns:1fr;gap:22px;padding:40px 0 56px}
+  .p1,.p2,.p3,.p4,.p5,.p6,.p7{grid-column:1 / -1}
+  .patch{padding:20px 18px 24px}
+  .toasts{left:16px;right:16px;align-items:stretch}
+  .toast{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .band .march,.sun-turn{animation:none}
+  *,*::before,*::after{transition-duration:0s !important;animation-duration:.01s !important;animation-iteration-count:1 !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#plates">跳到花样陈列</a>
+
+<svg class="defs-svg" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="pDia" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M13 4 L22 13 L13 22 L4 13 Z" fill="none" stroke="#F3ECDC" stroke-width="2"/>
+      <circle cx="13" cy="13" r="2" fill="#C74634"/>
+    </pattern>
+    <pattern id="pZig" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M-1 17 L6.5 8 L13 17 L19.5 8 L27 17" fill="none" stroke="#F3ECDC" stroke-width="3"/>
+      <path d="M-1 23 L6.5 14 L13 23 L19.5 14 L27 23" fill="none" stroke="#D89B5F" stroke-width="2"/>
+    </pattern>
+    <pattern id="pSunB" width="52" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="5" fill="#241C14"/>
+      <g stroke="#241C14" stroke-width="2">
+        <line x1="13" y1="2" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="24"/>
+        <line x1="2" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="24" y2="13"/>
+        <line x1="5.2" y1="5.2" x2="8" y2="8"/><line x1="18" y1="18" x2="20.8" y2="20.8"/>
+        <line x1="20.8" y1="5.2" x2="18" y2="8"/><line x1="8" y1="18" x2="5.2" y2="20.8"/>
+      </g>
+      <path d="M39 7 L45 13 L39 19 L33 13 Z" fill="#F3ECDC"/>
+      <circle cx="39" cy="13" r="2" fill="#241C14"/>
+    </pattern>
+    <pattern id="pSawC" width="12" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L6 0 L12 8 Z" fill="#B03A28"/>
+    </pattern>
+    <pattern id="pSawI" width="12" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L6 0 L12 8 Z" fill="#1E3A5F"/>
+    </pattern>
+    <pattern id="pSawB" width="12" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L6 0 L12 8 Z" fill="#F3ECDC"/>
+    </pattern>
+    <pattern id="pLing" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M26 5 L47 26 L26 47 L5 26 Z" fill="none" stroke="#1E3A5F" stroke-width="3"/>
+      <path d="M26 15 L37 26 L26 37 L15 26 Z" fill="none" stroke="#B4713A" stroke-width="2"/>
+      <circle cx="26" cy="26" r="3" fill="#B03A28"/>
+      <circle cx="0" cy="0" r="3" fill="#1E3A5F"/><circle cx="52" cy="0" r="3" fill="#1E3A5F"/>
+      <circle cx="0" cy="52" r="3" fill="#1E3A5F"/><circle cx="52" cy="52" r="3" fill="#1E3A5F"/>
+    </pattern>
+    <pattern id="pZhi" width="48" height="34" patternUnits="userSpaceOnUse">
+      <path d="M-2 12 L10 2 L22 12 L34 2 L46 12 L50 8.7" fill="none" stroke="#1E3A5F" stroke-width="4"/>
+      <path d="M-2 26 L10 16 L22 26 L34 16 L46 26 L50 22.7" fill="none" stroke="#B03A28" stroke-width="3"/>
+      <circle cx="10" cy="30" r="2" fill="#B4713A"/><circle cx="34" cy="30" r="2" fill="#B4713A"/>
+    </pattern>
+    <pattern id="pSunG" width="68" height="68" patternUnits="userSpaceOnUse">
+      <circle cx="34" cy="34" r="8" fill="#B03A28"/>
+      <circle cx="34" cy="34" r="13" fill="none" stroke="#241C14" stroke-width="2"/>
+      <g fill="#B4713A" stroke="#241C14" stroke-width="1.5">
+        <path d="M34 10 L38 20 L30 20 Z"/><path d="M34 58 L30 48 L38 48 Z"/>
+        <path d="M10 34 L20 30 L20 38 Z"/><path d="M58 34 L48 38 L48 30 Z"/>
+        <path d="M17 17 L26 20 L20 26 Z"/><path d="M51 17 L48 26 L42 20 Z"/>
+        <path d="M17 51 L20 42 L26 48 Z"/><path d="M51 51 L42 48 L48 42 Z"/>
+      </g>
+      <circle cx="34" cy="34" r="26" fill="none" stroke="#1E3A5F" stroke-width="2" stroke-dasharray="4 5"/>
+      <path d="M0 0 L6 6 L0 12 L-6 6 Z" fill="#1E3A5F"/><path d="M68 0 L74 6 L68 12 L62 6 Z" fill="#1E3A5F"/>
+      <path d="M0 68 L6 62 L0 56 L-6 62 Z" fill="#1E3A5F"/><path d="M68 68 L62 62 L68 56 L74 62 Z" fill="#1E3A5F"/>
+      <path d="M0 56 L6 62 L0 68 L-6 62 Z" fill="#1E3A5F"/><path d="M68 56 L74 62 L68 68 L62 62 Z" fill="#1E3A5F"/>
+    </pattern>
+    <filter id="fShib" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="4" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="0.7"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="band band--dia" aria-hidden="true"><svg><rect class="march" x="0" y="1" width="200%" height="26" fill="url(#pDia)"/></svg></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandline">
+      <span class="seal" aria-hidden="true">社</span>
+      <div class="plaque">
+        <strong>纹社</strong>
+        <span class="latin">WÉN SHÈ</span>
+        <small>民艺纹样传习工坊</small>
+      </div>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow">TOTEM · 民艺图腾 · 视觉方向稿</p>
+        <h1>凡手所织,<br>皆成<em>图腾</em>。</h1>
+        <p class="hero-copy">纹社把山野作坊里的菱纹、之字与太阳纹收进一册可传习的织谱——版有谱,染有方,手艺不再散佚。</p>
+        <p class="hero-copy">今日染一缸靛、刻一方版,明日它们就是族里的新图腾。</p>
+        <div class="hero-cta">
+          <button class="btn btn--cinnabar" type="button" data-open-join>开册入社</button>
+          <a class="btn btn--outline" href="#plate6">看花样谱</a>
+        </div>
+      </div>
+      <div class="dye-wrap">
+        <svg class="dye-cloth" viewBox="0 0 380 380" role="img" aria-label="扎染靛布,骨白晕圈,中央太阳图腾">
+          <rect width="380" height="380" fill="#152A46"/>
+          <g filter="url(#fShib)" fill="none">
+            <circle cx="190" cy="190" r="150" stroke="#3D5A85" stroke-width="10"/>
+            <circle cx="190" cy="190" r="122" stroke="#5C7CA6" stroke-width="7"/>
+            <circle cx="190" cy="190" r="96" stroke="#8FA9CC" stroke-width="5"/>
+            <g stroke="#5C7CA6" stroke-width="5">
+              <circle cx="56" cy="56" r="27"/><circle cx="324" cy="56" r="27"/>
+              <circle cx="56" cy="324" r="27"/><circle cx="324" cy="324" r="27"/>
+            </g>
+            <g stroke="#8FA9CC" stroke-width="4">
+              <circle cx="56" cy="56" r="13"/><circle cx="324" cy="56" r="13"/>
+              <circle cx="56" cy="324" r="13"/><circle cx="324" cy="324" r="13"/>
+            </g>
+            <g stroke="#3D5A85" stroke-width="4">
+              <circle cx="190" cy="34" r="12"/><circle cx="190" cy="346" r="12"/>
+              <circle cx="34" cy="190" r="12"/><circle cx="346" cy="190" r="12"/>
+            </g>
+          </g>
+        </svg>
+        <svg class="totem-sun" viewBox="0 0 240 240" aria-hidden="true">
+          <g class="sun-turn">
+            <g id="raysBig" fill="#D89B5F" stroke="#241C14" stroke-width="2">
+              <polygon id="rayA" points="120,8 132,42 108,42"/>
+            </g>
+            <circle cx="120" cy="120" r="78" fill="#F3ECDC" stroke="#241C14" stroke-width="3"/>
+            <circle cx="120" cy="120" r="68" fill="none" stroke="#1E3A5F" stroke-width="2" stroke-dasharray="5 5"/>
+            <g id="diaRing" fill="#1E3A5F">
+              <path id="diaB" d="M120 54 L128 66 L120 78 L112 66 Z"/>
+            </g>
+            <circle cx="120" cy="120" r="38" fill="#B03A28" stroke="#241C14" stroke-width="3"/>
+            <g fill="#F3ECDC">
+              <circle cx="120" cy="120" r="7"/>
+              <circle cx="120" cy="100" r="4"/><circle cx="140" cy="120" r="4"/>
+              <circle cx="120" cy="140" r="4"/><circle cx="100" cy="120" r="4"/>
+            </g>
+          </g>
+        </svg>
+        <span class="dye-tag">扎染 · 三浸三晒</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="band band--zig" aria-hidden="true"><svg><rect class="march" x="0" y="0" width="200%" height="26" fill="url(#pZig)"/></svg></div>
+
+<main id="plates" class="wrap">
+  <div class="plates">
+
+    <section class="patch patch--wood p1" aria-labelledby="h-p1">
+      <div class="patch-head">
+        <h2 id="h-p1">版印</h2><span class="plate">PL·01</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawC)"/></svg></span>
+      </div>
+      <p class="patch-sub">木版四方,各司其印。禁用的版要封,封版加朱条。</p>
+      <div class="btn-row">
+        <span class="tt">
+          <button class="btn btn--cinnabar" type="button" aria-describedby="tt-stamp" data-toast="已用印:朱砂一方" data-tone="cinnabar">用印</button>
+          <span class="tt-pop" role="tooltip" id="tt-stamp">朱砂印泥,落纸三日不褪。</span>
+        </span>
+        <button class="btn btn--indigo" type="button" data-toast="已收录入谱" data-tone="indigo">收录</button>
+        <button class="btn btn--outline" type="button" data-toast="已存入木匣" data-tone="ochre">存档</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn--quiet" type="button" data-toast="注记已写入边白" data-tone="indigo">注记</button>
+        <button class="btn" type="button" disabled>封版待修</button>
+      </div>
+      <div class="stamp-strip" aria-hidden="true">
+        <span class="lbl">印样 · 今岁三方</span>
+        <span class="stamp stamp--c">纹</span>
+        <span class="stamp stamp--i">靛</span>
+        <span class="stamp stamp--o">杼</span>
+      </div>
+    </section>
+
+    <section class="patch p2" aria-labelledby="h-p2">
+      <div class="patch-head">
+        <h2 id="h-p2">名录</h2><span class="plate">PL·02</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawI)"/></svg></span>
+      </div>
+      <p class="patch-sub">入册先留名号,再择布样。</p>
+      <div class="field">
+        <label for="craftName">社员名号</label>
+        <input type="text" id="craftName" placeholder="如:西坡蓝手" autocomplete="off">
+        <p class="hint">名号会落在你交回的每一匹布上。</p>
+      </div>
+      <div class="field">
+        <span class="field-label" id="fabricLabel">布样</span>
+        <div class="dd">
+          <button class="dd-btn" type="button" id="fabricBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="fabricLabel fabricValue">
+            <span id="fabricValue">斜纹 · 二上二下</span>
+            <span class="dd-caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dd-pop" id="fabricPop" role="listbox" aria-labelledby="fabricLabel" tabindex="-1" hidden>
+            <li role="option" data-value="平纹 · 一上一下">平纹<small>一上一下</small></li>
+            <li role="option" data-value="斜纹 · 二上二下" aria-selected="true">斜纹<small>二上二下</small></li>
+            <li role="option" data-value="缎纹 · 五枚三飞">缎纹<small>五枚三飞</small></li>
+            <li role="option" data-value="绞缬 · 扎而后染">绞缬<small>扎而后染</small></li>
+          </ul>
+        </div>
+        <p class="hint" id="fabricHint">布样:斜纹,织机踏两步进一梭。</p>
+      </div>
+    </section>
+
+    <section class="patch p3" aria-labelledby="h-p3">
+      <div class="patch-head">
+        <h2 id="h-p3">染方</h2><span class="plate">PL·03</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawC)"/></svg></span>
+      </div>
+      <p class="patch-sub">一缸只认一方,认了就染到底。</p>
+      <fieldset class="choices">
+        <legend>今日染方</legend>
+        <label class="choice">
+          <input type="radio" name="dye" value="indigo" checked>
+          <span class="swatch" style="background:#1E3A5F"></span>靛蓝三浸
+          <span class="why">日常</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="dye" value="ochre">
+          <span class="swatch" style="background:#B4713A"></span>赭石拓染
+          <span class="why">秋祭</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="dye" value="cinnabar">
+          <span class="swatch" style="background:#B03A28"></span>朱砂点晕
+          <span class="why">婚仪</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="dye" value="mo">
+          <span class="swatch" style="background:#241C14"></span>墨青套染
+          <span class="why">丧仪</span>
+        </label>
+      </fieldset>
+      <p class="note" id="dyeNote"><strong>靛蓝三浸</strong>:浸三次,晾三次,晕圈骨白。</p>
+    </section>
+
+    <section class="patch p4" aria-labelledby="h-p4">
+      <div class="patch-head">
+        <h2 id="h-p4">工序</h2><span class="plate">PL·04</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawI)"/></svg></span>
+      </div>
+      <p class="patch-sub">四道工序走完,才许下缸。</p>
+      <fieldset class="choices" id="stepsBox">
+        <legend id="stepsLegend">今日工单(<span id="stepsCount">2</span>/4)</legend>
+        <label class="choice"><input type="checkbox" checked>浸布</label>
+        <label class="choice"><input type="checkbox" checked>扎结</label>
+        <label class="choice"><input type="checkbox">入缸</label>
+        <label class="choice"><input type="checkbox">晾晒</label>
+      </fieldset>
+      <p class="note" style="border-left-color:var(--cinnabar)">
+        <label class="switch" style="margin:0">
+          <input type="checkbox" role="switch" id="loomSwitch">
+          <span class="sw-track" aria-hidden="true"><span class="sw-thumb"></span></span>
+          <span class="sw-label">织机上梭</span>
+          <span class="sw-state" id="loomState">停机</span>
+        </label>
+      </p>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
+        <span class="tt">
+          <button class="info-dot" type="button" aria-describedby="tt-loom">?</button>
+          <span class="tt-pop" role="tooltip" id="tt-loom">上梭后踏板才吃力,新手先空踏一刻钟。</span>
+        </span>
+        <span class="hint" style="margin:0">上梭前先核对工单。</span>
+      </div>
+    </section>
+
+    <section class="patch p5" aria-labelledby="h-p5">
+      <div class="patch-head">
+        <h2 id="h-p5">量具</h2><span class="plate">PL·05</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawC)"/></svg></span>
+      </div>
+      <p class="patch-sub">缸有性子,拿量具说话。</p>
+      <div class="slider-row">
+        <label for="dyeDepth" style="font-weight:600;font-size:15px;letter-spacing:.08em">靛液浓度</label>
+        <output for="dyeDepth" id="dyeOut">62%</output>
+      </div>
+      <input type="range" id="dyeDepth" min="0" max="100" value="62" step="1">
+      <div class="gauge-box">
+        <svg class="gauge" viewBox="0 0 200 122" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="靛缸活性" id="vatGauge">
+          <g id="gaugeSegs"></g>
+          <g class="gauge-needle" id="gaugeNeedle">
+            <line x1="100" y1="104" x2="44" y2="104" stroke="#241C14" stroke-width="4"/>
+          </g>
+          <path d="M100 96 L108 104 L100 112 L92 104 Z" fill="#B03A28" stroke="#241C14" stroke-width="2"/>
+          <text x="12" y="118">淡</text>
+          <text x="180" y="118">老</text>
+        </svg>
+        <p class="gauge-read">靛缸活性:<strong id="vatRead">中缸 · 宜染缥青</strong></p>
+      </div>
+      <div class="prog-block">
+        <span class="field-label" style="display:block;font-weight:600;font-size:15px;letter-spacing:.08em;margin-bottom:8px">织造进度</span>
+        <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36" aria-label="织造进度" id="weaveBar">
+          <div class="prog-fill" id="weaveFill" style="width:36%"></div>
+        </div>
+        <div class="prog-row">
+          <button class="btn btn--indigo" type="button" id="shuttleBtn">投一梭</button>
+          <output id="weaveOut">36%</output>
+          <span class="hint" style="margin:0">满一匹自动收卷。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="patch p6" id="plate6" aria-labelledby="h-p6">
+      <div class="patch-head">
+        <h2 id="h-p6">花样谱</h2><span class="plate">PL·06</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawI)"/></svg></span>
+      </div>
+      <p class="patch-sub">三样传家纹,谱上各有一页。</p>
+      <div class="tablist" role="tablist" aria-label="花样谱">
+        <button class="tab" role="tab" id="tab-ling" aria-controls="panel-ling" aria-selected="true">菱纹</button>
+        <button class="tab" role="tab" id="tab-zhi" aria-controls="panel-zhi" aria-selected="false" tabindex="-1">之字纹</button>
+        <button class="tab" role="tab" id="tab-sun" aria-controls="panel-sun" aria-selected="false" tabindex="-1">太阳纹</button>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-ling" aria-labelledby="tab-ling">
+        <div class="swatch-frame"><svg aria-hidden="true"><rect width="100%" height="132" fill="url(#pLing)"/></svg></div>
+        <p class="tab-lore"><strong>菱纹</strong>,水田之纹。套三层:靛线走外,赭线走里,朱点定心。</p>
+        <p class="tab-use">用于:被面 · 门帘 · 嫁妆包袱</p>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-zhi" aria-labelledby="tab-zhi" hidden>
+        <div class="swatch-frame"><svg aria-hidden="true"><rect width="100%" height="132" fill="url(#pZhi)"/></svg></div>
+        <p class="tab-lore"><strong>之字纹</strong>,山路之纹。靛线在上朱线在下,一上一下如踏坡。</p>
+        <p class="tab-use">用于:背带 · 绑腿 · 谷袋滚边</p>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-sun" aria-labelledby="tab-sun" hidden>
+        <div class="swatch-frame"><svg aria-hidden="true"><rect width="100%" height="132" fill="url(#pSunG)"/></svg></div>
+        <p class="tab-lore"><strong>太阳纹</strong>,晒场之纹。八芒向外,靛环缝一圈虚线,角上落靛菱。</p>
+        <p class="tab-use">用于:堂屋挂布 · 节庆幡 · 晒垫</p>
+      </div>
+    </section>
+
+    <section class="patch p7" aria-labelledby="h-p7">
+      <div class="patch-head">
+        <h2 id="h-p7">帖与印</h2><span class="plate">PL·07</span>
+        <span class="saw" aria-hidden="true"><svg><rect width="100%" height="8" fill="url(#pSawC)"/></svg></span>
+      </div>
+      <p class="patch-sub">大事递帖,小事用印,回执从右上角来。</p>
+      <div class="btn-row">
+        <button class="btn btn--cinnabar" type="button" data-open-join>递入社帖</button>
+        <button class="btn btn--indigo" type="button" data-toast="回执已至:布样留用" data-tone="indigo">讨回执</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn--outline" type="button" data-toast="印讫,墨干再收" data-tone="ochre">试印一方</button>
+        <span class="tt">
+          <button class="info-dot" type="button" aria-describedby="tt-seal">?</button>
+          <span class="tt-pop" role="tooltip" id="tt-seal">帖三日一回,印当场即讫。</span>
+        </span>
+      </div>
+      <p class="note" style="margin-top:22px"><strong>社规</strong>:帖不过三日,印不过当场,谱不出社门。</p>
+    </section>
+
+  </div>
+</main>
+
+<div class="band band--sun" aria-hidden="true"><svg><rect class="march" x="0" y="0" width="200%" height="26" fill="url(#pSunB)"/></svg></div>
+
+<footer class="colophon">
+  <div class="wrap">
+    <strong>纹社</strong>
+    <p>赭石 · 靛蓝 · 骨白 · 朱砂|木刻衬线 × 几何无衬线|边饰带分区 · 织物分块</p>
+    <span class="latin">TOTEM — A PROTEUS DIRECTION</span>
+  </div>
+</footer>
+
+<dialog id="joinDialog" aria-labelledby="jdTitle">
+  <div class="dialog-card">
+    <div class="dialog-band" aria-hidden="true"><svg><rect width="100%" height="18" fill="url(#pSawB)" y="4"/></svg></div>
+    <div class="dialog-body">
+      <h3 id="jdTitle">入社帖</h3>
+      <p class="dialog-sub">留下名号与行当,社里为你留一方版位。</p>
+      <form method="dialog" id="joinForm">
+        <div class="field">
+          <label for="joinName">名号</label>
+          <input type="text" id="joinName" placeholder="如:南塘织手" autocomplete="off">
+        </div>
+        <div class="field">
+          <span class="field-label">行当</span>
+          <div class="dialog-choices">
+            <label class="choice"><input type="radio" name="trade" value="染人" checked>染人</label>
+            <label class="choice"><input type="radio" name="trade" value="织手">织手</label>
+            <label class="choice"><input type="radio" name="trade" value="刻工">刻工</label>
+          </div>
+        </div>
+        <div class="dialog-actions">
+          <button class="btn btn--cinnabar" value="submit" type="submit">递帖</button>
+          <button class="btn btn--quiet" value="cancel" formnovalidate>且慢</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var NS="http://www.w3.org/2000/svg";
+
+  function ring(hostId,baseId,n,cx,cy){
+    var host=document.getElementById(hostId);
+    for(var i=1;i<n;i++){
+      var u=document.createElementNS(NS,"use");
+      u.setAttribute("href","#"+baseId);
+      u.setAttribute("transform","rotate("+(360/n*i)+" "+cx+" "+cy+")");
+      host.appendChild(u);
+    }
+  }
+  ring("raysBig","rayA",16,120,120);
+  ring("diaRing","diaB",8,120,120);
+
+  /* toast */
+  var toasts=document.getElementById("toasts");
+  var sealChar={cinnabar:"印",indigo:"谱",ochre:"匣"};
+  function toast(msg,tone){
+    tone=tone||"cinnabar";
+    while(toasts.children.length>=3){toasts.removeChild(toasts.firstChild);}
+    var t=document.createElement("div");
+    t.className="toast toast--"+tone;
+    t.setAttribute("role","status");
+    var s=document.createElement("span");
+    s.className="toast-seal";s.setAttribute("aria-hidden","true");
+    s.textContent=sealChar[tone]||"印";
+    var m=document.createElement("span");
+    m.textContent=msg;
+    t.appendChild(s);t.appendChild(m);
+    toasts.appendChild(t);
+    setTimeout(function(){
+      t.classList.add("out");
+      t.addEventListener("animationend",function(){t.remove();},{once:true});
+    },3200);
+  }
+  document.querySelectorAll("[data-toast]").forEach(function(b){
+    b.addEventListener("click",function(){toast(b.dataset.toast,b.dataset.tone);});
+  });
+
+  /* 下拉 */
+  var ddBtn=document.getElementById("fabricBtn");
+  var ddPop=document.getElementById("fabricPop");
+  var ddVal=document.getElementById("fabricValue");
+  var ddHint=document.getElementById("fabricHint");
+  var ddNotes={
+    "平纹 · 一上一下":"布样:平纹,最耐磨,学徒第一课。",
+    "斜纹 · 二上二下":"布样:斜纹,织机踏两步进一梭。",
+    "缎纹 · 五枚三飞":"布样:缎纹,浮长走五枚,留给熟手。",
+    "绞缬 · 扎而后染":"布样:绞缬,先扎结,后入缸。"
+  };
+  function ddOptions(){return Array.prototype.slice.call(ddPop.querySelectorAll("[role=option]"));}
+  function ddOpen(){
+    ddPop.hidden=false;
+    ddBtn.setAttribute("aria-expanded","true");
+    var sel=ddPop.querySelector("[aria-selected=true]")||ddOptions()[0];
+    ddOptions().forEach(function(o){o.tabIndex=-1;});
+    sel.tabIndex=0;sel.focus();
+  }
+  function ddClose(focusBtn){
+    ddPop.hidden=true;
+    ddBtn.setAttribute("aria-expanded","false");
+    if(focusBtn)ddBtn.focus();
+  }
+  function ddSelect(opt){
+    ddOptions().forEach(function(o){o.setAttribute("aria-selected",o===opt?"true":"false");});
+    ddVal.textContent=opt.dataset.value;
+    ddHint.textContent=ddNotes[opt.dataset.value];
+    ddClose(true);
+  }
+  ddBtn.addEventListener("click",function(){ddPop.hidden?ddOpen():ddClose(false);});
+  ddBtn.addEventListener("keydown",function(e){
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();ddOpen();}
+  });
+  ddPop.addEventListener("keydown",function(e){
+    var opts=ddOptions();
+    var i=opts.indexOf(document.activeElement);
+    if(e.key==="ArrowDown"){e.preventDefault();var n=opts[Math.min(i+1,opts.length-1)];n.tabIndex=0;n.focus();}
+    else if(e.key==="ArrowUp"){e.preventDefault();var p=opts[Math.max(i-1,0)];p.tabIndex=0;p.focus();}
+    else if(e.key==="Enter"||e.key===" "){e.preventDefault();if(i>=0)ddSelect(opts[i]);}
+    else if(e.key==="Escape"){ddClose(true);}
+    else if(e.key==="Tab"){ddClose(false);}
+  });
+  ddPop.addEventListener("click",function(e){
+    var li=e.target.closest("[role=option]");
+    if(li)ddSelect(li);
+  });
+  document.addEventListener("pointerdown",function(e){
+    if(!ddPop.hidden&&!e.target.closest(".dd"))ddClose(false);
+  });
+
+  /* 染方 */
+  var dyeNote=document.getElementById("dyeNote");
+  var dyeNotes={
+    indigo:"<strong>靛蓝三浸</strong>:浸三次,晾三次,晕圈骨白。",
+    ochre:"<strong>赭石拓染</strong>:石粉调浆,拓过版再上色。",
+    cinnabar:"<strong>朱砂点晕</strong>:只点纹心,点过不再补。",
+    mo:"<strong>墨青套染</strong>:靛底压墨,阴干七日。"
+  };
+  document.querySelectorAll("input[name=dye]").forEach(function(r){
+    r.addEventListener("change",function(){dyeNote.innerHTML=dyeNotes[r.value];});
+  });
+
+  /* 工序 */
+  var stepsBox=document.getElementById("stepsBox");
+  var stepsCount=document.getElementById("stepsCount");
+  stepsBox.addEventListener("change",function(){
+    stepsCount.textContent=stepsBox.querySelectorAll("input:checked").length;
+  });
+
+  /* 开关 */
+  var loom=document.getElementById("loomSwitch");
+  var loomState=document.getElementById("loomState");
+  loom.addEventListener("change",function(){
+    loomState.textContent=loom.checked?"上梭中":"停机";
+    toast(loom.checked?"织机上梭,踏板吃力了":"织机收梭,今日到此","indigo");
+  });
+
+  /* 滑杆 + 量表 */
+  var depth=document.getElementById("dyeDepth");
+  var dyeOut=document.getElementById("dyeOut");
+  var gauge=document.getElementById("vatGauge");
+  var needle=document.getElementById("gaugeNeedle");
+  var vatRead=document.getElementById("vatRead");
+  var segHost=document.getElementById("gaugeSegs");
+  var SEGS=12;
+  (function buildSegs(){
+    var cx=100,cy=104,r0=62,r1=88,span=180/SEGS,gap=2.6;
+    function pt(r,a){var rad=a*Math.PI/180;return (cx+r*Math.cos(rad)).toFixed(2)+" "+(cy+r*Math.sin(rad)).toFixed(2);}
+    for(var i=0;i<SEGS;i++){
+      var a0=180+i*span+gap/2,a1=180+(i+1)*span-gap/2;
+      var d="M "+pt(r0,a0)+" L "+pt(r1,a0)+" A "+r1+" "+r1+" 0 0 1 "+pt(r1,a1)+" L "+pt(r0,a1)+" A "+r0+" "+r0+" 0 0 0 "+pt(r0,a0)+" Z";
+      var p=document.createElementNS(NS,"path");
+      p.setAttribute("d",d);
+      p.setAttribute("class","seg");
+      segHost.appendChild(p);
+    }
+  })();
+  needle.style.transformOrigin="100px 104px";
+  function vatText(v){
+    if(v<40)return "浅缸 · 宜染月白";
+    if(v<75)return "中缸 · 宜染缥青";
+    return "老缸 · 宜染深靛";
+  }
+  function setVat(v){
+    dyeOut.textContent=v+"%";
+    depth.style.setProperty("--fill",v+"%");
+    needle.style.transform="rotate("+(v*1.8)+"deg)";
+    gauge.setAttribute("aria-valuenow",v);
+    vatRead.textContent=vatText(v);
+    var on=Math.round(v/100*SEGS);
+    Array.prototype.forEach.call(segHost.children,function(seg,i){
+      seg.classList.toggle("on",i<on);
+      seg.classList.toggle("hot",i<on&&i>=8);
+    });
+  }
+  depth.addEventListener("input",function(){setVat(+depth.value);});
+  setVat(62);
+
+  /* 进度 */
+  var weaveBar=document.getElementById("weaveBar");
+  var weaveFill=document.getElementById("weaveFill");
+  var weaveOut=document.getElementById("weaveOut");
+  var shuttle=document.getElementById("shuttleBtn");
+  var woven=36;
+  function setWeave(v){
+    woven=v;
+    weaveFill.style.width=v+"%";
+    weaveBar.setAttribute("aria-valuenow",v);
+    weaveOut.textContent=v+"%";
+  }
+  shuttle.addEventListener("click",function(){
+    var v=Math.min(woven+9,100);
+    setWeave(v);
+    if(v>=100){
+      toast("一匹织成,已收卷","ochre");
+      setTimeout(function(){setWeave(6);},900);
+    }
+  });
+
+  /* 标签页 */
+  var tabs=Array.prototype.slice.call(document.querySelectorAll("[role=tab]"));
+  function pickTab(tab){
+    tabs.forEach(function(t){
+      var on=t===tab;
+      t.setAttribute("aria-selected",on?"true":"false");
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden=!on;
+    });
+    tab.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener("click",function(){pickTab(t);});
+    t.addEventListener("keydown",function(e){
+      var n=null;
+      if(e.key==="ArrowRight")n=tabs[(i+1)%tabs.length];
+      else if(e.key==="ArrowLeft")n=tabs[(i-1+tabs.length)%tabs.length];
+      else if(e.key==="Home")n=tabs[0];
+      else if(e.key==="End")n=tabs[tabs.length-1];
+      if(n){e.preventDefault();pickTab(n);}
+    });
+  });
+
+  /* 弹窗 */
+  var dlg=document.getElementById("joinDialog");
+  var joinForm=document.getElementById("joinForm");
+  var joinName=document.getElementById("joinName");
+  document.querySelectorAll("[data-open-join]").forEach(function(b){
+    b.addEventListener("click",function(){dlg.showModal();});
+  });
+  dlg.addEventListener("click",function(e){
+    if(e.target===dlg)dlg.close("cancel");
+  });
+  dlg.addEventListener("close",function(){
+    if(dlg.returnValue==="submit"){
+      var name=joinName.value.trim();
+      toast(name?("入社帖已递:"+name+",三日内回帖"):"入社帖已递,三日内回帖","cinnabar");
+      joinForm.reset();
+    }
+    dlg.returnValue="";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UMBRA-9 · 本影九号观测台 — CORONA 日蚀玻璃</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ CORONA tokens ============ */
+:root{
+  --obsidian:#0B0C11;
+  --obsidian-2:#101219;
+  --ink:#F2EFE7;
+  --ink-dim:#B3AC9F;
+  --ink-faint:#8B8476;
+  --amber:#FFB45E;
+  --amber-hot:#FFDCA8;
+  --amber-deep:#C07A2A;
+  --amber-ink:#241303;
+  --cyan:#7CD9E8;
+  --cyan-deep:#2F7280;
+  --glass-fill:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028));
+  --glass-line:inset 0 0 0 1px rgba(255,255,255,.09);
+  --shadow-umbra:0 30px 80px -34px rgba(8,26,34,.85);
+  --shadow-gold:0 14px 50px -18px rgba(255,178,94,.22);
+  --shadow-atmo:0 14px 50px -18px rgba(124,217,232,.16);
+  --r-panel:28px;
+  --r-pill:999px;
+  --font-disp:"Space Grotesk","Noto Sans SC","PingFang SC",sans-serif;
+  --font-body:"Space Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  font-size:16px;line-height:1.7;
+  color:var(--ink);
+  background:var(--obsidian);
+  -webkit-font-smoothing:antialiased;
+}
+/* 径向渐晕 RADIAL VIGNETTE:日冕暖晕自上而降,大气青自下而升,四缘沉入本影 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(1150px 720px at 76% -10%, rgba(255,178,94,.16), transparent 62%),
+    radial-gradient(820px 560px at -12% 26%, rgba(124,217,232,.07), transparent 60%),
+    radial-gradient(1500px 860px at 50% 118%, rgba(47,114,128,.14), transparent 64%),
+    radial-gradient(130% 130% at 50% 42%, transparent 52%, rgba(4,5,9,.62) 100%);
+}
+::selection{background:rgba(255,180,94,.32);color:var(--ink)}
+a{color:var(--cyan);text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+svg{display:block}
+:focus-visible{outline:2px solid rgba(255,180,94,.92);outline-offset:3px;border-radius:6px}
+
+.wrap{width:min(1180px, 100% - 48px);margin-inline:auto}
+.mono{font-family:var(--font-mono)}
+.tag{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);
+}
+.tag--amber{color:var(--amber)}
+.tag--cyan{color:var(--cyan)}
+
+/* ============ 毛玻璃面板 FROSTED PANEL:rgba 低透明度 + backdrop blur + 1px 白内描 ============ */
+.glass{
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);
+  backdrop-filter:blur(18px) saturate(1.25);
+  border-radius:var(--r-panel);
+  box-shadow:var(--glass-line), var(--shadow-umbra), var(--shadow-atmo);
+}
+
+/* 贝利珠点串 BAILY BEADS:弧上点串作分隔纹 */
+.beadline{
+  height:6px;margin-top:14px;
+  background-image:radial-gradient(circle at 3px 3px, rgba(255,216,160,.55) 1px, transparent 2px);
+  background-size:16px 6px;background-repeat:repeat-x;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* ============ 站台顶栏 ============ */
+.station{
+  position:sticky;top:0;z-index:40;
+  background:rgba(11,12,17,.58);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  backdrop-filter:blur(16px) saturate(1.2);
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.07), 0 10px 40px -20px rgba(8,26,34,.8);
+}
+.station-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-disc{
+  width:22px;height:22px;border-radius:50%;flex:none;position:relative;
+  background:radial-gradient(circle at 35% 32%, #171820, #0a0b10 70%);
+  box-shadow:0 0 0 2px var(--amber), 0 0 14px rgba(255,178,94,.55);
+}
+.brand-disc::after{
+  content:"";position:absolute;right:-2px;top:1px;width:4px;height:4px;border-radius:50%;
+  background:var(--amber-hot);box-shadow:0 0 8px 2px rgba(255,220,168,.8);
+}
+.brand-name{font-family:var(--font-disp);font-weight:700;font-size:17px;letter-spacing:.08em}
+.brand-sub{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;color:var(--ink-faint);white-space:nowrap}
+.station-status{display:flex;align-items:center;gap:18px}
+.status-item{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--ink-dim);white-space:nowrap}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px 1px rgba(124,217,232,.7);animation:breathe 4.8s ease-in-out infinite}
+@media (max-width:760px){
+  .brand-sub{display:none}
+  .status-item--sky{display:none}
+}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(52px,7vw,92px) 0 clamp(36px,5vw,60px);overflow:clip}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4vw,56px);align-items:center}
+.hero-copy{max-width:560px}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.hero-eyebrow .arc{
+  width:24px;height:24px;flex:none;border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(255,180,94,.5);
+  background:radial-gradient(circle at 60% 40%, rgba(255,180,94,.28), transparent 65%);
+}
+h1{
+  font-family:var(--font-disp);font-weight:700;
+  font-size:clamp(34px,4.6vw,58px);line-height:1.18;letter-spacing:.01em;
+  margin-bottom:20px;text-wrap:balance;
+}
+h1 .glow{
+  color:var(--amber-hot);
+  text-shadow:0 0 26px rgba(255,190,110,.45);
+}
+.hero-lede{color:var(--ink-dim);font-size:clamp(15px,1.25vw,17px);max-width:52ch}
+.hero-lede + .hero-lede{margin-top:10px}
+.hero-product{
+  display:inline-flex;align-items:center;gap:10px;margin:26px 0 30px;
+  padding:8px 18px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.045);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 30px -12px rgba(255,178,94,.25);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.hero-product b{font-family:var(--font-disp);letter-spacing:.06em;font-weight:700}
+.hero-product span{font-size:13px;color:var(--ink-dim)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* ---- 食甚盘 TOTALITY STAGE(签名件) ---- */
+.disc-side{display:grid;justify-items:center}
+.disc-stage{
+  position:relative;
+  width:clamp(300px, 36vw, 470px);
+  aspect-ratio:1;
+}
+.disc-glow{
+  position:absolute;inset:-24%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle, rgba(255,196,120,.30), rgba(255,150,60,.10) 40%, transparent 64%);
+  animation:breathe 6.4s ease-in-out infinite;
+}
+.disc-stage > svg{position:absolute;inset:0;width:100%;height:100%}
+#filsvg{
+  -webkit-mask-image:radial-gradient(circle, #000 58%, transparent 92%);
+  mask-image:radial-gradient(circle, #000 58%, transparent 92%);
+}
+.fils{transform-origin:50% 50%;animation:spin 190s linear infinite}
+.fils--rev{animation:spin 260s linear infinite reverse}
+.moon{
+  position:absolute;left:50%;top:50%;width:55%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, #14151d 0%, #0a0b10 58%, #07080c 100%);
+  box-shadow:
+    inset 2px 3px 10px rgba(124,217,232,.10),
+    inset 0 0 0 1px rgba(255,205,140,.22),
+    0 0 44px 6px rgba(255,178,94,.20);
+}
+.tickring{transform-origin:50% 50%;animation:spin 300s linear infinite}
+#flashring{opacity:0;animation:gflash 9s linear infinite}
+#diamond{opacity:0;transform-origin:center;transform-box:fill-box;animation:gflash 9s linear infinite, dscale 9s linear infinite}
+/* 观测坐标注记 COORD ANNOTATIONS */
+.anno{
+  position:absolute;display:grid;gap:2px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;
+  color:var(--ink-faint);text-transform:uppercase;white-space:nowrap;
+}
+.anno b{font-weight:600;color:var(--ink-dim);letter-spacing:.14em}
+.anno .arc{
+  position:absolute;width:22px;height:22px;border-radius:50%;
+  -webkit-mask:conic-gradient(#000 0 25%, transparent 0);
+  mask:conic-gradient(#000 0 25%, transparent 0);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.anno--tl{left:-2%;top:2%;text-align:left}
+.anno--tl .arc{right:-30px;bottom:-26px;transform:rotate(180deg)}
+.anno--br{right:-2%;bottom:4%;text-align:right}
+.anno--br .arc{left:-30px;top:-26px}
+.anno--bl{left:0;bottom:-5%}
+
+/* ---- 食相序列 PHASE STRIP ---- */
+.phase-strip{
+  margin-top:clamp(34px,4vw,58px);
+  padding:20px clamp(18px,3vw,34px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-radius:var(--r-pill);
+}
+.phase-item{display:grid;justify-items:center;gap:8px;min-width:0}
+.phase-item .tag{letter-spacing:.16em}
+.phase-time{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);letter-spacing:.1em}
+.phase-sep{flex:1;height:2px;border-radius:1px;background:linear-gradient(90deg, rgba(255,180,94,.05), rgba(255,180,94,.35), rgba(255,180,94,.05))}
+
+/* 食相盘 ECLIPSE DISC(通用小盘:琥珀日面 + 平移月影) */
+.eclipse{
+  --occ:0; --d:44px;
+  position:relative;width:var(--d);height:var(--d);flex:none;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 36% 32%, var(--amber-hot), var(--amber) 52%, #e0913a 100%);
+  box-shadow:0 0 16px rgba(255,178,94,.42), inset 0 0 0 1px rgba(255,240,214,.5);
+}
+.eclipse::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 40% 36%, #14151d, #08090d 72%);
+  box-shadow:inset 1px 2px 5px rgba(124,217,232,.14);
+  transform:translateX(calc((1 - var(--occ)) * 106%));
+  transition:transform .18s linear;
+}
+.eclipse.is-flash{animation:discflash 1.4s ease-out 1}
+
+/* ============ 分区骨架 ============ */
+.sec{padding:clamp(48px,6.4vw,86px) 0}
+.sec-head{max-width:640px;margin-bottom:clamp(26px,3.4vw,40px)}
+.sec-head .tag{display:block;margin-bottom:12px}
+.sec-head h2{font-family:var(--font-disp);font-weight:700;font-size:clamp(24px,2.6vw,34px);letter-spacing:.01em}
+.sec-note{margin-top:12px;color:var(--ink-dim);font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.card{padding:clamp(20px,2.4vw,30px);min-width:0}
+.card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:20px}
+.card-head h3{font-family:var(--font-disp);font-weight:500;font-size:17px;letter-spacing:.02em}
+.span7{grid-column:span 7}
+.span6{grid-column:span 6}
+.span5{grid-column:span 5}
+.span4{grid-column:span 4}
+.span12{grid-column:span 12}
+.rows2{grid-row:span 2}
+@media (max-width:960px){
+  .cards > *{grid-column:span 12}
+  .rows2{grid-row:auto}
+}
+
+/* ============ 按钮 ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  height:46px;padding:0 24px;border-radius:var(--r-pill);
+  font-weight:500;font-size:15px;letter-spacing:.02em;white-space:nowrap;
+  transition:transform .16s ease, box-shadow .25s ease, background-color .2s ease, filter .2s ease;
+}
+.btn:active{transform:scale(.965)}
+.btn--corona{
+  background:radial-gradient(130% 170% at 28% 18%, var(--amber-hot), var(--amber) 46%, #E1953C 100%);
+  color:var(--amber-ink);font-weight:700;
+  box-shadow:inset 0 0 0 1px rgba(255,238,210,.55), 0 10px 30px -8px rgba(255,178,94,.55);
+  animation:goldbreathe 5.6s ease-in-out infinite;
+}
+.btn--corona:hover{filter:brightness(1.06);box-shadow:inset 0 0 0 1px rgba(255,238,210,.7), 0 12px 38px -8px rgba(255,178,94,.7)}
+.btn--atmo{
+  background:rgba(124,217,232,.07);color:var(--cyan);
+  box-shadow:inset 0 0 0 1px rgba(124,217,232,.42), 0 10px 30px -12px rgba(124,217,232,.35);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.btn--atmo:hover{background:rgba(124,217,232,.13)}
+.btn--umbra{
+  background:transparent;color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
+}
+.btn--umbra:hover{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26), 0 10px 30px -14px rgba(124,217,232,.3)}
+.btn--bead{height:auto;padding:6px 4px;border-radius:8px;color:var(--amber);font-weight:500}
+.btn--bead::before{
+  content:"";width:7px;height:7px;border-radius:50%;flex:none;
+  background:var(--amber);box-shadow:0 0 10px 1px rgba(255,178,94,.65);
+}
+.btn--bead:hover{color:var(--amber-hot)}
+.btn:disabled{
+  opacity:.36;filter:saturate(.35);cursor:not-allowed;animation:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);
+}
+.btn:disabled:active{transform:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-spec{display:grid;gap:8px;justify-items:center}
+.btn-spec .tag{font-size:9px;letter-spacing:.26em}
+
+/* ============ 字段 / 输入 ============ */
+.field{display:grid;gap:9px}
+.field + .field{margin-top:18px}
+.lbl{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.lbl b{font-weight:500;font-size:14px}
+.input{
+  height:46px;width:100%;padding:0 20px;border:0;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.045);color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.11);
+  transition:box-shadow .2s ease, background-color .2s ease;
+}
+.input::placeholder{color:var(--ink-faint)}
+.input:hover{background:rgba(255,255,255,.06)}
+.input:focus{
+  outline:none;background:rgba(255,255,255,.05);
+  box-shadow:inset 0 0 0 1px rgba(255,180,94,.75), 0 0 0 3px rgba(255,180,94,.16), 0 8px 26px -12px rgba(255,178,94,.4);
+}
+.input--mono{font-family:var(--font-mono);font-size:14px;letter-spacing:.06em}
+
+/* ============ 单选 / 复选(圆几何) ============ */
+.choice{display:flex;align-items:center;gap:12px;padding:9px 2px;cursor:pointer;border-radius:var(--r-pill)}
+.choice input{
+  appearance:none;-webkit-appearance:none;flex:none;cursor:pointer;
+  width:21px;height:21px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+  display:grid;place-items:center;
+  transition:box-shadow .2s ease, background-color .2s ease;
+}
+.choice input:hover{box-shadow:inset 0 0 0 1px rgba(255,214,160,.6)}
+.choice input::after{
+  content:"";border-radius:50%;transform:scale(0);
+  transition:transform .18s cubic-bezier(.2,1.4,.5,1);
+}
+.choice input[type=radio]::after{
+  width:9px;height:9px;background:var(--amber);
+  box-shadow:0 0 10px 1px rgba(255,178,94,.7);
+}
+.choice input[type=radio]:checked{box-shadow:inset 0 0 0 1px rgba(255,180,94,.9), 0 0 14px -2px rgba(255,178,94,.5)}
+.choice input[type=radio]:checked::after{transform:scale(1)}
+.choice input[type=checkbox]:checked{
+  background:radial-gradient(circle at 36% 32%, var(--amber-hot), var(--amber) 60%);
+  box-shadow:inset 0 0 0 1px rgba(255,238,210,.6), 0 0 14px -2px rgba(255,178,94,.55);
+}
+.choice input[type=checkbox]::after{
+  width:9px;height:5px;border-left:2px solid var(--amber-ink);border-bottom:2px solid var(--amber-ink);
+  border-radius:1px;transform:scale(0) rotate(-45deg);margin-top:-2px;
+}
+.choice input[type=checkbox]:checked::after{transform:scale(1) rotate(-45deg)}
+.choice-txt{display:grid;line-height:1.35;gap:2px}
+.choice-txt b{font-weight:500;font-size:14.5px}
+.choice-txt .tag{font-size:9px;letter-spacing:.24em}
+.choice:has(input:disabled){opacity:.4;cursor:not-allowed}
+.choice input:disabled{cursor:not-allowed}
+.choice-cols{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}
+@media (max-width:700px){.choice-cols{grid-template-columns:1fr}}
+
+/* ============ 开关(环食隐喻:开=琥珀环) ============ */
+.swrow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 2px}
+.swrow + .swrow{box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.sw{
+  position:relative;flex:none;width:52px;height:29px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.06);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);
+  transition:background-color .25s ease, box-shadow .25s ease;
+}
+.sw .knob{
+  position:absolute;left:4px;top:4px;width:21px;height:21px;border-radius:50%;
+  background:radial-gradient(circle at 36% 32%, #4a4c56, #33353e 70%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22), 0 2px 8px rgba(8,26,34,.6);
+  transition:transform .25s cubic-bezier(.3,1.3,.5,1), box-shadow .25s ease, background .25s ease;
+}
+.sw[aria-checked="true"]{
+  background:rgba(255,178,94,.16);
+  box-shadow:inset 0 0 0 1px rgba(255,180,94,.5), 0 0 20px -6px rgba(255,178,94,.5);
+}
+.sw[aria-checked="true"] .knob{
+  transform:translateX(23px);
+  background:radial-gradient(circle at 40% 36%, #191a22, #0b0c11 72%);
+  box-shadow:inset 0 0 0 2px var(--amber), 0 0 12px rgba(255,178,94,.65);
+}
+.sw:disabled{opacity:.38;cursor:not-allowed}
+
+/* ============ 滑杆(贝利珠刻度) ============ */
+.slider-wrap{display:grid;gap:6px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer;
+  --p:87;
+}
+input[type=range]::-webkit-slider-runnable-track{
+  height:4px;border-radius:var(--r-pill);
+  background:linear-gradient(90deg, var(--amber-deep), var(--amber) calc(var(--p)*1%), rgba(255,255,255,.11) calc(var(--p)*1%));
+  box-shadow:0 0 14px -2px rgba(255,178,94,.35);
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:22px;height:22px;border-radius:50%;margin-top:-9px;
+  background:radial-gradient(circle at 40% 35%, #1a1b23, #0c0d12 75%);
+  box-shadow:inset 0 0 0 2px var(--amber), 0 0 16px rgba(255,178,94,.55);
+  transition:box-shadow .2s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover{box-shadow:inset 0 0 0 2px var(--amber-hot), 0 0 22px rgba(255,190,110,.75)}
+input[type=range]::-moz-range-track{
+  height:4px;border-radius:var(--r-pill);
+  background:linear-gradient(90deg, var(--amber-deep), var(--amber) calc(var(--p)*1%), rgba(255,255,255,.11) calc(var(--p)*1%));
+}
+input[type=range]::-moz-range-thumb{
+  width:22px;height:22px;border:0;border-radius:50%;
+  background:#0c0d12;box-shadow:inset 0 0 0 2px var(--amber), 0 0 16px rgba(255,178,94,.55);
+}
+input[type=range]:focus-visible{outline-offset:6px;border-radius:var(--r-pill)}
+.beadticks{
+  height:6px;margin:0 9px;
+  background-image:radial-gradient(circle at 2px 3px, rgba(255,216,160,.42) 1px, transparent 2px);
+  background-size:calc((100% - 4px)/10) 6px;background-repeat:repeat-x;background-position:1px 0;
+}
+
+/* ============ 下拉(自绘弹层) ============ */
+.select{position:relative}
+.select-btn{
+  width:100%;height:46px;padding:0 18px;border-radius:var(--r-pill);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(255,255,255,.045);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.11);
+  transition:box-shadow .2s ease, background-color .2s ease;
+  font-size:14.5px;
+}
+.select-btn:hover{background:rgba(255,255,255,.065)}
+.select-btn[aria-expanded="true"]{
+  box-shadow:inset 0 0 0 1px rgba(255,180,94,.7), 0 0 0 3px rgba(255,180,94,.14);
+}
+.select-caret{
+  width:16px;height:16px;flex:none;border-radius:50%;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.select-caret::after{
+  content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;
+  background:var(--amber);box-shadow:0 0 8px rgba(255,178,94,.7);
+}
+.select-btn[aria-expanded="true"] .select-caret{transform:rotate(180deg);box-shadow:inset 0 0 0 1px rgba(255,180,94,.55)}
+.menu{
+  position:absolute;left:0;right:0;top:calc(100% + 10px);z-index:30;
+  padding:8px;border-radius:22px;
+  background:linear-gradient(180deg, rgba(30,32,42,.88), rgba(22,24,32,.88));
+  -webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12), 0 26px 60px -20px rgba(8,26,34,.9), 0 10px 44px -16px rgba(255,178,94,.14);
+  opacity:0;transform:translateY(-6px) scale(.985);pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease;
+}
+.menu.open{opacity:1;transform:none;pointer-events:auto}
+.menu [role=option]{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 14px;border-radius:var(--r-pill);cursor:pointer;
+  color:var(--ink-dim);font-size:14.5px;
+  transition:background-color .15s ease, color .15s ease;
+}
+.menu [role=option] .dot{
+  width:7px;height:7px;border-radius:50%;flex:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);
+  transition:background-color .15s ease, box-shadow .15s ease;
+}
+.menu [role=option]:hover,.menu [role=option].active{background:rgba(255,255,255,.07);color:var(--ink)}
+.menu [role=option][aria-selected="true"]{color:var(--ink)}
+.menu [role=option][aria-selected="true"] .dot{background:var(--amber);box-shadow:0 0 10px 1px rgba(255,178,94,.7)}
+.menu .mono{margin-left:auto;font-size:10px;letter-spacing:.14em;color:var(--ink-faint)}
+
+/* ============ 标签页 ============ */
+.tabs{
+  display:inline-flex;gap:4px;padding:5px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);
+  max-width:100%;overflow-x:auto;
+}
+.tab{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:var(--r-pill);white-space:nowrap;
+  color:var(--ink-dim);font-size:14px;font-weight:500;
+  transition:background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.tab::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);
+  transition:background-color .2s ease, box-shadow .2s ease;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{
+  background:rgba(255,255,255,.09);color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14), 0 6px 20px -10px rgba(255,178,94,.4);
+}
+.tab[aria-selected="true"]::before{background:var(--amber);box-shadow:0 0 10px 1px rgba(255,178,94,.75)}
+.tabpanel{margin-top:20px}
+.tabpanel[hidden]{display:none}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:700px){.stat3{grid-template-columns:1fr}}
+.stat{
+  padding:16px 18px;border-radius:20px;
+  background:rgba(255,255,255,.035);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.stat b{display:block;font-family:var(--font-disp);font-size:24px;font-weight:700;letter-spacing:.02em}
+.stat b i{font-style:normal;font-size:14px;color:var(--ink-dim);margin-left:2px}
+.ephem{display:grid;gap:2px}
+.ephem-row{
+  display:flex;align-items:center;gap:14px;padding:9px 4px;
+  font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;
+}
+.ephem-row + .ephem-row{box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.ephem-row .c{width:44px;color:var(--amber);font-weight:600}
+.ephem-row .n{color:var(--ink-dim);flex:1}
+.ephem-row .t{color:var(--ink)}
+.log{display:grid;gap:10px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--ink-dim)}
+.log li{display:flex;gap:12px;align-items:baseline;list-style:none}
+.log .t{color:var(--cyan);flex:none}
+.log li::before{
+  content:"";width:6px;height:6px;border-radius:50%;flex:none;align-self:center;
+  background:rgba(255,216,160,.55);box-shadow:0 0 8px rgba(255,216,160,.4);
+}
+
+/* ============ 量表(食相盘) ============ */
+.gauge-card{display:grid;justify-items:center;gap:6px}
+.gauge-box{position:relative;width:min(240px,100%);aspect-ratio:1;margin-top:4px}
+.gauge-box svg{position:absolute;inset:0;width:100%;height:100%}
+.gauge-box .eclipse{
+  --d:112px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.gauge-read{display:grid;justify-items:center;gap:2px;margin-top:10px}
+.gauge-read b{font-family:var(--font-disp);font-size:34px;font-weight:700;letter-spacing:.03em}
+.gauge-foot{display:flex;align-items:center;gap:8px;margin-top:18px;width:100%}
+.gauge-foot input[type=range]{flex:1}
+.ring-help{
+  width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--font-mono);font-size:12px;color:var(--cyan);
+  box-shadow:inset 0 0 0 1px rgba(124,217,232,.4);
+  transition:background-color .2s ease;
+}
+.ring-help:hover{background:rgba(124,217,232,.1)}
+
+/* ============ 进度(食分推进) ============ */
+.prog-top{display:flex;align-items:center;gap:18px}
+.prog-top .eclipse{--d:56px}
+.prog-meta{flex:1;min-width:0;display:grid;gap:4px}
+.prog-val{font-family:var(--font-disp);font-weight:700;font-size:26px;letter-spacing:.02em}
+.prog-val i{font-style:normal;font-size:13px;color:var(--ink-dim);margin-left:4px}
+.progress{
+  height:8px;border-radius:var(--r-pill);margin:18px 0 8px;
+  background:rgba(255,255,255,.07);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);
+  overflow:hidden;position:relative;
+}
+.progress-fill{
+  position:absolute;inset:0;border-radius:var(--r-pill);
+  transform-origin:left center;transform:scaleX(var(--p,0));
+  background:linear-gradient(90deg, var(--amber-deep), var(--amber) 60%, var(--amber-hot));
+  box-shadow:0 0 18px rgba(255,178,94,.5);
+  transition:transform .12s linear;
+}
+.progress-fill::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;
+  background:linear-gradient(100deg, transparent 30%, rgba(255,240,214,.55) 50%, transparent 70%);
+  background-size:220% 100%;
+}
+.is-playing .progress-fill::after{opacity:1;animation:sheen 2.2s linear infinite}
+.prog-scale{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--ink-faint)}
+.prog-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+
+/* ============ 弹窗 ============ */
+.overlay{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:22px;
+  background:radial-gradient(120% 120% at 50% 32%, rgba(12,17,24,.55), rgba(5,7,11,.8));
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  opacity:0;pointer-events:none;transition:opacity .22s ease;
+}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{
+  width:min(470px,100%);padding:30px;position:relative;
+  transform:translateY(12px) scale(.97);transition:transform .24s cubic-bezier(.2,1,.4,1);
+  box-shadow:var(--glass-line), 0 40px 90px -30px rgba(8,26,34,.95), 0 18px 70px -20px rgba(255,178,94,.2);
+}
+.overlay.open .modal{transform:none}
+.modal-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.modal-head .eclipse{--d:38px}
+.modal-head h3{font-family:var(--font-disp);font-size:20px;font-weight:700}
+.modal-body{color:var(--ink-dim);font-size:14.5px}
+.modal .choice{margin-top:14px}
+.modal-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px;flex-wrap:wrap}
+.modal-x{
+  position:absolute;right:18px;top:18px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;color:var(--ink-dim);font-size:15px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);
+  transition:background-color .2s ease, color .2s ease;
+}
+.modal-x:hover{background:rgba(255,255,255,.07);color:var(--ink)}
+
+/* ============ TOAST ============ */
+.toasts{
+  position:fixed;right:20px;bottom:20px;z-index:60;
+  display:grid;gap:10px;width:min(370px, calc(100vw - 40px));
+}
+.toast{
+  display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:22px;
+  background:linear-gradient(180deg, rgba(30,32,42,.9), rgba(21,23,31,.9));
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12), 0 22px 56px -18px rgba(8,26,34,.9), 0 10px 40px -14px rgba(255,178,94,.16);
+  transform:translateY(16px);opacity:0;
+  transition:transform .28s cubic-bezier(.2,1,.4,1), opacity .28s ease;
+}
+.toast.in{transform:none;opacity:1}
+.toast.out{transform:translateY(8px) scale(.97);opacity:0}
+.toast-ring{
+  width:30px;height:30px;flex:none;border-radius:50%;position:relative;
+  box-shadow:inset 0 0 0 2px var(--amber), 0 0 14px rgba(255,178,94,.5);
+  animation:discflash 1.2s ease-out 1;
+}
+.toast-ring::after{
+  content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--amber);
+  box-shadow:0 0 10px rgba(255,178,94,.8);
+}
+.toast--atmo .toast-ring{box-shadow:inset 0 0 0 2px var(--cyan), 0 0 14px rgba(124,217,232,.5)}
+.toast--atmo .toast-ring::after{background:var(--cyan);box-shadow:0 0 10px rgba(124,217,232,.8)}
+.toast-txt{flex:1;min-width:0;display:grid;gap:1px}
+.toast-txt b{font-size:14px;font-weight:500}
+.toast-txt .tag{font-size:9.5px;letter-spacing:.18em;text-transform:none}
+.toast-x{
+  width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;
+  color:var(--ink-faint);font-size:13px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+  transition:color .2s ease, background-color .2s ease;
+}
+.toast-x:hover{color:var(--ink);background:rgba(255,255,255,.07)}
+@media (max-width:600px){.toasts{right:50%;transform:translateX(50%);bottom:16px}}
+
+/* ============ TOOLTIP ============ */
+.tipbox{
+  position:fixed;z-index:70;pointer-events:none;max-width:280px;
+  padding:8px 15px;border-radius:16px;
+  background:linear-gradient(180deg, rgba(32,34,44,.94), rgba(23,25,33,.94));
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.13), 0 14px 40px -12px rgba(8,26,34,.9), 0 8px 30px -10px rgba(255,178,94,.15);
+  font-size:12.5px;line-height:1.55;color:var(--ink-dim);
+  opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;
+}
+.tipbox.show{opacity:1;transform:none}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.045);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;color:var(--ink-dim);
+  cursor:default;transition:box-shadow .2s ease, color .2s ease;
+}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(124,217,232,.7)}
+.chip--amber::before{background:var(--amber);box-shadow:0 0 8px rgba(255,178,94,.7)}
+.chip:hover,.chip:focus-visible{color:var(--ink);box-shadow:inset 0 0 0 1px rgba(255,255,255,.24)}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ============ FOOTER ============ */
+footer{padding:26px 0 46px}
+.foot-grid{display:flex;flex-wrap:wrap;gap:18px 34px;align-items:center;justify-content:space-between;margin-top:26px}
+.foot-coord{display:grid;gap:4px}
+.foot-sign{font-family:var(--font-disp);font-size:15px;color:var(--ink-dim);letter-spacing:.04em}
+.foot-sign b{color:var(--amber-hot);font-weight:500}
+
+/* ============ 动效 ============ */
+@keyframes spin{to{transform:rotate(1turn)}}
+@keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
+@keyframes goldbreathe{
+  0%,100%{box-shadow:inset 0 0 0 1px rgba(255,238,210,.55), 0 10px 30px -8px rgba(255,178,94,.5)}
+  50%{box-shadow:inset 0 0 0 1px rgba(255,238,210,.65), 0 12px 40px -8px rgba(255,190,110,.72)}
+}
+@keyframes sheen{to{background-position:-220% 0}}
+/* 金环闪现 GOLD-RING FLASH(9s 周期,末段起爆) */
+@keyframes gflash{
+  0%,80%{opacity:0}
+  84%{opacity:1}
+  87%{opacity:.85}
+  93%,100%{opacity:0}
+}
+@keyframes dscale{
+  0%,80%{transform:scale(.3)}
+  84%{transform:scale(1.25)}
+  87%{transform:scale(1)}
+  93%,100%{transform:scale(.3)}
+}
+@keyframes discflash{
+  0%{box-shadow:0 0 16px rgba(255,178,94,.42), inset 0 0 0 1px rgba(255,240,214,.5)}
+  30%{box-shadow:0 0 34px 6px rgba(255,220,168,.85), inset 0 0 0 1px rgba(255,248,232,.9)}
+  100%{box-shadow:0 0 16px rgba(255,178,94,.42), inset 0 0 0 1px rgba(255,240,214,.5)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+}
+
+/* ============ 响应式 ============ */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .disc-side{order:-1}
+  .disc-stage{width:clamp(270px, 72vw, 400px)}
+  .anno--tl{left:0;top:-2%}
+  .anno--br{right:0;bottom:0}
+  .anno--bl{display:none}
+  .anno .arc{display:none}
+  .phase-strip{flex-wrap:wrap;justify-content:center;gap:16px 22px;border-radius:34px}
+  .phase-sep{display:none}
+}
+@media (max-width:600px){
+  .wrap{width:calc(100% - 36px)}
+  h1{font-size:31px}
+  .hero-cta .btn{flex:1;min-width:150px}
+  .card{padding:20px}
+  .btn-row{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 站台顶栏 ============ -->
+<header class="station">
+  <div class="wrap station-in">
+    <div class="brand">
+      <span class="brand-disc" aria-hidden="true"></span>
+      <span class="brand-name">UMBRA-9</span>
+      <span class="brand-sub">本影九号观测台</span>
+    </div>
+    <div class="station-status">
+      <span class="status-item status-item--sky"><span class="status-dot" aria-hidden="true"></span>SKY CLEAR · 12%</span>
+      <span class="status-item mono" id="utclock">UT --:--:--</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="arc" aria-hidden="true"></span>
+            <span class="tag tag--amber">Heliophysics Survey // Node 09 // Centerline</span>
+          </div>
+          <h1>日面熄灭的那一刻,<br>才看得见<span class="glow">日冕</span>。</h1>
+          <p class="hero-lede">UMBRA-9 驻守在月影中心线上,把初亏到复圆的每一次接触写进星历。</p>
+          <p class="hero-lede">食甚只有 217 秒——十四路日冕仪同时开机,而你只需要盯住一块食相盘。</p>
+          <div class="hero-product">
+            <b>UMBRA-9</b><span>· 日全食观测控制台</span>
+          </div>
+          <div class="hero-cta">
+            <button class="btn btn--corona" id="ctaObserve">开始观测</button>
+            <button class="btn btn--atmo" id="ctaEphem">调出星历</button>
+          </div>
+        </div>
+
+        <!-- 签名件:食甚盘(日冕丝流 + 轨道刻度环 + 贝利珠点串 + 金环闪现) -->
+        <div class="disc-side">
+          <div class="disc-stage" role="img" aria-label="食甚盘:月影完全遮掩日面,琥珀色日冕丝流向四周展开">
+            <div class="disc-glow" aria-hidden="true"></div>
+            <svg id="filsvg" viewBox="0 0 480 480" aria-hidden="true">
+              <g class="fils" id="fil1"></g>
+              <g class="fils fils--rev" id="fil2"></g>
+            </svg>
+            <div class="moon" aria-hidden="true"></div>
+            <svg id="ringsvg" viewBox="0 0 480 480" aria-hidden="true">
+              <g class="tickring" id="heroticks"></g>
+              <circle id="flashring" cx="240" cy="240" r="134" fill="none" stroke="#FFDCA8" stroke-width="2"/>
+              <g id="beads"></g>
+              <g id="diamond"></g>
+            </svg>
+            <!-- 观测坐标注记 -->
+            <div class="anno anno--tl"><b>31.2304°N / 121.4737°E</b><span>Station coord</span><span class="arc" aria-hidden="true"></span></div>
+            <div class="anno anno--br"><b>MAG 1.012</b><span>Totality · 217 s</span><span class="arc" aria-hidden="true"></span></div>
+            <div class="anno anno--bl"><b>ALT 41.6° / AZ 118.2°</b><span>Solar vector</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 食相序列:初亏 → 复圆 -->
+      <div class="phase-strip glass" role="list" aria-label="食相序列">
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:.08" aria-hidden="true"></span>
+          <span class="tag">C1 初亏</span><span class="phase-time">02:14:09</span>
+        </div>
+        <div class="phase-sep" aria-hidden="true"></div>
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:.55" aria-hidden="true"></span>
+          <span class="tag">偏食深入</span><span class="phase-time">02:48:30</span>
+        </div>
+        <div class="phase-sep" aria-hidden="true"></div>
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:.96" aria-hidden="true"></span>
+          <span class="tag">C2 食既</span><span class="phase-time">03:12:06</span>
+        </div>
+        <div class="phase-sep" aria-hidden="true"></div>
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:1" aria-hidden="true"></span>
+          <span class="tag tag--amber">食甚</span><span class="phase-time">03:13:51</span>
+        </div>
+        <div class="phase-sep" aria-hidden="true"></div>
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:.96" aria-hidden="true"></span>
+          <span class="tag">C3 生光</span><span class="phase-time">03:15:36</span>
+        </div>
+        <div class="phase-sep" aria-hidden="true"></div>
+        <div class="phase-item" role="listitem">
+          <span class="eclipse" style="--occ:.32" aria-hidden="true"></span>
+          <span class="tag">C4 复圆</span><span class="phase-time">04:20:44</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH-01 操控件 ============ -->
+  <section class="sec" id="ch01">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="tag tag--cyan">CH-01 // Control Surface</span>
+        <h2>操控件</h2>
+        <div class="beadline" aria-hidden="true"></div>
+        <p class="sec-note">全部操控件按食相规约成环——没有一个直角进入本影。</p>
+      </header>
+
+      <div class="cards">
+        <!-- 按钮 -->
+        <div class="card glass span7">
+          <div class="card-head"><h3>指令钮</h3><span class="tag">Command Ring</span></div>
+          <div class="btn-row" style="gap:22px">
+            <div class="btn-spec">
+              <button class="btn btn--corona" data-toast="amber" data-tt="观测已开始" data-tm="十四路日冕仪 · 已同步">开始观测</button>
+              <span class="tag">Corona</span>
+            </div>
+            <div class="btn-spec">
+              <button class="btn btn--atmo" data-toast="atmo" data-tt="大气信道已刷新" data-tm="云量 12% · 视宁度 0.8″">刷新大气</button>
+              <span class="tag">Atmosphere</span>
+            </div>
+            <div class="btn-spec">
+              <button class="btn btn--umbra" data-toast="atmo" data-tt="站台转入待命" data-tm="快门闭合 · 授时保持">转入待命</button>
+              <span class="tag">Umbra</span>
+            </div>
+            <div class="btn-spec">
+              <button class="btn btn--bead" data-toast="amber" data-tt="接触时刻已调出" data-tm="C1—C4 · 全部载入">查看接触时刻</button>
+              <span class="tag">Bead</span>
+            </div>
+            <div class="btn-spec">
+              <button class="btn btn--corona" disabled>开始观测</button>
+              <span class="tag">Disabled · 等待窗口</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 输入 + 下拉 -->
+        <div class="card glass span5">
+          <div class="card-head"><h3>登记与信道</h3><span class="tag">Intake</span></div>
+          <div class="field">
+            <div class="lbl"><b>观测者代号</b><span class="tag">Observer ID</span></div>
+            <input class="input" type="text" placeholder="如:VEGA-07" autocomplete="off">
+          </div>
+          <div class="field">
+            <div class="lbl"><b>观测坐标</b><span class="tag">Coordinates</span></div>
+            <input class="input input--mono" type="text" placeholder="31.2304° N, 121.4737° E" autocomplete="off">
+          </div>
+          <div class="field">
+            <div class="lbl"><b>滤镜信道</b><span class="tag">Filter Channel</span></div>
+            <div class="select" id="filterSelect">
+              <button class="select-btn" aria-haspopup="listbox" aria-expanded="false" id="filterBtn">
+                <span id="filterVal">日冕仪 K-CORONA</span>
+                <span class="select-caret" aria-hidden="true"></span>
+              </button>
+              <div class="menu" role="listbox" aria-label="滤镜信道" id="filterMenu" tabindex="-1">
+                <div role="option" data-v="白光 WHITE-LIGHT"><span class="dot" aria-hidden="true"></span>白光 WHITE-LIGHT<span class="mono">550nm</span></div>
+                <div role="option" data-v="氢α H-ALPHA"><span class="dot" aria-hidden="true"></span>氢α H-ALPHA<span class="mono">656nm</span></div>
+                <div role="option" data-v="日冕仪 K-CORONA" aria-selected="true"><span class="dot" aria-hidden="true"></span>日冕仪 K-CORONA<span class="mono">滤外冕</span></div>
+                <div role="option" data-v="钙K CA-II-K"><span class="dot" aria-hidden="true"></span>钙K CA-II-K<span class="mono">393nm</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 单选 + 复选 -->
+        <div class="card glass span7">
+          <div class="card-head"><h3>观测规约</h3><span class="tag">Protocol</span></div>
+          <div class="choice-cols">
+            <fieldset style="border:0;display:grid;gap:2px">
+              <legend class="tag" style="margin-bottom:10px">观测模式 · Mode</legend>
+              <label class="choice"><input type="radio" name="mode" checked><span class="choice-txt"><b>全食 TOTAL</b></span></label>
+              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>环食 ANNULAR</b></span></label>
+              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>偏食 PARTIAL</b></span></label>
+            </fieldset>
+            <fieldset style="border:0;display:grid;gap:2px">
+              <legend class="tag" style="margin-bottom:10px">记录项 · Records</legend>
+              <label class="choice"><input type="checkbox" checked><span class="choice-txt"><b>自动标记接触时刻</b></span></label>
+              <label class="choice"><input type="checkbox"><span class="choice-txt"><b>同步站台授时</b></span></label>
+              <label class="choice"><input type="checkbox" disabled><span class="choice-txt"><b>导出原始底片</b><span class="tag">等待授权</span></span></label>
+            </fieldset>
+          </div>
+        </div>
+
+        <!-- 开关 -->
+        <div class="card glass span5">
+          <div class="card-head"><h3>仪器开关</h3><span class="tag">Instruments</span></div>
+          <div class="swrow">
+            <span class="choice-txt"><b>日冕仪连拍</b><span class="tag">Coronagraph Burst</span></span>
+            <button class="sw" role="switch" aria-checked="true" aria-label="日冕仪连拍"><span class="knob" aria-hidden="true"></span></button>
+          </div>
+          <div class="swrow">
+            <span class="choice-txt"><b>贝利珠捕获</b><span class="tag">Beads Capture</span></span>
+            <button class="sw" role="switch" aria-checked="false" aria-label="贝利珠捕获"><span class="knob" aria-hidden="true"></span></button>
+          </div>
+          <div class="swrow">
+            <span class="choice-txt"><b>授时锁定</b><span class="tag">Timelock · 站台接管</span></span>
+            <button class="sw" role="switch" aria-checked="true" aria-label="授时锁定" disabled><span class="knob" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH-02 仪表 ============ -->
+  <section class="sec" id="ch02">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="tag tag--cyan">CH-02 // Instrument Bay</span>
+        <h2>仪表与推进</h2>
+        <div class="beadline" aria-hidden="true"></div>
+        <p class="sec-note">仪表读数与模拟联动:拨动食分,量表即刻跟进。</p>
+      </header>
+
+      <div class="cards">
+        <!-- 量表:食相盘 -->
+        <div class="card glass span5 rows2 gauge-card">
+          <div class="card-head" style="width:100%"><h3>食相盘量表</h3><span class="tag">Eclipse Dial</span></div>
+          <div class="gauge-box">
+            <svg viewBox="0 0 240 240" aria-hidden="true">
+              <g id="gaugeticks"></g>
+              <circle cx="120" cy="120" r="100" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4" pathLength="100"/>
+              <circle id="gaugearc" cx="120" cy="120" r="100" fill="none" stroke="url(#gaugegrad)" stroke-width="4"
+                      stroke-linecap="round" pathLength="100" stroke-dasharray="87 100"
+                      transform="rotate(-90 120 120)" style="filter:drop-shadow(0 0 6px rgba(255,178,94,.6))"/>
+              <defs>
+                <linearGradient id="gaugegrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#C07A2A"/><stop offset=".6" stop-color="#FFB45E"/><stop offset="1" stop-color="#FFDCA8"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="eclipse" id="gaugedisc" style="--occ:.87" aria-hidden="true"></span>
+          </div>
+          <div class="gauge-read">
+            <b id="gaugeval">0.87</b>
+            <span class="tag">Magnitude · 食分</span>
+          </div>
+          <div class="gauge-foot">
+            <div class="slider-wrap" style="flex:1">
+              <input type="range" id="magslider" min="0" max="1" step="0.01" value="0.87" aria-label="模拟食分">
+              <div class="beadticks" aria-hidden="true"></div>
+            </div>
+            <button class="ring-help" data-tip="食分:月面直径遮蔽日面直径的比例。达到 1.000 即为全食,UMBRA-9 本次预报 1.012。" aria-label="什么是食分">?</button>
+          </div>
+        </div>
+
+        <!-- 进度:食分推进 -->
+        <div class="card glass span7" id="progcard">
+          <div class="card-head"><h3>食分推进</h3><span class="tag">Magnitude Advance</span></div>
+          <div class="prog-top">
+            <span class="eclipse" id="progdisc" aria-hidden="true"></span>
+            <div class="prog-meta">
+              <span class="prog-val"><span id="progval">0.00</span><i>/ 1.012</i></span>
+              <span class="tag" id="progstate">Standby · 待推进</span>
+            </div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="食分推进" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progbar">
+            <div class="progress-fill" id="progfill"></div>
+          </div>
+          <div class="prog-scale"><span>C1</span><span>C2</span><span>MAX</span></div>
+          <div class="prog-actions">
+            <button class="btn btn--corona" id="progplay">推进食分</button>
+            <button class="btn btn--umbra" id="progreset">复位</button>
+          </div>
+        </div>
+
+        <!-- 标签页 -->
+        <div class="card glass span7">
+          <div class="card-head"><h3>观测面板</h3><span class="tag">Panels</span></div>
+          <div class="tabs" role="tablist" aria-label="观测面板">
+            <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">食甚</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">星历</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">日志</button>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp1" aria-labelledby="tb1">
+            <div class="stat3">
+              <div class="stat"><span class="tag">持续 Duration</span><b>217<i>s</i></b></div>
+              <div class="stat"><span class="tag">本影宽 Umbra</span><b>202<i>km</i></b></div>
+              <div class="stat"><span class="tag">太阳高度 Alt</span><b>41.6<i>°</i></b></div>
+            </div>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>
+            <div class="ephem">
+              <div class="ephem-row"><span class="c">C1</span><span class="n">初亏 · 月缘切入日面</span><span class="t">02:14:09</span></div>
+              <div class="ephem-row"><span class="c">C2</span><span class="n">食既 · 贝利珠序列</span><span class="t">03:12:06</span></div>
+              <div class="ephem-row"><span class="c">MAX</span><span class="n">食甚 · 日冕全开</span><span class="t">03:13:51</span></div>
+              <div class="ephem-row"><span class="c">C3</span><span class="n">生光 · 金环闪现</span><span class="t">03:15:36</span></div>
+              <div class="ephem-row"><span class="c">C4</span><span class="n">复圆 · 观测归档</span><span class="t">04:20:44</span></div>
+            </div>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>
+            <ul class="log">
+              <li><span class="t">02:14:09</span>初亏确认,月缘切入日面西侧。</li>
+              <li><span class="t">02:58:31</span>云量降至 12%,大气信道转优。</li>
+              <li><span class="t">03:11:58</span>贝利珠序列进入捕获窗口。</li>
+              <li><span class="t">03:12:06</span>食既,十四路日冕仪全部开机。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH-03 信号 ============ -->
+  <section class="sec" id="ch03">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="tag tag--cyan">CH-03 // Signal Deck</span>
+        <h2>信号与弹层</h2>
+        <div class="beadline" aria-hidden="true"></div>
+        <p class="sec-note">弹层一律走毛玻璃信道,信号以金环与大气青分级。</p>
+      </header>
+
+      <div class="cards">
+        <div class="card glass span4">
+          <div class="card-head"><h3>全食切换</h3><span class="tag">Modal</span></div>
+          <p class="sec-note" style="margin:0 0 18px">切换后白光通道关闭,食甚窗口内不可中途退出——需要一次确认。</p>
+          <button class="btn btn--corona" id="modalOpen">进入全食模式</button>
+        </div>
+        <div class="card glass span4">
+          <div class="card-head"><h3>站台信号</h3><span class="tag">Toast</span></div>
+          <p class="sec-note" style="margin:0 0 18px">金环级即刻上屏,大气级随信道刷新。</p>
+          <div class="btn-row">
+            <button class="btn btn--umbra" data-toast="amber" data-tt="C2 触点已记录" data-tm="UT 03:12:06 · 贝利珠已捕获">金环信号</button>
+            <button class="btn btn--atmo" data-toast="atmo" data-tt="大气信道更新" data-tm="云量 12% · 视宁度 0.8″">大气信号</button>
+          </div>
+        </div>
+        <div class="card glass span4">
+          <div class="card-head"><h3>坐标注记</h3><span class="tag">Tooltip</span></div>
+          <p class="sec-note" style="margin:0 0 18px">悬停任一注记,展开观测释义。</p>
+          <div class="chip-row">
+            <button class="chip chip--amber" data-tip="食甚时刻的最大食分。大于 1 表示月面完全覆盖日面。">MAG 1.012</button>
+            <button class="chip" data-tip="全食持续时间:从食既 C2 到生光 C3,共 217 秒。">Δt 217 s</button>
+            <button class="chip" data-tip="食甚时太阳的地平高度与方位角,决定镜筒指向。">ALT 41.6°</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="beadline" aria-hidden="true"></div>
+    <div class="foot-grid">
+      <div class="foot-coord">
+        <span class="tag">UMBRA-9 · 中心线第 9 号观测位</span>
+        <span class="tag" style="text-transform:none">北纬 31.23° · 东经 121.47° · 海拔 4.21 km</span>
+      </div>
+      <div class="foot-coord">
+        <span class="tag tag--amber">Next Contact · 2027-08-02 UT</span>
+        <span class="tag" style="text-transform:none">从初亏到复圆,站台常亮。</span>
+      </div>
+      <span class="foot-sign">本影之外,皆是<b>序章</b>。</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ 弹窗 ============ -->
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1" id="modal">
+    <button class="modal-x" id="modalClose" aria-label="关闭">✕</button>
+    <div class="modal-head">
+      <span class="eclipse" style="--occ:1" aria-hidden="true"></span>
+      <h3 id="modalTitle">切换至全食模式</h3>
+    </div>
+    <p class="modal-body">切换后,站台关闭白光通道,十四路日冕仪转入连拍。食甚窗口共 217 秒,期间无法中途退出。</p>
+    <label class="choice"><input type="checkbox" id="modalBeads" checked><span class="choice-txt"><b>同时开启贝利珠捕获</b></span></label>
+    <div class="modal-actions">
+      <button class="btn btn--umbra" id="modalCancel">保持待命</button>
+      <button class="btn btn--corona" id="modalConfirm">接通全食模式</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="tipbox" id="tipbox" role="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+  var SVG = "http://www.w3.org/2000/svg";
+  function el(n, attrs){ var e = document.createElementNS(SVG, n); for(var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  // 可复现伪随机
+  function mulberry(seed){ return function(){ seed|=0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed>>>15, 1 | seed); t = t + Math.imul(t ^ t>>>7, 61 | t) ^ t; return ((t ^ t>>>14) >>> 0) / 4294967296; }; }
+
+  /* ---- 日冕丝流 CORONA FILAMENTS ---- */
+  function filaments(gid, n, seed, tint, dim){
+    var g = document.getElementById(gid), rnd = mulberry(seed);
+    var plumes = [{a:22,s:1},{a:118,s:.68},{a:208,s:.9},{a:305,s:.6}];
+    for(var i=0;i<n;i++){
+      var a = i*(360/n) + (rnd()-.5)*5;
+      var boost = 0;
+      for(var p=0;p<plumes.length;p++){
+        var d = Math.abs(((a - plumes[p].a + 540) % 360) - 180);
+        boost += plumes[p].s * Math.exp(-(d*d)/(2*26*26)) * 74;
+      }
+      var len = 16 + rnd()*44 + boost;
+      var r0 = 136, r1 = Math.min(r0 + len, 228);
+      var rad = a*Math.PI/180;
+      var bend = (rnd()-.5)*.22;
+      var rc = (r0+r1)/2;
+      var x0 = 240 + r0*Math.cos(rad),      y0 = 240 + r0*Math.sin(rad);
+      var xc = 240 + rc*Math.cos(rad+bend*.5), yc = 240 + rc*Math.sin(rad+bend*.5);
+      var x1 = 240 + r1*Math.cos(rad+bend),  y1 = 240 + r1*Math.sin(rad+bend);
+      var op = (.1 + (len/115)*.42) * dim;
+      var path = el("path", {
+        d:"M"+x0.toFixed(1)+" "+y0.toFixed(1)+" Q"+xc.toFixed(1)+" "+yc.toFixed(1)+" "+x1.toFixed(1)+" "+y1.toFixed(1),
+        fill:"none", stroke:tint, "stroke-width": len>84 ? 1.6 : 1.1,
+        "stroke-linecap":"round", "stroke-opacity":Math.min(op,.55).toFixed(3)
+      });
+      g.appendChild(path);
+    }
+  }
+  filaments("fil1", 78, 9, "#FFD9A4", 1);
+  filaments("fil2", 52, 47, "#F2BE82", .55);
+
+  /* ---- 轨道刻度环 ORBITAL TICK RING ---- */
+  function ticks(gid, cx, cy, rIn, rOut, count, majorEvery, majLen){
+    var g = document.getElementById(gid);
+    for(var i=0;i<count;i++){
+      var a = i*(360/count)*Math.PI/180;
+      var major = i % majorEvery === 0;
+      var ri = major ? rIn - majLen : rIn;
+      var line = el("line", {
+        x1:cx + ri*Math.cos(a),   y1:cy + ri*Math.sin(a),
+        x2:cx + rOut*Math.cos(a), y2:cy + rOut*Math.sin(a),
+        stroke: major ? "rgba(255,214,160,.6)" : "rgba(242,238,230,.22)",
+        "stroke-width": major ? 2 : 1, "stroke-linecap":"round"
+      });
+      g.appendChild(line);
+    }
+  }
+  ticks("heroticks", 240, 240, 224, 232, 72, 6, 6);
+  (function(){ // 方位标 000/090/180/270
+    var g = document.getElementById("heroticks"), lab = ["000","090","180","270"];
+    for(var i=0;i<4;i++){
+      var a = (i*90 - 90)*Math.PI/180, r = 210;
+      var t = el("text", {x:240 + r*Math.cos(a), y:240 + r*Math.sin(a) + 3,
+        "text-anchor":"middle", fill:"rgba(139,132,118,.85)",
+        "font-family":"IBM Plex Mono, monospace", "font-size":"9", "letter-spacing":"2"});
+      t.textContent = lab[i];
+      g.appendChild(t);
+    }
+  })();
+  ticks("gaugeticks", 120, 120, 112, 117, 60, 5, 4);
+
+  /* ---- 贝利珠点串 + 金环钻石珠 ---- */
+  (function(){
+    var g = document.getElementById("beads");
+    var beads = [[-38,1.6],[-27,2.2],[-17,2.8],[-8,2.2],[2,3.2],[11,2.4],[21,1.8],[33,1.4],[46,1.2]];
+    beads.forEach(function(b){
+      var a = b[0]*Math.PI/180, r = 134;
+      var x = 240 + r*Math.cos(a), y = 240 + r*Math.sin(a);
+      g.appendChild(el("circle", {cx:x, cy:y, r:b[1]*2.6, fill:"rgba(255,220,168,.22)"}));
+      g.appendChild(el("circle", {cx:x, cy:y, r:b[1], fill:"#FFE2B0"}));
+    });
+    var d = document.getElementById("diamond");
+    var da = 2*Math.PI/180, dx = 240 + 134*Math.cos(da), dy = 240 + 134*Math.sin(da);
+    d.appendChild(el("circle", {cx:dx, cy:dy, r:16, fill:"rgba(255,220,168,.25)"}));
+    d.appendChild(el("circle", {cx:dx, cy:dy, r:5, fill:"#FFF3DC"}));
+    d.appendChild(el("line", {x1:dx-30, y1:dy, x2:dx+30, y2:dy, stroke:"rgba(255,236,204,.85)", "stroke-width":1, "stroke-linecap":"round"}));
+    d.appendChild(el("line", {x1:dx, y1:dy-30, x2:dx, y2:dy+30, stroke:"rgba(255,236,204,.85)", "stroke-width":1, "stroke-linecap":"round"}));
+  })();
+
+  /* ---- UT 时钟 ---- */
+  var clock = document.getElementById("utclock");
+  function tick(){
+    var d = new Date();
+    function z(n){ return (n<10?"0":"")+n; }
+    clock.textContent = "UT " + z(d.getUTCHours()) + ":" + z(d.getUTCMinutes()) + ":" + z(d.getUTCSeconds());
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---- TOAST ---- */
+  var toasts = document.getElementById("toasts");
+  function toast(kind, title, meta){
+    while(toasts.children.length >= 4) toasts.removeChild(toasts.firstChild);
+    var t = document.createElement("div");
+    t.className = "toast" + (kind === "atmo" ? " toast--atmo" : "");
+    t.innerHTML = '<span class="toast-ring" aria-hidden="true"></span>' +
+      '<span class="toast-txt"><b></b><span class="tag"></span></span>' +
+      '<button class="toast-x" aria-label="关闭">✕</button>';
+    t.querySelector("b").textContent = title;
+    t.querySelector(".tag").textContent = meta || "";
+    toasts.appendChild(t);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ t.classList.add("in"); }); });
+    var timer = setTimeout(dismiss, 4600);
+    function dismiss(){
+      clearTimeout(timer);
+      t.classList.remove("in"); t.classList.add("out");
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 320);
+    }
+    t.querySelector(".toast-x").addEventListener("click", dismiss);
+  }
+  document.querySelectorAll("[data-toast]").forEach(function(b){
+    b.addEventListener("click", function(){ toast(b.dataset.toast, b.dataset.tt, b.dataset.tm); });
+  });
+  document.getElementById("ctaObserve").addEventListener("click", function(){
+    toast("amber", "观测已开始", "十四路日冕仪 · 已同步");
+  });
+  document.getElementById("ctaEphem").addEventListener("click", function(){
+    var s = document.getElementById("ch02");
+    s.scrollIntoView({behavior:"smooth", block:"start"});
+    toast("atmo", "星历已调出", "接触时刻 C1—C4 · 已载入");
+  });
+
+  /* ---- 下拉 ---- */
+  (function(){
+    var btn = document.getElementById("filterBtn"),
+        menu = document.getElementById("filterMenu"),
+        val = document.getElementById("filterVal"),
+        opts = Array.prototype.slice.call(menu.querySelectorAll("[role=option]")),
+        open = false, active = -1;
+    function setOpen(v){
+      open = v;
+      btn.setAttribute("aria-expanded", v ? "true" : "false");
+      menu.classList.toggle("open", v);
+      if(v){ active = opts.findIndex(function(o){ return o.getAttribute("aria-selected") === "true"; }); paint(); }
+    }
+    function paint(){ opts.forEach(function(o,i){ o.classList.toggle("active", i === active); }); }
+    function choose(i){
+      opts.forEach(function(o){ o.removeAttribute("aria-selected"); });
+      opts[i].setAttribute("aria-selected", "true");
+      val.textContent = opts[i].dataset.v;
+      setOpen(false); btn.focus();
+      toast("atmo", "滤镜信道已切换", opts[i].dataset.v);
+    }
+    btn.addEventListener("click", function(){ setOpen(!open); });
+    btn.addEventListener("keydown", function(e){
+      if(e.key === "ArrowDown" || e.key === "ArrowUp"){ e.preventDefault(); if(!open) setOpen(true); }
+    });
+    opts.forEach(function(o,i){ o.addEventListener("click", function(){ choose(i); }); });
+    document.addEventListener("keydown", function(e){
+      if(!open) return;
+      if(e.key === "Escape"){ setOpen(false); btn.focus(); }
+      else if(e.key === "ArrowDown"){ e.preventDefault(); active = Math.min(active+1, opts.length-1); paint(); }
+      else if(e.key === "ArrowUp"){ e.preventDefault(); active = Math.max(active-1, 0); paint(); }
+      else if(e.key === "Enter" && active > -1){ e.preventDefault(); choose(active); }
+    });
+    document.addEventListener("click", function(e){
+      if(open && !e.target.closest("#filterSelect")) setOpen(false);
+    });
+  })();
+
+  /* ---- 开关 ---- */
+  document.querySelectorAll(".sw").forEach(function(sw){
+    sw.addEventListener("click", function(){
+      if(sw.disabled) return;
+      var on = sw.getAttribute("aria-checked") === "true";
+      sw.setAttribute("aria-checked", on ? "false" : "true");
+    });
+  });
+
+  /* ---- 标签页 ---- */
+  (function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    function select(i){
+      tabs.forEach(function(t,j){
+        var on = i === j;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener("click", function(){ select(i); });
+      t.addEventListener("keydown", function(e){
+        var n = -1;
+        if(e.key === "ArrowRight") n = (i+1) % tabs.length;
+        else if(e.key === "ArrowLeft") n = (i-1+tabs.length) % tabs.length;
+        else if(e.key === "Home") n = 0;
+        else if(e.key === "End") n = tabs.length-1;
+        if(n > -1){ e.preventDefault(); select(n); tabs[n].focus(); }
+      });
+    });
+  })();
+
+  /* ---- 量表 ↔ 滑杆(食相盘) ---- */
+  (function(){
+    var slider = document.getElementById("magslider"),
+        arc = document.getElementById("gaugearc"),
+        disc = document.getElementById("gaugedisc"),
+        out = document.getElementById("gaugeval");
+    function apply(){
+      var v = parseFloat(slider.value);
+      slider.style.setProperty("--p", v*100);
+      arc.setAttribute("stroke-dasharray", (v*100).toFixed(1) + " 100");
+      disc.style.setProperty("--occ", v);
+      out.textContent = v.toFixed(2);
+    }
+    slider.addEventListener("input", apply);
+    apply();
+  })();
+
+  /* ---- 食分推进 ---- */
+  (function(){
+    var card = document.getElementById("progcard"),
+        bar = document.getElementById("progbar"),
+        fill = document.getElementById("progfill"),
+        disc = document.getElementById("progdisc"),
+        val = document.getElementById("progval"),
+        state = document.getElementById("progstate"),
+        play = document.getElementById("progplay"),
+        reset = document.getElementById("progreset");
+    var p = 0, playing = false, raf = null, last = 0, doneFired = false;
+    function paint(){
+      fill.style.setProperty("--p", p);
+      disc.style.setProperty("--occ", p);
+      bar.setAttribute("aria-valuenow", Math.round(p*100));
+      val.textContent = (p*1.012).toFixed(2);
+    }
+    function step(ts){
+      if(!last) last = ts;
+      p = Math.min(p + (ts-last)/12000, 1);
+      last = ts;
+      paint();
+      if(p >= 1){
+        stop("Totality · 食甚保持");
+        if(!doneFired){
+          doneFired = true;
+          disc.classList.remove("is-flash"); void disc.offsetWidth;
+          disc.classList.add("is-flash");
+          toast("amber", "食分推进完成", "MAG 1.012 · 金环已闪现");
+        }
+        return;
+      }
+      raf = requestAnimationFrame(step);
+    }
+    function stop(label){
+      playing = false; last = 0;
+      if(raf) cancelAnimationFrame(raf);
+      card.classList.remove("is-playing");
+      play.textContent = p >= 1 ? "已达食甚" : "推进食分";
+      play.disabled = p >= 1;
+      state.textContent = label || "Paused · 已暂停";
+    }
+    play.addEventListener("click", function(){
+      if(playing){ stop(); return; }
+      playing = true; doneFired = false;
+      card.classList.add("is-playing");
+      play.textContent = "暂停";
+      state.textContent = "Advancing · 月影推进中";
+      raf = requestAnimationFrame(step);
+    });
+    reset.addEventListener("click", function(){
+      if(raf) cancelAnimationFrame(raf);
+      playing = false; p = 0; last = 0; doneFired = false;
+      card.classList.remove("is-playing");
+      play.disabled = false; play.textContent = "推进食分";
+      state.textContent = "Standby · 待推进";
+      disc.classList.remove("is-flash");
+      paint();
+    });
+    paint();
+  })();
+
+  /* ---- 弹窗 ---- */
+  (function(){
+    var overlay = document.getElementById("overlay"),
+        modal = document.getElementById("modal"),
+        openBtn = document.getElementById("modalOpen"),
+        prevFocus = null;
+    function setOpen(v){
+      overlay.classList.toggle("open", v);
+      overlay.setAttribute("aria-hidden", v ? "false" : "true");
+      if(v){ prevFocus = document.activeElement; modal.focus({preventScroll:true}); }
+      else if(prevFocus){ prevFocus.focus(); }
+    }
+    openBtn.addEventListener("click", function(){ setOpen(true); });
+    document.getElementById("modalClose").addEventListener("click", function(){ setOpen(false); });
+    document.getElementById("modalCancel").addEventListener("click", function(){ setOpen(false); });
+    document.getElementById("modalConfirm").addEventListener("click", function(){
+      var beads = document.getElementById("modalBeads").checked;
+      setOpen(false);
+      toast("amber", "全食模式已接通", beads ? "日冕仪连拍 · 贝利珠捕获同启" : "日冕仪连拍 · 已就绪");
+    });
+    overlay.addEventListener("click", function(e){ if(e.target === overlay) setOpen(false); });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && overlay.classList.contains("open")) setOpen(false);
+    });
+  })();
+
+  /* ---- TOOLTIP(坐标注记释义) ---- */
+  (function(){
+    var tip = document.getElementById("tipbox"), current = null;
+    function show(t){
+      current = t;
+      tip.textContent = t.dataset.tip;
+      tip.classList.add("show");
+      var r = t.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+      var x = Math.min(Math.max(r.left + r.width/2 - tw/2, 8), window.innerWidth - tw - 8);
+      var y = r.top - th - 10;
+      if(y < 8) y = r.bottom + 10;
+      tip.style.left = x + "px"; tip.style.top = y + "px";
+    }
+    function hide(){ current = null; tip.classList.remove("show"); }
+    document.addEventListener("mouseover", function(e){
+      var t = e.target.closest("[data-tip]");
+      if(t && t !== current) show(t);
+      else if(!t && current) hide();
+    });
+    document.addEventListener("focusin", function(e){
+      var t = e.target.closest("[data-tip]");
+      if(t) show(t); else hide();
+    });
+    window.addEventListener("scroll", hide, true);
+  })();
+})();
+</script>
+</body>
+</html>

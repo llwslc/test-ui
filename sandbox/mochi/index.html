@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOCHIYA 麻薯屋 · MOCHI 视觉自由稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFF6EA;
+  --milk: #FFFDF8;
+  --cocoa: #4A2C21;
+  --cocoa-2: #6E4B39;
+  --cap: #8A6450;
+  --pink: #FFA7C1;
+  --pink-soft: #FFD9E4;
+  --pink-deep: #E2557B;
+  --berry: #C2416B;
+  --blue: #BEE4F2;
+  --blue-soft: #E2F2FA;
+  --blue-deep: #6FB4D2;
+  --butter: #FFD48A;
+  --butter-soft: #FFEBC4;
+  --well: #F4E7D6;
+  --well-line: #EADAC4;
+  --wood: #DDBA8E;
+  --r-card: 30px;
+  --shadow-out: 0 16px 30px -14px rgba(74,44,33,.24), 0 4px 10px -4px rgba(74,44,33,.10);
+  --shadow-in: inset 0 2px 0 rgba(255,255,255,.9), inset 0 -8px 14px -8px rgba(93,53,37,.26);
+  --well-in: inset 0 3px 6px rgba(93,53,37,.16), inset 0 -2px 0 rgba(255,255,255,.85);
+  --spring: cubic-bezier(.3,1.75,.4,1);
+  --font-display: "Baloo 2","Yuanti SC","M PLUS Rounded 1c","YouYuan","PingFang SC",sans-serif;
+  --font-body: "Quicksand","Yuanti SC","M PLUS Rounded 1c","YouYuan","PingFang SC",sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--cream); scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--cocoa);
+  background: transparent;
+  min-height: 100vh;
+  overflow-wrap: break-word;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><g fill-opacity='0.5'><rect x='18' y='30' width='22' height='7' rx='3' fill='%23F2A9C3' transform='rotate(24 29 33)'/><rect x='150' y='20' width='22' height='7' rx='3' fill='%23A9D8EA' transform='rotate(-30 161 23)'/><rect x='80' y='84' width='22' height='7' rx='3' fill='%23F6CE8C' transform='rotate(58 91 87)'/><rect x='196' y='120' width='22' height='7' rx='3' fill='%23F2A9C3' transform='rotate(-52 207 123)'/><rect x='34' y='168' width='22' height='7' rx='3' fill='%23A9D8EA' transform='rotate(40 45 171)'/><rect x='128' y='196' width='22' height='7' rx='3' fill='%23F6CE8C' transform='rotate(-18 139 199)'/><circle cx='120' cy='58' r='4' fill='%23F2A9C3'/><circle cx='60' cy='120' r='4' fill='%23F6CE8C'/><circle cx='188' cy='188' r='4' fill='%23A9D8EA'/><circle cx='222' cy='60' r='4' fill='%23A9D8EA'/></g></svg>");
+}
+::selection { background: var(--pink); color: var(--cocoa); }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; }
+p { color: var(--cocoa-2); }
+strong { color: var(--cocoa); }
+
+:focus-visible {
+  outline: 3px solid var(--pink-deep);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+/* ---------- primitives ---------- */
+.puff {
+  background: var(--milk);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+}
+.pearls {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.pearls rect, .pearls ellipse {
+  fill: none;
+  stroke: rgba(255,255,255,.95);
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 14;
+}
+.pearls rect {
+  x: 6px; y: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  rx: 90px;
+}
+
+.stamp {
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  display: flex;
+  gap: 7px;
+}
+.stamp i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+}
+
+.flag {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  display: flex;
+  align-items: flex-start;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+.flag .stick {
+  width: 5px;
+  height: 46px;
+  border-radius: 3px;
+  background: var(--wood);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 2px 3px rgba(74,44,33,.18);
+  margin-top: 4px;
+}
+.flag .cloth {
+  margin-left: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 4px 24px 4px 13px;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.25);
+  -webkit-mask: radial-gradient(circle 9px at 100% 50%, transparent 8px, #000 9px);
+  mask: radial-gradient(circle 9px at 100% 50%, transparent 8px, #000 9px);
+}
+.flag-pink .cloth { background: var(--pink); }
+.flag-blue .cloth { background: var(--blue); }
+.flag-butter .cloth { background: var(--butter); }
+
+.tag-mini {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 18px 6px 10px;
+  border-radius: 4px 9px 9px 4px;
+  background: var(--butter);
+  -webkit-mask: radial-gradient(circle 7px at 100% 50%, transparent 6px, #000 7px);
+  mask: radial-gradient(circle 7px at 100% 50%, transparent 6px, #000 7px);
+}
+
+.bite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  padding: 7px 16px 7px 12px;
+  border-radius: 11px;
+  background: var(--pink);
+  transform: rotate(-3deg);
+  -webkit-mask: radial-gradient(circle 11px at calc(100% - 3px) 1px, transparent 10px, #000 11px);
+  mask: radial-gradient(circle 11px at calc(100% - 3px) 1px, transparent 10px, #000 11px);
+}
+.bite-wrap { position: relative; display: inline-flex; }
+.bite-wrap::after {
+  content: "";
+  position: absolute;
+  top: -6px; right: -7px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  box-shadow: 7px 5px 0 -1px var(--pink-deep), -2px 9px 0 -1px var(--pink);
+}
+
+/* ---------- squish press ---------- */
+.squish {
+  transform-origin: 50% 100%;
+  transition: transform .45s var(--spring), box-shadow .45s var(--spring);
+}
+.squish:active:not(:disabled) {
+  transform: scale(1.07, .82) translateY(2px);
+  transition-duration: .07s;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--cocoa);
+  padding: 14px 30px;
+  border-radius: 999px;
+  background: var(--milk);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+}
+.btn .lbl { position: relative; }
+.btn-primary { background: var(--pink); }
+.btn-butter { background: var(--butter); }
+.btn-ghost {
+  background: transparent;
+  box-shadow: none;
+  border: 3px solid var(--cocoa);
+  padding: 11px 27px;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  background: #EFE4D3;
+  color: #AE9884;
+  box-shadow: inset 0 2px 4px rgba(93,53,37,.12);
+  transform: none;
+}
+.btn-round {
+  padding: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+}
+.btn-sm { font-size: 15px; padding: 10px 22px; }
+.btn-ghost.btn-sm { padding: 7px 19px; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--milk);
+  box-shadow: 0 10px 24px -16px rgba(74,44,33,.35);
+}
+.nav::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  height: 30px;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='30'><rect width='260' height='8' fill='%23FFFDF8'/><rect x='20' width='11' height='19' rx='5' fill='%23FFFDF8'/><rect x='66' width='9' height='12' rx='4' fill='%23FFFDF8'/><rect x='118' width='13' height='24' rx='6' fill='%23FFFDF8'/><rect x='178' width='9' height='15' rx='4' fill='%23FFFDF8'/><rect x='226' width='11' height='10' rx='5' fill='%23FFFDF8'/></svg>");
+  background-repeat: repeat-x;
+}
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--cocoa);
+}
+.logo-word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: .5px;
+}
+.logo-word small {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--cap);
+  line-height: 1.1;
+}
+.nav-links {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--cocoa-2);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: background .2s, color .2s;
+}
+.nav-links a:hover { background: var(--pink-soft); color: var(--cocoa); }
+
+/* ---------- layout ---------- */
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+section { scroll-margin-top: 110px; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 44px;
+  align-items: center;
+  padding: 78px 0 64px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+  transform: rotate(-2deg);
+}
+.hero h1 {
+  font-size: clamp(38px, 5.2vw, 62px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+.hero h1 .dot { color: var(--pink-deep); }
+.hero p { max-width: 34em; margin-bottom: 14px; }
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.stage { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.plate {
+  position: relative;
+  width: min(470px, 100%);
+  height: 220px;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: var(--shadow-out), var(--shadow-in), inset 0 -18px 30px -22px rgba(93,53,37,.30);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 52px;
+}
+.plate .pearls ellipse {
+  cx: 50%; cy: 50%;
+  rx: calc(50% - 12px);
+  ry: calc(50% - 12px);
+  stroke: #F8DECD;
+  stroke-width: 7px;
+  stroke-dasharray: 0.1 18;
+}
+.mochi {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.mochi .bun {
+  display: block;
+  border-radius: 46% 54% 52% 48% / 62% 58% 42% 38%;
+  box-shadow:
+    0 14px 20px -10px rgba(74,44,33,.35),
+    inset 0 6px 8px rgba(255,255,255,.75),
+    inset 0 -10px 16px -8px rgba(93,53,37,.30);
+  transform-origin: 50% 100%;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+.mochi:hover .bun { filter: brightness(1.03); }
+.mochi:focus-visible { outline-offset: 8px; border-radius: 40px; }
+.mochi-pink .bun { width: 118px; height: 92px; background: radial-gradient(90px 70px at 34% 24%, #FFE3EC 0 34%, var(--pink) 78%); }
+.mochi-blue .bun { width: 96px; height: 76px; background: radial-gradient(74px 58px at 34% 24%, #EAF7FD 0 34%, var(--blue) 78%); animation-delay: .7s; }
+.mochi-butter .bun { width: 108px; height: 84px; background: radial-gradient(84px 64px at 34% 24%, #FFF2D6 0 34%, var(--butter) 78%); animation-delay: 1.3s; }
+.mochi::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: -12px;
+  width: 80%;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(93,53,37,.16);
+  filter: blur(4px);
+}
+.mochi.deflated .bun { animation: deflate 2s var(--spring) forwards; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.035, .97); }
+}
+@keyframes deflate {
+  0% { transform: scale(1, 1); }
+  9% { transform: scale(1.32, .42) translateY(4px); }
+  30% { transform: scale(1.26, .48) translateY(3px); }
+  62% { transform: scale(.94, 1.1); }
+  80% { transform: scale(1.05, .95); }
+  100% { transform: scale(1, 1); }
+}
+.gasp {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.mochi.deflated .gasp { animation: gasp 1s ease-out; }
+@keyframes gasp {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.4); box-shadow: -14px -6px 0 rgba(255,255,255,.7), 15px -9px 0 rgba(255,255,255,.6); }
+  25% { opacity: .95; }
+  100% { opacity: 0; transform: translate(-50%, -46px) scale(1.7); box-shadow: -26px -18px 0 rgba(255,255,255,0), 28px -22px 0 rgba(255,255,255,0); }
+}
+
+.steam {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 54px;
+  overflow: visible;
+  pointer-events: none;
+}
+.steam path {
+  fill: none;
+  stroke: #D9EDF7;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: rise 3.2s ease-in-out infinite;
+}
+.steam path + path { animation-delay: 1.6s; }
+.steam-warm path { stroke: #F4D8C2; }
+@keyframes rise {
+  0% { opacity: 0; transform: translateY(14px); }
+  35% { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-16px); }
+}
+.stage-cap { font-size: 14px; color: var(--cap); }
+
+/* ---------- trays ---------- */
+.trays {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+}
+.tray {
+  position: relative;
+  background: var(--milk);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 40px 34px 46px;
+  margin-top: 26px;
+}
+.tray h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.tray .lede { font-size: 15px; margin-bottom: 26px; }
+.t-counter { grid-column: span 12; }
+.t-order { grid-column: span 7; }
+.t-fire { grid-column: span 5; }
+.t-menu { grid-column: span 7; }
+.t-service { grid-column: span 5; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---------- form ---------- */
+.field { margin-bottom: 24px; }
+.field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+.field-help { font-size: 13px; color: var(--cap); margin-top: 7px; }
+.input {
+  width: 100%;
+  border: 2px solid var(--well-line);
+  border-radius: 18px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 13px 18px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.input::placeholder { color: var(--cap); font-weight: 500; }
+.input:focus {
+  outline: none;
+  border-color: var(--pink-deep);
+  background: var(--milk);
+  box-shadow: var(--well-in), 0 0 0 4px rgba(226,85,123,.22);
+}
+
+.choices { display: flex; flex-direction: column; gap: 12px; }
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 16px;
+  padding: 4px 6px;
+}
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 30px; height: 30px;
+  cursor: pointer;
+}
+.choice .price { margin-left: auto; font-family: var(--font-display); font-weight: 700; color: var(--berry); font-size: 15px; }
+.dot {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  display: grid;
+  place-items: center;
+}
+.dot::after {
+  content: "";
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  transform: scale(0);
+  transition: transform .3s var(--spring);
+}
+.choice input:checked + .dot::after { transform: scale(1); animation: pop .35s var(--spring); }
+.choice input:focus-visible + .dot { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+@keyframes pop {
+  0% { transform: scale(.2, .1); }
+  60% { transform: scale(1.3, 1.15); }
+  100% { transform: scale(1); }
+}
+.box {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 9px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  display: grid;
+  place-items: center;
+  transition: background .25s;
+}
+.box svg { width: 16px; height: 16px; overflow: visible; }
+.box path {
+  fill: none;
+  stroke: var(--cocoa);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset .3s ease .05s;
+}
+.choice input:checked + .box { background: var(--pink); box-shadow: var(--shadow-out), inset 0 2px 0 rgba(255,255,255,.8); }
+.choice input:checked + .box path { stroke-dashoffset: 0; }
+.choice input:focus-visible + .box { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.switch input { position: absolute; opacity: 0; width: 56px; height: 34px; cursor: pointer; }
+.track {
+  flex: none;
+  width: 58px; height: 34px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  padding: 4px;
+  transition: background .3s;
+}
+.thumb {
+  display: block;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: 0 3px 6px -1px rgba(74,44,33,.35), inset 0 2px 0 rgba(255,255,255,.9);
+  transition: transform .4s var(--spring);
+}
+.switch input:checked + .track { background: var(--pink); }
+.switch input:checked + .track .thumb { transform: translateX(24px); }
+.switch:active .thumb { transform: scale(1.2, .85); }
+.switch:active input:checked + .track .thumb { transform: translateX(24px) scale(1.2, .85); }
+.switch input:focus-visible + .track { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+.warm-steam {
+  width: 24px; height: 30px;
+  opacity: 0;
+  transition: opacity .4s;
+  overflow: visible;
+}
+.warm-steam path {
+  fill: none;
+  stroke: var(--blue-deep);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.switch input:checked ~ .warm-steam { opacity: 1; }
+.switch input:checked ~ .warm-steam path { animation: rise 2.8s ease-in-out infinite; }
+.switch input:checked ~ .warm-steam path + path { animation-delay: 1.4s; }
+
+/* ---------- dropdown ---------- */
+.dd { position: relative; }
+.dd-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--well-line);
+  border-radius: 18px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+}
+.dd-btn .chev { margin-left: auto; transition: transform .35s var(--spring); }
+.dd.open .dd-btn { border-color: var(--pink-deep); box-shadow: var(--well-in), 0 0 0 4px rgba(226,85,123,.22); }
+.dd.open .chev { transform: rotate(180deg); }
+.dd-pop {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 12px);
+  left: 0; right: 0;
+  list-style: none;
+  background: var(--milk);
+  border-radius: 22px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(.94, .8);
+  transform-origin: 50% 0;
+  transition: opacity .18s ease, transform .35s var(--spring), visibility 0s .35s;
+}
+.dd.open .dd-pop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.dd-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.dd-item:hover { background: var(--pink-soft); }
+.dd-item .mark { margin-left: auto; opacity: 0; }
+.dd-item[aria-selected="true"] { background: var(--pink); }
+.dd-item[aria-selected="true"] .mark { opacity: 1; }
+.dd-item small { color: var(--cap); font-size: 12px; }
+.dd-item[aria-selected="true"] small { color: var(--cocoa-2); }
+
+/* ---------- fire ---------- */
+.fire-block { margin-bottom: 30px; }
+.fire-block:last-child { margin-bottom: 0; }
+.fire-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.fire-head h3 { font-size: 17px; font-weight: 700; }
+.fire-head output, .fire-head .read {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cocoa-2);
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--pink) 0 var(--pct, 65%), var(--well) var(--pct, 65%) 100%);
+  box-shadow: var(--well-in);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 16px; border-radius: 999px; background: transparent; }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px; height: 30px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: radial-gradient(22px 18px at 34% 26%, #FFFDF8 0 40%, #FBE9EE 90%);
+  box-shadow: 0 4px 8px -2px rgba(74,44,33,.4), inset 0 -3px 5px -2px rgba(93,53,37,.25);
+  transition: transform .3s var(--spring);
+}
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.18, .88); }
+input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline-offset: 5px; }
+
+.gauge-wrap { position: relative; width: min(240px, 100%); margin: 4px auto 0; }
+.gauge-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.gauge-track { fill: none; stroke: var(--well); stroke-width: 15px; stroke-linecap: round; }
+.gauge-val {
+  fill: none;
+  stroke: var(--pink);
+  stroke-width: 15px;
+  stroke-linecap: round;
+  transition: stroke-dasharray .5s var(--spring);
+}
+.gauge-read {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 4px;
+  text-align: center;
+}
+.gauge-read b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.1;
+}
+.gauge-read span { font-size: 13px; color: var(--cocoa-2); font-weight: 600; }
+
+.prog-row { display: flex; align-items: center; gap: 12px; }
+.prog {
+  position: relative;
+  flex: 1;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+}
+.prog-fill {
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: 40%;
+  min-width: 14px;
+  border-radius: 999px;
+  background-color: var(--pink);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='22'><g fill-opacity='0.6'><rect x='8' y='6' width='13' height='5' rx='2' fill='%23FFFDF8' transform='rotate(24 14 8)'/><rect x='40' y='10' width='13' height='5' rx='2' fill='%23D14E77' transform='rotate(-28 46 12)'/><rect x='66' y='5' width='13' height='5' rx='2' fill='%23FFFDF8' transform='rotate(50 72 7)'/></g></svg>");
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.55), inset 0 -3px 5px -2px rgba(93,53,37,.3);
+  transition: width .3s ease;
+}
+.prog-steam { flex: none; width: 30px; height: 40px; overflow: visible; }
+.prog-steam path {
+  fill: none;
+  stroke: var(--blue-deep);
+  stroke-width: 5px;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: rise 3s ease-in-out infinite;
+}
+.prog-steam path + path { animation-delay: 1.5s; }
+
+/* ---------- tabs ---------- */
+.tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.tab {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cocoa-2);
+  padding: 11px 24px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+}
+.tab[aria-selected="true"] {
+  color: var(--cocoa);
+  background: var(--pink);
+  box-shadow: var(--shadow-out), inset 0 2px 0 rgba(255,255,255,.8), inset 0 -6px 10px -6px rgba(93,53,37,.25);
+}
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  transform: translateX(-50%);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  border-radius: 20px;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+  margin-bottom: 12px;
+}
+.menu-item:last-child { margin-bottom: 0; }
+.menu-item b { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.menu-item .note { font-size: 13px; color: var(--cap); }
+.menu-item .price {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--berry);
+  white-space: nowrap;
+}
+
+/* ---------- service ---------- */
+.serve-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.serve-block:last-child { margin-bottom: 0; }
+.serve-block p { font-size: 14px; flex: 1; min-width: 0; }
+
+.tip { position: relative; display: inline-flex; }
+.tipbtn {
+  border: 0;
+  cursor: pointer;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--cocoa);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.3), inset 0 2px 0 rgba(255,255,255,.7);
+}
+.tipbubble {
+  position: absolute;
+  z-index: 35;
+  bottom: calc(100% + 20px);
+  left: 50%;
+  transform: translate(-50%, 6px) scale(.9, .7);
+  transform-origin: 50% 100%;
+  width: max-content;
+  max-width: 230px;
+  background: var(--milk);
+  border-radius: 18px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  color: var(--cocoa-2);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .35s var(--spring), visibility 0s .35s;
+  pointer-events: none;
+}
+.tipbubble::before, .tipbubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.25);
+}
+.tipbubble::before { bottom: -8px; width: 12px; height: 12px; margin-left: -6px; }
+.tipbubble::after { bottom: -17px; width: 7px; height: 7px; margin-left: -4px; }
+.tip:hover .tipbubble, .tip:focus-within .tipbubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+  transition-delay: 0s;
+}
+.tip.tip-off .tipbubble { opacity: 0; visibility: hidden; transform: translate(-50%, 6px) scale(.9, .7); }
+.term {
+  border: 0;
+  background: transparent;
+  cursor: help;
+  color: var(--cocoa);
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-body);
+  padding: 2px 2px 4px;
+  border-bottom: 3px dotted var(--pink-deep);
+}
+
+/* ---------- modal ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(74,44,33,.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility 0s .22s;
+}
+.overlay.show { opacity: 1; visibility: visible; transition-delay: 0s; }
+.modal {
+  position: relative;
+  width: min(430px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  background: var(--milk);
+  border-radius: 28px;
+  box-shadow: 0 30px 60px -20px rgba(46,24,15,.5), var(--shadow-in);
+  transform: scale(.8, .6) translateY(24px);
+  transition: transform .45s var(--spring);
+}
+.overlay.show .modal { transform: none; }
+.modal .pearls rect { rx: 24px; x: 7px; y: 7px; width: calc(100% - 14px); height: calc(100% - 14px); stroke-width: 5px; stroke-dasharray: 0.1 13; }
+.modal-head {
+  position: relative;
+  background: var(--pink);
+  border-radius: 24px 24px 0 0;
+  padding: 24px 28px 20px;
+}
+.modal-head::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 10px; right: 10px;
+  height: 30px;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='30'><rect width='260' height='8' fill='%23FFA7C1'/><rect x='20' width='11' height='19' rx='5' fill='%23FFA7C1'/><rect x='66' width='9' height='12' rx='4' fill='%23FFA7C1'/><rect x='118' width='13' height='24' rx='6' fill='%23FFA7C1'/><rect x='178' width='9' height='15' rx='4' fill='%23FFA7C1'/><rect x='226' width='11' height='10' rx='5' fill='%23FFA7C1'/></svg>");
+  background-repeat: repeat-x;
+}
+.modal-head h3 { font-size: 21px; font-weight: 800; }
+.modal-head p { color: var(--cocoa); opacity: .8; font-size: 13px; }
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--milk);
+  color: var(--cocoa);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.35), inset 0 2px 0 rgba(255,255,255,.9);
+  display: grid;
+  place-items: center;
+}
+.modal-body { padding: 40px 28px 24px; }
+.sum { list-style: none; margin-bottom: 18px; }
+.sum li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.sum li:nth-child(odd) { background: var(--cream); box-shadow: var(--well-in); }
+.sum .k { flex: none; color: var(--cap); font-size: 13px; }
+.sum .v { color: var(--cocoa); }
+.modal-note { font-size: 13px; color: var(--cap); }
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 6px 28px 26px;
+}
+
+/* ---------- toast ---------- */
+.toasts {
+  position: fixed;
+  z-index: 120;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: min(360px, calc(100vw - 36px));
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--milk);
+  border-radius: 999px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 11px 12px 11px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: toast-in .5s var(--spring);
+}
+.toast.bye { animation: toast-out .24s ease forwards; }
+.toast .puffdot {
+  flex: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.7), 0 2px 4px -1px rgba(74,44,33,.3);
+}
+.toast .puffdot svg { width: 16px; height: 16px; overflow: visible; }
+.toast .puffdot path { fill: none; stroke: var(--cocoa); stroke-width: 3px; stroke-linecap: round; }
+.toast-pink .puffdot { background: var(--pink); }
+.toast-blue .puffdot { background: var(--blue); }
+.toast-butter .puffdot { background: var(--butter); }
+.toast-x {
+  flex: none;
+  margin-left: 4px;
+  border: 0;
+  cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+  color: var(--cocoa-2);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(-16px) scale(.8, .5); }
+  60% { opacity: 1; transform: translateY(2px) scale(1.03, 1.08); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes toast-out {
+  to { opacity: 0; transform: translateY(-8px) scale(.9, .7); }
+}
+
+/* ---------- footer ---------- */
+footer {
+  position: relative;
+  max-width: 1180px;
+  margin: 26px auto 0;
+  padding: 30px 24px 46px;
+  text-align: center;
+}
+footer .close-line { font-weight: 600; color: var(--cocoa-2); }
+footer .fine { font-size: 13px; color: var(--cap); margin-top: 8px; }
+footer .stamp { position: static; justify-content: center; margin-bottom: 14px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 34px; padding: 56px 0 48px; }
+  .t-order, .t-fire, .t-menu, .t-service { grid-column: span 12; }
+}
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  main { padding: 0 16px 32px; }
+  .tray { padding: 34px 22px 44px; }
+  .trays { gap: 26px; }
+  .plate { gap: 16px; height: 190px; padding-bottom: 44px; }
+  .mochi-pink .bun { width: 96px; height: 76px; }
+  .mochi-blue .bun { width: 78px; height: 62px; }
+  .mochi-butter .bun { width: 88px; height: 70px; }
+  .toasts { right: 12px; left: 12px; max-width: none; align-items: stretch; }
+  .serve-block { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="MOCHIYA 麻薯屋,回到页首">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="24" rx="16" ry="12" fill="#FFA7C1"/>
+        <ellipse cx="20" cy="21" rx="16" ry="11" fill="#FFD9E4"/>
+        <ellipse cx="14" cy="18" rx="6" ry="4" fill="#FFFDF8" opacity=".9"/>
+        <circle cx="27" cy="12" r="3" fill="#BEE4F2"/>
+        <circle cx="32" cy="7" r="2" fill="#BEE4F2"/>
+      </svg>
+      <span class="logo-word">麻薯屋<small>MOCHIYA</small></span>
+    </a>
+    <nav class="nav-links" aria-label="柜台导航">
+      <a href="#counter">按钮柜</a>
+      <a href="#order">点单台</a>
+      <a href="#fire">火候间</a>
+      <a href="#menu">茶单</a>
+    </nav>
+    <button class="btn btn-sm squish" data-open-modal type="button" style="margin-left:auto"><span class="lbl">打包带走</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="hero-eyebrow tag-mini">今日现蒸 · 出屉即卖</span>
+      <h1>软的,才是<br>认真做的<span class="dot">。</span></h1>
+      <p><strong>MOCHIYA 麻薯屋</strong>把界面当点心做:每颗按钮都是现挤的,按下去瘪一口气,松手又自己鼓回来。</p>
+      <p>奶油白的案板,马卡龙的糖色,可可色的字。甜有分寸——是点心铺,不是幼儿园。</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary squish" data-goto="#counter" type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">进店尝尝</span>
+        </button>
+        <button class="btn btn-ghost squish" data-goto="#menu" type="button"><span class="lbl">看看茶单</span></button>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="plate">
+        <svg class="pearls" aria-hidden="true"><ellipse/></svg>
+        <button class="mochi mochi-pink squish" type="button" aria-label="戳一戳草莓麻薯">
+          <svg class="steam" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M12 50 C 4 40, 20 32, 12 20 C 6 11, 15 6, 12 0"/>
+            <path d="M24 52 C 18 44, 30 36, 23 26 C 18 18, 26 12, 23 6"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+        <button class="mochi mochi-blue squish" type="button" aria-label="戳一戳海盐苏打麻薯">
+          <svg class="steam" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M14 50 C 6 40, 22 32, 14 20 C 8 11, 17 6, 14 0"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+        <button class="mochi mochi-butter squish" type="button" aria-label="戳一戳蜂蜜黄油麻薯">
+          <svg class="steam steam-warm" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M10 52 C 3 43, 18 35, 10 24 C 5 15, 13 9, 10 3"/>
+            <path d="M23 50 C 17 42, 29 34, 22 24 C 17 16, 25 10, 22 4"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+      </div>
+      <p class="stage-cap">刚出屉的三颗,戳一戳会瘪一口气。</p>
+    </div>
+  </section>
+
+  <div class="trays">
+    <section class="tray t-counter" id="counter" aria-labelledby="h-counter">
+      <span class="flag flag-pink" aria-hidden="true"><i class="stick"></i><span class="cloth">按钮柜</span></span>
+      <h2 id="h-counter">胖墩药丸,现挤现卖</h2>
+      <p class="lede">按住任意一颗:瘪下去的那口气是真的,松手它自己回来。挤花描边那颗是招牌。</p>
+      <div class="btn-row">
+        <button class="btn btn-primary squish" data-toast="来一份已记下,现做现蒸。|pink" type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">来一份</span>
+        </button>
+        <button class="btn btn-butter squish" data-toast="先收藏了,想吃随时来。|butter" type="button"><span class="lbl">先收藏</span></button>
+        <button class="btn squish" data-toast="配料:糯米、鲜奶油、当季果子。|blue" type="button"><span class="lbl">看配料</span></button>
+        <button class="btn btn-ghost squish" data-toast="店主来了,稍等。|butter" type="button"><span class="lbl">问店主</span></button>
+        <button class="btn" type="button" disabled><span class="lbl">凉了</span></button>
+        <button class="btn btn-round squish" data-toast="铃响了,店主来了。|blue" type="button" aria-label="摇铃呼叫店主">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+            <path d="M11 2 C 6 2, 4 6, 4 10 C 4 13, 3 14, 2.5 15 C 2 16, 3 17, 4 17 L 18 17 C 19 17, 20 16, 19.5 15 C 19 14, 18 13, 18 10 C 18 6, 16 2, 11 2 Z" fill="none" stroke="#4A2C21" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="11" cy="20" r="2" fill="#4A2C21"/>
+          </svg>
+        </button>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-order" id="order" aria-labelledby="h-order">
+      <span class="flag flag-blue" aria-hidden="true"><i class="stick"></i><span class="cloth">点单台</span></span>
+      <h2 id="h-order">点单台</h2>
+      <p class="lede">填好这一台,右上角「打包带走」会照单装盒。</p>
+
+      <div class="field">
+        <label class="field-label" for="buyer">取件人怎么称呼</label>
+        <input class="input" id="buyer" type="text" placeholder="例:爱吃豆乳的小周" autocomplete="off">
+        <p class="field-help">写在盒签上,叫号的时候念。</p>
+      </div>
+
+      <div class="field" role="radiogroup" aria-labelledby="lb-flavor">
+        <span class="field-label" id="lb-flavor">今日口味(选一样)</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="flavor" value="草莓大福" checked><span class="dot"></span>草莓大福<span class="price">¥16</span></label>
+          <label class="choice"><input type="radio" name="flavor" value="海盐可可团子"><span class="dot"></span>海盐可可团子<span class="price">¥14</span></label>
+          <label class="choice"><input type="radio" name="flavor" value="柚子蜂蜜麻薯"><span class="dot"></span>柚子蜂蜜麻薯<span class="price">¥15</span></label>
+        </div>
+      </div>
+
+      <div class="field" aria-labelledby="lb-extra">
+        <span class="field-label" id="lb-extra">加点儿(随便勾)</span>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="extra" value="撒糖针" checked><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>撒糖针<span class="price">+¥1</span></label>
+          <label class="choice"><input type="checkbox" name="extra" value="多裹熟粉"><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>多裹熟粉<span class="price">免费</span></label>
+          <label class="choice"><input type="checkbox" name="extra" value="豆乳酱蘸碟"><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>豆乳酱蘸碟<span class="price">+¥3</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label" id="lb-tea">配茶</span>
+        <div class="dd" id="dd-tea">
+          <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-tea dd-tea-val">
+            <span id="dd-tea-val">焙茶(温)</span>
+            <svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="dd-pop" role="listbox" aria-labelledby="lb-tea">
+            <li><button class="dd-item" type="button" role="option" aria-selected="true">焙茶(温)<small>解甜,配大福正好</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">桂花乌龙<small>香而不抢</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">现磨豆乳<small>和麻薯是一家的</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">气泡柚子<small>冰的,天热限定</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+          </ul>
+        </div>
+        <p class="field-help">弹出的茶单也是现挤的,Esc 收回去。</p>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="switch">
+          <input type="checkbox" role="switch" id="warm" checked>
+          <span class="track"><span class="thumb"></span></span>
+          取件前小火保温
+          <svg class="warm-steam" viewBox="0 0 24 30" aria-hidden="true">
+            <path d="M8 28 C 3 22, 13 17, 8 11 C 4 6, 10 3, 8 0"/>
+            <path d="M17 29 C 13 24, 21 19, 16 13 C 12 8, 18 5, 16 2"/>
+          </svg>
+        </label>
+        <p class="field-help">开着,蒸汽就一直袅着;关了省火。</p>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-fire" id="fire" aria-labelledby="h-fire">
+      <span class="flag flag-butter" aria-hidden="true"><i class="stick"></i><span class="cloth">火候间</span></span>
+      <h2 id="h-fire">火候间</h2>
+      <p class="lede">甜度自己拨,火候我们看。</p>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3><label for="sweet">甜度</label></h3>
+          <output id="sweet-out" for="sweet">6.5g · 七分甜</output>
+        </div>
+        <input type="range" id="sweet" min="0" max="10" step="0.5" value="6.5" aria-label="甜度,每一百毫升含糖克数">
+      </div>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3 id="lb-gauge">糖分仪</h3>
+          <span class="tip">
+            <button class="tipbtn" type="button" aria-describedby="tip-sugar" aria-label="糖分仪怎么读">?</button>
+            <span class="tipbubble" role="tooltip" id="tip-sugar">按含糖量折算:全糖=10g/100ml。半糖以下,店主请你多喝一杯焙茶。</span>
+          </span>
+        </div>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 240 140" role="img" aria-labelledby="lb-gauge">
+            <path class="gauge-track" d="M 25 125 A 95 95 0 0 1 215 125"/>
+            <path class="gauge-val" id="gauge-arc" d="M 25 125 A 95 95 0 0 1 215 125"/>
+            <circle cx="25" cy="125" r="5" fill="#E2557B"/>
+            <circle cx="215" cy="125" r="5" fill="#EADAC4"/>
+          </svg>
+          <div class="gauge-read"><b id="gauge-num">6.5g</b><span id="gauge-word">七分甜,回甘留一口</span></div>
+        </div>
+      </div>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3 id="lb-prog">蒸笼</h3>
+          <span class="read" id="prog-read">第 3 笼 · 正在上汽 40%</span>
+        </div>
+        <div class="prog-row">
+          <div class="prog" role="progressbar" id="prog" aria-labelledby="lb-prog" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+            <span class="prog-fill" id="prog-fill"></span>
+          </div>
+          <svg class="prog-steam" viewBox="0 0 30 40" aria-hidden="true">
+            <path d="M10 38 C 4 31, 16 25, 10 17 C 5 10, 12 6, 10 1"/>
+            <path d="M21 39 C 16 33, 26 27, 20 19 C 15 12, 22 8, 20 3"/>
+          </svg>
+        </div>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-menu" id="menu" aria-labelledby="h-menu">
+      <span class="flag flag-pink" aria-hidden="true"><i class="stick"></i><span class="cloth">茶单</span></span>
+      <h2 id="h-menu">茶单</h2>
+      <p class="lede">三屉轮着蒸,标签页拨过去看。</p>
+
+      <div class="tabs" role="tablist" aria-label="茶单分类">
+        <button class="tab squish" role="tab" id="tab-dango" aria-controls="panel-dango" aria-selected="true" type="button">团子</button>
+        <button class="tab squish" role="tab" id="tab-daifuku" aria-controls="panel-daifuku" aria-selected="false" tabindex="-1" type="button">大福</button>
+        <button class="tab squish" role="tab" id="tab-dorayaki" aria-controls="panel-dorayaki" aria-selected="false" tabindex="-1" type="button">铜锣烧</button>
+      </div>
+
+      <div role="tabpanel" id="panel-dango" aria-labelledby="tab-dango" tabindex="0">
+        <div class="menu-item"><div><b>花见三色团子</b><div class="note">粉白抹三色,竹签是圆头的</div></div><span class="price">¥12</span></div>
+        <div class="menu-item"><div><b>海盐可可团子</b><div class="note">可可深棕,就是本页的字色</div></div><span class="price">¥14</span></div>
+        <div class="menu-item"><div><b>烤酱油团子</b><div class="note">咸口,解前两颗的甜</div></div><span class="price">¥13</span></div>
+      </div>
+      <div role="tabpanel" id="panel-daifuku" aria-labelledby="tab-daifuku" tabindex="0" hidden>
+        <div class="menu-item"><div><b>草莓大福 <span class="tag-mini">招牌</span></b><div class="note">整颗果子,皮是当天现打的</div></div><span class="price">¥16</span></div>
+        <div class="menu-item"><div><b>柚子蜂蜜大福</b><div class="note">黄油色的那颗,微酸</div></div><span class="price">¥15</span></div>
+        <div class="menu-item"><div><b>生椰奶冻大福</b><div class="note">冷藏柜里,拿到手是凉的</div></div><span class="price">¥17</span></div>
+      </div>
+      <div role="tabpanel" id="panel-dorayaki" aria-labelledby="tab-dorayaki" tabindex="0" hidden>
+        <div class="menu-item"><div><b>焦糖奶油铜锣烧 <span class="bite-wrap"><span class="bite">新品</span></span></b><div class="note">角标被谁咬了一口,查到算你的</div></div><span class="price">¥18</span></div>
+        <div class="menu-item"><div><b>红豆黄油铜锣烧</b><div class="note">趁热吃,黄油会化进红豆里</div></div><span class="price">¥15</span></div>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-service" id="service" aria-labelledby="h-service">
+      <span class="flag flag-blue" aria-hidden="true"><i class="stick"></i><span class="cloth">招呼客人</span></span>
+      <h2 id="h-service">招呼客人</h2>
+      <p class="lede">弹窗、小票、悄悄话,店里的三种招呼。</p>
+
+      <div class="serve-block">
+        <button class="btn btn-primary squish" data-open-modal type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">打包带走</span>
+        </button>
+        <p>把点单台的选择照单装盒,再念一遍给你听。</p>
+      </div>
+
+      <div class="serve-block">
+        <button class="btn squish" data-toast="欢迎光临,今天的第一笼刚上汽。|blue" type="button"><span class="lbl">打个招呼</span></button>
+        <p>小票从右上角飘出来,凉得比麻薯快。</p>
+      </div>
+
+      <div class="serve-block">
+        <span class="tip">
+          <button class="term" type="button" aria-describedby="tip-skin">麻薯皮每天现打?</button>
+          <span class="tipbubble" role="tooltip" id="tip-skin">是。糯米当天现蒸现打,过夜就硬——所以打烊前一小时,大福一律半价。</span>
+        </span>
+        <p>停在虚线上,悄悄话会袅上来。</p>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+  <p class="close-line">今天的最后一笼 21:00 出屉,打烊不留隔夜点心。</p>
+  <p class="fine">MOCHI · Proteus 视觉方向自由稿 —— 本页所有圆角均为手工现搓,一个锐角都没有。</p>
+</footer>
+
+<div class="overlay" id="overlay" role="presentation">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <svg class="pearls" aria-hidden="true"><rect/></svg>
+    <div class="modal-head">
+      <h3 id="modal-title">打包带走</h3>
+      <p>照点单台的样子装盒</p>
+      <button class="modal-close squish" id="modal-x" type="button" aria-label="关上盒子">✕</button>
+    </div>
+    <div class="modal-body">
+      <ul class="sum">
+        <li><span class="k">盒签</span><span class="v" id="sum-name">这位客人</span></li>
+        <li><span class="k">口味</span><span class="v" id="sum-flavor">草莓大福</span></li>
+        <li><span class="k">加点儿</span><span class="v" id="sum-extra">撒糖针</span></li>
+        <li><span class="k">配茶</span><span class="v" id="sum-tea">焙茶(温)</span></li>
+        <li><span class="k">甜度</span><span class="v" id="sum-sweet">6.5g · 七分甜</span></li>
+        <li><span class="k">保温</span><span class="v" id="sum-warm">小火袅着</span></li>
+      </ul>
+      <p class="modal-note">出屉后两小时内口感最好,别捂太久。</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn squish" id="modal-back" type="button"><span class="lbl">再想想</span></button>
+      <button class="btn btn-primary squish" id="modal-ok" type="button">
+        <svg class="pearls" aria-hidden="true"><rect/></svg>
+        <span class="lbl">确认装盒</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* poke: deflate a breath */
+  $$('.mochi').forEach(function (m) {
+    m.addEventListener('click', function () {
+      if (m.classList.contains('deflated')) return;
+      m.classList.add('deflated');
+      var bun = $('.bun', m);
+      bun.addEventListener('animationend', function h(e) {
+        if (e.animationName !== 'deflate') return;
+        bun.removeEventListener('animationend', h);
+        m.classList.remove('deflated');
+      });
+    });
+  });
+
+  /* smooth goto */
+  $$('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $(b.getAttribute('data-goto'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* toasts */
+  var toasts = $('#toasts');
+  var icons = {
+    pink: 'M3 8 C 3 4, 13 4, 13 8 M2 11 L14 11',
+    blue: 'M8 2 C 4 6, 12 8, 8 14',
+    butter: 'M3 13 L8 3 L13 13 Z'
+  };
+  function toast(msg, tone) {
+    tone = tone || 'pink';
+    if (toasts.children.length >= 4) dismiss(toasts.firstElementChild);
+    var t = document.createElement('div');
+    t.className = 'toast toast-' + tone;
+    t.setAttribute('role', 'status');
+    t.innerHTML = '<span class="puffdot"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="' + icons[tone] + '"/></svg></span>' +
+      '<span class="msg"></span>' +
+      '<button class="toast-x" type="button" aria-label="收起小票">✕</button>';
+    $('.msg', t).textContent = msg;
+    $('.toast-x', t).addEventListener('click', function () { dismiss(t); });
+    toasts.appendChild(t);
+    t._timer = setTimeout(function () { dismiss(t); }, 3800);
+  }
+  function dismiss(t) {
+    if (!t || t.classList.contains('bye')) return;
+    clearTimeout(t._timer);
+    t.classList.add('bye');
+    setTimeout(function () { t.remove(); }, 240);
+  }
+  $$('[data-toast]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = b.getAttribute('data-toast').split('|');
+      toast(p[0], p[1]);
+    });
+  });
+
+  /* dropdown listbox */
+  var dd = $('#dd-tea');
+  var ddBtn = $('.dd-btn', dd);
+  var ddVal = $('#dd-tea-val');
+  var ddItems = $$('.dd-item', dd);
+  var teaPick = '焙茶(温)';
+  function ddOpen() {
+    dd.classList.add('open');
+    ddBtn.setAttribute('aria-expanded', 'true');
+    var sel = $('.dd-item[aria-selected="true"]', dd) || ddItems[0];
+    sel.focus();
+  }
+  function ddClose(refocus) {
+    if (!dd.classList.contains('open')) return;
+    dd.classList.remove('open');
+    ddBtn.setAttribute('aria-expanded', 'false');
+    if (refocus) ddBtn.focus();
+  }
+  ddBtn.addEventListener('click', function () {
+    dd.classList.contains('open') ? ddClose(true) : ddOpen();
+  });
+  ddItems.forEach(function (it, i) {
+    it.addEventListener('click', function () {
+      ddItems.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+      it.setAttribute('aria-selected', 'true');
+      teaPick = it.childNodes[0].textContent;
+      ddVal.textContent = teaPick;
+      ddClose(true);
+    });
+    it.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); (ddItems[i + 1] || ddItems[0]).focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); (ddItems[i - 1] || ddItems[ddItems.length - 1]).focus(); }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!dd.contains(e.target)) ddClose(false);
+  });
+
+  /* sweetness slider + gauge */
+  var sweet = $('#sweet');
+  var sweetOut = $('#sweet-out');
+  var arc = $('#gauge-arc');
+  var ARC_LEN = Math.PI * 95;
+  function sweetWord(v) {
+    if (v <= 0.5) return '清口';
+    if (v <= 2.5) return '微糖';
+    if (v <= 5) return '半糖';
+    if (v <= 7.5) return '七分甜';
+    return '全糖';
+  }
+  var gaugeGloss = {
+    '清口': '清口,只剩米香', '微糖': '微糖,若有似无', '半糖': '半糖,店主推荐',
+    '七分甜': '七分甜,回甘留一口', '全糖': '全糖,配焙茶正好'
+  };
+  function renderSweet() {
+    var v = parseFloat(sweet.value);
+    var w = sweetWord(v);
+    sweet.style.setProperty('--pct', (v * 10) + '%');
+    sweetOut.textContent = v.toFixed(1) + 'g · ' + w;
+    arc.style.strokeDasharray = (ARC_LEN * v / 10) + ' ' + ARC_LEN;
+    $('#gauge-num').textContent = v.toFixed(1) + 'g';
+    $('#gauge-word').textContent = gaugeGloss[w];
+  }
+  sweet.addEventListener('input', renderSweet);
+  renderSweet();
+
+  /* steamer progress */
+  var prog = $('#prog');
+  var fill = $('#prog-fill');
+  var read = $('#prog-read');
+  var basket = 3, pct = 40;
+  function progWord(p) {
+    if (p < 25) return '冷水上锅';
+    if (p < 60) return '正在上汽';
+    if (p < 100) return '大汽正旺';
+    return '出屉啦';
+  }
+  setInterval(function () {
+    pct += 0.6;
+    if (pct >= 112) { basket += 1; pct = 0; }
+    var p = Math.min(100, Math.round(pct));
+    fill.style.width = 'calc(' + p + '% - 6px)';
+    prog.setAttribute('aria-valuenow', p);
+    read.textContent = '第 ' + basket + ' 笼 · ' + progWord(p) + ' ' + p + '%';
+  }, 130);
+
+  /* tabs */
+  var tabs = $$('.tab');
+  function pickTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      $('#' + t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pickTab(t); });
+    t.addEventListener('keydown', function (e) {
+      var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (j === null) return;
+      e.preventDefault();
+      var n = tabs[(j + tabs.length) % tabs.length];
+      pickTab(n);
+      n.focus();
+    });
+  });
+
+  /* modal */
+  var overlay = $('#overlay');
+  var modal = $('.modal', overlay);
+  var lastFocus = null;
+  function openModal() {
+    lastFocus = document.activeElement;
+    var name = $('#buyer').value.trim();
+    $('#sum-name').textContent = name || '这位客人';
+    $('#sum-flavor').textContent = $('input[name="flavor"]:checked').value;
+    var extras = $$('input[name="extra"]:checked').map(function (c) { return c.value; });
+    $('#sum-extra').textContent = extras.length ? extras.join('、') : '什么都不加';
+    $('#sum-tea').textContent = teaPick;
+    $('#sum-sweet').textContent = parseFloat(sweet.value).toFixed(1) + 'g · ' + sweetWord(parseFloat(sweet.value));
+    $('#sum-warm').textContent = $('#warm').checked ? '小火袅着' : '不用,马上吃';
+    overlay.classList.add('show');
+    $('#modal-x').focus();
+  }
+  function closeModal() {
+    overlay.classList.remove('show');
+    if (lastFocus) lastFocus.focus();
+  }
+  $$('[data-open-modal]').forEach(function (b) { b.addEventListener('click', openModal); });
+  $('#modal-x').addEventListener('click', closeModal);
+  $('#modal-back').addEventListener('click', closeModal);
+  $('#modal-ok').addEventListener('click', function () {
+    closeModal();
+    toast('已装盒,小票别丢。', 'pink');
+  });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  overlay.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var f = $$('button, input, [href]', modal).filter(function (el) { return !el.disabled; });
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* escape closes floaty things */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (overlay.classList.contains('show')) { closeModal(); return; }
+    ddClose(true);
+    $$('.tip').forEach(function (tip) {
+      if (tip.matches(':hover, :focus-within')) {
+        tip.classList.add('tip-off');
+        if (document.activeElement && tip.contains(document.activeElement)) document.activeElement.blur();
+      }
+    });
+  });
+  $$('.tip').forEach(function (tip) {
+    tip.addEventListener('mouseleave', function () { tip.classList.remove('tip-off'); });
+    tip.addEventListener('focusin', function () { tip.classList.remove('tip-off'); });
+  });
+})();
+</script>
+</body>
+</html>
