@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>窑记 · KILN — 陶土侘寂 · Proteus 视觉方向自由稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --oat: #F0E7D6;
+  --oat-2: #F7EFE1;
+  --oat-3: #E3D7BF;
+  --paper: #FBF5E9;
+  --smoke: #2A241C;
+  --smoke-2: #1E1810;
+  --ink: #272119;
+  --ink-2: #5C5244;
+  --ink-3: #6E6355;
+  --clay: #B65C33;
+  --clay-deep: #A34A25;
+  --clay-ink: #9C4522;
+  --clay-dark: #7C3818;
+  --clay-lite: #D68A5C;
+  --line: rgba(39, 33, 25, .16);
+  --line-2: rgba(39, 33, 25, .32);
+  --sh-long: 22px 30px 60px -24px rgba(52, 39, 26, .35), 8px 12px 24px -10px rgba(52, 39, 26, .16);
+  --sh-long-soft: 14px 20px 44px -20px rgba(52, 39, 26, .28), 5px 8px 16px -8px rgba(52, 39, 26, .12);
+  --sh-long-dark: 26px 34px 70px -26px rgba(16, 11, 6, .55), 8px 12px 26px -10px rgba(16, 11, 6, .3);
+  --font-display: "Fraunces", "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Nunito Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --p-card: 24px 38px 28px 42px / 36px 26px 44px 28px;
+  --p-card-b: 40px 26px 42px 24px / 28px 42px 26px 38px;
+  --p-btn: 12px 17px 11px 18px / 16px 12px 19px 12px;
+  --p-btn-b: 17px 12px 18px 11px / 12px 18px 12px 17px;
+  --p-chip: 9px 13px 8px 14px / 12px 9px 14px 9px;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.21 0 0 0 0 0.16 0 0 0 0 0.10 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
+  --fiber: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.23' numOctaves='3' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.24 0 0 0 0 0.18 0 0 0 0 0.11 0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='340' height='340' filter='url(%23f)'/%3E%3C/svg%3E");
+  --speck-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.13 0 0 0 0 0.07 0 0 0 0 0.03 0 0 0 0.34 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23s)'/%3E%3C/svg%3E");
+  --speck-lite: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='19'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.95 0 0 0 0 0.89 0 0 0 0 0.76 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23l)'/%3E%3C/svg%3E");
+  --handline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='6' viewBox='0 0 90 6'%3E%3Cpath d='M1 4 C12 2.4 24 5.2 34 3.9 S58 2.6 68 4.4 S82 3.0 89 4' fill='none' stroke='%239C4522' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='14' viewBox='0 0 16 14'%3E%3Cpath d='M2.6 7.4 L6.8 11.4 L13.4 2.6' fill='none' stroke='%239C4522' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: var(--ink);
+  background: var(--oat);
+  letter-spacing: .015em;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 96;
+  pointer-events: none;
+  background-image: var(--fiber), var(--grain);
+}
+::selection { background: rgba(163, 74, 37, .25); }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 900; line-height: 1.3; letter-spacing: .03em; }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--clay-ink); }
+:focus-visible { outline: 2px solid var(--clay-deep); outline-offset: 3px; border-radius: 4px; }
+small { font-size: .82rem; }
+
+.wrap { max-width: 1280px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 76px); }
+
+.reveal { opacity: 1; }
+html.js .reveal { opacity: 0; }
+html.js .reveal.in { animation: settle .95s cubic-bezier(.24, .7, .32, 1) var(--d, 0s) both; }
+html.js .reveal.in.settled { animation: none; opacity: 1; transform: none; }
+@keyframes settle {
+  0% { opacity: 0; transform: translateY(-14px); }
+  68% { opacity: 1; transform: translateY(3px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  background: linear-gradient(160deg, #B65C33, #A34A25 60%, #8E3E1C);
+  color: #FBF3E7;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 8px 11px 7px 12px / 10px 8px 12px 8px;
+  transform: rotate(-4deg);
+  box-shadow: 4px 6px 12px -4px rgba(52, 39, 26, .45);
+  position: relative;
+}
+.seal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--speck-dark);
+  opacity: .5;
+}
+.seal--smoke { background: linear-gradient(160deg, #3A3227, #2A241C 60%, #1E1810); color: #E8D9BC; }
+
+.top { padding-block: 22px 0; }
+.top__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand__name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: .1em; }
+.brand__name i { font-style: italic; font-weight: 400; font-size: .78em; color: var(--clay-ink); letter-spacing: .18em; margin-left: 6px; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.top__status { font-family: var(--font-display); font-style: italic; font-size: .88rem; color: var(--ink-2); letter-spacing: .12em; }
+
+.hero { position: relative; padding-top: clamp(72px, 10vh, 128px); padding-bottom: clamp(96px, 12vh, 150px); }
+.hero__text { max-width: 640px; position: relative; z-index: 2; }
+.eyebrow {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .34em;
+  color: var(--clay-ink);
+  margin-bottom: 26px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+  letter-spacing: .06em;
+  line-height: 1.28;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--clay-ink);
+  position: relative;
+  white-space: nowrap;
+}
+.hero h1 em::after {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 4%;
+  bottom: .02em;
+  height: 6px;
+  background: var(--handline) repeat-x left center / 90px 6px;
+  opacity: .85;
+}
+.gloss {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  color: var(--clay-ink);
+  letter-spacing: .2em;
+  font-size: .95rem;
+  margin-top: 20px;
+}
+.lede { margin-top: 26px; color: var(--ink-2); max-width: 34em; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 40px; }
+
+.hero__vessel {
+  position: absolute;
+  right: clamp(8px, 4.5vw, 96px);
+  top: clamp(96px, 12vh, 150px);
+  width: clamp(230px, 27vw, 380px);
+  z-index: 1;
+}
+.hero__vessel svg { width: 100%; height: auto; display: block; }
+.hero__vessel figcaption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .82rem;
+  color: var(--ink-3);
+  letter-spacing: .22em;
+  text-align: right;
+  margin-top: 6px;
+  transform: rotate(-1.5deg);
+}
+
+.sect { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(16px, 2.5vw, 36px); padding-block: clamp(56px, 7vw, 104px) 0; }
+.sect__head { grid-column: 1 / 4; padding-top: 8px; }
+.sect__head .seal { width: 44px; height: 44px; font-size: 22px; margin-bottom: 20px; }
+.sect__head h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); letter-spacing: .05em; }
+.sect__lede { margin-top: 16px; color: var(--ink-2); font-size: .95rem; max-width: 22em; }
+.sect__body { grid-column: 4 / 13; border-left: 1px solid var(--line); padding-left: clamp(24px, 3.4vw, 52px); padding-top: 6px; }
+.sect:nth-of-type(even) .sect__head .seal { transform: rotate(3deg); }
+
+.cluster { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px); align-items: start; }
+.col-12 { grid-column: span 12; }
+.col-7 { grid-column: span 7; }
+.col-6 { grid-column: span 6; }
+.col-5 { grid-column: span 5; }
+.drop-1 { margin-top: 44px; }
+.drop-2 { margin-top: 72px; }
+
+.ware {
+  background: var(--oat-2);
+  background-image: var(--grain);
+  border: 1px solid var(--line);
+  border-radius: var(--p-card);
+  box-shadow: var(--sh-long);
+  padding: clamp(22px, 2.6vw, 32px);
+  position: relative;
+}
+.ware--b { border-radius: var(--p-card-b); }
+.ware:has(.dd__list:not([hidden])), .ware:has(.tip:hover), .ware:has(.tip:focus-within) { z-index: 6; }
+.ware--smoke {
+  background: linear-gradient(165deg, #362E24, #2A241C 45%, #221C14);
+  border-color: #17110B;
+  color: var(--oat);
+  box-shadow: var(--sh-long-dark);
+}
+.ware--smoke::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--speck-lite);
+  opacity: .6;
+  pointer-events: none;
+}
+.ware--smoke > * { position: relative; }
+.cap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  color: var(--ink-2);
+  margin-bottom: 22px;
+}
+.cap::before { content: "◆"; font-size: .5rem; color: var(--clay-deep); transform: translateY(-2px); }
+.ware--smoke .cap { color: #CBBFA9; }
+.ware--smoke .cap::before { color: var(--clay-lite); }
+.hint { font-size: .85rem; color: var(--ink-3); margin-top: 18px; }
+.ware--smoke .hint { color: #C9BCA4; }
+
+.btn {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--p-btn);
+  padding: 11px 24px;
+  font-weight: 700;
+  font-size: .98rem;
+  letter-spacing: .14em;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  transition: transform .25s ease, box-shadow .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+.btn:nth-of-type(even) { border-radius: var(--p-btn-b); }
+.btn:active { transform: translateY(2px); transition-duration: .06s; }
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+}
+.btn--glaze {
+  background: linear-gradient(168deg, #BC6136 0%, #A34A25 42%, #8E3E1C 100%);
+  color: #FBF3E7;
+  border-color: #83381A;
+  box-shadow: var(--sh-long-soft), inset 0 1px 0 rgba(255, 240, 220, .35);
+}
+.btn--glaze::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--speck-dark);
+  opacity: .55;
+  pointer-events: none;
+}
+.btn--glaze:hover { background: linear-gradient(168deg, #C4693D 0%, #AB5029 42%, #94421E 100%); box-shadow: 10px 14px 30px -12px rgba(52, 39, 26, .4), inset 0 1px 0 rgba(255, 240, 220, .35); }
+.btn--biscuit {
+  background: var(--paper);
+  background-image: var(--grain);
+  color: var(--ink);
+  border-color: var(--line-2);
+  box-shadow: var(--sh-long-soft);
+}
+.btn--biscuit:hover { background-color: #FFFAEF; border-color: var(--ink-2); }
+.btn--smoke {
+  background: linear-gradient(165deg, #3B332A, #241E16 70%);
+  color: var(--oat);
+  border-color: #17110B;
+  box-shadow: var(--sh-long-soft);
+}
+.btn--smoke::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--speck-lite);
+  opacity: .5;
+  pointer-events: none;
+}
+.btn--smoke:hover { background: linear-gradient(165deg, #453C31, #2C251C 70%); }
+.btn--quiet {
+  background: transparent;
+  color: var(--clay-ink);
+  padding-inline: 8px;
+  border-radius: 6px;
+}
+.btn--quiet::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 5px;
+  height: 6px;
+  background: var(--handline) repeat-x left center / 90px 6px;
+  opacity: .8;
+  transition: opacity .3s ease;
+}
+.btn--quiet:hover { color: var(--clay-dark); }
+.btn--quiet:hover::after { opacity: 1; }
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  box-shadow: none;
+  transform: none;
+  filter: saturate(.55);
+}
+.btn:disabled::after { opacity: .2; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 16px 18px; align-items: center; }
+
+.field label { display: block; font-weight: 700; font-size: .92rem; letter-spacing: .08em; margin-bottom: 12px; }
+.input {
+  width: 100%;
+  background: var(--paper);
+  background-image: var(--grain);
+  border: 1px solid var(--line-2);
+  border-bottom-width: 3px;
+  border-radius: 14px 20px 12px 22px / 18px 13px 22px 13px;
+  padding: 13px 16px;
+  color: var(--ink);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.input::placeholder { color: #97896F; }
+.input:focus-visible { outline: none; border-color: var(--clay-deep); box-shadow: 6px 10px 24px -12px rgba(163, 74, 37, .45); }
+
+.glz { display: flex; align-items: center; gap: 14px; padding: 10px 12px; border-radius: var(--p-chip); cursor: pointer; transition: background-color .25s ease; position: relative; }
+.glz:hover { background: rgba(39, 33, 25, .05); }
+.glz input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.glz__dot {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 46% 54% 50% 50% / 54% 44% 56% 46%;
+  background: radial-gradient(circle at 34% 30%, rgba(255, 250, 240, .5), rgba(255, 250, 240, 0) 45%), var(--sw);
+  border: 1px solid rgba(39, 33, 25, .3);
+  box-shadow: 3px 5px 10px -4px rgba(52, 39, 26, .4);
+  position: relative;
+  transition: transform .3s ease;
+}
+.glz input:checked + .glz__dot { transform: scale(1.08); }
+.glz input:checked + .glz__dot::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid var(--clay-deep);
+  border-radius: 52% 48% 55% 45% / 46% 56% 44% 54%;
+}
+.glz input:focus-visible + .glz__dot { outline: 2px solid var(--clay-deep); outline-offset: 4px; }
+.glz__name { font-weight: 600; }
+.glz small { color: var(--ink-3); margin-left: 2px; }
+.glz input:checked ~ .glz__name { color: var(--clay-ink); }
+
+.chk { display: flex; align-items: flex-start; gap: 14px; padding: 9px 12px; border-radius: var(--p-chip); cursor: pointer; transition: background-color .25s ease; }
+.chk:hover { background: rgba(39, 33, 25, .05); }
+.chk input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin-top: 5px;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 7px 10px 6px 11px / 9px 7px 11px 7px;
+  cursor: pointer;
+  transition: border-color .25s ease, background-color .25s ease;
+  background-position: center 55%;
+  background-repeat: no-repeat;
+  background-size: 15px;
+}
+.chk input:checked { border-color: var(--clay-deep); background-image: var(--check); background-color: #FDF8EC; }
+.chk span { line-height: 1.6; padding-top: 3px; }
+.chk small { display: block; color: var(--ink-3); }
+.chk input:checked ~ span { color: var(--ink); }
+
+.sw { display: flex; align-items: flex-start; gap: 16px; padding: 10px 12px; border-radius: var(--p-chip); cursor: pointer; }
+.sw + .sw { margin-top: 8px; }
+.sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.sw__track {
+  width: 50px;
+  height: 28px;
+  flex: none;
+  margin-top: 4px;
+  background: var(--oat-3);
+  box-shadow: inset 2px 3px 6px rgba(52, 39, 26, .25);
+  border: 1px solid var(--line);
+  border-radius: 15px 13px 14px 12px / 14px 15px 12px 15px;
+  position: relative;
+  transition: background-color .35s ease;
+}
+.sw__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(150deg, #FDF8EC, #EAE0C9);
+  border: 1px solid rgba(39, 33, 25, .35);
+  border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
+  box-shadow: 2px 4px 8px -2px rgba(52, 39, 26, .4);
+  transition: left .35s cubic-bezier(.3, 1.4, .55, 1), transform .35s ease;
+}
+.sw input:checked + .sw__track { background: linear-gradient(160deg, #BC6136, #A34A25); background-image: var(--speck-dark), linear-gradient(160deg, #BC6136, #A34A25); box-shadow: inset 2px 3px 6px rgba(60, 25, 8, .45); }
+.sw input:checked + .sw__track .sw__thumb { left: 25px; transform: rotate(8deg); }
+.sw input:focus-visible + .sw__track { outline: 2px solid var(--clay-deep); outline-offset: 3px; }
+.sw__text strong { display: block; font-size: .98rem; letter-spacing: .06em; }
+.sw__text small { color: var(--ink-3); }
+
+.range-wrap { margin-top: 8px; }
+.range-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.range-head label { font-weight: 700; font-size: .92rem; letter-spacing: .08em; }
+.range-out {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--clay-ink);
+  font-variation-settings: "SOFT" 80;
+  letter-spacing: .02em;
+}
+.range-out small { font-size: .5em; letter-spacing: .12em; color: var(--ink-3); }
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 34px;
+  background: transparent;
+  cursor: pointer;
+  --pct: 73%;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 12px;
+  border-radius: 8px 6px 7px 9px / 6px 8px 6px 8px;
+  background: linear-gradient(90deg, #BC6136, #A34A25 var(--pct), var(--oat-3) var(--pct));
+  border: 1px solid var(--line);
+  box-shadow: inset 2px 3px 5px rgba(52, 39, 26, .22);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -8px;
+  background: linear-gradient(150deg, #FDF8EC, #E8DDC5);
+  border: 1px solid rgba(39, 33, 25, .45);
+  border-radius: 47% 53% 44% 56% / 55% 46% 54% 45%;
+  box-shadow: 4px 7px 14px -4px rgba(52, 39, 26, .5);
+}
+input[type="range"]::-moz-range-track {
+  height: 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #BC6136, #A34A25 var(--pct), var(--oat-3) var(--pct));
+  border: 1px solid var(--line);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(150deg, #FDF8EC, #E8DDC5);
+  border: 1px solid rgba(39, 33, 25, .45);
+  border-radius: 47% 53% 44% 56% / 55% 46% 54% 45%;
+  box-shadow: 4px 7px 14px -4px rgba(52, 39, 26, .5);
+}
+.range-scale { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink-3); letter-spacing: .08em; }
+.term {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  color: var(--clay-ink);
+  font-weight: 700;
+  cursor: help;
+  border-bottom: 2px dotted var(--clay-deep);
+}
+.tip { position: relative; display: inline-block; }
+.tip__bubble {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: -10px;
+  width: min(280px, 64vw);
+  background: var(--smoke);
+  background-image: var(--speck-lite);
+  color: #EFE6D5;
+  padding: 13px 16px;
+  border-radius: var(--p-btn-b);
+  font-size: .85rem;
+  line-height: 1.75;
+  letter-spacing: .03em;
+  box-shadow: var(--sh-long-dark);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease .08s, visibility .5s ease .08s;
+  z-index: 40;
+  pointer-events: none;
+}
+.tip__bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 26px;
+  border: 8px solid transparent;
+  border-top-color: var(--smoke);
+}
+.tip:hover .tip__bubble, .tip:focus-within .tip__bubble { opacity: 1; visibility: visible; }
+
+.gauge-card { text-align: center; }
+.gauge-svg { width: min(300px, 100%); margin-inline: auto; display: block; }
+.gauge-read {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.6rem;
+  line-height: 1.2;
+  color: #E89B66;
+  font-variation-settings: "SOFT" 80;
+  margin-top: -34px;
+}
+.gauge-read small { font-size: .42em; color: #C9BCA4; letter-spacing: .1em; }
+.gauge-sub { font-size: .85rem; color: #C9BCA4; letter-spacing: .18em; margin-top: 2px; }
+.gauge-acts { margin-top: 22px; }
+#needle { transform-origin: 130px 140px; transform: rotate(24deg); transition: transform 1.15s cubic-bezier(.3, 1.35, .5, 1); }
+
+.prog-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.prog-day { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--clay-ink); letter-spacing: .06em; }
+.prog-pct { font-family: var(--font-display); font-style: italic; color: var(--ink-3); font-size: .95rem; }
+.prog {
+  height: 16px;
+  background: var(--oat-3);
+  border: 1px solid var(--line);
+  border-radius: 10px 7px 9px 6px / 7px 10px 6px 9px;
+  box-shadow: inset 2px 3px 6px rgba(52, 39, 26, .22);
+  position: relative;
+  overflow: hidden;
+}
+.prog__fill {
+  position: absolute;
+  inset: 0;
+  width: 62.5%;
+  background: linear-gradient(100deg, #BC6136, #A34A25 70%);
+  background-image: var(--speck-dark), linear-gradient(100deg, #BC6136, #A34A25 70%);
+  border-radius: inherit;
+  border-right: 2px solid #7C3818;
+  transition: width .9s cubic-bezier(.3, 1.25, .5, 1);
+}
+.prog-marks { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink-3); margin-top: 10px; letter-spacing: .06em; }
+.prog-acts { margin-top: 20px; }
+
+.tabs__list { display: flex; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--line-2); padding-inline: 6px; }
+.tab {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  background: var(--oat);
+  color: var(--ink-2);
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .22em;
+  padding: 10px 22px 12px;
+  border-radius: 14px 20px 0 0 / 18px 14px 0 0;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  transition: background-color .3s ease, color .3s ease, padding .3s ease;
+}
+.tab:nth-child(even) { border-radius: 20px 13px 0 0 / 13px 19px 0 0; }
+.tab[aria-selected="true"] {
+  background: var(--paper);
+  background-image: var(--grain);
+  color: var(--clay-ink);
+  border-color: var(--line-2);
+  padding-bottom: 14px;
+  box-shadow: 6px -6px 18px -10px rgba(52, 39, 26, .25);
+}
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 7px;
+  height: 6px;
+  background: var(--handline) repeat-x left center / 90px 6px;
+}
+.tabs__panel {
+  background: var(--paper);
+  background-image: repeating-linear-gradient(transparent 0 35px, rgba(39, 33, 25, .1) 35px 36px), var(--grain);
+  border: 1px solid var(--line-2);
+  border-top: none;
+  border-radius: 0 0 26px 18px / 0 0 20px 26px;
+  padding: 26px clamp(20px, 3vw, 34px) 30px;
+  min-height: 200px;
+}
+.entry { display: flex; gap: 18px; align-items: baseline; line-height: 36px; }
+.entry b { font-family: var(--font-display); font-weight: 600; color: var(--clay-ink); letter-spacing: .1em; flex: none; }
+.entry span { color: var(--ink-2); }
+.entry--note span { color: var(--clay-ink); font-style: italic; }
+
+.dd { position: relative; }
+.dd__btn {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--paper);
+  background-image: var(--grain);
+  border: 1px solid var(--line-2);
+  border-bottom-width: 3px;
+  border-radius: 14px 20px 12px 22px / 18px 13px 22px 13px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: border-color .3s ease;
+}
+.dd__btn:hover { border-color: var(--ink-2); }
+.dd__btn svg { flex: none; transition: transform .35s ease; color: var(--clay-ink); }
+.dd__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.dd__list {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  list-style: none;
+  background: var(--paper);
+  background-image: var(--grain);
+  border: 1px solid var(--line-2);
+  border-radius: 18px 24px 16px 26px / 22px 17px 26px 17px;
+  box-shadow: var(--sh-long);
+  padding: 8px;
+  max-height: min(392px, 62vh);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clay-deep) transparent;
+}
+.dd__list li {
+  padding: 9px 14px;
+  border-radius: var(--p-chip);
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+.dd__list li:hover, .dd__list li:focus-visible { background: rgba(163, 74, 37, .1); outline-offset: -2px; }
+.dd__list li[aria-selected="true"] { color: var(--clay-ink); font-weight: 700; }
+.dd__list li[aria-selected="true"]::before { content: "◆"; font-size: .6rem; margin-right: 7px; vertical-align: 2px; }
+.dd__list li small { display: block; color: var(--ink-3); font-weight: 400; }
+
+.modal {
+  margin: auto;
+  border: 1px solid var(--line-2);
+  border-radius: var(--p-card);
+  background: var(--paper);
+  background-image: var(--grain);
+  color: var(--ink);
+  width: min(540px, calc(100vw - 40px));
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: var(--sh-long-dark);
+}
+.modal::backdrop { background: rgba(30, 24, 16, .55); }
+.modal[open] { animation: settle .6s cubic-bezier(.24, .7, .32, 1) both; }
+.modal[open]::backdrop { animation: fadein .5s ease both; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.modal .seal { width: 46px; height: 46px; font-size: 23px; margin-bottom: 18px; }
+.modal h3 { font-size: 1.5rem; letter-spacing: .1em; }
+.modal p { margin-top: 14px; color: var(--ink-2); }
+.modal__acts { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
+
+.toasts {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(370px, calc(100vw - 32px));
+}
+.toast {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--paper);
+  background-image: var(--grain);
+  border: 1px solid var(--line-2);
+  border-radius: 18px 24px 14px 26px / 24px 16px 26px 16px;
+  box-shadow: var(--sh-long);
+  padding: 14px 16px;
+  animation: settle .55s cubic-bezier(.24, .7, .32, 1) both;
+  transition: opacity .45s ease, transform .45s ease;
+}
+.toast.bye { opacity: 0; transform: translateY(8px); }
+.toast__body { flex: 1; font-size: .92rem; line-height: 1.65; padding-top: 2px; }
+.toast__body b { display: block; letter-spacing: .1em; }
+.toast__body span { color: var(--ink-2); font-size: .86rem; }
+.toast__x {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+.toast__x:hover { color: var(--ink); }
+
+.foot { padding-block: clamp(80px, 10vw, 130px) 56px; text-align: left; }
+.foot__line { width: 180px; height: 6px; background: var(--handline) repeat-x left center / 90px 6px; margin-bottom: 34px; opacity: .7; }
+.foot p { color: var(--ink-2); font-size: .92rem; letter-spacing: .08em; }
+.foot .gloss { margin-top: 14px; }
+.foot__meta { margin-top: 6px; color: var(--ink-3); font-size: .82rem; letter-spacing: .14em; }
+
+@media (max-width: 1080px) {
+  .sect { display: block; }
+  .sect__head { margin-bottom: 28px; }
+  .sect__body { border-left: none; padding-left: 0; }
+}
+@media (max-width: 860px) {
+  .hero { padding-top: 40px; }
+  .hero__vessel { position: static; width: 240px; margin: 48px 8% 0 auto; }
+  .hero__vessel figcaption { text-align: right; }
+  .cluster { grid-template-columns: minmax(0, 1fr); }
+  .col-12, .col-7, .col-6, .col-5 { grid-column: auto; }
+  .drop-1, .drop-2 { margin-top: 0; }
+  .range-out { font-size: 1.7rem; }
+  .toasts { right: 16px; left: 16px; width: auto; }
+  .top__status { display: none; }
+  .tabs__list { gap: 6px; padding-inline: 2px; }
+  .tab { padding: 8px 13px 10px; letter-spacing: .12em; font-size: .9rem; }
+  .tab[aria-selected="true"] { padding-bottom: 12px; }
+  .entry { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal { opacity: 1; }
+  html.js .reveal.in, .modal[open], .modal[open]::backdrop, .toast { animation: none; }
+  *, *::before, *::after { transition-duration: .01s !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="#top"><span class="seal" aria-hidden="true">窑</span><span class="brand__name">窑记<i>YAOJI</i></span></a>
+    <p class="top__status">大暑 · 第七窑 · 还原焰</p>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="hero__text">
+      <p class="eyebrow reveal">窑记 YAOJI —— 守窑人的手账</p>
+      <h1 class="reveal" style="--d:.1s">不求正圆,<br>只求有<em>火气</em>。</h1>
+      <p class="gloss reveal" style="--d:.2s">— nothing perfectly round —</p>
+      <p class="lede reveal" style="--d:.28s">手捏的边沿留着指腹的印,窑火再替它添三分脾气。窑记陪你守一炉土与火,把每一件不完美,记成独一份的家珍。</p>
+      <div class="hero__cta reveal" style="--d:.38s">
+        <button class="btn btn--glaze" id="cta-schedule">入窑排期</button>
+        <a class="btn btn--quiet" href="#sec-ledger">翻看旧窑册</a>
+      </div>
+    </div>
+    <figure class="hero__vessel reveal" style="--d:.3s">
+      <svg viewBox="0 0 470 396" role="img" aria-label="一只柿红釉粗陶罐,罐口微歪,足圈露胎">
+        <defs>
+          <linearGradient id="pot-body" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#C86B3D"/>
+            <stop offset=".55" stop-color="#A84C26"/>
+            <stop offset="1" stop-color="#8A3C1B"/>
+          </linearGradient>
+          <linearGradient id="pot-drip" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7C3818"/>
+            <stop offset="1" stop-color="#93421E"/>
+          </linearGradient>
+          <filter id="vspeck" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="7" result="n"/>
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.15 0 0 0 0 0.08 0 0 0 0 0.04 0 0 0 0.5 0" result="sp"/>
+            <feComposite in="sp" in2="SourceAlpha" operator="in" result="spk"/>
+            <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="spk"/></feMerge>
+          </filter>
+          <filter id="vsoft"><feGaussianBlur stdDeviation="10"/></filter>
+        </defs>
+        <ellipse cx="295" cy="362" rx="160" ry="14" fill="rgba(46,35,24,.24)" filter="url(#vsoft)"/>
+        <g filter="url(#vspeck)">
+          <path fill="url(#pot-body)" d="M138 32 C136 44 133 52 128 58 C82 72 38 108 41 170 C44 234 80 298 108 336 C112 346 116 350 122 352 L220 353 C224 352 228 349 232 338 C262 300 298 234 301 168 C304 106 258 70 212 58 C207 52 204 44 202 32 Z"/>
+          <path fill="url(#pot-drip)" opacity=".9" d="M128 58 C160 48 182 48 212 58 C240 66 262 84 276 104 C270 118 260 126 250 129 C246 152 240 170 232 178 C226 170 226 150 224 133 C200 143 172 145 148 139 C146 164 140 188 132 196 C124 186 122 160 122 137 C104 131 88 121 78 109 C88 89 106 70 128 58 Z"/>
+        </g>
+        <path fill="none" stroke="rgba(60,25,8,.2)" stroke-width="3" stroke-linecap="round" d="M64 226 C118 244 224 244 278 226"/>
+        <path fill="none" stroke="rgba(60,25,8,.14)" stroke-width="2" stroke-linecap="round" d="M82 274 C128 288 214 288 260 274"/>
+        <path fill="#B99B78" d="M122 352 L220 353 C224 352 227 349 230 341 L112 340 C115 347 118 350 122 352 Z"/>
+        <ellipse cx="170" cy="33" rx="35" ry="10" fill="#93421E" transform="rotate(-2.5 170 33)"/>
+        <ellipse cx="170" cy="33" rx="26" ry="6.5" fill="#241C13" transform="rotate(-2.5 170 33)"/>
+      </svg>
+      <figcaption>第七窑 · 粗砂陶 · 柿红釉</figcaption>
+    </figure>
+  </section>
+
+  <section class="sect wrap" id="sec-shape">
+    <header class="sect__head reveal">
+      <span class="seal" aria-hidden="true">器</span>
+      <h2>器形,从一只钮开始。</h2>
+      <p class="sect__lede">釉的、素的、烟熏的,各有各的手感;按下去,都有一点点沉。</p>
+    </header>
+    <div class="sect__body cluster">
+      <article class="ware col-7 reveal">
+        <p class="cap">按钮 · 四式,另有一枚未到时辰</p>
+        <div class="btn-row">
+          <button class="btn btn--glaze" data-toast="ok|已入窑|第七窑,记于大暑。">入窑</button>
+          <button class="btn btn--biscuit" data-toast="ok|已记一笔|素坯一件,待上釉。">记一笔</button>
+          <button class="btn btn--smoke" id="open-seal">封窑…</button>
+          <button class="btn btn--quiet" data-toast="ok|翻到第六窑|去岁霜降,成器十一件。">翻旧册</button>
+        </div>
+        <div class="btn-row" style="margin-top:18px">
+          <button class="btn btn--biscuit" disabled>出窑</button>
+          <span class="hint" style="margin-top:0">出窑要等第三日,急不得。</span>
+        </div>
+      </article>
+      <article class="ware ware--b col-5 drop-1 field reveal" style="--d:.08s">
+        <p class="cap">文本输入 · 器物命名</p>
+        <label for="name-input">给这只碗起个名</label>
+        <input class="input" id="name-input" type="text" placeholder="例如:茶碗·初雪" autocomplete="off">
+        <p class="hint">名字会烙在窑册的扉页上。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="sec-glaze">
+    <header class="sect__head reveal">
+      <span class="seal" aria-hidden="true">釉</span>
+      <h2>配釉,是跟土商量。</h2>
+      <p class="sect__lede">选土、选釉、勾清单;土性不同,脾气不同,都依它。</p>
+    </header>
+    <div class="sect__body cluster">
+      <article class="ware col-6 reveal">
+        <p class="cap">单选 · 釉色</p>
+        <label class="glz"><input type="radio" name="glaze" value="灰青"><span class="glz__dot" style="--sw:#8A9686"></span><span class="glz__name">灰青</span><small>·雨过天青的灰</small></label>
+        <label class="glz"><input type="radio" name="glaze" value="柿红" checked><span class="glz__dot" style="--sw:#B4552D"></span><span class="glz__name">柿红</span><small>·还原焰里最听话</small></label>
+        <label class="glz"><input type="radio" name="glaze" value="烟黑"><span class="glz__dot" style="--sw:#33291F"></span><span class="glz__name">烟黑</span><small>·柴灰落成的黑</small></label>
+        <label class="glz"><input type="radio" name="glaze" value="月白"><span class="glz__dot" style="--sw:#EDE5D2"></span><span class="glz__name">月白</span><small>·薄到见胎的白</small></label>
+      </article>
+      <article class="ware ware--b col-6 drop-1 reveal" style="--d:.08s">
+        <p class="cap">下拉 · 坯土</p>
+        <div class="dd" id="dd-clay">
+          <button class="dd__btn" aria-haspopup="listbox" aria-expanded="false" id="dd-btn"><span id="dd-val">粗砂陶土</span><svg width="13" height="9" viewBox="0 0 13 9" aria-hidden="true"><path d="M1.5 1.8 L6.5 7 L11.5 1.8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+          <ul class="dd__list" role="listbox" aria-label="坯土" id="dd-list" hidden>
+            <li role="option" tabindex="-1" aria-selected="true">粗砂陶土<small>砂粒硬朗,吃得住大火</small></li>
+            <li role="option" tabindex="-1" aria-selected="false">紫金土<small>铁质深沉,烧出来发暗</small></li>
+            <li role="option" tabindex="-1" aria-selected="false">高白泥<small>细而娇,火候要伺候</small></li>
+            <li role="option" tabindex="-1" aria-selected="false">本山绿泥<small>温润,养出来的颜色</small></li>
+            <li role="option" tabindex="-1" aria-selected="false">缸土<small>憨厚耐火,不挑窑位</small></li>
+          </ul>
+        </div>
+        <p class="hint">换一味土,等于换一副脾气。</p>
+      </article>
+      <article class="ware col-6 reveal" style="--d:.05s">
+        <p class="cap">复选 · 窑前清单</p>
+        <label class="chk"><input type="checkbox" checked><span>坯体已干透<small>阴干七日,底足不凉手</small></span></label>
+        <label class="chk"><input type="checkbox"><span>釉面补过针眼<small>灯下照一遍,补三处</small></span></label>
+        <label class="chk"><input type="checkbox" checked><span>窑位已登记<small>中层偏后,火路稳</small></span></label>
+        <p class="hint">差一样,都别点火。</p>
+      </article>
+      <article class="ware ware--b col-6 drop-1 reveal" style="--d:.12s">
+        <p class="cap">开关 · 窑规</p>
+        <label class="sw"><input type="checkbox" role="switch" checked><span class="sw__track"><span class="sw__thumb"></span></span><span class="sw__text"><strong>守夜模式</strong><small>后半夜,每半个时辰记一次温。</small></span></label>
+        <label class="sw"><input type="checkbox" role="switch"><span class="sw__track"><span class="sw__thumb"></span></span><span class="sw__text"><strong>慢火升温</strong><small>头四个时辰,火比平日更缓。</small></span></label>
+      </article>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="sec-fire">
+    <header class="sect__head reveal">
+      <span class="seal" aria-hidden="true">火</span>
+      <h2>火候,交给手,也交给等。</h2>
+      <p class="sect__lede">目标定了,柴一把一把投;窑温表会替你说话。</p>
+    </header>
+    <div class="sect__body cluster">
+      <article class="ware col-6 reveal range-wrap">
+        <p class="cap">滑杆 · 目标窑温</p>
+        <div class="range-head">
+          <label for="temp">把火定在</label>
+          <output class="range-out" for="temp" id="temp-out">1240<small> °C</small></output>
+        </div>
+        <input type="range" id="temp" min="800" max="1400" step="10" value="1240">
+        <div class="range-scale"><span>800</span><span>1100</span><span>1400</span></div>
+        <p class="hint"><span class="tip"><button class="term" type="button" aria-describedby="tip-red">还原焰</button><span class="tip__bubble" role="tooltip" id="tip-red">收风、闭门,火焰缺了氧,便去釉里夺氧。柿红与灰青,都靠这一口气变出来。</span></span> 宜在 1150–1300 之间,过了火,红就烧飞了。</p>
+      </article>
+      <article class="ware col-6 reveal" style="--d:.06s">
+        <p class="cap">进度 · 烧成</p>
+        <div class="prog-head"><span class="prog-day" id="prog-day">第三日 · 还原焰</span><span class="prog-pct" id="prog-pct">62%</span></div>
+        <div class="prog" role="progressbar" id="prog" aria-label="烧成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><div class="prog__fill" id="prog-fill"></div></div>
+        <div class="prog-marks"><span>入窑</span><span>武火</span><span>还原</span><span>养窑</span><span>出窑</span></div>
+        <div class="prog-acts"><button class="btn btn--biscuit" id="prog-btn">推进半日</button></div>
+      </article>
+      <article class="ware ware--smoke col-7 drop-1 gauge-card reveal" style="--d:.1s">
+        <p class="cap">量表 · 窑温,第二日酉时</p>
+        <svg class="gauge-svg" viewBox="0 0 260 158" role="img" aria-label="窑温表,当前一千一百八十摄氏度" id="gauge">
+          <path d="M20 140 A110 110 0 0 1 240 140" fill="none" stroke="#4A4032" stroke-width="10" stroke-linecap="round"/>
+          <path d="M158.5 33.7 A110 110 0 0 1 225.3 85" fill="none" stroke="#C56A3C" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+          <g stroke="#8A7C64" stroke-width="2">
+            <line x1="34" y1="140" x2="24" y2="140"/>
+            <line x1="46.9" y1="92" x2="38.2" y2="87"/>
+            <line x1="82" y1="56.9" x2="77" y2="48.2"/>
+            <line x1="130" y1="44" x2="130" y2="34"/>
+            <line x1="178" y1="56.9" x2="183" y2="48.2"/>
+            <line x1="213.1" y1="92" x2="221.8" y2="87"/>
+            <line x1="226" y1="140" x2="236" y2="140"/>
+          </g>
+          <g fill="#BFB299" font-family="Nunito Sans, sans-serif" font-size="11" text-anchor="middle">
+            <text x="54" y="144">800</text>
+            <text x="92" y="79">1000</text>
+            <text x="168" y="79">1200</text>
+            <text x="206" y="144">1400</text>
+          </g>
+          <g id="needle">
+            <path d="M127 140 L130 54 L133 140 Z" fill="#E89B66"/>
+            <path d="M130 131 C136 131 140 135 139 140 C140 146 135 149 130 149 C124 149 120 145 121 140 C120 134 125 131 130 131 Z" fill="#241C13" stroke="#E89B66" stroke-width="2"/>
+          </g>
+        </svg>
+        <p class="gauge-read" id="gauge-read">1180<small> °C</small></p>
+        <p class="gauge-sub" id="gauge-sub">当前窑温 · 还原焰正好,守住。</p>
+        <div class="gauge-acts"><button class="btn btn--glaze" id="feed-btn">投一把柴</button></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="sec-ledger">
+    <header class="sect__head reveal">
+      <span class="seal" aria-hidden="true">册</span>
+      <h2>窑册,一炉一页。</h2>
+      <p class="sect__lede">每一窑的来龙去脉,翻开就在;纸会记得火的事。</p>
+    </header>
+    <div class="sect__body">
+      <div class="ware reveal" style="padding:clamp(18px,2.2vw,26px)">
+        <p class="cap">标签页 · 第七窑四折</p>
+        <div class="tabs">
+          <div class="tabs__list" role="tablist" aria-label="窑册章节">
+            <button class="tab" role="tab" id="t-1" aria-selected="true" aria-controls="p-1">素坯</button>
+            <button class="tab" role="tab" id="t-2" aria-selected="false" aria-controls="p-2" tabindex="-1">上釉</button>
+            <button class="tab" role="tab" id="t-3" aria-selected="false" aria-controls="p-3" tabindex="-1">烧成</button>
+            <button class="tab" role="tab" id="t-4" aria-selected="false" aria-controls="p-4" tabindex="-1">出窑</button>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p-1" aria-labelledby="t-1" tabindex="0">
+            <p class="entry"><b>初七</b><span>拉坯十一件,留了八件,余者回泥。</span></p>
+            <p class="entry"><b>初九</b><span>修足,底款盖了「拙」字印。</span></p>
+            <p class="entry"><b>十一</b><span>阴干上架,棚下避风。</span></p>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p-2" aria-labelledby="t-2" tabindex="0" hidden>
+            <p class="entry"><b>十三</b><span>柿红釉两浸,足圈擦净。</span></p>
+            <p class="entry"><b>十四</b><span>灯下照针眼,补了三处,记在册。</span></p>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p-3" aria-labelledby="t-3" tabindex="0" hidden>
+            <p class="entry"><b>十六</b><span>寅时点火,文火养窑,烟直。</span></p>
+            <p class="entry"><b>十七</b><span>酉时转还原,窑门缝里看火色,橘中带白。</span></p>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p-4" aria-labelledby="t-4" tabindex="0" hidden>
+            <p class="entry"><b>二十</b><span>晨,窑冷开门。十一件里,成了九件。</span></p>
+            <p class="entry entry--note"><b>附记</b><span>那只歪口的,反倒最好看。</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="sec-out">
+    <header class="sect__head reveal">
+      <span class="seal" aria-hidden="true">出</span>
+      <h2>出窑,给个交代。</h2>
+      <p class="sect__lede">封窑要按手印,消息要送到手边;大事小事,都有回音。</p>
+    </header>
+    <div class="sect__body cluster">
+      <article class="ware col-7 reveal">
+        <p class="cap">弹窗与轻讯 · 回音</p>
+        <p style="color:var(--ink-2);font-size:.95rem;max-width:30em">封窑是大事,要当面问一句;记一笔、报个温,则像纸条一样,轻轻送到手边就走。</p>
+        <div class="btn-row" style="margin-top:22px">
+          <button class="btn btn--smoke" id="open-seal-2">封窑…</button>
+          <button class="btn btn--biscuit" data-toast="ok|已记入窑册|第七窑,第 43 行。">记一笔</button>
+          <button class="btn btn--quiet" data-toast="warn|窑温异动|酉时高了 40 °C,去看一眼风门。">报一声窑温</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="foot wrap">
+    <div class="foot__line"></div>
+    <p>窑记 YAOJI · 为 PROTEUS 烧制的视觉方向自由稿 · 代号 KILN</p>
+    <p class="foot__meta">窑烟黑 · 燕麦米 · 赤陶橙 —— 烧成于二〇二六年 大暑</p>
+    <p class="gloss">本页无一处正圆。 <i style="letter-spacing:.14em">— and that is the point.</i></p>
+  </footer>
+</main>
+
+<dialog class="modal" id="seal-dialog" aria-labelledby="seal-title">
+  <span class="seal seal--smoke" aria-hidden="true">封</span>
+  <h3 id="seal-title">封窑</h3>
+  <p>封窑之后,三日不可开;窑里的事,交给火。手印按在这里,就不许反悔了。</p>
+  <div class="modal__acts">
+    <button class="btn btn--quiet" data-close>再守一会</button>
+    <button class="btn btn--glaze" id="confirm-seal">按手印,封窑</button>
+  </div>
+</dialog>
+
+<div class="toasts" role="region" aria-live="polite" aria-label="窑讯"></div>
+
+<script>
+document.documentElement.classList.add('js');
+
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+$$('.reveal').forEach(el => io.observe(el));
+document.addEventListener('animationend', e => {
+  if (e.target.classList && e.target.classList.contains('reveal')) e.target.classList.add('settled');
+});
+
+const toasts = $('.toasts');
+function toast(kind, title, body) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  const ch = kind === 'warn' ? '火' : '记';
+  const sealCls = kind === 'warn' ? 'seal seal--smoke' : 'seal';
+  t.innerHTML = '<span class="' + sealCls + '" aria-hidden="true">' + ch + '</span>' +
+    '<div class="toast__body"><b>' + title + '</b><span>' + body + '</span></div>' +
+    '<button class="toast__x" aria-label="收起">×</button>';
+  toasts.appendChild(t);
+  const bye = () => { t.classList.add('bye'); setTimeout(() => t.remove(), 500); };
+  t.querySelector('.toast__x').addEventListener('click', bye);
+  setTimeout(bye, 4600);
+}
+$$('[data-toast]').forEach(b => b.addEventListener('click', () => {
+  const [k, ti, bo] = b.dataset.toast.split('|');
+  toast(k, ti, bo);
+}));
+$('#cta-schedule').addEventListener('click', () => toast('ok', '已排入第八窑', '处暑前后开窑,到时来看火。'));
+
+const dlg = $('#seal-dialog');
+['open-seal', 'open-seal-2'].forEach(id => { const b = $('#' + id); if (b) b.addEventListener('click', () => dlg.showModal()); });
+$('[data-close]', dlg).addEventListener('click', () => dlg.close());
+$('#confirm-seal').addEventListener('click', () => { dlg.close(); toast('ok', '已封窑', '三日后,开窑见分晓。'); });
+
+const temp = $('#temp'), tempOut = $('#temp-out');
+function syncTemp() {
+  const v = +temp.value;
+  temp.style.setProperty('--pct', ((v - 800) / 600 * 100) + '%');
+  tempOut.innerHTML = v + '<small> °C</small>';
+}
+temp.addEventListener('input', syncTemp);
+syncTemp();
+
+let heat = 1180;
+const needle = $('#needle'), gRead = $('#gauge-read'), gSub = $('#gauge-sub'), gauge = $('#gauge');
+$('#feed-btn').addEventListener('click', () => {
+  heat = Math.min(1400, heat + 25);
+  needle.style.transform = 'rotate(' + ((heat - 800) / 600 * 180 - 90) + 'deg)';
+  gRead.innerHTML = heat + '<small> °C</small>';
+  gSub.textContent = heat > 1300 ? '当前窑温 · 火大了,歇一把。' : '当前窑温 · 还原焰正好,守住。';
+  gauge.setAttribute('aria-label', '窑温表,当前' + heat + '摄氏度');
+});
+
+let prog = 62.5;
+const progEl = $('#prog'), progFill = $('#prog-fill'), progDay = $('#prog-day'), progPct = $('#prog-pct'), progBtn = $('#prog-btn');
+function dayLabel(p) {
+  if (p >= 100) return '出窑日 · 窑已冷';
+  if (p >= 75) return '第四日 · 止火养窑';
+  if (p >= 50) return '第三日 · 还原焰';
+  if (p >= 25) return '第二日 · 武火';
+  return '第一日 · 文火';
+}
+progBtn.addEventListener('click', () => {
+  prog = Math.min(100, prog + 12.5);
+  progFill.style.width = prog + '%';
+  progEl.setAttribute('aria-valuenow', Math.round(prog));
+  progDay.textContent = dayLabel(prog);
+  progPct.textContent = Math.round(prog) + '%';
+  if (prog >= 100) { progBtn.disabled = true; toast('ok', '窑冷了', '今日宜出窑,开门那刻莫眨眼。'); }
+});
+
+const ddBtn = $('#dd-btn'), ddList = $('#dd-list'), ddVal = $('#dd-val'), dd = $('#dd-clay');
+const opts = $$('[role="option"]', ddList);
+function ddOpen() {
+  ddList.hidden = false;
+  ddBtn.setAttribute('aria-expanded', 'true');
+  (opts.find(o => o.getAttribute('aria-selected') === 'true') || opts[0]).focus();
+}
+function ddClose(back) {
+  ddList.hidden = true;
+  ddBtn.setAttribute('aria-expanded', 'false');
+  if (back) ddBtn.focus();
+}
+function ddPick(o) {
+  opts.forEach(x => x.setAttribute('aria-selected', x === o ? 'true' : 'false'));
+  ddVal.textContent = o.childNodes[0].textContent;
+  ddClose(true);
+}
+ddBtn.addEventListener('click', () => ddList.hidden ? ddOpen() : ddClose(true));
+ddBtn.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); ddOpen(); }
+});
+ddList.addEventListener('keydown', e => {
+  const i = opts.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown') { e.preventDefault(); (opts[i + 1] || opts[0]).focus(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); (opts[i - 1] || opts[opts.length - 1]).focus(); }
+  else if (e.key === 'Home') { e.preventDefault(); opts[0].focus(); }
+  else if (e.key === 'End') { e.preventDefault(); opts[opts.length - 1].focus(); }
+  else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ddPick(document.activeElement); }
+  else if (e.key === 'Escape') { ddClose(true); }
+  else if (e.key === 'Tab') { ddClose(false); }
+});
+opts.forEach(o => o.addEventListener('click', () => ddPick(o)));
+document.addEventListener('pointerdown', e => { if (!ddList.hidden && !dd.contains(e.target)) ddClose(false); });
+
+const tabs = $$('[role="tab"]');
+const panels = tabs.map(t => $('#' + t.getAttribute('aria-controls')));
+function selectTab(t) {
+  tabs.forEach((x, i) => {
+    const on = x === t;
+    x.setAttribute('aria-selected', on ? 'true' : 'false');
+    x.tabIndex = on ? 0 : -1;
+    panels[i].hidden = !on;
+    if (on) {
+      panels[i].classList.remove('reveal', 'in', 'settled');
+      void panels[i].offsetWidth;
+      panels[i].classList.add('reveal', 'in');
+    }
+  });
+}
+tabs.forEach(t => {
+  t.addEventListener('click', () => selectTab(t));
+  t.addEventListener('keydown', e => {
+    const i = tabs.indexOf(t);
+    let n = null;
+    if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+    else if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+    else if (e.key === 'Home') n = tabs[0];
+    else if (e.key === 'End') n = tabs[tabs.length - 1];
+    if (n) { e.preventDefault(); n.focus(); selectTab(n); }
+  });
+});
+</script>
+</body>
+</html>
