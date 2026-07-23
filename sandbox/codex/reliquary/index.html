@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RELIQUARY / 未来圣骸：生物机械、未来考古与高级钟表构成的实验性组件系统。">
+  <title>RELIQUARY / Future Relic System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reliquary" id="app">
+    <canvas id="particleField" aria-hidden="true"></canvas>
+    <div class="material-noise" aria-hidden="true"></div>
+    <div class="scan-beam" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#artifact" aria-label="RELIQUARY 首页">
+        <span class="brand-sigil">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 3L43 14V34L24 45L5 34V14Z"></path>
+            <path d="M24 11L35 17V31L24 37L13 31V17Z"></path>
+            <circle cx="24" cy="24" r="4"></circle>
+          </svg>
+        </span>
+        <span><strong>RELIQUARY</strong><small>Future relic system</small></span>
+      </a>
+
+      <nav aria-label="主导航">
+        <a href="#anatomy">Anatomy</a>
+        <a href="#laboratory">Components</a>
+        <a href="#motion">Motion</a>
+        <a href="#materials">Materials</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+          <i></i><span>SOUND OFF</span>
+        </button>
+        <button class="icon-control" id="openIndex" type="button" aria-label="打开档案索引">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="archive-index" id="archiveIndex" aria-hidden="true">
+      <header>
+        <span>ARCHIVE NAVIGATION</span>
+        <button id="closeIndex" type="button" aria-label="关闭档案索引">×</button>
+      </header>
+      <nav>
+        <a href="#artifact"><span>00</span><strong>Artifact</strong><small>圣骸主视觉</small></a>
+        <a href="#anatomy"><span>01</span><strong>Anatomy</strong><small>结构剖面</small></a>
+        <a href="#laboratory"><span>02</span><strong>Laboratory</strong><small>组件实验室</small></a>
+        <a href="#motion"><span>03</span><strong>Motion grammar</strong><small>动效语法</small></a>
+        <a href="#materials"><span>04</span><strong>Material archive</strong><small>材料档案</small></a>
+      </nav>
+      <footer><span>R-01 / ACTIVE</span><span>2126.07.24</span></footer>
+    </aside>
+    <button class="archive-backdrop" id="archiveBackdrop" type="button" tabindex="-1" aria-label="关闭档案索引"></button>
+
+    <aside class="telemetry-rail" aria-label="页面遥测">
+      <span class="vertical-code">R-01 · BIORELIC · 34.7281°N</span>
+      <div class="scroll-track"><i id="scrollProgress"></i></div>
+      <span id="sectionCode">00</span>
+    </aside>
+
+    <main>
+      <section class="hero" id="artifact">
+        <div class="hero-word" aria-hidden="true">RELIQUARY</div>
+
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="archive-tag">ARCHIVE R-01</span>
+            <span class="live-signal"><i></i> BIOLOGICAL SIGNAL DETECTED</span>
+          </div>
+          <p class="pretitle">未来考古档案 / FUTURE ARCHAEOLOGY</p>
+          <h1>THE RELIC<br><em>IS STILL</em><br>BREATHING.</h1>
+          <p class="hero-intro">
+            一套从深空遗迹中复原的组件系统。骨瓷外壳保护信息，氧化金标记结构，毒液绿只为活跃状态发光。
+          </p>
+          <div class="hero-actions">
+            <button class="pressure-button primary" id="awakenRelic" type="button">
+              <span class="button-corners" aria-hidden="true"></span>
+              <i class="button-core"></i>
+              <b>解除封存</b>
+              <small>BREAK THE SEAL</small>
+            </button>
+            <a class="text-link" href="#laboratory">ENTER COMPONENT LAB <span>↘</span></a>
+          </div>
+        </div>
+
+        <div class="relic-stage" id="relicStage">
+          <div class="parallax-layer stage-halo" data-depth="0.08" aria-hidden="true"></div>
+
+          <svg class="relic-svg parallax-layer" data-depth="0.045" viewBox="0 0 820 900" aria-label="可解封的生物机械圣骸">
+            <defs>
+              <radialGradient id="coreGradient" cx="45%" cy="38%">
+                <stop offset="0" stop-color="#ecffd0"></stop>
+                <stop offset=".22" stop-color="#a8ff57"></stop>
+                <stop offset=".58" stop-color="#387e30"></stop>
+                <stop offset="1" stop-color="#0b170f"></stop>
+              </radialGradient>
+              <linearGradient id="boneGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff9e8"></stop>
+                <stop offset=".34" stop-color="#bdb29d"></stop>
+                <stop offset=".65" stop-color="#5c584f"></stop>
+                <stop offset=".82" stop-color="#d8cfbc"></stop>
+                <stop offset="1" stop-color="#756e60"></stop>
+              </linearGradient>
+              <linearGradient id="goldGradient" x1="0" y1="0" x2="1" y2=".8">
+                <stop offset="0" stop-color="#fff1a6"></stop>
+                <stop offset=".2" stop-color="#9b7440"></stop>
+                <stop offset=".48" stop-color="#e2bd6b"></stop>
+                <stop offset=".7" stop-color="#48341d"></stop>
+                <stop offset="1" stop-color="#b68a48"></stop>
+              </linearGradient>
+              <linearGradient id="shellIridescence" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#131a18"></stop>
+                <stop offset=".36" stop-color="#29342e"></stop>
+                <stop offset=".58" stop-color="#5b4b64"></stop>
+                <stop offset=".76" stop-color="#214c4a"></stop>
+                <stop offset="1" stop-color="#090d0c"></stop>
+              </linearGradient>
+              <filter id="greenGlow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="12" result="blur"></feGaussianBlur>
+                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+              <filter id="metalShadow" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000" flood-opacity=".6"></feDropShadow>
+              </filter>
+              <filter id="organicEdge" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="11" result="noise"></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"></feDisplacementMap>
+              </filter>
+              <clipPath id="coreClip"><circle cx="410" cy="442" r="122"></circle></clipPath>
+            </defs>
+
+            <g class="relic-orbits">
+              <ellipse class="orbit orbit-a" cx="410" cy="442" rx="316" ry="372"></ellipse>
+              <ellipse class="orbit orbit-b" cx="410" cy="442" rx="273" ry="330"></ellipse>
+              <path class="orbit-ticks" d="M410 58A384 384 0 0 1 794 442A384 384 0 0 1 410 826A384 384 0 0 1 26 442A384 384 0 0 1 410 58Z"></path>
+              <g class="orbit-nodes">
+                <circle cx="410" cy="70" r="7"></circle><circle cx="694" cy="218" r="5"></circle>
+                <circle cx="752" cy="442" r="7"></circle><circle cx="630" cy="716" r="5"></circle>
+                <circle cx="410" cy="808" r="7"></circle><circle cx="146" cy="678" r="5"></circle>
+                <circle cx="66" cy="442" r="7"></circle><circle cx="188" cy="172" r="5"></circle>
+              </g>
+            </g>
+
+            <g class="relic-crown" filter="url(#metalShadow)">
+              <path class="crown-spine" d="M410 84L452 162L441 250L410 291L379 250L368 162Z"></path>
+              <path class="gold-line" d="M410 99V275M379 163L410 190L441 163"></path>
+              <circle class="seal-node" cx="410" cy="176" r="17"></circle>
+              <circle class="seal-core" cx="410" cy="176" r="6"></circle>
+            </g>
+
+            <g class="shell shell-left" filter="url(#metalShadow)">
+              <path class="shell-outer" d="M365 171C278 174 181 230 141 330C91 455 138 600 226 697C270 745 320 777 362 792C337 722 328 648 350 588C369 534 359 494 323 451C284 403 287 345 320 301C350 262 369 217 365 171Z"></path>
+              <path class="shell-ridge" d="M329 211C252 237 191 302 175 389C158 482 194 579 262 654C289 683 313 704 334 716C310 638 319 577 334 523C346 480 317 444 285 405C251 364 267 301 306 268"></path>
+              <path class="shell-gold" d="M358 185C297 221 263 272 256 329M342 748C289 706 248 658 218 600"></path>
+              <g class="shell-vents">
+                <path d="M214 340L292 356"></path><path d="M197 389L278 399"></path>
+                <path d="M198 443L274 443"></path><path d="M210 499L288 486"></path>
+              </g>
+            </g>
+
+            <g class="shell shell-right" filter="url(#metalShadow)">
+              <path class="shell-outer" d="M455 171C542 174 639 230 679 330C729 455 682 600 594 697C550 745 500 777 458 792C483 722 492 648 470 588C451 534 461 494 497 451C536 403 533 345 500 301C470 262 451 217 455 171Z"></path>
+              <path class="shell-ridge" d="M491 211C568 237 629 302 645 389C662 482 626 579 558 654C531 683 507 704 486 716C510 638 501 577 486 523C474 480 503 444 535 405C569 364 553 301 514 268"></path>
+              <path class="shell-gold" d="M462 185C523 221 557 272 564 329M478 748C531 706 572 658 602 600"></path>
+              <g class="shell-vents">
+                <path d="M606 340L528 356"></path><path d="M623 389L542 399"></path>
+                <path d="M622 443L546 443"></path><path d="M610 499L532 486"></path>
+              </g>
+            </g>
+
+            <g class="skeleton" filter="url(#organicEdge)">
+              <path class="central-spine" d="M410 248C387 283 388 326 410 350C432 326 433 283 410 248ZM410 536C383 571 387 626 410 662C433 626 437 571 410 536Z"></path>
+              <g class="ribs ribs-left">
+                <path d="M392 304C345 296 303 315 278 351"></path>
+                <path d="M392 341C334 338 289 367 267 405"></path>
+                <path d="M390 382C326 388 291 425 275 464"></path>
+                <path d="M391 501C337 505 310 536 294 572"></path>
+              </g>
+              <g class="ribs ribs-right">
+                <path d="M428 304C475 296 517 315 542 351"></path>
+                <path d="M428 341C486 338 531 367 553 405"></path>
+                <path d="M430 382C494 388 529 425 545 464"></path>
+                <path d="M429 501C483 505 510 536 526 572"></path>
+              </g>
+              <circle class="joint" cx="274" cy="353" r="11"></circle><circle class="joint" cx="546" cy="353" r="11"></circle>
+              <circle class="joint" cx="264" cy="408" r="9"></circle><circle class="joint" cx="556" cy="408" r="9"></circle>
+              <circle class="joint" cx="275" cy="466" r="8"></circle><circle class="joint" cx="545" cy="466" r="8"></circle>
+            </g>
+
+            <g class="nerve-system" clip-path="url(#coreClip)">
+              <path class="nerve nerve-a" d="M285 445C331 390 359 486 410 422C459 360 488 470 542 410"></path>
+              <path class="nerve nerve-b" d="M294 488C345 521 365 431 417 492C463 546 489 459 534 485"></path>
+              <path class="nerve nerve-c" d="M337 330C382 366 372 402 410 442C450 484 432 520 474 556"></path>
+            </g>
+
+            <g class="core-assembly">
+              <circle class="core-halo" cx="410" cy="442" r="141"></circle>
+              <circle class="core-bezel" cx="410" cy="442" r="119"></circle>
+              <g class="iris">
+                <path d="M410 442L367 340A111 111 0 0 1 433 333Z"></path>
+                <path d="M410 442L433 333A111 111 0 0 1 507 382Z"></path>
+                <path d="M410 442L507 382A111 111 0 0 1 510 474Z"></path>
+                <path d="M410 442L510 474A111 111 0 0 1 441 548Z"></path>
+                <path d="M410 442L441 548A111 111 0 0 1 348 535Z"></path>
+                <path d="M410 442L348 535A111 111 0 0 1 300 456Z"></path>
+                <path d="M410 442L300 456A111 111 0 0 1 329 367Z"></path>
+                <path d="M410 442L329 367A111 111 0 0 1 367 340Z"></path>
+              </g>
+              <circle class="living-core" cx="410" cy="442" r="58"></circle>
+              <circle class="core-specular" cx="390" cy="420" r="16"></circle>
+              <circle class="core-reticle" cx="410" cy="442" r="76"></circle>
+              <path class="reticle-lines" d="M410 350V386M410 498V534M318 442H354M466 442H502"></path>
+            </g>
+
+            <g class="lower-seal">
+              <path class="seal-frame" d="M350 676L410 642L470 676V746L410 780L350 746Z"></path>
+              <path class="gold-line" d="M365 685L410 660L455 685V737L410 762L365 737Z"></path>
+              <path class="seal-mark" d="M389 718L404 733L435 698"></path>
+            </g>
+          </svg>
+
+          <div class="annotation annotation-a parallax-layer" data-depth="0.1">
+            <i></i><span><b>01 / CARAPACE</b><small>IRIDESCENT DEFENSE SHELL</small></span>
+          </div>
+          <div class="annotation annotation-b parallax-layer" data-depth="0.13">
+            <i></i><span><b>02 / NERVE</b><small>SIGNAL STILL ACTIVE</small></span>
+          </div>
+          <div class="annotation annotation-c parallax-layer" data-depth="0.075">
+            <i></i><span><b>03 / CORE</b><small>UNKNOWN ENERGY SOURCE</small></span>
+          </div>
+          <div class="artifact-status">
+            <span><i></i> CONTAINMENT STABLE</span>
+            <strong id="artifactState">DORMANT</strong>
+            <small>LAST SIGNAL 00:00:04 AGO</small>
+          </div>
+        </div>
+
+        <div class="hero-telemetry">
+          <div><span>ORIGIN</span><strong>KEPLER-186f</strong></div>
+          <div><span>AGE</span><strong>UNKNOWN / &gt; 48K Y</strong></div>
+          <div><span>ACTIVITY</span><strong class="green">0.42 μSV / RISING</strong></div>
+          <div><span>CONTAINMENT</span><strong>CLASS IV</strong></div>
+        </div>
+
+        <a class="scroll-cue" href="#anatomy"><span>SCROLL TO DISSECT</span><i></i></a>
+      </section>
+
+      <section class="anatomy section-shell" id="anatomy" data-section="01">
+        <header class="section-heading reveal">
+          <div class="section-index"><span>01</span><i></i>ANATOMY</div>
+          <div><p>THE OBJECT IS THE SYSTEM</p><h2>Four layers.<br>One living grammar.</h2></div>
+          <p>这套视觉语言不是装饰贴图。每一层材料都对应一种产品职责：保护、结构、反馈与意图。</p>
+        </header>
+
+        <div class="anatomy-grid">
+          <div class="layer-list reveal">
+            <button class="layer-button is-active" type="button" data-layer="shell">
+              <span>01</span><i></i><b>CARAPACE</b><small>Protection & hierarchy</small>
+            </button>
+            <button class="layer-button" type="button" data-layer="skeleton">
+              <span>02</span><i></i><b>SKELETON</b><small>Layout & structure</small>
+            </button>
+            <button class="layer-button" type="button" data-layer="nerve">
+              <span>03</span><i></i><b>NERVE</b><small>Feedback & motion</small>
+            </button>
+            <button class="layer-button" type="button" data-layer="core">
+              <span>04</span><i></i><b>CORE</b><small>Primary intent</small>
+            </button>
+          </div>
+
+          <div class="exploded-view reveal" id="explodedView">
+            <div class="exploded-axis" aria-hidden="true"></div>
+            <div class="anatomy-layer layer-shell"><span>CARAPACE</span><i></i><i></i></div>
+            <div class="anatomy-layer layer-skeleton"><span>SKELETON</span><i></i><i></i><i></i></div>
+            <div class="anatomy-layer layer-nerve"><span>NERVE</span><i></i><i></i><i></i><i></i></div>
+            <div class="anatomy-layer layer-core"><span>CORE</span><i></i></div>
+            <span class="dimension dimension-x">428 MM</span>
+            <span class="dimension dimension-y">↕ 01:08 SCALE</span>
+          </div>
+
+          <article class="layer-detail reveal" id="layerDetail">
+            <span class="detail-number">LAYER 01 / 04</span>
+            <h3>CARAPACE</h3>
+            <p>深色甲壳定义产品边界和信息层级。骨瓷切面负责可读性，氧化金缝线标记可以安全触碰的位置。</p>
+            <dl>
+              <div><dt>ROLE</dt><dd>Surface / Container</dd></div>
+              <div><dt>MATERIAL</dt><dd>Obsidian + Bone</dd></div>
+              <div><dt>BEHAVIOR</dt><dd>Shield / Reveal</dd></div>
+            </dl>
+            <div class="detail-swatch"><i></i><i></i><i></i><span>03 MATERIALS</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="laboratory section-shell" id="laboratory" data-section="02">
+        <header class="section-heading reveal">
+          <div class="section-index"><span>02</span><i></i>COMPONENT LAB</div>
+          <div><p>PRODUCTION SPECIMENS</p><h2>Not decoration.<br>Operational anatomy.</h2></div>
+          <p>真实的按钮、输入、导航、反馈、数据与弹层，用同一套生物机械语法表达完整状态。</p>
+        </header>
+
+        <div class="specimen-grid">
+          <article class="specimen actions-specimen reveal">
+            <header><div><span>A-01</span><h3>Pressure controls</h3></div><small>6 STATES / INTERACTIVE</small></header>
+            <div class="pressure-gallery">
+              <button class="pressure-button primary" type="button" data-toast="Specimen creation initiated">
+                <span class="button-corners"></span><i class="button-core"></i><b>Create specimen</b><small>PRIMARY</small>
+              </button>
+              <button class="pressure-button secondary" type="button">
+                <span class="button-corners"></span><i class="button-core"></i><b>Inspect layer</b><small>SECONDARY</small>
+              </button>
+              <button class="pressure-button danger" type="button">
+                <span class="button-corners"></span><i class="button-core"></i><b>Break containment</b><small>DANGER</small>
+              </button>
+              <button class="pressure-button primary loading" type="button">
+                <span class="button-corners"></span><i class="button-core"></i><b>Synchronizing</b><small>PROCESSING</small>
+              </button>
+              <button class="pressure-button secondary" type="button" disabled>
+                <span class="button-corners"></span><i class="button-core"></i><b>Sealed</b><small>DISABLED</small>
+              </button>
+            </div>
+            <div class="micro-controls">
+              <button class="bone-icon" type="button" aria-label="添加">＋</button>
+              <button class="bone-icon is-active" type="button" aria-label="已固定">◆</button>
+              <button class="bone-icon" type="button" aria-label="收藏">♡</button>
+              <span></span>
+              <button class="specimen-chip is-active" type="button"><i></i>ACTIVE <b>×</b></button>
+              <button class="specimen-chip" type="button"><i></i>QUARANTINE <b>＋</b></button>
+            </div>
+          </article>
+
+          <article class="specimen forms-specimen reveal">
+            <header><div><span>F-02</span><h3>Scanning channels</h3></div><small>VALIDATION LIVE</small></header>
+            <div class="field-stack">
+              <label class="relic-field">
+                <span>SPECIMEN DESIGNATION <b>REQUIRED</b></span>
+                <div><i>R/</i><input type="text" value="BIORELIC-01" aria-label="Specimen designation"><strong>✓</strong></div>
+                <small>Identity checksum verified.</small>
+              </label>
+              <label class="relic-field has-error">
+                <span>CONTAINMENT CODE</span>
+                <div><i>⌁</i><input type="text" value="INVALID" aria-label="Containment code"><strong>!</strong></div>
+                <small>Code does not match archive authority.</small>
+              </label>
+              <label class="relic-field">
+                <span>ARCHIVE SECTOR</span>
+                <select aria-label="Archive sector"><option>Vault 07 / Xenobiology</option><option>Vault 11 / Synthetic</option><option>Vault 19 / Unclassified</option></select>
+              </label>
+            </div>
+            <div class="vertebra-controls">
+              <label class="vertebra-switch"><input type="checkbox" checked><span><i></i><i></i></span><b>LIVE SIGNAL<small>Monitor neural activity</small></b></label>
+              <label class="vertebra-switch"><input type="checkbox"><span><i></i><i></i></span><b>HARD SEAL<small>Disable external access</small></b></label>
+            </div>
+          </article>
+
+          <article class="specimen nav-specimen reveal">
+            <header><div><span>N-03</span><h3>Orbital navigation</h3></div><small>4 PATTERNS</small></header>
+            <div class="orbital-tabs" role="tablist" aria-label="档案视图">
+              <button role="tab" aria-selected="true" data-tab="overview"><i></i><span>01</span>OVERVIEW</button>
+              <button role="tab" aria-selected="false" data-tab="signals"><i></i><span>02</span>SIGNALS</button>
+              <button role="tab" aria-selected="false" data-tab="lineage"><i></i><span>03</span>LINEAGE</button>
+            </div>
+            <div class="orbital-panel" id="orbitalPanel">
+              <span class="panel-index">01</span>
+              <div><strong>ARTIFACT OVERVIEW</strong><p>Structural summary, containment history and active biological readings.</p></div>
+              <i class="panel-orbit"></i>
+            </div>
+            <div class="segmented-control" role="group" aria-label="密度">
+              <button class="is-active" type="button" aria-pressed="true">FIELD</button>
+              <button type="button" aria-pressed="false">LAYER</button>
+              <button type="button" aria-pressed="false">CORE</button>
+            </div>
+          </article>
+
+          <article class="specimen feedback-specimen reveal">
+            <header><div><span>S-04</span><h3>Living feedback</h3></div><small>BIOSIGNAL</small></header>
+            <div class="biosignal">
+              <div class="signal-graph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div><span>CORE ACTIVITY</span><strong>84.2<small>%</small></strong><p>+12.8% since awakening</p></div>
+            </div>
+            <div class="relic-alert success"><span>✓</span><div><strong>Neural link established</strong><p>All semantic channels synchronized.</p></div><button type="button" aria-label="关闭">×</button></div>
+            <div class="relic-alert warning"><span>!</span><div><strong>Containment fluctuation</strong><p>Core temperature exceeds baseline.</p></div></div>
+            <button class="transmission-button" type="button" data-toast="Transmission sent to Archive Council">SEND TRANSMISSION <span>↗</span></button>
+          </article>
+
+          <article class="specimen data-specimen reveal">
+            <header><div><span>D-05</span><h3>Archive registry</h3></div><button class="filter-button" type="button">FILTER / 03 <span>⌄</span></button></header>
+            <div class="registry-metrics">
+              <div><span>ACTIVE RELICS</span><strong>042</strong><small><i>↗ 08</i> THIS CYCLE</small></div>
+              <div><span>CONTAINMENT</span><strong>97.4<sup>%</sup></strong><small>ABOVE THRESHOLD</small></div>
+              <div><span>ANOMALIES</span><strong>006</strong><small><i>− 03</i> STABILIZED</small></div>
+              <div><span>CORE OUTPUT</span><strong>8.2<sup>TW</sup></strong><small>LIVE MEASUREMENT</small></div>
+            </div>
+            <div class="registry-table-wrap">
+              <table>
+                <thead><tr><th>ID</th><th>SPECIMEN</th><th>STATE</th><th>AUTHORITY</th><th>LAST SIGNAL</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td>R-001</td><td><span class="specimen-name"><i>◆</i><b>Reliquary Prime<small>Bio-mechanical</small></b></span></td><td><span class="state stable">STABLE</span></td><td><span class="avatar">YL</span> Yun Li</td><td>04 sec ago</td><td><button class="row-action" type="button">•••</button></td></tr>
+                  <tr><td>R-014</td><td><span class="specimen-name"><i>◉</i><b>Solar Vertebra<small>Energetic</small></b></span></td><td><span class="state awake">AWAKE</span></td><td><span class="avatar two">MK</span> M. Kim</td><td>12 min ago</td><td><button class="row-action" type="button">•••</button></td></tr>
+                  <tr><td>R-027</td><td><span class="specimen-name"><i>⌁</i><b>Glass Marrow<small>Unclassified</small></b></span></td><td><span class="state sealed">SEALED</span></td><td><span class="avatar three">QT</span> Q. Tao</td><td>3 hours ago</td><td><button class="row-action" type="button">•••</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="specimen containment-specimen reveal">
+            <header><div><span>O-06</span><h3>Containment chamber</h3></div><small>MODAL / FOCUS</small></header>
+            <div class="chamber-preview">
+              <div class="chamber-iris"><i></i><i></i><i></i><i></i><span>◆</span></div>
+              <strong>RESTRICTED ACTION</strong>
+              <p>High-impact operations close the interface around one decision.</p>
+              <button class="pressure-button primary" id="openDialog" type="button"><span class="button-corners"></span><i class="button-core"></i><b>Open chamber</b><small>REVIEW</small></button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="motion section-shell" id="motion" data-section="03">
+        <header class="section-heading reveal">
+          <div class="section-index"><span>03</span><i></i>MOTION GRAMMAR</div>
+          <div><p>MOVEMENT HAS MEANING</p><h2>Four verbs.<br>No decorative drift.</h2></div>
+          <p>所有动画都回答一个问题：系统正在苏醒、闭合、传递，还是失活？</p>
+        </header>
+
+        <div class="motion-grid">
+          <article class="motion-card reveal">
+            <span>01 / AWAKEN</span>
+            <div class="motion-icon awaken-icon"><i></i><i></i><i></i><b>◆</b></div>
+            <h3>苏醒</h3><p>首次出现与进入新状态。结构从核心向外展开，先建立意图，再暴露细节。</p>
+            <code>680ms · expo.out</code>
+          </article>
+          <article class="motion-card reveal">
+            <span>02 / LOCK</span>
+            <div class="motion-icon lock-icon"><i></i><i></i><i></i><i></i><b>●</b></div>
+            <h3>闭锁</h3><p>确认、提交与危险操作。外围结构咬合，明确告诉用户动作已经不可逆。</p>
+            <code>240ms · back.in</code>
+          </article>
+          <article class="motion-card reveal">
+            <span>03 / PULSE</span>
+            <div class="motion-icon pulse-icon"><i></i><i></i><i></i><b>●</b></div>
+            <h3>脉冲</h3><p>处理中、成功与实时状态。能量沿预定通道传播，不使用无意义的加载圈。</p>
+            <code>1200ms · sine.inOut</code>
+          </article>
+          <article class="motion-card reveal">
+            <span>04 / DECAY</span>
+            <div class="motion-icon decay-icon"><i></i><i></i><i></i><i></i><b>◇</b></div>
+            <h3>衰变</h3><p>删除、禁用与错误。表面失去高光，结构向下坍缩并留下残余信号。</p>
+            <code>520ms · power2.in</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="materials section-shell" id="materials" data-section="04">
+        <header class="section-heading reveal">
+          <div class="section-index"><span>04</span><i></i>MATERIAL ARCHIVE</div>
+          <div><p>THE PERIODIC TABLE OF RELIQUARY</p><h2>Material is information.</h2></div>
+          <p>没有任意颜色。每种表面承担固定职责，并保持足够对比度和可降级表现。</p>
+        </header>
+
+        <div class="material-grid">
+          <article class="material-palette reveal">
+            <header><span>01 / CHROMATIC MATERIALS</span><strong>05 SPECIMENS</strong></header>
+            <div class="material-swatches">
+              <div class="material-swatch obsidian"><span>OBSIDIAN</span><strong>#090D0C</strong><small>Canvas / Depth</small></div>
+              <div class="material-swatch bone"><span>BONE CHINA</span><strong>#E9E2CF</strong><small>Text / Structure</small></div>
+              <div class="material-swatch gold"><span>OXIDIZED GOLD</span><strong>#B68A48</strong><small>Edge / Authority</small></div>
+              <div class="material-swatch venom"><span>VENOM SIGNAL</span><strong>#A8FF57</strong><small>Live / Success</small></div>
+              <div class="material-swatch alarm"><span>ARTERIAL RED</span><strong>#FF5147</strong><small>Danger only</small></div>
+            </div>
+          </article>
+
+          <article class="type-archive reveal">
+            <header><span>02 / INSCRIPTION SYSTEM</span><strong>03 VOICES</strong></header>
+            <div class="type-display"><span>R</span><div><small>MONUMENT / DISPLAY</small><strong>RELIQUARY</strong><p>未来圣骸 · 活体档案</p></div></div>
+            <div class="type-roles">
+              <div><b>EDITORIAL SERIF</b><span>Display / Narrative</span><code>72 / .86</code></div>
+              <div><b>ENGINEERING SANS</b><span>Interface / Control</span><code>16 / 1.50</code></div>
+              <div><b>ARCHIVE MONO</b><span>Data / Telemetry</span><code>11 / 1.20</code></div>
+            </div>
+          </article>
+
+          <article class="geometry-archive reveal">
+            <header><span>03 / STRUCTURAL CONSTANTS</span><strong>LIVE</strong></header>
+            <div class="geometry-vessel">
+              <div class="geometry-ring one"></div><div class="geometry-ring two"></div><div class="geometry-ring three"></div>
+              <span>R</span><i></i>
+            </div>
+            <label class="expression-control">
+              <span>ORGANIC EXPRESSION <output id="expressionOutput">68%</output></span>
+              <input id="expressionRange" type="range" min="0" max="100" value="68">
+              <small><i>ENGINEERED</i><i>LIVING</i></small>
+            </label>
+          </article>
+        </div>
+      </section>
+
+      <section class="final-seal reveal" data-section="05">
+        <div class="final-orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="final-code">ARCHIVE R-01 / END OF RECORD</span>
+        <p>THE RELIC WAS NEVER DEAD.</p>
+        <h2>IT WAS<br>WAITING FOR<br><em>AN INTERFACE.</em></h2>
+        <button class="pressure-button primary" id="finalAwaken" type="button">
+          <span class="button-corners"></span><i class="button-core"></i><b>Awaken again</b><small>RETURN TO ARTIFACT</small>
+        </button>
+        <span class="final-mark" aria-hidden="true">R</span>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#artifact">
+        <span class="brand-sigil"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3L43 14V34L24 45L5 34V14Z"></path><circle cx="24" cy="24" r="5"></circle></svg></span>
+        <span><strong>RELIQUARY</strong><small>Future relic system</small></span>
+      </a>
+      <p>A living component system recovered from an impossible future.</p>
+      <span>ARCHIVE 2126 / R-01</span>
+    </footer>
+
+    <dialog class="containment-dialog" id="containmentDialog">
+      <form method="dialog">
+        <div class="dialog-seal" aria-hidden="true"><i></i><i></i><i></i><i></i><span>◆</span></div>
+        <button class="dialog-close" value="cancel" aria-label="关闭对话框">×</button>
+        <span class="dialog-code">RESTRICTED / AUTHORITY IV</span>
+        <h2>BREAK CONTAINMENT?</h2>
+        <p>This operation exposes the living core to the review council. The action will be recorded permanently in Archive R-01.</p>
+        <label class="vertebra-switch"><input type="checkbox" checked><span><i></i><i></i></span><b>NOTIFY COUNCIL<small>Transmit complete activity record</small></b></label>
+        <footer>
+          <button class="pressure-button secondary" value="cancel"><span class="button-corners"></span><i class="button-core"></i><b>Remain sealed</b><small>CANCEL</small></button>
+          <button class="pressure-button danger" value="confirm" data-toast="Containment broken · Council notified"><span class="button-corners"></span><i class="button-core"></i><b>Break the seal</b><small>CONFIRM</small></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div class="transmission-toast" id="toast" role="status" aria-live="polite">
+      <span class="toast-sigil">◆</span>
+      <div><small>ARCHIVE TRANSMISSION</small><strong id="toastMessage">Operation complete</strong></div>
+      <button type="button" aria-label="关闭通知">×</button>
+      <i class="toast-life"></i>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
