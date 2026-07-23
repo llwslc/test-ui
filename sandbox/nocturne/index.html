@@ -739,7 +739,7 @@ input[type="range"].flame::-moz-range-thumb{
   animation:branch-grow 1.5s cubic-bezier(.22,.72,.3,1) both;
   animation-delay:var(--d,0s);
 }
-@keyframes branch-grow{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes branch-grow{from{stroke-dashoffset:1;visibility:hidden}2%{visibility:visible}to{stroke-dashoffset:0}}
 .branch-leaf{
   transform-box:fill-box;transform-origin:50% 50%;
   animation:leaf-out .9s cubic-bezier(.16,.8,.3,1) both;
@@ -882,7 +882,7 @@ input[type="range"].flame::-moz-range-thumb{
         <path class="branch" style="--d:1.79s;animation-duration:.95s" pathLength="1" d="M58 94 C 47 88, 36 79, 27 70" stroke="#C69A4E" stroke-width="1.3" opacity=".62" stroke-linecap="round"/>
         <g class="branch-leaf" style="--d:.51s"><use href="#leafF" transform="translate(52,469) rotate(-138)"/></g>
         <g class="branch-leaf" style="--d:.73s"><use href="#leafF" transform="translate(84,409) rotate(24) scale(.9)"/></g>
-        <g class="branch-leaf" style="--d:.88s"><use href="#tendril" transform="translate(100,376) rotate(30)"/></g>
+        <g class="branch-leaf" style="--d:.88s"><use href="#tendril" transform="translate(104,377) rotate(30)"/></g>
         <g class="branch-leaf" style="--d:1.14s"><use href="#leafF" transform="translate(69,301) rotate(171) scale(.95)"/></g>
         <g class="branch-leaf" style="--d:1.35s"><use href="#leafF" transform="translate(58,219) rotate(14) scale(.8)"/></g>
         <g class="branch-leaf" style="--d:1.5s"><use href="#tendril" transform="translate(69,205) rotate(-140) scale(.85)"/></g>
