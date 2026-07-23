@@ -687,7 +687,7 @@ main,
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 660px;
+  min-height: 760px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background:
@@ -707,6 +707,277 @@ main,
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 54px 54px;
   mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.theme-art {
+  position: absolute;
+  z-index: -1;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.art-layer {
+  display: none;
+  opacity: 0.94;
+}
+
+[data-theme="sumi"] .art-sumi,
+[data-theme="ormolu"] .art-ormolu,
+[data-theme="nocturne"] .art-nocturne,
+[data-theme="pulp"] .art-pulp,
+[data-theme="totem"] .art-totem,
+[data-theme="kiln"] .art-kiln,
+[data-theme="chrome"] .art-chrome,
+[data-theme="arcade"] .art-arcade,
+[data-theme="bitmap"] .art-bitmap,
+[data-theme="mochi"] .art-mochi,
+[data-theme="scribble"] .art-scribble,
+[data-theme="axon"] .art-axon,
+[data-theme="corona"] .art-corona,
+[data-theme="qalam"] .art-qalam,
+[data-theme="gazette"] .art-gazette {
+  display: block;
+  animation: art-layer-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.art-stroke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.art-stroke-heavy {
+  stroke-width: 12;
+}
+
+.art-hairline {
+  stroke-width: 2;
+}
+
+.art-accent {
+  stroke: var(--accent);
+}
+
+.art-highlight {
+  stroke: var(--accent-2);
+}
+
+.art-ink {
+  stroke: var(--ink);
+}
+
+.art-canvas {
+  stroke: var(--canvas);
+}
+
+.art-fill-canvas {
+  fill: var(--canvas);
+}
+
+.art-fill-ink {
+  fill: var(--ink);
+}
+
+.art-fill-accent {
+  fill: var(--accent);
+}
+
+.art-fill-highlight {
+  fill: var(--accent-2);
+}
+
+.art-fill-accent-soft {
+  fill: color-mix(in srgb, var(--accent) 24%, var(--surface));
+}
+
+.art-layer .art-draw-slow,
+.art-layer .art-draw-fast,
+.art-layer > .art-stroke,
+.art-layer > g > .art-stroke {
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: art-draw 1.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.art-layer .art-draw-slow {
+  animation-duration: 2.4s;
+}
+
+.art-layer .art-draw-fast {
+  animation-duration: 0.55s;
+}
+
+.art-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pop 0.62s cubic-bezier(0.2, 1.7, 0.35, 1) both;
+}
+
+.delay-one {
+  animation-delay: 0.16s !important;
+}
+
+.delay-two {
+  animation-delay: 0.3s !important;
+}
+
+.art-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-float 4.5s ease-in-out infinite;
+}
+
+.art-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pulse 3.2s ease-in-out infinite;
+}
+
+.art-orbit,
+.art-orbit-reverse,
+.art-spin-slow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 28s linear infinite;
+}
+
+.art-orbit-reverse {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+
+.art-spin-slow {
+  animation-duration: 34s;
+}
+
+.art-drop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-drop 3.4s ease-in infinite;
+}
+
+.drop-two {
+  animation-delay: -1.7s;
+}
+
+.art-bloom {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-bloom 4.8s ease-in-out infinite alternate;
+}
+
+.bloom-two {
+  animation-delay: -2.4s;
+}
+
+.art-blob {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-blob 6.5s ease-in-out infinite alternate;
+}
+
+.blob-two {
+  animation-delay: -3.2s;
+  animation-direction: alternate-reverse;
+}
+
+.art-pixel-run {
+  animation: pixel-run 2.8s steps(5, end) infinite;
+}
+
+.art-cursor {
+  transform-box: fill-box;
+  transform-origin: top left;
+  animation: cursor-click 2.2s steps(2, end) infinite;
+}
+
+.art-sprinkles {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.art-sticker {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sticker-slap 3.6s cubic-bezier(0.2, 1.6, 0.35, 1) infinite;
+}
+
+.art-isometric {
+  animation: layer-lift 4.8s ease-in-out infinite;
+}
+
+.art-isometric.layer-two {
+  animation-delay: -1.6s;
+}
+
+.art-isometric.layer-three {
+  animation-delay: -3.2s;
+}
+
+.art-glow-ring {
+  stroke-width: 18;
+}
+
+[data-theme="sumi"] .theme-art {
+  mix-blend-mode: multiply;
+}
+
+[data-theme="sumi"] .art-sumi .art-stroke-heavy {
+  stroke-width: 24;
+}
+
+[data-theme="ormolu"] .art-ormolu {
+  opacity: 0.7;
+}
+
+[data-theme="nocturne"] .art-nocturne {
+  opacity: 0.82;
+}
+
+[data-theme="pulp"] .art-pulp,
+[data-theme="totem"] .art-totem {
+  opacity: 0.9;
+}
+
+[data-theme="arcade"] .theme-art,
+[data-theme="bitmap"] .theme-art {
+  shape-rendering: crispEdges;
+}
+
+[data-theme="arcade"] .art-arcade {
+  filter: drop-shadow(7px 0 0 rgba(255, 62, 97, 0.34)) drop-shadow(-7px 0 0 rgba(71, 71, 255, 0.3));
+}
+
+[data-theme="bitmap"] .art-layer .art-stroke {
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+[data-theme="mochi"] .art-mochi {
+  filter: drop-shadow(14px 18px 16px rgba(146, 95, 79, 0.16));
+}
+
+[data-theme="scribble"] .art-scribble .art-stroke {
+  stroke-linecap: round;
+  filter: url("#art-ink");
+}
+
+[data-theme="axon"] .art-axon {
+  filter: drop-shadow(16px 18px 0 rgba(7, 29, 37, 0.18));
+}
+
+[data-theme="corona"] .art-corona {
+  opacity: 0.92;
+}
+
+[data-theme="gazette"] .art-gazette {
+  opacity: 0.86;
 }
 
 .stage-orbit {
@@ -761,7 +1032,7 @@ main,
   z-index: -1;
   top: 0;
   right: 2%;
-  color: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: color-mix(in srgb, var(--accent) 7%, transparent);
   font-family: var(--display);
   font-size: clamp(180px, 24vw, 390px);
   font-weight: 900;
@@ -771,7 +1042,11 @@ main,
 }
 
 .product-card {
-  width: min(590px, 82%);
+  position: absolute;
+  z-index: 2;
+  right: clamp(18px, 4vw, 48px);
+  bottom: clamp(36px, 6vw, 70px);
+  width: min(520px, 68%);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
@@ -3367,6 +3642,140 @@ td {
 
 /* Motion */
 
+@keyframes art-layer-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) rotate(-1.5deg);
+  }
+}
+
+@keyframes art-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes art-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-8deg);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.08) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes art-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(2deg);
+  }
+}
+
+@keyframes art-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes art-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-90px) scale(0.55);
+  }
+  30% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(40px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(54px) scale(1.8, 0.25);
+  }
+}
+
+@keyframes art-bloom {
+  from {
+    transform: scale(0.82) rotate(-6deg);
+  }
+  to {
+    transform: scale(1.08) rotate(5deg);
+  }
+}
+
+@keyframes art-blob {
+  0% {
+    transform: scale(0.97, 1.03) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.035, 0.965) rotate(2deg);
+  }
+  100% {
+    transform: scale(0.985, 1.02) translateY(-12px);
+  }
+}
+
+@keyframes pixel-run {
+  0% {
+    transform: translateX(-36px);
+  }
+  100% {
+    transform: translateX(144px);
+  }
+}
+
+@keyframes cursor-click {
+  0%,
+  52%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  62%,
+  78% {
+    transform: translate(-8px, -8px) scale(0.88);
+  }
+}
+
+@keyframes sticker-slap {
+  0%,
+  72%,
+  100% {
+    transform: rotate(-8deg) scale(1);
+  }
+  80% {
+    transform: rotate(6deg) scale(1.28);
+  }
+  88% {
+    transform: rotate(-3deg) scale(0.94);
+  }
+}
+
+@keyframes layer-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -3441,7 +3850,7 @@ td {
   }
 
   .hero-stage {
-    min-height: 610px;
+    min-height: 700px;
   }
 
   .manifesto,
@@ -3503,7 +3912,7 @@ td {
   }
 
   .hero-stage {
-    min-height: 650px;
+    min-height: 720px;
   }
 
   .manifesto {
@@ -3641,15 +4050,29 @@ td {
   }
 
   .hero-stage {
-    min-height: 560px;
+    min-height: 690px;
   }
 
   .product-card {
+    right: 17px;
+    bottom: 34px;
     width: calc(100% - 34px);
   }
 
   .product-options {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .theme-art {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(-10%, -7%) scale(1.18);
+    transform-origin: center;
+  }
+
+  .stage-glyph {
+    font-size: 210px;
   }
 
   .floating-token {
