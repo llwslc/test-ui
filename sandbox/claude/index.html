@@ -3,42 +3,302 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Proteus 候选自由稿 · 评审索引</title>
+<title>Theme Atlas · 主题图集</title>
 <style>
-  :root{color-scheme:light}
+  :root{
+    --bg:#0c0c0f; --panel:#131318; --panel-2:#17171d;
+    --line:rgba(232,228,220,.12); --line-2:rgba(232,228,220,.07);
+    --ink:#e9e7e1; --dim:#8f8c86; --faint:#5b5954;
+    --accent:#d8c39a;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  }
   *{box-sizing:border-box;margin:0}
-  body{font:15px/1.6 -apple-system,"PingFang SC",sans-serif;background:#f4f4f2;color:#1c1c1c;padding:40px 24px}
-  h1{font-size:22px;margin-bottom:4px}
-  p.sub{color:#666;margin-bottom:28px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;max-width:1400px}
-  a.card{display:block;background:#fff;border:1px solid #ddd;border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
-  a.card:hover{border-color:#1c1c1c;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-  .shot{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top center;background:#ececeb;border-bottom:1px solid #e2e2e0}
-  .meta{padding:14px 18px 16px}
-  .code{font-weight:700;font-size:17px;letter-spacing:.06em}
-  .name{color:#444;margin-top:2px}
-  .desc{color:#777;font-size:13px;margin-top:8px}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  button,input,a{font:inherit;color:inherit}
+  button{background:none;border:0;cursor:pointer}
+  a{text-decoration:none}
+
+  /* ---------- LANDING ---------- */
+  .landing{min-height:100%;padding:44px clamp(18px,4vw,56px) 72px}
+  .landing-head{max-width:1360px;margin:0 auto 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .landing-head h1{font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:.14em}
+  .landing-head h1 span{color:var(--faint);font-weight:400}
+  .landing-head p{color:var(--dim);font-size:13.5px;letter-spacing:.04em;margin-top:8px;max-width:60ch}
+  .landing-head .count{font-family:var(--mono);color:var(--faint);font-size:12px;letter-spacing:.18em}
+
+  .grid{max-width:1360px;margin:0 auto;display:grid;gap:clamp(14px,1.6vw,22px);
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  .card:hover{border-color:rgba(216,195,154,.5);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .thumb{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background:#0a0a0d;border-bottom:1px solid var(--line)}
+  .thumb iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;
+    transform:scale(var(--s,.25));transform-origin:top left;pointer-events:none;
+    opacity:0;transition:opacity .5s ease}
+  .thumb.loaded iframe{opacity:1}
+  .tload{position:absolute;inset:0;display:grid;place-items:center;color:var(--faint);
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    background:repeating-linear-gradient(115deg,#111116 0 12px,#141419 12px 24px);
+    transition:opacity .4s ease}
+  .thumb.loaded .tload{opacity:0;pointer-events:none}
+  .card-meta{display:flex;align-items:baseline;gap:10px;padding:13px 16px 15px}
+  .card-meta .code{font-weight:700;letter-spacing:.1em;font-size:15px}
+  .card-meta .name{color:var(--dim);font-size:12.5px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ---------- DETAIL ---------- */
+  .detail{position:fixed;inset:0;display:grid;grid-template-columns:242px 1fr;background:var(--bg)}
+  body[data-mode="grid"] .detail{display:none}
+  body[data-mode="detail"] .landing{display:none}
+
+  .side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--panel);z-index:20}
+  .home{display:flex;align-items:center;gap:8px;padding:16px 18px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-align:left}
+  .home:hover{color:var(--ink)}
+  .home b{color:var(--ink);font-weight:600;letter-spacing:.1em}
+  .side-list{flex:1;overflow:auto;padding:8px 8px 16px}
+  .side-item{width:100%;display:grid;grid-template-columns:26px 1fr;align-items:center;gap:2px 10px;
+    padding:9px 11px;border-radius:8px;text-align:left;color:var(--dim);transition:background .15s ease,color .15s ease}
+  .side-item:hover{background:var(--panel-2);color:var(--ink)}
+  .side-item.on{background:rgba(216,195,154,.1);color:var(--ink)}
+  .side-item.on .si-code{color:var(--accent)}
+  .si-idx{grid-row:span 2;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .side-item.on .si-idx{color:var(--accent)}
+  .si-code{font-weight:700;letter-spacing:.08em;font-size:14px}
+  .si-name{font-size:11.5px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-item:hover .si-name,.side-item.on .si-name{color:var(--dim)}
+
+  .side-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:15;border:0}
+
+  .stage{position:relative;display:flex;flex-direction:column;min-width:0}
+  .bar{flex:none;height:54px;display:flex;align-items:center;gap:14px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .menu{display:none;width:34px;height:34px;border:1px solid var(--line);border-radius:8px;color:var(--dim);font-size:15px}
+  .menu:hover{color:var(--ink);border-color:var(--accent)}
+  .cur{display:flex;align-items:center;gap:11px;min-width:0}
+  .cur .idx{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.12em}
+  .cur .code{font-weight:700;letter-spacing:.09em;font-size:15px}
+  .cur .name{display:block;color:var(--dim);font-size:11.5px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .bar-actions button,.bar-actions a{height:34px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);border-radius:8px;color:var(--dim);font-size:13px;letter-spacing:.04em;transition:border-color .15s,color .15s,background .15s}
+  .bar-actions button:hover,.bar-actions a:hover{color:var(--ink);border-color:var(--accent)}
+  .bar-actions .nav{width:34px;padding:0;font-size:15px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .seg button{height:32px;border:0;border-radius:0}
+  .seg button+button{border-left:1px solid var(--line)}
+  .seg button.on{background:rgba(216,195,154,.16);color:var(--ink)}
+  .open{font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+
+  .viewport{position:relative;flex:1;min-height:0;overflow:auto;background:
+    radial-gradient(120% 90% at 50% 0%,#101015,transparent 60%),#0a0a0d}
+  .viewport[data-vp="mobile"]{display:flex;align-items:flex-start;justify-content:center;padding:20px 0 28px}
+  .frame-wrap{position:relative;background:#111}
+  .viewport[data-vp="pc"] .frame-wrap{width:100%;height:100%}
+  .viewport[data-vp="mobile"] .frame-wrap{width:390px;height:844px;flex:none;border:1px solid var(--line);
+    border-radius:26px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+  .frame-wrap iframe{width:100%;height:100%;border:0;display:block;background:#111}
+  .ploading{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;z-index:2;
+    color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.24em;background:#0b0b0e;
+    transition:opacity .35s ease}
+  .frame-wrap:not(.loading) .ploading{opacity:0;pointer-events:none}
+  .ploading i{width:26px;height:26px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media (max-width:760px){
+    .detail{grid-template-columns:1fr}
+    .side{position:fixed;top:0;bottom:0;left:0;width:280px;transform:translateX(-100%);transition:transform .28s ease}
+    .side.open{transform:none}
+    .side.open ~ .side-backdrop{display:block}
+    .menu{display:inline-flex}
+    .cur .name{display:none}
+    .bar-actions .nav{display:none}
+    .bar-actions .open span{display:none}
+    .bar-actions{gap:6px}
+    .bar-actions button,.bar-actions a{padding:0 9px}
+  }
 </style>
 </head>
-<body>
-<h1>Proteus 候选自由稿</h1>
-<p class="sub">15 个方向全部就绪,点卡片进各世界真交互。缩略图是桌面首屏,连击计分、爆炸装配、食分推进这类活的部分要进去才看得到。</p>
-<div class="grid">
-  <a class="card" href="./sumi/index.html"><div class="meta"><div class="code">SUMI</div><div class="name">水墨禅 / Zen ink</div><div class="desc">宣纸本白、焦墨黑、单枚朱印;竖排与留白</div></div></a>
-  <a class="card" href="./ormolu/index.html"><div class="meta"><div class="code">ORMOLU</div><div class="name">洛可可宫廷 / Rococo</div><div class="desc">象牙白、旧金、卷草涡纹与卡图什</div></div></a>
-  <a class="card" href="./nocturne/index.html"><div class="meta"><div class="code">NOCTURNE</div><div class="name">暗夜花园 / Dark botanical</div><div class="desc">深茄紫黑、缠枝花卉、画框分区</div></div></a>
-  <a class="card" href="./pulp/index.html"><div class="meta"><div class="code">PULP</div><div class="name">复古廉价小说 / Pulp paperback</div><div class="desc">做旧米黄、套色偏移、票券齿孔、印章砸落</div></div></a>
-  <a class="card" href="./totem/index.html"><div class="meta"><div class="code">TOTEM</div><div class="name">民艺图腾 / Folk craft</div><div class="desc">赭石靛蓝、边饰带、扎染晕、提花机节拍</div></div></a>
-  <a class="card" href="./kiln/index.html"><div class="meta"><div class="code">KILN</div><div class="name">陶土侘寂 / Wabi-sabi</div><div class="desc">窑烟黑、手捏不规则边、窑记世界观</div></div></a>
-  <a class="card" href="./chrome/index.html"><div class="meta"><div class="code">CHROME</div><div class="name">千禧液态铬 / Y2K aero</div><div class="desc">液态金属、凝胶钮、镜面流光</div></div></a>
-  <a class="card" href="./arcade/index.html"><div class="meta"><div class="code">ARCADE</div><div class="name">8-bit 街机 / Retro arcade</div><div class="desc">像素精灵、血槽计分牌、CONTINUE? 续命</div></div></a>
-  <a class="card" href="./bitmap/index.html"><div class="meta"><div class="code">BITMAP</div><div class="name">1-bit 位图 / One-bit dither</div><div class="desc">纯双色、系统窗、抖动网纹、蚂蚁线</div></div></a>
-  <a class="card" href="./mochi/index.html"><div class="meta"><div class="code">MOCHI</div><div class="name">软陶泡芙 / Claymorphic squish</div><div class="desc">充气凸面、挤花描边、戳下瘪一口气</div></div></a>
-  <a class="card" href="./scribble/index.html"><div class="meta"><div class="code">SCRIBBLE</div><div class="name">手账涂鸦 / Notebook doodle</div><div class="desc">手画不闭合框、荧光笔涂、贴纸拍落</div></div></a>
-  <a class="card" href="./corona/index.html"><div class="meta"><div class="code">CORONA</div><div class="name">日蚀玻璃 / Eclipse glass</div><div class="desc">黑曜石、日冕金、食相盘、毛玻璃</div></div></a>
-  <a class="card" href="./axon/index.html"><div class="meta"><div class="code">AXON</div><div class="name">轴测蓝图 / Isometric blueprint</div><div class="desc">30° 轴测、挤出体、活的尺寸标注、图纸标题栏</div></div></a>
-  <a class="card" href="./qalam/index.html"><div class="meta"><div class="code">QALAM</div><div class="name">纳斯塔利克书斋 / Nastaliq modern</div><div class="desc">RTL 镜像、花饰额题、词尾花押、藏书印</div></div></a>
-  <a class="card" href="./gazette/index.html"><div class="meta"><div class="code">GAZETTE</div><div class="name">报章排印 / Broadsheet</div><div class="desc">哥特报头、发丝分栏、套印微移、铅字压痕</div></div></a>
-</div>
+<body data-mode="grid">
+
+  <section class="landing" id="landing">
+    <div class="landing-head">
+      <div>
+        <h1>Theme Atlas <span>· 主题图集</span></h1>
+        <p>15 套完全独立的组件主题世界 · 点卡片进入,右下实时预览,可切 PC / 手机视口。</p>
+      </div>
+      <span class="count" id="gridCount">15 WORLDS</span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="detail" id="detail">
+    <aside class="side" id="side">
+      <button class="home" id="home" type="button">&larr;&nbsp; <b>ATLAS</b>&nbsp;/ 全部主题</button>
+      <nav class="side-list" id="sideList" aria-label="主题目录"></nav>
+    </aside>
+    <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="关闭目录"></button>
+
+    <main class="stage">
+      <header class="bar">
+        <button class="menu" id="menuBtn" type="button" aria-label="主题目录">&#9776;</button>
+        <div class="cur">
+          <span class="idx" id="curIdx">01</span>
+          <div><span class="code" id="curCode">&mdash;</span><small class="name" id="curName">&mdash;</small></div>
+        </div>
+        <div class="bar-actions">
+          <button class="nav" id="prevBtn" type="button" aria-label="上一主题">&larr;</button>
+          <button class="nav" id="nextBtn" type="button" aria-label="下一主题">&rarr;</button>
+          <span class="seg" role="group" aria-label="预览视口">
+            <button id="pcBtn" type="button">PC</button>
+            <button id="mobileBtn" type="button">Mobile</button>
+          </span>
+          <a class="open" id="openBtn" target="_blank" rel="noopener">Open&nbsp;<span>&#8599;</span></a>
+        </div>
+      </header>
+      <div class="viewport" id="viewport" data-vp="pc">
+        <div class="frame-wrap loading" id="frameWrap">
+          <div class="ploading"><i></i><span>ENTERING WORLD</span></div>
+          <iframe id="stageFrame" title="主题预览" scrolling="yes"></iframe>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<script>
+(function(){
+  "use strict";
+  var THEMES=[
+    {id:"sumi",code:"SUMI",name:"水墨禅 / Zen ink"},
+    {id:"ormolu",code:"ORMOLU",name:"洛可可宫廷 / Rococo"},
+    {id:"nocturne",code:"NOCTURNE",name:"暗夜花园 / Dark botanical"},
+    {id:"pulp",code:"PULP",name:"复古廉价小说 / Pulp paperback"},
+    {id:"totem",code:"TOTEM",name:"民艺图腾 / Folk craft"},
+    {id:"kiln",code:"KILN",name:"陶土侘寂 / Wabi-sabi"},
+    {id:"chrome",code:"CHROME",name:"千禧液态铬 / Y2K aero"},
+    {id:"arcade",code:"ARCADE",name:"8-bit 街机 / Retro arcade"},
+    {id:"bitmap",code:"BITMAP",name:"1-bit 位图 / One-bit dither"},
+    {id:"mochi",code:"MOCHI",name:"软陶泡芙 / Claymorphic squish"},
+    {id:"scribble",code:"SCRIBBLE",name:"手账涂鸦 / Notebook doodle"},
+    {id:"corona",code:"CORONA",name:"日蚀玻璃 / Eclipse glass"},
+    {id:"axon",code:"AXON",name:"轴测蓝图 / Isometric blueprint"},
+    {id:"qalam",code:"QALAM",name:"纳斯塔利克书斋 / Nastaliq modern"},
+    {id:"gazette",code:"GAZETTE",name:"报章排印 / Broadsheet"}
+  ];
+  var $=function(s){return document.querySelector(s)};
+  var pad=function(n){return (n<9?"0":"")+(n+1)};
+  var body=document.body, grid=$("#grid"), sideList=$("#sideList");
+  var stageFrame=$("#stageFrame"), frameWrap=$("#frameWrap"), viewport=$("#viewport");
+  var side=$("#side"), active=-1;
+  var vp=localStorage.getItem("atlas-vp")||"pc";
+
+  // ---- landing grid: live hero-cropped thumbnails ----
+  THEMES.forEach(function(t,i){
+    var a=document.createElement("a");
+    a.className="card"; a.href="#"+t.id; a.setAttribute("data-i",i);
+    var thumb=document.createElement("div"); thumb.className="thumb";
+    var f=document.createElement("iframe");
+    f.setAttribute("scrolling","no"); f.setAttribute("tabindex","-1"); f.setAttribute("loading","lazy");
+    f.title=t.code+" 预览"; f.setAttribute("data-src",t.id+"/index.html");
+    var load=document.createElement("span"); load.className="tload"; load.textContent=t.code;
+    thumb.appendChild(f); thumb.appendChild(load);
+    var meta=document.createElement("div"); meta.className="card-meta";
+    var code=document.createElement("span"); code.className="code"; code.textContent=t.code;
+    var name=document.createElement("span"); name.className="name"; name.textContent=t.name;
+    meta.appendChild(code); meta.appendChild(name);
+    a.appendChild(thumb); a.appendChild(meta);
+    a.addEventListener("click",function(e){e.preventDefault();enter(i);});
+    grid.appendChild(a);
+  });
+
+  // scale each thumbnail's 1280px iframe to fit its card width
+  var ro=new ResizeObserver(function(es){
+    es.forEach(function(e){ e.target.style.setProperty("--s", e.target.clientWidth/1280); });
+  });
+  document.querySelectorAll(".thumb").forEach(function(th){ ro.observe(th); });
+
+  // lazy-load near-viewport thumbnails, but at most a few worlds at once
+  var MAX=4, running=0, queue=[];
+  function pump(){
+    while(running<MAX && queue.length){
+      var th=queue.shift(), f=th.querySelector("iframe");
+      if(f.src || !f.getAttribute("data-src")) continue;
+      running++;
+      var done=function(t){ return function(){ t.classList.add("loaded"); running--; pump(); }; }(th);
+      f.addEventListener("load",done,{once:true});
+      f.addEventListener("error",done,{once:true});
+      f.src=f.getAttribute("data-src");
+    }
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      var f=en.target.querySelector("iframe");
+      if(en.isIntersecting && !f.src && queue.indexOf(en.target)<0) queue.push(en.target);
+    });
+    pump();
+  },{rootMargin:"400px"});
+  document.querySelectorAll(".thumb").forEach(function(th){ io.observe(th); });
+
+  // ---- sidebar (text only, no marks) ----
+  THEMES.forEach(function(t,i){
+    var b=document.createElement("button"); b.className="side-item"; b.type="button";
+    var idx=document.createElement("span"); idx.className="si-idx"; idx.textContent=pad(i);
+    var code=document.createElement("span"); code.className="si-code"; code.textContent=t.code;
+    var name=document.createElement("span"); name.className="si-name"; name.textContent=t.name;
+    b.appendChild(idx); b.appendChild(code); b.appendChild(name);
+    b.addEventListener("click",function(){ enter(i); });
+    sideList.appendChild(b);
+  });
+
+  // ---- viewport mode (remembered) ----
+  function applyVp(m){
+    vp=m; localStorage.setItem("atlas-vp",m); viewport.setAttribute("data-vp",m);
+    $("#pcBtn").classList.toggle("on",m==="pc");
+    $("#mobileBtn").classList.toggle("on",m==="mobile");
+  }
+  $("#pcBtn").addEventListener("click",function(){ applyVp("pc"); });
+  $("#mobileBtn").addEventListener("click",function(){ applyVp("mobile"); });
+
+  // ---- enter a theme (detail mode) ----
+  function enter(i){
+    active=i; var t=THEMES[i];
+    body.setAttribute("data-mode","detail");
+    frameWrap.classList.add("loading");
+    stageFrame.src=t.id+"/index.html";
+    $("#curIdx").textContent=pad(i);
+    $("#curCode").textContent=t.code;
+    $("#curName").textContent=t.name;
+    $("#openBtn").href=t.id+"/index.html";
+    var items=sideList.children;
+    for(var k=0;k<items.length;k++) items[k].classList.toggle("on",k===i);
+    applyVp(vp);
+    closeSide();
+    if(location.hash!=="#"+t.id) history.replaceState(null,"","#"+t.id);
+  }
+  stageFrame.addEventListener("load",function(){ frameWrap.classList.remove("loading"); });
+
+  function home(){ body.setAttribute("data-mode","grid"); history.replaceState(null,"","#"); }
+  $("#home").addEventListener("click",home);
+  $("#prevBtn").addEventListener("click",function(){ enter((active-1+THEMES.length)%THEMES.length); });
+  $("#nextBtn").addEventListener("click",function(){ enter((active+1)%THEMES.length); });
+
+  function closeSide(){ side.classList.remove("open"); }
+  $("#menuBtn").addEventListener("click",function(){ side.classList.add("open"); });
+  $("#sideBackdrop").addEventListener("click",closeSide);
+
+  document.addEventListener("keydown",function(e){
+    if(body.getAttribute("data-mode")!=="detail") return;
+    if(e.key==="ArrowLeft") $("#prevBtn").click();
+    else if(e.key==="ArrowRight") $("#nextBtn").click();
+    else if(e.key==="Escape"){ if(side.classList.contains("open")) closeSide(); else home(); }
+  });
+
+  // deep link: /#nocturne opens that theme directly
+  var h=location.hash.replace("#","");
+  var idx=THEMES.map(function(t){return t.id}).indexOf(h);
+  if(idx>=0) enter(idx);
+})();
+</script>
 </body>
 </html>
