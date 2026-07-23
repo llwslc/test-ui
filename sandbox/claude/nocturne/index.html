@@ -358,10 +358,6 @@ body.mist-on .mist{opacity:1}
   background:rgba(18,10,24,.5);
   clip-path:polygon(3px 0,calc(100% - 3px) 0,100% 3px,100% calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,0 calc(100% - 3px),0 3px);
 }
-.choice--check .mark::before{   /* inner ledger hairline */
-  content:"";position:absolute;inset:2px;border:1px solid rgba(198,154,78,.25);
-  pointer-events:none;transition:border-color .35s ease;
-}
 .choice--check .seal{
   position:absolute;width:23px;height:23px;left:50%;top:50%;
   transform:translate(-50%,-50%) scale(0) rotate(-14deg);opacity:0;pointer-events:none;
@@ -374,7 +370,6 @@ body.mist-on .mist{opacity:1}
   border-color:var(--brass);
   box-shadow:0 0 13px rgba(147,48,79,.3);
 }
-.choice--check input:checked + .mark::before{border-color:rgba(233,204,138,.5)}
 .choice .txt{color:var(--bone);letter-spacing:.05em}
 .choice .cap{display:block;font-size:13px;color:var(--bone-3);letter-spacing:.04em}
 .choice-live{
@@ -386,9 +381,9 @@ body.mist-on .mist{opacity:1}
 .switch-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 2px}
 .switch-row .txt{letter-spacing:.05em}
 .switch-row .cap{display:block;font-size:13px;color:var(--bone-3)}
-.switch{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:64px;height:30px;cursor:pointer}
+.switch{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:60px;height:34px;cursor:pointer}
 .switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:2}
-.switch .bloom{position:relative;width:62px;height:30px;line-height:0;
+.switch .bloom{position:relative;width:58px;height:34px;line-height:0;
   filter:drop-shadow(0 1px 2px rgba(8,4,12,.5));transition:filter .5s ease}
 .switch .bloom svg{display:block;overflow:visible}
 .bloom-branch{fill:none;stroke:var(--brass-dim);stroke-width:1.7;stroke-linecap:round;transition:stroke .4s ease}
@@ -858,9 +853,8 @@ input[type="range"].flame::-moz-range-thumb{
       <stop offset="1" stop-color="#360E1E"/>
     </radialGradient>
     <g id="waxseal">
-      <circle r="8.6" fill="url(#waxGrad)" stroke="#C69A4E" stroke-width=".7"/>
-      <circle r="6.7" fill="none" stroke="rgba(233,204,138,.28)" stroke-width=".7"/>
-      <path fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".4" d="M0 -5 L1.18 -1.62 L4.76 -1.55 L1.9 0.62 L2.94 4.05 L0 2 L-2.94 4.05 L-1.9 0.62 L-4.76 -1.55 L-1.18 -1.62 Z"/>
+      <circle r="8.4" fill="url(#waxGrad)"/>
+      <path fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".35" d="M0 -5 L1.18 -1.62 L4.76 -1.55 L1.9 0.62 L2.94 4.05 L0 2 L-2.94 4.05 L-1.9 0.62 L-4.76 -1.55 L-1.18 -1.62 Z"/>
     </g>
     <g id="leafF">
       <path d="M0 0 C 10 -9, 26 -11, 38 -2 C 26 8, 10 8, 0 0 Z" fill="url(#leafGrad)" stroke="#8A6B3A" stroke-width="1"/>
@@ -1049,14 +1043,14 @@ input[type="range"].flame::-moz-range-thumb{
         <span class="txt">暖灯 <span class="cap">整夜供一豆铜色的火。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="warmLamp" aria-label="暖灯">
-          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 62 30"><path class="bloom-branch" d="M4 24 C 16 22,27 21,36 17 C 40 15,43 15,45 13"/><g class="bloom-leaf" transform="translate(19,21) rotate(-24)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(45,14) rotate(-18) scale(.78)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 58 34"><path class="bloom-branch" d="M8 29 C 18 28,25 27,31 22 C 36 18,38 13,38 8"/><g class="bloom-leaf" transform="translate(18,25) rotate(-22)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(38,8) rotate(6) scale(.98)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 2 C -3.4 -1.5,-2.8 -8,0 -10 C 2.8 -8,3.4 -1.5,0 2 Z"/><path class="bud-fold" d="M0 1 C -1.2 -3,-1 -7,0 -9 M0 1 C 1.2 -3,1 -7,0 -9"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
       <div class="switch-row">
         <span class="txt">夜雾 <span class="cap">湿一湿蕨类的旧脾气。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="nightMist" aria-label="夜雾">
-          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 62 30"><path class="bloom-branch" d="M4 24 C 16 22,27 21,36 17 C 40 15,43 15,45 13"/><g class="bloom-leaf" transform="translate(19,21) rotate(-24)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(45,14) rotate(-18) scale(.78)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 58 34"><path class="bloom-branch" d="M8 29 C 18 28,25 27,31 22 C 36 18,38 13,38 8"/><g class="bloom-leaf" transform="translate(18,25) rotate(-22)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(38,8) rotate(6) scale(.98)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2 -3,-2 -8,0 -10 C 2 -8,2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 2 C -3.4 -1.5,-2.8 -8,0 -10 C 2.8 -8,3.4 -1.5,0 2 Z"/><path class="bud-fold" d="M0 1 C -1.2 -3,-1 -7,0 -9 M0 1 C 1.2 -3,1 -7,0 -9"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
     </div>
