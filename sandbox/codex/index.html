@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kit / Candidate Theme Gallery</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0d0f12;color:#f3f0e7;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,a{font:inherit;color:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:300px minmax(0,1fr);height:100vh;overflow:hidden}
+    aside{display:flex;flex-direction:column;min-height:0;border-right:1px solid #30343a;background:#12151a}
+    .brand{padding:24px;border-bottom:1px solid #30343a}.brand-top{display:flex;align-items:center;justify-content:space-between}.brand-mark{display:grid;place-items:center;width:40px;height:40px;background:#f3f0e7;color:#111;font-weight:950}.brand small,.brand p{color:#7e8792}.brand small{font:10px ui-monospace,monospace;letter-spacing:.14em}.brand h1{margin:22px 0 6px;font-size:25px;letter-spacing:-.04em}.brand p{margin:0;font-size:12px;line-height:1.55}
+    .theme-list{flex:1;overflow:auto;padding:10px;scrollbar-width:thin;scrollbar-color:#535b66 transparent}.theme-button{display:grid;grid-template-columns:32px 1fr auto;gap:9px;align-items:center;width:100%;padding:10px;border:1px solid transparent;background:transparent;text-align:left}.theme-button:hover{background:#191d23}.theme-button[aria-current=true]{border-color:#555d68;background:#f3f0e7;color:#111}.theme-button .n{font:9px ui-monospace,monospace;color:#737d88}.theme-button[aria-current=true] .n{color:#666}.theme-button strong{display:block;font-size:11px;letter-spacing:.12em}.theme-button em{display:block;margin-top:3px;color:#737d88;font-size:9px;font-style:normal}.theme-button .arrow{font-size:14px;opacity:0}.theme-button[aria-current=true] .arrow{opacity:1}
+    .rail-foot{display:flex;justify-content:space-between;padding:15px 20px;border-top:1px solid #30343a;color:#707985;font:9px ui-monospace,monospace}
+    main{display:flex;flex-direction:column;min-width:0;background:#090b0e}.toolbar{display:flex;align-items:center;justify-content:space-between;height:58px;padding:0 18px;border-bottom:1px solid #30343a;background:#111419}.current{display:flex;align-items:center;gap:10px}.current i{width:7px;height:7px;border-radius:50%;background:#b6ff6c;box-shadow:0 0 12px #b6ff6c}.current span{font:10px ui-monospace,monospace;letter-spacing:.12em}.tools{display:flex;gap:7px}.tools button,.open{height:32px;padding:0 11px;border:1px solid #353b43;background:#171b20;text-decoration:none;font:9px ui-monospace,monospace;letter-spacing:.08em}.tools button.active{color:#111;background:#f3f0e7}.open{display:inline-flex;align-items:center}.tools button:hover,.open:hover{border-color:#8d98a5}
+    .viewport{display:grid;flex:1;min-height:0;padding:18px;overflow:auto;background:radial-gradient(circle at 50% 0,#20252c,#0b0d10 65%)}.frame-wrap{position:relative;width:100%;height:100%;min-height:560px;margin:auto;border:1px solid #39404a;background:white;box-shadow:0 35px 90px #000;transition:width .35s ease,height .35s ease}.frame-wrap.tablet{width:min(820px,100%)}.frame-wrap.mobile{width:min(420px,100%);height:780px}.frame-wrap::before{position:absolute;z-index:3;top:-8px;left:50%;width:38px;height:4px;border-radius:4px;background:#454d58;content:"";transform:translateX(-50%)}iframe{display:block;width:100%;height:100%;border:0;background:#fff}
+    .loading{position:absolute;inset:0;display:grid;place-items:center;background:#111;color:#77818d;font:10px ui-monospace,monospace;letter-spacing:.15em}.loading.hide{display:none}
+    @media(max-width:760px){.shell{display:block;height:auto;overflow:visible}aside{position:sticky;z-index:20;top:0;height:auto;border-right:0;border-bottom:1px solid #30343a}.brand{padding:12px 15px}.brand h1,.brand p{display:none}.brand-top{justify-content:flex-start;gap:12px}.brand-mark{width:32px;height:32px}.theme-list{display:flex;gap:5px;padding:7px 10px;overflow-x:auto}.theme-button{flex:0 0 auto;width:auto;grid-template-columns:20px auto;padding:8px 10px;border-color:#2d3239}.theme-button em,.theme-button .arrow{display:none}.rail-foot{display:none}main{min-height:calc(100vh - 106px)}.toolbar{position:sticky;z-index:19;top:106px}.tools button{display:none}.tools button[data-size=mobile]{display:block}.viewport{height:calc(100vh - 164px);padding:8px}.frame-wrap{min-height:100%;height:100%}.frame-wrap.mobile{height:100%}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <header class="brand">
+        <div class="brand-top"><span class="brand-mark">K</span><small>15 / CANDIDATE DIRECTIONS</small></div>
+        <h1>Kit Theme Gallery</h1>
+        <p>每个方向都是一张完整、独立的控件画布。选择主题，在右侧直接比较整体语言。</p>
+      </header>
+      <nav class="theme-list" aria-label="候选主题"></nav>
+      <footer class="rail-foot"><span>← → SWITCH</span><span>PURE HTML</span></footer>
+    </aside>
+    <main>
+      <header class="toolbar">
+        <div class="current"><i></i><span id="currentLabel">SUMI / 水墨禅</span></div>
+        <div class="tools">
+          <button class="active" data-size="desktop">DESKTOP</button>
+          <button data-size="tablet">TABLET</button>
+          <button data-size="mobile">MOBILE</button>
+          <a class="open" id="openTheme" target="_blank" rel="noopener">OPEN ↗</a>
+        </div>
+      </header>
+      <section class="viewport">
+        <div class="frame-wrap" id="frameWrap">
+          <div class="loading" id="loading">LOADING THEME 01…</div>
+          <iframe id="themeFrame" title="主题预览"></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const themes=[
+      ["sumi","SUMI","水墨禅"],["ormolu","ORMOLU","洛可可宫廷"],["nocturne","NOCTURNE","暗夜花园"],
+      ["pulp","PULP","复古廉价小说"],["totem","TOTEM","民艺图腾"],["kiln","KILN","陶土侘寂"],
+      ["chrome","CHROME","千禧液态铬"],["arcade","ARCADE","8-bit 街机"],["bitmap","BITMAP","1-bit 位图"],
+      ["mochi","MOCHI","软陶泡芙"],["scribble","SCRIBBLE","手账涂鸦"],["axon","AXON","轴测蓝图"],
+      ["corona","CORONA","日蚀玻璃"],["qalam","QALAM","纳斯塔利克书斋"],["gazette","GAZETTE","报章排印"]
+    ];
+    const nav=document.querySelector(".theme-list"),frame=document.querySelector("#themeFrame"),wrap=document.querySelector("#frameWrap"),loading=document.querySelector("#loading"),label=document.querySelector("#currentLabel"),open=document.querySelector("#openTheme");
+    themes.forEach((t,i)=>{const b=document.createElement("button");b.className="theme-button";b.dataset.id=t[0];b.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><span><strong>${t[1]}</strong><em>${t[2]}</em></span><span class="arrow">→</span>`;b.onclick=()=>select(i);nav.appendChild(b)});
+    let active=0;
+    function select(i){active=(i+themes.length)%themes.length;const t=themes[active],src=`themes/${t[0]}.html`;document.querySelectorAll(".theme-button").forEach((b,n)=>b.setAttribute("aria-current",n===active));label.textContent=`${t[1]} / ${t[2]}`;loading.textContent=`LOADING THEME ${String(active+1).padStart(2,"0")}…`;loading.classList.remove("hide");frame.src=src;open.href=src;history.replaceState(null,"",`#${t[0]}`)}
+    frame.addEventListener("load",()=>loading.classList.add("hide"));
+    document.querySelectorAll("[data-size]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-size]").forEach(x=>x.classList.remove("active"));b.classList.add("active");wrap.className=`frame-wrap ${b.dataset.size==="desktop"?"":b.dataset.size}`});
+    addEventListener("keydown",e=>{if(e.key==="ArrowLeft")select(active-1);if(e.key==="ArrowRight")select(active+1)});
+    const initial=themes.findIndex(t=>`#${t[0]}`===location.hash);select(initial<0?0:initial);
+  </script>
+</body>
+</html>
