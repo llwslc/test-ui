@@ -337,18 +337,18 @@ body.mist-on .mist{opacity:1}
   border:1px solid transparent;transition:border-color .4s ease,inset .4s ease;
 }
 .choice--radio .berry{
-  position:absolute;width:22px;height:22px;left:50%;top:52%;
+  position:absolute;width:25px;height:25px;left:50%;top:50%;
   transform:translate(-50%,-50%) scale(0);
   transition:transform .5s cubic-bezier(.25,1.4,.35,1);
-  pointer-events:none;filter:drop-shadow(0 3px 3px rgba(0,0,0,.5));
+  pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55));
 }
 .choice--radio input:hover + .mark{border-color:var(--brass)}
 .choice--radio input:checked + .mark{
-  border-color:var(--brass);
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.5),0 0 16px rgba(138,42,72,.4);
+  border-color:var(--brass-bright);
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 16px rgba(233,204,138,.4);
 }
 .choice--radio input:checked + .mark::before{border-color:rgba(198,154,78,.45)}
-.choice--radio input:checked + .mark .berry{transform:translate(-50%,-52%) scale(1)}
+.choice--radio input:checked + .mark .berry{transform:translate(-50%,-50%) scale(1)}
 
 .choice--check .mark{
   border:1px solid var(--brass-line);border-radius:2px;
@@ -886,10 +886,10 @@ input[type="range"].flame::-moz-range-thumb{
     <g id="tendril">
       <path d="M0 0 C 10 -7, 22 -7, 25 2 C 27 9, 19 14, 13 10 C 8 7, 10 1, 15 2" fill="none" stroke="#C69A4E" stroke-width="1.2" opacity=".75"/>
     </g>
-    <radialGradient id="berryGrad" cx="37%" cy="30%" r="75%">
-      <stop offset="0" stop-color="#8A3355"/>
-      <stop offset="45%" stop-color="#3E1024"/>
-      <stop offset="1" stop-color="#140510"/>
+    <radialGradient id="berryGrad" cx="35%" cy="29%" r="80%">
+      <stop offset="0" stop-color="#C74E6C"/>
+      <stop offset="42%" stop-color="#7E2244"/>
+      <stop offset="1" stop-color="#380F20"/>
     </radialGradient>
     <radialGradient id="moonGrad" cx="38%" cy="34%" r="72%">
       <stop offset="0" stop-color="#FBEFCB"/>
@@ -897,10 +897,9 @@ input[type="range"].flame::-moz-range-thumb{
       <stop offset="1" stop-color="#B4893E"/>
     </radialGradient>
     <g id="berry">
-      <path d="M-2.6 -5.2 L0 -7.4 L2.6 -5.2" fill="none" stroke="#6E5A2E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle r="6" fill="url(#berryGrad)" stroke="#28091a" stroke-width=".7"/>
-      <circle cx="-2.1" cy="-2.3" r="1.7" fill="#F3E6CC" opacity=".82"/>
-      <circle cx="1.7" cy="2.5" r=".9" fill="#000" opacity=".22"/>
+      <circle r="6.7" fill="url(#berryGrad)" stroke="#C69A4E" stroke-width=".7"/>
+      <ellipse cx="-2" cy="-2.5" rx="2.3" ry="1.6" fill="#F7ECD6" opacity=".92" transform="rotate(-28 -2 -2.5)"/>
+      <circle cx="2.4" cy="2.7" r="1.5" fill="#2a0a16" opacity=".26"/>
     </g>
     <g id="moonFull">
       <circle r="7" fill="url(#moonGrad)" stroke="#8A6B3A" stroke-width=".5"/>
