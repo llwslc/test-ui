@@ -362,25 +362,19 @@ body.mist-on .mist{opacity:1}
   content:"";position:absolute;inset:2px;border:1px solid rgba(198,154,78,.25);
   pointer-events:none;transition:border-color .35s ease;
 }
-.choice--check .tick{
-  position:absolute;width:17px;height:17px;left:50%;top:50%;
-  transform:translate(-50%,-50%);pointer-events:none;color:var(--brass-bright);
-  opacity:0;transition:opacity .2s ease;
+.choice--check .seal{
+  position:absolute;width:23px;height:23px;left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(0) rotate(-14deg);opacity:0;pointer-events:none;
+  transition:transform .42s cubic-bezier(.3,1.5,.4,1),opacity .2s ease;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));
 }
-.choice--check input:checked + .mark .tick{opacity:1}
-.choice--check .tick path{
-  stroke:currentColor;stroke-width:2.1;fill:none;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:1;stroke-dashoffset:1;
-  transition:stroke-dashoffset .5s cubic-bezier(.6,0,.3,1) .06s;
-}
+.choice--check input:checked + .mark .seal{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1}
 .choice--check input:hover + .mark{border-color:var(--brass)}
 .choice--check input:checked + .mark{
   border-color:var(--brass);
-  background:radial-gradient(circle at 50% 42%,var(--wine-2),var(--wine-deep) 92%);
-  box-shadow:0 0 15px rgba(147,48,79,.32);
+  box-shadow:0 0 13px rgba(147,48,79,.3);
 }
 .choice--check input:checked + .mark::before{border-color:rgba(233,204,138,.5)}
-.choice--check input:checked + .mark .tick path{stroke-dashoffset:0}
 .choice .txt{color:var(--bone);letter-spacing:.05em}
 .choice .cap{display:block;font-size:13px;color:var(--bone-3);letter-spacing:.04em}
 .choice-live{
@@ -392,12 +386,13 @@ body.mist-on .mist{opacity:1}
 .switch-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 2px}
 .switch-row .txt{letter-spacing:.05em}
 .switch-row .cap{display:block;font-size:13px;color:var(--bone-3)}
-.switch{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:58px;height:40px;cursor:pointer}
+.switch{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:64px;height:30px;cursor:pointer}
 .switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:2}
-.switch .bloom{position:relative;width:54px;height:38px;line-height:0;
-  filter:drop-shadow(0 1px 2px rgba(8,4,12,.55));transition:filter .5s ease}
+.switch .bloom{position:relative;width:62px;height:30px;line-height:0;
+  filter:drop-shadow(0 1px 2px rgba(8,4,12,.5));transition:filter .5s ease}
 .switch .bloom svg{display:block;overflow:visible}
-.bloom-stem{fill:none;stroke:#6E5A2E;stroke-width:1.5;stroke-linecap:round}
+.bloom-branch{fill:none;stroke:var(--brass-dim);stroke-width:1.7;stroke-linecap:round;transition:stroke .4s ease}
+.bloom-leaf path{fill:url(#leafGrad);stroke:#5a4a24;stroke-width:.5}
 .bloom-sepals path{fill:url(#leafGrad);stroke:#5a4a24;stroke-width:.5;opacity:.92}
 .bud{fill:url(#petalGrad);stroke:#8A6B3A;stroke-width:.7;
   transform-box:fill-box;transform-origin:50% 90%;transform:scale(1);opacity:1;
@@ -412,6 +407,7 @@ body.mist-on .mist{opacity:1}
 .switch input:checked + .bloom .bud-fold{opacity:0}
 .switch input:checked + .bloom .pet{transform:scale(1)}
 .switch input:checked + .bloom .bloom-core{transform:scale(1);opacity:1}
+.switch input:checked + .bloom .bloom-branch{stroke:var(--brass)}
 .switch input:checked + .bloom{filter:drop-shadow(0 0 7px rgba(233,204,138,.55))}
 .switch input:focus-visible + .bloom{filter:drop-shadow(0 0 9px rgba(233,204,138,.8))}
 
@@ -856,6 +852,16 @@ input[type="range"].flame::-moz-range-thumb{
       <stop offset="0" stop-color="#7A2440"/>
       <stop offset="1" stop-color="#C69A4E"/>
     </linearGradient>
+    <radialGradient id="waxGrad" cx="38%" cy="31%" r="78%">
+      <stop offset="0" stop-color="#A23A5A"/>
+      <stop offset="52%" stop-color="#6B1E38"/>
+      <stop offset="1" stop-color="#360E1E"/>
+    </radialGradient>
+    <g id="waxseal">
+      <circle r="8.6" fill="url(#waxGrad)" stroke="#C69A4E" stroke-width=".7"/>
+      <circle r="6.7" fill="none" stroke="rgba(233,204,138,.28)" stroke-width=".7"/>
+      <path fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".4" d="M0 -5 L1.18 -1.62 L4.76 -1.55 L1.9 0.62 L2.94 4.05 L0 2 L-2.94 4.05 L-1.9 0.62 L-4.76 -1.55 L-1.18 -1.62 Z"/>
+    </g>
     <g id="leafF">
       <path d="M0 0 C 10 -9, 26 -11, 38 -2 C 26 8, 10 8, 0 0 Z" fill="url(#leafGrad)" stroke="#8A6B3A" stroke-width="1"/>
       <path d="M3 0 C 13 -3, 24 -4, 34 -2" fill="none" stroke="#C69A4E" stroke-width="0.8" opacity=".7"/>
@@ -1024,17 +1030,17 @@ input[type="range"].flame::-moz-range-thumb{
       <legend>入册项</legend>
       <label class="choice choice--check">
         <input type="checkbox" checked>
-        <span class="mark" aria-hidden="true"><svg class="tick" viewBox="0 0 16 16" fill="none"><path pathLength="1" d="M3.2 8.4 L6.4 11.8 C 8.6 9, 10.4 5.4, 13.2 3.8"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="seal" viewBox="-11 -11 22 22"><use href="#waxseal"/></svg></span>
         <span class="txt">花期</span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox">
-        <span class="mark" aria-hidden="true"><svg class="tick" viewBox="0 0 16 16" fill="none"><path pathLength="1" d="M3.2 8.4 L6.4 11.8 C 8.6 9, 10.4 5.4, 13.2 3.8"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="seal" viewBox="-11 -11 22 22"><use href="#waxseal"/></svg></span>
         <span class="txt">香气</span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox">
-        <span class="mark" aria-hidden="true"><svg class="tick" viewBox="0 0 16 16" fill="none"><path pathLength="1" d="M3.2 8.4 L6.4 11.8 C 8.6 9, 10.4 5.4, 13.2 3.8"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="seal" viewBox="-11 -11 22 22"><use href="#waxseal"/></svg></span>
         <span class="txt">毒性 <span class="cap">记了就别再用手碰。</span></span>
       </label>
     </fieldset>
@@ -1043,18 +1049,18 @@ input[type="range"].flame::-moz-range-thumb{
         <span class="txt">暖灯 <span class="cap">整夜供一豆铜色的火。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="warmLamp" aria-label="暖灯">
-          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 54 38"><path class="bloom-stem" d="M27 36 C 27 32,27 30,27 26"/><g transform="translate(27,20)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 62 30"><path class="bloom-branch" d="M4 24 C 16 22,27 21,36 17 C 40 15,43 15,45 13"/><g class="bloom-leaf" transform="translate(19,21) rotate(-24)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(45,14) rotate(-18) scale(.78)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
       <div class="switch-row">
         <span class="txt">夜雾 <span class="cap">湿一湿蕨类的旧脾气。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="nightMist" aria-label="夜雾">
-          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 54 38"><path class="bloom-stem" d="M27 36 C 27 32,27 30,27 26"/><g transform="translate(27,20)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 62 30"><path class="bloom-branch" d="M4 24 C 16 22,27 21,36 17 C 40 15,43 15,45 13"/><g class="bloom-leaf" transform="translate(19,21) rotate(-24)"><path d="M0 0 C 4 -3.4,10 -3.4,13 0 C 10 3.4,4 3.4,0 0 Z"/></g><g transform="translate(45,14) rotate(-18) scale(.78)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
     </div>
-    <p class="plate-note"><svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><use href="#sprig" stroke-width="3"/></svg>拣选各有其记——满月为当值、朱勾以入册、花开则拨灯。</p>
+    <p class="plate-note"><svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><use href="#sprig" stroke-width="3"/></svg>拣选各有其记——满月为当值、火漆以入册、花开则拨灯。</p>
   </article>
 
   <article class="plate velvet reveal" aria-labelledby="pl4">
@@ -1235,12 +1241,12 @@ input[type="range"].flame::-moz-range-thumb{
     <div class="modal-list">
       <label class="choice choice--check">
         <input type="checkbox" id="mChk1" checked>
-        <span class="mark" aria-hidden="true"><svg class="tick" viewBox="0 0 16 16" fill="none"><path pathLength="1" d="M3.2 8.4 L6.4 11.8 C 8.6 9, 10.4 5.4, 13.2 3.8"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="seal" viewBox="-11 -11 22 22"><use href="#waxseal"/></svg></span>
         <span class="txt">巡灯一遍 <span class="cap">从南翼到垂枝亭,不落一盏。</span></span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox" id="mChk2">
-        <span class="mark" aria-hidden="true"><svg class="tick" viewBox="0 0 16 16" fill="none"><path pathLength="1" d="M3.2 8.4 L6.4 11.8 C 8.6 9, 10.4 5.4, 13.2 3.8"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="seal" viewBox="-11 -11 22 22"><use href="#waxseal"/></svg></span>
         <span class="txt">记露水三钱 <span class="cap">寅时前封瓶,迟了就散。</span></span>
       </label>
     </div>
