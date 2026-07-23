@@ -52,26 +52,20 @@ function createThemeButton(theme, index) {
 function renderDirectory(query = "") {
   const normalized = query.trim().toLowerCase();
   directory.replaceChildren();
-  let total = 0;
+  const matches = themes
+    .map((theme, index) => ({ theme, index }))
+    .filter(({ theme }) => `${theme.name} ${theme.direction} ${theme.tags.join(" ")}`.toLowerCase().includes(normalized));
 
-  ["built", "candidate"].forEach((group) => {
-    const matches = themes
-      .map((theme, index) => ({ theme, index }))
-      .filter(({ theme }) => theme.group === group)
-      .filter(({ theme }) => `${theme.name} ${theme.direction} ${theme.tags.join(" ")}`.toLowerCase().includes(normalized));
-    if (!matches.length) return;
+  const section = document.createElement("section");
+  section.className = "directory-group";
+  const label = document.createElement("span");
+  label.textContent = `ALL DIRECTIONS / ${String(matches.length).padStart(2, "0")}`;
+  section.append(label);
+  matches.forEach(({ theme, index }) => section.append(createThemeButton(theme, index)));
+  directory.append(section);
 
-    const section = document.createElement("section");
-    section.className = "directory-group";
-    const label = document.createElement("span");
-    label.textContent = group === "built" ? "ESTABLISHED / 06" : "CANDIDATES / 15";
-    section.append(label);
-    matches.forEach(({ theme, index }) => section.append(createThemeButton(theme, index)));
-    directory.append(section);
-    total += matches.length;
-  });
-
-  if (!total) {
+  if (!matches.length) {
+    section.remove();
     const empty = document.createElement("p");
     empty.className = "theme-empty";
     empty.textContent = "No matching world";

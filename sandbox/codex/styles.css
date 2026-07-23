@@ -55,6 +55,7 @@ input:focus-visible {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   min-width: 0;
+  min-height: 0;
   border-right: 1px solid #30343a;
   background:
     linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
@@ -153,7 +154,10 @@ input:focus-visible {
 }
 
 .theme-directory {
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 0 8px 18px;
   scrollbar-color: #59616b transparent;
   scrollbar-width: thin;
@@ -266,8 +270,12 @@ input:focus-visible {
 }
 
 .preview-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100dvh;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
 }
 
 .preview-toolbar {
@@ -384,7 +392,8 @@ input:focus-visible {
 
 .preview-frame-wrap {
   position: relative;
-  height: calc(100dvh - 68px);
+  min-height: 0;
+  height: auto;
   background: #050607;
 }
 
@@ -394,6 +403,8 @@ input:focus-visible {
   height: 100%;
   border: 0;
   background: #050607;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .preview-loading {

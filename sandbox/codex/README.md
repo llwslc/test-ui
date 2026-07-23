@@ -1,8 +1,20 @@
 # Codex Theme Atlas
 
-`index.html` is the atlas and preview switcher for every visual direction in
-`prompt/theme/README.md`. Each theme is an independent page with its own layout,
-components, artwork, motion, and interaction model.
+`index.html` is the single, scrollable atlas and preview switcher for every
+visual direction in `prompt/theme/README.md`. Each theme is an independent page
+with its own layout, artwork, motion, interaction model, and full component
+library.
+
+Every theme includes:
+
+- a distinctive campaign-style hero and signature interaction
+- primary, secondary, destructive, disabled, and icon actions
+- text inputs, selects, toggles or checks, and range controls
+- tabs, breadcrumbs, pagination, alerts, and progress
+- metrics, a themed data table, and a confirmation overlay
+
+RELIQUARY keeps its larger multi-section anatomy, component, motion, and
+material laboratory.
 
 ## Independent routes
 
