@@ -58,9 +58,18 @@
     font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-align:left}
   .home:hover{color:var(--ink)}
   .home b{color:var(--ink);font-weight:600;letter-spacing:.1em}
+  .side-search{padding:10px 10px 8px;border-bottom:1px solid var(--line)}
+  .side-search input{width:100%;height:32px;padding:0 10px;border:1px solid var(--line);border-radius:8px;
+    background:rgba(0,0,0,.28);color:var(--ink);font-family:inherit;font-size:12.5px;letter-spacing:.02em;outline:none;
+    transition:border-color .15s}
+  .side-search input::placeholder{color:var(--faint)}
+  .side-search input:focus{border-color:var(--accent)}
+  .side-empty{display:none;padding:20px 12px;color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-align:center}
+  .side[data-empty="1"] .side-empty{display:block}
   .side-list{flex:1;overflow:auto;padding:8px 8px 16px}
   .side-item{width:100%;display:grid;grid-template-columns:26px 1fr;align-items:center;gap:2px 10px;
     padding:9px 11px;border-radius:8px;text-align:left;color:var(--dim);transition:background .15s ease,color .15s ease}
+  .side-item[hidden]{display:none}
   .side-item:hover{background:var(--panel-2);color:var(--ink)}
   .side-item.on{background:rgba(216,195,154,.1);color:var(--ink)}
   .side-item.on .si-code{color:var(--accent)}
@@ -154,7 +163,11 @@
   <div class="detail" id="detail">
     <aside class="side" id="side">
       <button class="home" id="home" type="button">&larr;&nbsp; <b>ATLAS</b>&nbsp;/ 全部主题</button>
+      <div class="side-search">
+        <input id="sideSearch" type="search" placeholder="搜索主题　按 /" aria-label="搜索主题" autocomplete="off" spellcheck="false">
+      </div>
       <nav class="side-list" id="sideList" aria-label="主题目录"></nav>
+      <p class="side-empty" id="sideEmpty">无匹配主题</p>
     </aside>
     <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="关闭目录"></button>
 
@@ -327,8 +340,32 @@
   $("#fsPrev").addEventListener("click",function(){ $("#prevBtn").click(); });
   $("#fsNext").addEventListener("click",function(){ $("#nextBtn").click(); });
 
+  // ---- sidebar search: filter by code, name or id ----
+  var sideSearch=$("#sideSearch");
+  function filterSide(){
+    var q=sideSearch.value.trim().toLowerCase(), hit=0, items=sideList.children;
+    for(var i=0;i<items.length;i++){
+      var t=THEMES[i], on=!q||(t.code+" "+t.name+" "+t.id).toLowerCase().indexOf(q)>=0;
+      items[i].hidden=!on; if(on) hit++;
+    }
+    side.setAttribute("data-empty",hit?"0":"1");
+  }
+  sideSearch.addEventListener("input",filterSide);
+  sideSearch.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+      e.stopPropagation();
+      if(sideSearch.value){ sideSearch.value=""; filterSide(); } else sideSearch.blur();
+    }else if(e.key==="Enter"){
+      var items=sideList.children;
+      for(var i=0;i<items.length;i++) if(!items[i].hidden){ enter(i); sideSearch.blur(); break; }
+    }
+  });
+
   document.addEventListener("keydown",function(e){
     if(body.getAttribute("data-mode")!=="detail") return;
+    var tg=(e.target.tagName||"").toLowerCase();
+    if(tg==="input"||tg==="textarea"||e.target.isContentEditable) return;
+    if(e.key==="/"){ if(isFs()) return; e.preventDefault(); side.classList.add("open"); sideSearch.focus(); sideSearch.select(); return; }
     if(e.key==="ArrowLeft") $("#prevBtn").click();
     else if(e.key==="ArrowRight") $("#nextBtn").click();
     else if(e.key==="Escape"){ if(isFs()) exitFs(); else if(side.classList.contains("open")) closeSide(); else home(); }
