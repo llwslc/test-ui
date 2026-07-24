@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KIT Theme Atlas：21 套完全独立的组件主题与视觉世界。">
+  <meta name="description" content="KIT Theme Atlas：21 套独立主题世界的实时图集。">
   <title>KIT / Theme Atlas</title>
   <style>
 @charset "UTF-8";
@@ -16,15 +16,38 @@
 
 :root {
   color-scheme: dark;
+  --ink: #f1f0e9;
+  --muted: #a7abb1;
+  --quiet: #7c828a;
+  --line: #343940;
+  --line-strong: #555c65;
+  --paper: #0b0d10;
+  --panel: #111419;
+  --panel-raised: #171b20;
+  --signal: #caff70;
+  --signal-ink: #111706;
+  --gutter: max(24px, calc((100vw - 1180px) / 2));
+  font-family: Inter, "Avenir Next", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
 }
 
 body {
-  margin: 0;
   min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    var(--paper);
+  background-size: 100% 48px;
+}
+
+body[data-mode="detail"] {
   overflow: hidden;
-  color: #e8e8e2;
-  background: #090b0d;
-  font-family: Inter, "Avenir Next", "PingFang SC", Arial, sans-serif;
 }
 
 button,
@@ -34,180 +57,560 @@ input {
 
 button,
 a {
-  cursor: pointer;
+  color: inherit;
+}
+
+button {
+  border: 0;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+}
+
+button:not(:disabled),
+a[href] {
+  cursor: pointer;
 }
 
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-  outline: 2px solid #a9ff55;
-  outline-offset: 2px;
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
 }
 
-.atlas {
-  display: grid;
-  grid-template-columns: 268px 1fr;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
+[hidden] {
+  display: none !important;
 }
 
-.atlas-sidebar {
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: 16px;
+  padding: 10px 14px;
+  color: var(--signal-ink);
+  background: var(--signal);
+  font-size: 12px;
+  font-weight: 800;
+  transform: translateY(-180%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.home-view {
+  min-height: 100dvh;
+}
+
+.home-masthead {
   position: relative;
-  z-index: 20;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  min-width: 0;
-  min-height: 0;
-  border-right: 1px solid #30343a;
+  min-height: 430px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
   background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    #101318;
-  background-size: 100% 42px;
+    radial-gradient(circle at 76% 34%, rgba(202, 255, 112, 0.13), transparent 0 20%, transparent 42%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.025), transparent 42%),
+    #0d1014;
 }
 
-.atlas-brand {
+.home-masthead::before,
+.home-masthead::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.home-masthead::before {
+  top: 0;
+  right: max(24px, calc((100vw - 1180px) / 2));
+  width: min(38vw, 520px);
+  height: 100%;
+  border-right: 1px solid rgba(202, 255, 112, 0.22);
+  border-left: 1px solid rgba(202, 255, 112, 0.22);
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(202, 255, 112, 0.16) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, rgba(202, 255, 112, 0.16) 50%, transparent 50.2%);
+}
+
+.home-masthead::after {
+  top: 50%;
+  right: max(52px, calc((100vw - 1068px) / 2));
+  width: clamp(170px, 24vw, 330px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(202, 255, 112, 0.36);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 28px rgba(202, 255, 112, 0.025),
+    0 0 0 64px rgba(202, 255, 112, 0.018);
+  transform: translateY(-50%);
+}
+
+.masthead-inner,
+.home-main,
+.home-footer-inner {
+  width: min(100% - 48px, 1180px);
+  margin-inline: auto;
+}
+
+.masthead-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 11px;
-  align-items: center;
-  min-height: 68px;
-  padding: 12px 14px;
-  border-bottom: 1px solid #30343a;
+  grid-template-rows: auto 1fr auto;
+  min-height: 430px;
 }
 
-.atlas-mark {
-  display: grid;
-  place-items: center;
-  width: 39px;
-  height: 39px;
-  border: 1px solid #6a7078;
-  color: #090b0d;
-  background: #e8e8e2;
-  font-family: Georgia, serif;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.atlas-brand div {
+.masthead-topline {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.atlas-brand strong {
-  font-size: 13px;
-  letter-spacing: 0.11em;
-}
-
-.atlas-brand small {
-  color: #7f858e;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.atlas-brand button {
-  display: none;
-  width: 34px;
-  height: 34px;
-  border: 1px solid #30343a;
-  color: #e8e8e2;
-  background: transparent;
-  font-size: 21px;
+.masthead-title {
+  align-self: center;
+  max-width: 820px;
+  padding-block: 48px;
 }
 
-.atlas-search {
+.masthead-kicker {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 20px;
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.masthead-kicker::before {
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.masthead-title h1 {
+  max-width: 760px;
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(48px, 8vw, 104px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  overflow-wrap: anywhere;
+}
+
+.masthead-title h1 span {
+  color: var(--signal);
+  font-style: italic;
+}
+
+.masthead-title p {
+  max-width: 620px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.75;
+}
+
+.masthead-index {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 17px;
+  border-top: 1px solid var(--line);
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-main {
+  padding-block: 72px 96px;
+}
+
+.collection-heading {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.collection-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 500;
+}
+
+.collection-heading i {
+  height: 1px;
+  background: var(--line);
+}
+
+.collection-heading span {
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.theme-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--panel);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.theme-card:hover {
+  z-index: 1;
+  border-color: var(--signal);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.32);
+  transform: translateY(-4px);
+}
+
+.theme-card:active {
+  transform: translateY(-1px);
+}
+
+.thumbnail-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.045) 42%, transparent 64%) -120% 0 / 220% 100%,
+    #090b0e;
+}
+
+.thumbnail-stage::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  content: "";
+}
+
+.thumbnail-frame {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 1440px;
+  height: 900px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  transition: opacity 220ms ease;
+}
+
+.thumbnail-frame.is-ready {
+  opacity: 1;
+}
+
+.thumbnail-placeholder {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: opacity 180ms ease;
+}
+
+.thumbnail-placeholder::before {
+  justify-self: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(90deg, transparent 48%, var(--line-strong) 49% 51%, transparent 52%),
+    linear-gradient(transparent 48%, var(--line-strong) 49% 51%, transparent 52%);
+  content: "";
+}
+
+.thumbnail-placeholder.is-loading::before {
+  border-color: var(--signal);
+  border-radius: 50%;
+  background: transparent;
+  border-right-color: transparent;
+  animation: spin 800ms linear infinite;
+}
+
+.thumbnail-placeholder.is-hidden {
+  opacity: 0;
+}
+
+.card-caption {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 112px;
+  padding: 18px;
+}
+
+.card-number {
+  align-self: start;
+  padding-top: 4px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.card-name {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.card-name strong {
+  overflow: hidden;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-name span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-enter {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 15px;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.theme-card:hover .card-enter {
+  border-color: var(--signal);
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.noscript-note {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--panel);
+  line-height: 1.7;
+}
+
+.home-footer {
+  border-top: 1px solid var(--line);
+  background: #0d1014;
+}
+
+.home-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 28px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.detail-view {
+  display: grid;
+  grid-template-columns: 286px minmax(0, 1fr);
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.detail-sidebar {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    #101318;
+  background-size: 100% 44px;
+}
+
+.back-all {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 11px;
+  align-items: center;
+  min-height: 72px;
+  padding: 12px 16px;
+  color: var(--ink);
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.back-all > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-strong);
+}
+
+.back-all strong {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.back-all small {
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.back-all:hover > span:first-child {
+  border-color: var(--signal);
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.theme-search {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
   margin: 12px;
   padding: 0 10px;
-  border: 1px solid #30343a;
+  border: 1px solid var(--line);
   background: rgba(0, 0, 0, 0.22);
 }
 
-.atlas-search > span {
-  color: #9ba2aa;
-  font-size: 17px;
+.theme-search > span {
+  color: var(--muted);
+  font-size: 16px;
 }
 
-.atlas-search input {
+.theme-search input {
   min-width: 0;
-  height: 38px;
+  height: 40px;
   border: 0;
   outline: 0;
-  color: #e8e8e2;
+  color: var(--ink);
   background: transparent;
   font-size: 12px;
 }
 
-.atlas-search input::placeholder {
-  color: #646a72;
+.theme-search input::placeholder {
+  color: var(--quiet);
 }
 
-.atlas-search kbd {
-  padding: 3px 5px;
-  border: 1px solid #30343a;
-  color: #717780;
+.theme-search kbd {
+  padding: 3px 6px;
+  border: 1px solid var(--line);
+  color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .theme-directory {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
   padding: 0 8px 18px;
   scrollbar-color: #59616b transparent;
   scrollbar-width: thin;
 }
 
-.directory-group > span {
+.directory-label {
   display: block;
-  padding: 16px 9px 8px;
-  color: #666d76;
+  padding: 14px 9px 8px;
+  color: var(--quiet);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
 }
 
 .theme-link {
   position: relative;
   display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 10px;
+  grid-template-columns: 30px 62px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
   width: 100%;
-  min-height: 60px;
+  min-height: 48px;
   padding: 8px 10px;
-  border: 0;
-  color: #899099;
+  color: var(--muted);
   background: transparent;
   text-align: left;
   transition:
-    color 0.18s ease,
-    background-color 0.18s ease,
-    transform 0.18s ease;
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
 }
 
 .theme-link:hover {
-  color: #e8e8e2;
-  background: rgba(255, 255, 255, 0.035);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.04);
   transform: translateX(2px);
 }
 
 .theme-link[aria-current="true"] {
   color: #fff;
-  background: linear-gradient(90deg, rgba(201, 255, 111, 0.1), transparent);
+  background: linear-gradient(90deg, rgba(202, 255, 112, 0.12), transparent);
 }
 
 .theme-link[aria-current="true"]::before {
@@ -216,197 +619,236 @@ input:focus-visible {
   bottom: 7px;
   left: 0;
   width: 2px;
-  background: #c9ff6f;
-  box-shadow: 0 0 10px rgba(201, 255, 111, 0.55);
+  background: var(--signal);
+  box-shadow: 0 0 10px rgba(202, 255, 112, 0.5);
   content: "";
 }
 
-.theme-link > span:first-child {
-  color: #60666f;
+.theme-link span:first-child {
+  color: var(--quiet);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
-  letter-spacing: 0.08em;
-}
-
-.theme-link > span:last-child {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
 }
 
 .theme-link strong,
-.theme-link small {
+.theme-link span:last-child {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .theme-link strong {
-  font-size: 14px;
-  letter-spacing: 0.07em;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
 }
 
-.theme-link small {
-  color: #7d858f;
-  font-size: 10px;
-  line-height: 1.3;
+.theme-link span:last-child {
+  font-size: 11px;
 }
 
 .theme-empty {
-  margin: 30px 12px;
-  color: #717780;
-  font-size: 10px;
+  margin: 0;
+  padding: 18px 10px;
+  color: var(--quiet);
+  font-size: 11px;
   text-align: center;
 }
 
-.atlas-sidebar > footer {
+.sidebar-meta {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   padding: 13px 16px;
-  border-top: 1px solid #30343a;
-  color: #666d76;
+  border-top: 1px solid var(--line);
+  color: var(--quiet);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
   letter-spacing: 0.1em;
 }
 
-.preview-shell {
+.sidebar-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.64);
+  backdrop-filter: blur(4px);
+}
+
+.detail-main {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  height: 100dvh;
   min-width: 0;
   min-height: 0;
-  overflow: hidden;
 }
 
 .preview-toolbar {
-  display: grid;
-  grid-template-columns: auto minmax(220px, 1fr) auto auto;
-  gap: 24px;
+  display: flex;
+  gap: 14px;
   align-items: center;
-  min-height: 68px;
+  min-width: 0;
+  min-height: 72px;
   padding: 10px 16px;
-  border-bottom: 1px solid #30343a;
-  background: #0c0f13;
+  border-bottom: 1px solid var(--line);
+  background: #0d1014;
 }
 
 .menu-button {
   display: none;
-  gap: 3px;
+  flex: 0 0 auto;
   place-content: center;
   width: 38px;
   height: 38px;
-  border: 1px solid #30343a;
+  border: 1px solid var(--line);
   background: transparent;
 }
 
 .menu-button i {
   display: block;
-  width: 14px;
+  width: 15px;
   height: 1px;
-  background: #c9ccd0;
+  margin: 2px auto;
+  background: var(--ink);
 }
 
-.active-direction {
-  display: flex;
+.active-current {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   min-width: 0;
+  margin-right: auto;
 }
 
-.active-direction > span {
-  color: #7b828b;
+.active-number {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 10px;
+  font-size: 9px;
 }
 
-.active-direction > i {
-  width: 26px;
-  height: 1px;
-  background: #40454d;
-}
-
-.active-direction > div {
+.active-copy {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   min-width: 0;
 }
 
-.active-direction strong {
-  font-family: Georgia, serif;
-  font-size: 18px;
-  letter-spacing: 0.09em;
-}
-
-.active-direction small {
+.active-copy strong,
+.active-copy span {
   overflow: hidden;
-  color: #717780;
-  font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.direction-tags {
-  display: flex;
-  gap: 5px;
+.active-copy strong {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
 }
 
-.direction-tags span {
-  padding: 6px 8px;
-  border: 1px solid #30343a;
-  color: #747b84;
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
-  letter-spacing: 0.07em;
-}
-
-.toolbar-actions {
-  display: flex;
-  gap: 6px;
-}
-
-.toolbar-actions button,
-.toolbar-actions a {
-  display: grid;
-  place-items: center;
-  min-width: 38px;
-  height: 38px;
-  border: 1px solid #30343a;
-  color: #b6bbc1;
-  background: #11151a;
+.active-copy span {
+  color: var(--muted);
   font-size: 10px;
 }
 
-.toolbar-actions a {
-  padding: 0 11px;
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
-  letter-spacing: 0.08em;
+.toolbar-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  align-items: center;
 }
 
-.toolbar-actions button:hover,
-.toolbar-actions a:hover {
-  border-color: #6a717b;
+.toolbar-button,
+.open-standalone,
+.viewport-picker button {
+  display: grid;
+  place-items: center;
+  height: 38px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--panel);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.toolbar-button {
+  min-width: 38px;
+  padding: 0 10px;
+}
+
+.toolbar-button:hover,
+.open-standalone:hover,
+.viewport-picker button:hover {
+  border-color: var(--line-strong);
   color: #fff;
 }
 
-.preview-frame-wrap {
-  position: relative;
-  min-height: 0;
-  height: auto;
-  background: #050607;
+.viewport-picker {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  background: #090b0e;
 }
 
-.preview-frame-wrap iframe {
+.viewport-picker button {
+  min-width: 42px;
+  height: 30px;
+  padding: 0 8px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.viewport-picker button[aria-pressed="true"] {
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.open-standalone {
+  min-width: 62px;
+  padding: 0 10px;
+}
+
+.preview-stage {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.015) 75%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.015) 75%),
+    #050607;
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+}
+
+.preview-viewport {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050607;
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    border-radius 180ms ease;
+}
+
+.theme-preview {
   display: block;
   width: 100%;
   height: 100%;
   border: 0;
   background: #050607;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .preview-loading {
@@ -416,14 +858,14 @@ input:focus-visible {
   display: grid;
   place-content: center;
   gap: 14px;
-  color: #8a9199;
+  color: var(--muted);
   background: #090b0d;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
   letter-spacing: 0.14em;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 160ms ease;
 }
 
 .preview-loading.is-visible {
@@ -434,20 +876,116 @@ input:focus-visible {
   justify-self: center;
   width: 34px;
   height: 34px;
-  border: 1px solid #30343a;
-  border-top-color: #a9ff55;
+  border: 1px solid var(--line);
+  border-top-color: var(--signal);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 800ms linear infinite;
 }
 
-.sidebar-backdrop {
-  position: fixed;
-  z-index: 15;
-  inset: 0;
+.detail-view[data-viewport="mobile"] .preview-stage {
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+}
+
+.detail-view[data-viewport="mobile"] .preview-viewport {
+  width: 390px;
+  height: 844px;
+  border: 1px solid #555b63;
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+}
+
+.fullscreen-controls {
   display: none;
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+}
+
+.detail-view.is-fullscreen {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.detail-view.is-fullscreen .detail-sidebar,
+.detail-view.is-fullscreen .preview-toolbar,
+.detail-view.is-fullscreen .sidebar-backdrop {
+  display: none;
+}
+
+.detail-view.is-fullscreen .detail-main {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.detail-view.is-fullscreen .preview-stage {
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+}
+
+.detail-view.is-fullscreen .preview-viewport {
+  width: 100%;
+  height: 100%;
   border: 0;
-  background: rgba(0, 0, 0, 0.58);
-  backdrop-filter: blur(4px);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.detail-view.is-fullscreen .fullscreen-controls {
+  display: block;
+}
+
+.fullscreen-button {
+  position: fixed;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(8, 10, 12, 0.54);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  opacity: 0.55;
+  pointer-events: auto;
+  transition:
+    opacity 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.fullscreen-button:hover,
+.fullscreen-button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.68);
+  color: #fff;
+  background: rgba(8, 10, 12, 0.82);
+  opacity: 1;
+}
+
+.fullscreen-exit {
+  top: 16px;
+  right: 16px;
+  width: auto;
+  padding: 0 14px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.fullscreen-previous,
+.fullscreen-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fullscreen-previous {
+  left: 16px;
+}
+
+.fullscreen-next {
+  right: 16px;
 }
 
 @keyframes spin {
@@ -456,263 +994,775 @@ input:focus-visible {
   }
 }
 
-@media (max-width: 1020px) {
-  .atlas {
-    grid-template-columns: 230px 1fr;
+@media (max-width: 980px) {
+  .theme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .direction-tags {
+  .detail-view {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+
+  .active-copy span {
     display: none;
+  }
+
+  .toolbar-button[data-long-label] {
+    width: 38px;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .toolbar-button[data-long-label]::before {
+    color: var(--muted);
+    content: attr(data-short-label);
   }
 }
 
 @media (max-width: 760px) {
-  .atlas {
+  :root {
+    --gutter: 16px;
+  }
+
+  .masthead-inner,
+  .home-main,
+  .home-footer-inner {
+    width: calc(100% - 32px);
+  }
+
+  .home-masthead,
+  .masthead-inner {
+    min-height: 520px;
+  }
+
+  .home-masthead::before {
+    right: 16px;
+    width: 52vw;
+  }
+
+  .home-masthead::after {
+    top: 33%;
+    right: -70px;
+    width: 220px;
+  }
+
+  .masthead-topline span:last-child,
+  .masthead-index span:last-child {
+    display: none;
+  }
+
+  .masthead-title {
+    align-self: end;
+    padding-block: 42px;
+  }
+
+  .masthead-title h1 {
+    font-size: clamp(54px, 19vw, 82px);
+  }
+
+  .home-main {
+    padding-block: 52px 72px;
+  }
+
+  .theme-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detail-view {
     display: block;
   }
 
-  .atlas-sidebar {
+  .detail-sidebar {
     position: fixed;
-    z-index: 20;
+    z-index: 30;
     top: 0;
     bottom: 0;
     left: 0;
-    width: min(310px, 88vw);
+    width: min(312px, calc(100vw - 32px));
     transform: translateX(-105%);
-    transition: transform 0.3s ease;
+    transition: transform 220ms ease;
   }
 
-  .atlas-sidebar.is-open {
+  .detail-sidebar.is-open {
     transform: translateX(0);
-  }
-
-  .atlas-brand button,
-  .menu-button {
-    display: grid;
   }
 
   .sidebar-backdrop.is-open {
     display: block;
   }
 
+  .detail-main {
+    height: 100dvh;
+  }
+
+  .menu-button {
+    display: grid;
+  }
+
   .preview-toolbar {
-    grid-template-columns: auto 1fr auto;
-    gap: 10px;
-    padding: 8px 10px;
+    gap: 8px;
+    min-height: 64px;
+    padding-inline: 16px;
   }
 
-  .toolbar-actions button {
+  .active-current {
+    gap: 8px;
+  }
+
+  .active-number {
     display: none;
   }
 
-  .toolbar-actions a {
-    min-width: 42px;
-    padding: 0 7px;
+  .active-copy strong {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
   }
 
-  .active-direction > i,
-  .active-direction > span {
+  .nav-buttons {
     display: none;
+  }
+
+  .viewport-picker button {
+    min-width: 34px;
+    padding-inline: 6px;
+    font-size: 8px;
+  }
+
+  .open-standalone {
+    min-width: 46px;
+    padding-inline: 6px;
+    font-size: 8px;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-stage {
+    padding: 16px;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-viewport {
+    width: min(390px, 100%);
+    height: auto;
+    aspect-ratio: 390 / 844;
+    border-radius: 22px;
+  }
+
+  .detail-view.is-fullscreen .preview-viewport {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
   }
 }
 
+@media (max-width: 460px) {
+  .collection-heading {
+    grid-template-columns: 1fr auto;
+  }
+
+  .collection-heading i {
+    display: none;
+  }
+
+  .card-caption {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding-inline: 14px;
+  }
+
+  .preview-toolbar {
+    gap: 6px;
+  }
+
+  .active-copy span {
+    display: none;
+  }
+
+  .toolbar-group {
+    gap: 4px;
+  }
+
+  .viewport-picker button:last-child {
+    min-width: 30px;
+    max-width: 30px;
+    overflow: hidden;
+  }
+
+  .fullscreen-exit {
+    top: 12px;
+    right: 12px;
+  }
+
+  .fullscreen-previous {
+    left: 12px;
+  }
+
+  .fullscreen-next {
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
   </style>
 </head>
-<body>
-  <div class="atlas">
-    <aside class="atlas-sidebar" id="sidebar">
-      <header class="atlas-brand">
-        <span class="atlas-mark">K</span>
-        <div><strong>KIT / ATLAS</strong><small>21 independent worlds</small></div>
-        <button id="closeSidebar" type="button" aria-label="关闭主题索引">×</button>
-      </header>
+<body data-mode="home">
+  <section class="home-view" id="homeView">
+    <a class="skip-link" href="#themeGrid">跳至主题图集</a>
+    <header class="home-masthead">
+      <div class="masthead-inner">
+        <div class="masthead-topline">
+          <span>KIT / Theme Atlas</span>
+          <span>Independent interface worlds / 2026</span>
+        </div>
+        <div class="masthead-title">
+          <p class="masthead-kicker">Live component worlds</p>
+          <h1>Theme<br><span>Atlas.</span></h1>
+          <p>二十一套独立视觉世界，一张持续生长的组件图集。每张卡片都是真实页面的现场切片，进入即可完整试玩。</p>
+        </div>
+        <div class="masthead-index">
+          <span>Scroll to survey</span>
+          <span>Every preview is live</span>
+        </div>
+      </div>
+    </header>
 
-      <label class="atlas-search">
-        <span>⌕</span>
-        <input id="themeSearch" type="search" placeholder="Filter directions…" autocomplete="off">
-        <kbd>⌘K</kbd>
+    <main class="home-main" id="themeGrid" tabindex="-1">
+      <div class="collection-heading">
+        <h2 id="collectionTitle">全部主题</h2>
+        <i aria-hidden="true"></i>
+        <span id="collectionCount">21 WORLDS</span>
+      </div>
+      <div class="theme-grid" id="themeCards" aria-labelledby="collectionTitle"></div>
+      <noscript>
+        <p class="noscript-note">Theme Atlas 的标题与说明仍可阅读；启用 JavaScript 后会载入实时主题卡片与完整预览交互，各主题单文件本身不受影响。</p>
+      </noscript>
+    </main>
+
+    <footer class="home-footer">
+      <div class="home-footer-inner">
+        <span>KIT / Theme Atlas</span>
+        <span>21 independent worlds, one living index.</span>
+      </div>
+    </footer>
+  </section>
+
+  <section class="detail-view" id="detailView" data-viewport="pc" aria-label="主题详情" hidden>
+    <aside class="detail-sidebar" id="detailSidebar">
+      <button class="back-all" id="backAll" type="button">
+        <span aria-hidden="true">←</span>
+        <strong>全部主题</strong>
+        <small>ATLAS</small>
+      </button>
+
+      <label class="theme-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="themeSearch" type="search" placeholder="搜索主题…" autocomplete="off" aria-label="搜索主题">
+        <kbd>/</kbd>
       </label>
 
       <nav class="theme-directory" id="themeDirectory" aria-label="主题目录"></nav>
 
-      <footer>
+      <footer class="sidebar-meta">
         <span>← → SWITCH</span>
-        <span id="atlasCount">01 / 21</span>
+        <span id="atlasCount">-- / --</span>
       </footer>
     </aside>
 
-    <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" tabindex="-1" aria-label="关闭主题索引"></button>
+    <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" tabindex="-1" aria-label="关闭主题目录"></button>
 
-    <main class="preview-shell">
-      <header class="preview-toolbar">
-        <button class="menu-button" id="openSidebar" type="button" aria-label="打开主题索引"><i></i><i></i><i></i></button>
-        <div class="active-direction">
-          <span id="activeIndex">01</span>
-          <i></i>
-          <div><strong id="activeName">NOVA</strong><small id="activeDirection">科幻霓虹 HUD / Sci-fi neon</small></div>
+    <main class="detail-main">
+      <header class="preview-toolbar" id="previewToolbar" tabindex="-1">
+        <button class="menu-button" id="openSidebar" type="button" aria-label="打开主题目录" aria-expanded="false">
+          <i></i><i></i><i></i>
+        </button>
+
+        <div class="active-current">
+          <span class="active-number" id="activeIndex">--</span>
+          <div class="active-copy">
+            <strong id="activeCode">THEME</strong>
+            <span id="activeName">正在载入主题信息</span>
+          </div>
         </div>
-        <div class="direction-tags" id="directionTags"></div>
-        <div class="toolbar-actions">
-          <button id="previousTheme" type="button" aria-label="上一主题">←</button>
-          <button id="nextTheme" type="button" aria-label="下一主题">→</button>
-          <a id="openStandalone" href="nova.html" target="_blank" rel="noopener">OPEN ↗</a>
+
+        <div class="toolbar-group nav-buttons" aria-label="切换主题">
+          <button class="toolbar-button" id="previousTheme" type="button" aria-label="上一主题">←</button>
+          <button class="toolbar-button" id="nextTheme" type="button" aria-label="下一主题">→</button>
+        </div>
+
+        <div class="toolbar-group">
+          <div class="viewport-picker" aria-label="预览视口">
+            <button id="pcViewport" type="button" aria-pressed="true">PC</button>
+            <button id="mobileViewport" type="button" aria-pressed="false">Mobile</button>
+          </div>
+          <button class="toolbar-button" id="fullscreenToggle" type="button" aria-pressed="false" data-long-label data-short-label="⛶">全屏</button>
+          <a class="open-standalone" id="openStandalone" href="#" target="_blank" rel="noopener">Open ↗</a>
         </div>
       </header>
 
-      <div class="preview-frame-wrap">
-        <div class="preview-loading" id="previewLoading"><i></i><span>ENTERING WORLD</span></div>
-        <iframe id="themePreview" title="主题预览" src="nova.html" scrolling="yes"></iframe>
+      <div class="preview-stage" id="previewStage">
+        <div class="preview-viewport" id="previewViewport">
+          <iframe class="theme-preview" id="themePreview" title="主题预览"></iframe>
+          <div class="preview-loading" id="previewLoading" aria-live="polite">
+            <i aria-hidden="true"></i>
+            <span>正在进入主题世界</span>
+          </div>
+        </div>
       </div>
     </main>
-  </div>
+
+    <div class="fullscreen-controls" aria-label="全屏预览控制">
+      <button class="fullscreen-button fullscreen-exit" id="fullscreenExit" type="button">退出全屏</button>
+      <button class="fullscreen-button fullscreen-previous" id="fullscreenPrevious" type="button" aria-label="上一主题">←</button>
+      <button class="fullscreen-button fullscreen-next" id="fullscreenNext" type="button" aria-label="下一主题">→</button>
+    </div>
+  </section>
 
   <script>
 const themes = [
-  { id: "nova", name: "NOVA", direction: "科幻霓虹 HUD / Sci-fi neon", tags: ["HUD", "NEON", "TACTICAL"] },
-  { id: "abyss", name: "ABYSS", direction: "克苏鲁深渊魔典 / Eldritch grimoire", tags: ["GRIMOIRE", "ELDRITCH", "INK"] },
-  { id: "brass", name: "BRASS", direction: "蒸汽朋克 / Steampunk", tags: ["BRASS", "STEAM", "GAUGE"] },
-  { id: "prism", name: "PRISM", direction: "包豪斯构成 / Bauhaus", tags: ["BAUHAUS", "PRIMARY", "GRID"] },
-  { id: "riot", name: "RIOT", direction: "朋克剪报 / Punk zine", tags: ["ZINE", "COLLAGE", "NOISE"] },
-  { id: "hanabi", name: "HANABI", direction: "二次元赛璐璐 / Anime cel", tags: ["ANIME", "CEL", "SPARK"] },
-  { id: "sumi", name: "SUMI", direction: "水墨禅 / Zen ink", tags: ["INK", "PAPER", "ZEN"] },
-  { id: "ormolu", name: "ORMOLU", direction: "洛可可宫廷 / Rococo", tags: ["ROCOCO", "GILT", "SILK"] },
-  { id: "nocturne", name: "NOCTURNE", direction: "暗夜花园 / Dark botanical", tags: ["BOTANICAL", "VELVET", "NIGHT"] },
-  { id: "pulp", name: "PULP", direction: "复古廉价小说 / Pulp paperback", tags: ["PAPERBACK", "STAMP", "HALFTONE"] },
-  { id: "totem", name: "TOTEM", direction: "民艺图腾 / Folk craft", tags: ["FOLK", "WEAVE", "WOODCUT"] },
-  { id: "kiln", name: "KILN", direction: "陶土侘寂 / Wabi-sabi", tags: ["CLAY", "KILN", "WABI-SABI"] },
-  { id: "chrome", name: "CHROME", direction: "千禧液态铬 / Y2K aero", tags: ["Y2K", "LIQUID", "AERO"] },
-  { id: "arcade", name: "ARCADE", direction: "8-bit 街机 / Retro arcade", tags: ["8-BIT", "CRT", "PLAYABLE"] },
-  { id: "bitmap", name: "BITMAP", direction: "1-bit 位图 / One-bit dither", tags: ["1-BIT", "DITHER", "DESKTOP"] },
-  { id: "mochi", name: "MOCHI", direction: "软陶泡芙 / Claymorphic squish", tags: ["CLAY", "SQUISH", "SWEET"] },
-  { id: "scribble", name: "SCRIBBLE", direction: "手账涂鸦 / Notebook doodle", tags: ["NOTEBOOK", "DOODLE", "STICKER"] },
-  { id: "axon", name: "AXON", direction: "轴测蓝图 / Isometric blueprint", tags: ["BLUEPRINT", "ISOMETRIC", "MEASURE"] },
-  { id: "corona", name: "CORONA", direction: "日蚀玻璃 / Eclipse glass", tags: ["ECLIPSE", "GLASS", "ORBIT"] },
-  { id: "reliquary", name: "RELIQUARY", direction: "未来圣骸 / Future reliquary", tags: ["BIORELIC", "LIVING", "ARCHIVE"] },
-  { id: "gazette", name: "GAZETTE", direction: "报章排印 / Broadsheet", tags: ["NEWS", "TYPE", "EDITORIAL"] },
+  { id: "nova", code: "NOVA", name: "科幻霓虹 HUD / Sci-fi neon" },
+  { id: "abyss", code: "ABYSS", name: "克苏鲁深渊魔典 / Eldritch grimoire" },
+  { id: "brass", code: "BRASS", name: "蒸汽朋克 / Steampunk" },
+  { id: "prism", code: "PRISM", name: "包豪斯构成 / Bauhaus" },
+  { id: "riot", code: "RIOT", name: "朋克剪报 / Punk zine" },
+  { id: "hanabi", code: "HANABI", name: "二次元赛璐璐 / Anime cel" },
+  { id: "sumi", code: "SUMI", name: "水墨禅 / Zen ink" },
+  { id: "ormolu", code: "ORMOLU", name: "洛可可宫廷 / Rococo" },
+  { id: "nocturne", code: "NOCTURNE", name: "暗夜花园 / Dark botanical" },
+  { id: "pulp", code: "PULP", name: "复古廉价小说 / Pulp paperback" },
+  { id: "totem", code: "TOTEM", name: "民艺图腾 / Folk craft" },
+  { id: "kiln", code: "KILN", name: "陶土侘寂 / Wabi-sabi" },
+  { id: "chrome", code: "CHROME", name: "千禧液态铬 / Y2K aero" },
+  { id: "arcade", code: "ARCADE", name: "8-bit 街机 / Retro arcade" },
+  { id: "bitmap", code: "BITMAP", name: "1-bit 位图 / One-bit dither" },
+  { id: "mochi", code: "MOCHI", name: "软陶泡芙 / Claymorphic squish" },
+  { id: "scribble", code: "SCRIBBLE", name: "手账涂鸦 / Notebook doodle" },
+  { id: "axon", code: "AXON", name: "轴测蓝图 / Isometric blueprint" },
+  { id: "corona", code: "CORONA", name: "日蚀玻璃 / Eclipse glass" },
+  { id: "reliquary", code: "RELIQUARY", name: "未来圣骸 / Future reliquary" },
+  { id: "gazette", code: "GAZETTE", name: "报章排印 / Broadsheet" },
 ];
 
+const homeView = document.querySelector("#homeView");
+const detailView = document.querySelector("#detailView");
+const themeCards = document.querySelector("#themeCards");
 const directory = document.querySelector("#themeDirectory");
 const search = document.querySelector("#themeSearch");
 const preview = document.querySelector("#themePreview");
 const loading = document.querySelector("#previewLoading");
-const sidebar = document.querySelector("#sidebar");
+const sidebar = document.querySelector("#detailSidebar");
 const backdrop = document.querySelector("#sidebarBackdrop");
+const openSidebarButton = document.querySelector("#openSidebar");
+const fullscreenButton = document.querySelector("#fullscreenToggle");
+const fullscreenExit = document.querySelector("#fullscreenExit");
+const toolbar = document.querySelector("#previewToolbar");
+const maximumThumbnailLoads = 5;
+const thumbnailQueue = [];
+let activeThumbnailLoads = 0;
 let activeIndex = 0;
+let directoryMatches = [];
+let fullscreen = false;
+let lastPreviewId = "";
+
+function createElement(tagName, className, text) {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
 
 function pad(index) {
   return String(index + 1).padStart(2, "0");
 }
 
-function createThemeButton(theme, index) {
-  const button = document.createElement("button");
-  button.className = "theme-link";
+function splitName(name) {
+  const parts = name.split(" / ");
+  return {
+    chinese: parts[0],
+    english: parts.slice(1).join(" / "),
+  };
+}
+
+function safeStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    return;
+  }
+}
+
+function updateThumbnailScale(stage) {
+  const frame = stage.querySelector(".thumbnail-frame");
+  if (!frame || !stage.clientWidth) return;
+  frame.style.transform = `scale(${stage.clientWidth / 1440})`;
+}
+
+function finishThumbnail(item, succeeded) {
+  if (item.status !== "loading") return;
+  item.status = succeeded ? "ready" : "failed";
+  activeThumbnailLoads = Math.max(0, activeThumbnailLoads - 1);
+  clearTimeout(item.timeout);
+  item.placeholder.classList.remove("is-loading");
+  if (succeeded) {
+    item.frame.classList.add("is-ready");
+    item.placeholder.classList.add("is-hidden");
+  } else {
+    item.placeholder.classList.remove("is-loading");
+    item.placeholder.textContent = "预览暂未载入";
+  }
+  drainThumbnailQueue();
+}
+
+function drainThumbnailQueue() {
+  while (activeThumbnailLoads < maximumThumbnailLoads && thumbnailQueue.length) {
+    const item = thumbnailQueue.shift();
+    if (item.status !== "queued") continue;
+    item.status = "loading";
+    activeThumbnailLoads += 1;
+    item.placeholder.classList.add("is-loading");
+    item.placeholder.textContent = "正在载入实时预览";
+    item.frame.addEventListener("load", () => finishThumbnail(item, true), { once: true });
+    item.frame.addEventListener("error", () => finishThumbnail(item, false), { once: true });
+    item.timeout = window.setTimeout(() => finishThumbnail(item, false), 15000);
+    item.frame.src = `${item.theme.id}.html`;
+  }
+}
+
+function queueThumbnail(item) {
+  if (item.status !== "idle") return;
+  item.status = "queued";
+  thumbnailQueue.push(item);
+  drainThumbnailQueue();
+}
+
+function renderCards() {
+  const thumbnailItems = [];
+  const fragment = document.createDocumentFragment();
+
+  themes.forEach((theme, index) => {
+    const names = splitName(theme.name);
+    const card = createElement("a", "theme-card");
+    card.href = `#${theme.id}`;
+    card.dataset.themeId = theme.id;
+    card.setAttribute("aria-label", `${pad(index)} ${theme.code} ${theme.name}`);
+
+    const stage = createElement("div", "thumbnail-stage");
+    const frame = createElement("iframe", "thumbnail-frame");
+    frame.title = `${theme.code} 实时缩略预览`;
+    frame.tabIndex = -1;
+    frame.setAttribute("aria-hidden", "true");
+    const placeholder = createElement("span", "thumbnail-placeholder", "滚动至此载入实时预览");
+    stage.append(frame, placeholder);
+
+    const caption = createElement("div", "card-caption");
+    const number = createElement("span", "card-number", pad(index));
+    const name = createElement("span", "card-name");
+    name.append(
+      createElement("strong", "", theme.code),
+      createElement("span", "", `${names.chinese} / ${names.english}`),
+    );
+    const enter = createElement("span", "card-enter", "↗");
+    enter.setAttribute("aria-hidden", "true");
+    caption.append(number, name, enter);
+    card.append(stage, caption);
+    fragment.append(card);
+
+    thumbnailItems.push({
+      theme,
+      card,
+      stage,
+      frame,
+      placeholder,
+      status: "idle",
+      timeout: 0,
+    });
+  });
+
+  themeCards.replaceChildren(fragment);
+
+  const resizeObserver = "ResizeObserver" in window
+    ? new ResizeObserver((entries) => entries.forEach((entry) => updateThumbnailScale(entry.target)))
+    : null;
+
+  thumbnailItems.forEach((item) => {
+    updateThumbnailScale(item.stage);
+    resizeObserver?.observe(item.stage);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const item = thumbnailItems.find((candidate) => candidate.card === entry.target);
+        if (item) queueThumbnail(item);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "280px 0px" });
+    thumbnailItems.forEach((item) => observer.observe(item.card));
+  } else {
+    thumbnailItems.forEach(queueThumbnail);
+  }
+}
+
+function createDirectoryButton(theme, index) {
+  const names = splitName(theme.name);
+  const button = createElement("button", "theme-link");
   button.type = "button";
   button.dataset.themeId = theme.id;
   button.setAttribute("aria-current", String(index === activeIndex));
-  button.innerHTML = `<span>${pad(index)}</span><span><strong>${theme.name}</strong><small>${theme.direction.split(" / ")[0]}</small></span>`;
-  button.addEventListener("click", () => selectTheme(index));
+  button.append(
+    createElement("span", "", pad(index)),
+    createElement("strong", "", theme.code),
+    createElement("span", "", names.chinese),
+  );
+  button.addEventListener("click", () => switchThemeTo(index));
   return button;
 }
 
 function renderDirectory(query = "") {
-  const normalized = query.trim().toLowerCase();
-  directory.replaceChildren();
-  const matches = themes
+  const normalized = query.trim().toLocaleLowerCase("zh-CN");
+  directoryMatches = themes
     .map((theme, index) => ({ theme, index }))
-    .filter(({ theme }) => `${theme.name} ${theme.direction} ${theme.tags.join(" ")}`.toLowerCase().includes(normalized));
+    .filter(({ theme }) => `${theme.id} ${theme.code} ${theme.name}`.toLocaleLowerCase("zh-CN").includes(normalized));
 
-  const section = document.createElement("section");
-  section.className = "directory-group";
-  const label = document.createElement("span");
-  label.textContent = `ALL DIRECTIONS / ${String(matches.length).padStart(2, "0")}`;
-  section.append(label);
-  matches.forEach(({ theme, index }) => section.append(createThemeButton(theme, index)));
-  directory.append(section);
+  const fragment = document.createDocumentFragment();
+  fragment.append(createElement("span", "directory-label", `THEMES / ${String(directoryMatches.length).padStart(2, "0")}`));
 
-  if (!matches.length) {
-    section.remove();
-    const empty = document.createElement("p");
-    empty.className = "theme-empty";
-    empty.textContent = "No matching world";
-    directory.append(empty);
+  if (directoryMatches.length) {
+    directoryMatches.forEach(({ theme, index }) => fragment.append(createDirectoryButton(theme, index)));
+  } else {
+    fragment.append(createElement("p", "theme-empty", "没有匹配的主题"));
+  }
+
+  directory.replaceChildren(fragment);
+}
+
+function closeSidebar(options = {}) {
+  const wasOpen = sidebar.classList.contains("is-open");
+  sidebar.classList.remove("is-open");
+  backdrop.classList.remove("is-open");
+  openSidebarButton.setAttribute("aria-expanded", "false");
+  if (wasOpen && options.restoreFocus) openSidebarButton.focus();
+}
+
+function openSidebar(options = {}) {
+  sidebar.classList.add("is-open");
+  backdrop.classList.add("is-open");
+  openSidebarButton.setAttribute("aria-expanded", "true");
+  directory.querySelector(`[data-theme-id="${themes[activeIndex].id}"]`)?.scrollIntoView({ block: "nearest" });
+  if (options.focusSearch) {
+    search.focus();
+    search.select();
   }
 }
 
-function selectTheme(index, preserveHash = false) {
+function setViewport(mode, persist = true) {
+  const nextMode = mode === "mobile" ? "mobile" : "pc";
+  detailView.dataset.viewport = nextMode;
+  document.querySelector("#pcViewport").setAttribute("aria-pressed", String(nextMode === "pc"));
+  document.querySelector("#mobileViewport").setAttribute("aria-pressed", String(nextMode === "mobile"));
+  if (persist) safeStorageSet("kit-atlas-viewport", nextMode);
+}
+
+function setFullscreen(enabled, options = {}) {
+  fullscreen = Boolean(enabled);
+  detailView.classList.toggle("is-fullscreen", fullscreen);
+  fullscreenButton.setAttribute("aria-pressed", String(fullscreen));
+  if (fullscreen && options.moveFocus !== false) {
+    fullscreenExit.focus();
+  } else if (!fullscreen && options.restoreFocus) {
+    fullscreenButton.focus();
+  }
+}
+
+function updateActiveTheme(theme, index) {
+  const names = splitName(theme.name);
+  document.querySelector("#activeIndex").textContent = pad(index);
+  document.querySelector("#activeCode").textContent = theme.code;
+  document.querySelector("#activeName").textContent = `${names.chinese} / ${names.english}`;
+  document.querySelector("#atlasCount").textContent = `${pad(index)} / ${String(themes.length).padStart(2, "0")}`;
+  document.querySelector("#openStandalone").href = `${theme.id}.html`;
+  document.title = `${theme.code} / KIT Theme Atlas`;
+  renderDirectory(search.value);
+  directory.querySelector(`[data-theme-id="${theme.id}"]`)?.scrollIntoView({ block: "nearest" });
+}
+
+function loadThemePreview(theme) {
+  if (lastPreviewId === theme.id && preview.src) return;
+  lastPreviewId = theme.id;
+  loading.classList.add("is-visible");
+  loading.querySelector("span").textContent = `正在进入 ${theme.code}`;
+  preview.title = `${theme.code} / ${theme.name}`;
+  preview.src = `${theme.id}.html`;
+}
+
+function showTheme(index, options = {}) {
   activeIndex = (index + themes.length) % themes.length;
   const theme = themes[activeIndex];
-  loading.classList.add("is-visible");
-  preview.src = `${theme.id}.html`;
-  preview.title = `${theme.name} / ${theme.direction}`;
-  document.querySelector("#activeIndex").textContent = pad(activeIndex);
-  document.querySelector("#activeName").textContent = theme.name;
-  document.querySelector("#activeDirection").textContent = theme.direction;
-  document.querySelector("#atlasCount").textContent = `${pad(activeIndex)} / ${themes.length}`;
-  document.querySelector("#openStandalone").href = `${theme.id}.html`;
-  document.querySelector("#directionTags").replaceChildren(...theme.tags.map((tag) => {
-    const span = document.createElement("span");
-    span.textContent = tag;
-    return span;
-  }));
-  document.title = `${theme.name} / KIT Theme Atlas`;
-
-  document.querySelectorAll(".theme-link").forEach((item) => {
-    item.setAttribute("aria-current", String(item.dataset.themeId === theme.id));
-  });
-  directory.querySelector(`[data-theme-id="${theme.id}"]`)?.scrollIntoView({ block: "nearest" });
-
-  if (!preserveHash) history.replaceState(null, "", `#${theme.id}`);
-  localStorage.setItem("kit-atlas-theme", theme.id);
+  homeView.hidden = true;
+  detailView.hidden = false;
+  document.body.dataset.mode = "detail";
+  updateActiveTheme(theme, activeIndex);
+  loadThemePreview(theme);
   closeSidebar();
+  if (options.focusToolbar) toolbar.focus({ preventScroll: true });
 }
 
-function openSidebar() {
-  sidebar.classList.add("is-open");
-  backdrop.classList.add("is-open");
+function showHome(options = {}) {
+  setFullscreen(false);
+  closeSidebar();
+  detailView.hidden = true;
+  homeView.hidden = false;
+  document.body.dataset.mode = "home";
+  document.title = "KIT / Theme Atlas";
+  if (options.focusGrid) document.querySelector("#themeGrid").focus({ preventScroll: true });
 }
 
-function closeSidebar() {
-  sidebar.classList.remove("is-open");
-  backdrop.classList.remove("is-open");
+function replaceHash(id) {
+  const url = new URL(location.href);
+  url.hash = id ? `#${id}` : "";
+  try {
+    history.replaceState(null, "", url);
+  } catch {
+    location.hash = id ? id : "";
+  }
+}
+
+function switchThemeTo(index) {
+  const focusWasInSidebar = sidebar.contains(document.activeElement);
+  activeIndex = (index + themes.length) % themes.length;
+  replaceHash(themes[activeIndex].id);
+  showTheme(activeIndex);
+  if (focusWasInSidebar && window.matchMedia("(max-width: 760px)").matches) {
+    toolbar.focus({ preventScroll: true });
+  }
+}
+
+function switchTheme(delta) {
+  switchThemeTo(activeIndex + delta);
+}
+
+function returnHome(options = {}) {
+  replaceHash("");
+  showHome({ focusGrid: options.focusGrid });
+}
+
+function routeFromHash() {
+  const id = location.hash.slice(1).toLowerCase();
+  if (!id) {
+    showHome();
+    return;
+  }
+  const index = themes.findIndex((theme) => theme.id === id);
+  if (index < 0) {
+    returnHome();
+    return;
+  }
+  showTheme(index, { focusToolbar: true });
 }
 
 search.addEventListener("input", () => renderDirectory(search.value));
+search.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" || !directoryMatches.length) return;
+  event.preventDefault();
+  switchThemeTo(directoryMatches[0].index);
+});
+
 preview.addEventListener("load", () => loading.classList.remove("is-visible"));
-document.querySelector("#previousTheme").addEventListener("click", () => selectTheme(activeIndex - 1));
-document.querySelector("#nextTheme").addEventListener("click", () => selectTheme(activeIndex + 1));
-document.querySelector("#openSidebar").addEventListener("click", openSidebar);
-document.querySelector("#closeSidebar").addEventListener("click", closeSidebar);
-backdrop.addEventListener("click", closeSidebar);
+document.querySelector("#backAll").addEventListener("click", () => returnHome({ focusGrid: true }));
+document.querySelector("#previousTheme").addEventListener("click", () => switchTheme(-1));
+document.querySelector("#nextTheme").addEventListener("click", () => switchTheme(1));
+document.querySelector("#fullscreenPrevious").addEventListener("click", () => switchTheme(-1));
+document.querySelector("#fullscreenNext").addEventListener("click", () => switchTheme(1));
+document.querySelector("#pcViewport").addEventListener("click", () => setViewport("pc"));
+document.querySelector("#mobileViewport").addEventListener("click", () => setViewport("mobile"));
+fullscreenButton.addEventListener("click", () => setFullscreen(true));
+fullscreenExit.addEventListener("click", () => setFullscreen(false, { restoreFocus: true }));
+openSidebarButton.addEventListener("click", () => openSidebar());
+backdrop.addEventListener("click", () => closeSidebar({ restoreFocus: true }));
 
 document.addEventListener("keydown", (event) => {
-  const typing = document.activeElement instanceof HTMLInputElement;
-  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+  const inputFocused = document.activeElement === search;
+  const typing = document.activeElement instanceof HTMLInputElement
+    || document.activeElement instanceof HTMLTextAreaElement
+    || document.activeElement?.isContentEditable;
+
+  if (
+    event.key === "/"
+    && !event.metaKey
+    && !event.ctrlKey
+    && !event.altKey
+    && !typing
+    && !detailView.hidden
+    && !fullscreen
+  ) {
     event.preventDefault();
-    openSidebar();
-    search.focus();
-    search.select();
+    openSidebar({ focusSearch: true });
     return;
   }
+
   if (event.key === "Escape") {
-    closeSidebar();
+    if (inputFocused) {
+      event.preventDefault();
+      if (search.value) {
+        search.value = "";
+        renderDirectory();
+      } else {
+        search.blur();
+      }
+      return;
+    }
+    if (fullscreen) {
+      event.preventDefault();
+      setFullscreen(false, { restoreFocus: true });
+      return;
+    }
+    if (sidebar.classList.contains("is-open")) {
+      event.preventDefault();
+      closeSidebar({ restoreFocus: true });
+      return;
+    }
+    if (!detailView.hidden) {
+      event.preventDefault();
+      returnHome({ focusGrid: true });
+    }
     return;
   }
-  if (!typing && ["ArrowLeft", "ArrowRight"].includes(event.key)) {
+
+  if (
+    !typing
+    && !detailView.hidden
+    && (event.key === "ArrowLeft" || event.key === "ArrowRight")
+  ) {
     event.preventDefault();
-    selectTheme(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
+    switchTheme(event.key === "ArrowRight" ? 1 : -1);
   }
 });
 
-window.addEventListener("hashchange", () => {
-  const index = themes.findIndex((theme) => theme.id === location.hash.slice(1).toLowerCase());
-  if (index >= 0) selectTheme(index, true);
+window.addEventListener("hashchange", routeFromHash);
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) closeSidebar();
 });
 
+renderCards();
 renderDirectory();
-const requested = location.hash.slice(1).toLowerCase() || localStorage.getItem("kit-atlas-theme") || "nova";
-const initialIndex = themes.findIndex((theme) => theme.id === requested);
-selectTheme(initialIndex >= 0 ? initialIndex : 0, initialIndex >= 0);
-
+setViewport(safeStorageGet("kit-atlas-viewport") || "pc", false);
+routeFromHash();
   </script>
 </body>
 </html>
