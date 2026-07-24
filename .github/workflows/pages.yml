@@ -23,6 +23,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build -- --base=/proteus/
+      - run: cp -r sandbox dist/sandbox
       - run: touch dist/.nojekyll
       - run: |
           cd dist
