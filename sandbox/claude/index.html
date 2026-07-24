@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme Atlas · 主题图集</title>
+<style>
+  :root{
+    --bg:#0c0c0f; --panel:#131318; --panel-2:#17171d;
+    --line:rgba(232,228,220,.12); --line-2:rgba(232,228,220,.07);
+    --ink:#e9e7e1; --dim:#8f8c86; --faint:#5b5954;
+    --accent:#d8c39a;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  button,input,a{font:inherit;color:inherit}
+  button{background:none;border:0;cursor:pointer}
+  a{text-decoration:none}
+
+  /* ---------- LANDING ---------- */
+  .landing{min-height:100%;padding:44px clamp(18px,4vw,56px) 72px}
+  .landing-head{max-width:1360px;margin:0 auto 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .landing-head h1{font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:.14em}
+  .landing-head h1 span{color:var(--faint);font-weight:400}
+  .landing-head p{color:var(--dim);font-size:13.5px;letter-spacing:.04em;margin-top:8px;max-width:60ch}
+  .landing-head .count{font-family:var(--mono);color:var(--faint);font-size:12px;letter-spacing:.18em}
+
+  .grid{max-width:1360px;margin:0 auto;display:grid;gap:clamp(14px,1.6vw,22px);
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  .card:hover{border-color:rgba(216,195,154,.5);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .thumb{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background:#0a0a0d;border-bottom:1px solid var(--line)}
+  .thumb iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;
+    transform:scale(var(--s,.25));transform-origin:top left;pointer-events:none;
+    opacity:0;transition:opacity .5s ease}
+  .thumb.loaded iframe{opacity:1}
+  .tload{position:absolute;inset:0;display:grid;place-items:center;color:var(--faint);
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    background:repeating-linear-gradient(115deg,#111116 0 12px,#141419 12px 24px);
+    transition:opacity .4s ease}
+  .thumb.loaded .tload{opacity:0;pointer-events:none}
+  .card-meta{display:flex;align-items:baseline;gap:10px;padding:13px 16px 15px}
+  .card-meta .code{font-weight:700;letter-spacing:.1em;font-size:15px}
+  .card-meta .name{color:var(--dim);font-size:12.5px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ---------- DETAIL ---------- */
+  .detail{position:fixed;inset:0;display:grid;grid-template-columns:242px 1fr;background:var(--bg)}
+  body[data-mode="grid"] .detail{display:none}
+  body[data-mode="detail"] .landing{display:none}
+
+  .side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--panel);z-index:20}
+  .home{display:flex;align-items:center;gap:8px;padding:16px 18px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-align:left}
+  .home:hover{color:var(--ink)}
+  .home b{color:var(--ink);font-weight:600;letter-spacing:.1em}
+  .side-search{padding:10px 10px 8px;border-bottom:1px solid var(--line)}
+  .side-search input{width:100%;height:32px;padding:0 10px;border:1px solid var(--line);border-radius:8px;
+    background:rgba(0,0,0,.28);color:var(--ink);font-family:inherit;font-size:12.5px;letter-spacing:.02em;outline:none;
+    transition:border-color .15s}
+  .side-search input::placeholder{color:var(--faint)}
+  .side-search input:focus{border-color:var(--accent)}
+  .side-empty{display:none;padding:20px 12px;color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-align:center}
+  .side[data-empty="1"] .side-empty{display:block}
+  .side-list{flex:1;overflow:auto;padding:8px 8px 16px}
+  .side-item{width:100%;display:grid;grid-template-columns:26px 1fr;align-items:center;gap:2px 10px;
+    padding:9px 11px;border-radius:8px;text-align:left;color:var(--dim);transition:background .15s ease,color .15s ease}
+  .side-item[hidden]{display:none}
+  .side-item:hover{background:var(--panel-2);color:var(--ink)}
+  .side-item.on{background:rgba(216,195,154,.1);color:var(--ink)}
+  .side-item.on .si-code{color:var(--accent)}
+  .si-idx{grid-row:span 2;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .side-item.on .si-idx{color:var(--accent)}
+  .si-code{font-weight:700;letter-spacing:.08em;font-size:14px}
+  .si-name{font-size:11.5px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-item:hover .si-name,.side-item.on .si-name{color:var(--dim)}
+
+  .side-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:15;border:0}
+
+  .stage{position:relative;display:flex;flex-direction:column;min-width:0}
+  .bar{flex:none;height:54px;display:flex;align-items:center;gap:14px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .menu{display:none;width:34px;height:34px;border:1px solid var(--line);border-radius:8px;color:var(--dim);font-size:15px}
+  .menu:hover{color:var(--ink);border-color:var(--accent)}
+  .cur{display:flex;align-items:center;gap:11px;min-width:0}
+  .cur .idx{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.12em}
+  .cur .code{font-weight:700;letter-spacing:.09em;font-size:15px}
+  .cur .name{display:block;color:var(--dim);font-size:11.5px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .bar-actions button,.bar-actions a{height:34px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);border-radius:8px;color:var(--dim);font-size:13px;letter-spacing:.04em;transition:border-color .15s,color .15s,background .15s}
+  .bar-actions button:hover,.bar-actions a:hover{color:var(--ink);border-color:var(--accent)}
+  .bar-actions .nav{width:34px;padding:0;font-size:15px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .seg button{height:32px;border:0;border-radius:0}
+  .seg button+button{border-left:1px solid var(--line)}
+  .seg button.on{background:rgba(216,195,154,.16);color:var(--ink)}
+  .open{font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+  .bar-actions .fs-btn{width:34px;padding:0}
+  .bar-actions .fs-btn svg{display:block;width:15px;height:15px}
+
+  /* in-page fullscreen: theme iframe fills the index; side + header hidden */
+  .detail[data-fs="1"]{grid-template-columns:1fr}
+  .detail[data-fs="1"] .side,.detail[data-fs="1"] .side-backdrop{display:none}
+  .detail[data-fs="1"] .bar{display:none}
+  .fs-exit,.fs-nav{position:fixed;z-index:40;display:none;cursor:pointer;
+    border:1px solid var(--line);background:rgba(12,12,15,.62);backdrop-filter:blur(7px);
+    color:var(--dim);font-family:var(--mono);letter-spacing:.1em;opacity:.26;
+    transition:opacity .2s,color .2s,border-color .2s,background .2s}
+  .fs-exit{top:14px;right:14px;height:32px;padding:0 14px;border-radius:8px;font-size:11px;align-items:center}
+  .fs-nav{top:50%;transform:translateY(-50%);width:40px;height:58px;border-radius:11px;font-size:22px;
+    align-items:center;justify-content:center}
+  .fs-prev{left:14px}
+  .fs-next{right:14px}
+  .fs-exit:hover,.fs-nav:hover{opacity:1;color:var(--ink);border-color:var(--accent);background:rgba(12,12,15,.92)}
+  .detail[data-fs="1"] .fs-exit,.detail[data-fs="1"] .fs-nav{display:inline-flex}
+
+  .viewport{position:relative;flex:1;min-height:0;overflow:auto;background:
+    radial-gradient(120% 90% at 50% 0%,#101015,transparent 60%),#0a0a0d}
+  .viewport[data-vp="mobile"]{display:flex;align-items:flex-start;justify-content:center;padding:20px 0 28px}
+  .frame-wrap{position:relative;background:#111}
+  .viewport[data-vp="pc"] .frame-wrap{width:100%;height:100%}
+  .viewport[data-vp="mobile"] .frame-wrap{width:390px;height:min(844px,100%);flex:none;border:1px solid var(--line);
+    border-radius:26px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+  .frame-wrap iframe{width:100%;height:100%;border:0;display:block;background:#111}
+  .ploading{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;z-index:2;
+    color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.24em;background:#0b0b0e;
+    transition:opacity .35s ease}
+  .frame-wrap:not(.loading) .ploading{opacity:0;pointer-events:none}
+  .ploading i{width:26px;height:26px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media (max-width:760px){
+    .detail{grid-template-columns:1fr}
+    .side{position:fixed;top:0;bottom:0;left:0;width:280px;transform:translateX(-100%);transition:transform .28s ease}
+    .side.open{transform:none}
+    .side.open ~ .side-backdrop{display:block}
+    .menu{display:inline-flex}
+    .cur .name{display:none}
+    .bar-actions .nav{display:none}
+    .bar-actions .open span{display:none}
+    .bar-actions{gap:6px}
+    .bar-actions button,.bar-actions a{padding:0 9px}
+  }
+</style>
+</head>
+<body data-mode="grid">
+
+  <section class="landing" id="landing">
+    <div class="landing-head">
+      <div>
+        <h1>Theme Atlas <span>· 主题图集</span></h1>
+        <p>21 套完全独立的组件主题世界 · 点卡片进入,右下实时预览,可切 PC / 手机视口。</p>
+      </div>
+      <span class="count" id="gridCount">21 WORLDS</span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="detail" id="detail">
+    <aside class="side" id="side">
+      <button class="home" id="home" type="button">&larr;&nbsp; <b>ATLAS</b>&nbsp;/ 全部主题</button>
+      <div class="side-search">
+        <input id="sideSearch" type="search" placeholder="搜索主题　快捷键 /" aria-label="搜索主题" autocomplete="off" spellcheck="false">
+      </div>
+      <nav class="side-list" id="sideList" aria-label="主题目录"></nav>
+      <p class="side-empty" id="sideEmpty">无匹配主题</p>
+    </aside>
+    <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="关闭目录"></button>
+
+    <main class="stage">
+      <header class="bar">
+        <button class="menu" id="menuBtn" type="button" aria-label="主题目录">&#9776;</button>
+        <div class="cur">
+          <span class="idx" id="curIdx">01</span>
+          <div><span class="code" id="curCode">&mdash;</span><small class="name" id="curName">&mdash;</small></div>
+        </div>
+        <div class="bar-actions">
+          <button class="nav" id="prevBtn" type="button" aria-label="上一主题">&larr;</button>
+          <button class="nav" id="nextBtn" type="button" aria-label="下一主题">&rarr;</button>
+          <span class="seg" role="group" aria-label="预览视口">
+            <button id="pcBtn" type="button">PC</button>
+            <button id="mobileBtn" type="button">Mobile</button>
+          </span>
+          <button class="fs-btn" id="fsBtn" type="button" aria-label="铺满全屏预览" title="铺满全屏 · 隐藏侧栏与顶栏">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.2 6V2.2H6M14 6V2.2h-3.8M2.2 10v3.8H6M14 10v3.8h-3.8"/></svg>
+          </button>
+          <a class="open" id="openBtn" target="_blank" rel="noopener">Open&nbsp;<span>&#8599;</span></a>
+        </div>
+      </header>
+      <div class="viewport" id="viewport" data-vp="pc">
+        <div class="frame-wrap loading" id="frameWrap">
+          <div class="ploading"><i></i><span>ENTERING WORLD</span></div>
+          <iframe id="stageFrame" title="主题预览" scrolling="yes"></iframe>
+        </div>
+      </div>
+    </main>
+
+    <button class="fs-nav fs-prev" id="fsPrev" type="button" aria-label="上一主题">&#8249;</button>
+    <button class="fs-nav fs-next" id="fsNext" type="button" aria-label="下一主题">&#8250;</button>
+    <button class="fs-exit" id="fsExit" type="button" aria-label="退出全屏">&#10005;&nbsp; 退出全屏 · Esc</button>
+  </div>
+
+<script>
+(function(){
+  "use strict";
+  var THEMES=[
+    {id:"nova",code:"NOVA",name:"科幻霓虹 HUD / Sci-fi neon"},
+    {id:"abyss",code:"ABYSS",name:"克苏鲁深渊魔典 / Eldritch grimoire"},
+    {id:"brass",code:"BRASS",name:"蒸汽朋克 / Steampunk"},
+    {id:"prism",code:"PRISM",name:"包豪斯构成 / Bauhaus"},
+    {id:"riot",code:"RIOT",name:"朋克剪报 / Punk zine"},
+    {id:"hanabi",code:"HANABI",name:"二次元赛璐璐 / Anime cel"},
+    {id:"sumi",code:"SUMI",name:"水墨禅 / Zen ink"},
+    {id:"ormolu",code:"ORMOLU",name:"洛可可宫廷 / Rococo"},
+    {id:"nocturne",code:"NOCTURNE",name:"暗夜花园 / Dark botanical"},
+    {id:"pulp",code:"PULP",name:"复古廉价小说 / Pulp paperback"},
+    {id:"totem",code:"TOTEM",name:"民艺图腾 / Folk craft"},
+    {id:"kiln",code:"KILN",name:"陶土侘寂 / Wabi-sabi"},
+    {id:"chrome",code:"CHROME",name:"千禧液态铬 / Y2K aero"},
+    {id:"arcade",code:"ARCADE",name:"8-bit 街机 / Retro arcade"},
+    {id:"bitmap",code:"BITMAP",name:"1-bit 位图 / One-bit dither"},
+    {id:"mochi",code:"MOCHI",name:"软陶泡芙 / Claymorphic squish"},
+    {id:"scribble",code:"SCRIBBLE",name:"手账涂鸦 / Notebook doodle"},
+    {id:"axon",code:"AXON",name:"轴测蓝图 / Isometric blueprint"},
+    {id:"corona",code:"CORONA",name:"日蚀玻璃 / Eclipse glass"},
+    {id:"reliquary",code:"RELIQUARY",name:"未来圣骸 / Future reliquary"},
+    {id:"gazette",code:"GAZETTE",name:"报章排印 / Broadsheet"}
+  ];
+  var $=function(s){return document.querySelector(s)};
+  var pad=function(n){return (n<9?"0":"")+(n+1)};
+  var body=document.body, grid=$("#grid"), sideList=$("#sideList");
+  var stageFrame=$("#stageFrame"), frameWrap=$("#frameWrap"), viewport=$("#viewport");
+  var side=$("#side"), active=-1;
+  var vp=localStorage.getItem("atlas-vp")||"pc";
+
+  // ---- landing grid: live hero-cropped thumbnails ----
+  THEMES.forEach(function(t,i){
+    var a=document.createElement("a");
+    a.className="card"; a.href="#"+t.id; a.setAttribute("data-i",i);
+    var thumb=document.createElement("div"); thumb.className="thumb";
+    var f=document.createElement("iframe");
+    f.setAttribute("scrolling","no"); f.setAttribute("tabindex","-1"); f.setAttribute("loading","lazy");
+    f.title=t.code+" 预览"; f.setAttribute("data-src",t.id+".html");
+    var load=document.createElement("span"); load.className="tload"; load.textContent=t.code;
+    thumb.appendChild(f); thumb.appendChild(load);
+    var meta=document.createElement("div"); meta.className="card-meta";
+    var code=document.createElement("span"); code.className="code"; code.textContent=t.code;
+    var name=document.createElement("span"); name.className="name"; name.textContent=t.name;
+    meta.appendChild(code); meta.appendChild(name);
+    a.appendChild(thumb); a.appendChild(meta);
+    a.addEventListener("click",function(e){e.preventDefault();enter(i);});
+    grid.appendChild(a);
+  });
+
+  // scale each thumbnail's 1280px iframe to fit its card width
+  var ro=new ResizeObserver(function(es){
+    es.forEach(function(e){ e.target.style.setProperty("--s", e.target.clientWidth/1280); });
+  });
+  document.querySelectorAll(".thumb").forEach(function(th){ ro.observe(th); });
+
+  // lazy-load near-viewport thumbnails, but at most a few worlds at once
+  var MAX=4, running=0, queue=[];
+  function pump(){
+    while(running<MAX && queue.length){
+      var th=queue.shift(), f=th.querySelector("iframe");
+      if(f.src || !f.getAttribute("data-src")) continue;
+      running++;
+      var done=function(t){ return function(){ t.classList.add("loaded"); running--; pump(); }; }(th);
+      f.addEventListener("load",done,{once:true});
+      f.addEventListener("error",done,{once:true});
+      f.src=f.getAttribute("data-src");
+    }
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      var f=en.target.querySelector("iframe");
+      if(en.isIntersecting && !f.src && queue.indexOf(en.target)<0) queue.push(en.target);
+    });
+    pump();
+  },{rootMargin:"400px"});
+  document.querySelectorAll(".thumb").forEach(function(th){ io.observe(th); });
+
+  // ---- sidebar (text only, no marks) ----
+  THEMES.forEach(function(t,i){
+    var b=document.createElement("button"); b.className="side-item"; b.type="button";
+    var idx=document.createElement("span"); idx.className="si-idx"; idx.textContent=pad(i);
+    var code=document.createElement("span"); code.className="si-code"; code.textContent=t.code;
+    var name=document.createElement("span"); name.className="si-name"; name.textContent=t.name;
+    b.appendChild(idx); b.appendChild(code); b.appendChild(name);
+    b.addEventListener("click",function(){ enter(i); });
+    sideList.appendChild(b);
+  });
+
+  // ---- viewport mode (remembered) ----
+  function applyVp(m){
+    vp=m; localStorage.setItem("atlas-vp",m); viewport.setAttribute("data-vp",m);
+    $("#pcBtn").classList.toggle("on",m==="pc");
+    $("#mobileBtn").classList.toggle("on",m==="mobile");
+  }
+  $("#pcBtn").addEventListener("click",function(){ applyVp("pc"); });
+  $("#mobileBtn").addEventListener("click",function(){ applyVp("mobile"); });
+
+  // ---- enter a theme (detail mode) ----
+  function enter(i){
+    active=i; var t=THEMES[i];
+    body.setAttribute("data-mode","detail");
+    frameWrap.classList.add("loading");
+    stageFrame.src=t.id+".html";
+    $("#curIdx").textContent=pad(i);
+    $("#curCode").textContent=t.code;
+    $("#curName").textContent=t.name;
+    $("#openBtn").href=t.id+".html";
+    var items=sideList.children;
+    for(var k=0;k<items.length;k++) items[k].classList.toggle("on",k===i);
+    applyVp(vp);
+    closeSide();
+    if(location.hash!=="#"+t.id) history.replaceState(null,"","#"+t.id);
+  }
+  stageFrame.addEventListener("load",function(){ frameWrap.classList.remove("loading"); });
+
+  function home(){ exitFs(); body.setAttribute("data-mode","grid"); history.replaceState(null,"","#"); }
+  $("#home").addEventListener("click",home);
+  $("#prevBtn").addEventListener("click",function(){ enter((active-1+THEMES.length)%THEMES.length); });
+  $("#nextBtn").addEventListener("click",function(){ enter((active+1)%THEMES.length); });
+
+  function closeSide(){ side.classList.remove("open"); }
+  $("#menuBtn").addEventListener("click",function(){ side.classList.add("open"); });
+  $("#sideBackdrop").addEventListener("click",closeSide);
+
+  // ---- in-page fullscreen: iframe fills index, side + header hidden; arrows still switch, Esc exits ----
+  function enterFs(){ $("#detail").setAttribute("data-fs","1"); closeSide(); }
+  function exitFs(){ $("#detail").removeAttribute("data-fs"); }
+  function isFs(){ return $("#detail").getAttribute("data-fs")==="1"; }
+  $("#fsBtn").addEventListener("click",enterFs);
+  $("#fsExit").addEventListener("click",exitFs);
+  $("#fsPrev").addEventListener("click",function(){ $("#prevBtn").click(); });
+  $("#fsNext").addEventListener("click",function(){ $("#nextBtn").click(); });
+
+  // ---- sidebar search: filter by code, name or id ----
+  var sideSearch=$("#sideSearch");
+  function filterSide(){
+    var q=sideSearch.value.trim().toLowerCase(), hit=0, items=sideList.children;
+    for(var i=0;i<items.length;i++){
+      var t=THEMES[i], on=!q||(t.code+" "+t.name+" "+t.id).toLowerCase().indexOf(q)>=0;
+      items[i].hidden=!on; if(on) hit++;
+    }
+    side.setAttribute("data-empty",hit?"0":"1");
+  }
+  sideSearch.addEventListener("input",filterSide);
+  sideSearch.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+      e.stopPropagation();
+      if(sideSearch.value){ sideSearch.value=""; filterSide(); } else sideSearch.blur();
+    }else if(e.key==="Enter"){
+      var items=sideList.children;
+      for(var i=0;i<items.length;i++) if(!items[i].hidden){ enter(i); sideSearch.blur(); break; }
+    }
+  });
+
+  document.addEventListener("keydown",function(e){
+    if(body.getAttribute("data-mode")!=="detail") return;
+    var tg=(e.target.tagName||"").toLowerCase();
+    if(tg==="input"||tg==="textarea"||e.target.isContentEditable) return;
+    if(e.key==="/"){ if(isFs()) return; e.preventDefault(); side.classList.add("open"); sideSearch.focus(); sideSearch.select(); return; }
+    if(e.key==="ArrowLeft") $("#prevBtn").click();
+    else if(e.key==="ArrowRight") $("#nextBtn").click();
+    else if(e.key==="Escape"){ if(isFs()) exitFs(); else if(side.classList.contains("open")) closeSide(); else home(); }
+  });
+
+  // deep link: /#nocturne opens that theme directly
+  var h=location.hash.replace("#","");
+  var idx=THEMES.map(function(t){return t.id}).indexOf(h);
+  if(idx>=0) enter(idx);
+})();
+</script>
+</body>
+</html>

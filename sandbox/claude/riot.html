@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STAPLEGUN — Photocopy Zine Press // RIOT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Archivo+Black&family=Bungee&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#e9e7e0;      /* photocopy gray-white — protagonist */
+  --paper-hi:#f5f3ec;   /* fresh scrap / torn highlight */
+  --paper-lo:#d7d4ca;   /* shadowed second sheet */
+  --ink:#0c0c0e;        /* dead black — protagonist */
+  --orange:#ff4a0f;     /* fluoro signal */
+  --orange-deep:#d63b00;
+  --pink:#ff2e88;       /* fluoro signal */
+  --pink-deep:#d5136c;
+  --dead:#adaaa0;       /* jammed / disabled */
+  --dead-ink:#67645c;
+  --tape:rgba(228,222,196,.62);
+
+  --f-poster:"Anton",sans-serif;
+  --f-black:"Archivo Black",sans-serif;
+  --f-body:"Archivo",system-ui,sans-serif;
+  --f-mono:"Space Mono",ui-monospace,monospace;
+  --f-type:"Special Elite","Courier New",monospace;
+  --f-serif:"DM Serif Display",Georgia,serif;
+  --f-block:"Bungee",sans-serif;
+
+  --shadow:6px 6px 0 var(--ink);
+  --cut:.07s steps(2,end);
+  --tilt-l:-2.1deg;
+  --tilt-r:1.6deg;
+
+  --torn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='16' preserveAspectRatio='none' viewBox='0 0 240 16'%3E%3Cpath d='M0,0 L240,0 L240,9 L232,14 L224,6 L216,12 L208,8 L200,15 L192,7 L184,13 L176,5 L168,14 L160,8 L152,12 L144,6 L136,15 L128,7 L120,13 L112,5 L104,14 L96,8 L88,12 L80,6 L72,15 L64,7 L56,13 L48,5 L40,14 L32,8 L24,12 L16,6 L8,13 L0,8 Z' fill='%23000'/%3E%3C/svg%3E");
+}
+
+*{box-sizing:border-box}
+html{overflow-x:hidden;scroll-behavior:smooth}
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+
+/* photocopy grain — sits over everything, subtle multiply speckle */
+.grain{
+  position:fixed;inset:0;z-index:9000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;opacity:.09;
+}
+
+/* ============ LAYOUT ============ */
+.zine{max-width:1180px;margin:0 auto;padding:0 clamp(18px,5vw,64px)}
+.band{position:relative;padding:clamp(52px,8vw,104px) 0}
+.band+.band{border-top:3px solid var(--ink)}
+.deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.band>.zine{position:relative;z-index:1}
+
+/* ============ SHARED DECORATION PARTS ============ */
+.torn{position:absolute;left:-2px;right:-2px;height:15px;background:var(--paper);pointer-events:none;z-index:2;
+  -webkit-mask:var(--torn) repeat-x;mask:var(--torn) repeat-x;-webkit-mask-size:240px 100%;mask-size:240px 100%}
+.torn--t{top:-9px}
+.torn--b{bottom:-9px;transform:scaleY(-1)}
+
+.tape{position:absolute;width:104px;height:34px;background:var(--tape);
+  border-left:1px solid rgba(0,0,0,.14);border-right:1px solid rgba(0,0,0,.14);
+  box-shadow:0 1px 4px rgba(0,0,0,.14);mix-blend-mode:multiply;pointer-events:none;z-index:6;
+  background-image:repeating-linear-gradient(90deg,transparent 0 7px,rgba(0,0,0,.05) 7px 8px)}
+.tape--orange{background:rgba(255,74,15,.34)}
+.tape--pink{background:rgba(255,46,136,.32)}
+
+.halftone{background-image:radial-gradient(var(--ink) 33%,transparent 36%);background-size:9px 9px}
+.crease{position:absolute;left:0;right:0;height:20px;pointer-events:none;z-index:4;
+  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.09) 44%,rgba(255,255,255,.55) 50%,rgba(0,0,0,.09) 56%,transparent)}
+
+.blob{position:absolute;border-radius:50%;filter:blur(2px) url(#smear);mix-blend-mode:multiply;opacity:.85}
+.smudge{position:absolute;filter:blur(9px) url(#smear);mix-blend-mode:multiply;opacity:.5}
+
+.dots-patch{position:absolute;width:180px;height:130px;
+  background:radial-gradient(var(--ink) 32%,transparent 35%) 0 0/10px 10px;
+  -webkit-mask:radial-gradient(120% 120% at 0 0,#000,transparent);mask:radial-gradient(120% 120% at 0 0,#000,transparent);
+  opacity:.5;mix-blend-mode:multiply}
+
+/* ============ RANSOM COLLAGE ============ */
+.ransom{display:inline;line-height:1.34}
+.rn{display:inline-block;padding:.02em .085em;margin:.02em .008em;color:var(--ink);
+  background:var(--paper-hi);box-shadow:1.5px 2px 0 rgba(0,0,0,.32);
+  transform:rotate(var(--r,0deg)) skewX(var(--sk,0deg));position:relative}
+.rn-in{opacity:0;animation:cut-in .18s steps(2,end) forwards}
+.rn--wob{color:var(--paper);background:var(--ink);box-shadow:2px 2px 0 var(--pink)}
+.rn--org{background:var(--orange);box-shadow:2px 2px 0 var(--ink)}
+.rn--pnk{background:var(--pink);box-shadow:2px 2px 0 var(--ink)}
+.rn--serif{font-family:var(--f-serif)!important;font-style:italic}
+.rn--type{font-family:var(--f-type)!important}
+.rn--block{font-family:var(--f-block)!important;letter-spacing:-.02em}
+.rn--tornbit{-webkit-mask:var(--torn) repeat-x 0 bottom/60px 8px,linear-gradient(#000,#000);mask:var(--torn) repeat-x 0 bottom/60px 8px,linear-gradient(#000,#000);-webkit-mask-composite:source-over;mask-composite:add}
+
+@keyframes cut-in{
+  0%{opacity:0;transform:rotate(var(--r,0deg)) skewX(var(--sk,0deg)) translate(4px,-3px)}
+  50%{opacity:1;transform:rotate(calc(var(--r,0deg) * -1)) skewX(var(--sk,0deg)) translate(-2px,2px)}
+  100%{opacity:1;transform:rotate(var(--r,0deg)) skewX(var(--sk,0deg)) translate(0,0)}
+}
+@keyframes jitter{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+}
+
+/* ============ MASTHEAD ============ */
+.mast{position:sticky;top:0;z-index:200;background:var(--ink);color:var(--paper);
+  border-bottom:3px solid var(--ink)}
+.mast__in{max-width:1180px;margin:0 auto;padding:9px clamp(18px,5vw,64px);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.mast__word{font-family:var(--f-black);font-size:clamp(19px,2.6vw,26px);letter-spacing:-.02em;
+  line-height:1;text-transform:uppercase}
+.mast__word b{color:var(--orange)}
+.mast__meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:#c9c6bd;
+  display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}
+.mast__meta span{white-space:nowrap}
+.mast__meta em{color:var(--pink);font-style:normal}
+.barcode{height:22px;width:96px;align-self:center;
+  background:repeating-linear-gradient(90deg,var(--paper) 0 2px,transparent 2px 3px,var(--paper) 3px 4px,transparent 4px 7px,var(--paper) 7px 9px,transparent 9px 10px,var(--paper) 10px 13px,transparent 13px 14px)}
+
+/* ============ HERO ============ */
+.hero{padding-top:clamp(40px,7vw,80px);padding-bottom:clamp(56px,9vw,120px)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  display:inline-flex;gap:8px;align-items:center;margin-bottom:22px}
+.eyebrow b{background:var(--ink);color:var(--paper);padding:2px 8px;letter-spacing:.1em}
+.eyebrow i{width:26px;height:2px;background:var(--orange);display:inline-block}
+
+.hero__title{font-family:var(--f-poster);text-transform:uppercase;margin:0;
+  font-size:clamp(46px,11.7vw,142px);line-height:.92;letter-spacing:-.01em}
+.hero__title .ln{display:block}
+.hero__title .ransom{display:inline}
+
+.lockup{display:flex;align-items:center;gap:14px;margin:30px 0 22px;flex-wrap:wrap}
+.lockup__mk{font-family:var(--f-black);font-size:clamp(24px,3.6vw,40px);text-transform:uppercase;
+  letter-spacing:-.02em;background:var(--orange);color:var(--ink);padding:4px 14px 6px;
+  transform:rotate(-1.4deg);box-shadow:var(--shadow);position:relative}
+.lockup__by{font-family:var(--f-type);font-size:14px;max-width:15ch;line-height:1.25;opacity:.85}
+
+.hero__lede{max-width:44ch;font-size:clamp(16px,2vw,20px);line-height:1.5;margin:0 0 30px}
+.hero__lede strong{background:var(--pink);color:var(--ink);padding:1px 5px;font-weight:600}
+.hero__cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+.hero__scrap{position:absolute;top:8%;right:2%;width:min(30vw,300px);z-index:1;transform:rotate(3.4deg)}
+.scrap-card{background:var(--paper-hi);border:2px solid var(--ink);padding:12px 12px 40px;box-shadow:8px 9px 0 var(--ink)}
+.scrap-card .win{aspect-ratio:1;background:var(--ink);position:relative;overflow:hidden}
+.scrap-card .win svg{position:absolute;inset:14%;width:72%;height:72%}
+.scrap-card .cap{font-family:var(--f-type);font-size:12px;margin-top:8px;line-height:1.2}
+
+/* ============ SECTION HEADS ============ */
+.head{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.head__no{font-family:var(--f-mono);font-size:13px;background:var(--ink);color:var(--paper);
+  padding:3px 8px;letter-spacing:.05em}
+.head__t{font-family:var(--f-black);text-transform:uppercase;font-size:clamp(26px,4.4vw,50px);
+  line-height:.95;letter-spacing:-.02em;margin:0}
+.head__t em{font-style:normal;color:var(--orange);-webkit-text-stroke:1.4px var(--ink);text-stroke:1.4px var(--ink)}
+.head__note{font-family:var(--f-type);font-size:14px;max-width:52ch;margin:0 0 34px;line-height:1.4}
+
+/* ============ SHEET ============ */
+.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);
+  padding:clamp(20px,3vw,34px);box-shadow:var(--shadow)}
+.sheet--torn{border-top:0;border-bottom:0}
+.sheet--lo{background:var(--paper-lo)}
+.tilt-l{transform:rotate(var(--tilt-l))}
+.tilt-r{transform:rotate(var(--tilt-r))}
+.sheet__tag{position:absolute;top:-13px;left:20px;font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.08em;background:var(--ink);color:var(--paper);padding:2px 9px;z-index:7}
+
+.grid{display:grid;gap:clamp(20px,3vw,34px)}
+.grid--2{grid-template-columns:1fr 1fr}
+.grid--desk{grid-template-columns:1.15fr .85fr}
+
+/* ============ BUTTONS ============ */
+.btnrow{display:flex;gap:18px 20px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--f-black);text-transform:uppercase;font-size:15px;letter-spacing:.01em;
+  border:2px solid var(--ink);background:var(--paper-hi);color:var(--ink);
+  padding:12px 20px;cursor:pointer;box-shadow:var(--shadow);position:relative;
+  transition:transform var(--cut),box-shadow var(--cut);line-height:1}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:8px 8px 0 var(--ink);animation:jitter .16s steps(2,end) 1}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.btn--primary{background:var(--orange);color:var(--ink)}
+.btn--pink{background:var(--pink);color:var(--ink)}
+.btn--wire{background:var(--ink);color:var(--paper)}
+.btn--ghost{background:transparent;box-shadow:3px 3px 0 var(--ink)}
+.btn:disabled,.btn.is-dead{background:var(--dead);color:var(--dead-ink);border-color:var(--dead-ink);
+  box-shadow:none;cursor:not-allowed;transform:none}
+.btn:disabled:hover,.btn.is-dead:hover{transform:none;box-shadow:none;animation:none}
+.btn--icon{padding:11px;display:inline-grid;place-items:center;width:44px;height:44px}
+.btn--icon svg{width:20px;height:20px}
+
+/* focus — fluoro, chunky */
+:focus{outline:none}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.btn--pink:focus-visible,.btn--primary:focus-visible{outline-color:var(--ink)}
+.btn--wire:focus-visible{outline-color:var(--orange)}
+
+/* ============ FIELDS ============ */
+.field{display:flex;flex-direction:column;gap:8px}
+.label{font-family:var(--f-black);text-transform:uppercase;font-size:12px;letter-spacing:.08em;
+  display:inline-flex;align-items:center;gap:8px}
+.label .req{color:var(--orange)}
+.help{font-family:var(--f-type);font-size:12.5px;opacity:.8;margin:0}
+.input{font-family:var(--f-type);font-size:16px;background:var(--paper-hi);color:var(--ink);
+  border:2px solid var(--ink);padding:12px 14px;box-shadow:inset 2px 2px 0 rgba(0,0,0,.08);width:100%}
+.input::placeholder{color:#8b887f}
+.input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+
+.count{font-family:var(--f-mono);font-size:11px;align-self:flex-end;opacity:.7}
+
+/* rubber-stamp radio + checkbox */
+.opt{display:flex;align-items:center;gap:11px;cursor:pointer;font-family:var(--f-body);
+  font-weight:600;font-size:15px;padding:5px 0;user-select:none}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt .box{width:24px;height:24px;border:2.5px solid var(--ink);background:var(--paper-hi);
+  flex:0 0 auto;display:grid;place-items:center;transition:none;position:relative}
+.opt--radio .box{border-radius:50%}
+.opt .box svg{width:16px;height:16px;opacity:0;transform:scale(.4)}
+.opt input:checked+.box{background:var(--orange)}
+.opt input:checked+.box svg{opacity:1;transform:scale(1) rotate(-6deg)}
+.opt--radio input:checked+.box{background:var(--pink)}
+.opt input:focus-visible+.box{outline:3px solid var(--pink);outline-offset:2px}
+.opt input:disabled~*{opacity:.42}
+.opt:has(input:disabled){cursor:not-allowed}
+
+/* switch — hard-cut slam */
+.switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.switch input{position:absolute;opacity:0;width:0;height:0}
+.switch .track{width:74px;height:36px;border:2.5px solid var(--ink);background:var(--paper-hi);
+  position:relative;flex:0 0 auto}
+.switch .knob{position:absolute;top:2px;left:2px;width:28px;height:28px;background:var(--ink);
+  transition:left var(--cut),background var(--cut)}
+.switch input:checked+.track{background:var(--orange)}
+.switch input:checked+.track .knob{left:42px;background:var(--ink)}
+.switch input:focus-visible+.track{outline:3px solid var(--pink);outline-offset:3px}
+.switch__state{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;min-width:4ch}
+
+/* slider */
+.range{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:pointer}
+.range::-webkit-slider-runnable-track{height:14px;background:var(--paper-hi);border:2px solid var(--ink);
+  background-image:radial-gradient(var(--ink) 30%,transparent 33%);background-size:7px 7px}
+.range::-moz-range-track{height:14px;background:var(--paper-hi);border:2px solid var(--ink)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:30px;background:var(--orange);
+  border:2.5px solid var(--ink);margin-top:-10px;box-shadow:2px 2px 0 var(--ink)}
+.range::-moz-range-thumb{width:22px;height:30px;background:var(--orange);border:2.5px solid var(--ink);border-radius:0}
+.range:focus-visible{outline:3px solid var(--pink);outline-offset:4px}
+.readout{font-family:var(--f-mono);font-size:26px;font-weight:700}
+.readout small{font-size:13px;opacity:.7}
+
+.toneswatch{width:100%;height:78px;border:2px solid var(--ink);position:relative;overflow:hidden;
+  background:var(--paper-hi);background-image:radial-gradient(var(--ink) 45%,transparent 48%);
+  background-size:calc(6px + var(--tone,0)*14px) calc(6px + var(--tone,0)*14px)}
+.toneswatch b{position:absolute;right:8px;bottom:6px;font-family:var(--f-mono);font-size:11px;
+  background:var(--paper);padding:1px 5px}
+
+/* ============ SELECT (self-drawn) ============ */
+.select{position:relative;font-family:var(--f-body)}
+.select__btn{width:100%;font-family:var(--f-black);text-transform:uppercase;font-size:14px;letter-spacing:.02em;
+  background:var(--paper-hi);border:2px solid var(--ink);padding:13px 16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow);
+  transition:box-shadow var(--cut),transform var(--cut)}
+.select__btn:hover{transform:translate(-1px,-1px);box-shadow:8px 8px 0 var(--ink)}
+.select__btn:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.select__btn .car{width:0;height:0;border:7px solid transparent;border-top-color:var(--ink);margin-top:5px;transition:transform var(--cut)}
+.select.open .select__btn .car{transform:rotate(180deg) translateY(-4px)}
+.select__pop{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:50;
+  background:var(--paper-hi);border:2px solid var(--ink);box-shadow:var(--shadow);
+  padding:5px;display:none;transform:rotate(-.5deg)}
+.select.open .select__pop{display:block}
+.select__opt{font-family:var(--f-body);font-weight:600;font-size:15px;padding:11px 12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid transparent}
+.select__opt:hover,.select__opt.active{background:var(--ink);color:var(--paper)}
+.select__opt[aria-selected="true"]{border-color:var(--ink)}
+.select__opt[aria-selected="true"]::after{content:"◄ PICKED";font-family:var(--f-mono);font-size:10px;color:var(--orange)}
+.select__opt:hover[aria-selected="true"]::after,.select__opt.active[aria-selected="true"]::after{color:var(--orange)}
+
+/* ============ TABS ============ */
+.tabs__list{display:flex;gap:8px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:0;margin-bottom:0}
+.tab{font-family:var(--f-black);text-transform:uppercase;font-size:14px;letter-spacing:.02em;
+  background:var(--paper-lo);border:2px solid var(--ink);border-bottom:0;padding:11px 18px;cursor:pointer;
+  position:relative;top:3px;transition:none}
+.tab[aria-selected="true"]{background:var(--orange);color:var(--ink);top:0;padding-bottom:14px}
+.tab:hover:not([aria-selected="true"]){background:var(--paper-hi)}
+.tab:focus-visible{outline:3px solid var(--pink);outline-offset:-3px;z-index:2}
+.tabs__panel{border:2px solid var(--ink);border-top:0;padding:clamp(20px,3vw,30px);background:var(--paper);
+  animation:cut-in .12s steps(2,end)}
+.tabs__panel[hidden]{display:none}
+.tabs__panel h4{font-family:var(--f-black);text-transform:uppercase;margin:0 0 10px;font-size:18px}
+.tabs__panel p{margin:0 0 14px;max-width:56ch}
+
+.minigrid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:6px}
+.minigrid i{aspect-ratio:1;border:1.5px solid var(--ink);background:var(--paper-hi)}
+.minigrid i:nth-child(3n){background:var(--orange);transform:rotate(4deg)}
+.minigrid i:nth-child(4n){background:var(--ink);transform:rotate(-3deg)}
+.minigrid i:nth-child(5n){background:var(--pink)}
+
+/* ============ METER / GAUGE ============ */
+.meter{height:30px;border:2px solid var(--ink);background:var(--paper-hi);position:relative;overflow:hidden}
+.meter__fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--orange);
+  background-image:radial-gradient(rgba(0,0,0,.55) 34%,transparent 37%);background-size:9px 9px;
+  transition:width var(--cut)}
+.meter__pct{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);
+  font-weight:700;font-size:13px;mix-blend-mode:difference;color:#fff}
+
+.gauge{display:flex;align-items:center;gap:18px}
+.gauge svg{width:112px;height:112px;flex:0 0 auto}
+.gauge__ring{fill:none;stroke:var(--paper-lo);stroke-width:13}
+.gauge__arc{fill:none;stroke:var(--orange);stroke-width:13;stroke-linecap:butt;
+  transition:stroke-dashoffset var(--cut),stroke var(--cut)}
+.gauge__lab{font-family:var(--f-mono);font-size:12px;line-height:1.5}
+.gauge__lab b{font-family:var(--f-black);font-size:20px;display:block}
+
+/* ============ MODAL ============ */
+.scrim{position:fixed;inset:0;z-index:500;background:rgba(12,12,14,.72);
+  background-image:radial-gradient(rgba(0,0,0,.4) 30%,transparent 33%);background-size:8px 8px;
+  display:none;place-items:center;padding:22px}
+.scrim.open{display:grid}
+.modal{width:min(520px,100%);background:var(--paper);border:3px solid var(--ink);box-shadow:12px 12px 0 var(--ink);
+  padding:clamp(24px,4vw,40px);position:relative;transform:rotate(-.8deg);
+  animation:rip .16s steps(3,end)}
+.scrim.open .modal{}
+.modal__k{position:absolute;top:-14px;right:20px}
+.modal h3{font-family:var(--f-poster);text-transform:uppercase;font-size:clamp(26px,5vw,42px);
+  line-height:.92;margin:0 0 14px}
+.modal p{max-width:46ch;margin:0 0 12px}
+.modal .echo{font-family:var(--f-type);background:var(--paper-lo);border-left:5px solid var(--orange);
+  padding:10px 14px;margin:14px 0 22px;word-break:break-word}
+.modal__row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.modal__x{position:absolute;top:10px;right:12px;background:none;border:0;font-family:var(--f-black);
+  font-size:22px;cursor:pointer;line-height:1;color:var(--ink);padding:4px 8px}
+.modal__x:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+@keyframes rip{
+  0%{clip-path:polygon(0 46%,100% 44%,100% 56%,0 54%);opacity:.3}
+  60%{clip-path:polygon(0 8%,100% 2%,100% 96%,0 94%);opacity:1}
+  100%{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:1}
+}
+
+/* ============ TOAST ============ */
+.toasts{position:fixed;top:64px;right:18px;z-index:800;display:flex;flex-direction:column;gap:12px;
+  width:min(340px,calc(100vw - 36px));pointer-events:none}
+.toast{background:var(--paper-hi);border:2.5px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  padding:14px 40px 16px 16px;position:relative;pointer-events:auto;transform:rotate(-1deg);
+  animation:rip .18s steps(3,end)}
+.toast--org{border-left:9px solid var(--orange)}
+.toast--pnk{border-left:9px solid var(--pink)}
+.toast__t{font-family:var(--f-black);text-transform:uppercase;font-size:13px;letter-spacing:.04em;margin-bottom:3px}
+.toast__m{font-family:var(--f-type);font-size:14px;line-height:1.3;word-break:break-word}
+.toast__x{position:absolute;top:6px;right:8px;background:none;border:0;cursor:pointer;
+  font-family:var(--f-black);font-size:18px;line-height:1;padding:3px 6px;color:var(--ink)}
+.toast__x:focus-visible{outline:3px solid var(--pink);outline-offset:1px}
+.toast__bar{position:absolute;left:0;bottom:0;height:5px;background:var(--ink);width:100%}
+.toast__bar.run{animation:drain 4.2s linear forwards}
+@keyframes drain{to{width:0}}
+
+/* ============ TOOLTIP ============ */
+.tip{position:fixed;z-index:900;background:var(--ink);color:var(--paper);font-family:var(--f-type);
+  font-size:13px;padding:8px 11px;max-width:230px;box-shadow:4px 4px 0 var(--orange);
+  pointer-events:none;display:none;transform:rotate(-1deg)}
+.tip.show{display:block;animation:cut-in .1s steps(2,end)}
+.tip::after{content:"";position:absolute;left:calc(var(--tx,50%) - 6px);bottom:-8px;
+  border:7px solid transparent;border-top-color:var(--ink);border-bottom:0}
+.hasTip{border-bottom:2px dotted var(--ink);cursor:help}
+
+/* ============ FOOTER ============ */
+.foot{background:var(--ink);color:var(--paper);padding:clamp(40px,6vw,72px) 0 46px}
+.foot .zine{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
+.foot__big{font-family:var(--f-poster);text-transform:uppercase;font-size:clamp(30px,6vw,64px);line-height:.9;margin:0}
+.foot__big em{font-style:normal;color:var(--pink)}
+.foot__meta{font-family:var(--f-mono);font-size:12px;line-height:1.7;color:#c9c6bd;max-width:40ch}
+.foot__meta b{color:var(--orange)}
+.foot .barcode{width:150px;height:34px}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:760px){
+  :root{--tilt-l:-.7deg;--tilt-r:.5deg}
+  .grid--2,.grid--desk{grid-template-columns:1fr}
+  .hero__scrap{display:none}
+  .hero__title{font-size:clamp(38px,12.4vw,84px)}
+  .toasts{top:auto;bottom:14px;right:14px;left:14px;width:auto}
+  .minigrid{grid-template-columns:repeat(4,1fr)}
+  .tilt-l,.tilt-r{transform:rotate(0deg)}
+  .mast__meta{width:100%;margin-left:0}
+}
+@media (max-width:420px){
+  .btn{font-size:14px;padding:11px 15px}
+  .barcode{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rn-in{opacity:1!important}
+}
+</style>
+</head>
+<body>
+
+<!-- inline SVG filter for ink smear + reusable icon symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="smear"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="22"/></filter>
+  <symbol id="i-fist" viewBox="0 0 24 24"><path fill="currentColor" d="M7 11V6.5a1.5 1.5 0 013 0V11h1V5.5a1.5 1.5 0 013 0V11h1V6.5a1.5 1.5 0 013 0V13c0 4-2.5 7-6 7s-6-2.5-6-6.5V9.5a1.5 1.5 0 013 0V11z"/></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L21 18M8.5 16.5L21 6"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" d="M5 13l4 5L20 5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-spray" viewBox="0 0 24 24"><g fill="currentColor"><rect x="8" y="9" width="8" height="12"/><rect x="9" y="5" width="6" height="4"/><circle cx="18" cy="4" r="1.1"/><circle cx="20.5" cy="6" r="1.1"/><circle cx="19" cy="8" r="1.1"/></g></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a6 6 0 00-6 6h3a3 3 0 116 0c0 2-3 2.2-3 5v1h3v-.6c0-1.8 3-2.4 3-5.4a6 6 0 00-6-6zm-1.5 15h3v3h-3z"/></symbol>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="mast">
+  <div class="mast__in">
+    <div class="mast__word">STAPLE<b>GUN</b></div>
+    <div class="mast__meta">
+      <span>ISSUE No.<em>07</em></span>
+      <span>CODE // <em>RIOT</em></span>
+      <span>DIST. FREE</span>
+      <span id="clock">--:--:--</span>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="band hero">
+  <div class="deco" aria-hidden="true">
+    <div class="blob" style="width:260px;height:200px;background:var(--pink);left:-70px;top:34%"></div>
+    <div class="smudge" style="width:340px;height:160px;background:var(--orange);right:6%;bottom:6%"></div>
+    <div class="dots-patch" style="left:4%;bottom:8%"></div>
+  </div>
+
+  <div class="hero__scrap" aria-hidden="true">
+    <div class="scrap-card">
+      <span class="tape tape--orange" style="top:-16px;left:36%;transform:rotate(-8deg)"></span>
+      <div class="win"><svg style="color:var(--orange)"><use href="#i-fist"/></svg></div>
+      <div class="cap">EXHIBIT A:<br>the last thing a censor sees</div>
+    </div>
+  </div>
+
+  <div class="zine">
+    <span class="eyebrow"><b>SELF-PUBLISHED</b><i></i>NO PERMISSION ASKED</span>
+
+    <h1 class="hero__title">
+      <span class="ln"><span class="ransom" data-ransom="PRINT IT"></span></span>
+      <span class="ln"><span class="ransom" data-ransom="YOURSELF"></span></span>
+    </h1>
+
+    <div class="lockup">
+      <span class="lockup__mk">STAPLEGUN
+        <span class="tape tape--pink" style="top:-13px;right:-10px;width:60px;transform:rotate(12deg)"></span>
+      </span>
+      <span class="lockup__by">the photocopy zine press, in your browser</span>
+    </div>
+
+    <p class="hero__lede">A press for people who were never going to <strong>wait for a publisher</strong>. Paste it up, run off five hundred, staple it shut, and hit the street before anyone can say no.</p>
+
+    <div class="hero__cta">
+      <button class="btn btn--primary" data-toast='{"t":"Press warming","m":"Drum charged. Feed the first master.","k":"org"}'>Run it off</button>
+      <a class="btn btn--ghost" href="#pasteup">Read the manifesto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PRESS / BUTTONS ============ -->
+<section class="band">
+  <div class="deco" aria-hidden="true">
+    <div class="dots-patch" style="right:2%;top:12%;transform:scaleX(-1)"></div>
+    <div class="blob" style="width:150px;height:150px;background:var(--orange);right:-40px;bottom:-30px;opacity:.6"></div>
+  </div>
+  <div class="zine">
+    <div class="head">
+      <span class="head__no">01</span>
+      <h2 class="head__t">The <em>Press</em></h2>
+    </div>
+    <p class="head__note">Every control is a machine part. Hit it and it moves — hard cut, no easing, like a copier grabbing paper.</p>
+
+    <div class="sheet tilt-r">
+      <span class="sheet__tag">CONTROL PANEL</span>
+      <span class="tape" style="top:-15px;right:28px;transform:rotate(6deg)"></span>
+      <div class="btnrow">
+        <button class="btn btn--primary" data-toast='{"t":"Run started","m":"500 copies queued on the drum.","k":"org"}'>Run off 500</button>
+        <button class="btn btn--pink" data-toast='{"t":"Stapled","m":"Corner staple driven. Sharp edge, careful.","k":"pnk"}'>Staple it</button>
+        <button class="btn btn--ghost" data-toast='{"t":"Proof pulled","m":"One test sheet. Check the toner before you commit.","k":"org"}'>Pull a proof</button>
+        <button class="btn btn--wire" data-toast='{"t":"Sprayed","m":"Wheatpaste up. That poster is not coming down clean.","k":"pnk"}'>Spray it up</button>
+        <button class="btn" disabled aria-label="Feeder jammed, disabled">Jammed</button>
+        <button class="btn btn--icon" data-tip="Shake the toner cartridge — evens out the streaks." aria-label="Shake toner"><svg><use href="#i-spray"/></svg></button>
+      </div>
+      <p class="help" style="margin-top:18px">Four ways to say yes, one that says the feeder is jammed, and a shaker with a tip on hover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASTE-UP / FORM CONTROLS ============ -->
+<section class="band" id="pasteup">
+  <div class="deco" aria-hidden="true">
+    <div class="smudge" style="width:280px;height:140px;background:var(--pink);left:-60px;top:20%;opacity:.4"></div>
+  </div>
+  <div class="zine">
+    <div class="head">
+      <span class="head__no">02</span>
+      <h2 class="head__t">Paste-up <em>desk</em></h2>
+    </div>
+    <p class="head__note">Cut the pieces, lay them crooked on purpose, glue them down. The grid is off because the world is.</p>
+
+    <div class="grid grid--desk">
+      <div class="sheet sheet--torn tilt-l">
+        <i class="torn torn--t"></i><i class="torn torn--b"></i>
+        <span class="sheet__tag">MASTER SHEET</span>
+
+        <div class="field" style="margin-bottom:26px">
+          <label class="label" for="cover">Cover headline <span class="req">*</span></label>
+          <input class="input" id="cover" type="text" maxlength="42" placeholder="e.g. THE RENT IS TOO DAMN HIGH" value="TEAR DOWN THE FRONT PAGE">
+          <span class="count"><b id="ccount">24</b>/42</span>
+        </div>
+
+        <fieldset class="field" style="border:0;padding:0;margin:0 0 24px;min-width:0">
+          <legend class="label" style="margin-bottom:6px">Toner density
+            <span class="hasTip" data-tip="Crank it past 80% and the blacks bleed — very punk, very hard to read.">?</span>
+          </legend>
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+            <input class="range" id="toner" type="range" min="0" max="100" value="62" aria-label="Toner density percent">
+            <span class="readout"><span id="tval">62</span><small>%</small></span>
+          </div>
+          <div class="toneswatch" id="swatch" aria-hidden="true"><b>PREVIEW</b></div>
+        </fieldset>
+
+        <div class="field">
+          <span class="label" style="margin-bottom:6px">Binding</span>
+          <div class="select" id="bind">
+            <button class="select__btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span data-value>Saddle staple</span><span class="car" aria-hidden="true"></span>
+            </button>
+            <ul class="select__pop" role="listbox" aria-label="Binding style" tabindex="-1">
+              <li class="select__opt" role="option" aria-selected="true">Saddle staple</li>
+              <li class="select__opt" role="option" aria-selected="false">Corner staple</li>
+              <li class="select__opt" role="option" aria-selected="false">Rubber band</li>
+              <li class="select__opt" role="option" aria-selected="false">Duct tape spine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div class="sheet sheet--lo tilt-r">
+          <span class="sheet__tag">STOCK</span>
+          <span class="tape tape--orange" style="top:-15px;left:24px;transform:rotate(-7deg)"></span>
+          <span class="label" style="margin-bottom:10px;display:block">Paper stock <span class="req">*</span></span>
+          <label class="opt opt--radio"><input type="radio" name="stock" checked><span class="box"><svg><use href="#i-check"/></svg></span>Newsprint — cheap, grey, honest</label>
+          <label class="opt opt--radio"><input type="radio" name="stock"><span class="box"><svg><use href="#i-check"/></svg></span>Cardstock — for the cover</label>
+          <label class="opt opt--radio"><input type="radio" name="stock"><span class="box"><svg><use href="#i-check"/></svg></span>Recycled — flecked, righteous</label>
+        </div>
+
+        <div class="sheet">
+          <span class="sheet__tag">FINISHING</span>
+          <span class="label" style="margin-bottom:10px;display:block">Finishing</span>
+          <label class="opt"><input type="checkbox" checked><span class="box"><svg><use href="#i-x"/></svg></span>Staple the spine</label>
+          <label class="opt"><input type="checkbox"><span class="box"><svg><use href="#i-x"/></svg></span>Fold in half</label>
+          <label class="opt"><input type="checkbox" disabled><span class="box"><svg><use href="#i-x"/></svg></span>Perfect-bind (out of glue)</label>
+
+          <hr style="border:0;border-top:2px dashed var(--ink);margin:18px 0">
+
+          <label class="switch">
+            <input type="checkbox" id="mode">
+            <span class="track"><span class="knob"></span></span>
+            <span>Press mode</span>
+            <span class="switch__state" id="modelab">DRAFT</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF SHEET / TABS + METERS ============ -->
+<section class="band">
+  <div class="deco" aria-hidden="true">
+    <div class="dots-patch" style="left:1%;top:6%"></div>
+    <div class="blob" style="width:200px;height:200px;background:var(--pink);right:-60px;top:30%;opacity:.5"></div>
+  </div>
+  <div class="zine">
+    <div class="head">
+      <span class="head__no">03</span>
+      <h2 class="head__t">Proof <em>sheet</em></h2>
+    </div>
+    <p class="head__note">Before the run: check the layout, watch the toner, plan the drop. Tabs hard-cut — no fade, this is a copier not a keynote.</p>
+
+    <div class="grid grid--desk">
+      <div class="tabs" id="proof">
+        <div class="tabs__list" role="tablist" aria-label="Proof sheet">
+          <button class="tab" role="tab" id="t-layout" aria-controls="p-layout" aria-selected="true">Layout</button>
+          <button class="tab" role="tab" id="t-toner" aria-controls="p-toner" aria-selected="false" tabindex="-1">Toner</button>
+          <button class="tab" role="tab" id="t-distro" aria-controls="p-distro" aria-selected="false" tabindex="-1">Distro</button>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="p-layout" aria-labelledby="t-layout">
+          <h4>Paste it crooked</h4>
+          <p>Sixteen pages, one folded sheet. Drag a column out of true and the reader's eye trips — that trip is the whole point.</p>
+          <div class="minigrid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="p-toner" aria-labelledby="t-toner" hidden>
+          <h4>Watch the cartridge</h4>
+          <p>The gauge reads straight off the density slider on the paste-up desk. Ride it low and you'll ghost; ride it high and you'll smear.</p>
+          <div class="gauge">
+            <svg viewBox="0 0 112 112" aria-hidden="true">
+              <circle class="gauge__ring" cx="56" cy="56" r="42"/>
+              <circle class="gauge__arc" id="arc" cx="56" cy="56" r="42" transform="rotate(-90 56 56)" stroke-dasharray="263.9" stroke-dashoffset="100"/>
+            </svg>
+            <div class="gauge__lab">TONER LEFT<b id="gval">62%</b>enough for one honest run</div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="p-distro" aria-labelledby="t-distro" hidden>
+          <h4>Hit the street</h4>
+          <p>Record shops, laundromats, the noticeboard nobody polices. Leave a stack, take nothing, come back Friday.</p>
+          <ul style="font-family:var(--f-type);line-height:1.9;padding-left:20px;margin:0">
+            <li>Basement show — the one with no address</li>
+            <li>The good coffee place that hates us</li>
+            <li>Every telephone pole on 4th</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sheet tilt-r">
+        <span class="sheet__tag">RUN QUEUE</span>
+        <span class="tape tape--pink" style="top:-15px;right:20px;transform:rotate(5deg)"></span>
+        <p class="help" style="margin:0 0 12px">Feed the drum and watch the run climb in chunks.</p>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="runmeter">
+          <div class="meter__fill" id="runfill"></div>
+          <span class="meter__pct" id="runpct">0%</span>
+        </div>
+        <div class="btnrow" style="margin-top:20px">
+          <button class="btn btn--primary" id="runbtn">Run off</button>
+          <button class="btn btn--ghost" id="resetbtn">Reset drum</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HIT THE STREET / MODAL + TOAST ============ -->
+<section class="band">
+  <div class="deco" aria-hidden="true">
+    <div class="smudge" style="width:360px;height:180px;background:var(--orange);left:20%;bottom:-40px;opacity:.35"></div>
+    <div class="dots-patch" style="right:3%;bottom:10%;transform:scale(1.3)"></div>
+  </div>
+  <div class="zine">
+    <div class="head">
+      <span class="head__no">04</span>
+      <h2 class="head__t">Hit the <em>street</em></h2>
+    </div>
+    <p class="head__note">Nothing is real until it's on a wall. Send the issue out, or fire off a note to the crew — your words, verbatim.</p>
+
+    <div class="sheet tilt-l">
+      <span class="sheet__tag">DISTRO</span>
+      <div class="btnrow">
+        <button class="btn btn--primary" id="sendbtn">Send No.07 to the street</button>
+        <button class="btn btn--pink" id="firebtn">Fire off a note</button>
+        <button class="btn btn--wire" data-toast='{"t":"Saved to the archive","m":"Filed under evidence. Nobody subpoenas a zine.","k":"org"}'>Archive it</button>
+      </div>
+      <p class="help" style="margin-top:18px">The note carries whatever you typed as the cover headline. The send asks first — some things you can't un-print.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="zine">
+    <div>
+      <h2 class="foot__big">Steal <em>this</em> zine</h2>
+      <p class="foot__meta">Photocopied at 3AM on a machine that owes nobody. <b>STAPLEGUN</b> — no login, no paywall, no permission. If you can read it, you can run it off.</p>
+    </div>
+    <div style="text-align:right">
+      <div class="barcode" aria-hidden="true"></div>
+      <p class="foot__meta" style="margin-top:10px">© NOBODY · ISSUE No.07 · CODE RIOT</p>
+    </div>
+  </div>
+</footer>
+
+<!-- overlays -->
+<div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="mtitle" aria-describedby="mdesc">
+  <div class="modal">
+    <button class="modal__x" id="modalx" aria-label="Close without sending">✕</button>
+    <span class="tape modal__k" style="transform:rotate(-4deg)" aria-hidden="true"></span>
+    <h3 id="mtitle">Send it to the street?</h3>
+    <p id="mdesc">Five hundred copies of Issue No.07 leave the press and go up on every pole from here to the river. This is the cover they'll read:</p>
+    <div class="echo" id="echo">TEAR DOWN THE FRONT PAGE</div>
+    <div class="modal__row">
+      <button class="btn btn--primary" id="confirm">Yes — hit the street</button>
+      <button class="btn btn--ghost" id="cancel">Not yet</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- RANSOM COLLAGE ---------- */
+  var STYLES = ["","rn--wob","rn--org","rn--pnk","rn--serif","rn--type","rn--block","rn--org rn--block","rn--wob rn--serif","rn--pnk rn--type"];
+  var SEQ = [0,4,6,2,9,1,5,3,7,8,2,6,0,4,1,9,5,3];
+  var ROT = [-6,4,-3,7,-5,2,-7,5,-2,6,-4,3,-6,5,-3,4,-7,2];
+  var SKW = [-4,3,-2,5,0,-5,2,-3,4,-1,3,-4,0,5,-2,3,-5,2];
+  function ransomize(host){
+    var text = host.getAttribute("data-ransom") || host.textContent;
+    host.textContent = "";
+    var i=0, delay=0;
+    text.split("").forEach(function(ch){
+      if(ch === " "){ host.appendChild(document.createTextNode(" ")); return; }
+      var span = document.createElement("span");
+      span.className = "rn " + STYLES[SEQ[i % SEQ.length]] + (i%5===0 ? " rn--tornbit" : "");
+      span.style.setProperty("--r", ROT[i % ROT.length] + "deg");
+      span.style.setProperty("--sk", SKW[i % SKW.length] + "deg");
+      span.textContent = ch;
+      if(!reduce){
+        span.classList.add("rn-in");
+        span.style.animationDelay = delay + "ms";
+        delay += 55;
+      }
+      host.appendChild(span);
+      i++;
+    });
+  }
+  $$(".ransom").forEach(ransomize);
+
+  /* ---------- CLOCK ---------- */
+  var clock = $("#clock");
+  function tick(){
+    var d = new Date();
+    var p = function(n){return (n<10?"0":"")+n};
+    clock.textContent = p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds());
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- TOASTS (textContent only) ---------- */
+  var toastWrap = $("#toasts");
+  var MAX = 4;
+  function toast(title, msg, kind){
+    var el = document.createElement("div");
+    el.className = "toast" + (kind==="pnk" ? " toast--pnk" : " toast--org");
+    el.setAttribute("role","status");
+    var t = document.createElement("div"); t.className = "toast__t"; t.textContent = title;
+    var m = document.createElement("div"); m.className = "toast__m"; m.textContent = msg;
+    var x = document.createElement("button"); x.className = "toast__x"; x.type="button";
+    x.setAttribute("aria-label","Dismiss"); x.textContent = "✕";
+    var bar = document.createElement("div"); bar.className = "toast__bar" + (reduce ? "" : " run");
+    el.appendChild(t); el.appendChild(m); el.appendChild(x); el.appendChild(bar);
+    toastWrap.insertBefore(el, toastWrap.firstChild);
+    while(toastWrap.children.length > MAX){ toastWrap.removeChild(toastWrap.lastChild); }
+    var timer = setTimeout(remove, 4200);
+    function remove(){ clearTimeout(timer); if(el.parentNode) el.parentNode.removeChild(el); }
+    x.addEventListener("click", remove);
+  }
+  $$("[data-toast]").forEach(function(b){
+    b.addEventListener("click", function(){
+      try{ var d = JSON.parse(b.getAttribute("data-toast")); toast(d.t, d.m, d.k); }catch(e){}
+    });
+  });
+
+  /* ---------- COVER INPUT ---------- */
+  var cover = $("#cover"), ccount = $("#ccount");
+  function syncCount(){ ccount.textContent = cover.value.length; }
+  cover.addEventListener("input", syncCount); syncCount();
+
+  /* ---------- TONER SLIDER -> readout, swatch, gauge ---------- */
+  var toner = $("#toner"), tval=$("#tval"), swatch=$("#swatch"),
+      arc=$("#arc"), gval=$("#gval");
+  var CIRC = 263.9;
+  function syncToner(){
+    var v = +toner.value;
+    tval.textContent = v;
+    swatch.style.setProperty("--tone", (v/100).toFixed(3));
+    gval.textContent = v + "%";
+    arc.setAttribute("stroke-dashoffset", (CIRC * (1 - v/100)).toFixed(1));
+    arc.setAttribute("stroke", v > 82 ? "#ff2e88" : "#ff4a0f");
+  }
+  toner.addEventListener("input", syncToner); syncToner();
+
+  /* ---------- SWITCH label ---------- */
+  var mode = $("#mode"), modelab = $("#modelab");
+  mode.addEventListener("change", function(){
+    modelab.textContent = mode.checked ? "LIVE" : "DRAFT";
+    modelab.style.color = mode.checked ? "var(--orange-deep)" : "";
+  });
+
+  /* ---------- SELECT (self-drawn listbox) ---------- */
+  (function(){
+    var root = $("#bind"), btn = $(".select__btn", root), pop = $(".select__pop", root),
+        label = $("[data-value]", root), opts = $$(".select__opt", root), idx = 0;
+    opts.forEach(function(o,i){ if(o.getAttribute("aria-selected")==="true") idx=i; });
+    function open(){ root.classList.add("open"); btn.setAttribute("aria-expanded","true"); active(idx); pop.focus(); document.addEventListener("click", outside); }
+    function close(focus){ root.classList.remove("open"); btn.setAttribute("aria-expanded","false"); document.removeEventListener("click", outside); if(focus) btn.focus(); }
+    function outside(e){ if(!root.contains(e.target)) close(false); }
+    function active(i){ opts.forEach(function(o,j){ o.classList.toggle("active", j===i); }); idx=i; opts[i].scrollIntoView({block:"nearest"}); }
+    function pick(i){ opts.forEach(function(o,j){ o.setAttribute("aria-selected", j===i?"true":"false"); }); label.textContent = opts[i].textContent.trim(); idx=i; }
+    btn.addEventListener("click", function(){ root.classList.contains("open") ? close(true) : open(); });
+    btn.addEventListener("keydown", function(e){
+      if(e.key==="ArrowDown"||e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); }
+    });
+    opts.forEach(function(o,i){
+      o.addEventListener("click", function(){ pick(i); close(true); });
+      o.addEventListener("mousemove", function(){ active(i); });
+    });
+    pop.addEventListener("keydown", function(e){
+      if(e.key==="ArrowDown"){ e.preventDefault(); active(Math.min(idx+1,opts.length-1)); }
+      else if(e.key==="ArrowUp"){ e.preventDefault(); active(Math.max(idx-1,0)); }
+      else if(e.key==="Home"){ e.preventDefault(); active(0); }
+      else if(e.key==="End"){ e.preventDefault(); active(opts.length-1); }
+      else if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(idx); close(true); }
+      else if(e.key==="Escape"){ e.preventDefault(); close(true); }
+      else if(e.key==="Tab"){ close(false); }
+    });
+  })();
+
+  /* ---------- TABS ---------- */
+  (function(){
+    var tabs = $$(".tab", $("#proof"));
+    function select(tab){
+      tabs.forEach(function(t){
+        var on = t===tab;
+        t.setAttribute("aria-selected", on?"true":"false");
+        t.tabIndex = on?0:-1;
+        var panel = document.getElementById(t.getAttribute("aria-controls"));
+        if(panel) panel.hidden = !on;
+      });
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener("click", function(){ select(t); });
+      t.addEventListener("keydown", function(e){
+        var n;
+        if(e.key==="ArrowRight") n = tabs[(i+1)%tabs.length];
+        else if(e.key==="ArrowLeft") n = tabs[(i-1+tabs.length)%tabs.length];
+        else if(e.key==="Home") n = tabs[0];
+        else if(e.key==="End") n = tabs[tabs.length-1];
+        if(n){ e.preventDefault(); select(n); n.focus(); }
+      });
+    });
+  })();
+
+  /* ---------- RUN METER ---------- */
+  (function(){
+    var fill=$("#runfill"), pct=$("#runpct"), meter=$("#runmeter"),
+        runbtn=$("#runbtn"), reset=$("#resetbtn"), val=0, timer=null;
+    function paint(){ fill.style.width = val+"%"; pct.textContent = val+"%"; meter.setAttribute("aria-valuenow", val); }
+    runbtn.addEventListener("click", function(){
+      if(timer) return;
+      if(val>=100) val=0;
+      if(reduce){ val=100; paint(); toast("Run complete","500 copies off the drum. Go get the stapler.","org"); return; }
+      timer = setInterval(function(){
+        val = Math.min(100, val + (8 + Math.floor(Math.random()*10)));  /* chunky xerox steps */
+        paint();
+        if(val>=100){ clearInterval(timer); timer=null; toast("Run complete","500 copies off the drum. Go get the stapler.","org"); }
+      }, 180);
+    });
+    reset.addEventListener("click", function(){ if(timer){clearInterval(timer);timer=null;} val=0; paint(); });
+    paint();
+  })();
+
+  /* ---------- MODAL ---------- */
+  (function(){
+    var scrim=$("#scrim"), echo=$("#echo"), sendbtn=$("#sendbtn"),
+        confirm=$("#confirm"), cancel=$("#cancel"), x=$("#modalx"), last=null;
+    function open(){
+      last = document.activeElement;
+      echo.textContent = (cover.value.trim() || "UNTITLED — AND PROUD OF IT");  /* textContent, never innerHTML */
+      scrim.classList.add("open");
+      confirm.focus();
+      document.addEventListener("keydown", onKey);
+    }
+    function close(){
+      scrim.classList.remove("open");
+      document.removeEventListener("keydown", onKey);
+      if(last && last.focus) last.focus();
+    }
+    function onKey(e){
+      if(e.key==="Escape"){ close(); return; }
+      if(e.key==="Tab"){
+        var f = $$("button, [href], input", scrim).filter(function(el){return el.offsetParent!==null});
+        if(!f.length) return;
+        var first=f[0], lastEl=f[f.length-1];
+        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); lastEl.focus(); }
+        else if(!e.shiftKey && document.activeElement===lastEl){ e.preventDefault(); first.focus(); }
+      }
+    }
+    sendbtn.addEventListener("click", open);
+    cancel.addEventListener("click", close);
+    x.addEventListener("click", close);
+    scrim.addEventListener("click", function(e){ if(e.target===scrim) close(); });
+    confirm.addEventListener("click", function(){
+      close();
+      toast("On the street", "Issue No.07 is up. See you at the show.", "pnk");
+    });
+  })();
+
+  /* ---------- FIRE NOTE (carries cover text via textContent) ---------- */
+  $("#firebtn").addEventListener("click", function(){
+    var line = cover.value.trim() || "no headline yet — write one";
+    toast("Note to the crew", line, "pnk");   /* line passed as textContent inside toast() */
+  });
+
+  /* ---------- TOOLTIP ---------- */
+  (function(){
+    var tip=$("#tip"), current=null;
+    function show(el){
+      var txt = el.getAttribute("data-tip"); if(!txt) return;
+      current = el;
+      tip.textContent = txt;
+      tip.classList.add("show");
+      var r = el.getBoundingClientRect(), tr = tip.getBoundingClientRect();
+      var left = r.left + r.width/2 - tr.width/2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+      var top = r.top - tr.height - 12;
+      if(top < 6) top = r.bottom + 12;
+      tip.style.left = left+"px"; tip.style.top = top+"px";
+      tip.style.setProperty("--tx", (r.left + r.width/2 - left)+"px");
+      el.setAttribute("aria-describedby","tip");
+    }
+    function hide(){ if(current){ current.removeAttribute("aria-describedby"); current=null; } tip.classList.remove("show"); }
+    $$("[data-tip]").forEach(function(el){
+      el.addEventListener("mouseenter", function(){ show(el); });
+      el.addEventListener("mouseleave", hide);
+      el.addEventListener("focus", function(){ show(el); });
+      el.addEventListener("blur", hide);
+    });
+    window.addEventListener("scroll", hide, true);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") hide(); });
+  })();
+})();
+</script>
+</body>
+</html>

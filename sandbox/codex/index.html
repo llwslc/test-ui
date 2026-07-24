@@ -1,0 +1,1775 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KIT Theme Atlas：21 套独立主题世界的实时图集。">
+  <title>KIT / Theme Atlas</title>
+  <style>
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --ink: #f1f0e9;
+  --muted: #a7abb1;
+  --quiet: #7c828a;
+  --line: #343940;
+  --line-strong: #555c65;
+  --paper: #0b0d10;
+  --panel: #111419;
+  --panel-raised: #171b20;
+  --signal: #caff70;
+  --signal-ink: #111706;
+  --gutter: max(24px, calc((100vw - 1180px) / 2));
+  font-family: Inter, "Avenir Next", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    var(--paper);
+  background-size: 100% 48px;
+}
+
+body[data-mode="detail"] {
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:not(:disabled),
+a[href] {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: 16px;
+  padding: 10px 14px;
+  color: var(--signal-ink);
+  background: var(--signal);
+  font-size: 12px;
+  font-weight: 800;
+  transform: translateY(-180%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.home-view {
+  min-height: 100dvh;
+}
+
+.home-masthead {
+  border-bottom: 1px solid var(--line);
+  background: #0d1014;
+}
+
+.masthead-inner,
+.home-main,
+.home-footer-inner {
+  width: min(100% - 48px, 1180px);
+  margin-inline: auto;
+}
+
+.masthead-inner {
+  display: block;
+}
+
+.masthead-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.masthead-title {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  padding-block: 28px 30px;
+}
+
+.masthead-title h1 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.masthead-title p {
+  max-width: 620px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.masthead-count {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.home-main {
+  padding-block: 38px 96px;
+}
+
+.collection-heading {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.collection-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 500;
+}
+
+.collection-heading i {
+  height: 1px;
+  background: var(--line);
+}
+
+.collection-heading span {
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.theme-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--panel);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.theme-card:hover {
+  z-index: 1;
+  border-color: var(--signal);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.32);
+  transform: translateY(-4px);
+}
+
+.theme-card:active {
+  transform: translateY(-1px);
+}
+
+.thumbnail-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.045) 42%, transparent 64%) -120% 0 / 220% 100%,
+    #090b0e;
+}
+
+.thumbnail-stage::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  content: "";
+}
+
+.thumbnail-frame {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 1440px;
+  height: 900px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  transition: opacity 220ms ease;
+}
+
+.thumbnail-frame.is-ready {
+  opacity: 1;
+}
+
+.thumbnail-placeholder {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: opacity 180ms ease;
+}
+
+.thumbnail-placeholder::before {
+  justify-self: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(90deg, transparent 48%, var(--line-strong) 49% 51%, transparent 52%),
+    linear-gradient(transparent 48%, var(--line-strong) 49% 51%, transparent 52%);
+  content: "";
+}
+
+.thumbnail-placeholder.is-loading::before {
+  border-color: var(--signal);
+  border-radius: 50%;
+  background: transparent;
+  border-right-color: transparent;
+  animation: spin 800ms linear infinite;
+}
+
+.thumbnail-placeholder.is-hidden {
+  opacity: 0;
+}
+
+.card-caption {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 112px;
+  padding: 18px;
+}
+
+.card-number {
+  align-self: start;
+  padding-top: 4px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.card-name {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.card-name strong {
+  overflow: hidden;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-name span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-enter {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 15px;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.theme-card:hover .card-enter {
+  border-color: var(--signal);
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.noscript-note {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--panel);
+  line-height: 1.7;
+}
+
+.home-footer {
+  border-top: 1px solid var(--line);
+  background: #0d1014;
+}
+
+.home-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 28px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.detail-view {
+  display: grid;
+  grid-template-columns: 286px minmax(0, 1fr);
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.detail-sidebar {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    #101318;
+  background-size: 100% 44px;
+}
+
+.back-all {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 11px;
+  align-items: center;
+  min-height: 72px;
+  padding: 12px 16px;
+  color: var(--ink);
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.back-all > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-strong);
+}
+
+.back-all strong {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.back-all small {
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.back-all:hover > span:first-child {
+  border-color: var(--signal);
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.theme-search {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  margin: 12px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.theme-search > span {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.theme-search input {
+  min-width: 0;
+  height: 40px;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+  background: transparent;
+  font-size: 12px;
+}
+
+.theme-search input::placeholder {
+  color: var(--quiet);
+}
+
+.theme-search kbd {
+  padding: 3px 6px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+}
+
+.theme-directory {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 8px 18px;
+  scrollbar-color: #59616b transparent;
+  scrollbar-width: thin;
+}
+
+.directory-label {
+  display: block;
+  padding: 14px 9px 8px;
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.theme-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 62px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 10px;
+  color: var(--muted);
+  background: transparent;
+  text-align: left;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-link:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(2px);
+}
+
+.theme-link[aria-current="true"] {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(202, 255, 112, 0.12), transparent);
+}
+
+.theme-link[aria-current="true"]::before {
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: 0;
+  width: 2px;
+  background: var(--signal);
+  box-shadow: 0 0 10px rgba(202, 255, 112, 0.5);
+  content: "";
+}
+
+.theme-link span:first-child {
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+}
+
+.theme-link strong,
+.theme-link span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-link strong {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.theme-link span:last-child {
+  font-size: 11px;
+}
+
+.theme-empty {
+  margin: 0;
+  padding: 18px 10px;
+  color: var(--quiet);
+  font-size: 11px;
+  text-align: center;
+}
+
+.sidebar-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--quiet);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.64);
+  backdrop-filter: blur(4px);
+}
+
+.detail-main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+}
+
+.preview-toolbar {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  min-width: 0;
+  min-height: 72px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #0d1014;
+}
+
+.menu-button {
+  display: none;
+  flex: 0 0 auto;
+  place-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.menu-button i {
+  display: block;
+  width: 15px;
+  height: 1px;
+  margin: 2px auto;
+  background: var(--ink);
+}
+
+.active-current {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+  margin-right: auto;
+}
+
+.active-number {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+}
+
+.active-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.active-copy strong,
+.active-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.active-copy strong {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.active-copy span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.toolbar-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.toolbar-button,
+.open-standalone,
+.viewport-picker button {
+  display: grid;
+  place-items: center;
+  height: 38px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--panel);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.toolbar-button {
+  min-width: 38px;
+  padding: 0 10px;
+}
+
+.toolbar-button:hover,
+.open-standalone:hover,
+.viewport-picker button:hover {
+  border-color: var(--line-strong);
+  color: #fff;
+}
+
+.viewport-picker {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  background: #090b0e;
+}
+
+.viewport-picker button {
+  min-width: 42px;
+  height: 30px;
+  padding: 0 8px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.viewport-picker button[aria-pressed="true"] {
+  color: var(--signal-ink);
+  background: var(--signal);
+}
+
+.open-standalone {
+  min-width: 62px;
+  padding: 0 10px;
+}
+
+.preview-stage {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.015) 75%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.015) 75%),
+    #050607;
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+}
+
+.preview-device {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.preview-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050607;
+  transform-origin: top left;
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    border-radius 180ms ease,
+    transform 180ms ease;
+}
+
+.theme-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #050607;
+}
+
+.preview-loading {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  color: var(--muted);
+  background: #090b0d;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.preview-loading.is-visible {
+  opacity: 1;
+}
+
+.preview-loading i {
+  justify-self: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-top-color: var(--signal);
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+.detail-view[data-viewport="mobile"] .preview-stage {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.detail-view[data-viewport="mobile"] .preview-device {
+  flex: 0 0 auto;
+  width: 390px;
+  height: min(844px, 100%);
+  border-radius: 34px;
+  background: #11161c;
+  box-shadow:
+    0 0 0 7px #11161c,
+    0 0 0 8px #7f8995,
+    0 26px 72px rgba(0, 0, 0, 0.56);
+}
+
+.detail-view[data-viewport="mobile"] .preview-viewport {
+  width: 390px;
+  height: 100%;
+  border: 0;
+  border-radius: 28px;
+  box-shadow: inset 0 0 0 1px rgba(226, 233, 240, 0.28);
+}
+
+.fullscreen-controls {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+}
+
+.detail-view.is-fullscreen {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.detail-view.is-fullscreen .detail-sidebar,
+.detail-view.is-fullscreen .preview-toolbar,
+.detail-view.is-fullscreen .sidebar-backdrop {
+  display: none;
+}
+
+.detail-view.is-fullscreen .detail-main {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.detail-view.is-fullscreen .preview-stage {
+  padding: 0;
+}
+
+.detail-view.is-fullscreen[data-viewport="pc"] .preview-stage {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.detail-view.is-fullscreen[data-viewport="pc"] .preview-viewport {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.detail-view.is-fullscreen .fullscreen-controls {
+  display: block;
+}
+
+.fullscreen-button {
+  position: fixed;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(8, 10, 12, 0.54);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  opacity: 0.55;
+  pointer-events: auto;
+  transition:
+    opacity 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.fullscreen-button:hover,
+.fullscreen-button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.68);
+  color: #fff;
+  background: rgba(8, 10, 12, 0.82);
+  opacity: 1;
+}
+
+.fullscreen-exit {
+  top: 16px;
+  right: 16px;
+  width: auto;
+  padding: 0 14px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.fullscreen-previous,
+.fullscreen-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fullscreen-previous {
+  left: 16px;
+}
+
+.fullscreen-next {
+  right: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 980px) {
+  .theme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-view {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+
+  .active-copy span {
+    display: none;
+  }
+
+  .toolbar-button[data-long-label] {
+    width: 38px;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .toolbar-button[data-long-label]::before {
+    color: var(--muted);
+    content: attr(data-short-label);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .masthead-inner,
+  .home-main,
+  .home-footer-inner {
+    width: calc(100% - 32px);
+  }
+
+  .masthead-topline span:last-child {
+    display: none;
+  }
+
+  .masthead-title {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding-block: 24px 26px;
+  }
+
+  .masthead-title h1 {
+    font-size: 36px;
+  }
+
+  .masthead-count {
+    display: none;
+  }
+
+  .home-main {
+    padding-block: 34px 72px;
+  }
+
+  .theme-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detail-view {
+    display: block;
+  }
+
+  .detail-sidebar {
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(312px, calc(100vw - 32px));
+    transform: translateX(-105%);
+    transition: transform 220ms ease;
+  }
+
+  .detail-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop.is-open {
+    display: block;
+  }
+
+  .detail-main {
+    height: 100dvh;
+  }
+
+  .menu-button {
+    display: grid;
+  }
+
+  .preview-toolbar {
+    gap: 8px;
+    min-height: 64px;
+    padding-inline: 16px;
+  }
+
+  .active-current {
+    gap: 8px;
+  }
+
+  .active-number {
+    display: none;
+  }
+
+  .active-copy strong {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .viewport-picker button {
+    min-width: 34px;
+    padding-inline: 6px;
+    font-size: 8px;
+  }
+
+  .open-standalone {
+    min-width: 46px;
+    padding-inline: 6px;
+    font-size: 8px;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-stage {
+    padding: 16px;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-device {
+    width: min(390px, 100%);
+    border-radius: 28px;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-viewport {
+    border-radius: 22px;
+  }
+
+  .detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .collection-heading {
+    grid-template-columns: 1fr auto;
+  }
+
+  .collection-heading i {
+    display: none;
+  }
+
+  .card-caption {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding-inline: 14px;
+  }
+
+  .preview-toolbar {
+    gap: 6px;
+  }
+
+  .active-copy span {
+    display: none;
+  }
+
+  .toolbar-group {
+    gap: 4px;
+  }
+
+  .viewport-picker button:last-child {
+    min-width: 30px;
+    max-width: 30px;
+    overflow: hidden;
+  }
+
+  .fullscreen-exit {
+    top: 12px;
+    right: 12px;
+  }
+
+  .fullscreen-previous {
+    left: 12px;
+  }
+
+  .fullscreen-next {
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+  </style>
+</head>
+<body data-mode="home">
+  <section class="home-view" id="homeView">
+    <a class="skip-link" href="#themeGrid">跳至主题图集</a>
+    <header class="home-masthead">
+      <div class="masthead-inner">
+        <div class="masthead-topline">
+          <span>KIT / Theme Atlas</span>
+          <span>Independent interface worlds / 2026</span>
+        </div>
+        <div class="masthead-title">
+          <div>
+            <h1>Theme Atlas</h1>
+            <p>二十一套独立视觉世界。每张卡片都是真实页面的现场切片，进入即可完整试玩。</p>
+          </div>
+          <span class="masthead-count">21 live worlds</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="home-main" id="themeGrid" tabindex="-1">
+      <div class="collection-heading">
+        <h2 id="collectionTitle">全部主题</h2>
+        <i aria-hidden="true"></i>
+        <span id="collectionCount">21 WORLDS</span>
+      </div>
+      <div class="theme-grid" id="themeCards" aria-labelledby="collectionTitle"></div>
+      <noscript>
+        <p class="noscript-note">Theme Atlas 的标题与说明仍可阅读；启用 JavaScript 后会载入实时主题卡片与完整预览交互，各主题单文件本身不受影响。</p>
+      </noscript>
+    </main>
+
+    <footer class="home-footer">
+      <div class="home-footer-inner">
+        <span>KIT / Theme Atlas</span>
+        <span>21 independent worlds, one living index.</span>
+      </div>
+    </footer>
+  </section>
+
+  <section class="detail-view" id="detailView" data-viewport="pc" aria-label="主题详情" hidden>
+    <aside class="detail-sidebar" id="detailSidebar">
+      <button class="back-all" id="backAll" type="button">
+        <span aria-hidden="true">←</span>
+        <strong>全部主题</strong>
+        <small>ATLAS</small>
+      </button>
+
+      <label class="theme-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="themeSearch" type="search" placeholder="搜索主题…" autocomplete="off" aria-label="搜索主题">
+        <kbd>/</kbd>
+      </label>
+
+      <nav class="theme-directory" id="themeDirectory" aria-label="主题目录"></nav>
+
+      <footer class="sidebar-meta">
+        <span>← → SWITCH</span>
+        <span id="atlasCount">-- / --</span>
+      </footer>
+    </aside>
+
+    <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" tabindex="-1" aria-label="关闭主题目录"></button>
+
+    <main class="detail-main">
+      <header class="preview-toolbar" id="previewToolbar" tabindex="-1">
+        <button class="menu-button" id="openSidebar" type="button" aria-label="打开主题目录" aria-expanded="false">
+          <i></i><i></i><i></i>
+        </button>
+
+        <div class="active-current">
+          <span class="active-number" id="activeIndex">--</span>
+          <div class="active-copy">
+            <strong id="activeCode">THEME</strong>
+            <span id="activeName">正在载入主题信息</span>
+          </div>
+        </div>
+
+        <div class="toolbar-group nav-buttons" aria-label="切换主题">
+          <button class="toolbar-button" id="previousTheme" type="button" aria-label="上一主题">←</button>
+          <button class="toolbar-button" id="nextTheme" type="button" aria-label="下一主题">→</button>
+        </div>
+
+        <div class="toolbar-group">
+          <div class="viewport-picker" aria-label="预览视口">
+            <button id="pcViewport" type="button" aria-pressed="true">PC</button>
+            <button id="mobileViewport" type="button" aria-pressed="false">Mobile</button>
+          </div>
+          <button class="toolbar-button" id="fullscreenToggle" type="button" aria-pressed="false" data-long-label data-short-label="⛶">全屏</button>
+          <a class="open-standalone" id="openStandalone" href="#" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </header>
+
+      <div class="preview-stage" id="previewStage">
+        <div class="preview-device" id="previewDevice">
+          <div class="preview-viewport" id="previewViewport">
+            <iframe class="theme-preview" id="themePreview" title="主题预览"></iframe>
+            <div class="preview-loading" id="previewLoading" aria-live="polite">
+              <i aria-hidden="true"></i>
+              <span>正在进入主题世界</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="fullscreen-controls" aria-label="全屏预览控制">
+      <button class="fullscreen-button fullscreen-exit" id="fullscreenExit" type="button">退出全屏</button>
+      <button class="fullscreen-button fullscreen-previous" id="fullscreenPrevious" type="button" aria-label="上一主题">←</button>
+      <button class="fullscreen-button fullscreen-next" id="fullscreenNext" type="button" aria-label="下一主题">→</button>
+    </div>
+  </section>
+
+  <script>
+const themes = [
+  { id: "nova", code: "NOVA", name: "科幻霓虹 HUD / Sci-fi neon" },
+  { id: "abyss", code: "ABYSS", name: "克苏鲁深渊魔典 / Eldritch grimoire" },
+  { id: "brass", code: "BRASS", name: "蒸汽朋克 / Steampunk" },
+  { id: "prism", code: "PRISM", name: "包豪斯构成 / Bauhaus" },
+  { id: "riot", code: "RIOT", name: "朋克剪报 / Punk zine" },
+  { id: "hanabi", code: "HANABI", name: "二次元赛璐璐 / Anime cel" },
+  { id: "sumi", code: "SUMI", name: "水墨禅 / Zen ink" },
+  { id: "ormolu", code: "ORMOLU", name: "洛可可宫廷 / Rococo" },
+  { id: "nocturne", code: "NOCTURNE", name: "暗夜花园 / Dark botanical" },
+  { id: "pulp", code: "PULP", name: "复古廉价小说 / Pulp paperback" },
+  { id: "totem", code: "TOTEM", name: "民艺图腾 / Folk craft" },
+  { id: "kiln", code: "KILN", name: "陶土侘寂 / Wabi-sabi" },
+  { id: "chrome", code: "CHROME", name: "千禧液态铬 / Y2K aero" },
+  { id: "arcade", code: "ARCADE", name: "8-bit 街机 / Retro arcade" },
+  { id: "bitmap", code: "BITMAP", name: "1-bit 位图 / One-bit dither" },
+  { id: "mochi", code: "MOCHI", name: "软陶泡芙 / Claymorphic squish" },
+  { id: "scribble", code: "SCRIBBLE", name: "手账涂鸦 / Notebook doodle" },
+  { id: "axon", code: "AXON", name: "轴测蓝图 / Isometric blueprint" },
+  { id: "corona", code: "CORONA", name: "日蚀玻璃 / Eclipse glass" },
+  { id: "reliquary", code: "RELIQUARY", name: "未来圣骸 / Future reliquary" },
+  { id: "gazette", code: "GAZETTE", name: "报章排印 / Broadsheet" },
+];
+
+const homeView = document.querySelector("#homeView");
+const detailView = document.querySelector("#detailView");
+const themeCards = document.querySelector("#themeCards");
+const directory = document.querySelector("#themeDirectory");
+const search = document.querySelector("#themeSearch");
+const preview = document.querySelector("#themePreview");
+const loading = document.querySelector("#previewLoading");
+const sidebar = document.querySelector("#detailSidebar");
+const backdrop = document.querySelector("#sidebarBackdrop");
+const openSidebarButton = document.querySelector("#openSidebar");
+const fullscreenButton = document.querySelector("#fullscreenToggle");
+const fullscreenExit = document.querySelector("#fullscreenExit");
+const toolbar = document.querySelector("#previewToolbar");
+const previewStageElement = document.querySelector("#previewStage");
+const previewDevice = document.querySelector("#previewDevice");
+const previewViewport = document.querySelector("#previewViewport");
+const maximumThumbnailLoads = 5;
+const mobileViewportWidth = 390;
+const mobileViewportMaxHeight = 844;
+const thumbnailQueue = [];
+let activeThumbnailLoads = 0;
+let activeIndex = 0;
+let directoryMatches = [];
+let fullscreen = false;
+let lastPreviewId = "";
+let previewGeometryFrame = 0;
+let previewResizeObserver = null;
+
+function createElement(tagName, className, text) {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function pad(index) {
+  return String(index + 1).padStart(2, "0");
+}
+
+function splitName(name) {
+  const parts = name.split(" / ");
+  return {
+    chinese: parts[0],
+    english: parts.slice(1).join(" / "),
+  };
+}
+
+function safeStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    return;
+  }
+}
+
+function clearPreviewGeometry() {
+  previewDevice.style.removeProperty("width");
+  previewDevice.style.removeProperty("height");
+  previewViewport.style.removeProperty("width");
+  previewViewport.style.removeProperty("height");
+  previewViewport.style.removeProperty("transform");
+}
+
+function updatePreviewGeometry() {
+  previewGeometryFrame = 0;
+  if (detailView.hidden || detailView.dataset.viewport !== "mobile") {
+    clearPreviewGeometry();
+    return;
+  }
+
+  const stageStyle = getComputedStyle(previewStageElement);
+  const horizontalPadding = (parseFloat(stageStyle.paddingLeft) || 0) + (parseFloat(stageStyle.paddingRight) || 0);
+  const verticalPadding = (parseFloat(stageStyle.paddingTop) || 0) + (parseFloat(stageStyle.paddingBottom) || 0);
+  const availableWidth = Math.max(1, previewStageElement.clientWidth - horizontalPadding);
+  const availableHeight = Math.max(1, previewStageElement.clientHeight - verticalPadding);
+  const scale = Math.min(1, availableWidth / mobileViewportWidth);
+  const logicalHeight = Math.max(1, Math.min(mobileViewportMaxHeight, availableHeight / scale));
+
+  previewDevice.style.width = `${mobileViewportWidth * scale}px`;
+  previewDevice.style.height = `${logicalHeight * scale}px`;
+  previewViewport.style.width = `${mobileViewportWidth}px`;
+  previewViewport.style.height = `${logicalHeight}px`;
+  previewViewport.style.transform = `scale(${scale})`;
+}
+
+function schedulePreviewGeometry() {
+  if (previewGeometryFrame) cancelAnimationFrame(previewGeometryFrame);
+  previewGeometryFrame = requestAnimationFrame(updatePreviewGeometry);
+}
+
+function updateThumbnailScale(stage) {
+  const frame = stage.querySelector(".thumbnail-frame");
+  if (!frame || !stage.clientWidth) return;
+  frame.style.transform = `scale(${stage.clientWidth / 1440})`;
+}
+
+function finishThumbnail(item, succeeded) {
+  if (item.status !== "loading") return;
+  item.status = succeeded ? "ready" : "failed";
+  activeThumbnailLoads = Math.max(0, activeThumbnailLoads - 1);
+  clearTimeout(item.timeout);
+  item.placeholder.classList.remove("is-loading");
+  if (succeeded) {
+    item.frame.classList.add("is-ready");
+    item.placeholder.classList.add("is-hidden");
+  } else {
+    item.placeholder.classList.remove("is-loading");
+    item.placeholder.textContent = "预览暂未载入";
+  }
+  drainThumbnailQueue();
+}
+
+function drainThumbnailQueue() {
+  while (activeThumbnailLoads < maximumThumbnailLoads && thumbnailQueue.length) {
+    const item = thumbnailQueue.shift();
+    if (item.status !== "queued") continue;
+    item.status = "loading";
+    activeThumbnailLoads += 1;
+    item.placeholder.classList.add("is-loading");
+    item.placeholder.textContent = "正在载入实时预览";
+    item.frame.addEventListener("load", () => finishThumbnail(item, true), { once: true });
+    item.frame.addEventListener("error", () => finishThumbnail(item, false), { once: true });
+    item.timeout = window.setTimeout(() => finishThumbnail(item, false), 15000);
+    item.frame.src = `${item.theme.id}.html`;
+  }
+}
+
+function queueThumbnail(item) {
+  if (item.status !== "idle") return;
+  item.status = "queued";
+  thumbnailQueue.push(item);
+  drainThumbnailQueue();
+}
+
+function renderCards() {
+  const thumbnailItems = [];
+  const fragment = document.createDocumentFragment();
+
+  themes.forEach((theme, index) => {
+    const names = splitName(theme.name);
+    const card = createElement("a", "theme-card");
+    card.href = `#${theme.id}`;
+    card.dataset.themeId = theme.id;
+    card.setAttribute("aria-label", `${pad(index)} ${theme.code} ${theme.name}`);
+
+    const stage = createElement("div", "thumbnail-stage");
+    const frame = createElement("iframe", "thumbnail-frame");
+    frame.title = `${theme.code} 实时缩略预览`;
+    frame.tabIndex = -1;
+    frame.setAttribute("aria-hidden", "true");
+    const placeholder = createElement("span", "thumbnail-placeholder", "滚动至此载入实时预览");
+    stage.append(frame, placeholder);
+
+    const caption = createElement("div", "card-caption");
+    const number = createElement("span", "card-number", pad(index));
+    const name = createElement("span", "card-name");
+    name.append(
+      createElement("strong", "", theme.code),
+      createElement("span", "", `${names.chinese} / ${names.english}`),
+    );
+    const enter = createElement("span", "card-enter", "↗");
+    enter.setAttribute("aria-hidden", "true");
+    caption.append(number, name, enter);
+    card.append(stage, caption);
+    fragment.append(card);
+
+    thumbnailItems.push({
+      theme,
+      card,
+      stage,
+      frame,
+      placeholder,
+      status: "idle",
+      timeout: 0,
+    });
+  });
+
+  themeCards.replaceChildren(fragment);
+
+  const resizeObserver = "ResizeObserver" in window
+    ? new ResizeObserver((entries) => entries.forEach((entry) => updateThumbnailScale(entry.target)))
+    : null;
+
+  thumbnailItems.forEach((item) => {
+    updateThumbnailScale(item.stage);
+    resizeObserver?.observe(item.stage);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const item = thumbnailItems.find((candidate) => candidate.card === entry.target);
+        if (item) queueThumbnail(item);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "280px 0px" });
+    thumbnailItems.forEach((item) => observer.observe(item.card));
+  } else {
+    thumbnailItems.forEach(queueThumbnail);
+  }
+}
+
+function createDirectoryButton(theme, index) {
+  const names = splitName(theme.name);
+  const button = createElement("button", "theme-link");
+  button.type = "button";
+  button.dataset.themeId = theme.id;
+  button.setAttribute("aria-current", String(index === activeIndex));
+  button.append(
+    createElement("span", "", pad(index)),
+    createElement("strong", "", theme.code),
+    createElement("span", "", names.chinese),
+  );
+  button.addEventListener("click", () => switchThemeTo(index));
+  return button;
+}
+
+function renderDirectory(query = "") {
+  const normalized = query.trim().toLocaleLowerCase("zh-CN");
+  directoryMatches = themes
+    .map((theme, index) => ({ theme, index }))
+    .filter(({ theme }) => `${theme.id} ${theme.code} ${theme.name}`.toLocaleLowerCase("zh-CN").includes(normalized));
+
+  const fragment = document.createDocumentFragment();
+  fragment.append(createElement("span", "directory-label", `THEMES / ${String(directoryMatches.length).padStart(2, "0")}`));
+
+  if (directoryMatches.length) {
+    directoryMatches.forEach(({ theme, index }) => fragment.append(createDirectoryButton(theme, index)));
+  } else {
+    fragment.append(createElement("p", "theme-empty", "没有匹配的主题"));
+  }
+
+  directory.replaceChildren(fragment);
+}
+
+function closeSidebar(options = {}) {
+  const wasOpen = sidebar.classList.contains("is-open");
+  sidebar.classList.remove("is-open");
+  backdrop.classList.remove("is-open");
+  openSidebarButton.setAttribute("aria-expanded", "false");
+  if (wasOpen && options.restoreFocus) openSidebarButton.focus();
+}
+
+function openSidebar(options = {}) {
+  sidebar.classList.add("is-open");
+  backdrop.classList.add("is-open");
+  openSidebarButton.setAttribute("aria-expanded", "true");
+  directory.querySelector(`[data-theme-id="${themes[activeIndex].id}"]`)?.scrollIntoView({ block: "nearest" });
+  if (options.focusSearch) {
+    search.focus();
+    search.select();
+  }
+}
+
+function setViewport(mode, persist = true) {
+  const nextMode = mode === "mobile" ? "mobile" : "pc";
+  detailView.dataset.viewport = nextMode;
+  document.querySelector("#pcViewport").setAttribute("aria-pressed", String(nextMode === "pc"));
+  document.querySelector("#mobileViewport").setAttribute("aria-pressed", String(nextMode === "mobile"));
+  if (persist) safeStorageSet("kit-atlas-viewport", nextMode);
+  schedulePreviewGeometry();
+}
+
+function setFullscreen(enabled, options = {}) {
+  fullscreen = Boolean(enabled);
+  detailView.classList.toggle("is-fullscreen", fullscreen);
+  fullscreenButton.setAttribute("aria-pressed", String(fullscreen));
+  schedulePreviewGeometry();
+  if (fullscreen && options.moveFocus !== false) {
+    fullscreenExit.focus();
+  } else if (!fullscreen && options.restoreFocus) {
+    fullscreenButton.focus();
+  }
+}
+
+function updateActiveTheme(theme, index) {
+  const names = splitName(theme.name);
+  document.querySelector("#activeIndex").textContent = pad(index);
+  document.querySelector("#activeCode").textContent = theme.code;
+  document.querySelector("#activeName").textContent = `${names.chinese} / ${names.english}`;
+  document.querySelector("#atlasCount").textContent = `${pad(index)} / ${String(themes.length).padStart(2, "0")}`;
+  document.querySelector("#openStandalone").href = `${theme.id}.html`;
+  document.title = `${theme.code} / KIT Theme Atlas`;
+  renderDirectory(search.value);
+  directory.querySelector(`[data-theme-id="${theme.id}"]`)?.scrollIntoView({ block: "nearest" });
+}
+
+function loadThemePreview(theme) {
+  if (lastPreviewId === theme.id && preview.src) return;
+  lastPreviewId = theme.id;
+  loading.classList.add("is-visible");
+  loading.querySelector("span").textContent = `正在进入 ${theme.code}`;
+  preview.title = `${theme.code} / ${theme.name}`;
+  preview.src = `${theme.id}.html`;
+}
+
+function showTheme(index, options = {}) {
+  activeIndex = (index + themes.length) % themes.length;
+  const theme = themes[activeIndex];
+  homeView.hidden = true;
+  detailView.hidden = false;
+  document.body.dataset.mode = "detail";
+  updateActiveTheme(theme, activeIndex);
+  loadThemePreview(theme);
+  closeSidebar();
+  schedulePreviewGeometry();
+  if (options.focusToolbar) toolbar.focus({ preventScroll: true });
+}
+
+function showHome(options = {}) {
+  setFullscreen(false);
+  closeSidebar();
+  detailView.hidden = true;
+  homeView.hidden = false;
+  document.body.dataset.mode = "home";
+  document.title = "KIT / Theme Atlas";
+  if (options.focusCard) {
+    themeCards.querySelector(`[data-theme-id="${themes[activeIndex].id}"]`)?.focus();
+  }
+}
+
+function replaceHash(id) {
+  const url = new URL(location.href);
+  url.hash = id ? `#${id}` : "";
+  try {
+    history.replaceState(null, "", url);
+  } catch {
+    location.hash = id ? id : "";
+  }
+}
+
+function switchThemeTo(index) {
+  const focusWasInSidebar = sidebar.contains(document.activeElement);
+  activeIndex = (index + themes.length) % themes.length;
+  replaceHash(themes[activeIndex].id);
+  showTheme(activeIndex);
+  if (focusWasInSidebar && window.matchMedia("(max-width: 760px)").matches) {
+    toolbar.focus({ preventScroll: true });
+  }
+}
+
+function switchTheme(delta) {
+  switchThemeTo(activeIndex + delta);
+}
+
+function returnHome(options = {}) {
+  replaceHash("");
+  showHome({ focusCard: options.focusCard });
+}
+
+function routeFromHash() {
+  const id = location.hash.slice(1).toLowerCase();
+  if (!id) {
+    showHome();
+    return;
+  }
+  const index = themes.findIndex((theme) => theme.id === id);
+  if (index < 0) {
+    returnHome();
+    return;
+  }
+  showTheme(index, { focusToolbar: true });
+}
+
+search.addEventListener("input", () => renderDirectory(search.value));
+search.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" || !directoryMatches.length) return;
+  event.preventDefault();
+  switchThemeTo(directoryMatches[0].index);
+});
+
+preview.addEventListener("load", () => loading.classList.remove("is-visible"));
+document.querySelector("#backAll").addEventListener("click", () => returnHome({ focusCard: true }));
+document.querySelector("#previousTheme").addEventListener("click", () => switchTheme(-1));
+document.querySelector("#nextTheme").addEventListener("click", () => switchTheme(1));
+document.querySelector("#fullscreenPrevious").addEventListener("click", () => switchTheme(-1));
+document.querySelector("#fullscreenNext").addEventListener("click", () => switchTheme(1));
+document.querySelector("#pcViewport").addEventListener("click", () => setViewport("pc"));
+document.querySelector("#mobileViewport").addEventListener("click", () => setViewport("mobile"));
+fullscreenButton.addEventListener("click", () => setFullscreen(true));
+fullscreenExit.addEventListener("click", () => setFullscreen(false, { restoreFocus: true }));
+openSidebarButton.addEventListener("click", () => openSidebar());
+backdrop.addEventListener("click", () => closeSidebar({ restoreFocus: true }));
+
+document.addEventListener("keydown", (event) => {
+  const inputFocused = document.activeElement === search;
+  const typing = document.activeElement instanceof HTMLInputElement
+    || document.activeElement instanceof HTMLTextAreaElement
+    || document.activeElement?.isContentEditable;
+
+  if (
+    event.key === "/"
+    && !event.metaKey
+    && !event.ctrlKey
+    && !event.altKey
+    && !typing
+    && !detailView.hidden
+    && !fullscreen
+  ) {
+    event.preventDefault();
+    openSidebar({ focusSearch: true });
+    return;
+  }
+
+  if (event.key === "Escape") {
+    if (inputFocused) {
+      event.preventDefault();
+      if (search.value) {
+        search.value = "";
+        renderDirectory();
+      } else {
+        search.blur();
+      }
+      return;
+    }
+    if (fullscreen) {
+      event.preventDefault();
+      setFullscreen(false, { restoreFocus: true });
+      return;
+    }
+    if (sidebar.classList.contains("is-open")) {
+      event.preventDefault();
+      closeSidebar({ restoreFocus: true });
+      return;
+    }
+    if (!detailView.hidden) {
+      event.preventDefault();
+      returnHome({ focusCard: true });
+    }
+    return;
+  }
+
+  if (
+    !typing
+    && !detailView.hidden
+    && (event.key === "ArrowLeft" || event.key === "ArrowRight")
+  ) {
+    event.preventDefault();
+    switchTheme(event.key === "ArrowRight" ? 1 : -1);
+  }
+});
+
+window.addEventListener("hashchange", routeFromHash);
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) closeSidebar();
+  schedulePreviewGeometry();
+});
+
+if ("ResizeObserver" in window) {
+  previewResizeObserver = new ResizeObserver(schedulePreviewGeometry);
+  previewResizeObserver.observe(previewStageElement);
+}
+
+renderCards();
+renderDirectory();
+setViewport(safeStorageGet("kit-atlas-viewport") || "pc", false);
+routeFromHash();
+  </script>
+</body>
+</html>

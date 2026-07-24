@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MERCURA 液态桌面 v2.001 — CHROME 千禧液态铬</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14395F;
+  --ink-2:#3A5B7E;
+  --ink-3:#4C6786;
+  --sky-hi:#E3F0FA;
+  --sky:#CBDDEC;
+  --sky-lo:#AECBE2;
+  --panel-hi:#FDFEFF;
+  --panel:#EEF4FA;
+  --panel-lo:#D8E3EF;
+  --edge:#879DB4;
+  --edge-soft:#B3C4D6;
+  --gel-1:#8BE7FF;
+  --gel-2:#2CBBF0;
+  --gel-3:#0A85C8;
+  --gel-4:#045E9C;
+  --gel-glow:rgba(44,187,240,.5);
+  --lime:#8FE000;
+  --pink-1:#FF8FB8;
+  --pink-2:#C93A72;
+  --pink-3:#A22857;
+  --r-pod:38px;
+  --font-disp:"Audiowide","Baloo 2",sans-serif;
+  --font-ui:"Baloo 2","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --font-body:"Noto Sans SC","Baloo 2","PingFang SC","Microsoft YaHei",sans-serif;
+  --chrome-skin:linear-gradient(180deg,#FFFFFF 0%,#E9EFF6 30%,#C3D0DE 47%,#A9BACC 53%,#D3DEE9 72%,#F5F9FC 100%);
+  --chrome-deep:linear-gradient(180deg,#F4F8FC 0%,#CFDAE6 38%,#96AABF 50%,#C2CFDD 62%,#EDF3F9 100%);
+  --gel-skin:radial-gradient(130% 90% at 50% -12%,rgba(255,255,255,.95),rgba(255,255,255,0) 46%),linear-gradient(180deg,var(--gel-1) 0%,var(--gel-2) 36%,var(--gel-3) 58%,var(--gel-4) 100%);
+  --holo-skin:conic-gradient(from 220deg at 50% 40%,#FFD7EE,#FFF0C7,#D3FFDC,#C6EBFF,#E1D3FF,#FFD7EE);
+  --trough:linear-gradient(180deg,#DEE7F0,#F5F9FC);
+  --shadow-pod:0 18px 40px rgba(26,54,86,.16),0 4px 10px rgba(26,54,86,.10);
+  --jelly:cubic-bezier(.34,1.72,.5,.92);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.75;
+  color:var(--ink);
+  background:
+    radial-gradient(90rem 40rem at 50% -8rem,rgba(255,255,255,.75),rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,#DCEBF7 0%,#C4D9EB 32%,#EDF6FC 46%,#B9D1E6 62%,#CDDFEF 100%);
+  min-height:100vh;
+}
+::selection{background:var(--gel-2);color:#fff}
+:focus-visible{outline:3px solid #0E86D4;outline-offset:2px;border-radius:8px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input,select{font:inherit}
+strong{font-weight:700}
+
+.atmos{position:fixed;inset:0;overflow:clip;pointer-events:none;z-index:0}
+.atmos i{position:absolute;border-radius:50%;background:
+  radial-gradient(circle at 32% 26%,rgba(255,255,255,.95) 0 8%,rgba(255,255,255,.28) 22%,rgba(180,220,245,.14) 46%,rgba(140,190,230,.05) 70%,rgba(140,190,230,0) 71%);
+  box-shadow:inset 0 -6px 18px rgba(120,180,225,.25),inset 2px 4px 10px rgba(255,255,255,.8);
+  animation:bob 12s ease-in-out infinite alternate}
+.atmos i:nth-child(1){width:220px;height:220px;left:-60px;top:16%}
+.atmos i:nth-child(2){width:120px;height:120px;right:6%;top:9%;animation-delay:-3s}
+.atmos i:nth-child(3){width:70px;height:70px;right:18%;top:44%;animation-delay:-6s}
+.atmos i:nth-child(4){width:150px;height:150px;left:8%;bottom:12%;animation-delay:-9s}
+.atmos i:nth-child(5){width:52px;height:52px;left:38%;top:62%;animation-delay:-4.5s}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-26px)}}
+
+.wrap{position:relative;z-index:1;max-width:1220px;margin:0 auto;padding:20px clamp(14px,3vw,32px) 0}
+
+.topbar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 20px;border-radius:999px;
+  background:var(--chrome-skin);
+  border:1px solid var(--edge);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(255,255,255,.6),0 10px 24px rgba(26,54,86,.14);
+}
+.topbar__logo{display:flex;align-items:center;gap:10px;font-family:var(--font-disp);font-size:15px;letter-spacing:.08em;color:var(--ink)}
+.logo-orb{width:26px;height:26px;border-radius:50%;flex:none;background:
+  radial-gradient(circle at 32% 28%,#fff 0 18%,var(--gel-1) 34%,var(--gel-2) 58%,var(--gel-4) 100%);
+  box-shadow:0 2px 6px rgba(10,90,150,.4),inset 0 -3px 6px rgba(4,70,120,.5)}
+.topbar__sub{font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--ink-2);letter-spacing:.04em}
+.topbar__spacer{flex:1}
+.topbar__clock{font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--ink-2);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.led{display:inline-flex;align-items:center;gap:8px;padding:4px 14px;border-radius:999px;background:linear-gradient(180deg,#DDE6EF,#F6FAFD);border:1px solid var(--edge-soft);box-shadow:inset 0 2px 4px rgba(26,54,86,.18);font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--ink-2)}
+.led i{width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F3FFC8,var(--lime) 55%,#5FA000);box-shadow:0 0 8px 2px rgba(143,224,0,.65);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px 2px rgba(143,224,0,.65)}50%{box-shadow:0 0 3px 0 rgba(143,224,0,.35)}}
+
+.hero{position:relative;text-align:center;padding:clamp(48px,7vw,92px) 8px clamp(30px,4vw,52px);overflow:clip}
+.hero__eyebrow{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px 10px;padding:7px 22px;border-radius:26px;background:var(--chrome-deep);border:1px solid var(--edge);box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(26,54,86,.14);font-family:var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--ink-2)}
+.hero__eyebrow b{color:var(--ink);font-weight:800}
+
+.flare{position:absolute;inset:0;pointer-events:none;animation:flare-drift 16s ease-in-out infinite alternate}
+.flare i{position:absolute}
+.flare__core{left:16%;top:18%;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.98) 0 8%,rgba(255,255,255,.55) 22%,rgba(190,230,255,.25) 45%,rgba(190,230,255,0) 70%)}
+.flare__streak{left:0;right:0;top:calc(18% + 68px);height:3px;background:linear-gradient(90deg,rgba(255,255,255,0) 4%,rgba(255,255,255,.85) 22%,rgba(160,220,255,.25) 40%,rgba(255,255,255,0) 78%)}
+.flare__ring{border-radius:50%;border:2px solid transparent;background:conic-gradient(from 0deg,#FFC7E8,#FFEFB8,#C2FFD3,#B5E6FF,#DCC9FF,#FFC7E8) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) padding-box exclude,linear-gradient(#000 0 0);opacity:.6}
+.flare__ring.r1{left:34%;top:34%;width:56px;height:56px}
+.flare__ring.r2{left:52%;top:52%;width:110px;height:110px;opacity:.35}
+.flare__dot{border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.9),rgba(180,225,255,.35) 60%,rgba(180,225,255,0) 75%)}
+.flare__dot.d1{left:44%;top:46%;width:22px;height:22px}
+.flare__dot.d2{left:66%;top:60%;width:14px;height:14px}
+.flare__dot.d3{left:76%;top:70%;width:34px;height:34px;opacity:.55}
+@keyframes flare-drift{from{transform:translateX(-4%)}to{transform:translateX(5%)}}
+
+.wordmark-zone{position:relative;margin:26px 0 4px}
+.wordmark{
+  position:relative;display:inline-block;
+  font-family:var(--font-disp);font-weight:400;
+  font-size:clamp(2.5rem,9.2vw,7rem);line-height:1.08;
+  letter-spacing:.02em;
+  transform:scaleX(1.18);transform-origin:center;
+  background:linear-gradient(180deg,#FFFFFF 0%,#EBF2F9 24%,#AEC1D4 42%,#33506F 50%,#9DB3C8 57%,#F2F7FB 74%,#8CA2B8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 2px rgba(255,255,255,.9)) drop-shadow(0 -1px 0 rgba(20,57,95,.25));
+}
+.wordmark__sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(112deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.98) 50%,rgba(199,240,255,.6) 54%,rgba(255,255,255,0) 62%);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 5.5s ease-in-out infinite}
+@keyframes sheen{0%{background-position:120% 0}55%{background-position:-60% 0}100%{background-position:-60% 0}}
+.wordmark-mirror{height:.62em;font-size:clamp(2.5rem,9.2vw,7rem);overflow:hidden;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.4),transparent 78%);mask-image:linear-gradient(180deg,rgba(0,0,0,.4),transparent 78%)}
+.wordmark-mirror .wordmark{transform:scaleX(1.18) scaleY(-1);filter:blur(1.5px);opacity:.7}
+.wordmark-mirror .wordmark__sheen{display:none}
+.hero__floor{width:min(560px,80%);height:2px;margin:2px auto 26px;background:linear-gradient(90deg,rgba(20,57,95,0),rgba(20,57,95,.35) 30%,rgba(255,255,255,.9) 50%,rgba(20,57,95,.35) 70%,rgba(20,57,95,0));border-radius:999px}
+
+.hero__lede{max-width:620px;margin:0 auto 30px;font-size:clamp(15px,1.6vw,17.5px);color:var(--ink);font-weight:500}
+.hero__lede em{font-style:normal;font-weight:900;color:var(--gel-4)}
+.hero__cta{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.hero__note{margin-top:22px;font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--ink-2)}
+
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:46px;padding:10px 28px;border-radius:999px;overflow:hidden;
+  font-family:var(--font-ui);font-weight:800;font-size:15.5px;letter-spacing:.05em;
+  border:1px solid var(--edge);
+  transition:transform .18s var(--jelly),box-shadow .25s ease,filter .25s ease;
+}
+.btn::before{content:"";position:absolute;left:7%;right:7%;top:2px;height:46%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.02));pointer-events:none}
+.btn::after{content:"";position:absolute;top:-20%;bottom:-20%;left:-45%;width:34%;transform:skewX(-22deg) translateX(-160%);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));pointer-events:none}
+.btn:hover::after{animation:sweep .8s ease}
+@keyframes sweep{to{transform:skewX(-22deg) translateX(680%)}}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.96)}
+.btn.jelly{animation:jelly .55s var(--jelly)}
+@keyframes jelly{0%{transform:scale(1,1)}28%{transform:scale(1.14,.84)}52%{transform:scale(.92,1.1)}74%{transform:scale(1.05,.96)}100%{transform:scale(1,1)}}
+
+.btn--gel{background:var(--gel-skin);color:#fff;border-color:#0A6FAE;text-shadow:0 1px 2px rgba(4,60,100,.55);box-shadow:0 10px 22px var(--gel-glow),inset 0 -4px 8px rgba(3,60,105,.55),inset 0 2px 3px rgba(255,255,255,.75)}
+.btn--gel:hover{box-shadow:0 14px 30px var(--gel-glow),inset 0 -4px 8px rgba(3,60,105,.55),inset 0 2px 3px rgba(255,255,255,.75)}
+.btn--chrome{background:var(--chrome-skin);color:var(--ink);box-shadow:0 8px 18px rgba(26,54,86,.18),inset 0 1px 0 #fff,inset 0 -2px 4px rgba(255,255,255,.7)}
+.btn--holo{background:var(--holo-skin);color:var(--ink);border-color:#B79ECC;box-shadow:0 8px 20px rgba(150,120,200,.3),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -3px 6px rgba(150,120,200,.35)}
+.btn--holo::before{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.06))}
+.btn--glass{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.2));color:var(--ink);border-color:rgba(105,135,165,.75);backdrop-filter:blur(4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 14px rgba(26,54,86,.12)}
+.btn--pink{background:radial-gradient(130% 90% at 50% -12%,rgba(255,255,255,.9),rgba(255,255,255,0) 46%),linear-gradient(180deg,var(--pink-1) 0%,#E0558F 40%,var(--pink-2) 62%,var(--pink-3) 100%);color:#fff;border-color:#A93563;text-shadow:0 1px 2px rgba(120,20,60,.55);box-shadow:0 10px 22px rgba(201,58,114,.4),inset 0 -4px 8px rgba(130,25,65,.5),inset 0 2px 3px rgba(255,255,255,.7)}
+.btn--sm{min-height:38px;padding:7px 20px;font-size:14px}
+.btn[disabled]{cursor:not-allowed;background:linear-gradient(180deg,#E7EDF3,#D3DDE7);color:#4E6379;border-color:var(--edge-soft);box-shadow:inset 0 2px 5px rgba(26,54,86,.16);text-shadow:none;transform:none}
+.btn[disabled]::before,.btn[disabled]::after{display:none}
+.btn[disabled]:hover{transform:none}
+
+.pods{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;padding-bottom:26px}
+.pod{
+  position:relative;border-radius:var(--r-pod);padding:26px 28px 30px;
+  background:linear-gradient(180deg,var(--panel-hi),var(--panel) 46%,var(--panel-lo));
+  border:1px solid var(--edge);
+  box-shadow:inset 0 2px 0 #fff,inset 0 -3px 6px rgba(255,255,255,.55),var(--shadow-pod);
+}
+.pod--7{grid-column:span 7}
+.pod--5{grid-column:span 5}
+.pod--4{grid-column:span 4}
+.pod--8{grid-column:span 8}
+.pod--12{grid-column:span 12}
+.pod__head{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.pod__tag{display:inline-flex;align-items:center;padding:3px 14px;border-radius:999px;background:var(--chrome-deep);border:1px solid var(--edge);box-shadow:inset 0 1px 0 #fff;font-family:var(--font-disp);font-size:11px;letter-spacing:.22em;color:var(--ink-2)}
+.pod__title{font-family:var(--font-body);font-weight:900;font-size:19px;color:var(--ink)}
+.pod__desc{font-size:13.5px;color:var(--ink-2);margin-bottom:18px}
+.pod__row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+.corridor{grid-column:span 12;border-radius:999px;overflow:hidden;padding:12px 0;background:var(--chrome-deep);border:1px solid var(--edge);box-shadow:inset 0 2px 0 #fff,inset 0 -4px 8px rgba(120,150,180,.35),0 10px 24px rgba(26,54,86,.14)}
+.corridor__track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:corridor 22s linear infinite}
+.corridor__track span{display:inline-block;padding:0 1.4em;font-family:var(--font-ui);font-weight:800;font-size:14px;letter-spacing:.28em;color:#46617F}
+.corridor__track b{color:var(--gel-3);font-weight:800}
+@keyframes corridor{to{transform:translateX(-50%)}}
+
+.field{display:block}
+.field__label{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;font-weight:900;font-size:14.5px;color:var(--ink)}
+.field__hint{margin-top:10px;font-size:13px;color:var(--ink-3)}
+.input-row{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.input{
+  flex:1;min-width:200px;min-height:46px;padding:10px 20px;border-radius:999px;
+  border:1px solid var(--edge);background:var(--trough);color:var(--ink);
+  font-family:var(--font-body);font-weight:500;font-size:15px;
+  box-shadow:inset 0 3px 7px rgba(26,54,86,.22),inset 0 -1px 0 #fff;
+  transition:box-shadow .25s ease;
+}
+.input::placeholder{color:#4C6786}
+.input:focus{outline:none;box-shadow:inset 0 3px 7px rgba(26,54,86,.22),inset 0 -1px 0 #fff,0 0 0 4px rgba(44,187,240,.4)}
+
+.pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 22px}
+.pick-col h4{font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--ink-2);margin-bottom:12px}
+.pick{position:relative;display:flex;align-items:center;gap:11px;padding:6px 2px;cursor:pointer;font-weight:500;font-size:14.5px;color:var(--ink)}
+.pick input{position:absolute;opacity:0;width:24px;height:24px;left:0;top:50%;transform:translateY(-50%);cursor:pointer}
+.pick__orb{flex:none;width:24px;height:24px;border-radius:50%;background:var(--chrome-deep);border:1px solid var(--edge);box-shadow:inset 0 2px 4px rgba(26,54,86,.28),inset 0 -1px 0 #fff;position:relative}
+.pick__orb::after{content:"";position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff 0 18%,var(--gel-1) 36%,var(--gel-2) 62%,var(--gel-4) 100%);box-shadow:0 1px 4px rgba(8,90,150,.5);transform:scale(0);transition:transform .35s var(--jelly)}
+.pick input:checked + .pick__orb::after{transform:scale(1)}
+.pick input:focus-visible + .pick__orb{outline:3px solid #0E86D4;outline-offset:2px}
+.pick--box .pick__orb{border-radius:9px}
+.pick--box .pick__orb::after{display:none}
+.pick--box .pick__orb svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.3s var(--jelly);filter:drop-shadow(0 1px 1px rgba(4,60,100,.6))}
+.pick--box input:checked + .pick__orb{background:var(--gel-skin);border-color:#0A6FAE;box-shadow:inset 0 -3px 5px rgba(3,60,105,.5),inset 0 2px 2px rgba(255,255,255,.8)}
+.pick--box input:checked + .pick__orb svg{opacity:1;transform:scale(1)}
+
+.sw{position:relative;display:flex;align-items:center;gap:12px;padding:6px 2px;cursor:pointer;font-weight:500;font-size:14.5px;color:var(--ink)}
+.sw input{position:absolute;opacity:0;width:56px;height:30px;left:0;top:50%;transform:translateY(-50%);cursor:pointer}
+.sw__trough{flex:none;position:relative;width:56px;height:30px;border-radius:999px;background:var(--trough);border:1px solid var(--edge);box-shadow:inset 0 3px 6px rgba(26,54,86,.28),inset 0 -1px 0 #fff;transition:.3s ease}
+.sw__gel{position:absolute;inset:2px;border-radius:999px;background:var(--gel-skin);opacity:0;transition:opacity .3s ease}
+.sw__thumb{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#FFFFFF 0 22%,#DFE8F1 46%,#9FB2C6 78%,#7C92A9 100%);border:1px solid #718BA4;box-shadow:0 2px 5px rgba(26,54,86,.4),inset 0 1px 1px #fff;transition:left .34s var(--jelly)}
+.sw input:checked ~ .sw__trough .sw__gel{opacity:1}
+.sw input:checked ~ .sw__trough .sw__thumb{left:28px}
+.sw input:focus-visible ~ .sw__trough{outline:3px solid #0E86D4;outline-offset:2px}
+.sw__state{font-family:var(--font-ui);font-weight:800;font-size:11px;letter-spacing:.18em;color:var(--ink-3);width:2.6em}
+.sw__state::after{content:"OFF"}
+.sw input:checked ~ .sw__state{color:var(--gel-3)}
+.sw input:checked ~ .sw__state::after{content:"ON"}
+
+.pod--gauge .gauge-zone{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ellipse{
+  position:relative;width:min(320px,100%);aspect-ratio:1.32;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--chrome-skin);border:1px solid var(--edge);
+  box-shadow:inset 0 3px 0 #fff,inset 0 -6px 12px rgba(120,150,180,.4),0 14px 30px rgba(26,54,86,.2);
+}
+.ellipse::before{content:"";position:absolute;left:12%;right:12%;top:5%;height:34%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,0));pointer-events:none}
+.gauge-wrap{position:relative;width:min(210px,62vw)}
+.gauge-wrap svg{display:block;width:100%;height:auto}
+.gauge__readout{position:absolute;left:0;right:0;top:52%;transform:translateY(-50%);text-align:center;font-family:var(--font-ui);font-weight:800;font-size:44px;line-height:1;color:var(--ink)}
+.gauge__readout small{display:block;font-size:11px;font-weight:800;letter-spacing:.3em;color:var(--ink-2);margin-top:6px}
+.gauge__caption{font-family:var(--font-disp);font-size:11px;letter-spacing:.3em;color:var(--ink-2)}
+
+.slider-zone{margin-top:6px}
+.slider-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
+.slider-head output{font-family:var(--font-ui);font-weight:800;font-size:20px;color:var(--gel-4)}
+.range{--pct:62;width:100%;height:40px;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer}
+.range::-webkit-slider-runnable-track{height:16px;border-radius:999px;border:1px solid var(--edge);
+  background:linear-gradient(to right,var(--gel-2) 0%,var(--gel-3) calc(var(--pct)*1%),#E2EAF2 calc(var(--pct)*1%),#F4F8FB 100%);
+  box-shadow:inset 0 3px 6px rgba(26,54,86,.3),inset 0 -1px 0 #fff}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;margin-top:-9px;border-radius:50%;
+  background:radial-gradient(circle at 34% 26%,#fff 0 16%,var(--gel-1) 34%,var(--gel-2) 60%,var(--gel-4) 100%);
+  border:2px solid rgba(255,255,255,.95);box-shadow:0 4px 10px rgba(8,100,160,.5),inset 0 -3px 5px rgba(3,60,105,.45)}
+.range::-moz-range-track{height:16px;border-radius:999px;border:1px solid var(--edge);background:linear-gradient(180deg,#E2EAF2,#F4F8FB);box-shadow:inset 0 3px 6px rgba(26,54,86,.3)}
+.range::-moz-range-progress{height:16px;border-radius:999px;background:linear-gradient(180deg,var(--gel-1),var(--gel-3))}
+.range::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 34% 26%,#fff 0 16%,var(--gel-1) 34%,var(--gel-2) 60%,var(--gel-4) 100%);border:2px solid rgba(255,255,255,.95);box-shadow:0 4px 10px rgba(8,100,160,.5)}
+.range:focus-visible{outline:none}
+.range:focus-visible::-webkit-slider-thumb{box-shadow:0 4px 10px rgba(8,100,160,.5),0 0 0 4px rgba(44,187,240,.5)}
+.slider-scale{display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink-3);padding:0 4px}
+
+.dd{position:relative;max-width:300px}
+.dd__btn{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:10px 18px 10px 22px;border-radius:999px;background:var(--chrome-skin);border:1px solid var(--edge);box-shadow:0 8px 18px rgba(26,54,86,.16),inset 0 1px 0 #fff;font-weight:700;font-size:15px;color:var(--ink);transition:transform .18s var(--jelly)}
+.dd__btn:active{transform:scale(.97)}
+.dd__btn svg{flex:none;width:14px;height:14px;stroke:var(--ink-2);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--jelly)}
+.dd.open .dd__btn svg{transform:rotate(180deg)}
+.dd__pop{
+  position:absolute;z-index:40;top:calc(100% + 10px);left:0;right:0;
+  list-style:none;padding:8px;border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(238,245,251,.94));
+  border:1px solid var(--edge);backdrop-filter:blur(8px);
+  box-shadow:0 20px 44px rgba(26,54,86,.3),inset 0 1px 0 #fff;
+  display:none;
+}
+.dd.open .dd__pop{display:block;animation:pop .35s var(--jelly)}
+@keyframes pop{from{opacity:0;transform:scale(.86) translateY(-8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.dd__opt{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;font-weight:500;font-size:14.5px;color:var(--ink);cursor:pointer}
+.dd__opt:hover,.dd__opt:focus-visible{background:linear-gradient(180deg,rgba(139,231,255,.4),rgba(44,187,240,.28))}
+.dd__opt[aria-selected="true"]{background:var(--gel-skin);color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(4,60,100,.55)}
+.dd__opt i{font-style:normal;font-size:12px;color:var(--ink-3)}
+.dd__opt[aria-selected="true"] i{color:rgba(255,255,255,.85)}
+
+.tabs{position:relative;display:flex;gap:4px;padding:5px;border-radius:999px;background:var(--trough);border:1px solid var(--edge);box-shadow:inset 0 3px 6px rgba(26,54,86,.26),inset 0 -1px 0 #fff;width:max-content;max-width:100%}
+.tabs__glider{position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--gel-skin);border:1px solid #0A6FAE;box-shadow:0 4px 12px var(--gel-glow),inset 0 -3px 6px rgba(3,60,105,.5),inset 0 2px 2px rgba(255,255,255,.8);transition:left .4s var(--jelly),width .4s var(--jelly)}
+.tab{position:relative;z-index:1;padding:8px 22px;border-radius:999px;font-weight:800;font-size:14.5px;color:var(--ink-2);transition:color .25s ease;white-space:nowrap}
+.tab[aria-selected="true"]{color:#fff;text-shadow:0 1px 2px rgba(4,60,100,.6)}
+.tabpanels{margin-top:18px}
+.tabpanel{border-radius:26px;padding:18px 22px;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.35));border:1px solid var(--edge-soft);box-shadow:inset 0 1px 0 #fff}
+.tabpanel[hidden]{display:none}
+.tabpanel h4{font-size:15px;font-weight:900;margin-bottom:4px;color:var(--ink)}
+.tabpanel p{font-size:14px;color:var(--ink-2)}
+
+.prog{margin-top:8px}
+.prog__meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px;flex-wrap:wrap}
+.prog__file{font-weight:700;font-size:14.5px;color:var(--ink)}
+.prog__pct{font-family:var(--font-ui);font-weight:800;font-size:20px;color:var(--gel-4)}
+.prog__trough{position:relative;height:22px;border-radius:999px;background:var(--trough);border:1px solid var(--edge);box-shadow:inset 0 3px 7px rgba(26,54,86,.3),inset 0 -1px 0 #fff;overflow:hidden}
+.prog__fill{position:absolute;inset:2px auto 2px 2px;width:62%;min-width:18px;border-radius:999px;background:var(--gel-skin);box-shadow:inset 0 -3px 6px rgba(3,60,105,.5),inset 0 2px 2px rgba(255,255,255,.8);transition:width .2s ease}
+.prog__fill::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:32%;transform:skewX(-24deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));animation:prog-sweep 1.6s linear infinite}
+@keyframes prog-sweep{to{left:130%}}
+.prog__status{margin-top:10px;font-size:13px;color:var(--ink-2)}
+.prog__acts{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+
+.chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.chip{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:6px 18px;border-radius:999px;background:var(--chrome-skin);border:1px solid var(--edge);box-shadow:0 6px 14px rgba(26,54,86,.14),inset 0 1px 0 #fff;font-weight:700;font-size:13.5px;color:var(--ink);transition:transform .18s var(--jelly)}
+.chip:hover{transform:translateY(-2px)}
+.chip i{font-style:normal;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--gel-2) 60%,var(--gel-4));flex:none}
+
+[data-tip]{position:relative}
+[data-tip]::before{content:"";position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%) rotate(45deg);width:12px;height:12px;border-radius:2px;background:#1B3E66;opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s var(--jelly);z-index:31}
+[data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(5px);padding:7px 16px;border-radius:999px;background:linear-gradient(180deg,#2A4E7A,#16385C);color:#EAF3FB;font-size:12.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap;border:1px solid rgba(160,200,235,.5);box-shadow:0 10px 24px rgba(12,34,60,.4),inset 0 1px 0 rgba(190,225,255,.5);opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s var(--jelly);z-index:30}
+[data-tip]:hover::after,[data-tip]:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+[data-tip]:hover::before,[data-tip]:focus-visible::before{opacity:1}
+
+.toaster{position:fixed;z-index:90;top:18px;right:18px;display:flex;flex-direction:column;gap:12px;pointer-events:none;max-width:min(360px,calc(100vw - 24px))}
+.toast{pointer-events:auto;display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(236,244,251,.96));border:1px solid var(--edge);box-shadow:0 18px 40px rgba(26,54,86,.32),inset 0 1px 0 #fff;animation:toast-in .5s var(--jelly);overflow:hidden;position:relative}
+.toast.out{animation:toast-out .3s ease forwards}
+@keyframes toast-in{from{opacity:0;transform:translateX(60%) scale(.8)}60%{opacity:1;transform:translateX(-4%) scale(1.03)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes toast-out{to{opacity:0;transform:translateX(40%) scale(.85)}}
+.toast__orb{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-top:2px}
+.toast__orb svg{width:16px;height:16px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(4,60,100,.5))}
+.toast--gel .toast__orb{background:var(--gel-skin);box-shadow:inset 0 -3px 5px rgba(3,60,105,.5),inset 0 1px 2px rgba(255,255,255,.8)}
+.toast--holo .toast__orb{background:var(--holo-skin);box-shadow:inset 0 -3px 6px rgba(150,120,200,.4),inset 0 1px 2px rgba(255,255,255,.9)}
+.toast--holo .toast__orb svg{stroke:var(--ink)}
+.toast__body{flex:1;min-width:0}
+.toast__title{font-weight:900;font-size:14.5px;color:var(--ink)}
+.toast__msg{font-size:13px;color:var(--ink-2)}
+.toast__close{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--chrome-deep);border:1px solid var(--edge-soft);color:var(--ink-2);font-size:13px;font-weight:800;line-height:1}
+.toast__life{position:absolute;left:14px;right:14px;bottom:5px;height:3px;border-radius:999px;background:rgba(44,187,240,.25);overflow:hidden}
+.toast__life i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gel-1),var(--gel-3));animation:life linear forwards}
+@keyframes life{from{width:100%}to{width:0%}}
+
+.modal{border:0;padding:0;background:transparent;max-width:none;overflow:visible}
+.modal::backdrop{background:rgba(52,82,114,.4);backdrop-filter:blur(7px) saturate(1.3)}
+.modal[open] .modal__card{animation:modal-in .5s var(--jelly)}
+@keyframes modal-in{from{opacity:0;transform:scale(.82) translateY(24px)}60%{opacity:1;transform:scale(1.03) translateY(-3px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal__card{width:min(520px,calc(100vw - 36px));border-radius:34px;overflow:hidden;background:linear-gradient(180deg,var(--panel-hi),var(--panel) 50%,var(--panel-lo));border:1px solid var(--edge);box-shadow:inset 0 2px 0 #fff,0 40px 90px rgba(12,34,60,.5)}
+.modal__bar{display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--chrome-deep);border-bottom:1px solid var(--edge)}
+.modal__bar i{width:13px;height:13px;border-radius:50%;border:1px solid rgba(26,54,86,.3);box-shadow:inset 0 1px 2px rgba(255,255,255,.8)}
+.modal__bar i:nth-child(1){background:radial-gradient(circle at 35% 30%,#FFD9E4,#F26D8D 70%)}
+.modal__bar i:nth-child(2){background:radial-gradient(circle at 35% 30%,#FFF3C9,#F2C94C 70%)}
+.modal__bar i:nth-child(3){background:radial-gradient(circle at 35% 30%,#DEFFC9,#8FD24C 70%)}
+.modal__bar b{margin-left:6px;font-family:var(--font-disp);font-size:12px;letter-spacing:.2em;color:var(--ink-2)}
+.modal__body{padding:26px 30px 30px}
+.modal__title{font-size:21px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.modal__text{font-size:14.5px;color:var(--ink-2);margin-bottom:24px}
+.modal__acts{display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+
+.footer{position:relative;text-align:center;padding:44px 16px 60px;overflow:clip}
+.footer .wordmark{font-size:clamp(1.8rem,4.5vw,3rem)}
+.footer .wordmark-mirror{font-size:clamp(1.8rem,4.5vw,3rem)}
+.footer__line{margin-top:14px;font-size:14px;font-weight:700;color:var(--ink)}
+.footer__fine{margin-top:6px;font-size:12.5px;letter-spacing:.12em;color:var(--ink-2)}
+
+@media (max-width:1080px){
+  .pod--7,.pod--5,.pod--4,.pod--8{grid-column:span 12}
+}
+@media (max-width:760px){
+  .pick-grid{grid-template-columns:1fr}
+  .topbar{padding:10px 16px}
+  .topbar__clock{order:3}
+  .pod{padding:22px 18px 26px}
+  .toaster{left:12px;right:12px;max-width:none}
+  .hero{padding-top:40px}
+  .modal__body{padding:22px 20px 24px}
+  .tab{padding:8px 14px;font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<div class="atmos" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+
+<header class="topbar">
+  <span class="topbar__logo"><span class="logo-orb" aria-hidden="true"></span>MERCURA</span>
+  <span class="topbar__sub">液态桌面 · 千禧型号</span>
+  <span class="topbar__spacer"></span>
+  <span class="topbar__clock" id="clock">千禧时 00:00:00</span>
+  <span class="led"><i aria-hidden="true"></i>在线</span>
+</header>
+
+<section class="hero">
+  <div class="flare" aria-hidden="true">
+    <i class="flare__core"></i><i class="flare__streak"></i>
+    <i class="flare__ring r1"></i><i class="flare__ring r2"></i>
+    <i class="flare__dot d1"></i><i class="flare__dot d2"></i><i class="flare__dot d3"></i>
+  </div>
+  <p class="hero__eyebrow"><b>MERCURA™ 液态桌面</b>型号 v2.001 · 千禧限定</p>
+  <div class="wordmark-zone">
+    <h1 class="wordmark">MERCURA<span class="wordmark__sheen" aria-hidden="true">MERCURA</span></h1>
+    <div class="wordmark-mirror" aria-hidden="true"><span class="wordmark">MERCURA</span></div>
+    <div class="hero__floor" aria-hidden="true"></div>
+  </div>
+  <p class="hero__lede">把千禧年的第一缕光,浇铸成一块会呼吸的<em>液态铬</em>。MERCURA 给每个按钮灌满水蓝凝胶——按下去,整个桌面像果冻一样点头答应。</p>
+  <div class="hero__cta">
+    <button class="btn btn--gel" type="button" data-toast="gel" data-toast-title="凝胶已注入" data-toast-msg="桌面弹性上升至 100%,请享用。">注入凝胶 · 立即开机</button>
+    <button class="btn btn--chrome" type="button" data-toast="holo" data-toast-title="镜面工厂开放" data-toast-msg="今日流光已排班,随到随看。">参观镜面工厂</button>
+  </div>
+  <p class="hero__note">光学引擎已预热 · 60 帧流光 · 零暗色科幻</p>
+</section>
+
+<main class="pods">
+
+  <section class="pod pod--7">
+    <div class="pod__head"><span class="pod__tag">POD·01</span><h2 class="pod__title">气泡按钮</h2></div>
+    <p class="pod__desc">四种壳体一种脾气:按下去都会果冻弹动,扫光在悬停时路过。</p>
+    <div class="pod__row">
+      <button class="btn btn--gel" type="button" data-toast="gel" data-toast-title="凝胶壳体" data-toast-msg="半透明水蓝,顶部高光弧出厂自带。">注入凝胶</button>
+      <button class="btn btn--chrome" type="button" data-toast="holo" data-toast-title="铬壳铸造中" data-toast-msg="多段银灰渐变已对齐地平线。">铸造铬壳</button>
+      <button class="btn btn--holo" type="button" data-toast="holo" data-toast-title="虹彩展开" data-toast-msg="conic 光谱旋转一周,无需插电。">展开虹彩</button>
+      <button class="btn btn--glass" type="button" data-toast="gel" data-toast-title="玻璃轻触" data-toast-msg="最安静的一款壳体,适合深夜。">玻璃轻触</button>
+      <button class="btn btn--chrome" type="button" disabled>待机 · 未供水</button>
+    </div>
+  </section>
+
+  <section class="pod pod--5">
+    <div class="pod__head"><span class="pod__tag">POD·02</span><h2 class="pod__title">液面输入</h2></div>
+    <p class="pod__desc">凹进液面的水槽,聚焦时泛起水蓝光圈。</p>
+    <label class="field" for="dropName">
+      <span class="field__label">水滴署名</span>
+      <span class="input-row">
+        <input class="input" id="dropName" type="text" placeholder="给你的水滴起个名字,例如:小水银" autocomplete="off">
+        <button class="btn btn--gel btn--sm" type="button" id="engrave">刻字</button>
+      </span>
+      <span class="field__hint">署名会刻在气泡内壁,只有光路过时可见。</span>
+    </label>
+  </section>
+
+  <div class="corridor" aria-hidden="true">
+    <div class="corridor__track" id="corridorTrack">
+      <span>液态铬 <b>◈</b> 水蓝凝胶 <b>◈</b> 全息虹彩 <b>◈</b> 果冻物理 <b>◈</b> 镜面流光 <b>◈</b> 镜头光晕 <b>◈</b> 千禧光学 <b>◈</b> MERCURA v2.001 <b>◈</b></span>
+    </div>
+  </div>
+
+  <section class="pod pod--7">
+    <div class="pod__head"><span class="pod__tag">POD·03</span><h2 class="pod__title">口味与开机仪式</h2></div>
+    <p class="pod__desc">选一种液体口味,勾几项仪式,再决定哪些物理定律今晚生效。</p>
+    <div class="pick-grid">
+      <div class="pick-col">
+        <h4>液体口味 · 单选</h4>
+        <label class="pick"><input type="radio" name="flavor" value="mercury"><span class="pick__orb" aria-hidden="true"></span>水银原味</label>
+        <label class="pick"><input type="radio" name="flavor" value="soda" checked><span class="pick__orb" aria-hidden="true"></span>苏打气泡</label>
+        <label class="pick"><input type="radio" name="flavor" value="aurora"><span class="pick__orb" aria-hidden="true"></span>极光果冻</label>
+      </div>
+      <div class="pick-col">
+        <h4>开机仪式 · 复选</h4>
+        <label class="pick pick--box"><input type="checkbox" checked><span class="pick__orb" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>镜面抛光</label>
+        <label class="pick pick--box"><input type="checkbox"><span class="pick__orb" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>泡泡音效</label>
+        <label class="pick pick--box"><input type="checkbox" checked><span class="pick__orb" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>流光巡游</label>
+      </div>
+      <div class="pick-col">
+        <h4>物理定律 · 开关</h4>
+        <label class="sw"><input type="checkbox" checked><span class="sw__trough" aria-hidden="true"><i class="sw__gel"></i><i class="sw__thumb"></i></span><span class="sw__state" aria-hidden="true"></span>果冻物理</label>
+        <label class="sw"><input type="checkbox" checked><span class="sw__trough" aria-hidden="true"><i class="sw__gel"></i><i class="sw__thumb"></i></span><span class="sw__state" aria-hidden="true"></span>镜头光晕</label>
+        <label class="sw"><input type="checkbox"><span class="sw__trough" aria-hidden="true"><i class="sw__gel"></i><i class="sw__thumb"></i></span><span class="sw__state" aria-hidden="true"></span>省电灰阶</label>
+      </div>
+    </div>
+  </section>
+
+  <section class="pod pod--5 pod--gauge">
+    <div class="pod__head"><span class="pod__tag">POD·04</span><h2 class="pod__title">水位与量表</h2></div>
+    <p class="pod__desc">拖动滑杆给桌面注水,椭圆舱里的水位表实时跟随。</p>
+    <div class="gauge-zone">
+      <div class="ellipse">
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 200 200" role="img" aria-label="水位表,当前 62%">
+            <defs>
+              <linearGradient id="bezelGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFFFFF"/><stop offset=".42" stop-color="#B9C9DA"/>
+                <stop offset=".52" stop-color="#7E95AC"/><stop offset=".66" stop-color="#C8D5E2"/>
+                <stop offset="1" stop-color="#F2F7FB"/>
+              </linearGradient>
+              <linearGradient id="gelGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8BE7FF"/><stop offset=".55" stop-color="#2CBBF0"/><stop offset="1" stop-color="#045E9C"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="none" stroke="url(#bezelGrad)" stroke-width="10"/>
+            <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(20,57,95,.28)" stroke-width="1"/>
+            <g id="gaugeTicks" aria-hidden="true"></g>
+            <circle id="gaugeTrack" cx="100" cy="100" r="76" fill="none" stroke="#C9D6E3" stroke-width="13" stroke-linecap="round" transform="rotate(150 100 100)"/>
+            <circle id="gaugeArc" cx="100" cy="100" r="76" fill="none" stroke="url(#gelGrad)" stroke-width="13" stroke-linecap="round" transform="rotate(150 100 100)"/>
+            <circle cx="72" cy="42" r="7" fill="rgba(255,255,255,.9)"/>
+          </svg>
+          <div class="gauge__readout"><span id="gaugeVal">62</span><small>水位 %</small></div>
+        </div>
+      </div>
+      <span class="gauge__caption">HYDRO GAUGE</span>
+    </div>
+    <div class="slider-zone">
+      <div class="slider-head">
+        <label class="field__label" for="hydro">液面水位</label>
+        <output for="hydro" id="hydroOut">62%</output>
+      </div>
+      <input class="range" type="range" id="hydro" min="0" max="100" value="62" step="1" aria-label="液面水位百分比">
+      <div class="slider-scale" aria-hidden="true"><span>干涸</span><span>及腰</span><span>满溢</span></div>
+    </div>
+  </section>
+
+  <section class="pod pod--4">
+    <div class="pod__head"><span class="pod__tag">POD·05</span><h2 class="pod__title">光晕档位</h2></div>
+    <p class="pod__desc">给镜头光晕选一个时段,弹层是果冻做的。</p>
+    <div class="dd" id="flareDD">
+      <button class="dd__btn" type="button" aria-haspopup="listbox" aria-expanded="false" id="ddBtn">
+        <span id="ddLabel">正午 12:00 · 白金光</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6"/></svg>
+      </button>
+      <ul class="dd__pop" role="listbox" aria-label="光晕档位" id="ddPop">
+        <li class="dd__opt" role="option" tabindex="-1" aria-selected="false" data-val="晨光 06:00 · 蜜橘光">晨光 06:00<i>蜜橘光</i></li>
+        <li class="dd__opt" role="option" tabindex="-1" aria-selected="true" data-val="正午 12:00 · 白金光">正午 12:00<i>白金光</i></li>
+        <li class="dd__opt" role="option" tabindex="-1" aria-selected="false" data-val="霓虹夜 22:00 · 虹彩光">霓虹夜 22:00<i>虹彩光</i></li>
+        <li class="dd__opt" role="option" tabindex="-1" aria-selected="false" data-val="深潜 03:00 · 幽蓝光">深潜 03:00<i>幽蓝光</i></li>
+      </ul>
+    </div>
+    <p class="field__hint">档位即刻生效,光不排队。</p>
+  </section>
+
+  <section class="pod pod--8">
+    <div class="pod__head"><span class="pod__tag">POD·06</span><h2 class="pod__title">材质三视图</h2></div>
+    <p class="pod__desc">同一块桌面,三种浇铸配方。凝胶指示块滑过去时会回弹一下。</p>
+    <div class="tabs" role="tablist" aria-label="材质三视图">
+      <span class="tabs__glider" id="tabGlider" aria-hidden="true"></span>
+      <button class="tab" role="tab" id="tab-chrome" aria-selected="true" aria-controls="panel-chrome" type="button">铬壳</button>
+      <button class="tab" role="tab" id="tab-gel" aria-selected="false" aria-controls="panel-gel" tabindex="-1" type="button">凝胶</button>
+      <button class="tab" role="tab" id="tab-holo" aria-selected="false" aria-controls="panel-holo" tabindex="-1" type="button">虹彩</button>
+    </div>
+    <div class="tabpanels">
+      <div class="tabpanel" role="tabpanel" id="panel-chrome" aria-labelledby="tab-chrome">
+        <h4>液态铬 · 62 号合金</h4>
+        <p>多段银灰渐变在 50% 处压出一条地平线暗带,光从上方浇下来,壳体看起来永远刚出炉。适合承重面板与一切想被误认成金属的东西。</p>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-gel" aria-labelledby="tab-gel" hidden>
+        <h4>水蓝凝胶 · 可食用级透明</h4>
+        <p>半透明水蓝,顶部一道高光弧是它的出厂签名。受压时先变扁再回弹,弹性系数与你的心情同步。</p>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-holo" aria-labelledby="tab-holo" hidden>
+        <h4>全息虹彩 · 千禧限定涂层</h4>
+        <p>conic 光谱贴着壳面转一整圈,从哪个角度看都在过节。用量要克制:一页最多两处,多了会把光用完。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pod pod--7">
+    <div class="pod__head"><span class="pod__tag">POD·07</span><h2 class="pod__title">千禧补丁传输</h2></div>
+    <p class="pod__desc">补丁 v2.001 修复了「光晕偶尔迟到」的问题。扫光常驻,进度条永远看起来很忙。</p>
+    <div class="prog">
+      <div class="prog__meta">
+        <span class="prog__file">millennium-patch_v2.001.aqua</span>
+        <span class="prog__pct"><span id="progPct">62</span>%</span>
+      </div>
+      <div class="prog__trough" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="千禧补丁传输进度" id="progBar">
+        <div class="prog__fill" id="progFill"></div>
+      </div>
+      <p class="prog__status" id="progStatus">注入暂停 · 水管保持湿润。</p>
+      <div class="prog__acts">
+        <button class="btn btn--gel btn--sm" type="button" id="progGo">开始传输</button>
+        <button class="btn btn--chrome btn--sm" type="button" id="progReset">倒回水箱</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pod pod--5">
+    <div class="pod__head"><span class="pod__tag">POD·08</span><h2 class="pod__title">信使与舱门</h2></div>
+    <p class="pod__desc">吐司从右上角弹进来,舱门弹窗会把背景泡进毛玻璃。</p>
+    <div class="pod__row">
+      <button class="btn btn--gel btn--sm" type="button" data-toast="gel" data-toast-title="凝胶已注满" data-toast-msg="水位 100%,弹性极佳。">投递好消息</button>
+      <button class="btn btn--holo btn--sm" type="button" data-toast="holo" data-toast-title="虹彩涂层就绪" data-toast-msg="转动屏幕即可看到彩虹。">投递虹彩</button>
+      <button class="btn btn--pink btn--sm" type="button" id="openDrain">打开排水舱门</button>
+    </div>
+    <p class="field__hint" style="margin-top:16px">舱门有三颗信号灯:粉色负责紧张,黄色负责犹豫,绿色负责放行。</p>
+  </section>
+
+  <section class="pod pod--12">
+    <div class="pod__head"><span class="pod__tag">POD·09</span><h2 class="pod__title">悬停走廊</h2></div>
+    <p class="pod__desc">把光标(或焦点)停在铬牌上,深海蓝的提示气泡会浮出来。</p>
+    <div class="chips">
+      <button class="chip" type="button" data-tip="LED 常亮,谁也别想下班">状态灯</button>
+      <button class="chip" type="button" data-tip="水 61% · 光 38% · 秘密 1%">凝胶配方</button>
+      <button class="chip" type="button" data-tip="出厂即抛光,遇雾自动擦">铬 62 号</button>
+      <button class="chip" type="button" data-tip="弹性常数 k = 2.001">果冻常数</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wordmark-zone">
+    <span class="wordmark" style="font-family:var(--font-disp)">MERCURA</span>
+    <div class="wordmark-mirror" aria-hidden="true"><span class="wordmark">MERCURA</span></div>
+  </div>
+  <p class="footer__line">让每一次点击都有回弹。</p>
+  <p class="footer__fine">© 2001 — 永远 2001 · Mercura Systems · 于千禧年第一夜浇铸</p>
+</footer>
+
+</div>
+
+<div class="toaster" id="toaster" aria-live="polite"></div>
+
+<dialog class="modal" id="drainModal" aria-labelledby="drainTitle">
+  <div class="modal__card">
+    <div class="modal__bar"><i></i><i></i><i></i><b>AIRLOCK · 舱门 02</b></div>
+    <div class="modal__body">
+      <h3 class="modal__title" id="drainTitle">排水确认</h3>
+      <p class="modal__text">排掉水族箱后,所有凝胶按钮会暂时失去弹性。水可以再注,但今晚的流光不会重播。</p>
+      <div class="modal__acts">
+        <button class="btn btn--chrome btn--sm" type="button" id="drainCancel">先不排了</button>
+        <button class="btn btn--pink btn--sm" type="button" id="drainOk">确认排水</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var clock=document.getElementById("clock");
+  function tick(){
+    var d=new Date(),p=function(n){return String(n).padStart(2,"0")};
+    clock.textContent="千禧时 "+p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds());
+  }
+  tick();setInterval(tick,1000);
+
+  var track=document.getElementById("corridorTrack");
+  track.appendChild(track.firstElementChild.cloneNode(true));
+
+  document.addEventListener("click",function(e){
+    var b=e.target.closest(".btn,.chip,.dd__btn");
+    if(!b||b.disabled)return;
+    b.classList.remove("jelly");void b.offsetWidth;b.classList.add("jelly");
+  });
+  document.addEventListener("animationend",function(e){
+    if(e.animationName==="jelly")e.target.classList.remove("jelly");
+  });
+
+  var toaster=document.getElementById("toaster");
+  function toast(kind,title,msg){
+    var t=document.createElement("div");
+    t.className="toast toast--"+(kind==="holo"?"holo":"gel");
+    t.setAttribute("role","status");
+    var icon=kind==="holo"
+      ?'<svg viewBox="0 0 20 20"><path d="M10 3v14M3 10h14"/></svg>'
+      :'<svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>';
+    t.innerHTML='<span class="toast__orb" aria-hidden="true">'+icon+'</span>'
+      +'<span class="toast__body"><span class="toast__title"></span><br><span class="toast__msg"></span></span>'
+      +'<button class="toast__close" type="button" aria-label="关闭通知">×</button>'
+      +'<span class="toast__life" aria-hidden="true"><i style="animation-duration:4.2s"></i></span>';
+    t.querySelector(".toast__title").textContent=title;
+    t.querySelector(".toast__msg").textContent=msg;
+    toaster.appendChild(t);
+    while(toaster.children.length>3)toaster.firstElementChild.remove();
+    var gone=false;
+    function out(){
+      if(gone)return;gone=true;
+      t.classList.add("out");
+      setTimeout(function(){t.remove()},reduce?0:300);
+    }
+    var timer=setTimeout(out,4200);
+    t.querySelector(".toast__close").addEventListener("click",function(){clearTimeout(timer);out()});
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-toast]");
+    if(!b||b.disabled)return;
+    toast(b.dataset.toast,b.dataset.toastTitle,b.dataset.toastMsg);
+  });
+
+  document.getElementById("engrave").addEventListener("click",function(){
+    var v=document.getElementById("dropName").value.trim();
+    toast("gel",v?"已刻字:"+v:"水滴还没有名字",v?"光路过时会替你读一遍。":"先在水槽里写点什么再刻。");
+  });
+
+  var ticks=document.getElementById("gaugeTicks");
+  for(var i=0;i<=12;i++){
+    var a=(150+i*20)*Math.PI/180,major=i%3===0,
+        r1=major?58:62,r2=68,
+        x1=100+r1*Math.cos(a),y1=100+r1*Math.sin(a),
+        x2=100+r2*Math.cos(a),y2=100+r2*Math.sin(a),
+        ln=document.createElementNS("http://www.w3.org/2000/svg","line");
+    ln.setAttribute("x1",x1);ln.setAttribute("y1",y1);
+    ln.setAttribute("x2",x2);ln.setAttribute("y2",y2);
+    ln.setAttribute("stroke",major?"#4C6786":"#8AA0B6");
+    ln.setAttribute("stroke-width",major?2.4:1.4);
+    ln.setAttribute("stroke-linecap","round");
+    ticks.appendChild(ln);
+  }
+  var ARC=2*Math.PI*76*(240/360),GAP=2*Math.PI*76,
+      arc=document.getElementById("gaugeArc"),
+      trackC=document.getElementById("gaugeTrack");
+  trackC.setAttribute("stroke-dasharray",ARC+" "+GAP);
+  var hydro=document.getElementById("hydro"),
+      hydroOut=document.getElementById("hydroOut"),
+      gaugeVal=document.getElementById("gaugeVal"),
+      gaugeSvg=arc.closest("svg");
+  function setHydro(v){
+    arc.setAttribute("stroke-dasharray",(ARC*v/100)+" "+GAP);
+    gaugeVal.textContent=v;
+    hydroOut.textContent=v+"%";
+    hydro.style.setProperty("--pct",v);
+    gaugeSvg.setAttribute("aria-label","水位表,当前 "+v+"%");
+  }
+  hydro.addEventListener("input",function(){setHydro(+hydro.value)});
+  setHydro(62);
+
+  var dd=document.getElementById("flareDD"),
+      ddBtn=document.getElementById("ddBtn"),
+      ddPop=document.getElementById("ddPop"),
+      ddLabel=document.getElementById("ddLabel"),
+      opts=[].slice.call(ddPop.querySelectorAll(".dd__opt"));
+  function ddOpen(o){
+    dd.classList.toggle("open",o);
+    ddBtn.setAttribute("aria-expanded",o?"true":"false");
+    if(o){var s=opts.find(function(x){return x.getAttribute("aria-selected")==="true"});(s||opts[0]).focus()}
+  }
+  ddBtn.addEventListener("click",function(){ddOpen(!dd.classList.contains("open"))});
+  opts.forEach(function(o){
+    o.addEventListener("click",function(){
+      opts.forEach(function(x){x.setAttribute("aria-selected","false")});
+      o.setAttribute("aria-selected","true");
+      ddLabel.textContent=o.dataset.val;
+      ddOpen(false);ddBtn.focus();
+      toast("gel","光晕已调档",o.dataset.val+",立即生效。");
+    });
+    o.addEventListener("keydown",function(e){
+      var i=opts.indexOf(o);
+      if(e.key==="ArrowDown"){e.preventDefault();opts[(i+1)%opts.length].focus()}
+      else if(e.key==="ArrowUp"){e.preventDefault();opts[(i-1+opts.length)%opts.length].focus()}
+      else if(e.key==="Enter"||e.key===" "){e.preventDefault();o.click()}
+      else if(e.key==="Escape"){ddOpen(false);ddBtn.focus()}
+    });
+  });
+  document.addEventListener("click",function(e){
+    if(!dd.contains(e.target))ddOpen(false);
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&dd.classList.contains("open")){ddOpen(false);ddBtn.focus()}
+  });
+
+  var tabs=[].slice.call(document.querySelectorAll(".tab")),
+      glider=document.getElementById("tabGlider"),
+      tablist=document.querySelector(".tabs");
+  function placeGlider(t){
+    glider.style.left=t.offsetLeft+"px";
+    glider.style.width=t.offsetWidth+"px";
+  }
+  function selectTab(t){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute("aria-selected",on?"true":"false");
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute("aria-controls")).hidden=!on;
+    });
+    placeGlider(t);
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener("click",function(){selectTab(t)});
+    t.addEventListener("keydown",function(e){
+      var n=null;
+      if(e.key==="ArrowRight")n=tabs[(i+1)%tabs.length];
+      else if(e.key==="ArrowLeft")n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){e.preventDefault();n.focus();selectTab(n)}
+    });
+  });
+  function currentTab(){return tabs.find(function(x){return x.getAttribute("aria-selected")==="true"})}
+  placeGlider(currentTab());
+  addEventListener("resize",function(){placeGlider(currentTab())});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){placeGlider(currentTab())});
+
+  var prog=62,raf=null,
+      progFill=document.getElementById("progFill"),
+      progPct=document.getElementById("progPct"),
+      progBar=document.getElementById("progBar"),
+      progStatus=document.getElementById("progStatus");
+  function renderProg(){
+    progFill.style.width=prog+"%";
+    progPct.textContent=Math.round(prog);
+    progBar.setAttribute("aria-valuenow",Math.round(prog));
+  }
+  document.getElementById("progGo").addEventListener("click",function(){
+    if(raf)cancelAnimationFrame(raf);
+    if(prog>=100)prog=0;
+    progStatus.textContent="注入中 · 请勿摇晃桌面……";
+    if(reduce){prog=100;renderProg();progStatus.textContent="传输完成 · 千禧补丁已就位。";toast("gel","补丁已就位","v2.001 光晕再也不会迟到。");return}
+    var last=performance.now();
+    (function step(now){
+      prog=Math.min(100,prog+(now-last)/3000*100);last=now;
+      renderProg();
+      if(prog<100){raf=requestAnimationFrame(step)}
+      else{raf=null;progStatus.textContent="传输完成 · 千禧补丁已就位。";toast("gel","补丁已就位","v2.001 光晕再也不会迟到。")}
+    })(last);
+  });
+  document.getElementById("progReset").addEventListener("click",function(){
+    if(raf){cancelAnimationFrame(raf);raf=null}
+    prog=0;renderProg();
+    progStatus.textContent="已倒回水箱 · 随时可以重新注入。";
+  });
+  renderProg();
+
+  var modal=document.getElementById("drainModal"),
+      opener=document.getElementById("openDrain");
+  opener.addEventListener("click",function(){modal.showModal()});
+  document.getElementById("drainCancel").addEventListener("click",function(){modal.close("keep")});
+  document.getElementById("drainOk").addEventListener("click",function(){modal.close("drain")});
+  modal.addEventListener("click",function(e){if(e.target===modal)modal.close("keep")});
+  modal.addEventListener("close",function(){
+    if(modal.returnValue==="drain")toast("holo","水已排空","弹性将在 3 秒后自动回归。");
+    opener.focus();
+  });
+})();
+</script>
+</body>
+</html>

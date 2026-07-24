@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特里亚农 TRIANON · ORMOLU 自由稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Italiana&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F4EEDD; --ivory-hi:#FBF7EB; --ivory-dim:#ECE4CD; --paper:#FDFAF1;
+  --ink:#2D2517; --ink-soft:#453C2B; --ink-mute:#5C5240;
+  --gold:#B08D3F; --gold-hi:#D9BC7A; --gold-dk:#7C5D22; --gold-line:#C7AE79; --gold-text:#82611B;
+  --sage:#66754F; --sage-dk:#4E5C41; --sage-deep:#4F5D43;
+  --rouge:#C98A94; --rouge-dk:#8E3B4A; --rouge-deep:#7E3140;
+  --easeSoft:cubic-bezier(.36,.07,.19,.97); --easeCurtain:cubic-bezier(.72,.02,.18,1);
+  --lace:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='14'%3E%3Cpath d='M0 1.5 A13 13 0 0 0 24 1.5' fill='none' stroke='%23B08D3F' stroke-width='1.3'/%3E%3Ccircle cx='12' cy='11.2' r='1.3' fill='%23B08D3F'/%3E%3Ccircle cx='2.8' cy='7.2' r='0.9' fill='%23B08D3F'/%3E%3Ccircle cx='21.2' cy='7.2' r='0.9' fill='%23B08D3F'/%3E%3C/svg%3E");
+  --gilt-noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.40 0 0 0 0 0.29 0 0 0 0 0.08 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.30'/%3E%3C/svg%3E");
+  --fringe:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='30'%3E%3Cpath d='M0 0 H36 V8 A9 9 0 0 1 18 8 A9 9 0 0 1 0 8 Z' fill='%237E3140'/%3E%3Cpath d='M0 6.4 H36' stroke='%23C9A961' stroke-width='1.4'/%3E%3Cpath d='M36 8 A9 9 0 0 1 18 8 A9 9 0 0 1 0 8' fill='none' stroke='%23C9A961' stroke-width='1.5'/%3E%3Cpath d='M18 9 V18' stroke='%23C9A961' stroke-width='1.2'/%3E%3Cpath d='M18 17 C15.4 19.6 15 22.6 18 26.6 C21 22.6 20.6 19.6 18 17 Z' fill='%23C9A961'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#F7F1E2 0,var(--ivory) 460px);color:var(--ink);font-family:"Cormorant Garamond","Noto Serif SC","Songti SC","STSong",serif;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+img,svg{max-width:100%}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--gold-dk);outline-offset:2px}
+::selection{background:rgba(176,141,63,.28)}
+
+.lace{height:14px;background:var(--lace) repeat-x center}
+.orn{display:block;color:var(--gold)}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1180px;margin:0 auto;padding:16px 32px}
+.brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brandmark svg{width:34px;height:34px}
+.brandmark b{font-family:"Italiana","Noto Serif SC",serif;font-weight:400;font-size:19px;letter-spacing:.34em;color:var(--gold-dk);transform:translateX(.17em)}
+.nav-links{display:flex;gap:30px}
+.nav-links a{color:var(--ink-mute);text-decoration:none;font-size:14px;letter-spacing:.3em;padding:4px 2px}
+.nav-links a:hover{color:var(--gold-dk)}
+.topbar-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-line) 18%,var(--gold-line) 82%,transparent)}
+
+.hero{position:relative;overflow:hidden;text-align:center;padding:64px 24px 0}
+.hero-marble{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto}
+.hero-inner>*{animation:riseIn 1s var(--easeSoft) both}
+.hero-cartouche{width:min(700px,96%);height:auto;margin:0 auto;display:block;animation-delay:.75s}
+.hero-word{animation-delay:.95s}
+.hero-word .latin{font-family:"Italiana","Noto Serif SC",serif;font-size:clamp(30px,4.4vw,46px);letter-spacing:.4em;color:var(--gold-dk);margin-top:4px;transform:translateX(.2em)}
+.ribbon{display:inline-block;margin-top:14px;padding:8px 40px;font-size:13px;letter-spacing:.44em;text-indent:.44em;color:#F6EAD8;background:linear-gradient(180deg,#93404F,#7E3140 55%,#6E2836);clip-path:polygon(0 0,100% 0,calc(100% - 15px) 50%,100% 100%,0 100%,15px 50%);position:relative;overflow:hidden}
+.silk-sheen::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,246,228,.34) 46%,rgba(255,246,228,.08) 54%,transparent 68%);transform:translateX(-130%);animation:sheen 5.2s ease-in-out 1.6s infinite}
+.hero-title{font-weight:700;font-size:clamp(27px,3.4vw,40px);line-height:1.45;letter-spacing:.06em;margin-top:34px;animation-delay:1.1s}
+.hero-lede{max-width:640px;margin:14px auto 0;color:var(--ink-soft);font-size:18px;animation-delay:1.25s}
+.hero-lede+.hero-lede{margin-top:8px;animation-delay:1.35s}
+.hero-cta{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:32px;animation-delay:1.5s}
+.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 0;margin:52px auto 0;padding:20px 8px 26px;border-top:1px solid var(--gold-line);max-width:760px;animation-delay:1.65s}
+.hero-stats li{display:flex;flex-direction:column;gap:2px;padding:0 30px}
+.hero-stats li+li{border-left:1px solid var(--gold-line)}
+.hero-stats b{font-weight:600;font-size:30px;line-height:1.15;color:var(--gold-text);font-variant-numeric:tabular-nums}
+.hero-stats span{font-size:12px;letter-spacing:.26em;color:var(--ink-mute)}
+.hero-lace{position:relative;z-index:2;margin-top:2px}
+.hero-rule{height:1px;background:var(--gold-line)}
+
+.curtain{position:absolute;inset:0;z-index:6;pointer-events:none;background:
+  linear-gradient(180deg,rgba(52,16,24,.38),rgba(52,16,24,0) 140px),
+  linear-gradient(180deg,rgba(0,0,0,0) calc(100% - 34px),#7E3140 calc(100% - 34px)),
+  repeating-linear-gradient(90deg,#7E3140 0px,#93404F 26px,#6E2836 52px,#7E3140 78px);
+  animation:curtainLift 1.5s var(--easeCurtain) .55s forwards;will-change:transform}
+.curtain::before{content:'';position:absolute;top:0;left:0;right:0;height:16px;background:linear-gradient(180deg,#D9BC7A,#B08D3F 60%,#8A6A28),var(--gilt-noise);box-shadow:0 2px 0 rgba(74,52,10,.5)}
+.curtain::after{content:'';position:absolute;left:0;right:0;bottom:-29px;height:30px;background:var(--fringe) repeat-x top}
+@keyframes curtainLift{to{transform:translateY(-104%)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes sheen{0%{transform:translateX(-130%)}55%{transform:translateX(130%)}100%{transform:translateX(130%)}}
+
+.epigraph{max-width:720px;margin:64px auto 0;padding:0 28px;display:flex;gap:22px;align-items:flex-start;justify-content:center}
+.dropcap-hero{position:relative;flex:none;width:96px;height:110px}
+.dropcap-hero .orn-behind{position:absolute;left:-14px;top:34px;width:120px;opacity:.3}
+.dropcap-hero em{position:relative;font-family:"Great Vibes",cursive;font-style:normal;font-size:104px;line-height:1;color:var(--gold-text)}
+.epigraph blockquote{text-align:left}
+.epigraph .fr{font-style:italic;font-size:25px;line-height:1.4;color:var(--ink)}
+.epigraph .zh{margin-top:8px;color:var(--ink-soft)}
+.epigraph cite{display:block;margin-top:10px;font-style:normal;font-size:13px;letter-spacing:.22em;color:var(--ink-mute)}
+
+.salon{max-width:1180px;margin:0 auto;padding:58px 32px 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px}
+.span7{grid-column:span 7}
+.span5{grid-column:span 5}
+
+.panel{position:relative;background:var(--ivory-hi);border:1px solid var(--gold-line);box-shadow:0 2px 6px rgba(93,70,22,.08),0 14px 34px rgba(93,70,22,.07);padding:30px 30px 34px}
+.panel::before{content:'';position:absolute;inset:6px;border:1px solid rgba(176,141,63,.5);pointer-events:none}
+.corner{position:absolute;width:34px;height:34px;color:var(--gold);pointer-events:none}
+.c-tl{top:7px;left:7px}
+.c-tr{top:7px;right:7px;transform:scaleX(-1)}
+.c-bl{bottom:7px;left:7px;transform:scaleY(-1)}
+.c-br{bottom:7px;right:7px;transform:scale(-1,-1)}
+.panel-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px}
+.panel-no{font-family:"Italiana","Noto Serif SC",serif;font-size:38px;line-height:1;color:var(--gold-text);min-width:34px;text-align:center}
+.panel-head h3{font-size:24px;font-weight:700;letter-spacing:.08em;line-height:1.2}
+.panel-head .sub{margin-top:5px;font-size:13px;letter-spacing:.18em;color:var(--ink-mute)}
+.panel-fleur{margin-left:auto;width:86px;color:var(--gold);opacity:.45;flex:none}
+.panel-body{display:flex;flex-direction:column;gap:22px}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .85s var(--easeSoft),transform .85s var(--easeSoft)}
+.rv.in{opacity:1;transform:none}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 27px;font-size:17px;font-weight:600;letter-spacing:.1em;border-radius:2px;overflow:hidden;transition:transform .4s var(--easeSoft),box-shadow .4s var(--easeSoft),background-color .4s,filter .4s;align-self:flex-start}
+.btn:active{transform:translateY(1px);transition-duration:0s}
+.btn-gilt{color:#241B07;background:linear-gradient(180deg,#D9BC7A,#B08D3F 52%,#8A6A28),var(--gilt-noise);background-blend-mode:normal;border:1px solid var(--gold-dk);box-shadow:inset 0 1px 0 rgba(255,244,214,.8),inset 0 -2px 3px rgba(74,52,10,.35),0 2px 7px rgba(93,70,22,.28)}
+.btn-gilt:hover{filter:brightness(1.05)}
+.btn-gilt:hover::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,250,235,.5) 46%,rgba(255,250,235,.1) 55%,transparent 70%);transform:translateX(-130%);animation:sheen 1.3s ease-out forwards}
+.btn-sage{color:#F6EFDC;background:linear-gradient(180deg,#6C7C55,#4F5D43);border:1px solid #43503A;box-shadow:inset 0 1px 0 rgba(222,232,206,.3),0 2px 7px rgba(63,74,50,.25)}
+.btn-sage:hover{filter:brightness(1.07)}
+.btn-rouge{color:var(--rouge-dk);background:transparent;border:1px solid #A85B68;box-shadow:inset 0 0 0 0 rgba(201,138,148,0)}
+.btn-rouge:hover{background:rgba(201,138,148,.16)}
+.btn-quiet{color:var(--gold-text);padding:11px 16px;border:1px solid transparent}
+.btn-quiet:hover{background:rgba(176,141,63,.13)}
+.btn[disabled]{cursor:not-allowed;color:#8A8272;background:#E6DEC8;border:1px solid #CCC3AA;box-shadow:none;filter:none;transform:none}
+.btn[disabled]::after{display:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+.field{display:flex;flex-direction:column;gap:8px}
+.field>label,.legend{font-size:13px;letter-spacing:.24em;color:var(--ink-mute)}
+.input-wrap{position:relative}
+.input{width:100%;background:var(--paper);border:1px solid var(--gold-line);border-radius:2px;padding:12px 44px 12px 14px;font:inherit;color:var(--ink);transition:border-color .3s,box-shadow .3s}
+.input::placeholder{color:#9A8F76;opacity:1}
+.input:focus{outline:none;border-color:var(--gold-dk);box-shadow:0 0 0 3px rgba(176,141,63,.18)}
+.input-fleur{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;color:var(--gold);opacity:0;transition:opacity .45s}
+.input-wrap:focus-within .input-fleur{opacity:.9}
+.input-group{display:flex}
+.input-group .input{border-radius:2px 0 0 2px;border-right:0;padding-right:14px}
+.seal-btn{flex:none;width:47px;border:1px solid var(--gold-dk);border-radius:0 2px 2px 0;display:grid;place-items:center;color:#241B07;background:linear-gradient(180deg,#D9BC7A,#B08D3F 52%,#8A6A28),var(--gilt-noise);box-shadow:inset 0 1px 0 rgba(255,244,214,.8),inset 0 -2px 3px rgba(74,52,10,.35)}
+.seal-btn:hover{filter:brightness(1.06)}
+.seal-btn svg{width:22px;height:22px}
+.hint{font-size:13.5px;color:var(--ink-mute);letter-spacing:.02em}
+
+.choice{display:flex;align-items:center;gap:12px;cursor:pointer;padding:3px 0;position:relative}
+.choice input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer}
+.choice .txt{font-size:17px}
+.choice .note{font-size:13px;color:var(--ink-mute);margin-left:6px;letter-spacing:.06em}
+.radio-gem{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);background:var(--paper);box-shadow:inset 0 1px 2px rgba(124,93,34,.28);display:grid;place-items:center;transition:border-color .3s}
+.radio-gem::before{content:'';width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E7CE92,#B08D3F 58%,#8A6A28);transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.choice input:checked+.radio-gem{border-color:var(--gold-dk)}
+.choice input:checked+.radio-gem::before{transform:scale(1)}
+.check-gem{flex:none;width:21px;height:21px;border-radius:2px;border:1px solid var(--gold);background:var(--paper);box-shadow:inset 0 1px 2px rgba(124,93,34,.28);display:grid;place-items:center;transition:background-color .3s,border-color .3s}
+.check-gem .tick{width:15px;height:15px;display:block}
+.check-gem .tick path{stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .4s var(--easeSoft) .05s}
+.choice input:checked+.check-gem{background:#F3E9CE;border-color:var(--gold-dk)}
+.choice input:checked+.check-gem .tick path{stroke-dashoffset:0}
+.choice input:focus-visible+.radio-gem,.choice input:focus-visible+.check-gem,.choice input:focus-visible+.sw{outline:2px solid var(--gold-dk);outline-offset:2px}
+.choice.is-off{cursor:not-allowed}
+.choice.is-off .txt,.choice.is-off .note{color:#8A8272}
+.choice.is-off .radio-gem,.choice.is-off .check-gem{border-color:#CCC3AA;background:#EDE6D2;box-shadow:none}
+.choice.is-off input:checked+.check-gem .tick path{stroke:#8A8272}
+.choice-group{display:flex;flex-direction:column;gap:6px}
+
+.sw{flex:none;position:relative;width:52px;height:27px;border-radius:14px;border:1px solid #A29677;background:linear-gradient(180deg,#CFC6AE,#B9AE92);box-shadow:inset 0 2px 3px rgba(74,60,30,.25);transition:background-color .45s,border-color .45s;overflow:hidden}
+.sw::before{content:'';position:absolute;left:0;right:0;top:3px;height:8px;border-radius:8px;background:linear-gradient(180deg,rgba(255,252,240,.4),rgba(255,252,240,0));opacity:.6;transition:opacity .45s}
+.sw::after{content:'';position:absolute;top:2px;left:3px;width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E7CE92,#B08D3F 58%,#8A6A28);border:1px solid var(--gold-dk);box-shadow:0 1px 3px rgba(60,44,10,.4);transition:transform .45s var(--easeSoft)}
+.choice input:checked+.sw{background:linear-gradient(180deg,#6C7C55,#48543D);border-color:#43503A}
+.choice input:checked+.sw::after{transform:translateX(25px)}
+.choice.is-off .sw{background:#E0D8C2;border-color:#CCC3AA}
+.choice.is-off .sw::after{background:#C9C0A8;border-color:#B3A98D;box-shadow:none}
+
+.slider-row{display:flex;align-items:center;gap:18px}
+.slider-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:28px;background:transparent;margin:0;--val:62%}
+.slider-row input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;border:1px solid #C0B190;background:linear-gradient(90deg,#C29A45 0 var(--val),#EAE1C8 var(--val) 100%);box-shadow:inset 0 1px 2px rgba(93,70,22,.25)}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:23px;height:23px;margin-top:-8.5px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E7CE92,#B08D3F 55%,#7C5D22);border:1px solid #6E5320;box-shadow:0 1px 3px rgba(60,44,10,.45),inset 0 1px 1px rgba(255,240,200,.6)}
+.slider-row input[type=range]::-moz-range-track{height:8px;border-radius:4px;border:1px solid #C0B190;background:#EAE1C8;box-shadow:inset 0 1px 2px rgba(93,70,22,.25)}
+.slider-row input[type=range]::-moz-range-progress{height:8px;border-radius:4px;background:#C29A45}
+.slider-row input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E7CE92,#B08D3F 55%,#7C5D22);border:1px solid #6E5320;box-shadow:0 1px 3px rgba(60,44,10,.45)}
+.plaque{flex:none;min-width:64px;text-align:center;padding:5px 10px;background:var(--paper);border:1px solid var(--gold-line);box-shadow:inset 0 1px 2px rgba(124,93,34,.18);font-size:20px;font-weight:600;color:var(--gold-text);font-variant-numeric:tabular-nums}
+
+.track{position:relative;height:15px;border:1px solid #C0B190;border-radius:2px;background:#EFE7D2;box-shadow:inset 0 1px 3px rgba(93,70,22,.25);overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;width:45%;background:linear-gradient(180deg,#D9BC7A,#B08D3F 55%,#8A6A28),var(--gilt-noise);transition:width .9s var(--easeSoft);overflow:hidden}
+.fill::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,250,235,.45) 47%,rgba(255,250,235,.08) 55%,transparent 70%);transform:translateX(-130%);animation:sheen 3.8s ease-in-out 1s infinite}
+.progress-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.progress-meta output{font-family:"Italiana","Noto Serif SC",serif;font-size:21px;letter-spacing:.14em;color:var(--gold-text)}
+
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.gauge{width:min(320px,100%);height:auto}
+#cellarNeedle{transition:transform .95s cubic-bezier(.3,1.3,.45,1);transform-origin:110px 110px}
+.gauge-read{display:flex;align-items:baseline;gap:12px}
+.gauge-read b{font-size:36px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.gauge-read .unit{color:var(--ink-mute);font-size:15px;letter-spacing:.2em}
+.gauge-zone{font-size:13px;letter-spacing:.3em;padding:3px 12px 3px 14px;border:1px solid currentColor;border-radius:2px}
+.gauge-zone.lo{color:var(--rouge-dk)}
+.gauge-zone.mid{color:var(--sage-dk)}
+.gauge-zone.hi{color:var(--gold-text)}
+
+.dd{position:relative}
+.dd-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);border:1px solid var(--gold-line);border-radius:2px;padding:12px 14px;font-size:17px;text-align:left;transition:border-color .3s,box-shadow .3s}
+.dd-btn:hover{border-color:var(--gold-dk)}
+.dd-btn[aria-expanded=true]{border-color:var(--gold-dk);box-shadow:0 0 0 3px rgba(176,141,63,.18)}
+.dd-btn .chev{flex:none;width:14px;height:14px;color:var(--gold-dk);transition:transform .35s var(--easeSoft)}
+.dd-btn[aria-expanded=true] .chev{transform:rotate(180deg)}
+.dd-pop{position:absolute;top:calc(100% + 9px);left:0;right:0;z-index:30;background:var(--paper);border:1px solid var(--gold);box-shadow:0 16px 34px rgba(60,44,10,.24);padding:14px 5px 6px;transform-origin:top center;transform:scaleY(.96) translateY(-6px);opacity:0;transition:transform .32s var(--easeSoft),opacity .32s}
+.dd-pop::before{content:'';position:absolute;top:2px;left:6px;right:6px;height:12px;background:var(--lace) repeat-x center/19px 11px}
+.dd-pop.open{transform:none;opacity:1}
+.dd-pop li{position:relative;padding:10px 14px 10px 36px;cursor:pointer;border-radius:2px;outline-offset:-2px}
+.dd-pop li:hover,.dd-pop li:focus-visible{background:rgba(176,141,63,.14)}
+.dd-pop li[aria-selected=true]::before{content:'';position:absolute;left:15px;top:50%;width:8px;height:8px;transform:translateY(-50%) rotate(45deg);background:linear-gradient(135deg,#D9BC7A,#8A6A28)}
+.dd-pop li .fr-name{color:var(--ink-mute);font-style:italic;font-size:14px;margin-left:8px}
+.dd-pop li[aria-disabled=true]{color:#8A8272;cursor:not-allowed}
+.dd-pop li[aria-disabled=true]:hover{background:none}
+.dd-note{margin-top:10px}
+
+.tablist{display:flex;gap:6px;border-bottom:1px solid var(--gold-line);overflow-x:auto;scrollbar-width:none}
+.tab{position:relative;padding:10px 20px 12px;font-size:17px;letter-spacing:.14em;color:var(--ink-mute);transition:color .3s;white-space:nowrap;flex:none}
+.tab:hover{color:var(--gold-dk)}
+.tab[aria-selected=true]{color:var(--gold-dk);font-weight:700;box-shadow:inset 0 -2px 0 var(--gold)}
+.tab[aria-selected=true]::after{content:'';position:absolute;left:50%;bottom:-4px;width:7px;height:7px;background:linear-gradient(135deg,#D9BC7A,#8A6A28);border:1px solid var(--gold-dk);transform:translateX(-50%) rotate(45deg)}
+.tabpanel{padding:20px 4px 2px;animation:riseIn .5s var(--easeSoft) both}
+.sched li{display:flex;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(176,141,63,.4)}
+.sched li:last-child{border-bottom:0}
+.sched .when{flex:none;min-width:56px;text-align:center;font-size:13px;letter-spacing:.2em;color:var(--gold-text);border:1px solid var(--gold-line);padding:2px 8px;background:var(--paper)}
+.ledger-scroll{overflow-x:auto}
+.ledger{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.ledger th{font-size:12.5px;letter-spacing:.24em;color:var(--ink-mute);font-weight:400;text-align:left;padding:6px 10px;border-bottom:1px solid var(--gold-line)}
+.ledger td{padding:9px 10px;border-bottom:1px dashed rgba(176,141,63,.4)}
+.ledger .num{text-align:right}
+.ledger tfoot td{border-bottom:0;border-top:1px solid var(--gold-line);font-weight:700;color:var(--gold-text)}
+.letter{font-size:17.5px}
+.letter .dropcap{float:left;font-family:"Great Vibes",cursive;font-size:64px;line-height:.9;color:var(--gold-text);padding:6px 10px 0 0}
+.letter .sign{margin-top:10px;text-align:right;font-style:italic;color:var(--ink-soft)}
+
+.icon-row{display:flex;gap:14px;flex-wrap:wrap}
+.icon-btn{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--gold-line);border-radius:2px;background:var(--paper);color:var(--gold-dk);transition:border-color .3s,background-color .3s,transform .3s}
+.icon-btn:hover{border-color:var(--gold-dk);background:#F6EFDA;transform:translateY(-2px)}
+.icon-btn svg{width:26px;height:26px}
+
+.toasts{position:fixed;top:18px;right:18px;z-index:80;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{--tc:var(--gold);pointer-events:auto;position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;width:min(342px,calc(100vw - 36px));background:var(--paper);border:1px solid var(--gold-line);box-shadow:0 10px 28px rgba(60,44,10,.26);padding:13px 12px 15px;transform:translateX(26px);opacity:0;transition:transform .5s var(--easeSoft),opacity .5s}
+.toast.show{transform:none;opacity:1}
+.toast.out{transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s}
+.toast::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc)}
+.toast.t-sage{--tc:#66754F}
+.toast.t-rouge{--tc:#9E4557}
+.toast-icon{width:26px;height:26px;margin-top:2px;color:var(--tc)}
+.toast b{display:block;font-size:16.5px;letter-spacing:.06em}
+.toast p{font-size:14px;color:var(--ink-mute);line-height:1.5;margin-top:2px}
+.toast-x{align-self:start;width:26px;height:26px;display:grid;place-items:center;color:var(--ink-mute);font-size:17px;border-radius:2px}
+.toast-x:hover{color:var(--rouge-dk);background:rgba(201,138,148,.16)}
+.toast-life{position:absolute;bottom:0;left:0;height:2px;background:var(--tc);width:100%;animation:life 4.6s linear forwards}
+@keyframes life{to{width:0}}
+
+#tip{position:absolute;z-index:90;max-width:240px;background:var(--paper);border:1px solid var(--gold);box-shadow:0 8px 22px rgba(60,44,10,.25);padding:8px 14px;font-size:14px;letter-spacing:.04em;color:var(--ink);opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;pointer-events:none}
+#tip.show{opacity:1;transform:none}
+#tip::before{content:'';position:absolute;left:var(--ax,50%);bottom:-6px;width:10px;height:10px;background:var(--paper);border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:translateX(-50%) rotate(45deg)}
+#tip.below::before{bottom:auto;top:-6px;transform:translateX(-50%) rotate(225deg)}
+#tip::after{content:'';position:absolute;inset:3px;border:1px solid rgba(176,141,63,.4);pointer-events:none}
+
+.scrim{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:22px;background:rgba(46,35,18,.5);opacity:0;transition:opacity .35s}
+.scrim.open{opacity:1}
+.modal{position:relative;width:min(560px,100%);max-height:calc(100vh - 44px);overflow:auto;background:#FBF6E9;border:1px solid var(--gold);box-shadow:0 30px 80px rgba(40,28,8,.45);transform:translateY(18px);transition:transform .5s var(--easeSoft);outline:none}
+.scrim.open .modal{transform:none}
+.modal-frame{position:absolute;inset:7px;border:1px solid rgba(176,141,63,.5);pointer-events:none}
+.modal .lace{margin:5px 10px 0}
+.modal-head{display:flex;align-items:center;gap:14px;padding:18px 26px 0}
+.modal-head h3{font-size:23px;font-weight:700;letter-spacing:.1em}
+.modal-x{margin-left:auto;width:32px;height:32px;display:grid;place-items:center;font-size:20px;color:var(--ink-mute);border-radius:2px}
+.modal-x:hover{color:var(--rouge-dk);background:rgba(201,138,148,.16)}
+.modal-body{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:20px 28px 6px}
+.modal-body .wax{width:92px;height:auto;flex:none}
+.modal-body p{color:var(--ink-soft)}
+.modal-body p b{color:var(--ink)}
+.modal-foot{display:flex;justify-content:flex-end;gap:12px;padding:20px 26px 24px}
+.modal-curtain{position:absolute;inset:0;z-index:5;pointer-events:none;background:
+  linear-gradient(180deg,rgba(52,16,24,.32),rgba(52,16,24,0) 90px),
+  linear-gradient(180deg,rgba(0,0,0,0) calc(100% - 30px),#7E3140 calc(100% - 30px)),
+  repeating-linear-gradient(90deg,#7E3140 0px,#93404F 22px,#6E2836 44px,#7E3140 66px)}
+.modal-curtain::after{content:'';position:absolute;left:0;right:0;bottom:-29px;height:30px;background:var(--fringe) repeat-x top}
+.scrim.open .modal-curtain{animation:curtainLift 1s var(--easeCurtain) .18s forwards}
+
+.orn-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto;max-width:520px}
+.orn-divider::before,.orn-divider::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold-line))}
+.orn-divider::after{background:linear-gradient(90deg,var(--gold-line),transparent)}
+.orn-divider .vol{width:74px;color:var(--gold)}
+.orn-divider .vol.flip{transform:scaleX(-1)}
+.orn-divider .rose{width:30px;color:var(--gold)}
+
+.plinth{position:relative;overflow:hidden;margin-top:84px;padding:0 24px}
+.plinth-marble{position:absolute;inset:0;width:100%;height:100%}
+.plinth-in{position:relative;z-index:2;text-align:center;padding:46px 0 58px}
+.plinth .colophon{margin-top:26px;font-size:14px;letter-spacing:.3em;color:var(--ink-mute)}
+.plinth .colophon b{display:block;font-family:"Italiana","Noto Serif SC",serif;font-weight:400;font-size:22px;letter-spacing:.44em;color:var(--gold-dk);margin-bottom:8px;transform:translateX(.22em)}
+.plinth .motto{margin-top:14px;font-style:italic;color:var(--ink-soft);letter-spacing:.06em}
+.plinth .wax-mini{width:52px;margin:26px auto 0;display:block}
+
+@media (max-width:1000px){
+  .span7,.span5{grid-column:1/-1}
+}
+@media (max-width:720px){
+  .nav-links{display:none}
+  .topbar{justify-content:center}
+  .salon{padding:44px 18px 0;gap:22px}
+  .panel{padding:24px 18px 28px}
+  .panel-fleur{display:none}
+  .hero{padding-top:44px}
+  .hero-stats{gap:16px 0}
+  .hero-stats li{padding:0 16px}
+  .hero-stats li+li{border-left:0}
+  .tab{padding:9px 13px 11px;font-size:15px;letter-spacing:.08em}
+  .epigraph{flex-direction:column;align-items:center;text-align:center;gap:6px}
+  .epigraph blockquote{text-align:center}
+  .dropcap-hero{width:auto;height:auto}
+  .dropcap-hero .orn-behind{left:50%;transform:translateX(-50%)}
+  .modal-body{grid-template-columns:1fr;justify-items:center;text-align:left}
+  .toasts{left:16px;right:16px;align-items:stretch}
+  .toast{width:auto}
+  .slider-row{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .curtain{display:none}
+  .hero-inner>*{animation:none}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldLin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D9BC7A"/>
+      <stop offset=".35" stop-color="#B08D3F"/>
+      <stop offset=".62" stop-color="#8A6A28"/>
+      <stop offset=".82" stop-color="#C4A45E"/>
+      <stop offset="1" stop-color="#7C5D22"/>
+    </linearGradient>
+    <radialGradient id="ivoryRad" cx=".38" cy=".3" r=".9">
+      <stop offset="0" stop-color="#FFFDF4"/>
+      <stop offset=".75" stop-color="#F5EDD8"/>
+      <stop offset="1" stop-color="#EAE0C4"/>
+    </radialGradient>
+    <filter id="marbleGrain" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.018" numOctaves="5" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.52  0 0 0 0 0.43  0.5 0.5 0.5 0 -0.5"/>
+    </filter>
+    <filter id="leafMottle" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.30  0 0 0 0 0.21  0 0 0 0 0.05  0 0 0 0.4 0" result="spots"/>
+      <feComposite in="spots" in2="SourceGraphic" operator="in" result="sp2"/>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="sp2"/></feMerge>
+    </filter>
+
+    <symbol id="orm-volute" viewBox="-14 -22 122 60">
+      <path d="M0 0 a4 4 0 0 1 8 0 a8 8 0 0 1 -16 0 a16 16 0 0 1 32 0 C27 14 42 26 64 29 C80 31 92 27 100 17" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M36 16 C44 4 58 -3 72 -2 C60 6 52 14 47 25 C43 21 40 18 36 16 Z" fill="currentColor"/>
+      <path d="M62 26 C70 17 81 12 92 13 C84 18 78 24 74 31 C70 29 66 27 62 26 Z" fill="currentColor" opacity=".85"/>
+      <circle cx="4" cy="0" r="2.7" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="orm-rosette" viewBox="0 0 40 40">
+      <g fill="currentColor" opacity=".92">
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(45 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(90 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(135 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(180 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(225 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(270 20 20)"/>
+        <ellipse cx="20" cy="11.5" rx="3.6" ry="8.5" transform="rotate(315 20 20)"/>
+      </g>
+      <circle cx="20" cy="20" r="4.8" fill="#FBF7EB" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="20" cy="20" r="2.2" fill="#7E3140"/>
+    </symbol>
+
+    <symbol id="orm-corner" viewBox="0 0 56 56">
+      <path d="M6 46 C6 24 24 6 46 6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M46 6 a5 5 0 1 1 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M6 46 a5 5 0 1 0 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M14 40 C14 26 26 14 40 14" fill="none" stroke="currentColor" stroke-width=".9" opacity=".55"/>
+      <path d="M16 16 C24 9 34 7 42 10 C33 14 25 21 20 30 C18 25 17 20 16 16 Z" fill="currentColor"/>
+      <circle cx="36" cy="12.5" r="1.7" fill="currentColor"/>
+      <circle cx="12.5" cy="36" r="1.7" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="orm-seal" viewBox="0 0 28 28">
+      <circle cx="14" cy="14" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="14" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2.4 2.2"/>
+      <circle cx="14" cy="14" r="2.2" fill="currentColor"/>
+      <path d="M7.5 20.5 5 25 M20.5 20.5 23 25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="topbar">
+    <a class="brandmark" href="#top" aria-label="特里亚农 · 回到页首">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#B08D3F" stroke-width="1.6"/><circle cx="20" cy="20" r="13.5" fill="none" stroke="#B08D3F" stroke-width=".8" stroke-dasharray="2.6 2.4"/><text x="20" y="26.5" text-anchor="middle" font-family="Great Vibes,cursive" font-size="19" fill="#7C5D22">T</text></svg>
+      <b>TRIANON</b>
+    </a>
+    <nav class="nav-links" aria-label="页内导航">
+      <a href="#sec-edicts">敕令</a>
+      <a href="#sec-ball">舞会</a>
+      <a href="#sec-files">卷宗</a>
+      <a href="#sec-rites">仪典</a>
+    </nav>
+  </div>
+  <div class="topbar-rule"></div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-marble" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1200" height="620" fill="#F3ECDA"/>
+    <rect width="1200" height="620" filter="url(#marbleGrain)" opacity=".16"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M-40 130 C220 60 350 230 620 150 C840 90 990 215 1260 140" stroke="#9A9078" stroke-width="1.6" opacity=".18"/>
+      <path d="M-60 350 C180 420 420 300 660 380 C880 452 1040 360 1260 420" stroke="#9A9078" stroke-width="1.3" opacity=".14"/>
+      <path d="M-40 520 C260 470 420 560 700 510 C920 470 1080 545 1260 505" stroke="#8A9478" stroke-width="1.2" opacity=".13"/>
+      <path d="M-20 240 C240 205 420 260 640 235 C860 210 1060 260 1240 232" stroke="#B08D3F" stroke-width="1" opacity=".2"/>
+      <path d="M-30 448 C200 480 500 420 760 460 C960 490 1120 440 1250 462" stroke="#B08D3F" stroke-width=".8" opacity=".16"/>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <svg class="hero-cartouche" viewBox="0 0 760 380" role="img" aria-label="特里亚农鎏金卡图什纹章">
+      <g id="orm-wing">
+        <path d="M148 168 C116 146 96 132 70 122 L86 144 L62 156 C92 162 118 164 152 180 Z" fill="#7E3140" stroke="#5E2430" stroke-width="1"/>
+        <path d="M150 196 a8 8 0 0 1 16 0 a16 16 0 0 1 -32 0 a28 28 0 0 1 56 0 C196 222 214 244 246 258 C290 276 336 284 380 284" fill="none" stroke="url(#goldLin)" stroke-width="6" stroke-linecap="round" filter="url(#leafMottle)"/>
+        <path d="M170 170 C200 138 240 116 286 106" fill="none" stroke="url(#goldLin)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M206 138 C216 118 236 104 258 100 C240 112 228 126 222 144 C216 141 211 139 206 138 Z" fill="url(#goldLin)"/>
+        <path d="M176 160 C186 148 198 140 212 136 C200 146 192 156 188 168 C184 164 180 162 176 160 Z" fill="url(#goldLin)"/>
+        <path d="M250 258 C260 240 278 228 298 224 C284 236 274 250 268 266 C262 262 256 259 250 258 Z" fill="url(#goldLin)"/>
+        <circle cx="158" cy="196" r="3.4" fill="#7E3140"/>
+        <circle cx="246" cy="256" r="2.6" fill="#7E3140"/>
+      </g>
+      <use href="#orm-wing" transform="translate(760 0) scale(-1 1)"/>
+
+      <circle cx="380" cy="306" r="3.6" fill="url(#goldLin)"/>
+      <path d="M380 312 C371 322 371 334 380 344 C389 334 389 322 380 312 Z" fill="url(#goldLin)" stroke="#7C5D22" stroke-width="1"/>
+
+      <ellipse cx="380" cy="196" rx="152" ry="102" fill="url(#ivoryRad)" stroke="url(#goldLin)" stroke-width="7" filter="url(#leafMottle)"/>
+      <ellipse cx="380" cy="196" rx="139" ry="89" fill="none" stroke="#8A6A28" stroke-width="1.5"/>
+      <ellipse cx="380" cy="196" rx="133" ry="83" fill="none" stroke="#B08D3F" stroke-width=".7" stroke-dasharray="1 4" stroke-linecap="round"/>
+
+      <g transform="translate(380 94) scale(1.55)">
+        <path d="M0 0 L-23.4 -11.4 A26 26 0 0 1 23.4 -11.4 Z" fill="url(#goldLin)" stroke="#7C5D22" stroke-width="1.4" stroke-linejoin="round"/>
+        <g stroke="#7C5D22" stroke-width="1.1" opacity=".8">
+          <path d="M0 -1.5 L0 -24"/>
+          <path d="M0 -1.5 L6.6 -23"/>
+          <path d="M0 -1.5 L-6.6 -23"/>
+          <path d="M0 -1.5 L12.7 -20.3"/>
+          <path d="M0 -1.5 L-12.7 -20.3"/>
+          <path d="M0 -1.5 L17.8 -16"/>
+          <path d="M0 -1.5 L-17.8 -16"/>
+        </g>
+        <path d="M-8 2 A8 8 0 0 0 8 2" fill="none" stroke="#7C5D22" stroke-width="1.4"/>
+        <path d="M-10 0 a4 4 0 1 0 -7 2.5" fill="none" stroke="#7C5D22" stroke-width="1.2"/>
+        <path d="M10 0 a4 4 0 1 1 7 2.5" fill="none" stroke="#7C5D22" stroke-width="1.2"/>
+      </g>
+
+      <text x="380" y="240" text-anchor="middle" font-family="Great Vibes,cursive" font-size="132" fill="url(#goldLin)">T</text>
+      <use href="#orm-rosette" x="365" y="252" width="30" height="30" color="#B08D3F"/>
+    </svg>
+
+    <div class="hero-word">
+      <div class="latin">TRIANON</div>
+      <span class="ribbon silk-sheen">特里亚农 · 宫廷事务总台</span>
+    </div>
+
+    <h1 class="hero-title">繁文缛节,自此轻盈如小步舞曲</h1>
+    <p class="hero-lede">特里亚农将请柬、奏帖与御园账目一并收拢于象牙案头,每一道敕令都沿涡纹镜廊徐徐送达。</p>
+    <p class="hero-lede">侍从长只需轻叩金印——乐师调弦,烛台次第点亮,舞会在鎏金的秩序里如期开场。</p>
+
+    <div class="hero-cta">
+      <button class="btn btn-gilt" type="button" data-open-modal>颁布敕令</button>
+      <button class="btn btn-rouge" type="button" data-goto="#sec-edicts">巡视各殿</button>
+    </div>
+
+    <ul class="hero-stats">
+      <li><b>24</b><span>今日请柬</span></li>
+      <li><b>7</b><span>待批奏帖</span></li>
+      <li><b>1,352</b><span>烛台点亮</span></li>
+      <li><b>63</b><span>香槟 · 桶</span></li>
+    </ul>
+  </div>
+
+  <div class="curtain" aria-hidden="true"></div>
+  <div class="hero-lace lace" aria-hidden="true"></div>
+  <div class="hero-rule" aria-hidden="true"></div>
+</section>
+
+<section class="epigraph rv">
+  <div class="dropcap-hero" aria-hidden="true">
+    <svg class="orn-behind" viewBox="-14 -22 122 60"><use href="#orm-volute" color="#B08D3F"/></svg>
+    <em>A</em>
+  </div>
+  <blockquote>
+    <p class="fr" lang="fr"><span aria-hidden="true">près</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Après</span> nous, le déluge.</p>
+    <p class="zh">在我们之后,哪怕洪水滔天——今夜,且先斟满香槟。</p>
+    <cite>—— 蓬帕杜侯爵夫人 · MDCCLVII</cite>
+  </blockquote>
+</section>
+
+<main class="salon">
+
+  <section class="panel span7 rv" id="sec-edicts" aria-labelledby="h-edicts">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">I</span>
+      <div>
+        <h3 id="h-edicts">敕令与印玺</h3>
+        <p class="sub">宫廷指令的四种口吻</p>
+      </div>
+      <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
+    </header>
+    <div class="panel-body">
+      <div class="btn-row">
+        <button class="btn btn-gilt" type="button" data-toast="gilt|敕令已颁|鎏金火漆未干,信使已翻身上马。">颁布敕令</button>
+        <button class="btn btn-sage" type="button" data-toast="sage|奏帖已呈|已放入御前的鼠尾草绿匣,静候朱批。">呈递奏帖</button>
+        <button class="btn btn-rouge" type="button" data-toast="rouge|批注已留|胭脂笔迹一行:「此事,容后再议。」">胭脂批注</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-quiet" type="button" data-toast="sage|已归档|誊抄两份,一份入库,一份呈档房。">誊抄归档</button>
+        <button class="btn btn-gilt" type="button" disabled>已封存 · 不可颁行</button>
+      </div>
+      <p class="hint">鎏金为敕令,鼠尾草为奏对,胭脂为私批;封存之令,任何人不得再启。</p>
+    </div>
+  </section>
+
+  <section class="panel span5 rv" aria-labelledby="h-scribe">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">II</span>
+      <div>
+        <h3 id="h-scribe">请柬誊录</h3>
+        <p class="sub">呈交信使之前</p>
+      </div>
+    </header>
+    <div class="panel-body">
+      <div class="field">
+        <label for="guest">收件人 · 全名与尊称</label>
+        <div class="input-wrap">
+          <input class="input" id="guest" type="text" placeholder="德·蓬帕杜侯爵夫人" autocomplete="off">
+          <svg class="input-fleur" viewBox="0 0 40 40" aria-hidden="true"><use href="#orm-rosette"/></svg>
+        </div>
+        <p class="hint">信使只认全名;昵称与花名,请留在舞会上。</p>
+      </div>
+      <div class="field">
+        <label for="motto">柬上题辞 · 一句即可</label>
+        <div class="input-group">
+          <input class="input" id="motto" type="text" placeholder="今夜镜廊,烛火与您皆不可缺席" autocomplete="off">
+          <button class="seal-btn" type="button" data-tip="滴蜡封缄,题辞自此不可更改" data-toast="gilt|封缄已毕|胭脂蜡上压了旧金印,题辞就此定稿。" aria-label="滴蜡封缄">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true"><use href="#orm-seal"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel span5 rv" id="sec-ball" aria-labelledby="h-ball">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">III</span>
+      <div>
+        <h3 id="h-ball">舞会拣选</h3>
+        <p class="sub">主题、宴席与殿内布置</p>
+      </div>
+    </header>
+    <div class="panel-body">
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="legend" style="margin-bottom:8px">今夜主题</legend>
+        <div class="choice-group" role="presentation">
+          <label class="choice"><input type="radio" name="ballTheme" value="menuet"><span class="radio-gem" aria-hidden="true"></span><span class="txt">小步舞曲<span class="note">Menuet</span></span></label>
+          <label class="choice"><input type="radio" name="ballTheme" value="pastorale" checked><span class="radio-gem" aria-hidden="true"></span><span class="txt">田园牧歌<span class="note">Pastorale</span></span></label>
+          <label class="choice"><input type="radio" name="ballTheme" value="masque"><span class="radio-gem" aria-hidden="true"></span><span class="txt">假面夜宴<span class="note">Masquerade</span></span></label>
+        </div>
+      </fieldset>
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="legend" style="margin-bottom:8px">宴席清单</legend>
+        <div class="choice-group" role="presentation">
+          <label class="choice"><input type="checkbox" checked><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">香槟塔</span></label>
+          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">糖霜蔷薇</span></label>
+          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">冰雕天鹅</span></label>
+          <label class="choice is-off"><input type="checkbox" checked disabled><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">御用金匙<span class="note">循例,不可撤</span></span></label>
+        </div>
+      </fieldset>
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="legend" style="margin-bottom:8px">殿内布置</legend>
+        <div class="choice-group" role="presentation">
+          <label class="choice"><input type="checkbox" role="switch" checked><span class="sw" aria-hidden="true"></span><span class="txt">水晶烛台</span></label>
+          <label class="choice"><input type="checkbox" role="switch"><span class="sw" aria-hidden="true"></span><span class="txt">橙花香氛</span></label>
+          <label class="choice is-off"><input type="checkbox" role="switch" disabled><span class="sw" aria-hidden="true"></span><span class="txt">机关夜莺<span class="note">匠师检修中</span></span></label>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+
+  <section class="panel span7 rv" aria-labelledby="h-music">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">IV</span>
+      <div>
+        <h3 id="h-music">弦乐与烛光</h3>
+        <p class="sub">火候、音量与酒窖存余</p>
+      </div>
+      <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
+    </header>
+    <div class="panel-body">
+      <div class="field">
+        <label for="strings">弦乐音量</label>
+        <div class="slider-row">
+          <input type="range" id="strings" min="0" max="100" value="62">
+          <output class="plaque" for="strings" id="stringsOut">62</output>
+        </div>
+        <p class="hint">舞至酣处,以第六十二度为宜;再高,便盖过窃窃私语了。</p>
+      </div>
+
+      <div class="field">
+        <div class="progress-meta">
+          <label id="gildLabel">镜廊镀金工程</label>
+          <output id="gildOut" aria-hidden="true">XLV / C</output>
+        </div>
+        <div class="track" role="progressbar" aria-labelledby="gildLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45" id="gildBar">
+          <div class="fill" id="gildFill" style="width:45%"></div>
+        </div>
+        <div class="btn-row" style="margin-top:6px">
+          <button class="btn btn-sage" type="button" id="gildMore">再拨一笔金箔</button>
+          <button class="btn btn-quiet" type="button" id="gildReset">重新动工</button>
+        </div>
+      </div>
+
+      <div class="gauge-wrap field">
+        <label id="cellarLabel">酒窖 · 香槟存量</label>
+        <svg class="gauge" viewBox="0 0 220 132" aria-hidden="true">
+          <path d="M24 110 A86 86 0 0 1 59.4 40.4" fill="none" stroke="#C98A94" stroke-width="9"/>
+          <path d="M59.4 40.4 A86 86 0 0 1 160.6 40.4" fill="none" stroke="#8FA07C" stroke-width="9"/>
+          <path d="M160.6 40.4 A86 86 0 0 1 196 110" fill="none" stroke="url(#goldLin)" stroke-width="9"/>
+          <g stroke="#7C5D22" stroke-width="1" opacity=".75">
+            <path d="M39.6 87.1 L33.9 85.3"/><path d="M50.1 66.5 L45.3 63"/><path d="M66.5 50.1 L63 45.3"/><path d="M87.1 39.6 L85.3 33.9"/>
+            <path d="M132.9 39.6 L134.7 33.9"/><path d="M153.5 50.1 L157 45.3"/><path d="M169.9 66.5 L174.7 63"/><path d="M180.4 87.1 L186.1 85.3"/>
+          </g>
+          <g stroke="#7C5D22" stroke-width="2">
+            <path d="M36 110 L30 110"/><path d="M110 36 L110 30"/><path d="M184 110 L190 110"/>
+          </g>
+          <g id="cellarNeedle">
+            <path d="M106.6 110 L110 36 L113.4 110 Z" fill="#7C5D22"/>
+          </g>
+          <circle cx="110" cy="110" r="9.5" fill="url(#goldLin)" stroke="#7C5D22" stroke-width="1.4"/>
+          <circle cx="110" cy="110" r="3.2" fill="#7E3140"/>
+          <path d="M14 118 H206" stroke="#C7AE79" stroke-width="1"/>
+        </svg>
+        <div class="gauge-read" aria-labelledby="cellarLabel">
+          <b id="cellarVal">63</b><span class="unit">桶</span>
+          <span class="gauge-zone mid" id="cellarZone">尚可</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-rouge" type="button" id="pourBtn">斟予宾客 −8</button>
+          <button class="btn btn-sage" type="button" id="stockBtn">窖藏进新 +10</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel span7 rv" id="sec-files" aria-labelledby="h-files">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">V</span>
+      <div>
+        <h3 id="h-files">殿所与卷宗</h3>
+        <p class="sub">择一处殿宇,翻三册文书</p>
+      </div>
+      <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
+    </header>
+    <div class="panel-body">
+      <div class="field" style="max-width:420px">
+        <label id="hallLabel">舞会殿所</label>
+        <div class="dd" id="hallDd">
+          <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="hallLabel hallVal">
+            <span id="hallVal">镜廊</span>
+            <svg class="chev" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 5 L7 9.5 L11.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="dd-pop" role="listbox" aria-labelledby="hallLabel" hidden>
+            <li role="option" tabindex="-1" aria-selected="true" data-val="镜廊">镜廊<span class="fr-name">Galerie des Glaces</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="橘园">橘园<span class="fr-name">L'Orangerie</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="瓷宫">瓷宫<span class="fr-name">Trianon de Porcelaine</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="林间剧场">林间剧场<span class="fr-name">Théâtre de Verdure</span></li>
+            <li role="option" tabindex="-1" aria-disabled="true">御膳房<span class="fr-name">修缮中,恕不待客</span></li>
+          </ul>
+        </div>
+        <p class="hint dd-note" id="hallNote">今夜舞会将设于:镜廊。</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="卷宗">
+          <button class="tab" role="tab" id="tab-sched" aria-controls="tp-sched" aria-selected="true">今日日程</button>
+          <button class="tab" role="tab" id="tab-ledger" aria-controls="tp-ledger" aria-selected="false" tabindex="-1">用度账目</button>
+          <button class="tab" role="tab" id="tab-letter" aria-controls="tp-letter" aria-selected="false" tabindex="-1">来往信笺</button>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="tp-sched" aria-labelledby="tab-sched">
+          <ul class="sched">
+            <li><span class="when">巳时</span>橘园剪枝,并为夜宴挑选七十二株橙树。</li>
+            <li><span class="when">未时</span>乐队于镜廊试音,弦乐调至第六十二度。</li>
+            <li><span class="when">酉时</span>点烛官巡殿,一千三百五十二盏次第点亮。</li>
+            <li><span class="when">戌时</span>假面夜宴启幕,侍从长于阶前唱名。</li>
+          </ul>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="tp-ledger" aria-labelledby="tab-ledger" hidden>
+          <div class="ledger-scroll">
+            <table class="ledger">
+              <thead><tr><th scope="col">名目</th><th scope="col" class="num">数量</th><th scope="col" class="num">里弗尔</th></tr></thead>
+              <tbody>
+                <tr><td>金箔 · 佛罗伦萨薄叶</td><td class="num">200 匣</td><td class="num">12,400</td></tr>
+                <tr><td>香槟 · 兰斯窖藏</td><td class="num">63 桶</td><td class="num">9,450</td></tr>
+                <tr><td>蜂蜡烛 · 御用长烛</td><td class="num">1,352 支</td><td class="num">806</td></tr>
+              </tbody>
+              <tfoot><tr><td>本月合计</td><td class="num"></td><td class="num">22,656</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="tp-letter" aria-labelledby="tab-letter" hidden>
+          <p class="letter"><span class="dropcap" aria-hidden="true">M</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">M</span><em lang="fr">adame,</em> —— 今夜八时,镜廊。乐声既起,请携面具徐来;烛火与香槟,皆已依您素喜排布。若得允准,第一支小步舞曲,当为您留。</p>
+          <p class="letter sign">—— 特里亚农 谨呈</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel span5 rv" id="sec-rites" aria-labelledby="h-rites">
+    <svg class="corner c-tl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-tr" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-bl" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <svg class="corner c-br" aria-hidden="true"><use href="#orm-corner"/></svg>
+    <header class="panel-head">
+      <span class="panel-no" aria-hidden="true">VI</span>
+      <div>
+        <h3 id="h-rites">通传与仪典</h3>
+        <p class="sub">信使、印玺与御前奏对</p>
+      </div>
+    </header>
+    <div class="panel-body">
+      <div class="btn-row">
+        <button class="btn btn-gilt" type="button" data-open-modal>召见 · 敕令用印</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-sage" type="button" data-toast="sage|卷宗已入册|档房回执:第 MMDCXIV 号,妥存。">遣信使 · 存档</button>
+        <button class="btn btn-rouge" type="button" data-toast="rouge|急报|海神喷泉水压不稳,匠师已提灯赶往。">遣信使 · 急报</button>
+      </div>
+      <div class="field">
+        <span class="legend">印玺与礼器 · 悬停可读其铭</span>
+        <div class="icon-row">
+          <button class="icon-btn" type="button" data-tip="御前金印:一印既落,驷马难追" aria-label="御前金印">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true"><use href="#orm-seal"/></svg>
+          </button>
+          <button class="icon-btn" type="button" data-tip="鹅毛笔:写请柬用旧金墨,写情诗用胭脂墨" aria-label="鹅毛笔">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M23 4 C15 6 9.5 12 7.5 21"/><path d="M7.5 21 C9.5 15 13.5 9.5 20 7"/><path d="M23 4 C19.5 8.5 17 12.5 13 17"/><path d="M7.5 21 L6 24.5"/></svg>
+          </button>
+          <button class="icon-btn" type="button" data-tip="折扇:扇面一开一合,自成一门外交辞令" aria-label="折扇">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M14 22 L5 10 M14 22 L10 7 M14 22 L14 6 M14 22 L18 7 M14 22 L23 10"/><path d="M5 10 A12.5 12.5 0 0 1 23 10"/><circle cx="14" cy="22.5" r="1.4" fill="currentColor" stroke="none"/></svg>
+          </button>
+          <button class="icon-btn" type="button" data-tip="香槟盏:传闻盏形取自某位夫人的心形誓言" aria-label="香槟盏">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 5 H20 C20 10.5 17.5 13.5 14 13.5 S8 10.5 8 5 Z"/><path d="M14 13.5 V21"/><path d="M9 21.5 H19"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="hint">通传有三色:旧金报喜,鼠尾草报安,胭脂报急。通报自右上角入殿,四息之后自行告退。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="plinth">
+  <svg class="plinth-marble" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1200" height="420" fill="#EFE8D3"/>
+    <rect width="1200" height="420" filter="url(#marbleGrain)" opacity=".2"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M-40 90 C260 40 430 150 700 100 C920 60 1080 135 1260 95" stroke="#9A9078" stroke-width="1.5" opacity=".2"/>
+      <path d="M-60 240 C180 300 460 200 700 260 C900 310 1060 240 1260 290" stroke="#9A9078" stroke-width="1.2" opacity=".16"/>
+      <path d="M-20 170 C240 140 480 185 720 165 C940 147 1100 180 1240 160" stroke="#B08D3F" stroke-width="1" opacity=".22"/>
+    </g>
+  </svg>
+  <div class="lace" style="position:relative;z-index:2" aria-hidden="true"></div>
+  <div class="plinth-in rv">
+    <div class="orn-divider" aria-hidden="true">
+      <svg class="vol flip" viewBox="-14 -22 122 60"><use href="#orm-volute"/></svg>
+      <svg class="rose" viewBox="0 0 40 40"><use href="#orm-rosette"/></svg>
+      <svg class="vol" viewBox="-14 -22 122 60"><use href="#orm-volute"/></svg>
+    </div>
+    <p class="colophon"><b>TRIANON</b>特里亚农 · 宫廷事务总台 —— 为凡尔赛的每一个清晨而制</p>
+    <p class="motto">鎏金坊监造 · 镜廊东翼 · MDCCLVII</p>
+    <svg class="wax-mini" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="30" fill="#8E3B4A" stroke="#6E2836" stroke-width="2"/>
+      <circle cx="53" cy="61" r="5" fill="#8E3B4A"/>
+      <circle cx="62" cy="50" r="3.4" fill="#8E3B4A"/>
+      <circle cx="40" cy="40" r="22" fill="none" stroke="#F2E3CF" stroke-width="1.2" stroke-dasharray="3 3.4" opacity=".7"/>
+      <path d="M24 22 A26 26 0 0 1 50 16" fill="none" stroke="#C97F8B" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+      <text x="40" y="50" text-anchor="middle" font-family="Great Vibes,cursive" font-size="30" fill="#F2E3CF">T</text>
+    </svg>
+  </div>
+</footer>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<div id="tip" role="tooltip" hidden></div>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" tabindex="-1" id="modal">
+    <div class="lace" aria-hidden="true"></div>
+    <div class="modal-frame" aria-hidden="true"></div>
+    <header class="modal-head">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><use href="#orm-rosette" color="#B08D3F"/></svg>
+      <h3 id="modalTitle">敕令用印</h3>
+      <button class="modal-x" type="button" data-close-modal aria-label="暂缓,收回敕令">×</button>
+    </header>
+    <div class="modal-body">
+      <svg class="wax" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="48" r="34" fill="#8E3B4A" stroke="#6E2836" stroke-width="2.4"/>
+        <circle cx="66" cy="72" r="6" fill="#8E3B4A"/>
+        <circle cx="76" cy="60" r="4" fill="#8E3B4A"/>
+        <circle cx="50" cy="48" r="25" fill="none" stroke="#F2E3CF" stroke-width="1.4" stroke-dasharray="3.2 3.6" opacity=".75"/>
+        <path d="M31 26 A30 30 0 0 1 62 20" fill="none" stroke="#C97F8B" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+        <text x="50" y="60" text-anchor="middle" font-family="Great Vibes,cursive" font-size="36" fill="#F2E3CF">T</text>
+      </svg>
+      <p id="modalDesc">即将颁行:<b>今夜戌时,镜廊,假面夜宴。</b>此令一经用印,信使立刻启程,沿途驿站不得阻拦——落印之后,不可追回。</p>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-quiet" type="button" data-close-modal>暂缓</button>
+      <button class="btn btn-gilt" type="button" id="sealGo">落印颁行</button>
+    </footer>
+    <div class="modal-curtain" aria-hidden="true"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+function toRoman(n){
+  if(n<=0)return'—';
+  var m=[[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']],s='',i;
+  for(i=0;i<m.length;i++){while(n>=m[i][0]){s+=m[i][1];n-=m[i][0]}}
+  return s;
+}
+
+var toasts=$('#toasts');
+function toast(variant,title,msg){
+  var el=document.createElement('div');
+  el.className='toast t-'+variant;
+  el.innerHTML='<svg class="toast-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor"><use href="#orm-seal"/></svg>'+
+    '<div><b></b><p></p></div>'+
+    '<button class="toast-x" type="button" aria-label="知道了,退下">×</button>'+
+    '<span class="toast-life"></span>';
+  $('b',el).textContent=title;
+  $('p',el).textContent=msg;
+  toasts.prepend(el);
+  while(toasts.children.length>4){toasts.removeChild(toasts.lastElementChild)}
+  requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('show')})});
+  var gone=false;
+  function dismiss(){
+    if(gone)return;gone=true;
+    el.classList.add('out');
+    setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},340);
+  }
+  $('.toast-x',el).addEventListener('click',dismiss);
+  setTimeout(dismiss,4650);
+}
+$$('[data-toast]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var p=btn.getAttribute('data-toast').split('|');
+    toast(p[0],p[1],p[2]);
+  });
+});
+
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.05,rootMargin:'0px 0px 8% 0px'});
+  $$('.rv').forEach(function(el){io.observe(el)});
+}else{
+  $$('.rv').forEach(function(el){el.classList.add('in')});
+}
+
+$$('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=$(b.getAttribute('data-goto'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+var strings=$('#strings'),stringsOut=$('#stringsOut');
+function paintRange(el){el.style.setProperty('--val',el.value+'%')}
+if(strings){
+  paintRange(strings);
+  strings.addEventListener('input',function(){paintRange(strings);stringsOut.textContent=strings.value});
+}
+
+var gild=45,gildFill=$('#gildFill'),gildOut=$('#gildOut'),gildBar=$('#gildBar'),gildMore=$('#gildMore'),gildReset=$('#gildReset');
+function paintGild(){
+  gildFill.style.width=gild+'%';
+  gildBar.setAttribute('aria-valuenow',gild);
+  gildOut.textContent=toRoman(gild)+' / C';
+}
+gildMore.addEventListener('click',function(){
+  gild=Math.min(100,gild+6+Math.round(Math.random()*11));
+  paintGild();
+  if(gild>=100){
+    gildMore.disabled=true;
+    gildMore.textContent='工程已竣';
+    toast('sage','镜廊镀金已竣工','匠师们收起脚手架,向您脱帽致意。');
+  }
+});
+gildReset.addEventListener('click',function(){
+  gild=8;
+  gildMore.disabled=false;
+  gildMore.textContent='再拨一笔金箔';
+  paintGild();
+});
+paintGild();
+
+var cellar=63,needle=$('#cellarNeedle'),cellarVal=$('#cellarVal'),cellarZone=$('#cellarZone');
+function paintCellar(){
+  needle.style.transform='rotate('+(-90+cellar*1.8)+'deg)';
+  cellarVal.textContent=cellar;
+  var z=cellar<30?['lo','见底']:cellar<70?['mid','尚可']:['hi','盈溢'];
+  cellarZone.className='gauge-zone '+z[0];
+  cellarZone.textContent=z[1];
+}
+$('#pourBtn').addEventListener('click',function(){
+  cellar=Math.max(0,cellar-8);paintCellar();
+  if(cellar===0)toast('rouge','酒窖见底','最后一桶已开;若舞会尚长,请速遣人往兰斯。');
+});
+$('#stockBtn').addEventListener('click',function(){cellar=Math.min(100,cellar+10);paintCellar()});
+paintCellar();
+
+var dd=$('#hallDd'),ddBtn=$('.dd-btn',dd),ddPop=$('.dd-pop',dd),ddOpts=$$('[role=option]',dd),hallVal=$('#hallVal'),hallNote=$('#hallNote');
+function ddOpen(){
+  ddPop.hidden=false;
+  requestAnimationFrame(function(){ddPop.classList.add('open')});
+  ddBtn.setAttribute('aria-expanded','true');
+  var sel=$('[aria-selected=true]',dd)||ddOpts[0];
+  sel.focus();
+}
+function ddClose(refocus){
+  ddPop.classList.remove('open');
+  ddBtn.setAttribute('aria-expanded','false');
+  setTimeout(function(){ddPop.hidden=true},320);
+  if(refocus)ddBtn.focus();
+}
+function ddIsOpen(){return ddBtn.getAttribute('aria-expanded')==='true'}
+ddBtn.addEventListener('click',function(){ddIsOpen()?ddClose(false):ddOpen()});
+ddBtn.addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!ddIsOpen())ddOpen()}
+});
+ddOpts.forEach(function(opt,i){
+  opt.addEventListener('click',function(){
+    if(opt.getAttribute('aria-disabled')==='true')return;
+    ddSelect(opt);
+  });
+  opt.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowDown'){e.preventDefault();(ddOpts[i+1]||ddOpts[0]).focus()}
+    else if(k==='ArrowUp'){e.preventDefault();(ddOpts[i-1]||ddOpts[ddOpts.length-1]).focus()}
+    else if(k==='Home'){e.preventDefault();ddOpts[0].focus()}
+    else if(k==='End'){e.preventDefault();ddOpts[ddOpts.length-1].focus()}
+    else if(k==='Enter'||k===' '){e.preventDefault();if(opt.getAttribute('aria-disabled')!=='true')ddSelect(opt)}
+    else if(k==='Escape'){ddClose(true)}
+    else if(k==='Tab'){ddClose(false)}
+  });
+});
+function ddSelect(opt){
+  ddOpts.forEach(function(o){o.setAttribute('aria-selected',o===opt?'true':'false')});
+  hallVal.textContent=opt.getAttribute('data-val');
+  hallNote.textContent='今夜舞会将设于:'+opt.getAttribute('data-val')+'。';
+  ddClose(true);
+}
+document.addEventListener('click',function(e){
+  if(ddIsOpen()&&!dd.contains(e.target))ddClose(false);
+});
+
+var tabs=$$('.tab');
+tabs.forEach(function(tab,i){
+  tab.addEventListener('click',function(){tabActivate(i)});
+  tab.addEventListener('keydown',function(e){
+    var n=null;
+    if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+    else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+    else if(e.key==='Home')n=0;
+    else if(e.key==='End')n=tabs.length-1;
+    if(n!==null){e.preventDefault();tabActivate(n);tabs[n].focus()}
+  });
+});
+function tabActivate(idx){
+  tabs.forEach(function(t,j){
+    var on=j===idx;
+    t.setAttribute('aria-selected',on?'true':'false');
+    t.tabIndex=on?0:-1;
+    $('#'+t.getAttribute('aria-controls')).hidden=!on;
+  });
+}
+
+var scrim=$('#scrim'),modal=$('#modal'),lastFocus=null;
+function modalOpen(){
+  lastFocus=document.activeElement;
+  scrim.hidden=false;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){scrim.classList.add('open')})});
+  modal.focus({preventScroll:true});
+  document.addEventListener('keydown',modalKeys);
+}
+function modalClose(){
+  scrim.classList.remove('open');
+  document.removeEventListener('keydown',modalKeys);
+  setTimeout(function(){scrim.hidden=true},360);
+  if(lastFocus)lastFocus.focus();
+}
+function modalKeys(e){
+  if(e.key==='Escape'){modalClose();return}
+  if(e.key!=='Tab')return;
+  var f=$$('button,[href],input,[tabindex]:not([tabindex="-1"])',modal).filter(function(el){return !el.disabled&&el.offsetParent!==null});
+  if(!f.length)return;
+  var first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+}
+$$('[data-open-modal]').forEach(function(b){b.addEventListener('click',modalOpen)});
+$$('[data-close-modal]').forEach(function(b){b.addEventListener('click',modalClose)});
+scrim.addEventListener('mousedown',function(e){if(e.target===scrim)modalClose()});
+$('#sealGo').addEventListener('click',function(){
+  modalClose();
+  toast('gilt','敕令已颁','火漆未凉,信使已沿镜廊出发;今夜戌时,假面启幕。');
+});
+
+var tip=$('#tip'),tipTimer=null,tipTarget=null;
+function tipShow(el){
+  clearTimeout(tipTimer);
+  tipTarget=el;
+  tip.textContent=el.getAttribute('data-tip');
+  tip.hidden=false;
+  tip.classList.remove('below');
+  var r=el.getBoundingClientRect();
+  var tw=tip.offsetWidth,th=tip.offsetHeight;
+  var below=r.top<th+18;
+  if(below)tip.classList.add('below');
+  var top=below?(r.bottom+10+window.scrollY):(r.top-th-10+window.scrollY);
+  var left=r.left+r.width/2-tw/2+window.scrollX;
+  var minL=8+window.scrollX,maxL=window.scrollX+document.documentElement.clientWidth-tw-8;
+  if(left<minL)left=minL;
+  if(left>maxL)left=maxL;
+  tip.style.top=top+'px';
+  tip.style.left=left+'px';
+  var ax=r.left+r.width/2+window.scrollX-left;
+  tip.style.setProperty('--ax',Math.max(14,Math.min(tw-14,ax))+'px');
+  requestAnimationFrame(function(){tip.classList.add('show')});
+}
+function tipHide(){
+  tipTarget=null;
+  tip.classList.remove('show');
+  tipTimer=setTimeout(function(){if(!tipTarget)tip.hidden=true},300);
+}
+$$('[data-tip]').forEach(function(el){
+  el.addEventListener('mouseenter',function(){tipShow(el)});
+  el.addEventListener('mouseleave',tipHide);
+  el.addEventListener('focus',function(){tipShow(el)});
+  el.addEventListener('blur',tipHide);
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')tipHide()});
+window.addEventListener('scroll',function(){if(tipTarget)tipHide()},{passive:true});
+})();
+</script>
+</body>
+</html>

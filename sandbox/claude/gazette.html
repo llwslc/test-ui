@@ -1,0 +1,3019 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Proteus Gazette — City Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=UnifrakturMaguntia&display=swap"
+    />
+    <style>
+      /* ─────────────────────────────────────────────────────────────
+   THE PROTEUS GAZETTE — two plates: ink black and reflex blue
+   ───────────────────────────────────────────────────────────── */
+      :root {
+        --paper: #f2f0e9;
+        --paper-tint: #e6e3d9;
+        --paper-deep: #dbd7cb;
+        --ink: #1a1a17;
+        --ink-soft: #575349;
+        --blue: #17399a;
+        --rule: #bdb9ac;
+        --rule-soft: #d6d2c5;
+
+        --display: "Bodoni Moda", "Bodoni 72", Didot, "Times New Roman", serif;
+        --text: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --black-letter: "UnifrakturMaguntia", "Blackletter686 BT", serif;
+
+        --gut: clamp(18px, 2.4vw, 34px);
+        --sheet-pad: clamp(16px, 3vw, 40px);
+        --press:
+          inset 0 1px 1.5px rgba(26, 26, 23, 0.2),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.55), 0 1px 0 rgba(255, 255, 255, 0.5);
+        --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        position: relative;
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--text);
+        font-size: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+        line-height: 1.62;
+        font-variant-numeric: oldstyle-num;
+        text-rendering: optimizeLegibility;
+        overflow-wrap: break-word;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      ul,
+      ol,
+      figure,
+      blockquote {
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      a {
+        color: inherit;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      /* ── 新闻纸纹 · newsprint tooth + web fibre, over the whole sheet ── */
+      .grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: multiply;
+        opacity: 0.62;
+        background-image:
+          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='t' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.17'/></feComponentTransfer></filter><rect width='200' height='200' filter='url(%23t)'/></svg>"),
+          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='f' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.014 0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.1'/></feComponentTransfer></filter><rect width='240' height='240' filter='url(%23f)'/></svg>");
+        background-size:
+          200px 200px,
+          240px 240px;
+      }
+
+      /* ── 十字对版标 · registration targets, both plates ─────────── */
+      .reg {
+        position: relative;
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        flex: none;
+        vertical-align: middle;
+      }
+      .reg svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .reg .plate-b {
+        color: var(--blue);
+        transform: translate(1.4px, -1.2px);
+        opacity: 0.85;
+        mix-blend-mode: multiply;
+      }
+      .reg .plate-k {
+        color: var(--ink);
+      }
+      .reg--lg {
+        width: 34px;
+        height: 34px;
+      }
+      .reg--corner {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        opacity: 0.72;
+      }
+      .reg--tl {
+        top: 2px;
+        left: 2px;
+      }
+      .reg--tr {
+        top: 2px;
+        right: 2px;
+      }
+      .reg--bl {
+        bottom: 2px;
+        left: 2px;
+      }
+      .reg--br {
+        bottom: 2px;
+        right: 2px;
+      }
+
+      /* ── 套印微移 · the blue plate, hung a hair off register ────── */
+      .misreg {
+        position: relative;
+        isolation: isolate;
+      }
+      .misreg::before {
+        content: attr(data-plate);
+        position: absolute;
+        inset: 0;
+        color: var(--blue);
+        transform: translate(1.5px, -1.6px);
+        mix-blend-mode: multiply;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      /* ── sheet ─────────────────────────────────────────────────── */
+      .sheet {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--sheet-pad);
+      }
+
+      /* ── 报头 · nameplate ──────────────────────────────────────── */
+      .masthead {
+        padding-top: clamp(10px, 2vw, 22px);
+      }
+      .ears {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gut);
+        padding-bottom: 10px;
+      }
+      .ear {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        line-height: 1.5;
+        color: var(--ink-soft);
+        letter-spacing: 0.01em;
+      }
+      .ear b {
+        display: block;
+        font-weight: 600;
+        font-size: 0.625rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink);
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+      }
+      .ear--r {
+        text-align: right;
+      }
+      .ear--r b {
+        border-color: var(--rule);
+      }
+
+      .nameplate {
+        font-family: var(--black-letter);
+        font-weight: 400;
+        font-size: clamp(2.05rem, 8.4vw, 5.6rem);
+        line-height: 0.98;
+        text-align: center;
+        letter-spacing: 0.01em;
+        padding: clamp(4px, 1vw, 10px) 0 clamp(6px, 1.2vw, 14px);
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+      .motto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.9em;
+        flex-wrap: wrap;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-bottom: clamp(8px, 1.4vw, 14px);
+      }
+      .motto i {
+        font-style: normal;
+        color: var(--blue);
+      }
+
+      /* ── 期号日期眉线 · folio rules ────────────────────────────── */
+      .rule-heavy {
+        border-top: 4px solid var(--ink);
+        border-bottom: 1px solid var(--ink);
+        height: 3px;
+      }
+      .folio {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.35em 0;
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        padding: 7px 0 6px;
+        border-bottom: 1px solid var(--ink);
+        color: var(--ink);
+      }
+      .folio span {
+        padding: 0 0.7em;
+        white-space: nowrap;
+      }
+      .folio span + span {
+        border-left: 1px solid var(--rule);
+      }
+      .folio .blue {
+        color: var(--blue);
+      }
+
+      /* ── front page ────────────────────────────────────────────── */
+      .front {
+        display: grid;
+        grid-template-columns: minmax(0, 0.86fr) minmax(0, 2.5fr) minmax(0, 0.92fr);
+        gap: 0 var(--gut);
+        padding-top: clamp(14px, 2vw, 24px);
+      }
+      .front > * + * {
+        border-left: 1px solid var(--rule);
+        padding-left: var(--gut);
+      }
+      .rail-l {
+        padding-right: 0;
+      }
+
+      .kicker {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+        padding-bottom: 0.7em;
+      }
+      .kicker::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--rule);
+      }
+
+      .headline {
+        font-family: var(--display);
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-size: clamp(2.1rem, 5.3vw, 4.15rem);
+        line-height: 1.02;
+        letter-spacing: -0.015em;
+        text-wrap: balance;
+        padding-bottom: 0.28em;
+      }
+      .deck {
+        font-family: var(--display);
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(1.05rem, 1.55vw, 1.32rem);
+        line-height: 1.38;
+        color: var(--ink);
+        padding-bottom: 0.7em;
+        border-bottom: 1px solid var(--rule);
+        text-wrap: pretty;
+      }
+      .byline {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 0.75em 0;
+        border-bottom: 3px double var(--rule);
+        margin-bottom: 1em;
+      }
+      .byline b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ── 多栏发丝分栏 · true column rules ──────────────────────── */
+      .story {
+        columns: 3;
+        column-gap: var(--gut);
+        column-rule: 1px solid var(--rule);
+        font-size: 0.9375rem;
+        line-height: 1.58;
+        hyphens: auto;
+        text-align: justify;
+      }
+      .story p {
+        text-indent: 1.15em;
+      }
+      .story p + p {
+        margin-top: 0;
+      }
+      .story p:first-of-type {
+        text-indent: 0;
+      }
+
+      /* ── 首字下沉 · drop cap ───────────────────────────────────── */
+      .story p:first-of-type::first-letter {
+        float: left;
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 3.45em;
+        line-height: 0.78;
+        padding: 0.04em 0.1em 0 0;
+        color: var(--ink);
+      }
+      @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+        .story p:first-of-type::first-letter {
+          float: none;
+          -webkit-initial-letter: 3;
+          initial-letter: 3;
+          font-size: inherit;
+          line-height: inherit;
+          padding: 0 0.09em 0 0;
+        }
+      }
+
+      /* ── 引语拉出大字 · pull quote ─────────────────────────────── */
+      .pull {
+        column-span: all;
+        margin: 1.15em 0;
+        padding: 0.85em 0 0.8em;
+        border-top: 3px double var(--ink);
+        border-bottom: 1px solid var(--ink);
+        text-align: center;
+      }
+      .pull q {
+        display: block;
+        font-family: var(--display);
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(1.25rem, 2.5vw, 2rem);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+      }
+      .pull q::before {
+        content: "\201C";
+        color: var(--blue);
+      }
+      .pull q::after {
+        content: "\201D";
+        color: var(--blue);
+      }
+      .pull figcaption {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-top: 0.7em;
+      }
+
+      /* ── rails ─────────────────────────────────────────────────── */
+      .railhead {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        border-bottom: 3px double var(--ink);
+        padding-bottom: 0.45em;
+        margin-bottom: 0.7em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+      }
+      .railhead em {
+        font-style: normal;
+        color: var(--blue);
+        letter-spacing: 0.14em;
+      }
+
+      .index li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4em;
+        padding: 0.34em 0;
+        border-bottom: 1px dotted var(--rule);
+        font-size: 0.875rem;
+      }
+      .index a {
+        text-decoration: none;
+        background-image: linear-gradient(var(--blue), var(--blue));
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0 1px;
+        transition:
+          background-size 0.22s var(--ease),
+          color 0.22s var(--ease),
+          text-shadow 0.22s var(--ease);
+      }
+      .index a:hover,
+      .index a:focus-visible {
+        color: var(--blue);
+        background-size: 100% 1px;
+        text-shadow: 0 0 6px rgba(23, 57, 154, 0.34);
+      }
+      .index .dots {
+        flex: 1;
+        border-bottom: 1px dotted var(--rule);
+        transform: translateY(-0.22em);
+      }
+      .index .pg {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ink-soft);
+      }
+
+      .bulletins li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.55em;
+        padding: 0.5em 0;
+        border-bottom: 1px solid var(--rule-soft);
+        font-size: 0.8125rem;
+        line-height: 1.42;
+      }
+      .bulletins time {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        color: var(--blue);
+        letter-spacing: 0.04em;
+      }
+      .almanac {
+        margin-top: 1.2em;
+        background: var(--paper-tint);
+        border: 1px solid var(--rule);
+        padding: 0.8em 0.85em;
+        box-shadow: var(--press);
+      }
+      .almanac dl {
+        margin: 0;
+        font-size: 0.8125rem;
+      }
+      .almanac div {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.6em;
+        padding: 0.22em 0;
+      }
+      .almanac dt {
+        color: var(--ink-soft);
+      }
+      .almanac dd {
+        margin: 0;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+      }
+
+      /* ── departments ───────────────────────────────────────────── */
+      .dept {
+        padding-top: clamp(34px, 4.6vw, 64px);
+      }
+      .dept__head {
+        display: flex;
+        align-items: center;
+        gap: 0.75em;
+        flex-wrap: wrap;
+      }
+      /* 铅字压痕 · a reversed slug, pressed into the sheet */
+      .slug {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--paper);
+        background: var(--ink);
+        padding: 0.44em 0.6em 0.38em;
+        box-shadow:
+          inset 0 -1px 0 rgba(255, 255, 255, 0.22),
+          0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+      .dept__name {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(1.5rem, 3.1vw, 2.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.012em;
+      }
+      .dept__line {
+        flex: 1 1 40px;
+        height: 0;
+        border-top: 1px solid var(--ink);
+        border-bottom: 3px solid var(--ink);
+        min-width: 24px;
+      }
+      .dept__stand {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.09em;
+        color: var(--ink-soft);
+        padding: 0.7em 0 1.3em;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: clamp(16px, 2vw, 26px);
+        max-width: 62ch;
+      }
+
+      .cols {
+        display: grid;
+        gap: var(--gut);
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+      .c-4 {
+        grid-column: span 4;
+      }
+      .c-5 {
+        grid-column: span 5;
+      }
+      .c-6 {
+        grid-column: span 6;
+      }
+      .c-7 {
+        grid-column: span 7;
+      }
+      .c-8 {
+        grid-column: span 8;
+      }
+      .c-12 {
+        grid-column: 1 / -1;
+      }
+
+      .field-title {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 0.6em;
+        padding-bottom: 0.9em;
+      }
+      .field-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--rule);
+      }
+      .note {
+        font-size: 0.8125rem;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+      .note--pad {
+        padding-top: 0.8em;
+      }
+
+      /* ── buttons: slugs of type ────────────────────────────────── */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7em;
+      }
+      .btn {
+        position: relative;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        padding: 0.72em 1.15em 0.66em;
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        cursor: pointer;
+        transition:
+          background 0.18s var(--ease),
+          color 0.18s var(--ease),
+          box-shadow 0.18s var(--ease),
+          transform 0.09s var(--ease),
+          filter 0.22s var(--ease);
+        box-shadow:
+          0 1px 0 var(--rule),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+      .btn::after {
+        content: "";
+        position: absolute;
+        left: -2px;
+        right: -2px;
+        top: -2px;
+        bottom: -2px;
+        border: 1px solid transparent;
+        pointer-events: none;
+        transition:
+          border-color 0.22s var(--ease),
+          filter 0.22s var(--ease);
+      }
+      .btn--ink {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+      .btn--blue {
+        background: var(--blue);
+        color: var(--paper);
+        border-color: var(--blue);
+      }
+      .btn--plain {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+      }
+      .btn--plain::before {
+        content: "";
+        position: absolute;
+        left: 0.3em;
+        right: 0.3em;
+        bottom: 0.42em;
+        height: 1px;
+        background: var(--ink);
+        transform: scaleX(1);
+        transform-origin: left;
+        transition: background 0.2s var(--ease);
+      }
+
+      /* hover: the ink has not dried — a soft bloom + a bright rule */
+      .btn:hover:not(:disabled) {
+        filter: drop-shadow(0 0 3.5px rgba(23, 57, 154, 0.34));
+      }
+      .btn--ink:hover:not(:disabled),
+      .btn--blue:hover:not(:disabled) {
+        filter: drop-shadow(0 0 4px rgba(23, 57, 154, 0.5));
+      }
+      .btn:hover:not(:disabled)::after {
+        border-color: rgba(23, 57, 154, 0.45);
+      }
+      .btn--plain:hover:not(:disabled)::before {
+        background: var(--blue);
+      }
+      .btn--plain:hover:not(:disabled) {
+        color: var(--blue);
+      }
+      .btn:active:not(:disabled) {
+        transform: translateY(1px);
+        box-shadow: var(--press);
+      }
+      .btn--ink:active:not(:disabled),
+      .btn--blue:active:not(:disabled) {
+        box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.45);
+      }
+      .btn:disabled {
+        color: var(--ink-soft);
+        border-color: var(--rule);
+        background: repeating-linear-gradient(
+          135deg,
+          var(--paper-tint) 0 5px,
+          var(--paper) 5px 10px
+        );
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .btn-legend {
+        display: grid;
+        gap: 0.3em;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.11em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        padding-top: 1.1em;
+        border-top: 1px solid var(--rule-soft);
+        margin-top: 1.2em;
+      }
+
+      /* ── form furniture ────────────────────────────────────────── */
+      .stack {
+        display: grid;
+        gap: 1.15em;
+      }
+      .lbl {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding-bottom: 0.45em;
+      }
+      .hint {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        padding-top: 0.42em;
+        display: block;
+      }
+
+      .inp {
+        width: 100%;
+        background: var(--paper);
+        border: 0;
+        border-bottom: 1px solid var(--ink);
+        padding: 0.5em 0.1em 0.45em;
+        font-family: var(--text);
+        font-size: 1rem;
+        box-shadow: inset 0 -14px 14px -14px rgba(26, 26, 23, 0.1);
+        transition:
+          box-shadow 0.2s var(--ease),
+          border-color 0.2s var(--ease);
+      }
+      .inp::placeholder {
+        color: var(--ink-soft);
+        opacity: 1;
+      }
+      .inp:hover {
+        box-shadow: inset 0 -14px 14px -14px rgba(23, 57, 154, 0.22);
+      }
+      .inp:focus {
+        outline: none;
+        border-bottom-color: var(--blue);
+        box-shadow:
+          inset 0 -16px 16px -14px rgba(23, 57, 154, 0.24),
+          0 1px 0 var(--blue);
+      }
+      .field[data-invalid] .inp {
+        border-bottom-width: 2px;
+        border-bottom-color: var(--blue);
+      }
+      .err {
+        display: none;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--blue);
+        padding-top: 0.45em;
+      }
+      .field[data-invalid] .err {
+        display: flex;
+        align-items: center;
+        gap: 0.45em;
+      }
+
+      /* radio + checkbox: marks struck on paper */
+      .choices {
+        display: grid;
+        gap: 0.55em;
+      }
+      .choice {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6em;
+        cursor: pointer;
+        font-size: 0.9375rem;
+        line-height: 1.4;
+      }
+      .choice input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        flex: none;
+        margin: 0.18em 0 0;
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        box-shadow: var(--press);
+        cursor: pointer;
+        position: relative;
+        transition:
+          border-color 0.18s var(--ease),
+          background 0.18s var(--ease);
+      }
+      .choice input[type="radio"] {
+        border-radius: 50%;
+      }
+      .choice input:hover {
+        border-color: var(--blue);
+      }
+      .choice input:checked {
+        border-color: var(--blue);
+      }
+      .choice input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+      .choice input[type="checkbox"]:checked::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background:
+          linear-gradient(
+            to bottom right,
+            transparent calc(50% - 1px),
+            var(--blue) calc(50% - 1px),
+            var(--blue) calc(50% + 1px),
+            transparent calc(50% + 1px)
+          ),
+          linear-gradient(
+            to bottom left,
+            transparent calc(50% - 1px),
+            var(--blue) calc(50% - 1px),
+            var(--blue) calc(50% + 1px),
+            transparent calc(50% + 1px)
+          );
+      }
+      .choice input:disabled {
+        border-color: var(--rule);
+        background: var(--paper-tint);
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .choice:has(input:disabled) {
+        color: var(--ink-soft);
+        cursor: not-allowed;
+      }
+      .choice span small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        padding-top: 0.15em;
+      }
+
+      /* switch: the carrier's gate flag */
+      .switch {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
+        cursor: pointer;
+      }
+      .switch input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 46px;
+        height: 22px;
+        flex: none;
+        margin: 0;
+        border: 1px solid var(--ink);
+        background: var(--paper-tint);
+        position: relative;
+        cursor: pointer;
+        box-shadow: var(--press);
+        transition:
+          background 0.2s var(--ease),
+          border-color 0.2s var(--ease);
+      }
+      .switch input::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background: var(--ink);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+        transition:
+          transform 0.2s var(--ease),
+          background 0.2s var(--ease);
+      }
+      .switch input:checked {
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+      .switch input:checked::after {
+        transform: translateX(24px);
+        background: var(--paper);
+      }
+      .switch input:hover {
+        border-color: var(--blue);
+      }
+      .switch-txt {
+        font-size: 0.9375rem;
+        line-height: 1.4;
+      }
+      .switch-txt small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        padding-top: 0.15em;
+      }
+
+      /* select: a self-drawn galley of routes */
+      .combo {
+        position: relative;
+      }
+      .combo__btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8em;
+        background: var(--paper);
+        border: 0;
+        border-bottom: 1px solid var(--ink);
+        padding: 0.5em 0.1em 0.45em;
+        font-family: var(--text);
+        font-size: 1rem;
+        text-align: left;
+        cursor: pointer;
+        box-shadow: inset 0 -14px 14px -14px rgba(26, 26, 23, 0.1);
+        transition:
+          box-shadow 0.2s var(--ease),
+          border-color 0.2s var(--ease);
+      }
+      .combo__btn:hover {
+        box-shadow: inset 0 -14px 14px -14px rgba(23, 57, 154, 0.22);
+      }
+      .combo__btn[aria-expanded="true"] {
+        border-bottom-color: var(--blue);
+      }
+      .combo__caret {
+        width: 9px;
+        height: 9px;
+        flex: none;
+        border-right: 1px solid var(--ink);
+        border-bottom: 1px solid var(--ink);
+        transform: rotate(45deg) translate(-2px, -2px);
+        transition: transform 0.2s var(--ease);
+      }
+      .combo__btn[aria-expanded="true"] .combo__caret {
+        transform: rotate(225deg) translate(-2px, -2px);
+        border-color: var(--blue);
+      }
+      .combo__list {
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        right: 0;
+        z-index: 60;
+        background: var(--paper);
+        border: 1px solid var(--ink);
+        box-shadow: 3px 3px 0 rgba(26, 26, 23, 0.13);
+        max-height: 238px;
+        overflow-y: auto;
+        padding: 3px;
+      }
+      .combo__list[hidden] {
+        display: none;
+      }
+      .combo__opt {
+        padding: 0.45em 0.6em;
+        font-size: 0.9375rem;
+        line-height: 1.35;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8em;
+        align-items: baseline;
+      }
+      .combo__opt + .combo__opt {
+        border-top: 1px solid var(--rule-soft);
+      }
+      .combo__opt small {
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.08em;
+        flex: none;
+      }
+      .combo__opt[data-active="true"] {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .combo__opt[data-active="true"] small {
+        color: var(--paper-deep);
+      }
+      .combo__opt[aria-selected="true"]::before {
+        content: "\2713\00a0";
+        color: var(--blue);
+        font-weight: 700;
+      }
+      .combo__opt[data-active="true"][aria-selected="true"]::before {
+        color: var(--paper);
+      }
+
+      /* slider: a press-speed rule */
+      .range-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1em;
+      }
+      .range-val {
+        font-family: var(--mono);
+        font-size: 0.8125rem;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+      }
+      .range {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        margin: 0.7em 0 0;
+        cursor: pointer;
+      }
+      .range::-webkit-slider-runnable-track {
+        height: 9px;
+        background:
+          repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 10%),
+          linear-gradient(var(--paper-tint), var(--paper-tint));
+        background-position:
+          0 100%,
+          0 0;
+        background-size:
+          100% 5px,
+          100% 100%;
+        background-repeat: no-repeat;
+        border-bottom: 1px solid var(--ink);
+      }
+      .range::-moz-range-track {
+        height: 9px;
+        background: var(--paper-tint);
+        border-bottom: 1px solid var(--ink);
+      }
+      .range::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 13px;
+        height: 24px;
+        margin-top: -8px;
+        background: var(--ink);
+        border: 1px solid var(--ink);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        cursor: grab;
+        transition:
+          background 0.18s var(--ease),
+          filter 0.18s var(--ease);
+      }
+      .range::-moz-range-thumb {
+        width: 13px;
+        height: 24px;
+        border-radius: 0;
+        background: var(--ink);
+        border: 1px solid var(--ink);
+        cursor: grab;
+      }
+      .range:hover::-webkit-slider-thumb {
+        background: var(--blue);
+        border-color: var(--blue);
+        filter: drop-shadow(0 0 4px rgba(23, 57, 154, 0.45));
+      }
+      .range:hover::-moz-range-thumb {
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+      .range:active::-webkit-slider-thumb {
+        cursor: grabbing;
+      }
+      .range-scale {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        color: var(--ink-soft);
+        padding-top: 0.4em;
+        letter-spacing: 0.08em;
+      }
+
+      /* tabs: the wire services */
+      .tabs__list {
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid var(--ink);
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+      .tab {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+        background: transparent;
+        border: 0;
+        padding: 0.75em 1.05em 0.68em;
+        cursor: pointer;
+        white-space: nowrap;
+        color: var(--ink-soft);
+        position: relative;
+        transition:
+          color 0.18s var(--ease),
+          background 0.18s var(--ease);
+      }
+      .tab + .tab {
+        border-left: 1px solid var(--rule);
+      }
+      .tab::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 3px;
+        background: var(--blue);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.2s var(--ease);
+      }
+      .tab:hover {
+        color: var(--blue);
+      }
+      .tab:hover::after {
+        transform: scaleX(1);
+        opacity: 0.4;
+      }
+      .tab[aria-selected="true"] {
+        color: var(--ink);
+        background: var(--paper-tint);
+      }
+      .tab[aria-selected="true"]::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+      .tabpanel {
+        padding-top: 1.2em;
+      }
+      .tabpanel[hidden] {
+        display: none;
+      }
+      .dateline {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding-bottom: 0.5em;
+      }
+      .dateline em {
+        font-style: normal;
+        color: var(--blue);
+      }
+      .wire-body {
+        columns: 2;
+        column-gap: var(--gut);
+        column-rule: 1px solid var(--rule);
+        font-size: 0.9375rem;
+        text-align: justify;
+        hyphens: auto;
+      }
+      .wire-body p + p {
+        text-indent: 1.15em;
+      }
+
+      /* progress: tonight's run */
+      .meter-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1em;
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .meter-row b {
+        color: var(--blue);
+        font-weight: 600;
+      }
+      .progress {
+        margin: 0.6em 0 0.4em;
+        height: 20px;
+        border: 1px solid var(--ink);
+        background:
+          repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10%),
+          var(--paper-tint);
+        box-shadow: var(--press);
+        overflow: hidden;
+      }
+      .progress__fill {
+        height: 100%;
+        width: 0;
+        background:
+          repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18) 0 4px,
+            transparent 4px 8px
+          ),
+          var(--ink);
+        transition: width 0.5s var(--ease);
+      }
+
+      /* gauge */
+      .gauge {
+        display: flex;
+        align-items: center;
+        gap: var(--gut);
+        flex-wrap: wrap;
+      }
+      .gauge svg {
+        width: min(220px, 100%);
+        height: auto;
+        flex: none;
+      }
+      .gauge__read {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        text-transform: uppercase;
+      }
+      .gauge__read b {
+        display: block;
+        font-family: var(--display);
+        font-size: 2.1rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        line-height: 1.05;
+        text-transform: none;
+      }
+      .inkwell {
+        margin-top: 0.9em;
+      }
+      .inkwell__bar {
+        height: 11px;
+        border: 1px solid var(--ink);
+        background: var(--paper-tint);
+        box-shadow: var(--press);
+      }
+      .inkwell__fill {
+        height: 100%;
+        background: var(--blue);
+      }
+
+      /* tooltip */
+      .tip-host {
+        position: relative;
+      }
+      .tip {
+        position: static;
+        display: inline-block;
+      }
+      .tip__trigger {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        background: transparent;
+        border: 1px solid var(--ink);
+        width: 20px;
+        height: 20px;
+        line-height: 1;
+        cursor: help;
+        padding: 0;
+        box-shadow: var(--press);
+        transition:
+          color 0.18s var(--ease),
+          border-color 0.18s var(--ease);
+      }
+      .tip__trigger:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+      }
+      .tip__bubble {
+        position: absolute;
+        bottom: calc(100% + 9px);
+        left: 0;
+        right: auto;
+        width: auto;
+        max-width: min(300px, 100%);
+        background: var(--paper);
+        border: 1px solid var(--ink);
+        box-shadow: 3px 3px 0 rgba(26, 26, 23, 0.15);
+        padding: 0.6em 0.7em;
+        font-size: 0.8125rem;
+        line-height: 1.45;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(3px);
+        transition:
+          opacity 0.18s var(--ease),
+          transform 0.18s var(--ease),
+          visibility 0.18s;
+        z-index: 70;
+      }
+      .tip__bubble b {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--blue);
+        padding-bottom: 0.25em;
+      }
+      .tip:hover .tip__bubble,
+      .tip:focus-within .tip__bubble {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      /* modal */
+      .scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(26, 26, 23, 0.42);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.2s var(--ease);
+      }
+      .scrim[hidden] {
+        display: none;
+      }
+      .scrim.is-open {
+        opacity: 1;
+      }
+      .modal {
+        position: relative;
+        width: min(480px, 100%);
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        background: var(--paper);
+        border: 1px solid var(--ink);
+        box-shadow:
+          0 0 0 1px var(--paper),
+          6px 6px 0 rgba(26, 26, 23, 0.28);
+        padding: clamp(18px, 3vw, 28px);
+        transform: translateY(6px);
+        transition: transform 0.22s var(--ease);
+      }
+      .scrim.is-open .modal {
+        transform: translateY(0);
+      }
+      .modal__head {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+        border-bottom: 3px double var(--ink);
+        padding-bottom: 0.6em;
+        margin-bottom: 0.9em;
+      }
+      .modal__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+        line-height: 1.1;
+        letter-spacing: -0.012em;
+      }
+      .modal__body {
+        font-size: 0.9375rem;
+        line-height: 1.55;
+      }
+      .modal__body p + p {
+        margin-top: 0.7em;
+      }
+      .modal__foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7em;
+        justify-content: flex-end;
+        padding-top: 1.2em;
+        margin-top: 1.2em;
+        border-top: 1px solid var(--rule);
+      }
+
+      /* toast rail */
+      .toasts {
+        position: fixed;
+        right: clamp(12px, 2vw, 26px);
+        bottom: clamp(12px, 2vw, 26px);
+        z-index: 600;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 9px;
+        width: min(330px, calc(100vw - 24px));
+        pointer-events: none;
+      }
+      .toast {
+        pointer-events: auto;
+        background: var(--paper);
+        border: 1px solid var(--ink);
+        border-left: 5px solid var(--blue);
+        box-shadow: 4px 4px 0 rgba(26, 26, 23, 0.22);
+        padding: 0.65em 0.75em 0.7em;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.5em;
+        align-items: start;
+        animation: slip 0.26s var(--ease) both;
+      }
+      .toast__k {
+        font-family: var(--mono);
+        font-size: 0.5625rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--blue);
+        display: block;
+        padding-bottom: 0.2em;
+      }
+      .toast__m {
+        font-size: 0.875rem;
+        line-height: 1.4;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .toast__x {
+        background: transparent;
+        border: 1px solid var(--rule);
+        width: 20px;
+        height: 20px;
+        line-height: 1;
+        padding: 0;
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ink-soft);
+        transition:
+          color 0.18s var(--ease),
+          border-color 0.18s var(--ease);
+      }
+      .toast__x:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+      }
+      @keyframes slip {
+        from {
+          opacity: 0;
+          transform: translateY(7px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* colophon */
+      .colophon {
+        margin-top: clamp(40px, 5.5vw, 76px);
+        border-top: 4px solid var(--ink);
+        padding-top: 1.2em;
+      }
+      .density {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        align-items: flex-end;
+        padding-bottom: 1em;
+      }
+      .density i {
+        display: block;
+        width: 38px;
+        height: 26px;
+        position: relative;
+        font-style: normal;
+      }
+      .density i::after {
+        content: attr(data-l);
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        font-family: var(--mono);
+        font-size: 0.5rem;
+        letter-spacing: 0.06em;
+        color: var(--ink-soft);
+      }
+      .density .sp {
+        width: 14px;
+        height: 1px;
+      }
+      .colo-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--gut);
+        align-items: end;
+        padding-top: 1.4em;
+        border-top: 1px solid var(--rule);
+        margin-top: 1.5em;
+      }
+      .colo-txt {
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        max-width: 60ch;
+      }
+      .colo-txt b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ── mobile ────────────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .front {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .front > * + * {
+          border-left: 0;
+          padding-left: 0;
+        }
+        .lead {
+          order: 1;
+          padding-bottom: 1.6em;
+          border-bottom: 1px solid var(--rule);
+          margin-bottom: 1.4em;
+        }
+        .rail-r {
+          order: 2;
+          padding-bottom: 1.4em;
+          margin-bottom: 1.4em;
+          border-bottom: 1px solid var(--rule);
+        }
+        .rail-l {
+          order: 3;
+        }
+        .story {
+          columns: 2;
+        }
+        .wire-body {
+          columns: 1;
+          column-rule: 0;
+        }
+        .cols > * {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (max-width: 640px) {
+        .ears {
+          grid-template-columns: 1fr;
+          gap: 0.7em;
+        }
+        .ear--r {
+          text-align: left;
+        }
+        .story {
+          columns: 1;
+          column-rule: 0;
+          text-align: left;
+        }
+        .story p {
+          hyphens: none;
+        }
+        .gauge {
+          gap: 14px;
+        }
+        .colo-grid {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+        .folio span {
+          padding: 0 0.5em;
+        }
+        .toasts {
+          right: 10px;
+          left: 10px;
+          width: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 新闻纸纹 · two turbulence plates: tooth and web fibre -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- registration target, drawn once, struck on both plates -->
+    <svg
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      aria-hidden="true"
+    >
+      <symbol id="regmark" viewBox="0 0 24 24">
+        <circle
+          cx="12"
+          cy="12"
+          r="7.4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="2.6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+        <path
+          d="M12 0.5V9.4M12 14.6v8.9M0.5 12h8.9M14.6 12h8.9"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+      </symbol>
+    </svg>
+
+    <div class="sheet">
+      <span class="reg reg--corner reg--tl"
+        ><svg class="plate-b"><use href="#regmark" /></svg
+        ><svg class="plate-k"><use href="#regmark" /></svg
+      ></span>
+      <span class="reg reg--corner reg--tr"
+        ><svg class="plate-b"><use href="#regmark" /></svg
+        ><svg class="plate-k"><use href="#regmark" /></svg
+      ></span>
+      <span class="reg reg--corner reg--bl"
+        ><svg class="plate-b"><use href="#regmark" /></svg
+        ><svg class="plate-k"><use href="#regmark" /></svg
+      ></span>
+      <span class="reg reg--corner reg--br"
+        ><svg class="plate-b"><use href="#regmark" /></svg
+        ><svg class="plate-k"><use href="#regmark" /></svg
+      ></span>
+
+      <!-- ══ 报头 ══════════════════════════════════════════════ -->
+      <header class="masthead">
+        <div class="ears">
+          <p class="ear">
+            <b>The weather, from the roof</b>Fog on the river until nine, lifting before
+            the trucks load. Wind south-west, eight knots. Rain holds off past the second
+            edition.
+          </p>
+          <p class="ear ear--r">
+            <b>Two credits</b>Home delivery is arranged at the desk on page&nbsp;4. Back
+            numbers are kept three years in the morgue.
+          </p>
+        </div>
+
+        <h1 class="nameplate misreg" data-plate="The Proteus Gazette">
+          The Proteus Gazette
+        </h1>
+        <p class="motto">
+          <span>Printed at the Quay Street works since 1889</span><i>&#10010;</i
+          ><span>All the forms that fit, we print</span>
+        </p>
+
+        <div class="rule-heavy"></div>
+        <p class="folio">
+          <span>Vol.&nbsp;CXXXVII</span><span>No.&nbsp;4,412</span
+          ><span class="blue">City Edition</span><span>Wednesday, 22 July 2026</span
+          ><span>Sixteen pages</span><span>Two credits</span>
+        </p>
+      </header>
+
+      <!-- ══ 头版 ══════════════════════════════════════════════ -->
+      <div class="front">
+        <div class="rail-l">
+          <h2 class="railhead">Index <em>16&nbsp;pp</em></h2>
+          <ul class="index">
+            <li>
+              <a href="#composing">The Composing Room</a><span class="dots"></span
+              ><span class="pg">2</span>
+            </li>
+            <li>
+              <a href="#desk">The Subscription Desk</a><span class="dots"></span
+              ><span class="pg">4</span>
+            </li>
+            <li>
+              <a href="#wire">The Wire</a><span class="dots"></span
+              ><span class="pg">7</span>
+            </li>
+            <li>
+              <a href="#pressroom">The Pressroom</a><span class="dots"></span
+              ><span class="pg">9</span>
+            </li>
+            <li>
+              <a href="#stop">Stop Press</a><span class="dots"></span
+              ><span class="pg">12</span>
+            </li>
+            <li>
+              <a href="#colophon">Colophon</a><span class="dots"></span
+              ><span class="pg">16</span>
+            </li>
+          </ul>
+          <div class="almanac">
+            <h3
+              class="railhead"
+              style="border-bottom-width: 1px; border-bottom-style: solid"
+            >
+              Almanac
+            </h3>
+            <dl>
+              <div>
+                <dt>Presses started</dt>
+                <dd>02:40</dd>
+              </div>
+              <div>
+                <dt>Forme locked</dt>
+                <dd>03:55</dd>
+              </div>
+              <div>
+                <dt>Copies to the vans</dt>
+                <dd>40,000</dd>
+              </div>
+              <div>
+                <dt>Plates on the drum</dt>
+                <dd>Black, blue</dd>
+              </div>
+              <div>
+                <dt>Corrections filed</dt>
+                <dd>7</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <article class="lead">
+          <p class="kicker">From the composing room</p>
+          <h2
+            class="headline misreg"
+            data-plate="The Night Desk Sets a Paper That Changes Shape"
+          >
+            The Night Desk Sets a Paper That Changes Shape
+          </h2>
+          <p class="deck">
+            A new case of type came up the goods lift at midnight. By the second edition
+            the compositors had run the same front page six ways, and none of them looked
+            borrowed.
+          </p>
+          <p class="byline">
+            By <b>The Night Editor</b> &nbsp;&#183;&nbsp; Filed 04:12 from the Quay Street
+            works
+          </p>
+
+          <div class="story">
+            <p>
+              Long after the last tram had gone up the hill, the composing room still
+              smelled of hot metal and turpentine, and the men on the night side were
+              arguing about column measure. The case that arrived at midnight was not
+              catalogued. It carried no maker's plate, only a stencil on the lid reading
+              PROTEUS, and beneath that, in a smaller hand, <em>set as required</em>.
+            </p>
+            <p>
+              The foreman opened it under the one good lamp. Inside were faces the paper
+              had run for forty years and a dozen it had never owned: a blackletter for
+              the nameplate, a Didone cut fine enough to hurt at fourteen point, a mono
+              for the wire slips. Every sort sat true in its box. Nothing was worn.
+            </p>
+            <p>
+              &#8220;We set the shipping tables in it first,&#8221; the foreman said,
+              &#8220;because if a thing survives the shipping tables it will survive
+              anything.&#8221; The tables came off the stone at ten to two, clean, and the
+              desk sent them up without a query.
+            </p>
+            <figure class="pull">
+              <q
+                >We set the same story six ways before dawn, and the paper chose the
+                sixth</q
+              >
+              <figcaption>&#8212; The foreman, night side, at the stone</figcaption>
+            </figure>
+            <p>
+              What unsettled the night side was not the type but the register. The blue
+              plate hangs a hair off the black on every sheet that comes down the belt
+              &#8212; a hair, no more, the width of a good rule &#8212; and the pressmen
+              have twice reset the drum without closing it. The ink is dry by the vans.
+              The fringe stays.
+            </p>
+            <p>
+              The publisher was telephoned at three and declined to stop the run.
+              &#8220;It reads,&#8221; she said. &#8220;Send it out.&#8221; Forty thousand
+              copies went to the vans on time, and the crossword, corrected twice, went
+              with them.
+            </p>
+            <p>
+              The case is to be inventoried this morning by the works manager, who has
+              asked that nobody move it. The night side has already moved it, twice,
+              closer to the stone.
+            </p>
+          </div>
+        </article>
+
+        <div class="rail-r">
+          <h2 class="railhead">Bulletins <em>Late</em></h2>
+          <ul class="bulletins">
+            <li>
+              <time>04:12</time
+              ><span
+                >Second plate hung. Register still open a hair; publisher declines to stop
+                the run.</span
+              >
+            </li>
+            <li>
+              <time>03:58</time
+              ><span
+                >Ink train warmed. Blue holding at seventy per cent in the well.</span
+              >
+            </li>
+            <li>
+              <time>03:31</time
+              ><span
+                >Crossword corrected. Fourteen down was never &#8220;galley.&#8221;</span
+              >
+            </li>
+            <li>
+              <time>02:47</time
+              ><span
+                >Foreman calls for six columns on the front, not five. Desk agrees at
+                02:51.</span
+              >
+            </li>
+            <li>
+              <time>01:20</time
+              ><span
+                >Goods lift delivers one unmarked case of type. No docket, no maker.</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 2 ════════════════════════════════════════════ -->
+      <section class="dept" id="composing">
+        <header class="dept__head">
+          <span class="slug">Page 2</span>
+          <h2 class="dept__name misreg" data-plate="The Composing Room">
+            The Composing Room
+          </h2>
+          <span class="dept__line"></span>
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </header>
+        <p class="dept__stand">
+          Every control on this page is a slug of type. Press one and the sheet takes the
+          impression.
+        </p>
+
+        <div class="cols">
+          <div class="c-7">
+            <h3 class="field-title">Actions at the stone</h3>
+            <div class="btn-row">
+              <button
+                class="btn btn--ink"
+                data-toast="Front page sent. The pressroom has the forme.|Sent to press"
+              >
+                Send to press
+              </button>
+              <button
+                class="btn"
+                data-toast="Proof pulled. It is on the stone, wet.|Proof pulled"
+              >
+                Pull a proof
+              </button>
+              <button
+                class="btn btn--blue"
+                data-toast="Held on the blue plate for the second edition.|Held for blue"
+              >
+                Run the blue plate
+              </button>
+              <button
+                class="btn btn--plain"
+                data-toast="Filed to the spike. Nothing is ever really killed here.|Spiked"
+              >
+                Save to the spike
+              </button>
+              <button class="btn" disabled>Reset the forme</button>
+            </div>
+            <div class="btn-legend">
+              <span>Ink &#8212; the committed action, one to a section</span>
+              <span>Rule &#8212; the reversible action</span>
+              <span>Blue &#8212; touches the second plate</span>
+              <span>Plain &#8212; the quiet action, its rule lit blue on hover</span>
+              <span>Hatched &#8212; unavailable until the forme is locked</span>
+            </div>
+          </div>
+
+          <div class="c-5">
+            <h3 class="field-title">On the impression</h3>
+            <p class="note">
+              A slug sits proud of the paper until it is struck. Hold any button down and
+              the sheet gives, the shadow inverts, and the type settles a point into the
+              stock &#8212; the same debossed edge you can read with a thumbnail on the
+              back of the sheet.
+            </p>
+            <p class="note note--pad">
+              Hover carries the second smell of the room: ink that has not dried. The rule
+              under a quiet action lights blue, and the ink blooms a half-millimetre past
+              its own edge before it sets.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE 4 ════════════════════════════════════════════ -->
+      <section class="dept" id="desk">
+        <header class="dept__head">
+          <span class="slug">Page 4</span>
+          <h2 class="dept__name misreg" data-plate="The Subscription Desk">
+            The Subscription Desk
+          </h2>
+          <span class="dept__line"></span>
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </header>
+        <p class="dept__stand">
+          Home delivery starts the Monday after the carrier has your street. Fill the
+          order, hand it to the desk.
+        </p>
+
+        <form class="cols" id="order" novalidate>
+          <div class="c-6">
+            <div class="stack">
+              <div class="field" id="f-addr">
+                <label class="lbl" for="addr">Where the paper goes</label>
+                <input
+                  class="inp"
+                  id="addr"
+                  name="addr"
+                  type="text"
+                  placeholder="14 Quay Street, room 3"
+                  autocomplete="street-address"
+                />
+                <span class="hint"
+                  >Street and room. The carrier reads it off the round book, not the
+                  envelope.</span
+                >
+                <p class="err" id="addr-err">
+                  <span>&#10010;</span> The carrier needs a street before a paper can be
+                  left
+                </p>
+              </div>
+
+              <div class="field">
+                <span class="lbl" id="route-lbl">Delivery route</span>
+                <div class="combo" id="route">
+                  <button
+                    type="button"
+                    class="combo__btn"
+                    id="route-btn"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-labelledby="route-lbl route-btn"
+                  >
+                    <span id="route-val">Quay Street and the docks</span>
+                    <span class="combo__caret" aria-hidden="true"></span>
+                  </button>
+                  <ul
+                    class="combo__list"
+                    id="route-list"
+                    role="listbox"
+                    aria-labelledby="route-lbl"
+                    tabindex="-1"
+                    hidden
+                  ></ul>
+                </div>
+                <span class="hint"
+                  >Routes are walked in this order from the works at 05:10.</span
+                >
+              </div>
+
+              <div class="field">
+                <span class="lbl">Which edition</span>
+                <div class="choices" role="radiogroup" aria-label="Which edition">
+                  <label class="choice"
+                    ><input type="radio" name="edition" value="morning" checked /><span
+                      >Morning, city<small>On the step by 06:30</small></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="radio" name="edition" value="evening" /><span
+                      >Evening, late final<small>Carries the closing prices</small></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="radio" name="edition" value="sunday" /><span
+                      >Sunday only<small
+                        >With the magazine and the long crossword</small
+                      ></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="radio" name="edition" value="rural" disabled /><span
+                      >Rural free delivery<small
+                        >Suspended while the bridge is out</small
+                      ></span
+                    ></label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-6">
+            <div class="stack">
+              <div class="field">
+                <span class="lbl">Add to the order</span>
+                <div class="choices">
+                  <label class="choice"
+                    ><input type="checkbox" name="extra" value="crossword" checked /><span
+                      >Saturday crossword supplement<small
+                        >Twelve pages, folded in</small
+                      ></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="checkbox" name="extra" value="shipping" /><span
+                      >Shipping and tide tables<small>Set fresh each Tuesday</small></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="checkbox" name="extra" value="proof" disabled /><span
+                      >Nightly page proofs<small>Trade subscribers only</small></span
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="switch">
+                  <span class="switch-txt"
+                    >Leave the paper inside the gate<small
+                      >The carrier will not ring the bell</small
+                    ></span
+                  >
+                  <input type="checkbox" role="switch" id="gate" checked />
+                </label>
+              </div>
+
+              <div class="field">
+                <p class="note">
+                  The desk keeps one card per address. Changes made before 21:00 reach the
+                  carrier the same night; after that they reach him the night following.
+                </p>
+              </div>
+
+              <div class="btn-row">
+                <button class="btn btn--ink" type="submit">Start delivery</button>
+                <button class="btn btn--plain" type="reset">Clear the card</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- ══ PAGE 7 ════════════════════════════════════════════ -->
+      <section class="dept" id="wire">
+        <header class="dept__head">
+          <span class="slug">Page 7</span>
+          <h2 class="dept__name misreg" data-plate="The Wire">The Wire</h2>
+          <span class="dept__line"></span>
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </header>
+        <p class="dept__stand">
+          Copy as it came off the machine, unsubbed. Arrow keys move along the tape.
+        </p>
+
+        <div class="tabs" id="tabs">
+          <div class="tabs__list" role="tablist" aria-label="Wire services">
+            <button
+              class="tab"
+              role="tab"
+              id="t-home"
+              aria-controls="p-home"
+              aria-selected="true"
+              tabindex="0"
+            >
+              Home
+            </button>
+            <button
+              class="tab"
+              role="tab"
+              id="t-harbour"
+              aria-controls="p-harbour"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Harbour
+            </button>
+            <button
+              class="tab"
+              role="tab"
+              id="t-markets"
+              aria-controls="p-markets"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Markets
+            </button>
+            <button
+              class="tab"
+              role="tab"
+              id="t-weather"
+              aria-controls="p-weather"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Weather
+            </button>
+          </div>
+
+          <div
+            class="tabpanel"
+            role="tabpanel"
+            id="p-home"
+            aria-labelledby="t-home"
+            tabindex="0"
+          >
+            <p class="dateline">Quay Street, 03:44 &#8212; <em>Gazette staff</em></p>
+            <div class="wire-body">
+              <p>
+                The works manager has asked that the unmarked case of type be left where
+                it stands until it can be entered in the inventory. The night side has
+                moved it twice, both times toward the stone, and neither man will say who
+                moved it second.
+              </p>
+              <p>
+                A count taken at four found every sort present and no face duplicated. The
+                foreman notes that the mono in the case matches the wire slips to the
+                tenth of a point, which he calls a coincidence and the desk calls
+                something else.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="tabpanel"
+            role="tabpanel"
+            id="p-harbour"
+            aria-labelledby="t-harbour"
+            tabindex="0"
+            hidden
+          >
+            <p class="dateline">The river, 02:15 &#8212; <em>Harbour desk</em></p>
+            <div class="wire-body">
+              <p>
+                Fog closed the lower reach at midnight and the pilot boats held. Three
+                coasters lie off the bar waiting for the tide, and the bridge is out at
+                the crossing, which suspends rural delivery for a fourth week.
+              </p>
+              <p>
+                The tide tables set on Tuesday stand corrected: high water reads 06:52,
+                not 06:25. Subscribers taking the tables will find the amended slip folded
+                into tomorrow's morning edition.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="tabpanel"
+            role="tabpanel"
+            id="p-markets"
+            aria-labelledby="t-markets"
+            tabindex="0"
+            hidden
+          >
+            <p class="dateline">Exchange floor, 23:50 &#8212; <em>Markets desk</em></p>
+            <div class="wire-body">
+              <p>
+                Paper stock closed firm on the strength of the winter contracts. Ink, both
+                black and reflex blue, held at yesterday's figure; the blue is quoted thin
+                and the works has taken forward cover through March.
+              </p>
+              <p>
+                Type metal moved a quarter point on news of a foundry closing upriver.
+                Trade subscribers will find the full table set in the evening final, where
+                it belongs.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="tabpanel"
+            role="tabpanel"
+            id="p-weather"
+            aria-labelledby="t-weather"
+            tabindex="0"
+            hidden
+          >
+            <p class="dateline">From the roof, 04:00 &#8212; <em>Observer</em></p>
+            <div class="wire-body">
+              <p>
+                Fog on the river until nine, lifting before the trucks load. Wind
+                south-west at eight knots, backing southerly by afternoon. Rain holds off
+                past the second edition and arrives with the evening vans.
+              </p>
+              <p>
+                The roof gauge has read a quarter inch since Sunday. The observer reminds
+                the desk, again, that he is not responsible for what the vans meet on the
+                hill.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE 9 ════════════════════════════════════════════ -->
+      <section class="dept" id="pressroom">
+        <header class="dept__head">
+          <span class="slug">Page 9</span>
+          <h2 class="dept__name misreg" data-plate="The Pressroom">The Pressroom</h2>
+          <span class="dept__line"></span>
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </header>
+        <p class="dept__stand">
+          The web press takes forty thousand a night. Set the speed, watch the well, and
+          do not let the blue run out.
+        </p>
+
+        <div class="cols">
+          <div class="c-5">
+            <h3 class="field-title">Press speed</h3>
+            <div class="range-head">
+              <label class="lbl" for="speed" style="padding: 0">Copies an hour</label>
+              <span class="range-val" id="speed-val">18,000</span>
+            </div>
+            <input
+              class="range"
+              id="speed"
+              type="range"
+              min="2000"
+              max="40000"
+              step="500"
+              value="18000"
+              aria-describedby="speed-note"
+            />
+            <div class="range-scale">
+              <span>2k</span><span>12k</span><span>22k</span><span>32k</span
+              ><span>40k</span>
+            </div>
+            <p class="note note--pad" id="speed-note">
+              Above thirty-two thousand the fold gets loose and the blue plate starts to
+              smear. The pressmen will tell you it is the paper.
+            </p>
+          </div>
+
+          <div class="c-7">
+            <h3 class="field-title">Ink well, black plate</h3>
+            <div class="gauge">
+              <svg viewBox="0 0 200 118" role="img" aria-labelledby="g-title">
+                <title id="g-title">Ink well gauge, black plate</title>
+                <path
+                  d="M18 100 A82 82 0 0 1 182 100"
+                  fill="none"
+                  stroke="#bdb9ac"
+                  stroke-width="1"
+                />
+                <path
+                  d="M30 100 A70 70 0 0 1 170 100"
+                  fill="none"
+                  stroke="#1a1a17"
+                  stroke-width="1"
+                />
+                <g id="ticks" stroke="#1a1a17" stroke-width="1"></g>
+                <g
+                  id="tick-labels"
+                  font-family="IBM Plex Mono, monospace"
+                  font-size="7"
+                  fill="#575349"
+                  text-anchor="middle"
+                ></g>
+                <path
+                  d="M100 100 L100 34"
+                  stroke="#17399a"
+                  stroke-width="3"
+                  id="needle-b"
+                  opacity=".5"
+                  transform="rotate(-54 100 100)"
+                />
+                <path
+                  d="M100 100 L100 36"
+                  stroke="#1a1a17"
+                  stroke-width="2"
+                  id="needle"
+                  transform="rotate(-54 100 100)"
+                />
+                <circle cx="100" cy="100" r="5" fill="#1a1a17" />
+                <circle cx="100" cy="100" r="1.6" fill="#f2f0e9" />
+              </svg>
+              <div class="gauge__read">
+                <b id="well-pct">72%</b>
+                <span id="well-txt">Enough for the run</span><br />
+                <span>Reads at the drum, not the drum's word</span>
+                <div class="inkwell">
+                  <div class="range-head">
+                    <span
+                      style="
+                        font-family: var(--mono);
+                        font-size: 0.625rem;
+                        letter-spacing: 0.14em;
+                      "
+                      >Blue plate</span
+                    ><span class="range-val" id="blue-pct">70%</span>
+                  </div>
+                  <div class="inkwell__bar">
+                    <div class="inkwell__fill" id="blue-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-12">
+            <h3 class="field-title">Tonight's run</h3>
+            <div class="meter-row">
+              <span>City edition, forty thousand</span
+              ><span><b id="run-count">0</b> away</span>
+            </div>
+            <div
+              class="progress"
+              role="progressbar"
+              id="run-bar"
+              aria-valuemin="0"
+              aria-valuemax="40000"
+              aria-valuenow="0"
+              aria-label="Copies printed tonight"
+            >
+              <div class="progress__fill" id="run-fill"></div>
+            </div>
+            <div class="meter-row" style="color: var(--ink-soft)">
+              <span id="run-state">Press idle. Forme locked at 03:55.</span
+              ><span>40,000</span>
+            </div>
+            <div class="btn-row" style="padding-top: 1em">
+              <button class="btn btn--ink" id="run-go">Run the press</button>
+              <button class="btn" id="run-stop">Stop the run</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE 12 ═══════════════════════════════════════════ -->
+      <section class="dept" id="stop">
+        <header class="dept__head">
+          <span class="slug">Page 12</span>
+          <h2 class="dept__name misreg" data-plate="Stop Press">Stop Press</h2>
+          <span class="dept__line"></span>
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </header>
+        <p class="dept__stand">
+          The fudge box. Anything filed here goes on the front of whatever is still on the
+          drum.
+        </p>
+
+        <div class="cols">
+          <div class="c-5">
+            <h3 class="field-title">Hold the front page</h3>
+            <p class="note">
+              Stopping the run costs eleven minutes and the vans wait. The night editor is
+              told either way.
+            </p>
+            <div class="tip-host">
+              <div class="btn-row" style="padding-top: 1em">
+                <button class="btn btn--ink" id="hold-open">Hold the front page</button>
+                <span class="tip">
+                  <button class="tip__trigger" type="button" aria-describedby="tip-hold">
+                    &#8224;
+                  </button>
+                  <span class="tip__bubble" role="tooltip" id="tip-hold">
+                    <b>Why eleven minutes</b>
+                    Four to bring the web down, five to swap the plate, two to bring her
+                    back to speed. The vans hold at the dock and the hill run goes late.
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-7">
+            <h3 class="field-title">File a bulletin</h3>
+            <label class="lbl" for="bull">Bulletin text</label>
+            <input
+              class="inp"
+              id="bull"
+              type="text"
+              maxlength="120"
+              placeholder="Second plate hung; register open a hair"
+            />
+            <span class="hint"
+              >Set in one line. It goes to the desk exactly as you type it.</span
+            >
+            <div class="btn-row" style="padding-top: 1.1em">
+              <button class="btn btn--blue" id="bull-file">File it</button>
+              <button class="btn btn--plain" id="bull-late">File as late news</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE 16 ═══════════════════════════════════════════ -->
+      <footer class="colophon" id="colophon">
+        <div class="dept__head" style="padding-bottom: 1.2em">
+          <span class="slug">Page 16</span>
+          <h2 class="dept__name">Colophon</h2>
+          <span class="dept__line"></span>
+        </div>
+
+        <div class="density" aria-hidden="true">
+          <i data-l="K100" style="background: #1a1a17"></i>
+          <i data-l="K75" style="background: rgba(26, 26, 23, 0.75)"></i>
+          <i data-l="K50" style="background: rgba(26, 26, 23, 0.5)"></i>
+          <i data-l="K25" style="background: rgba(26, 26, 23, 0.25)"></i>
+          <i class="sp"></i>
+          <i data-l="B100" style="background: #17399a"></i>
+          <i data-l="B75" style="background: rgba(23, 57, 154, 0.75)"></i>
+          <i data-l="B50" style="background: rgba(23, 57, 154, 0.5)"></i>
+          <i data-l="B25" style="background: rgba(23, 57, 154, 0.25)"></i>
+          <i class="sp"></i>
+          <i
+            data-l="TRAP"
+            style="background: #17399a; box-shadow: inset 2px -2px 0 #1a1a17"
+          ></i>
+        </div>
+
+        <div class="colo-grid">
+          <p class="colo-txt">
+            <b>The Proteus Gazette</b>, city edition, printed nightly at the Quay Street
+            works on a two-plate web press: ink black and reflex blue.<br />
+            Nameplate set in UnifrakturMaguntia. Headlines in Bodoni Moda. Text in Source
+            Serif 4. Wire slips, folios and rules in IBM Plex Mono.<br />
+            Register is checked against the corner targets on every sheet. Tonight it
+            reads open by a hair, and the publisher declines to stop the run.
+          </p>
+          <span class="reg reg--lg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ══ modal ══ -->
+    <div class="scrim" id="scrim" hidden>
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-body"
+        id="modal"
+        tabindex="-1"
+      >
+        <div class="modal__head">
+          <span class="reg"
+            ><svg class="plate-b"><use href="#regmark" /></svg
+            ><svg class="plate-k"><use href="#regmark" /></svg
+          ></span>
+          <h2 class="modal__title" id="modal-title">Hold the front page?</h2>
+        </div>
+        <div class="modal__body" id="modal-body">
+          <p>
+            The web comes down at the current copy. Eleven minutes to swap the plate and
+            bring her back to speed; the vans hold at the dock and the hill run goes late.
+          </p>
+          <p>
+            The night editor is notified either way. Copies already folded go out as
+            printed.
+          </p>
+        </div>
+        <div class="modal__foot">
+          <button class="btn btn--plain" id="modal-cancel">Let it run</button>
+          <button class="btn btn--ink" id="modal-confirm">Hold the run</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="toasts"
+      id="toasts"
+      role="status"
+      aria-live="polite"
+      aria-atomic="false"
+    ></div>
+
+    <script>
+      (function () {
+        "use strict";
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ── toasts ── every user string enters via textContent ── */
+        var rail = document.getElementById("toasts");
+        function toast(message, kicker) {
+          var el = document.createElement("div");
+          el.className = "toast";
+          var body = document.createElement("div");
+          var k = document.createElement("span");
+          k.className = "toast__k";
+          k.textContent = kicker || "Bulletin";
+          var m = document.createElement("span");
+          m.className = "toast__m";
+          m.textContent = message;
+          body.appendChild(k);
+          body.appendChild(m);
+          var x = document.createElement("button");
+          x.className = "toast__x";
+          x.type = "button";
+          x.setAttribute("aria-label", "Dismiss bulletin");
+          x.textContent = "×";
+          var kill = function () {
+            if (!el.parentNode) return;
+            el.style.transition = "opacity .18s, transform .18s";
+            el.style.opacity = "0";
+            el.style.transform = "translateY(5px)";
+            window.setTimeout(
+              function () {
+                if (el.parentNode) el.parentNode.removeChild(el);
+              },
+              reduce ? 0 : 190,
+            );
+          };
+          x.addEventListener("click", kill);
+          el.appendChild(body);
+          el.appendChild(x);
+          rail.appendChild(el);
+          while (rail.children.length > 4) rail.removeChild(rail.firstChild);
+          window.setTimeout(kill, 5200);
+        }
+
+        Array.prototype.forEach.call(
+          document.querySelectorAll("[data-toast]"),
+          function (btn) {
+            btn.addEventListener("click", function () {
+              var parts = btn.getAttribute("data-toast").split("|");
+              toast(parts[0], parts[1]);
+            });
+          },
+        );
+
+        /* ── index anchors ── */
+        Array.prototype.forEach.call(
+          document.querySelectorAll('.index a[href^="#"]'),
+          function (a) {
+            a.addEventListener("click", function (e) {
+              var target = document.getElementById(a.getAttribute("href").slice(1));
+              if (!target) return;
+              e.preventDefault();
+              target.scrollIntoView({
+                behavior: reduce ? "auto" : "smooth",
+                block: "start",
+              });
+            });
+          },
+        );
+
+        /* ── the route galley (self-drawn listbox) ── */
+        var routes = [
+          { v: "Quay Street and the docks", n: "05:10" },
+          { v: "Old Town, north of the tram", n: "05:35" },
+          { v: "The Heights and the terraces", n: "06:05" },
+          { v: "Riverside, both banks", n: "06:30" },
+          { v: "Rural free delivery", n: "suspended" },
+          { v: "Collected at the works", n: "any hour" },
+        ];
+        var comboBtn = document.getElementById("route-btn");
+        var comboList = document.getElementById("route-list");
+        var comboVal = document.getElementById("route-val");
+        var chosen = 0,
+          active = 0;
+
+        routes.forEach(function (r, i) {
+          var li = document.createElement("li");
+          li.className = "combo__opt";
+          li.setAttribute("role", "option");
+          li.id = "route-opt-" + i;
+          li.setAttribute("aria-selected", i === chosen ? "true" : "false");
+          var label = document.createElement("span");
+          label.textContent = r.v;
+          var when = document.createElement("small");
+          when.textContent = r.n;
+          li.appendChild(label);
+          li.appendChild(when);
+          li.addEventListener("click", function () {
+            pick(i);
+            closeCombo(true);
+          });
+          li.addEventListener("mousemove", function () {
+            setActive(i);
+          });
+          comboList.appendChild(li);
+        });
+        var opts = comboList.children;
+
+        function setActive(i) {
+          active = i;
+          for (var n = 0; n < opts.length; n++)
+            opts[n].setAttribute("data-active", n === i ? "true" : "false");
+          comboList.setAttribute("aria-activedescendant", opts[i].id);
+          opts[i].scrollIntoView({ block: "nearest" });
+        }
+        function pick(i) {
+          chosen = i;
+          comboVal.textContent = routes[i].v;
+          for (var n = 0; n < opts.length; n++)
+            opts[n].setAttribute("aria-selected", n === i ? "true" : "false");
+        }
+        function openCombo() {
+          comboList.hidden = false;
+          comboBtn.setAttribute("aria-expanded", "true");
+          setActive(chosen);
+          document.addEventListener("mousedown", outside);
+        }
+        function closeCombo(focus) {
+          comboList.hidden = true;
+          comboBtn.setAttribute("aria-expanded", "false");
+          document.removeEventListener("mousedown", outside);
+          if (focus) comboBtn.focus();
+        }
+        function outside(e) {
+          if (!document.getElementById("route").contains(e.target)) closeCombo(false);
+        }
+        comboBtn.addEventListener("click", function () {
+          if (comboList.hidden) openCombo();
+          else closeCombo(false);
+        });
+        comboBtn.addEventListener("keydown", function (e) {
+          if (
+            e.key === "ArrowDown" ||
+            e.key === "ArrowUp" ||
+            e.key === "Enter" ||
+            e.key === " "
+          ) {
+            e.preventDefault();
+            if (comboList.hidden) openCombo();
+            else {
+              pick(active);
+              closeCombo(true);
+            }
+            return;
+          }
+          if (e.key === "Escape" && !comboList.hidden) {
+            e.preventDefault();
+            closeCombo(true);
+          }
+        });
+        document.getElementById("route").addEventListener("keydown", function (e) {
+          if (comboList.hidden) return;
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setActive((active + 1) % opts.length);
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setActive((active - 1 + opts.length) % opts.length);
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            setActive(0);
+          } else if (e.key === "End") {
+            e.preventDefault();
+            setActive(opts.length - 1);
+          } else if (e.key === "Tab") {
+            closeCombo(false);
+          }
+        });
+
+        /* ── subscription card ── */
+        var order = document.getElementById("order");
+        var addr = document.getElementById("addr");
+        var addrField = document.getElementById("f-addr");
+        order.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!addr.value.trim()) {
+            addrField.setAttribute("data-invalid", "");
+            addr.setAttribute("aria-invalid", "true");
+            addr.setAttribute("aria-describedby", "addr-err");
+            addr.focus();
+            toast("The card is short a street. Nothing filed.", "Desk returns it");
+            return;
+          }
+          addrField.removeAttribute("data-invalid");
+          addr.removeAttribute("aria-invalid");
+          var edition = document.querySelector('input[name="edition"]:checked');
+          var word = {
+            morning: "the morning city",
+            evening: "the evening final",
+            sunday: "Sunday only",
+          }[edition.value];
+          toast(
+            "Delivery starts Monday: " + word + " on " + routes[chosen].v + ".",
+            "Card filed",
+          );
+        });
+        order.addEventListener("reset", function () {
+          addrField.removeAttribute("data-invalid");
+          addr.removeAttribute("aria-invalid");
+          window.setTimeout(function () {
+            pick(0);
+          }, 0);
+          toast(
+            "Card cleared. The carrier keeps the old round until you file a new one.",
+            "Cleared",
+          );
+        });
+        addr.addEventListener("input", function () {
+          if (addr.value.trim()) {
+            addrField.removeAttribute("data-invalid");
+            addr.removeAttribute("aria-invalid");
+          }
+        });
+        document.getElementById("gate").addEventListener("change", function (e) {
+          toast(
+            e.target.checked
+              ? "The carrier leaves it inside the gate and does not ring."
+              : "The carrier rings and hands it over.",
+            "Noted on the card",
+          );
+        });
+
+        /* ── the wire (tabs) ── */
+        var tablist = document.querySelector('[role="tablist"]');
+        var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+        function selectTab(tab) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute("aria-selected", on ? "true" : "false");
+            t.tabIndex = on ? 0 : -1;
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+          });
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener("click", function () {
+            selectTab(tab);
+          });
+          tab.addEventListener("keydown", function (e) {
+            var next = null;
+            if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+            else if (e.key === "ArrowLeft")
+              next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === "Home") next = tabs[0];
+            else if (e.key === "End") next = tabs[tabs.length - 1];
+            if (next) {
+              e.preventDefault();
+              selectTab(next);
+              next.focus();
+            }
+          });
+        });
+
+        /* ── pressroom: speed, gauge, ink well ── */
+        var ticksG = document.getElementById("ticks");
+        var labelsG = document.getElementById("tick-labels");
+        for (var t = 0; t <= 10; t++) {
+          var ang = ((-90 + t * 18) * Math.PI) / 180;
+          var major = t % 5 === 0;
+          var r1 = 70,
+            r2 = major ? 58 : 64;
+          var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", (100 + r1 * Math.sin(ang)).toFixed(2));
+          line.setAttribute("y1", (100 - r1 * Math.cos(ang)).toFixed(2));
+          line.setAttribute("x2", (100 + r2 * Math.sin(ang)).toFixed(2));
+          line.setAttribute("y2", (100 - r2 * Math.cos(ang)).toFixed(2));
+          line.setAttribute("stroke-width", major ? "1.6" : "1");
+          ticksG.appendChild(line);
+          if (major) {
+            var tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            tx.setAttribute("x", (100 + 49 * Math.sin(ang)).toFixed(2));
+            tx.setAttribute("y", (103 - 49 * Math.cos(ang)).toFixed(2));
+            tx.textContent = String(t * 10);
+            labelsG.appendChild(tx);
+          }
+        }
+
+        var speed = document.getElementById("speed");
+        var speedVal = document.getElementById("speed-val");
+        var needle = document.getElementById("needle");
+        var needleB = document.getElementById("needle-b");
+        var wellPct = document.getElementById("well-pct");
+        var wellTxt = document.getElementById("well-txt");
+        var bluePct = document.getElementById("blue-pct");
+        var blueFill = document.getElementById("blue-fill");
+
+        function group(n) {
+          return n.toLocaleString("en-US");
+        }
+        function syncPress() {
+          var v = Number(speed.value);
+          var frac = (v - 2000) / 38000;
+          speedVal.textContent = group(v);
+          var well = Math.round(96 - frac * 52);
+          var deg = -90 + well * 1.8;
+          needle.setAttribute("transform", "rotate(" + deg.toFixed(1) + " 100 100)");
+          needleB.setAttribute(
+            "transform",
+            "rotate(" + (deg - 1.4).toFixed(1) + " 100 100)",
+          );
+          wellPct.textContent = well + "%";
+          wellTxt.textContent =
+            well > 60
+              ? "Enough for the run"
+              : well > 35
+                ? "Top the well at the break"
+                : "Short. Send for a drum";
+          var blue = Math.max(6, well - 2);
+          bluePct.textContent = blue + "%";
+          blueFill.style.width = blue + "%";
+        }
+        speed.addEventListener("input", syncPress);
+        syncPress();
+
+        /* ── tonight's run ── */
+        var runBar = document.getElementById("run-bar");
+        var runFill = document.getElementById("run-fill");
+        var runCount = document.getElementById("run-count");
+        var runState = document.getElementById("run-state");
+        var printed = 0,
+          timer = null;
+
+        function paintRun() {
+          var pct = (printed / 40000) * 100;
+          runFill.style.width = pct + "%";
+          runBar.setAttribute("aria-valuenow", String(printed));
+          runCount.textContent = group(printed);
+        }
+        function stopRun(msg) {
+          if (timer) {
+            window.clearInterval(timer);
+            timer = null;
+          }
+          runState.textContent = msg;
+        }
+        document.getElementById("run-go").addEventListener("click", function () {
+          if (timer) return;
+          if (printed >= 40000) {
+            printed = 0;
+            paintRun();
+          }
+          runState.textContent =
+            "Web up. Running at " + group(Number(speed.value)) + " an hour.";
+          timer = window.setInterval(function () {
+            printed = Math.min(40000, printed + Math.round(Number(speed.value) / 8));
+            paintRun();
+            if (printed >= 40000) {
+              stopRun("Run complete. The vans have it.");
+              toast("Forty thousand away. City edition is on the road.", "Run complete");
+            }
+          }, 420);
+        });
+        document.getElementById("run-stop").addEventListener("click", function () {
+          if (!timer) {
+            runState.textContent = "Press idle at " + group(printed) + " copies.";
+            return;
+          }
+          stopRun("Web down at " + group(printed) + " copies.");
+          toast(
+            "Press stopped at " + group(printed) + " copies. The vans are waiting.",
+            "Run halted",
+          );
+        });
+        paintRun();
+
+        /* ── stop press: bulletins from the reader's own line ── */
+        var bull = document.getElementById("bull");
+        function fileBulletin(kicker) {
+          var text = bull.value.trim() || bull.placeholder;
+          toast(text, kicker);
+          bull.value = "";
+          bull.focus();
+        }
+        document.getElementById("bull-file").addEventListener("click", function () {
+          fileBulletin("Filed to the desk");
+        });
+        document.getElementById("bull-late").addEventListener("click", function () {
+          fileBulletin("Late news, page one");
+        });
+        bull.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            fileBulletin("Filed to the desk");
+          }
+        });
+
+        /* ── modal ── */
+        var scrim = document.getElementById("scrim");
+        var modal = document.getElementById("modal");
+        var opener = null;
+        function openModal() {
+          opener = document.activeElement;
+          scrim.hidden = false;
+          document.body.style.overflow = "hidden";
+          window.requestAnimationFrame(function () {
+            scrim.classList.add("is-open");
+          });
+          modal.focus({ preventScroll: true });
+          document.addEventListener("keydown", modalKeys);
+        }
+        function closeModal() {
+          scrim.classList.remove("is-open");
+          document.removeEventListener("keydown", modalKeys);
+          document.body.style.overflow = "";
+          window.setTimeout(
+            function () {
+              scrim.hidden = true;
+            },
+            reduce ? 0 : 200,
+          );
+          if (opener && opener.focus) opener.focus();
+        }
+        function modalKeys(e) {
+          if (e.key === "Escape") {
+            e.preventDefault();
+            closeModal();
+            return;
+          }
+          if (e.key !== "Tab") return;
+          var f = modal.querySelectorAll(
+            "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
+          );
+          if (!f.length) return;
+          var first = f[0],
+            last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+        document.getElementById("hold-open").addEventListener("click", openModal);
+        document.getElementById("modal-cancel").addEventListener("click", function () {
+          closeModal();
+          toast("Run continues. Nothing changed on the drum.", "Let it run");
+        });
+        document.getElementById("modal-confirm").addEventListener("click", function () {
+          closeModal();
+          stopRun("Web down. Front page held for the new plate.");
+          toast(
+            "Front page held. Eleven minutes to the new plate; the vans hold.",
+            "Stop press",
+          );
+        });
+        scrim.addEventListener("mousedown", function (e) {
+          if (e.target === scrim) closeModal();
+        });
+      })();
+    </script>
+  </body>
+</html>

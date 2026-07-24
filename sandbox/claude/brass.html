@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE GOVERNOR · Ashcombe & Vane</title>
+<meta name="description" content="The Governor Mk. IV — a master console for steam and pneumatic apparatus by Ashcombe & Vane, Engineers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Bitter:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================== TOKENS ============================== */
+:root{
+  --iron:#1b1610;
+  --iron-2:#221b13;
+  --panel:#2a2318;
+  --panel-2:#33291b;
+  --well:#150f08;
+  --brass:#caa053;
+  --brass-lite:#e6cd86;
+  --brass-hi:#f6e7b6;
+  --brass-dark:#6e5324;
+  --brass-deep:#3f2f14;
+  --copper:#c16a37;
+  --copper-lite:#d5824a;
+  --copper-deep:#7d3d1c;
+  --verd:#57a48c;
+  --verd-lite:#7cc3ab;
+  --verd-deep:#2f6b58;
+  --amber:#d8993f;
+  --danger:#cf5236;
+  --ink:#ece0c6;
+  --ink-dim:#cbb78e;
+  --ink-faint:#8f8265;   /* decorative micro-labels only */
+
+  --serif:'Bitter','Georgia',serif;
+  --display:'Cinzel','Times New Roman',serif;
+  --mono:'Space Mono','Courier New',monospace;
+
+  --r-plate:16px;
+  --r-face:10px;
+  --r-ctl:7px;
+
+  --maxw:1160px;
+  --pad:24px;
+
+  --bevel-up: inset 1px 1px 0 var(--brass-hi), inset -1px -1px 0 var(--brass-deep);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--serif);
+  color:var(--ink);
+  background:
+    radial-gradient(120% 90% at 15% -10%, #2a2015 0%, rgba(42,32,21,0) 55%),
+    radial-gradient(110% 80% at 100% 0%, #241c12 0%, rgba(36,28,18,0) 50%),
+    linear-gradient(180deg,#1f1810 0%, var(--iron) 40%, #17110b 100%);
+  background-attachment:fixed;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+/* aged metal grain over everything */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image:var(--grain);
+  background-size:140px 140px;
+  opacity:.05;
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  z-index:9998;
+}
+img,svg{max-width:100%}
+h1,h2,h3,p{margin:0}
+button{font-family:inherit;color:inherit}
+
+:focus-visible{outline:2px solid var(--brass-lite); outline-offset:2px; border-radius:3px}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ============================== SHARED: PLATE ============================== */
+.plate{
+  position:relative;
+  border-radius:var(--r-plate);
+  padding:12px;
+  background:
+    linear-gradient(150deg, var(--brass-lite) 0%, var(--brass) 34%, #a9822f 74%, var(--brass-dark) 100%);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.5),
+    0 2px 0 rgba(0,0,0,.4),
+    var(--bevel-up);
+}
+/* brushed-brass streaks on the frame */
+.plate::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:var(--r-plate);
+  background:
+    repeating-linear-gradient(112deg,
+      rgba(255,255,255,.10) 0 1px,
+      rgba(0,0,0,.06) 1px 2px,
+      rgba(255,255,255,0) 2px 5px);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+/* verdigris patina bloom in one corner */
+.plate::after{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:var(--r-plate);
+  background:
+    radial-gradient(60px 44px at 12% 88%, rgba(76,150,120,.42), rgba(76,150,120,0) 70%),
+    radial-gradient(38px 30px at 90% 14%, rgba(88,160,128,.28), rgba(88,160,128,0) 70%);
+  mix-blend-mode:screen;
+  opacity:.55;
+  pointer-events:none;
+}
+.plate__face{
+  position:relative;
+  z-index:1;
+  border-radius:var(--r-face);
+  background:
+    linear-gradient(180deg, var(--panel-2), var(--panel) 55%, #241d13 100%);
+  box-shadow:
+    inset 0 2px 8px rgba(0,0,0,.65),
+    inset 0 0 0 1px var(--brass-deep),
+    inset 0 0 0 2px rgba(0,0,0,.35);
+  padding:22px;
+}
+.rivet{
+  position:absolute; z-index:2;
+  width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, var(--brass-hi) 0%, var(--brass) 42%, #8a6a2c 78%, #4c3917 100%);
+  box-shadow:0 1px 2px rgba(0,0,0,.6), inset -1px -1px 1px rgba(0,0,0,.4), inset 1px 1px 1px rgba(255,244,214,.5);
+}
+.rivet.tl{top:9px;left:9px} .rivet.tr{top:9px;right:9px}
+.rivet.bl{bottom:9px;left:9px} .rivet.br{bottom:9px;right:9px}
+
+/* panel nameplate header */
+.nameplate{
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:18px;
+}
+.nameplate__no{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.05em;
+  color:var(--iron); background:var(--brass-lite);
+  padding:3px 7px; border-radius:5px;
+  box-shadow:var(--bevel-up), 0 1px 2px rgba(0,0,0,.5);
+  flex:none;
+}
+.nameplate__title{
+  font-family:var(--display); font-weight:700; letter-spacing:.08em;
+  font-size:1.02rem; color:var(--brass-lite);
+  text-transform:uppercase;
+}
+.nameplate__rule{
+  flex:1; height:0; border-top:1px dashed rgba(202,160,83,.4);
+}
+.hint{color:var(--ink-dim); font-size:.86rem; margin-top:2px}
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--copper-lite);
+}
+
+/* ============================== CONSOLE STATUS BAR ============================== */
+.statusbar{
+  border-bottom:1px solid rgba(202,160,83,.22);
+  background:linear-gradient(180deg, rgba(30,23,15,.9), rgba(21,15,9,.9));
+  backdrop-filter:blur(2px);
+  position:relative; z-index:5;
+}
+.statusbar__row{
+  display:flex; align-items:center; gap:16px;
+  padding-block:9px; flex-wrap:wrap;
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.06em;
+  color:var(--ink-dim);
+}
+.statusbar__brand{color:var(--brass-lite); letter-spacing:.14em; font-weight:700}
+.statusbar__spacer{flex:1}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--verd);
+  box-shadow:0 0 8px var(--verd); vertical-align:middle; margin-right:6px}
+.live-atm{color:var(--amber)}
+
+/* ============================== HERO ============================== */
+.hero{position:relative; overflow:hidden; padding:56px 0 48px}
+.steam{position:absolute; inset:-10% -5% auto -5%; height:120%; pointer-events:none; z-index:0}
+.steam span{
+  position:absolute; bottom:-40px;
+  width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle, rgba(236,224,198,.16), rgba(236,224,198,0) 68%);
+  filter:blur(6px);
+  animation:rise 16s linear infinite;
+}
+.steam span:nth-child(1){left:8%; animation-delay:0s; transform:scale(.9)}
+.steam span:nth-child(2){left:38%; animation-delay:-6s; transform:scale(1.3)}
+.steam span:nth-child(3){left:66%; animation-delay:-11s; transform:scale(1.05)}
+.steam span:nth-child(4){left:84%; animation-delay:-3s; transform:scale(.8)}
+@keyframes rise{
+  0%{transform:translateY(0) scale(.7); opacity:0}
+  18%{opacity:.7}
+  100%{transform:translateY(-88vh) scale(1.6); opacity:0}
+}
+
+.hero__grid{
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:44px; align-items:center;
+}
+.hero__title{
+  font-family:var(--display); font-weight:900;
+  font-size:clamp(2.7rem, 6vw, 4.6rem);
+  line-height:.98; letter-spacing:.01em;
+  color:var(--brass-lite);
+  text-shadow:0 2px 0 rgba(0,0,0,.5), 0 0 26px rgba(230,205,134,.14);
+  margin:14px 0 18px;
+}
+.hero__title em{font-style:normal; color:var(--copper-lite); display:block}
+.hero__copy{color:var(--ink-dim); font-size:1.06rem; max-width:46ch; margin-bottom:26px}
+.productplate{
+  display:inline-flex; align-items:center; gap:12px;
+  padding:8px 8px 8px 14px; border-radius:10px;
+  background:linear-gradient(160deg,#38607a,#22384a);
+  box-shadow:0 6px 16px rgba(0,0,0,.45), inset 0 0 0 1px rgba(124,195,171,.4), var(--bevel-up);
+  margin-bottom:26px;
+}
+.productplate b{font-family:var(--display); letter-spacing:.1em; color:#dff0ea; font-weight:700}
+.productplate span{font-family:var(--mono); font-size:.68rem; color:#bfe2d6; letter-spacing:.08em}
+.productplate .mk{background:var(--copper); color:#1c1006; padding:3px 8px; border-radius:6px; font-weight:700; box-shadow:var(--bevel-up)}
+
+.hero__ctas{display:flex; gap:14px; flex-wrap:wrap}
+
+/* hero instrument (right column) */
+.instrument{position:relative}
+.instrument__gears{position:absolute; inset:0; z-index:0; pointer-events:none; overflow:visible}
+.gauge-wrap{position:relative; z-index:1; margin:0 auto; max-width:360px}
+.gauge{display:block; width:100%; height:auto; filter:drop-shadow(0 18px 26px rgba(0,0,0,.55))}
+.readout{
+  margin:18px auto 0; max-width:300px;
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  font-family:var(--mono);
+}
+.readout__big{
+  font-size:1.7rem; font-weight:700; color:var(--amber);
+  background:var(--well); padding:8px 16px; border-radius:8px;
+  box-shadow:inset 0 2px 7px rgba(0,0,0,.8), inset 0 0 0 1px var(--brass-deep);
+  letter-spacing:.04em; min-width:132px; text-align:center;
+}
+.readout__status{font-size:.72rem; letter-spacing:.12em; color:var(--verd-lite)}
+.readout__status b{display:block; font-size:.92rem}
+
+/* ============================== BUTTONS ============================== */
+.btn{
+  --b:var(--brass);
+  display:inline-flex; align-items:center; gap:9px; justify-content:center;
+  font-family:var(--mono); font-size:.82rem; font-weight:700;
+  letter-spacing:.09em; text-transform:uppercase;
+  padding:11px 20px; border:0; border-radius:var(--r-ctl);
+  cursor:pointer; position:relative;
+  background:linear-gradient(180deg, var(--brass-lite), var(--brass) 48%, #9c7729 100%);
+  color:#20160a;
+  box-shadow:0 4px 0 #6e5324, 0 8px 14px rgba(0,0,0,.4), var(--bevel-up);
+  transition:transform .07s ease, box-shadow .07s ease, filter .12s ease;
+}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px); box-shadow:0 1px 0 #6e5324, 0 3px 8px rgba(0,0,0,.4), var(--bevel-up)}
+.btn--primary{
+  background:linear-gradient(180deg,#e08a52, var(--copper) 48%, #8f4a22 100%);
+  color:#1c0e05; box-shadow:0 4px 0 #6c3316, 0 8px 16px rgba(0,0,0,.45), var(--bevel-up);
+}
+.btn--primary:active{box-shadow:0 1px 0 #6c3316, 0 3px 8px rgba(0,0,0,.45), var(--bevel-up)}
+.btn--ghost{
+  background:linear-gradient(180deg, rgba(202,160,83,.14), rgba(202,160,83,.05));
+  color:var(--brass-lite);
+  box-shadow:inset 0 0 0 1.5px var(--brass-dark), inset 0 1px 0 rgba(246,231,182,.25);
+}
+.btn--ghost:active{transform:translateY(2px)}
+.btn:disabled, .btn[aria-disabled="true"]{
+  background:linear-gradient(180deg,#4a4130,#3a3325);
+  color:#7d735c; cursor:not-allowed; box-shadow:inset 0 0 0 1px #56492f, 0 2px 0 #2b2417;
+  filter:none; transform:none;
+}
+.btn__seal{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 35%, #b9603a, #5f2c17);box-shadow:inset -1px -1px 1px rgba(0,0,0,.4)}
+
+/* ============================== DECK ============================== */
+.section-head{margin:8px 0 26px}
+.section-head h2{
+  font-family:var(--display); font-weight:700; letter-spacing:.06em;
+  font-size:clamp(1.5rem,3vw,2.1rem); color:var(--brass-lite);
+}
+.deck{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; margin-bottom:26px}
+.span-2{grid-column:1 / -1}
+
+/* control field rows */
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+.field > label:not(.opt), .legend{
+  display:block; font-family:var(--mono); font-size:.74rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--brass);
+  margin-bottom:9px;
+}
+.grouprow{display:flex; gap:22px; flex-wrap:wrap}
+
+/* text input */
+.txt{
+  width:100%; font-family:var(--serif); font-size:1rem; color:var(--ink);
+  background:var(--well); border:0; border-radius:var(--r-ctl);
+  padding:12px 14px;
+  box-shadow:inset 0 2px 7px rgba(0,0,0,.7), inset 0 0 0 1px var(--brass-deep);
+}
+.txt::placeholder{color:var(--ink-faint)}
+.txt:focus{outline:none; box-shadow:inset 0 2px 7px rgba(0,0,0,.7), inset 0 0 0 1.5px var(--brass-lite)}
+
+/* radio + checkbox (native, styled) */
+.opt{display:flex; align-items:center; gap:11px; cursor:pointer; padding:5px 0; color:var(--ink)}
+.opt input{position:absolute; opacity:0; width:0; height:0}
+.opt__mark{
+  flex:none; width:22px; height:22px; position:relative;
+  background:radial-gradient(circle at 38% 32%, #4a4234, #2a2318);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.8), inset 0 0 0 2px var(--brass-dark), var(--bevel-up);
+}
+.opt--radio .opt__mark{border-radius:50%}
+.opt--check .opt__mark{border-radius:6px}
+.opt__mark::after{content:""; position:absolute; opacity:0; transition:opacity .12s, transform .12s}
+.opt--radio .opt__mark::after{
+  inset:5px; border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, var(--verd-lite), var(--verd) 60%, var(--verd-deep));
+  box-shadow:0 0 8px rgba(124,195,171,.6);
+  transform:scale(.4);
+}
+.opt--check .opt__mark::after{
+  inset:0; border-radius:5px;
+  background:linear-gradient(180deg,var(--verd-lite),var(--verd));
+  box-shadow:inset 0 0 0 1px var(--verd-deep);
+  transform:scale(.5);
+}
+.opt--check .opt__mark::before{
+  content:""; position:absolute; z-index:1; opacity:0; transition:opacity .12s;
+  left:7px; top:3px; width:6px; height:11px;
+  border:solid #12281f; border-width:0 3px 3px 0; transform:rotate(42deg);
+}
+.opt input:checked + .opt__mark::after{opacity:1; transform:scale(1)}
+.opt--check input:checked + .opt__mark::before{opacity:1}
+.opt input:focus-visible + .opt__mark{outline:2px solid var(--brass-lite); outline-offset:2px}
+.opt__txt small{display:block; color:var(--ink-dim); font-size:.8rem; letter-spacing:0; text-transform:none}
+
+/* slider — brass fader */
+.slider-row{display:flex; align-items:center; gap:14px}
+.slider{ -webkit-appearance:none; appearance:none; flex:1; height:16px; background:transparent; cursor:pointer}
+.slider:focus{outline:none}
+.slider::-webkit-slider-runnable-track{
+  height:12px; border-radius:6px;
+  background:linear-gradient(180deg,#0e0a05,#241a0d);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.8), inset 0 0 0 1px var(--brass-deep);
+}
+.slider::-moz-range-track{
+  height:12px; border-radius:6px;
+  background:linear-gradient(180deg,#0e0a05,#241a0d);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.8), inset 0 0 0 1px var(--brass-deep);
+}
+.slider::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:26px; height:26px; margin-top:-7px; border-radius:50%;
+  background:radial-gradient(circle at 36% 30%, var(--brass-hi), var(--brass) 46%, #8a6a2c 80%, #4c3917 100%);
+  box-shadow:0 3px 6px rgba(0,0,0,.6), var(--bevel-up);
+}
+.slider::-moz-range-thumb{
+  width:26px; height:26px; border:0; border-radius:50%;
+  background:radial-gradient(circle at 36% 30%, var(--brass-hi), var(--brass) 46%, #8a6a2c 80%, #4c3917 100%);
+  box-shadow:0 3px 6px rgba(0,0,0,.6), var(--bevel-up);
+}
+.slider:focus-visible::-webkit-slider-thumb{outline:2px solid var(--brass-lite); outline-offset:2px}
+.slider-val{font-family:var(--mono); font-size:.9rem; color:var(--amber); min-width:66px; text-align:right}
+
+/* dropdown */
+.dd{position:relative}
+.dd__btn{
+  width:100%; text-align:left; display:flex; align-items:center; gap:10px;
+  font-family:var(--serif); font-size:1rem; color:var(--ink);
+  background:var(--well); border:0; border-radius:var(--r-ctl); cursor:pointer;
+  padding:12px 14px;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.7), inset 0 0 0 1px var(--brass-deep);
+}
+.dd__btn::after{content:""; margin-left:auto; width:0;height:0;border:6px solid transparent;border-top-color:var(--brass);transform:translateY(3px); transition:transform .18s}
+.dd__btn[aria-expanded="true"]::after{transform:translateY(-3px) rotate(180deg)}
+.dd__list{
+  position:absolute; z-index:40; left:0; right:0; top:calc(100% + 8px);
+  margin:0; padding:6px; list-style:none;
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  border-radius:10px;
+  box-shadow:0 16px 30px rgba(0,0,0,.55), inset 0 0 0 1px var(--brass-dark), var(--bevel-up);
+  max-height:236px; overflow:auto;
+  display:none;
+}
+.dd__list.open{display:block; animation:drop .16s ease}
+@keyframes drop{from{opacity:0; transform:translateY(-6px)}to{opacity:1;transform:none}}
+.dd__opt{padding:10px 12px; border-radius:6px; cursor:pointer; color:var(--ink); font-size:.96rem; display:flex; gap:10px; align-items:center}
+.dd__opt:hover, .dd__opt.active{background:rgba(202,160,83,.18); color:var(--brass-lite)}
+.dd__opt[aria-selected="true"]::before{content:"◆"; color:var(--verd-lite); font-size:.7rem}
+.dd__opt[aria-selected="false"]::before{content:""; width:.7rem; display:inline-block}
+
+/* tabs */
+.tabs__list{display:flex; gap:6px; border-bottom:2px solid var(--brass-deep); margin-bottom:18px; flex-wrap:wrap}
+.tab{
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+  padding:10px 16px 12px; border:0; cursor:pointer; color:var(--ink-dim);
+  background:transparent; border-radius:8px 8px 0 0; position:relative; top:2px;
+}
+.tab[aria-selected="true"]{
+  color:var(--iron);
+  background:linear-gradient(180deg,var(--brass-lite),var(--brass));
+  box-shadow:var(--bevel-up), 0 -2px 8px rgba(0,0,0,.3);
+}
+.tab:hover:not([aria-selected="true"]){color:var(--brass-lite)}
+.tabpanel{animation:fade .2s ease}
+.tabpanel[hidden]{display:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.tabpanel h3{font-family:var(--display); color:var(--brass-lite); font-size:1.1rem; letter-spacing:.05em; margin-bottom:8px}
+.tabpanel p{color:var(--ink-dim); margin-bottom:14px}
+
+/* progress / mini bar */
+.bar{position:relative; height:16px; border-radius:8px; background:var(--well);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.8), inset 0 0 0 1px var(--brass-deep); overflow:hidden}
+.bar__fill{height:100%; width:50%; border-radius:8px 4px 4px 8px;
+  background:linear-gradient(90deg,var(--verd),var(--amber) 78%, var(--danger));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25); transition:width .5s cubic-bezier(.33,1,.68,1)}
+.bar__red{position:absolute; top:-2px; bottom:-2px; left:83%; width:2px; background:var(--danger); box-shadow:0 0 6px var(--danger)}
+.barlabel{display:flex; justify-content:space-between; font-family:var(--mono); font-size:.74rem; color:var(--ink-dim); margin-bottom:7px; letter-spacing:.05em}
+
+/* ============================== VALVE LEVER (switch) ============================== */
+.valvebox{display:flex; align-items:center; gap:20px; flex-wrap:wrap}
+.valve{
+  position:relative; border:0; background:transparent; cursor:pointer; padding:6px;
+  border-radius:12px;
+}
+.valve svg{display:block; width:132px; height:150px}
+.valve .arm{transform-box:view-box; transform-origin:66px 128px; transform:rotate(-30deg);
+  transition:transform .5s cubic-bezier(.34,1.62,.5,1)}
+.valve.is-open .arm{transform:rotate(30deg)}
+.valve.clank .housing{animation:clank .22s ease}
+@keyframes clank{0%{transform:translateY(0)}30%{transform:translateY(2px)}60%{transform:translateY(-1px)}100%{transform:translateY(0)}}
+.valve__meta{min-width:120px}
+.valve__state{font-family:var(--display); font-size:1.3rem; letter-spacing:.12em; color:var(--danger)}
+.valve.is-open ~ .valve__meta .valve__state, .valvebox .valve.is-open + .valve__meta .valve__state{color:var(--verd-lite)}
+.valve__cap{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--ink-dim); text-transform:uppercase}
+
+/* ============================== TOOLTIP ============================== */
+[data-tip]{cursor:help}
+.tooltip{
+  position:fixed; z-index:9999; max-width:230px;
+  font-family:var(--mono); font-size:.74rem; line-height:1.45; letter-spacing:.02em;
+  color:var(--ink); padding:8px 11px; border-radius:8px;
+  background:linear-gradient(180deg,#3a2f1d,#241a0f);
+  box-shadow:0 10px 22px rgba(0,0,0,.55), inset 0 0 0 1px var(--brass-dark), var(--bevel-up);
+  opacity:0; transform:translateY(4px); transition:opacity .12s, transform .12s;
+  pointer-events:none;
+}
+.tooltip.show{opacity:1; transform:none}
+
+/* ============================== TOAST ============================== */
+.toaster{
+  position:fixed; z-index:9997; right:22px; bottom:22px;
+  display:flex; flex-direction:column; gap:12px;
+  max-width:min(360px, calc(100vw - 32px));
+}
+.toast{
+  display:flex; align-items:flex-start; gap:12px;
+  padding:13px 14px; border-radius:11px;
+  background:linear-gradient(160deg,#33291b,#211810);
+  box-shadow:0 14px 28px rgba(0,0,0,.5), inset 0 0 0 1px var(--brass-dark), var(--bevel-up);
+  animation:toastin .35s cubic-bezier(.34,1.5,.5,1);
+}
+.toast.out{animation:toastout .3s ease forwards}
+@keyframes toastin{from{opacity:0; transform:translateX(30px) rotate(1.5deg)}to{opacity:1;transform:none}}
+@keyframes toastout{to{opacity:0; transform:translateX(30px)}}
+.toast__ico{flex:none; width:26px; height:26px; border-radius:6px; display:grid; place-items:center;
+  background:var(--copper); color:#1c0e05; box-shadow:var(--bevel-up)}
+.toast__ico svg{width:16px;height:16px}
+.toast__body{flex:1; min-width:0}
+.toast__title{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-lite)}
+.toast__msg{color:var(--ink-dim); font-size:.9rem; word-wrap:break-word; overflow-wrap:anywhere}
+.toast__x{flex:none; background:none; border:0; color:var(--ink-faint); cursor:pointer; font-size:1.1rem; line-height:1; padding:2px 4px}
+.toast__x:hover{color:var(--brass-lite)}
+
+/* ============================== MODAL ============================== */
+.backdrop{
+  position:fixed; inset:0; z-index:9990; display:none;
+  align-items:center; justify-content:center; padding:20px;
+  background:radial-gradient(80% 80% at 50% 40%, rgba(20,14,8,.72), rgba(10,7,3,.9));
+  backdrop-filter:blur(3px);
+}
+.backdrop.open{display:flex; animation:fade .2s ease}
+.modal{
+  position:relative; width:min(520px, calc(100vw - 40px)); max-height:90vh; overflow:auto;
+  transform-origin:center;
+  animation:valveopen .32s cubic-bezier(.34,1.4,.5,1);
+}
+@keyframes valveopen{from{opacity:0; transform:scale(.82) rotate(-2deg)}to{opacity:1; transform:none}}
+.modal .plate__face{padding:26px}
+.modal__title{font-family:var(--display); font-weight:700; letter-spacing:.05em; color:var(--brass-lite); font-size:1.4rem; margin-bottom:12px; display:flex; align-items:center; gap:12px}
+.modal__title svg{flex:none}
+.modal__body{color:var(--ink-dim); margin-bottom:22px}
+.modal__foot{display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap}
+
+/* ============================== MECHANISM STRIP ============================== */
+.gearstrip{display:flex; align-items:center; justify-content:center; gap:0; min-height:150px; position:relative; overflow:hidden}
+.gearstrip svg{position:absolute}
+.gear-spin-cw{animation:spin 20s linear infinite}
+.gear-spin-ccw{animation:spin 20s linear infinite reverse}
+
+/* ============================== FOOTER ============================== */
+.foot{border-top:1px solid rgba(202,160,83,.22); margin-top:20px; padding:40px 0 56px}
+.foot__grid{display:flex; justify-content:space-between; gap:28px; flex-wrap:wrap; align-items:flex-end}
+.foot__mark{font-family:var(--display); font-weight:700; letter-spacing:.1em; color:var(--brass-lite); font-size:1.2rem}
+.foot__copy{color:var(--ink-faint); font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; line-height:1.8}
+.foot__gears{display:flex; gap:2px; align-items:center}
+
+section.band{padding:54px 0}
+.band--alt{background:linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,0))}
+
+/* ============================== KEYFRAME: gears ============================== */
+@keyframes spin{to{transform:rotate(360deg)}}
+.gear{transform-origin:50% 50%}
+
+/* ============================== RESPONSIVE ============================== */
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr; gap:34px}
+  .instrument{order:-1}
+}
+@media (max-width:760px){
+  :root{--pad:16px}
+  .deck{grid-template-columns:1fr}
+  .span-2{grid-column:auto}
+  .hero{padding:38px 0 36px}
+  .toaster{right:12px; left:12px; bottom:12px; max-width:none}
+  .foot__grid{flex-direction:column; align-items:flex-start}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important}
+  .steam span{opacity:.25}
+  .gear{animation:none !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== STATUS BAR ===================== -->
+<div class="statusbar">
+  <div class="wrap statusbar__row">
+    <span class="statusbar__brand">ASHCOMBE &amp; VANE</span>
+    <span>ENGINEERS · EST. MDCCCLXXXVII</span>
+    <span class="statusbar__spacer"></span>
+    <span data-tip="Live boiler pressure, read straight from the Bourdon tube."><span class="dot"></span>WORKS ONLINE</span>
+    <span>LINE PRESSURE <span class="live-atm" id="liveAtm">06.0</span> ATM</span>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="steam" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="wrap hero__grid">
+    <div class="hero__intro">
+      <p class="eyebrow">The Governor · Master Console</p>
+      <h1 class="hero__title">Mind the <em>Needle.</em></h1>
+      <p class="hero__copy">The Governor keeps a hundred valves in concert — steam, pneumatic, and telegraphic — under a single riveted hand. Set the working pressure, seat the main valve, and let the gears keep their own time.</p>
+      <div class="productplate">
+        <b>THE GOVERNOR</b>
+        <span>Master Steam Console</span>
+        <span class="mk">Mk. IV</span>
+      </div>
+      <div class="hero__ctas">
+        <button class="btn btn--primary" id="engageBtn">
+          <span aria-hidden="true">⛭</span> Seat main valve
+        </button>
+        <button class="btn" id="ventBtn">Vent boiler…</button>
+      </div>
+    </div>
+
+    <div class="instrument">
+      <!-- meshing gears behind the dial -->
+      <div class="instrument__gears" id="heroGears" aria-hidden="true"></div>
+
+      <!-- pressure gauge -->
+      <div class="gauge-wrap">
+        <svg class="gauge" viewBox="0 0 240 240" role="img" aria-labelledby="gaugeTitle">
+          <title id="gaugeTitle">Boiler pressure gauge, reading in atmospheres</title>
+          <defs>
+            <radialGradient id="bezel" cx="38%" cy="32%" r="75%">
+              <stop offset="0%" stop-color="#f6e7b6"/>
+              <stop offset="42%" stop-color="#caa053"/>
+              <stop offset="78%" stop-color="#8a6a2c"/>
+              <stop offset="100%" stop-color="#3f2f14"/>
+            </radialGradient>
+            <radialGradient id="face" cx="50%" cy="38%" r="75%">
+              <stop offset="0%" stop-color="#20180d"/>
+              <stop offset="70%" stop-color="#160f07"/>
+              <stop offset="100%" stop-color="#0c0804"/>
+            </radialGradient>
+            <radialGradient id="glass" cx="36%" cy="26%" r="60%">
+              <stop offset="0%" stop-color="rgba(255,255,255,.18)"/>
+              <stop offset="40%" stop-color="rgba(255,255,255,.04)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <radialGradient id="hub" cx="38%" cy="32%" r="70%">
+              <stop offset="0%" stop-color="#f6e7b6"/>
+              <stop offset="55%" stop-color="#b58e3f"/>
+              <stop offset="100%" stop-color="#4c3917"/>
+            </radialGradient>
+          </defs>
+
+          <circle cx="120" cy="120" r="116" fill="url(#bezel)"/>
+          <circle cx="120" cy="120" r="116" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1"/>
+          <circle cx="120" cy="120" r="103" fill="none" stroke="#3f2f14" stroke-width="3"/>
+          <circle cx="120" cy="120" r="98" fill="url(#face)"/>
+
+          <!-- coloured pressure zones -->
+          <g fill="none" stroke-width="7" stroke-linecap="butt">
+            <path id="zoneGreen" stroke="#57a48c"/>
+            <path id="zoneAmber" stroke="#d8993f"/>
+            <path id="zoneRed"   stroke="#cf5236"/>
+          </g>
+
+          <g id="ticks"></g>
+
+          <!-- needle -->
+          <g class="needle" id="needle">
+            <path d="M120,120 L116,44 Q120,36 124,44 L120,120 Z" fill="#e6cd86"/>
+            <path d="M120,120 L116,44 Q120,36 124,44 L120,120 Z" fill="none" stroke="#cf5236" stroke-width="1"/>
+            <path d="M120,120 L114,150 Q120,156 126,150 Z" fill="#8a6a2c"/>
+          </g>
+          <circle cx="120" cy="120" r="13" fill="url(#hub)" stroke="#2a1f0d" stroke-width="1"/>
+          <circle cx="120" cy="120" r="3.4" fill="#2a1f0d"/>
+
+          <!-- maker's mark + units -->
+          <text x="120" y="86" text-anchor="middle" fill="#8f8265" font-family="Space Mono, monospace" font-size="8" letter-spacing="1.5">A · V</text>
+          <text x="120" y="164" text-anchor="middle" fill="#caa053" font-family="Space Mono, monospace" font-size="10" letter-spacing="2">ATM</text>
+
+          <circle cx="120" cy="120" r="98" fill="url(#glass)" pointer-events="none"/>
+          <!-- redline hotspot for tooltip -->
+          <path id="redlineHot" d="M120,120 L200,80 A98,98 0 0,1 178,196 Z" fill="transparent"
+                data-tip="Redline begins at 10 atmospheres. Vent before the needle crosses it."/>
+        </svg>
+      </div>
+
+      <div class="readout">
+        <div class="readout__big" id="atmBig">06.0 <span style="font-size:.6em">atm</span></div>
+        <div class="readout__status">
+          BOILER
+          <b id="statusWord">NOMINAL</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== CONTROL DECK ===================== -->
+<main>
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Front panel · Operating controls</p>
+      <h2>The Control Deck</h2>
+    </div>
+
+    <div class="deck">
+
+      <!-- PANEL: ACTUATORS + VALVE + SLIDER -->
+      <section class="plate span-2" aria-labelledby="p1">
+        <div class="plate__face">
+          <div class="nameplate">
+            <span class="nameplate__no">Nº I</span>
+            <h3 class="nameplate__title" id="p1">Regulators &amp; Actuators</h3>
+            <span class="nameplate__rule"></span>
+          </div>
+
+          <div class="grouprow" style="align-items:flex-start; gap:34px">
+            <!-- valve lever (the switch) -->
+            <div class="field" style="margin:0">
+              <span class="legend">Main steam · valve lever</span>
+              <div class="valvebox">
+                <button class="valve is-open" id="valve" role="switch" aria-checked="true" aria-label="Main steam valve" data-tip="Throw the lever to admit steam. It drops into the detent when it lands.">
+                  <svg viewBox="0 0 132 150" aria-hidden="true">
+                    <g class="housing">
+                      <!-- quadrant guide -->
+                      <path d="M66,128 m-70,0 a70,70 0 0,1 140,0" fill="none" stroke="#2a1f0d" stroke-width="14" stroke-linecap="round" transform="scale(0.62) translate(41,20)"/>
+                      <rect x="10" y="120" width="112" height="24" rx="7" fill="#2a2318" stroke="#6e5324" stroke-width="1.5"/>
+                      <!-- detent notches -->
+                      <circle cx="30" cy="66" r="4" fill="#150f08" stroke="#6e5324"/>
+                      <circle cx="102" cy="66" r="4" fill="#150f08" stroke="#6e5324"/>
+                      <text x="26" y="58" fill="#8f8265" font-family="Space Mono, monospace" font-size="8">SHUT</text>
+                      <text x="92" y="58" fill="#8f8265" font-family="Space Mono, monospace" font-size="8">OPEN</text>
+                      <!-- pivot -->
+                      <circle cx="66" cy="128" r="12" fill="url(#hub2)"/>
+                    </g>
+                    <defs>
+                      <radialGradient id="hub2" cx="38%" cy="32%" r="70%">
+                        <stop offset="0%" stop-color="#f6e7b6"/><stop offset="55%" stop-color="#b58e3f"/><stop offset="100%" stop-color="#4c3917"/>
+                      </radialGradient>
+                      <linearGradient id="lever" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#f6e7b6"/><stop offset="50%" stop-color="#caa053"/><stop offset="100%" stop-color="#8a6a2c"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- lever arm -->
+                    <g class="arm">
+                      <rect x="61" y="40" width="10" height="90" rx="5" fill="url(#lever)" stroke="#4c3917" stroke-width="1"/>
+                      <circle cx="66" cy="40" r="13" fill="url(#lever)" stroke="#4c3917" stroke-width="1.5"/>
+                      <circle cx="62" cy="36" r="4" fill="rgba(255,244,214,.6)"/>
+                    </g>
+                    <circle cx="66" cy="128" r="4" fill="#2a1f0d"/>
+                  </svg>
+                </button>
+                <div class="valve__meta">
+                  <div class="valve__state" id="valveState" style="color:#7cc3ab">OPEN</div>
+                  <div class="valve__cap" id="valveCap">Steam at 6.0 atm</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- slider -->
+            <div style="flex:1; min-width:210px">
+              <div class="field">
+                <label for="pslider">Working pressure — target</label>
+                <div class="slider-row">
+                  <input class="slider" id="pslider" type="range" min="0" max="12" step="0.1" value="6" aria-describedby="sliderVal">
+                  <span class="slider-val" id="sliderVal">6.0 atm</span>
+                </div>
+                <p class="hint">The dial answers the lever: open the valve to raise the needle to target.</p>
+              </div>
+
+              <!-- button variants -->
+              <div class="field" style="margin-bottom:0">
+                <span class="legend">Actuators</span>
+                <div class="grouprow" style="gap:12px">
+                  <button class="btn btn--primary" data-act="engage">Engage</button>
+                  <button class="btn" data-act="damper" data-tip="Trims the draught by a notch.">Adjust damper</button>
+                  <button class="btn btn--ghost" data-act="reset">Reset gauge</button>
+                  <button class="btn" disabled aria-disabled="true"><span class="btn__seal" aria-hidden="true"></span> Sealed</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
+      </section>
+
+      <!-- PANEL: VESSEL REGISTER (text, radio, checkbox, dropdown) -->
+      <section class="plate" aria-labelledby="p2">
+        <div class="plate__face">
+          <div class="nameplate">
+            <span class="nameplate__no">Nº II</span>
+            <h3 class="nameplate__title" id="p2">Vessel Register</h3>
+            <span class="nameplate__rule"></span>
+          </div>
+
+          <div class="field">
+            <label for="vesselId">Vessel designation</label>
+            <input class="txt" id="vesselId" type="text" value="Boiler No. 3 — “Perseverance”" autocomplete="off" spellcheck="false">
+          </div>
+
+          <div class="field">
+            <label for="apparatus" id="apLabel">Apparatus under governance</label>
+            <div class="dd" id="dd">
+              <button class="dd__btn" id="apparatus" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="apLabel apparatus">
+                <span id="ddValue">Boiler No. 3 — “Perseverance”</span>
+              </button>
+              <ul class="dd__list" id="ddList" role="listbox" aria-labelledby="apLabel" tabindex="-1"></ul>
+            </div>
+          </div>
+
+          <fieldset class="field" style="border:0;padding:0;margin:0 0 20px">
+            <legend class="legend">Firing order</legend>
+            <label class="opt opt--radio"><input type="radio" name="firing" value="manual"><span class="opt__mark"></span><span class="opt__txt">Hand-fired<small>Stoker sets the rate</small></span></label>
+            <label class="opt opt--radio"><input type="radio" name="firing" value="governed" checked><span class="opt__mark"></span><span class="opt__txt">Governed<small>The console holds the pressure</small></span></label>
+            <label class="opt opt--radio"><input type="radio" name="firing" value="banked"><span class="opt__mark"></span><span class="opt__txt">Banked<small>Fire kept low, standing by</small></span></label>
+          </fieldset>
+
+          <fieldset class="field" style="border:0;padding:0;margin:0">
+            <legend class="legend">Safety interlocks — <span id="lockCount">3 of 3 set</span></legend>
+            <label class="opt opt--check"><input type="checkbox" class="lock" checked><span class="opt__mark"></span><span class="opt__txt">Relief valve armed</span></label>
+            <label class="opt opt--check"><input type="checkbox" class="lock" checked><span class="opt__mark"></span><span class="opt__txt">Water glass in view</span></label>
+            <label class="opt opt--check"><input type="checkbox" class="lock" checked><span class="opt__mark"></span><span class="opt__txt">Low-water alarm live</span></label>
+          </fieldset>
+        </div>
+        <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
+      </section>
+
+      <!-- PANEL: STATIONS (tabs + progress) -->
+      <section class="plate" aria-labelledby="p3">
+        <div class="plate__face">
+          <div class="nameplate">
+            <span class="nameplate__no">Nº III</span>
+            <h3 class="nameplate__title" id="p3">Stations</h3>
+            <span class="nameplate__rule"></span>
+          </div>
+
+          <div class="tabs">
+            <div class="tabs__list" role="tablist" aria-label="Console stations">
+              <button class="tab" role="tab" id="t-boiler" aria-controls="pan-boiler" aria-selected="true">Boiler</button>
+              <button class="tab" role="tab" id="t-pneu" aria-controls="pan-pneu" aria-selected="false" tabindex="-1">Pneumatics</button>
+              <button class="tab" role="tab" id="t-tele" aria-controls="pan-tele" aria-selected="false" tabindex="-1">Telegraphy</button>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="pan-boiler" aria-labelledby="t-boiler" tabindex="0">
+              <h3>Boiler charge</h3>
+              <p>Feedwater in, fire drawing well. The needle above reads the tube; this bar reads the charge held in the drum.</p>
+              <div class="barlabel"><span>DRUM CHARGE</span><span id="chargePct">50%</span></div>
+              <div class="bar"><div class="bar__fill" id="chargeFill"></div><div class="bar__red"></div></div>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="pan-pneu" aria-labelledby="t-pneu" tabindex="0" hidden>
+              <h3>Pneumatic accumulator</h3>
+              <p>Compressed air banked for the message tubes and the workshop hoists. Bleeds slowly; top it up before the morning shift.</p>
+              <div class="barlabel"><span>ACCUMULATOR</span><span>72%</span></div>
+              <div class="bar"><div class="bar__fill" style="width:72%"></div><div class="bar__red"></div></div>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="pan-tele" aria-labelledby="t-tele" tabindex="0" hidden>
+              <h3>Telegraph line</h3>
+              <p>The <span data-tip="A single-needle telegraph, worked from the same brass desk.">single-needle</span> set to the counting-house. Signal strength holds steady on the fair-weather circuit.</p>
+              <div class="barlabel"><span>LINE SIGNAL</span><span>91%</span></div>
+              <div class="bar"><div class="bar__fill" style="width:91%"></div><div class="bar__red"></div></div>
+            </div>
+          </div>
+        </div>
+        <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MECHANISM STRIP ===================== -->
+<section class="band band--alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Beneath the panel · The movement</p>
+      <h2>The Mechanism</h2>
+    </div>
+    <section class="plate" aria-label="Gear train and console log">
+      <div class="plate__face" style="padding:0; overflow:hidden">
+        <div class="gearstrip" id="gearStrip" aria-hidden="true"></div>
+      </div>
+      <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
+    </section>
+    <p class="hint" style="text-align:center; margin-top:16px">Three gears, cut to mesh — twenty-four, sixteen, and twelve teeth, each keeping the next in time.</p>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <div class="foot__mark">ASHCOMBE &amp; VANE</div>
+      <p class="foot__copy">Engineers of apparatus, pneumatic &amp; steam<br>The Governor Mk. IV · Master Console<br>Nº 0447 of a numbered series</p>
+    </div>
+    <div class="foot__gears" id="footGears" aria-hidden="true"></div>
+  </div>
+</footer>
+
+<!-- ===================== OVERLAYS ===================== -->
+<div class="backdrop" id="backdrop">
+  <div class="plate modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-describedby="mBody" id="modal">
+    <div class="plate__face">
+      <h2 class="modal__title" id="mTitle">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L14 5 L18 4 L18 8 L21 10 L18 12 L18 16 L14 15 L12 18 L10 15 L6 16 L6 12 L3 10 L6 8 L6 4 L10 5 Z" fill="none" stroke="#cf5236" stroke-width="1.5"/><circle cx="12" cy="10" r="3" fill="none" stroke="#cf5236" stroke-width="1.5"/></svg>
+        Vent the boiler?
+      </h2>
+      <p class="modal__body" id="mBody">Venting will shut the main valve and drop the needle to zero. The works will need to be re-pressured before the next run. Sound the whistle first.</p>
+      <div class="modal__foot">
+        <button class="btn btn--ghost" id="mCancel">Keep pressure</button>
+        <button class="btn btn--primary" id="mConfirm">Vent now</button>
+      </div>
+    </div>
+    <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
+  </div>
+</div>
+
+<div class="toaster" id="toaster" aria-live="polite" aria-atomic="false"></div>
+<div class="tooltip" id="tooltip" role="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(s,r){return (r||document).querySelector(s);};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+  /* ---------- corner rivets are in markup; generate none ---------- */
+
+  /* ---------- geometry helpers ---------- */
+  function polar(cx,cy,r,deg){var a=(deg-90)*Math.PI/180; return [cx+r*Math.cos(a), cy+r*Math.sin(a)];}
+  // arc from d0 to d1 (degrees, clockwise), 0deg = up
+  function arc(cx,cy,r,d0,d1){
+    var p0=polar(cx,cy,r,d0), p1=polar(cx,cy,r,d1);
+    var large=(d1-d0)>180?1:0;
+    return "M"+p0[0].toFixed(2)+","+p0[1].toFixed(2)+" A"+r+","+r+" 0 "+large+" 1 "+p1[0].toFixed(2)+","+p1[1].toFixed(2);
+  }
+
+  /* ---------- GAUGE ---------- */
+  var GMIN=0, GMAX=12, A0=-120, A1=120;               // 240deg sweep
+  function pAng(p){return A0 + (p-GMIN)/(GMAX-GMIN)*(A1-A0);}   // pressure -> angle from up
+  var CX=120, CY=120;
+
+  // zones
+  $("#zoneGreen").setAttribute("d", arc(CX,CY,88, pAng(0), pAng(8)));
+  $("#zoneAmber").setAttribute("d", arc(CX,CY,88, pAng(8), pAng(10)));
+  $("#zoneRed").setAttribute("d",   arc(CX,CY,88, pAng(10), pAng(12)));
+
+  // ticks + numerals
+  (function(){
+    var g=$("#ticks"), NS="http://www.w3.org/2000/svg", frag=document.createDocumentFragment();
+    for(var i=0;i<=24;i++){                       // 0.5-atm minor ticks
+      var pv=i*0.5, ang=pAng(pv), major=(i%2===0);
+      var r1=78, r2=major?67:73;
+      var a=polar(CX,CY,r1,ang), b=polar(CX,CY,r2,ang);
+      var ln=document.createElementNS(NS,"line");
+      ln.setAttribute("x1",a[0].toFixed(2)); ln.setAttribute("y1",a[1].toFixed(2));
+      ln.setAttribute("x2",b[0].toFixed(2)); ln.setAttribute("y2",b[1].toFixed(2));
+      ln.setAttribute("stroke", pv>=10?"#cf5236":"#caa053");
+      ln.setAttribute("stroke-width", major?"2":"1");
+      ln.setAttribute("stroke-linecap","round");
+      frag.appendChild(ln);
+      if(major && pv%2===0){
+        var t=polar(CX,CY,54,ang);
+        var tx=document.createElementNS(NS,"text");
+        tx.setAttribute("x",t[0].toFixed(2)); tx.setAttribute("y",(t[1]+3.5).toFixed(2));
+        tx.setAttribute("text-anchor","middle");
+        tx.setAttribute("fill", pv>=10?"#e08a6a":"#cbb78e");
+        tx.setAttribute("font-family","Space Mono, monospace");
+        tx.setAttribute("font-size","11");
+        tx.textContent=String(pv);
+        frag.appendChild(tx);
+      }
+    }
+    g.appendChild(frag);
+  })();
+
+  var needle=$("#needle"), atmBig=$("#atmBig"), statusWord=$("#statusWord"),
+      liveAtm=$("#liveAtm"), chargeFill=$("#chargeFill"), chargePct=$("#chargePct");
+
+  var state={target:6, valveOpen:true, current:0};
+
+  function fmt(n){ n=Math.max(0,n); return (n<10?"0":"")+n.toFixed(1); }
+
+  function render(){
+    var p = state.valveOpen ? state.target : 0;
+    state.current = p;
+    needle.style.transform = "rotate("+pAng(p).toFixed(2)+"deg)";
+    // readout
+    atmBig.textContent="";
+    var big=document.createTextNode(fmt(p)+" ");
+    var unit=document.createElement("span"); unit.style.fontSize=".6em"; unit.textContent="atm";
+    atmBig.appendChild(big); atmBig.appendChild(unit);
+    liveAtm.textContent=fmt(p);
+    // status word + colour
+    var word, col;
+    if(p>=10){word="REDLINE"; col="#e08a6a";}
+    else if(p>=8){word="ELEVATED"; col="#e8c26a";}
+    else if(p<0.05){word="COLD"; col="#8fb9ad";}
+    else {word="NOMINAL"; col="#7cc3ab";}
+    statusWord.textContent=word;
+    statusWord.parentNode.style.color=col;
+    atmBig.style.color = p>=10 ? "#e08a6a" : (p>=8?"#e8c26a":"#d8993f");
+    // drum charge bar mirrors fraction
+    var pct=Math.round(p/GMAX*100);
+    chargeFill.style.width=pct+"%";
+    chargePct.textContent=pct+"%";
+  }
+
+  /* ---------- VALVE LEVER ---------- */
+  var valve=$("#valve"), valveState=$("#valveState"), valveCap=$("#valveCap");
+  function setValve(open, announce){
+    state.valveOpen=open;
+    valve.classList.toggle("is-open", open);
+    valve.setAttribute("aria-checked", open?"true":"false");
+    valveState.textContent = open?"OPEN":"SHUT";
+    valveState.style.color = open?"#7cc3ab":"#cf5236";
+    valveCap.textContent = open?("Steam at "+fmt(state.target)+" atm"):"No steam admitted";
+    if(!reduce){
+      valve.classList.add("clank");
+      setTimeout(function(){valve.classList.remove("clank");}, 260);
+    }
+    render();
+    if(announce){
+      if(open) toast("Valve open", "Main valve seated — steam at "+fmt(state.target)+" atm.");
+      else toast("Valve shut", "Main valve closed. Needle returning to zero.");
+    }
+  }
+  valve.addEventListener("click", function(){ setValve(!state.valveOpen, true); });
+
+  /* ---------- SLIDER ---------- */
+  var pslider=$("#pslider"), sliderVal=$("#sliderVal");
+  pslider.addEventListener("input", function(){
+    state.target=parseFloat(pslider.value);
+    sliderVal.textContent=state.target.toFixed(1)+" atm";
+    if(state.valveOpen) valveCap.textContent="Steam at "+fmt(state.target)+" atm";
+    render();
+  });
+
+  /* ---------- BUTTONS ---------- */
+  function engage(){
+    setValve(true, false);
+    toast("Engaged", "Main valve seated at "+fmt(state.target)+" atm. Governing to target.");
+  }
+  $("#engageBtn").addEventListener("click", engage);
+  $$("[data-act]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var a=b.getAttribute("data-act");
+      if(a==="engage") engage();
+      else if(a==="damper") toast("Damper trimmed", "Draught eased by one notch. Fire steadying.");
+      else if(a==="reset"){
+        state.target=0; pslider.value=0; sliderVal.textContent="0.0 atm";
+        setValve(false,false); render();
+        toast("Gauge reset", "Target set to zero and the needle laid to rest.");
+      }
+    });
+  });
+
+  /* ---------- MODAL (Vent) ---------- */
+  var backdrop=$("#backdrop"), modal=$("#modal"), lastFocus=null;
+  function openModal(){
+    lastFocus=document.activeElement;
+    backdrop.classList.add("open");
+    $("#mCancel").focus();
+    document.addEventListener("keydown", modalKeys);
+  }
+  function closeModal(){
+    backdrop.classList.remove("open");
+    document.removeEventListener("keydown", modalKeys);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function modalKeys(e){
+    if(e.key==="Escape"){ closeModal(); return; }
+    if(e.key==="Tab"){
+      var f=$$("button, [href], input, [tabindex]:not([tabindex='-1'])", modal).filter(function(el){return !el.disabled && el.offsetParent!==null;});
+      if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault(); last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault(); first.focus();}
+    }
+  }
+  $("#ventBtn").addEventListener("click", openModal);
+  $("#mCancel").addEventListener("click", closeModal);
+  backdrop.addEventListener("click", function(e){ if(e.target===backdrop) closeModal(); });
+  $("#mConfirm").addEventListener("click", function(){
+    state.target=0; pslider.value=0; sliderVal.textContent="0.0 atm";
+    setValve(false,false); render();
+    closeModal();
+    toast("Boiler vented", "Steam released and the needle laid to zero. Re-pressure before the next run.");
+  });
+
+  /* ---------- DROPDOWN ---------- */
+  var APPARATUS=[
+    "Boiler No. 3 — “Perseverance”",
+    "Condenser bank — West gallery",
+    "Dynamo No. 1 — Arc lamps",
+    "Pneumatic tube — Counting house",
+    "Feed pump — Duplex, port side",
+    "Whistle manifold — Roofline"
+  ];
+  var dd=$("#dd"), ddBtn=$("#apparatus"), ddList=$("#ddList"), ddValue=$("#ddValue"), ddIndex=0;
+  (function(){
+    APPARATUS.forEach(function(name, i){
+      var li=document.createElement("li");
+      li.className="dd__opt"; li.setAttribute("role","option");
+      li.setAttribute("aria-selected", i===0?"true":"false");
+      li.dataset.i=i;
+      li.textContent=name;                       // textContent — safe
+      li.addEventListener("click", function(){ chooseAp(i); });
+      ddList.appendChild(li);
+    });
+  })();
+  function openDD(){ ddList.classList.add("open"); ddBtn.setAttribute("aria-expanded","true"); markActive(ddIndex); document.addEventListener("click", ddOutside); }
+  function closeDD(){ ddList.classList.remove("open"); ddBtn.setAttribute("aria-expanded","false"); document.removeEventListener("click", ddOutside); }
+  function ddOutside(e){ if(!dd.contains(e.target)) closeDD(); }
+  function markActive(i){
+    var opts=$$(".dd__opt", ddList);
+    opts.forEach(function(o,k){ o.classList.toggle("active", k===i); });
+    if(opts[i]) opts[i].scrollIntoView({block:"nearest"});
+  }
+  function chooseAp(i){
+    ddIndex=i;
+    $$(".dd__opt", ddList).forEach(function(o,k){ o.setAttribute("aria-selected", k===i?"true":"false"); });
+    ddValue.textContent=APPARATUS[i];
+    closeDD(); ddBtn.focus();
+    toast("Now governing", APPARATUS[i]);
+  }
+  ddBtn.addEventListener("click", function(){ ddList.classList.contains("open")?closeDD():openDD(); });
+  ddBtn.addEventListener("keydown", function(e){
+    if(e.key==="ArrowDown"||e.key==="Enter"||e.key===" "){ e.preventDefault(); if(!ddList.classList.contains("open")) openDD(); }
+  });
+  ddList.addEventListener("keydown", function(e){
+    if(e.key==="Escape"){ closeDD(); ddBtn.focus(); }
+    else if(e.key==="ArrowDown"){ e.preventDefault(); ddIndex=Math.min(APPARATUS.length-1, ddIndex+1); markActive(ddIndex); }
+    else if(e.key==="ArrowUp"){ e.preventDefault(); ddIndex=Math.max(0, ddIndex-1); markActive(ddIndex); }
+    else if(e.key==="Enter"||e.key===" "){ e.preventDefault(); chooseAp(ddIndex); }
+  });
+  ddBtn.addEventListener("keydown", function(e){ if((e.key==="ArrowDown")&&ddList.classList.contains("open")){ ddList.focus(); } });
+
+  /* ---------- CHECKBOX count ---------- */
+  var lockCount=$("#lockCount");
+  $$(".lock").forEach(function(c){
+    c.addEventListener("change", function(){
+      var n=$$(".lock").filter(function(x){return x.checked;}).length;
+      lockCount.textContent=n+" of 3 set";
+    });
+  });
+
+  /* ---------- TABS ---------- */
+  var tabs=$$('[role="tab"]');
+  function selectTab(tab){
+    tabs.forEach(function(t){
+      var sel=t===tab;
+      t.setAttribute("aria-selected", sel?"true":"false");
+      t.tabIndex=sel?0:-1;
+      var panel=$("#"+t.getAttribute("aria-controls"));
+      if(panel) panel.hidden=!sel;
+    });
+  }
+  tabs.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ selectTab(tab); });
+    tab.addEventListener("keydown", function(e){
+      var idx=null;
+      if(e.key==="ArrowRight") idx=(i+1)%tabs.length;
+      else if(e.key==="ArrowLeft") idx=(i-1+tabs.length)%tabs.length;
+      else if(e.key==="Home") idx=0;
+      else if(e.key==="End") idx=tabs.length-1;
+      if(idx!==null){ e.preventDefault(); selectTab(tabs[idx]); tabs[idx].focus(); }
+    });
+  });
+
+  /* ---------- TOOLTIP ---------- */
+  var tip=$("#tooltip"), tipTarget=null;
+  function showTip(el){
+    var text=el.getAttribute("data-tip"); if(!text) return;
+    tip.textContent=text;                          // textContent — safe
+    tip.classList.add("show");
+    var r=el.getBoundingClientRect(), tr=tip.getBoundingClientRect();
+    var left=r.left + r.width/2 - tr.width/2;
+    left=Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+    var top=r.top - tr.height - 10;
+    if(top<8) top=r.bottom+10;
+    tip.style.left=left+"px"; tip.style.top=top+"px";
+    tipTarget=el;
+  }
+  function hideTip(){ tip.classList.remove("show"); tipTarget=null; }
+  $$("[data-tip]").forEach(function(el){
+    el.addEventListener("mouseenter", function(){ showTip(el); });
+    el.addEventListener("mouseleave", hideTip);
+    el.addEventListener("focus", function(){ showTip(el); });
+    el.addEventListener("blur", hideTip);
+    if(!el.hasAttribute("tabindex") && el.tagName!=="BUTTON" && el.tagName!=="INPUT" && el.tagName!=="A"){
+      el.setAttribute("tabindex","0");
+    }
+  });
+  window.addEventListener("scroll", function(){ if(tipTarget) showTip(tipTarget); }, {passive:true});
+
+  /* ---------- TOAST ---------- */
+  var toaster=$("#toaster");
+  function toast(title, msg){
+    var t=document.createElement("div"); t.className="toast"; t.setAttribute("role","status");
+    var ico=document.createElement("div"); ico.className="toast__ico";
+    ico.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 L14.5 8 L20 8.7 L16 12.5 L17 18 L12 15.3 L7 18 L8 12.5 L4 8.7 L9.5 8 Z" fill="#1c0e05"/></svg>';
+    var body=document.createElement("div"); body.className="toast__body";
+    var h=document.createElement("div"); h.className="toast__title"; h.textContent=title;   // safe
+    var m=document.createElement("div"); m.className="toast__msg"; m.textContent=msg;         // safe
+    body.appendChild(h); body.appendChild(m);
+    var x=document.createElement("button"); x.className="toast__x"; x.setAttribute("aria-label","Dismiss"); x.textContent="×";
+    var kill=function(){ t.classList.add("out"); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 300); };
+    x.addEventListener("click", kill);
+    t.appendChild(ico); t.appendChild(body); t.appendChild(x);
+    toaster.appendChild(t);
+    while(toaster.children.length>4){ toaster.removeChild(toaster.firstChild); }
+    setTimeout(kill, 4600);
+  }
+
+  /* ---------- GEARS ---------- */
+  function gearPath(cx,cy,teeth,rO,rI){
+    var step=Math.PI*2/teeth, d="";
+    for(var i=0;i<teeth;i++){
+      var a0=i*step, a1=a0+step*0.24, a2=a0+step*0.5, a3=a0+step*0.74;
+      var P=function(r,a){return [cx+r*Math.cos(a), cy+r*Math.sin(a)];};
+      var p0=P(rI,a0), p1=P(rO,a1), p2=P(rO,a2), p3=P(rI,a3);
+      d+=(i===0?"M":"L")+p0[0].toFixed(2)+","+p0[1].toFixed(2)
+        +"L"+p1[0].toFixed(2)+","+p1[1].toFixed(2)
+        +"L"+p2[0].toFixed(2)+","+p2[1].toFixed(2)
+        +"L"+p3[0].toFixed(2)+","+p3[1].toFixed(2);
+    }
+    return d+"Z";
+  }
+  var NS="http://www.w3.org/2000/svg", gearSeq=0;
+  function makeGear(teeth, rO, spin, dur, opts){
+    opts=opts||{};
+    var rI=rO*0.82, D=rO*2+8, c=D/2;
+    var svg=document.createElementNS(NS,"svg");
+    svg.setAttribute("viewBox","0 0 "+D+" "+D);
+    svg.setAttribute("width", D); svg.setAttribute("height", D);
+    svg.classList.add("gear");
+    if(!reduce){ svg.classList.add(spin>0?"gear-spin-cw":"gear-spin-ccw"); svg.style.animationDuration=dur+"s"; }
+    var gid="gg"+(gearSeq++);
+    var grad=document.createElementNS(NS,"radialGradient");
+    grad.setAttribute("id",gid); grad.setAttribute("cx","38%"); grad.setAttribute("cy","32%"); grad.setAttribute("r","72%");
+    [["0%","#f2dfa2"],["45%",opts.copper?"#c98a58":"#c3993f"],["100%",opts.copper?"#5f2c17":"#4c3917"]].forEach(function(s){
+      var st=document.createElementNS(NS,"stop"); st.setAttribute("offset",s[0]); st.setAttribute("stop-color",s[1]); grad.appendChild(st);
+    });
+    var defs=document.createElementNS(NS,"defs"); defs.appendChild(grad); svg.appendChild(defs);
+
+    var body=document.createElementNS(NS,"path");
+    body.setAttribute("d", gearPath(c,c,teeth,rO,rI));
+    body.setAttribute("fill","url(#"+gid+")");
+    body.setAttribute("stroke","#2a1f0d"); body.setAttribute("stroke-width","1");
+    svg.appendChild(body);
+
+    var rim=document.createElementNS(NS,"circle");
+    rim.setAttribute("cx",c); rim.setAttribute("cy",c); rim.setAttribute("r",rI*0.78);
+    rim.setAttribute("fill","none"); rim.setAttribute("stroke","#2a1f0d"); rim.setAttribute("stroke-width","2");
+    svg.appendChild(rim);
+
+    // spokes
+    var spokes=Math.min(6, Math.max(4, Math.round(teeth/4)));
+    for(var s=0;s<spokes;s++){
+      var ang=s/spokes*Math.PI*2;
+      var x2=c+Math.cos(ang)*rI*0.72, y2=c+Math.sin(ang)*rI*0.72;
+      var ln=document.createElementNS(NS,"line");
+      ln.setAttribute("x1",c); ln.setAttribute("y1",c); ln.setAttribute("x2",x2.toFixed(2)); ln.setAttribute("y2",y2.toFixed(2));
+      ln.setAttribute("stroke","#8a6a2c"); ln.setAttribute("stroke-width","4"); ln.setAttribute("stroke-linecap","round");
+      svg.appendChild(ln);
+    }
+    var hubc=document.createElementNS(NS,"circle");
+    hubc.setAttribute("cx",c); hubc.setAttribute("cy",c); hubc.setAttribute("r",rO*0.2);
+    hubc.setAttribute("fill","url(#"+gid+")"); hubc.setAttribute("stroke","#2a1f0d"); hubc.setAttribute("stroke-width","1.5");
+    svg.appendChild(hubc);
+    var bolt=document.createElementNS(NS,"circle");
+    bolt.setAttribute("cx",c); bolt.setAttribute("cy",c); bolt.setAttribute("r",rO*0.06); bolt.setAttribute("fill","#2a1f0d");
+    svg.appendChild(bolt);
+    svg.__D=D; svg.__pitch=rO*0.88;
+    return svg;
+  }
+
+  // hero: two meshing gears, tucked behind the dial corners
+  (function(){
+    var host=$("#heroGears");
+    var g1=makeGear(22, 58, +1, 22, {copper:true});
+    var g2=makeGear(15, 40, -1, 15, {});
+    g1.style.position="absolute"; g1.style.left="-30px"; g1.style.top="-14px"; g1.style.opacity=".55";
+    g2.style.position="absolute"; g2.style.right="-18px"; g2.style.bottom="-6px"; g2.style.opacity=".5";
+    host.appendChild(g1); host.appendChild(g2);
+  })();
+
+  // mechanism strip: three meshing gears, centred and touching
+  (function(){
+    var strip=$("#gearStrip");
+    var g1=makeGear(24, 66, +1, 24, {}),
+        g2=makeGear(16, 46, -1, 16, {copper:true}),
+        g3=makeGear(12, 36, +1, 12, {});
+    [g1,g2,g3].forEach(function(g){ g.style.position="absolute"; g.style.top="50%"; });
+    // centre distances = sum of pitch radii; lay along a line, centred as a group
+    var d12=g1.__pitch+g2.__pitch, d23=g2.__pitch+g3.__pitch;
+    var x1=0, x2=x1+d12, x3=x2+d23;
+    var mid=(x1+x3)/2;
+    function place(g,x){ g.style.left="calc(50% + "+(x-mid).toFixed(1)+"px)"; g.style.marginLeft=(-g.__D/2)+"px"; g.style.marginTop=(-g.__D/2)+"px"; }
+    place(g1,x1); place(g2,x2); place(g3,x3);
+    strip.appendChild(g1); strip.appendChild(g2); strip.appendChild(g3);
+  })();
+
+  // footer: a small idle pair
+  (function(){
+    var f=$("#footGears");
+    var a=makeGear(14,20,+1,14,{}), b=makeGear(10,15,-1,10,{copper:true});
+    a.style.opacity=".8"; b.style.opacity=".8";
+    f.appendChild(a); f.appendChild(b);
+  })();
+
+  /* ---------- boot ---------- */
+  render();
+})();
+</script>
+</body>
+</html>
