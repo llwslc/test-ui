@@ -837,6 +837,12 @@ input:focus-visible {
   flex: 0 0 auto;
   width: 390px;
   height: min(844px, 100%);
+  border-radius: 34px;
+  background: #11161c;
+  box-shadow:
+    0 0 0 7px #11161c,
+    0 0 0 8px #7f8995,
+    0 26px 72px rgba(0, 0, 0, 0.56);
 }
 
 .detail-view[data-viewport="mobile"] .preview-viewport {
@@ -844,9 +850,7 @@ input:focus-visible {
   height: 100%;
   border: 0;
   border-radius: 28px;
-  box-shadow:
-    inset 0 0 0 1px #555b63,
-    0 24px 70px rgba(0, 0, 0, 0.48);
+  box-shadow: inset 0 0 0 1px rgba(226, 233, 240, 0.28);
 }
 
 .fullscreen-controls {
@@ -891,6 +895,7 @@ input:focus-visible {
 .detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
   align-items: center;
   justify-content: center;
+  padding: 10px;
   overflow: hidden;
 }
 
@@ -1091,6 +1096,7 @@ input:focus-visible {
 
   .detail-view[data-viewport="mobile"] .preview-device {
     width: min(390px, 100%);
+    border-radius: 28px;
   }
 
   .detail-view[data-viewport="mobile"] .preview-viewport {
@@ -1098,7 +1104,7 @@ input:focus-visible {
   }
 
   .detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
-    padding: 0;
+    padding: 10px;
   }
 }
 
@@ -1623,7 +1629,9 @@ function showHome(options = {}) {
   homeView.hidden = false;
   document.body.dataset.mode = "home";
   document.title = "KIT / Theme Atlas";
-  if (options.focusGrid) document.querySelector("#themeGrid").focus({ preventScroll: true });
+  if (options.focusCard) {
+    themeCards.querySelector(`[data-theme-id="${themes[activeIndex].id}"]`)?.focus();
+  }
 }
 
 function replaceHash(id) {
@@ -1652,7 +1660,7 @@ function switchTheme(delta) {
 
 function returnHome(options = {}) {
   replaceHash("");
-  showHome({ focusGrid: options.focusGrid });
+  showHome({ focusCard: options.focusCard });
 }
 
 function routeFromHash() {
@@ -1677,7 +1685,7 @@ search.addEventListener("keydown", (event) => {
 });
 
 preview.addEventListener("load", () => loading.classList.remove("is-visible"));
-document.querySelector("#backAll").addEventListener("click", () => returnHome({ focusGrid: true }));
+document.querySelector("#backAll").addEventListener("click", () => returnHome({ focusCard: true }));
 document.querySelector("#previousTheme").addEventListener("click", () => switchTheme(-1));
 document.querySelector("#nextTheme").addEventListener("click", () => switchTheme(1));
 document.querySelector("#fullscreenPrevious").addEventListener("click", () => switchTheme(-1));
@@ -1732,7 +1740,7 @@ document.addEventListener("keydown", (event) => {
     }
     if (!detailView.hidden) {
       event.preventDefault();
-      returnHome({ focusGrid: true });
+      returnHome({ focusCard: true });
     }
     return;
   }
